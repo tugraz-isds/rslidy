@@ -1,0 +1,1055 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+
+<head>
+<meta charset="UTF-8"/>
+
+<!-- for css3 media queries to work properly on mobile devices-->
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>Andrews - Responsive Web Design</title>
+
+<!-- Copyright © 2015 Keith Andrews -->
+
+<link rel="stylesheet" href="rslidy.min.css"/>
+<script src="rslidy.min.js"></script>
+
+</head>
+
+<body class="fade">
+
+
+<!-- TEMP AND TESTING -->
+<!--
+<div style="position:fixed; z-index: 10; top: 0; right: 0;">
+  <span id="val-1">0</span>
+  <span id="val-2">0</span>
+  <span id="val-3">0</span>
+</div>
+-->
+<!-- **************** -->
+
+
+<div class="slide titleslide">
+<h1>Responsive Web Design</h1>
+
+<h2>Prof. Keith Andrews</h2>
+
+<h3>IICM, Graz University of Technology, Austria</h3>
+
+<p>
+Web site:<br/>
+<a href="http://www.iicm.tugraz.at/keith/">
+<code>http://www.iicm.tugraz.at/keith/</code>
+</a>
+<br/>
+<br/>
+Slides:<br/>
+<a href="http://keithandrews.com/talks/2015/resp-camp-graz-2015-03-07/">
+<code>http://keithandrews.com/talks/2015/resp-camp-graz-2015-03-07/</code>
+</a>
+</p>
+
+
+<div class="footer">
+<p id="location">
+Sat 07 Mar 2015, ResponsiveCamp, Graz.
+</p>
+</div>
+
+
+</div>
+
+
+
+
+
+
+<div class="slide">
+<h1>Responsive Web Design</h1>
+
+<p>
+A single web site design which dynamically responds (adapts) to the
+characteristics (screen width, resolution, capabilities) of the
+display device.
+</p>
+
+<p>
+The <em>same</em> web site at the <em>same</em> URL works and provides
+an appropriate experience across all devices:
+</p>
+<ul class="incremental">
+<li>smartphone</li>
+<li>tablet</li>
+<li>laptop</li>
+<li>1st level nested incremental items:
+  <ul class="incremental">
+    <li>2nd level nested incremental items:
+      <ul class="incremental">
+        <li>test1</li>
+        <li>test2</li>
+        <li>test3</li>
+      </ul>
+    </li>
+    <li>test2</li>
+    <li>test3</li>
+  </ul>
+</li>
+<li>desktop</li>
+<li>large-screen tv</li>
+</ul>
+
+</div>
+
+
+
+
+
+<div class="slide">
+<h1>Being Responsive</h1>
+
+<ul class="incremental">
+<li><span class="li-intro">Responsive Layout</span>:
+dynamically adjust the layout to
+best suit the available window size (width).
+</li>
+
+<li><span class="li-intro">Responsive Content</span>: dynamically
+adjust embedded media (text, tables, images, videos) to the
+available space and display charactersistics (resolution).
+</li>
+
+<li><span class="li-intro">Responsive Navigation</span>:
+e.g. collapse menus to a single button.
+</li>
+
+<li><span class="li-intro">Responsive Interaction</span>:
+sniff features to selectively add support for
+location, orientation, tilt, shaking, touch
+gestures (swipe, pinch, …), etc.
+</li>
+</ul>
+
+</div>
+
+
+
+
+
+
+
+<div class="slide">
+<h1>Resources</h1>
+
+<ul>
+
+<li>Ethan Marcotte;
+<em>Responsive Web Design</em>;
+A List Apart, 25 May 2010.
+<a href="http://alistapart.com/article/responsive-web-design">
+http://alistapart.com/article/responsive-web-design</a>
+</li>
+
+<li>Ethan Marcotte;
+<em>Responsive Web Design</em>;
+A Book Apart, 2<sup>nd</sup> Edition, 03 Dec 2014.
+<span class="isbn">
+<a href="http://abookapart.com/products/responsive-web-design">
+978-1-9375571-8-8</a></span>
+</li>
+
+
+<li>Scott Jehl;
+<em>Responsible Responsive Design</em>;
+A Book Apart, 19 Nov 2014.
+<span class="isbn">
+<a href="http://amazon.com/exec/obidos/ASIN/1937557162/keithandrewshcic">
+1937557162</a></span>
+</li>
+
+
+<li>Tim Kadlec;
+<em>Implementing Responsive Design</em>;
+New Riders, 10 Aug 2012.
+<span class="isbn">
+<a href="http://amazon.com/exec/obidos/ASIN/0321821688/keithandrewshcic">
+0321821688</a></span>
+</li>
+
+
+<li>Stephen Hay;
+<em>Responsive Design Workflow</em>;
+New Riders, 05 Apr 2013.
+<span class="isbn">
+<a href="http://amazon.com/exec/obidos/ASIN/0321887867/keithandrewshcic">
+0321887867</a></span>
+</li>
+
+
+<li>Tom Barker;
+<em>High Performance Responsive Design</em>;
+O'Reilly, 04 Nov 2014.
+<span class="isbn">
+<a href="http://amazon.com/exec/obidos/ASIN/1491949988/keithandrewshcic">
+1491949988</a></span>
+</li>
+
+
+<li>Ben Frain;
+<em>Responsive Web Design with HTML5 and CSS3</em>;
+Packt Publishing, 10 Apr 2012.
+<span class="isbn">
+<a href="http://amazon.com/exec/obidos/ASIN/9350237881/keithandrewshcic">
+9350237881</a></span>
+</li>
+
+</ul>
+</div>
+
+
+
+
+
+
+
+
+
+<div class="slide">
+<h1>Online Resources</h1>
+
+<ul>
+
+<li>Matt Andrews;
+<em>Responsive Design at the Guardian
+or How I learned to Stop Worrying and Love the Mobile Web</em>;
+2013.
+<a href="http://mattandrews.info/talks/port80-2013/">
+<code>http://mattandrews.info/talks/port80-2013/</code>
+</a>
+</li>
+
+<li>BBC News;
+<em>Cutting the Mustard</em>;
+Responsive News, 08 Mar 2012.
+<a href="http://responsivenews.co.uk/post/18948466399/cutting-the-mustard">
+<code>http://responsivenews.co.uk/post/18948466399/cutting-the-mustard</code>
+</a>
+</li>
+
+</ul>
+</div>
+
+
+
+
+
+
+<div class="slide">
+<h1>Native App v Web App</h1>
+
+
+</div>
+
+
+
+
+
+<div class="slide">
+<h1>Separate Mobile (m.) and Desktop Web Sites</h1>
+
+<figure>
+<div class="figure">
+<img src="images/southwest-2012-10-23-scroll.png"
+  alt="m.southwest.com" style="height:12em;margin-right:2em;" />
+<img src="images/southwest-2012-10-23-scroll.png"
+  alt="southwest.com" style="height:18em" />
+</div>
+<figcaption>
+<p class="caption">
+<span class="fig-label">Figure 1</span>: Separate mobile
+(<a href="http://m.southwest.com/">m.southwest.com</a>) and desktop
+(<a href="http://southwest.com/">southwest.com</a>) web sites.
+</p>
+</figcaption>
+</figure>
+
+</div>
+
+
+
+
+
+
+<div class="slide">
+<h1>Examples of Responsive Web Sites</h1>
+
+<p>
+Lists of responsive web sites:
+</p>
+
+<ul>
+
+<li>Eivind Uggedal;
+<a href="http://mediaqueri.es/">
+<code>mediaqueri.es</code>
+</a>
+</li>
+
+<li>DesignModo;
+<a href="http://designmodo.com/responsive-design-examples/">
+<code>http://designmodo.com/responsive-design-examples/</code>
+</a>
+</li>
+
+</ul>
+
+
+
+<p>
+Individual examples of responsive web sites:
+</p>
+
+<ul>
+
+<li><em>The Boston Globe</em>;
+<a href="http://bostonglobe.com/">
+<code>bostonglobe.com</code>
+</a>
+</li>
+
+<li><em>Smashing Magazine</em>;
+<a href="http://smashingmagazine.com/">
+<code>smashingmagazine.com</code>
+</a>
+</li>
+
+<li><em>Time</em>;
+<a href="http://time.com/">
+<code>time.com</code>
+</a>
+</li>
+
+<li><em>engadget</em>;
+<a href="http://engadget.com/">
+<code>engadget.com</code>
+</a>
+</li>
+
+<li><em>BBC One</em>;
+<a href="http://bbc.co.uk/bbcone/">
+<code>http://bbc.co.uk/bbcone/</code>
+</a>
+</li>
+
+<li><em>Channel 4 News</em>;
+<a href="http://channel4.com/news/">
+<code>http://channel4.com/news/</code>
+</a>
+</li>
+
+<li><em>The Guardian</em>;
+<a href="http://theguardian.com/uk?view=mobile">
+<code>http://theguardian.com/uk?view=mobile</code>
+</a>
+</li>
+
+<li><em>Gov.UK</em>;
+<a href="http://gov.uk/">
+<code>http://gov.uk/</code>
+</a>
+</li>
+
+<li><em>TED</em>;
+<a href="http://ted.com/">
+<code>http://ted.com/</code>
+</a>
+</li>
+
+<li><em>Awwwards</em>;
+<a href="http://awwwards.com/">
+<code>http://awwwards.com/</code>
+</a>
+</li>
+
+</ul>
+
+</div>
+
+
+
+
+
+
+<div class="slide">
+<h1>How Many Sites are Responsive?</h1>
+
+<ol>
+<li>18.7% of the top 10,000 web sites are responsive (Oct 2014).</li>
+<li>Was 10.8% in Nov 2013.</li>
+</ol>
+
+<ul>
+<li>Guy Podjarny;
+<em>Responsive Web Design Adoption, 2014</em>;
+Guy's Pod, blog, 11 Nov 2014.
+<a href="http://guypo.com/rwd-2014/">
+<code>http://guypo.com/rwd-2014/</code>
+</a>
+</li>
+</ul>
+
+</div>
+
+
+
+
+
+
+
+<div class="slide">
+<h1>Progressive Enhancement</h1>
+
+<ol>
+<li>Build baseline first (HTML only).</li>
+<li>Then add styling (CSS).</li>
+<li>Then add more interactivity (Javascript).</li>
+</ol>
+
+<p>
+[as opposed to <em>graceful degradation</em>]
+</p>
+
+<ul>
+<li>Aaron Gustafson;
+<em>Understanding Progressive Enhancement</em>;
+A List Apart, 07 Oct 2008.
+<a href="http://alistapart.com/article/understandingprogressiveenhancement">
+<code>http://alistapart.com/article/understandingprogressiveenhancement</code>
+</a>
+</li>
+</ul>
+
+</div>
+
+
+
+
+
+
+<div class="slide">
+<h1>Mobile First</h1>
+
+<ol>
+<li>Build for mobile first (forces setting of priorities).</li>
+<li>Then expand to other devices.</li>
+</ol>
+
+<ul>
+<li>Luke Wroblewski;
+<em>Mobile First</em>;
+A Book Apart, 18 Oct 2011.
+<span class="isbn">
+<a href="http://amazon.com/exec/obidos/ASIN/1937557022/keithandrewshcic">
+1937557022</a></span>
+</li>
+</ul>
+
+</div>
+
+
+
+
+
+
+
+<div class="slide">
+<h1>Breakpoint Diagram</h1>
+
+<figure>
+<div class="figure" style="width:100%;">
+<img src="images/breakpoint.svg" alt="Breakpoint Diagram" />
+</div>
+<figcaption>
+<p class="caption">
+<span class="fig-label">Figure 2</span>: A typical breakpoint diagram.
+</p>
+</figcaption>
+</figure>
+
+</div>
+
+
+
+
+
+<div class="slide">
+<h1>Breakpoints</h1>
+
+<ul>
+
+<li><span class="li-intro">Between Breakpoints</span>: Fluid (Scalable) Layout.
+<ul>
+<li>Heights in em or rem.</li>
+<li>Widths in %, em, or rem.</li>
+<li>Absolute units (px, mm, cm, in) are forbidden!</li>
+<li>Use vector graphics (SVG) where possible.</li>
+<li>Flexbox is wonderful!</li>
+</ul>
+</li>
+
+<li><span class="li-intro">At Breakpoint</span>: Change Layout.
+<ul>
+<li>Say, from 2-column to 3-column layout.</li>
+</ul>
+</li>
+
+</ul>
+
+</div>
+
+
+
+
+
+<div class="slide">
+<h1>Specifying Breakpoints with CSS3 Media Queries</h1>
+
+<pre>
+/* settings for window-width: narrow */
+@media only all and (max-width: 40em) {
+...
+}
+
+/* settings for window-width: medium */
+@media only all and (min-width: 40em) and (max-width: 60em) {
+...
+}
+
+/* settings for window-width: wide */
+@media only all and (min-width: 60em) {
+...
+}
+</pre>
+
+</div>
+
+
+
+
+
+
+<div class="slide">
+<h1>Content Parity</h1>
+
+<ul>
+
+<li>Users expect to have access to the same content and
+funtionality, no matter how they access the web site.</li>
+
+<li>No content should be removed completely in any view.</li>
+
+</ul>
+</div>
+
+
+
+
+
+
+
+
+
+<div class="slide">
+<h1>Responsive Text (Paragraphs)</h1>
+
+
+<ul>
+
+<li>Provide text in different versions (lengths): short,
+medium, long.
+<br/>
+<a href="http://www.frankieroberto.com/responsive_text">
+<code>http://www.frankieroberto.com/responsive_text</code></a>
+
+<br/>
+<a href="http://mobile.smashingmagazine.com/2012/02/27/ever-justification-for-responsive-text/">
+<code>http://mobile.smashingmagazine.com/2012/02/27/ever-justification-for-responsive-text/</code></a>
+</li>
+
+
+
+<li>
+Limit characters per line for wide displays:
+<pre>
+max-width: 60em;
+</pre>
+or use CSS3 text wrapping:
+<pre>
+text-overflow: ellipsis;
+</pre>
+or use CSS3 columns:
+<pre>
+-webkit-column-count: 2;
+-webkit-column-rule: 0.1em solid #bbb;
+-webkit-column-gap: 2em;
+-moz-column-count: 2;
+-moz-column-rule: 0.1em solid #bbb;
+-moz-column-gap: 2em;
+</pre>
+</li>
+
+
+
+<li>
+Turn on hyphenation:
+<pre>
+body {
+  hyphens: auto;
+  -webkit-hyphens: auto;
+  -moz-hyphens: auto;
+  -ms-hyphens: auto;
+}
+
+code, var, kbd, samp, listing, plaintext, xmp, abbr {
+  hyphens: none;
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+}
+</pre>
+</li>
+
+
+
+<li>Pack content more tightly on narrow screens:
+<pre>
+line-height: 1.2;
+word-spacing: -0.1em;
+letter-spacing: -0.05em;
+</pre>
+</li>
+
+
+</ul>
+
+</div>
+
+
+
+
+
+
+
+<div class="slide">
+<h1>Responsive Tables</h1>
+
+<ul>
+
+<li><span class="li-intro">Responsive Tables Demo</span>:
+Simon Elvery.<br/>
+<a href="http://elvery.net/demo/responsive-tables/">
+<code>http://elvery.net/demo/responsive-tables/</code></a>
+</li>
+
+
+<li><span class="li-intro">Tablesaw</span>:
+jquery responsive tables.<br/>
+<a href="https://filamentgroup.github.io/tablesaw/demo/kitchensink.html">
+<code>https://filamentgroup.github.io/tablesaw/demo/kitchensink.html</code></a>
+</li>
+
+
+
+
+<li><span class="li-intro">Mock table</span>:
+Replace with mock table linked to full table.<br/>
+<a href="http://jsbin.com/apane6/14">
+<code>http://jsbin.com/apane6/14</code></a>
+</li>
+
+
+<li><span class="li-intro">Selective column display</span>:
+Prioritise columns, choose higher priority columns if too
+little space. Others can be accessed by dropdown.<br/>
+<a href="http://filamentgroup.com/examples/rwd-table-patterns/">
+<code>http://filamentgroup.com/examples/rwd-table-patterns/</code></a>
+</li>
+
+
+<li><span class="li-intro">Collapse to list</span>:
+Table collapses to a list. Each row becomes a list item
+with set of field and value pairs.<br/>
+<a href="http://codepen.io/pixelchar/pen/rfuqK">
+<code>http://codepen.io/pixelchar/pen/rfuqK</code></a>
+<br/>
+<a href="http://css-tricks.com/examples/ResponsiveTables/responsive.php">
+<code>http://css-tricks.com/examples/ResponsiveTables/responsive.php</code></a>
+<br/>
+<a href="http://mobifreaks.com/user-interface/responsive-and-seo-friendly-data-tables/">
+<code>http://mobifreaks.com/user-interface/responsive-and-seo-friendly-data-tables/</code></a>
+<br/>
+<a href="http://view.jquerymobile.com/1.3.1/dist/demos/examples/tables/movie-list.html">
+<code>http://view.jquerymobile.com/1.3.1/dist/demos/examples/tables/movie-list.html</code></a>
+</li>
+
+
+<li><span class="li-intro">Transpose and horizontal scroll</span>:
+<br/>
+<a href="http://dbushell.com/2012/01/05/responsive-tables-2/">
+<code>http://dbushell.com/2012/01/05/responsive-tables-2/
+</code></a>
+<br/>
+<a href="http://codepen.io/JasonAGross/full/rjmyx">
+<code>http://codepen.io/JasonAGross/full/rjmyx</code></a>
+</li>
+
+
+<li><span class="li-intro">Sticky First Column, Scroll the Other Columns</span>:
+<br/>
+<a href="http://zurb.com/playground/responsive-tables">
+<code>http://zurb.com/playground/responsive-tables</code></a>
+</li>
+
+
+<li><span class="li-intro">Wrapped columns</span>:
+Wrap columns onto next line, possibly with colour coding.
+<br/>
+<a href="http://bradczerniak.com/responsivetables/">
+<code>http://bradczerniak.com/responsivetables/</code></a>
+</li>
+
+<!--
+https://github.com/ao5357/responsivetables
+-->
+
+</ul>
+
+</div>
+
+
+
+
+
+
+
+
+<div class="slide">
+<h1>Responsive Images</h1>
+
+<ul>
+
+<li><span class="li-intro">Dynamic image resizing</span>: rescaling
+  an image in the browser.
+<pre>
+width: auto;
+max-width: 100%;
+height: auto;
+max-height: 20em;
+</pre>
+</li>
+
+
+
+<li><span class="li-intro">Dynamic image cropping</span>:
+sometimes called the "art direction use case".
+
+<ul>
+<li>Obama example:<br/>
+<a href="http://blog.cloudfour.com/a-framework-for-discussing-responsive-images-solutions/">
+<code>http://blog.cloudfour.com/a-framework-for-discussing-responsive-images-solutions/</code></a>
+</li>
+
+<li>Focal Point: pure CSS, 12×12 virtual grid:<br/>
+<a href="http://designshack.net/articles/css/focal-point-intelligent-cropping-of-responsive-images/">
+<code>http://designshack.net/articles/css/focal-point-intelligent-cropping-of-responsive-images/</code></a>
+</li>
+
+<li>
+<a href="http://zomigi.com/blog/hiding-and-revealing-portions-of-images/">
+<code>http://zomigi.com/blog/hiding-and-revealing-portions-of-images/</code></a>
+</li>
+</ul>
+</li>
+
+
+
+
+
+<li><span class="li-intro">Dynamic rendering via image server</span>:
+<p>
+<a href="http://iipimage.sourceforge.net/2012/08/responsive-images-using-iipimage/">
+<code>http://iipimage.sourceforge.net/2012/08/responsive-images-using-iipimage/</code></a><br/>
+<a href="http://www.iandevlin.com/blog/2013/10/responsive-web-design/resimagecrop-a-responsive-image-solution">
+<code>http://www.iandevlin.com/blog/2013/10/responsive-web-design/resimagecrop-a-responsive-image-solution</code></a>
+</p>
+</li>
+
+
+<li><span class="li-intro">New HTML5 syntax</span>:
+<p>
+picture element --&gt; RespImg Syntax proposal (src-n)
+</p>
+<p>
+<a href="http://tabatkins.github.io/specs/respimg/Overview.html">
+<code>http://tabatkins.github.io/specs/respimg/Overview.html</code></a><br/>
+</p>
+
+<pre>
+&lt;img alt="Photo of Keith."
+  src-1="(max-width: 300px) keith-s.jpg"
+  src-2="(max-width: 600px) keith-m.jpg"
+  src="keith-l.jpg" /&gt;
+</pre>
+
+<p>
+Today, we can use the picturefill polyfill:<br/>
+<a href="http://scottjehl.github.io/picturefill/">
+<code>http://scottjehl.github.io/picturefill/</code></a>
+</p>
+
+</li>
+
+
+
+<li><span class="li-intro">Adapt images based on
+screen res (retina display)</span>:
+<pre>
+@media print and (min-resolution: 300dpi) {...}
+</pre>
+</li>
+
+
+
+<li><span class="li-intro">Responsive SVG</span>:
+
+<ul>
+<li>
+<p><span class="li-intro">Media Queries Inside SVG</span>:
+<br/>
+<a href="http://blog.cloudfour.com/media-queries-in-svg-images/">
+<code>http://blog.cloudfour.com/media-queries-in-svg-images/</code></a>
+<br/>
+<a href="http://people.opera.com/andreasb/demos/demos_svgopen2009/update/svgscalelogo.html">
+<code>http://people.opera.com/andreasb/demos/demos_svgopen2009/update/svgscalelogo.html</code></a>
+</p>
+</li>
+
+<li><span class="li-intro">Responsive Raster Images Inside SVG</span>:
+<p>
+<a href="http://coding.smashingmagazine.com/2013/06/02/clown-car-technique-solving-for-adaptive-images-in-responsive-web-design/">
+<code>http://coding.smashingmagazine.com/2013/06/02/clown-car-technique-solving-for-adaptive-images-in-responsive-web-design/</code></a>
+</p>
+</li>
+</ul>
+
+</li>
+
+</ul>
+
+
+See the Responsive Images Community Group
+<a href="http://responsiveimages.org/">
+<code>responsiveimages.org</code></a> for the latest news.
+
+
+</div>
+
+
+
+
+
+
+
+
+<div class="slide">
+<h1>Responsive Navigation</h1>
+
+<ul>
+<li><span class="li-intro">Collapse Menus if Too Little Space
+ (Toggle Pattern)</span>:<br/>
+<a href="http://coding.smashingmagazine.com/2012/02/13/progressive-and-responsive-navigation/">
+<code>http://coding.smashingmagazine.com/2012/02/13/progressive-and-responsive-navigation/</code></a><br/>
+
+<a href="http://www.hongkiat.com/blog/responsive-web-nav/">
+<code>http://www.hongkiat.com/blog/responsive-web-nav/</code></a>
+</li>
+
+<li>Off-canvas navigation<br/>
+<a href="http://coding.smashingmagazine.com/2013/01/15/off-canvas-navigation-for-responsive-website/"><code>http://coding.smashingmagazine.com/2013/01/15/off-canvas-navigation-for-responsive-website/</code></a>
+</li>
+
+</ul>
+
+</div>
+
+
+<!-- http://bradfrost.github.io/this-is-responsive/patterns.html#navigation
+ -->
+
+
+
+
+<div class="slide">
+<h1>Responsive Interaction</h1>
+
+<ul>
+
+<li>Larger Target Sizes for Tap</li>
+
+<li>Shake</li>
+
+<li>Tilt</li>
+
+<li>Swipe<br/>
+<a href="http://www.onextrapixel.com/2012/06/13/really-useful-resources-and-tools-for-responsive-web-design/">
+<code>http://www.onextrapixel.com/2012/06/13/really-useful-resources-and-tools-for-responsive-web-design/</code></a>
+</li>
+
+<li>Pinch</li>
+
+
+<li>Orientation<br/>
+<pre>
+@media all and (orientation: landscape) {...}
+</pre>
+</li>
+
+<li>Location</li>
+
+</ul>
+
+</div>
+
+
+
+
+
+<div class="slide">
+<h1>Conferences</h1>
+
+<ul>
+
+<li><em>Breaking Development</em>;
+Web design and development for mobile devices.
+Three conferences per year.
+<a href="http://bdconf.com/">
+<code>http://bdconf.com/</code></a>
+Videos available on Vimeo channel
+<a href="http://vimeo.com/bdconf">
+<code>http://vimeo.com/bdconf</code></a>
+</li>
+
+<li><em>Fronteers</em>;
+Every Oct in Amsterdam.
+<a href="http://fronteers.nl/congres/2013">
+<code>http://fronteers.nl/congres/2013</code></a>
+Videos available on Vimeo channel:
+<a href="http://vimeo.com/fronteers">
+<code>http://vimeo.com/fronteers</code></a>
+</li>
+
+<li><em>Web Directions</em>;
+Once a year in Australia.
+<a href="http://webdirections.org/">
+<code>http://webdirections.org/</code></a>
+Videos available:
+<a href="http://webdirections.org/videos/">
+<code>http://webdirections.org/videos/</code></a>
+</li>
+
+<li><em>Mobilism</em>;
+Every may (2011-2013) in Amsterdam.
+<a href="http://mobilism.nl/">
+<code>http://mobilism.nl/</code></a>
+Videos available:
+<a href="http://mobilism.nl/2013/coverage">
+<code>http://mobilism.nl/2013/coverage</code></a>
+</li>
+
+<li><em>An Event Apart</em>;
+8 conferences a year around the US.
+<a href="http://aneventapart.com/">
+<code>http://aneventapart.com/</code></a>
+Videos available:
+<a href="http://aneventapart.com/news/tag/video">
+<code>http://aneventapart.com/news/tag/video</code></a>
+</li>
+
+</ul>
+</div>
+
+
+
+
+
+
+<div class="slide">
+<h1>Videos</h1>
+
+<ul>
+
+<li>Stephen Hay;
+<em>Cutting the Mustard</em>;
+Responsive News, 08 Mar 2012.
+<a href="http://responsivenews.co.uk/post/18948466399/cutting-the-mustard">
+<code>http://responsivenews.co.uk/post/18948466399/cutting-the-mustard</code>
+</a>
+</li>
+
+<li>Jason Grigsby;
+<em>Responsive Design at the Guardian
+or How I learned to Stop Worrying and Love the Mobile Web</em>;
+2013.
+<a href="http://mattandrews.info/talks/port80-2013/">
+<code>http://mattandrews.info/talks/port80-2013/</code>
+</a>
+</li>
+
+</ul>
+</div>
+
+
+
+
+
+<div class="slide">
+<h1>Thank You</h1>
+
+<p>
+Web site:<br/>
+<a href="http://www.iicm.tugraz.at/keith/">
+<code>http://www.iicm.tugraz.at/keith/</code>
+</a>
+<br/>
+<br/>
+Slides:<br/>
+<a href="http://keithandrews.com/talks/2015/resp-camp-graz-2015-03-07/">
+<code>http://keithandrews.com/talks/2015/resp-camp-graz-2015-03-07/</code>
+
+</a>
+</p>
+
+</div>
+
+
+
+
+
+<!-- blank slide
+<div class="slide">
+</div>
+-->
+
+
+
+<!--
+<div class="slide">
+<h1>Extra Slides</h1>
+</div>
+-->
+
+
+
+
+</body>
+</html>

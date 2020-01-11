@@ -1,0 +1,292 @@
+@import "variables";
+
+#rslidy-footer {
+  position: relative;
+  flex: 0 0 auto;
+  min-height: $progressbar-height;
+  transition: 0.30s;
+}
+
+.rslidy-bar-hidden {
+  height: 0 !important;
+}
+
+#rslidy-progress-bar {
+  position: absolute;
+  left: 0; top: 0; right: 0; bottom: 0;
+  width: 0%;
+  height: $progressbar-height;
+  background-color: $progressbar-bg-color-reached;
+  z-index: 6;
+  transition: width 1s;
+}
+
+#rslidy-progress-bar-bg {
+  position: absolute;
+  left: 0; top: 0; right: 0; bottom: 0;
+  width: 100%;
+  height: $progressbar-height;
+  background-color: $progressbar-bg-color-unreached;
+  z-index: 5;
+}
+
+#rslidy-progress-bar-nubs {
+  position: absolute;
+  left: 0; top: 0; right: 0; bottom: 0;
+  width: 100%;
+  height: $progressbar-height;
+  z-index: 7;
+}
+
+#rslidy-toolbar-area {
+  position: relative;
+  flex: 0 0 auto;
+  width: 100%;
+  height: $progressbar-height + $toolbar-height;
+  transition: 0.20s;
+  overflow: hidden;
+  z-index: 4;
+}
+
+#rslidy-toolbar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: $toolbar-height + 0.20em;
+  background-color: $toolbar-bg-color;
+  display: table;
+  z-index: 1;
+  transition: 0.30s;
+}
+
+#rslidy-toolbar-content {
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+  padding: 0.50em 0.30em 0.20em 0.30em;
+}
+
+#rslidy-toolbar-button-nav {
+  display: inline-block;
+  margin-top: 0em !important;
+}
+
+#rslidy-timer {
+  float: right;
+  margin-right: 0.15em;
+  padding-right: 0.15em;
+  border-right: 0.15em solid black;
+  cursor: pointer;
+}
+
+#rslidy-slide-input {
+  width: $slide-input-width;
+  height: 1.40em;
+  line-height: 1.40em;
+  text-align: center;
+  border: 0em;
+  outline: 0;
+}
+
+#rslidy-slide-caption {
+  margin-right: 0.30em;
+  margin-left: -0.20em;
+  line-height: 1.40em;
+  cursor: pointer;
+}
+
+.rslidy-toolbar-button {
+  min-width: inherit;
+  padding: 0.30em 0.70em;
+  margin: 0 0.15em;
+  float: left;
+  background-color: $toolbar-button-bg-color;
+  fill: $toolbar-button-color;
+  stroke: $toolbar-button-color;
+  cursor: pointer;
+  border: 0.05em solid $button-border-color;
+  border-radius: 0.15em;
+  box-shadow: 0.15em 0.15em $button-border-color;
+}
+
+.rslidy-toolbar-button:hover,
+.rslidy-toolbar-button[aria-expanded="true"]:hover {
+  background-color: $button-hover-color;
+}
+
+.rslidy-toolbar-button[aria-expanded="true"]{
+  background-color: $button-active-color;
+  box-shadow: 0 0 0 0.15em lightskyblue;
+}
+
+.rslidy-toolbar-slide {
+  margin-top: 0.20em;
+  min-width: inherit;
+  font-size: 1.30em;
+  padding: 0 0.20em;
+  float: left;
+}
+
+.rslidy-toolbar-slide > input {
+  border-radius: 0.15em;
+  margin-left: 0.30em;
+  background-color: white;
+}
+
+.rslidy-float-left {
+  float: left;
+  margin-left: 0.15em;
+  display: block;
+}
+
+.rslidy-float-right {
+  float: right;
+  margin-right: 0.15em;
+  display: block;
+}
+
+.rslidy-tb-button {
+  width: 1.30em;
+  height: 1.30em;
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.rslidy-mirror {
+  transform: scaleX(-1);
+}
+
+.rslidy-tb-show, .rslidy-tb-display {
+  top: -0.45em;
+  position: relative;
+  fill: $toolbar-button-color;
+  stroke: $toolbar-button-color;
+}
+
+.rslidy-tb-show {
+  transform: scaleY(-0.80);
+}
+
+.rslidy-tb-display {
+  transform: scale(0.80);
+}
+
+#rslidy-tb-show-trapezoid, #rslidy-tb-display-trapezoid {
+  width: 1.50em;
+  top: -$progressbar-height;
+  text-align: center;
+  position: relative;
+  border-right: 1em solid transparent;
+  border-bottom: 1em solid $toolbar-button-bg-color;
+  border-left: 1em solid transparent;
+  box-sizing: content-box;
+  z-index: 6;
+}
+
+#rslidy-tb-show-trapezoid:hover, #rslidy-tb-display-trapezoid:hover {
+  border-bottom: 1em solid $button-hover-color;
+}
+
+.rslidy-show-button, .rslidy-display-button {
+  position: relative;
+  top: 1.80em;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  //button click area
+  padding: 5vmin;
+  margin: -5vmin;
+}
+
+#rslidy-trapezoid-wrapper {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+  width: 5em;
+}
+
+#rslidy-trapezoid-wrapper-display {
+  display: none;
+  position: fixed;
+  bottom: -0.50em;
+  left: 0;
+  overflow: hidden;
+  width: 5em;
+  z-index: 6;
+}
+
+.rslidy-preview {
+  height: $progressbar-height;
+  z-index: 8;
+  position: absolute;
+  cursor: pointer;
+
+  &::after {
+    content: '';
+    float: right;
+    height: 100%;
+    width: 1px;
+    background-color: $progressbar-bg-color-reached;
+  }
+}
+
+.rslidy-nonubs {
+  &::after {
+    content: none;
+  }
+}
+
+.rslidy-preview-reached {
+  &::after {
+    background-color: $progressbar-bg-color-unreached;
+  }
+}
+
+.rslidy-preview .rslidy-preview-item {
+  visibility: hidden;
+  background-color: black;
+  border-radius: 0.25em;
+  padding: 0.25em;
+  position: fixed;
+  opacity: 0;
+  z-index: 7;
+}
+
+.rslidy-preview:hover {
+  background-color: rgb(255, 115, 0);
+}
+
+.rslidy-preview:hover .rslidy-preview-item {
+  visibility: visible;
+  opacity: 1;
+  transition: all 0.3s;
+}
+
+#rslidy-help-table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#rslidy-help-table td, #rslidy-help-table th {
+  border: 1px solid #ddd;
+  padding: 0.50em;
+}
+
+#rslidy-help-table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+#rslidy-help-table tr td:nth-child(2) {
+  text-align: center;
+}
+
+#rslidy-help-table th {
+  padding-top: 0.75em;
+  padding-bottom: 0.75em;
+  background-color: $toolbar-button-color;
+  color: white;
+}

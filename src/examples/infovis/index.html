@@ -1,0 +1,1935 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+
+<head>
+<meta charset="UTF-8"/>
+
+<!-- for css3 media queries to work properly on mobile devices-->
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>Andrews - Information Visualisation</title> 
+
+<!-- Copyright © 2018 Keith Andrews -->
+<meta name="dcterms.rightsHolder" content="Copyright © 2018 Keith Andrews" />
+
+<link rel="stylesheet" href="rslidy.min.css"/>
+<link rel="stylesheet" href="slides-keith.css"/>
+<script src="rslidy.min.js"></script>
+</head>
+
+
+<body>
+
+
+<div class="slide titleslide">
+<h1>Introduction to Information Visualisation</h1>
+
+<p>
+Prof. Keith Andrews<br/>
+ISDS, Graz University of Technology, Austria<br/>
+<a href="http://isds.tugraz.at/keith/">
+<code>http://isds.tugraz.at/keith/</code>
+</a>
+</p>
+
+<p>
+Slides:<br/>
+<a href="http://keithandrews.com/talks/2018/wuc-2018-10-17-infovis/">
+<code>http://keithandrews.com/talks/2018/wuc-2018-10-17-infovis/</code></a>
+</p>
+
+<p>
+Course Notes:<br/>
+<a href="http://courses.isds.tugraz.at/ivis/ivis.pdf">
+<code>http://courses.isds.tugraz.at/ivis/ivis.pdf</code>
+</a>
+</p>
+
+<div id="location">
+<p>
+Wed 17 Oct 2018, World Usability Congress, Graz, Austria.
+</p>
+</div>
+
+</div>
+
+
+
+
+
+<div class="slide">
+<h2>Sales Data as a Table</h2>
+
+<table class="col2r col3r" style="font-size:70%">
+<thead>
+<tr><th>Month</th><th>Salesperson A</th><th>Salesperson B</th></tr>
+</thead>
+<tbody>
+<tr><td>2012-01</td><td>28,366</td><td>23,274</td></tr>
+<tr><td>2012-02</td><td>27,050</td><td>21,732</td></tr>
+<tr><td>2012-03</td><td>29,463</td><td>23,845</td></tr>
+<tr><td>2012-04</td><td>32,561</td><td>28,732</td></tr>
+<tr><td>2012-05</td><td>28,050</td><td>24,023</td></tr>
+<tr><td>2012-06</td><td>30,100</td><td>26,089</td></tr>
+<tr><td>2012-07</td><td>22,343</td><td>19,026</td></tr>
+<tr><td>2012-08</td><td>21,506</td><td>17,903</td></tr>
+<tr><td>2012-09</td><td>24,664</td><td>19,387</td></tr>
+<tr><td>2012-10</td><td>28,842</td><td>23,490</td></tr>
+<tr><td>2012-11</td><td>30,621</td><td>25,873</td></tr>
+<tr><td>2012-12</td><td>36,254</td><td>28,490</td></tr>
+</tbody>
+</table>
+
+</div>
+
+
+
+
+
+<div class="slide">
+<h2>Sales Data as a Line Chart</h2>
+
+<figure>
+<div class="images">
+<img class="svg" src="graphics/sales.svg"
+  alt="Sales Data as a Line Chart" />
+</div>
+</figure>
+
+</div>
+
+
+
+
+
+
+
+
+<div class="slide">
+<h2>Information Visualisation</h2>
+
+<p>
+“Let my dataset change your mindset.”<br/>
+<small>
+[Hans Rosling, title of talk at TED@State, 03 Jun 2009]
+</small>
+</p>
+
+<p>
+Information visualisation (InfoVis) is the visual presentation of
+abstract information spaces and structures, together with accompanying
+interactions, so as to facilitate their rapid assimilation and
+understanding.
+</p>
+
+</div>
+
+
+
+
+<div class="slide">
+<h2>Visualisation</h2>
+
+<p>
+The broader field of visualisation has three main sub-fields:
+</p>
+
+<ul>
+<li>InfoVis:<br/>
+<p>
+Information Visualisation (InfoVis) deals with abstract information
+structures, such as hierarchies, networks, or multidimensional spaces.
+</p>
+</li>
+
+<li>GeoVis:<br/>
+<p>
+Geographic Visualisation (GeoVis) is map-based. The data typically has
+inherent 2d or 3d spatial coordinates, and is generally shown in
+relation to a map.
+</p>
+</li>
+
+<li>SciVis:<br/>
+<p>
+Scientific Visualisation (SciVis) typically involves concrete (3d)
+objects, for example a medical scan of part of the body, or a
+simulation of air flow around an aircraft wing. SciVis visualisations
+often depict flows, volumes, and surfaces in (3d) space.
+</p>
+</li>
+</ul>
+
+<p>
+Data Visualisation (DataVis) = InfoVis + GeoVis.
+</p>
+
+<p>
+Visual Analytics = DataVis (frontend) + Analytics (backend). 
+</p>
+
+</div>
+
+
+
+
+
+<div class="slide">
+<h2>Interactive Information Visualisation</h2>
+
+<p>
+InfoVis ≠ SciVis or GeoVis:
+</p>
+
+<ul>
+<li>
+In SciVis, the visual representation (geometry) is generally given,
+suggested by objects in the data.<br/>
+[concrete objects, geometry is given]
+</li>
+
+<li>
+In GeoVis, the visual representation (geometry) is generally given,
+determined by spatial coordinates within the data.<br/>
+[spatial coordinates, geometry is given]
+</li>
+
+<li>
+In InfoVis, an appropriate visual representation must be (carefully)
+designed or “invented”.<br/>
+[abstract structures, geometry is chosen]
+</li>
+</ul>
+
+</div>
+
+
+
+
+
+
+<div class="slide">
+<h2>Interactive Information Visualisation</h2>
+
+
+<ul>
+<li>
+Visual Representation + Interaction.
+</li>
+
+<li>
+Two main use cases:
+<ul>
+<li>
+Explore (Analyse): help researchers explore and analyse.
+</li>
+<li>
+Explain (Present): present results and insights to a wider public.
+</li>
+</ul>
+</li>
+
+</ul>
+</div>
+
+
+
+
+
+
+
+<div class="slide">
+<h2>Visualising Hierarchies</h2>
+
+<figure>
+<div class="images">
+<img class="svg" src="images/collage-hier.svg"
+  alt="Collage: Visualising Hierarchies" />
+</div>
+</figure>
+
+</div>
+
+
+
+
+
+<div class="slide">
+<h2>Hyperbolic Browser</h2>
+
+<figure>
+<div class="images">
+<img src="images/hyperbolic-yahoo-rv.png"
+  alt="Hyperbolic Browser" />
+</div>
+
+<figcaption>
+Hyperbolic Browser [Lamping and Rao, 1994]<br/>
+<a href="http://dx.doi.org/10.1145/192426.192430">
+<code>doi:10.1145/192426.192430</code></a>
+</figcaption>
+</figure>
+</div>
+
+
+
+
+
+<div class="slide">
+<h2>Deep Green Hyperbolic Tree</h2>
+
+<figure>
+<div class="images">
+<img src="images/deep-green-s07.png"
+  alt="Deep Green Hyperbolic Tree" />
+</div>
+
+<figcaption>
+Deep Green Phylogenetic Tree, University of California Berkeley
+[Cranfill and Moe, 2000]<br/>
+<a href="http://ucjeps.berkeley.edu/htree_intro.html">
+<code>http://ucjeps.berkeley.edu/htree_intro.html</code></a>
+</figcaption>
+</figure>
+
+</div>
+
+
+
+
+
+<div class="slide">
+<h2>Information Pyramids</h2>
+
+<figure>
+<div class="images">
+<img src="images/hvs-info-pyr.png"
+  alt="Information Pyramids" />
+</div>
+
+<figcaption>
+Information Pyramids, IICM, Graz University of Technology
+[Andrews, 2002]<br/>
+<a href="http://dx.doi.org/10.1109/IV.2002.1028871">
+<code>doi:10.1109/IV.2002.1028871</code></a>
+</figcaption>
+</figure>
+
+</div>
+
+
+
+
+
+
+<div class="slide">
+<h2>Visualising Multidimensional Metadata</h2>
+
+<figure>
+<div class="images">
+<img class="svg" src="images/collage-multidim.svg"
+  alt="Collage: Visualising Multidimensional Metadata" />
+</div>
+</figure>
+
+</div>
+
+
+
+
+
+<div class="slide">
+<h2>Multidimensional Data as a Table</h2>
+
+<figure>
+<table class="col2r col3r col4r col5r col6r col7r col8r col9r col10r"
+  style="font-size:45%">
+<thead>
+  <tr>
+    <th>City</th>
+    <th>Net Purchasing Power</th>
+    <th>Prices (incl. rent)</th>
+    <th>Net Wages</th>
+    <th>Working Time [hours per year]</th>
+    <th>Vacation [paid working days per year]</th>
+    <th>Time Required for Big Mac [minutes]</th>
+    <th>Time Required for iPhone 4S 16gb [hours]</th>
+    <th>City Break</th>
+    <th>Inflation 2011</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td>Amsterdam</td>
+    <td>90.1</td>
+    <td>69.1</td>
+    <td>69.4</td>
+    <td>1755</td>
+    <td>24</td>
+    <td>15</td>
+    <td>44</td>
+    <td>720</td>
+    <td>2.48</td>
+  </tr>
+  <tr>
+    <td>Athens</td>
+    <td>60.5</td>
+    <td>58.2</td>
+    <td>40.0</td>
+    <td>1822</td>
+    <td>22</td>
+    <td>29</td>
+    <td>86</td>
+    <td>590</td>
+    <td>3.10</td>
+  </tr>
+  <tr>
+    <td>Auckland</td>
+    <td>82.9</td>
+    <td>67.8</td>
+    <td>63.5</td>
+    <td>1852</td>
+    <td>20</td>
+    <td>15</td>
+    <td>51</td>
+    <td>580</td>
+    <td>4.03</td>
+  </tr>
+  <tr>
+    <td>Bangkok</td>
+    <td>31.4</td>
+    <td>48.2</td>
+    <td>17.4</td>
+    <td>2312</td>
+    <td>7</td>
+    <td>36</td>
+    <td>165</td>
+    <td>550</td>
+    <td>3.81</td>
+  </tr>
+  <tr>
+    <td>Barcelona</td>
+    <td>78.6</td>
+    <td>65.6</td>
+    <td>58.7</td>
+    <td>1760</td>
+    <td>29</td>
+    <td>18</td>
+    <td>52</td>
+    <td>740</td>
+    <td>3.05</td>
+  </tr>
+  <tr>
+    <td>Beijing</td>
+    <td>29.9</td>
+    <td>51.8</td>
+    <td>18.0</td>
+    <td>1979</td>
+    <td>9</td>
+    <td>34</td>
+    <td>184</td>
+    <td>730</td>
+    <td>5.42</td>
+  </tr>
+  <tr>
+    <td>Berlin</td>
+    <td>97.1</td>
+    <td>64.1</td>
+    <td>70.1</td>
+    <td>1742</td>
+    <td>28</td>
+    <td>16</td>
+    <td>56</td>
+    <td>720</td>
+    <td>2.48</td>
+  </tr>
+  <tr>
+    <td>Bogotá</td>
+    <td>40.7</td>
+    <td>47.0</td>
+    <td>22.0</td>
+    <td>1981</td>
+    <td>15</td>
+    <td>52</td>
+    <td>142</td>
+    <td>540</td>
+    <td>3.42</td>
+  </tr>
+  <tr>
+    <td>Bratislava</td>
+    <td>50.7</td>
+    <td>47.1</td>
+    <td>27.3</td>
+    <td>1884</td>
+    <td>23</td>
+    <td>31</td>
+    <td>126</td>
+    <td>490</td>
+    <td>4.08</td>
+  </tr>
+  <tr>
+    <td>Brussels</td>
+    <td>78.5</td>
+    <td>68.8</td>
+    <td>59.5</td>
+    <td>1729</td>
+    <td>20</td>
+    <td>19</td>
+    <td>54</td>
+    <td>730</td>
+    <td>3.47</td>
+  </tr>
+  <tr>
+    <td>Budapest</td>
+    <td>32.0</td>
+    <td>50.4</td>
+    <td>18.1</td>
+    <td>1912</td>
+    <td>22</td>
+    <td>49</td>
+    <td>206</td>
+    <td>740</td>
+    <td>3.90</td>
+  </tr>
+  <tr>
+    <td>Buenos Aires</td>
+    <td>46.2</td>
+    <td>47.7</td>
+    <td>25.4</td>
+    <td>1830</td>
+    <td>13</td>
+    <td>45</td>
+    <td>187</td>
+    <td>620</td>
+    <td>9.78</td>
+  </tr>
+  <tr>
+    <td>Bucharest</td>
+    <td>34.0</td>
+    <td>34.8</td>
+    <td>13.5</td>
+    <td>1836</td>
+    <td>26</td>
+    <td>57</td>
+    <td>230</td>
+    <td>370</td>
+    <td>5.81</td>
+  </tr>
+  <tr>
+    <td>Caracas</td>
+    <td>25.7</td>
+    <td>85.4</td>
+    <td>23.4</td>
+    <td>1878</td>
+    <td>17</td>
+    <td>80</td>
+    <td>272</td>
+    <td>830</td>
+    <td>26.09</td>
+  </tr>
+  <tr>
+    <td>...</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+</tbody>
+</table>
+<figcaption>
+UBS Prices and Earnings Survey 2012
+[UBS, 2012]<br/>
+<a href="https://www.ubs.com/microsites/prices-earnings/open-data.html">
+<code>https://www.ubs.com/microsites/prices-earnings/open-data.html</code></a>
+</figcaption>
+</figure>
+
+</div>
+
+
+
+
+
+
+<div class="slide">
+<h2>Parallel Coordinates and Similarity Maps</h2>
+
+<figure>
+<div class="images">
+<img src="images/infoscope-cities2012.png"
+  alt="InfoScope with Cities 2012" />
+</div>
+
+<figcaption>
+InfoScope, macrofocus.com [Brodbeck and Girardin, 2003]<br/>
+<a href="http://dx.doi.org/10.1109/CMV.2003.1215008">
+<code>doi:10.1109/CMV.2003.1215008</code></a>
+</figcaption>
+</figure>
+
+</div>
+
+
+
+
+
+
+<div class="slide">
+<h2>AVL Racing's SimBook</h2>
+
+<figure>
+<div class="images">
+<img src="images/simbook2.png"
+  alt="AVL Racing's SimBook" />
+</div>
+
+<figcaption>
+Aggregated Parallel Coordinates, AVL Racing + IICM,
+[Andrews et al, 2015]<br/>
+<a href="http://dx.doi.org/10.1145/2809563.2809588">
+<code>doi:10.1145/2809563.2809588</code></a>
+</figcaption>
+</figure>
+
+</div>
+
+
+
+
+
+
+
+
+<div class="slide">
+<h2>Visualising Networks</h2>
+
+<figure>
+<div class="images">
+<img class="svg" src="images/collage-network.svg"
+  alt="Collage: Visualising Networks" />
+</div>
+</figure>
+
+</div>
+
+
+
+
+
+
+
+
+<div class="slide">
+<h2>Visualising Object Collections (Feature Spaces)</h2>
+
+<figure>
+<div class="images">
+<img class="svg" src="images/collage-object.svg"
+  alt="Collage: Visualising Object Collections" />
+</div>
+</figure>
+
+</div>
+
+
+
+
+<div class="slide">
+<h2>Voronoi Hierarchy + Similarity Map</h2>
+
+<figure>
+<div class="images">
+<img src="images/infoskyo01.png"
+  alt="Voronoi Hierarchy + Similarity Map" />
+</div>
+
+<figcaption>
+InfoSky Cobweb, IICM + Hyperwave + Know-Center + Süddeutsche Zeitung
+[Andrews et al, 2002]<br/>
+<a href="http://dx.doi.org/10.1057/palgrave.ivs.9500023">
+<code>doi:10.1057/palgrave.ivs.9500023</code></a>
+</figcaption>
+</figure>
+
+</div>
+
+
+
+
+
+
+
+<div class="slide">
+<h2>New York Times: Voronoi Treemap</h2>
+
+<figure>
+<div class="images">
+<img src="images/nyt-voronoi.png"
+  alt="New York Times: Voronoi Treemap" />
+</div>
+
+<figcaption>
+[New York Times, 03 May 2008]<br/>
+<a href="http://nytimes.com/interactive/2008/05/03/business/20080403_SPENDING_GRAPHIC.html">
+<code>http://nytimes.com/interactive/2008/05/03/business/20080403_SPENDING_GRAPHIC.html</code></a>
+</figcaption>
+</figure>
+
+</div>
+
+
+
+
+
+
+<div class="slide">
+<h2>Bloomberg: What's Really Warming the World</h2>
+
+<figure>
+<div class="images">
+<img src="images/bloomberg-warming.png"
+  alt="Bloomberg: What's Really Warming the World" />
+</div>
+
+<figcaption>
+[Bloomberg Business, 24 Jun 2015]<br/>
+<a href="https://bloomberg.com/graphics/2015-whats-warming-the-world/">
+<code>https://bloomberg.com/graphics/2015-whats-warming-the-world/</code></a>
+</figcaption>
+</figure>
+
+</div>
+
+
+
+
+
+
+<div class="slide">
+<h2>New York Times: Jobless Rates</h2>
+
+<figure>
+<div class="images">
+<img src="images/nyt-jobless.png"
+  alt="New York Times: Jobless Rates" />
+</div>
+
+<figcaption>
+[New York Times, 06 Nov 2009]<br/>
+<a href="http://nytimes.com/interactive/2009/11/06/business/economy/unemployment-lines.html">
+<code>http://nytimes.com/interactive/2009/11/06/business/economy/unemployment-lines.html</code></a>
+</figcaption>
+</figure>
+
+</div>
+
+
+
+
+
+<div class="slide">
+<h2>Styrian Diversity Visualisation</h2>
+
+<figure>
+<div class="images">
+<img src="images/svv.png"
+  alt="Styrian Diversity Visualisation" />
+</div>
+
+<figcaption>
+IICM + FH Joanneum + Land Steiermark
+[Andrews et al, 2015]<br/>
+<a href="http://diversitaet.steiermark.at/steirische-vielfalt/">
+<code>http://diversitaet.steiermark.at/steirische-vielfalt/</code></a>
+</figcaption>
+</figure>
+
+</div>
+
+
+
+
+
+
+
+<div class="slide">
+<h2>Tools for Massaging Data</h2>
+
+<ul>
+
+<li>Scripting Languages:
+<ul>
+<li>Python</li>
+<li>Perl</li>
+</ul>
+</li>
+
+
+<li>Data Cleaning:
+<ul>
+<li>OpenRefine<br/>
+<a href="http://openrefine.org/">
+<code>openrefine.org</code></a>
+<br/>(download, but runs locally in web browser)
+</li>
+
+<li>Wrangler<br/>
+<a href="http://vis.stanford.edu/wrangler/">
+<code>http://vis.stanford.edu/wrangler/</code></a>
+<br/>(web service)
+</li>
+
+<li>Trifacta<br/>
+<a href="http://trifacta.com/">
+<code>trifacta.com</code></a>
+<br/>(commercial)
+</li>
+</ul>
+</li>
+
+</ul>
+
+</div>
+
+
+
+
+
+
+<div class="slide">
+<h2>Tools for Visualising Data</h2>
+
+<p>
+Four varieties:
+</p>
+
+<ul>
+<li>Web Services:
+<ul>
+<li>must be online</li>
+<li>point and click</li>
+<li>can (sometimes must) share data</li>
+<li>can (sometimes must) share finished visualisations</li>
+</ul>
+</li>
+
+
+<li>Standalone Applications:
+<ul>
+<li>download, install, and use locally</li>
+<li>point and click</li>
+<li>generally produce static visualisations (limited interaction)</li>
+</ul>
+</li>
+
+
+<li>Scripting Languages (with Libraries):
+<ul>
+<li>download, install, and use locally</li>
+<li>some basic programming</li>
+<li>generally produce static visualisations (limited interaction)</li>
+</ul>
+</li>
+
+
+<li>Toolkits (with Programming APIs):
+<ul>
+<li>download source code or library and use locally
+(sometimes remote service via API)</li>
+<li>much more programming</li>
+<li>can produce <em>fully interactive</em> visualisations</li>
+</ul>
+</li>
+
+
+</ul>
+
+</div>
+
+
+
+
+
+
+<div class="slide">
+<h2>Web Services</h2>
+
+<ul>
+
+
+<li>Tableau
+<a href="http://tableau.com/">
+<code>tableau.com</code></a>
+<ul>
+<li>upload data (public)</li>
+<li>analyse data</li>
+<li>create visualisations (public)</li>
+<li>create dashboards (public)</li>
+</ul>
+</li>
+
+
+<li>Qlik
+<a href="http://qlik.com/">
+<code>qlik.com</code></a>
+</li>
+
+
+<li>Tibco Spotfire
+<a href="http://spotfire.tibco.com/">
+<code>spotfire.tibco.com</code></a>
+</li>
+
+
+<li>Datawrapper
+<a href="http://datawrapper.de/">
+<code>datawrapper.de</code></a>
+(either hosted or PHP on own server)
+</li>
+
+
+
+
+<li>IBM Many Eyes [dead]
+<ul>
+<li>upload data (always public)</li>
+<li>create public visualisations (Java applets)</li>
+</ul>
+<a href="http://many-eyes.com/"><code>many-eyes.com</code></a><br/>
+<a href="http://computerworld.com/article/2930326/"><code>http://computerworld.com/article/2930326/</code></a>
+</li>
+
+
+
+<li>Google Spreadsheets + Gadgets [dead]
+<ul>
+<li>upload data (private or shared)</li>
+<li>insert gadgets (private or shared)</li>
+<li>custom gadgets (Google Vis API) [Liquid Diagrams Gadgets]</li>
+<li>
+<a href="http://docs.google.com/"><code>docs.google.com</code></a>
+</li></ul>
+</li>
+
+
+<li>verifiable.com [dead]
+</li>
+
+
+<li>swivel.com [dead]
+<a href="https://eagereyes.org/criticism/the-rise-and-fall-of-swivel">
+<code>https://eagereyes.org/criticism/the-rise-and-fall-of-swivel</code></a>
+</li>
+
+
+
+<li>DataMaps.eu
+<a href="http://datamaps.eu/"><code>datamaps.eu</code></a>
+<ul>
+<li>produce choropleth maps in SVG.</li>
+</ul>
+</li>
+
+
+<li>Google Maps API</li>
+
+</ul>
+</div>
+
+
+
+
+
+
+<div class="slide">
+<h2>Standalone Applications</h2>
+
+<ul>
+
+<li>Excel, OpenOffice Calc;
+</li>
+
+<li>Adobe Illustrator;
+</li>
+
+<li>Liquid Diagrams (IICM, Flash-based, not released);
+</li>
+
+<li>RAW (GUI for some D3 charts);
+<a href="http://rawgraphs.io/">
+<code>rawgraphs.io</code></a>
+</li>
+
+<li>Vega Editor (Vega 3, Vega Lite, Lyra);
+<a href="https://vega.github.io/">
+<code>vega.github.io</code></a>
+</li>
+
+<li>Adobe Data Illustrator;
+<a href="https://data-illustrator.com/">
+<code>data-illustrator.com</code></a>
+</li>
+
+
+</ul>
+</div>
+
+
+
+
+
+
+
+<div class="slide">
+<h2>Scripting Languages (with Libraries)</h2>
+
+<ul>
+
+<li>R
+<ul>
+
+<li>ggplot2;
+<a href="http://ggplot2.org/">
+<code>ggplot2.org</code></a>
+</li>
+
+<li>portfolio;
+<a href="http://cran.r-project.org/web/packages/portfolio/">
+<code>http://cran.r-project.org/web/packages/portfolio/</code></a>
+</li>
+
+</ul>
+</li>
+
+
+
+
+<li>Python
+<ul>
+<li>SciPy;
+<a href="http://scipy.org/">
+<code>scipy.org</code></a>
+</li>
+<li>Matplotlib;
+<a href="http://matplotlib.sourceforge.net/">
+<code>http://matplotlib.sourceforge.net/</code></a>
+</li>
+<li>Veusz;
+<a href="http://home.gna.org/veusz/">
+<code>http://home.gna.org/veusz/</code></a>
+</li>
+<li>SciDAVis;
+<a href="http://scidavis.sourceforge.net/">
+<code>http://scidavis.sourceforge.net/</code></a>
+</li>
+<li>orange;
+<a href="http://orange.biolab.si/">
+<code>http://orange.biolab.si/</code></a>
+</li>
+</ul>
+</li>
+
+
+
+<li>Processing;
+<a href="http://processing.org/">
+<code>processing.org</code></a>
+</li>
+
+</ul>
+</div>
+
+
+
+
+
+
+
+<div class="slide">
+<h2>Toolkits (with Programming APIs)</h2>
+
+<ul>
+
+<li>Java:
+<ul>
+<li>Prefuse;
+<a href="http://prefuse.org/">
+<code>prefuse.org</code>
+</a>
+</li>
+
+<li>InfoVis Toolkit (ivtk);
+<a href="http://ivtk.sourceforge.net/">
+<code>ivtk.sourceforge.net</code>
+</a>
+</li>
+
+</ul>
+</li>
+
+
+
+<li>Actionscript (Flash, Flex):
+<ul>
+<li>Flare;
+<a href="http://flare.prefuse.org/">
+<code>flare.prefuse.org</code>
+</a>
+</li>
+
+<li>Kap Lab Kalileo;
+<a href="http://lab.kapit.fr/default/Kalileo/">
+<code>http://lab.kapit.fr/default/Kalileo/</code>
+</a>
+</li>
+
+<li>birdeye;
+<a href="http://code.google.com/p/birdeye/">
+<code>http://code.google.com/p/birdeye/</code>
+</a>
+</li>
+
+</ul>
+</li>
+
+
+<li>Javascript (on following slides).
+</li>
+
+
+<li>Many, many others (for C, C++, ...).
+</li>
+
+</ul>
+</div>
+
+
+
+
+
+
+<div class="slide">
+<h2>Basic Graphics Technologies in the Web Browser</h2>
+
+<p>
+Three ways to draw graphics dynamically using JavaScript:
+</p>
+
+<ul>
+<li>Canvas 2D (HTML Canvas 2D Context);<br/>
+<a href="http://w3.org/TR/2dcontext/">
+<code>http://w3.org/TR/2dcontext/</code></a>
+</li>
+
+
+<li>SVG-DOM (SVG nodes injected into the DOM);<br/>
+<a href="http://sitepoint.com/surviving-the-zombie-apocalypse-manipulating-svg-with-javascript/">
+<code>http://sitepoint.com/surviving-the-zombie-apocalypse-manipulating-svg-with-javascript/</code></a>
+</li>
+<!--
+http://petercollingridge.co.uk/data-visualisation/using-javascript-control-svg
+-->
+
+
+<li>WebGL (OpenGL ES 2.0 3D API);<br/>
+<a href="http://webgl.org/">
+<code>webgl.org</code></a>
+</li>
+
+</ul>
+</div>
+
+
+
+
+
+
+
+<div class="slide">
+<h2>Graphics Libraries (JavaScript)</h2>
+
+
+<ul>
+<li>raphael (2D: SVG-DOM);<br/>
+<a href="http://raphaeljs.com/">
+<code>raphaeljs.com</code></a>
+</li>
+
+
+<li>three.js (3D: WebGL, Canvas 2D, SVG-DOM);<br/>
+<a href="http://threejs.org/">
+<code>threejs.org</code></a>
+</li>
+
+
+<li>two.js (2D: WebGL, Canvas 2D, SVG-DOM);<br/>
+<a href="https://jonobr1.github.io/two.js/">
+<code>https://jonobr1.github.io/two.js/</code></a>
+</li>
+
+
+<li>pixi (2D: WebGL, Canvas 2D);<br/>
+<a href="http://pixijs.com/">
+<code>pixijs.com</code></a>
+</li>
+
+
+<li>plexx (2D: WebGL, Canvas 2D, SVG-DOM, Save As SVG);<br/>
+ISDS (not released)
+</li>
+
+
+</ul>
+</div>
+
+
+
+
+
+
+
+
+<div class="slide">
+<h2>InfoVis Toolkits (JavaScript)</h2>
+
+<ul>
+
+<li>D3 Data-Driven Documents (SVG-DOM)<br/>
+<a href="http://d3js.org/">
+<code>d3js.org</code></a>
+</li>
+
+
+<li>chartist (SVG-DOM)<br/>
+<a href="https://gionkunz.github.io/chartist-js/">
+<code>https://gionkunz.github.io/chartist-js/</code></a>
+</li>
+
+
+<li>chart.js (Canvas 2D)<br/>
+<a href="http://chartjs.org/">
+<code>chartjs.org</code></a>
+</li>
+
+
+<li>fluiddiagrams (three.js)<br/>
+<a href="http://projects.iicm.tugraz.at/fluiddiagrams/">
+<code>http://projects.iicm.tugraz.at/fluiddiagrams/</code></a>
+</li>
+
+
+<li>dimple.js (D3)<br/>
+<a href="http://dimplejs.org/">
+<code>dimplejs.org</code></a>
+</li>
+
+
+<li>c3 (D3)<br/>
+<a href="http://c3js.org/">
+<code>c3js.org</code></a>
+</li>
+
+
+<li>dc.js (D3)<br/>
+<a href="http://dc-js.github.io/dc.js/">
+<code>http://dc-js.github.io/dc.js/</code></a>
+</li>
+
+
+<li>vega (D3, Canvas 2D)<br/>
+<a href="https://trifacta.github.io/vega/">
+<code>https://trifacta.github.io/vega/</code></a>
+</li>
+
+
+<li>wisp (plexx)<br/>
+IICM
+</li>
+
+</ul>
+</div>
+
+
+
+
+
+
+
+
+<div class="slide">
+<h2>Responsive Information Visualisation</h2>
+
+<ul>
+
+<li>
+<p>
+<em>Scalable</em> Visualisations:
+</p>
+<ul>
+<li>
+Scale fluidly (but nothing else).
+</li>
+</ul>
+</li>
+
+<li>
+<p>
+<em>Responsive</em> Visualisations:
+</p>
+<ul>
+<li>
+Responsive Layout: Change layout at breakpoints, scale fluidly between
+breakpoints.
+</li>
+
+<li>
+Responsive Display Density: Support higher and lower resolutions, data
+point sampling.
+</li>
+
+<li>
+Responsive Interaction: Provide selective support for touch, keyboard,
+mouse, motion events, etc. Larger tap areas.
+</li>
+
+</ul>
+</li>
+
+</ul>
+
+See also the examples at
+<a href="https://projects.isds.tugraz.at/respvis/">
+<code>https://projects.isds.tugraz.at/respvis/</code></a>
+
+</div>
+
+
+
+
+
+
+<div class="slide">
+<h2>Media Queries Inside SVG</h2>
+
+<ul>
+
+<li>
+<p>
+Demo: <a href="demos/resp-logo-svg.html">Responsive SVG Logo</a>.
+</p>
+
+<p class="note">
+See the original discussions at:<br/>
+<a href="http://blog.cloudfour.com/media-queries-in-svg-images/">
+<code>http://blog.cloudfour.com/media-queries-in-svg-images/</code></a>
+<br/>
+<a href="http://people.opera.com/andreasb/demos/demos_svgopen2009/update/svgscalelogo.html">
+<code>http://people.opera.com/andreasb/demos/demos_svgopen2009/update/svgscalelogo.html</code></a>
+</p>
+
+</li>
+
+
+<li>
+<p>
+Demo: <a href="demos/resp-linechart-svg.html">Responsive SVG Line Chart</a>.
+</p>
+</li>
+
+
+</ul>
+
+</div>
+
+
+
+
+
+<div class="slide">
+<h2>1. Responsive Line Chart</h2>
+
+
+<p>
+At narrower widths:
+</p>
+<ul>
+<li>
+Thin out the axis labels.
+</li>
+
+<li>
+Switch to a sparkline (click/tap to standard line chart).
+</li>
+
+<li>
+Reduce data density (sample the points). [Caution]
+</li>
+
+</ul>
+
+<p>
+Demo: <a href="https://projects.isds.tugraz.at/respvis/demos/resp-linechart/resp-linechart.html">Responsive Line Chart</a>
+</p>
+
+</div>
+
+
+
+
+
+
+<div class="slide">
+<h2>2. Responsive Bar Chart</h2>
+
+<p>
+At narrower widths:
+</p>
+<ul>
+<li>
+Rotate the axis labels (or abbreviate them).
+</li>
+
+<li>
+Adjust data density (remove some bars). [Caution]
+</li>
+
+<li>
+Flip from vertical bars to horizontal bars.
+</li>
+
+</ul>
+
+<p>
+Demo: <a href="https://projects.isds.tugraz.at/respvis/demos/resp-barchart/resp-barchart.html">Responsive Bar Chart</a>
+</p>
+
+</div>
+
+
+
+
+
+
+
+<div class="slide">
+<h2>3. Responsive Parallel Coordinates</h2>
+
+<ul>
+
+<li>
+Selectively remove some of the dimensions (but allow the user to
+override!).
+</li>
+
+<li>
+Provide raw data as HTML table (accessibility, fallback in case JS
+fails).
+</li>
+
+</ul>
+
+<p>
+Demo: <a href="https://projects.isds.tugraz.at/respvis/demos/resp-parcoord/resp-parcoord.html">Responsive Parallel Coordinates</a>
+</p>
+
+</div>
+
+
+
+
+
+
+<div class="slide">
+<h2>4. Responsive Scatterplot</h2>
+
+<ul>
+
+<li>
+Pinch zoom.
+</li>
+
+<li>
+Filtering.
+</li>
+
+<li>
+Fisheye and Cartesian distortion.
+</li>
+
+<li>
+Disambiguation. If data points overlap, list them and/or displace them
+temporarily.
+</li>
+
+</ul>
+
+<p>
+Demo: <a href="https://projects.isds.tugraz.at/respvis/demos/resp-scatterplot/resp-scatterplot.html">Responsive Scatterplot</a>
+</p>
+
+<p>
+See also:
+</p>
+<ul>
+
+<li>Gabriel Florit;
+<em>On Responsive Design and Data Visualization</em>;
+OpenVis 2013 talk.
+<a href="http://youtu.be/BrmwjVdaxMM">
+<code>http://youtu.be/BrmwjVdaxMM</code></a>
+
+</li>
+<li>Ramik Sadana and John Stasko;
+<em>Designing and Implementing an Interactive
+Scatterplot Visualization for a Tablet Computer</em>;
+Proc. AVI 2014.
+<a href="http://dx.doi.org/10.2312/eurovisshort.20141155">
+<code>doi:10.2312/eurovisshort.20141155</code></a><br/>
+<a href="http://www.cc.gatech.edu/~stasko/papers/avi14-touch.pdf">
+<code>http://www.cc.gatech.edu/~stasko/papers/avi14-touch.pdf</code></a><br/>
+<a href="http://vimeo.com/97798460">
+<code>http://vimeo.com/97798460</code></a>
+</li>
+
+</ul>
+
+</div>
+
+
+
+
+
+
+
+
+<div class="slide">
+<h2>5. Responsive Choropleth Map</h2>
+
+<ul>
+
+<li>
+Provide polygon borders at multiple granularities. Choose the right one
+depending on screen size, resolution, and current zoom level.
+</li>
+
+<li>
+Responsive layout of components (menus, info boxes).
+</li>
+
+<li>
+Support touch events, pinch zooming, etc.
+</li>
+</ul>
+
+<p>
+Demo: <a href="http://diversitaet.steiermark.at/steirische-vielfalt/">Responsive Choropleth Map</a>
+</p>
+
+</div>
+
+
+
+
+
+
+
+
+<div class="slide">
+<h2>Accessible Visualisations (A11y)</h2>
+
+<ul>
+<li>
+Always make data available in addition to the graphic
+(choice of views, table in HTML, link to download).
+</li>
+
+<li>
+Textual description of any chart or graphic
+(e.g. SVG <code>desc</code> element).
+</li>
+
+<li>
+Support keyboard navigation.
+</li>
+
+</ul>
+</div>
+
+
+
+
+
+<div class="slide">
+<h2>Vision Deficencies</h2>
+
+<ul>
+
+<li>
+Redundant encoding of colour hue and contrast.
+</li>
+
+<li>
+Redundant encoding of colour with another channel.
+</li>
+
+<li>
+Good contrast, but not extreme (not full black on full white).
+</li>
+
+<li>Colorgorical;
+<em>Creating Discriminable and Preferable Color Palettes</em>;
+<a href="http://vrl.cs.brown.edu/color">
+<code>http://vrl.cs.brown.edu/color</code></a>
+</li>
+
+<li>Bernhard Jenny and Nathaniel Kelso;
+<em>Color Design for the Color Vision Impaired</em>;
+Cartographic Perspectives, No. 58, 2007.
+<a href="http://colororacle.org/resources/2007_JennyKelso_ColorDesign_hires.pdf">
+<code>http://colororacle.org/resources/2007_JennyKelso_ColorDesign_hires.pdf</code></a>
+</li>
+
+<li>
+Tools to check colour contrast, e.g.
+Colour Contrast Analyser
+<a href="https://paciellogroup.com/resources/contrastanalyser/">
+<code>https://paciellogroup.com/resources/contrastanalyser/</code></a>
+</li>
+
+</ul>
+
+</div>
+
+
+
+
+
+<div class="slide">
+<h2>Accessible SVG</h2>
+
+<ul>
+
+<li>Léonie Watson;
+<em>Tips for Creating Accessible SVG</em>;
+SitePoint, 06 May 2014.<br/>
+<a href="https://sitepoint.com/tips-accessible-svg/">
+<code>https://sitepoint.com/tips-accessible-svg/</code></a>
+</li>
+
+<li>Léonie Watson;
+<em>SVG Accessability</em>;
+Talk at Graphical Web 2016, 03 Nov 2016.<br/>
+<a href="https://youtu.be/Bqhh0ZOSEq8">
+<code>https://youtu.be/Bqhh0ZOSEq8</code></a><br/>
+<a href="http://ljwatson.github.io/decks/2016/graphicalweb/">
+<code>http://ljwatson.github.io/decks/2016/graphicalweb/</code></a>
+</li>
+
+<li>
+<em>WAI-ARIA Graphics Module</em>;
+W3C Working Draft, 08 Sep 2016.<br/>
+<a href="https://w3.org/TR/graphics-aria-1.0/">
+<code>https://w3.org/TR/graphics-aria-1.0/</code></a>
+</li>
+
+</ul>
+
+</div>
+
+
+
+
+
+
+<div class="slide">
+<h2>Books (HowTo Guides)</h2>
+
+<ul>
+
+<li>Stephen Few;
+<em>Show Me the Numbers: Designing Tables and Graphs to Enlighten</em>;
+2<sup>nd</sup> Edition, Analytics Press, Jun 2012.
+<span class="isbn">
+<a href="http://amazon.com/exec/obidos/ASIN/0963488414/keithandrewshcic">
+0963488414</a></span>
+</li>
+
+<li>Andy Kirk;
+<em>Data Visualisation</em>;
+Sage Publications, 05 Jul 2016.
+<span class="isbn">
+<a href="http://amazon.com/exec/obidos/ASIN/1473912148/keithandrewshcic">
+1473912148</a></span>
+</li>
+
+<li>Danyel Fisher and Miriah Meyer;
+<em>Making Data Visual</em>;
+O'Reilly, 12 Jan 2018.
+<span class="isbn">
+<a href="http://amazon.com/exec/obidos/ASIN/1491928468/keithandrewshcic">
+1491928468</a></span>
+</li>
+
+<li>Stephen Few;
+<em>Now You See It: Simple Visualization
+Techniques for Quantitative Analysis</em>;
+Analytics Press, 2009.
+<span class="isbn">
+<a href="http://amazon.com/exec/obidos/ASIN/0970601980/keithandrewshcic">
+0970601980</a></span>
+</li>
+
+<li>Nathan Yau;
+<em>Visualize This</em>;
+Wiley, Jul 2011.
+<span class="isbn">
+<a href="http://amazon.com/exec/obidos/ASIN/0470944889/keithandrewshcic">
+0470944889</a></span>
+</li>
+
+<li>Noah Iliinsky and Julie Steele;
+<em>Designing Data Visualizations</em>;
+O'Reilly, Sep 2011.
+<span class="isbn">
+<a href="http://amazon.com/exec/obidos/ASIN/1449312284/keithandrewshcic">
+1449312284</a></span>
+</li>
+
+<li>Brian Suda;
+<em>Designing with Data</em>;
+Five Simple Steps, Aug 2010.
+<span class="isbn">
+<a href="http://amazon.com/exec/obidos/ASIN/0956174086/keithandrewshcic">
+0956174086</a></span>
+<a href="http://designingwithdata.com/">
+<code>designingwithdata.com</code></a>
+</li>
+
+<li>Stephen Few;
+<em>Information Dashboard Design: Displaying Data for At-A-Glance Monitoring</em>;
+2<sup>nd</sup> Edition, Analytics Press, Aug 2013.
+<span class="isbn">
+<a href="http://amazon.com/exec/obidos/ASIN/1938377001/keithandrewshcic">
+1938377001</a></span>
+</li>
+
+</ul>
+</div>
+
+
+
+
+
+
+<div class="slide">
+<h2>Books (Hardcore InfoVis)</h2>
+
+<ul>
+
+<li>Matthew Ward, Georges Grinstein, and Daniel Keim;
+<em>Interactive Data Visualization</em>;
+A. K. Peters, Jul 2010.
+<span class="isbn">
+<a href="http://amazon.com/exec/obidos/ASIN/1568814739/keithandrewshcic">
+1568814739</a></span>
+</li>
+
+<li>Robert Spence;
+<em>Information Visualization: An Introduction</em>;
+3<sup>rd</sup> Edition, Springer, 2014.
+<span class="isbn">
+<a href="http://amazon.com/exec/obidos/ASIN/3319073400/keithandrewshcic">
+3319073400</a></span>
+</li>
+
+<li>Colin Ware;
+<em>Information Visualization: Perception for Design</em>;
+3<sup>rd</sup> Edition, Morgan Kaufmann, Dec 2012.
+<span class="isbn">
+<a href="http://amazon.com/exec/obidos/ASIN/0123814642/keithandrewshcic">
+0123814642</a></span>
+</li>
+
+<li>Tamara Munzner;
+<em>Visualization Analysis and Design: Abstractions,
+Principles, and Methods</em>;
+A. K. Peters, 2014.
+<span class="isbn">
+<a href="http://amazon.com/exec/obidos/ASIN/1466508914/keithandrewshcic">
+1466508914</a></span>
+</li>
+
+</ul>
+</div>
+
+
+
+
+<!--
+
+<div class="slide">
+<h2>Books (Scalable and Responsive InfoVis)</h2>
+
+<ul>
+
+<li>Christoph Körner;
+<em>Learning Responsive Data Visualization</em>;
+Packt Publishing, 23 Mar 2016.
+<span class="isbn">
+<a href="http://amazon.co.uk/dp/178588378X/">
+978-1785883781</a></span>
+</li>
+
+<li>Bill Hinderman;
+<em>Building Responsive Data Visualization for the Web</em>;
+Wiley, 09 Nov 2015.
+<span class="isbn">
+<a href="http://amazon.co.uk/dp/1119067146/">
+978-1119067146</a></span>
+</li>
+
+</ul>
+</div>
+
+-->
+
+
+
+
+<div class="slide">
+
+<h2>Videos</h2>
+
+<ul>
+
+<li>Hans Rosling;
+<em>Stats that Reshape Your Worldview</em>;
+TED 2006 Talk, 22 Feb 2006.
+<a href="http://ted.com/talks/hans_rosling_shows_the_best_stats_you_ve_ever_seen.html">
+<code>http://ted.com/talks/hans_rosling_shows_the_best_stats_you_ve_ever_seen.html</code></a>
+</li>
+
+<li>David McCandless;
+<em>The Beauty of Data Visualization</em>;
+TED Global 2010 Talk, 14 Jul 2010.
+<a href="http://ted.com/talks/david_mccandless_the_beauty_of_data_visualization.html">
+<code>http://ted.com/talks/david_mccandless_the_beauty_of_data_visualization.html</code></a>
+</li>
+
+<li>Keith Andrews;
+<em>Illuminating Data Through Visualisation</em>;
+TEDxGraz Talk, 06 Nov 2015.
+<a href="http://youtu.be/fnyKj8r0CN4">
+<code>http://youtu.be/fnyKj8r0CN4</code></a>
+</li>
+
+
+<!--
+<li>Stephen Few;
+<em>Now You See It</em>;
+Tableau Customer Conference 2008 Talk, 22 Jul 2008.
+<a href="http://www.tableausoftware.com/mkt/downloads/StephanFew-TableauConference.wmv">
+<code>http://www.tableausoftware.com/mkt/downloads/StephanFew-TableauConference.wmv</code></a>
+</li>
+-->
+
+</ul>
+</div>
+
+
+
+
+
+
+<div class="slide">
+<h2>Conferences</h2>
+
+<ul>
+
+<li><em>IEEE Vis 2018</em>;
+21-26 Oct 2018, Berlin, Germany.<br/>
+<a href="http://ieeevis.org/">
+<code>ieeevis.org</code></a>
+</li>
+
+<li><em>IVAPP 2019</em>;
+25-27 Feb 2019, Prague, Czech Republic.<br/>
+<a href="http://ivapp.visigrapp.org/">
+<code>ivapp.visigrapp.org</code></a>
+</li>
+
+<li><em>EuroVis 2019</em>;
+03-07 Jun 2019, Porto, Portugal.<br/>
+<a href="http://eurovis.org/">
+<code>eurovis.org</code></a>
+</li>
+
+</ul>
+</div>
+
+
+
+
+
+<div class="slide">
+<h2>Credits</h2>
+
+<p>
+Thanks to the following students and collaborators
+ for helping to build the responsive demos:
+</p>
+<ul class="compact">
+<li>Aleš Smrdel</li>
+<li>Rizwan Mehmood</li>
+<li>Gregor Christandl</li>
+<li>Simon Kloiber</li>
+<li>Matthias Link</li>
+<li>Lukas Skofitsch</li>
+<li>Thomas Traunmüller</li>
+</ul>
+
+</div>
+
+
+
+
+
+
+
+<div class="slide">
+<h2>Thank You!</h2>
+
+<p>
+Prof. Keith Andrews<br/>
+ISDS, Graz University of Technology, Austria<br/>
+<a href="http://isds.tugraz.at/keith/">
+<code>http://isds.tugraz.at/keith/</code>
+</a>
+</p>
+
+<p>
+These slides:<br/>
+<a href="http://keithandrews.com/talks/2018/wuc-2018-10-17-infovis/">
+<code>http://keithandrews.com/talks/2018/wuc-2018-10-17-infovis/</code></a>
+</p>
+
+<p>
+Course Notes on Information Visualisation:<br/>
+<a href="http://courses.isds.tugraz.at/ivis/ivis.pdf">
+<code>http://courses.isds.tugraz.at/ivis/ivis.pdf</code>
+</a>
+</p>
+
+</div>
+
+
+
+
+
+</body>
+</html>

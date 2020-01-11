@@ -1,0 +1,214 @@
+﻿@import "variables";
+
+/* Settings applying to everything */
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  z-index: -1;
+}
+
+html {
+  position: absolute;
+}
+
+/* Body */
+body {
+  display: block;
+}
+
+*:focus {
+  outline: 0.125rem solid #7AACFE !important;
+}
+
+/*
+-- Common modifiers
+*/
+
+.rslidy-hidden {
+  display: none !important;
+}
+
+.rslidy-invisible {
+  visibility: hidden;
+}
+
+.rslidy-link {
+  color: blue;
+}
+
+.rslidy-noselect {
+  user-select: none;
+  -ms-user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+}
+
+.rslidy-color-invert {
+  filter: invert(100%);
+}
+
+.rslidy-spinner-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  opacity: 1;
+  z-index: 10;
+}
+.rslidy-spinner {
+  width: 4rem;
+  height: 4rem;
+  clear: both;
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  margin: -2rem 0 0 -2rem;
+  border: 0.50rem rgba(#000,0.25) solid;
+  border-top: 0.50rem rgba(#000,1) solid;
+  border-radius: 50%;
+  animation: circle-rotation .70s infinite linear;
+}
+@keyframes circle-rotation {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(359deg); }
+}
+
+
+/* Styles for smaller screens only */
+
+@media only all and (max-width: $pico) {
+  #rslidy-footer {
+    font-size: 30%;
+  }
+  #rslidy-menu, #rslidy-print-menu {
+    bottom: 1.10em !important;
+  }
+}
+
+@media only all and (min-width: $pico) and (max-width: $nano) {
+  #rslidy-footer {
+    font-size: 40%;
+  }
+  #rslidy-menu, #rslidy-print-menu {
+    bottom: 1.35em !important;
+  }
+}
+
+@media only all and (min-width: $nano) and (max-width: $tiny) {
+  #rslidy-footer {
+    font-size: 50%;
+  }
+  #rslidy-menu, #rslidy-print-menu {
+    bottom: 1.75em !important;
+  }
+}
+
+@media only all and (min-width: $mini) and (max-width: $tiny) {
+  #rslidy-footer {
+    font-size: 60%;
+  }
+  #rslidy-menu, #rslidy-print-menu {
+    bottom: 2.10em !important;
+  }
+}
+
+@media only all and (min-width: $tiny) and (max-width: $small) {
+  #rslidy-footer {
+    font-size: 70%;
+  }
+  #rslidy-menu, #rslidy-print-menu {
+    bottom: 2.50em !important;
+  }
+}
+
+@media only all and (min-width: $small) and (max-width: $medium) {
+  #rslidy-footer {
+    font-size: 80%;
+  }
+  #rslidy-menu, #rslidy-print-menu {
+    bottom: 2.90em !important;
+  }
+}
+
+@media only all and (min-width: $medium) and (max-width: $large) {
+  #rslidy-footer {
+    font-size: 90%;
+  }
+  #rslidy-menu, #rslidy-print-menu {
+    bottom: 3.30em !important;
+  }
+}
+
+@media only all and (max-width: $large) {
+  .rslidy-overview {
+    width: $overview-width-small-screen !important;
+  }
+}
+
+.rslidy-allslides {
+  color: black !important;
+  background-color: white !important;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Print styles */
+
+@media print {
+  body {
+    color: black !important;
+    background-color: white !important;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Hide UI */
+  .rslidy-ui {
+    display: none !important;
+  }
+  #rslidy-trapezoid-wrapper-display {
+    width: 0 !important;
+  }
+
+  a[href^="http://"]:after, a[href^="https://"]:after {
+    content: " (" attr(href) ") ";
+  }
+
+  .slide, #rslidy-column-flex, #rslidy-row-flex {
+    display: block !important;
+    page-break-after: always;
+    page-break-inside: avoid; /* Do not break the page in the middle of a slide */
+    -webkit-region-break-inside: avoid;
+    position: relative !important; /* Makes slides appear in order */
+    //max-height: 100% !important; // causes pages to overlap in chrome
+  }
+
+  /* Display whole content now */
+  html,
+  body,
+  #rslidy-content-section, #rslidy-row-flex {
+    overflow: visible !important;
+    /* In case the user had the overview or toc panel open */
+    left: 0em !important;
+    right: 0em !important;
+    max-height: 100% !important;
+  }
+
+  /* prevent images from bleeding over the edge of the printed page */
+  img {
+    max-width: 100% !important;
+    max-height: 100% !important;
+  }
+
+  /* In case the user had the low light mode activated */
+  .rslidy-color-invert {
+    filter: invert(0%) !important;
+  }
+}
