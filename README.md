@@ -32,10 +32,16 @@ For further information see w3schools'
 
 ## 3 Installation & Setup
 
-To install and build Rslidy, use the following commands:
+Download the latest release [here](https://github.com/tugraz-isds/rslidy/releases/latest).
+
+To install and build Rslidy from source, use the following commands:
 
 ```bash
-git clone "<repo url>"
+git clone "https://github.com/tugraz-isds/rslidy.git"
+```
+Then, in the rslidy folder, run:
+
+```bash
 npm i -g gulp
 npm i
 gulp
