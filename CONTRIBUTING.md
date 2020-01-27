@@ -3,8 +3,8 @@
 
 Feedback and suggestions about Rslidy are welcome.
 
-Note though that the developers' time is limited and
-response times are not guaranteed. ;-)
+However, the developers' time is limited and response times are not
+guaranteed... ;-)
 
 
 
@@ -17,12 +17,12 @@ containing the entire deck and any dependencies.
 
 ## Raising Issues
 
-File a bug report or feature request using an issue
-in the usual way.
+File a bug report or feature request using an issue in the usual way
+on GitHub.
 
 
 ## Contributing Code
 
 Please first discuss any changes via an issue or email with the owners
-of this repository before making a change or pull request.
+of this repository, before making a change or pull request.
 
