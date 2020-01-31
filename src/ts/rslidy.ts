@@ -33,6 +33,7 @@ export class Rslidy {
 
   // Members
   utils: any = new Utils();
+  running: boolean = false;
   num_slides: number = 0;
   shift_pressed: boolean = false;
   /*ctrl_pressed: boolean = false;
@@ -155,6 +156,15 @@ export class Rslidy {
     this.overview = new OverviewComponent(slides_html);
     this.content = new ContentComponent(cs);
 
+    // If hash is on help, show the first slide and the help panel
+    if(window.location.hash.match("#rslidy-help")) {
+      this.content.showSlide(0, false);
+      this.toolbar.helpToggleClicked();
+    }
+    // Show first slide with bad or no hash
+    else if(!window.location.hash.match(/#[0-9]+/))
+      this.content.showSlide(0, false);
+
     this.addListeners();
     this.initTimer();
     this.onHashchange();
@@ -171,16 +181,7 @@ export class Rslidy {
       this.shortcuts_disabled = true;
       setTimeout(()=>this.shortcuts_disabled=false, 3000);
     }
-
-    // If hash is on help, show the first slide and the help panel
-    if(window.location.hash.match("#rslidy-help")) {
-      this.content.showSlide(0, false);
-      this.toolbar.helpToggleClicked();
-    }
-    // If the hash is invalid, show the first slide
-    else if(isNaN(this.content.getCurrentSlideIndex())) {
-      this.content.showSlide(0, false);
-    }
+    this.running = true;
   }
 
   // ---
@@ -520,7 +521,7 @@ export class Rslidy {
   // Description: Called whenever the address field content changes.
   // ---
   onHashchange(): void {
-    if(! isNaN(this.content.getCurrentSlideIndex()))
+    if(window.location.hash.match(/#[0-9]+/))
       this.content.showSlide(this.content.getCurrentSlideIndex(), false);
   }
 

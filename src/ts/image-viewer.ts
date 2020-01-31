@@ -55,8 +55,10 @@ export class ImageViewerComponent {
     this.modalImg.style.left = "";
     this.view.style.display = "none";
     this.zoomFactor = 1.0;
-    this.active = false;
-    window.location.hash = "#" + (window.rslidy.content.currentSlideIndex+1);
+    if(this.active) {
+      history.replaceState({}, null, "#" + (window.rslidy.content.currentSlideIndex + 1));
+      this.active = false;
+    }
   }
 
   // ---

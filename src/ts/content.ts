@@ -347,6 +347,9 @@ export class ContentComponent {
     if (targetSlideIndex < 0 && this.currentSlideIndex < 0)
       targetSlideIndex = 0;
 
+    if (targetSlideIndex >= window.rslidy.num_slides)
+      targetSlideIndex = window.rslidy.num_slides-1;
+
     if (
       targetSlideIndex < 0 ||
       targetSlideIndex >= window.rslidy.num_slides ||
@@ -377,15 +380,15 @@ export class ContentComponent {
     // Hide speaker nodes
     window.rslidy.toggleSpeakerNotes(null, true);
 
-    var url_parts = window.location.href.split("#");
     // Set 1-indexed value and new url
-    var slide_index_one_indexed: number = window.rslidy.utils.toInt(targetSlideIndex) + 1;
-    window.location.href =
-      url_parts[0] + "#" + slide_index_one_indexed;
+    if(window.rslidy.running)
+      window.location.hash = "#" + (targetSlideIndex + 1);
+    else
+      history.replaceState({}, null, "#" + (targetSlideIndex + 1));
 
     // Update slide caption
     this.slide_caption.innerHTML = " /" + window.rslidy.num_slides;
-    (<HTMLInputElement>this.slide_input).value = ""+slide_index_one_indexed;
+    (<HTMLInputElement>this.slide_input).value = "" + (targetSlideIndex + 1);
 
     this.currentSlideIndex = targetSlideIndex;
   }
@@ -396,9 +399,10 @@ export class ContentComponent {
   getCurrentSlideIndex(): number {
     var url_parts = window.location.href.split("#");
     if (url_parts.length > 1) {
-      var displayed = +url_parts[1];
-      return displayed - 1;
+      var hash = parseInt(url_parts[1]);
+      if(hash > 0)
+      return hash - 1;
     }
-    return -1;
+    return 0;
   }
 }
