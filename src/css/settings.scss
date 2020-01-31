@@ -110,7 +110,6 @@ input[type="checkbox"]:disabled + label {
 .rslidy-disabled {
   opacity: 0.30;
   filter: alpha(opacity=30);
-  zoom: 1;
   cursor: default !important;
 }
 
