@@ -14,7 +14,7 @@
 /* Styles for the Title slide */
 
 .titleslide {
-  background: url("images/background.png") no-repeat center, linear-gradient(white, gray);
+  background: url("images/background.png") no-repeat center, linear-gradient(white 0%, gray 100%);
   background-size: contain;
 }
 
@@ -37,13 +37,22 @@
 
 /* Styles for other slides */
 
-.slide:not(.titleslide) h1 {
-  font-size: 3.50rem;
-  background: url("images/tugraz-logo.svg") no-repeat top right;
+.slide:not(.titleslide) {
+  background: url("images/tugraz-logo.svg") no-repeat 95% 4%;
 }
 
-.slide:not(.titleslide) h1:after {
-  content:' ';
-  display:block;
-  border: 0.05rem solid #333333;
+.slide:not(.titleslide) h1 {
+  padding-right: 3.4em;
+}
+
+/* Footer */
+
+.slide:not(.titleslide) {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer {
+  margin-top: auto;
+  font-size: 70%;
 }

@@ -15,6 +15,14 @@
 <!-- for TU Graz styles -->
 <link rel="stylesheet" href="slides-tug.css"/>
 
+<!-- for Math Equations -->
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<!-- Source code highlighting with Prism -->
+<link rel="stylesheet" href="prism/prism.css"/>
+<script src="prism/prism.js"></script>
+
 </head>
 
 
@@ -39,8 +47,43 @@
   <li>Second Bullet Point</li>
   <li>Third Bullet Point</li>
 </ul>
+<footer class="footer">
+  Max Mustermann, Graz University of Technology
+</footer>
 </section>
 
+
+
+
+<section>
+<h1>Math Equations using <a href="https://www.mathjax.org/">MathJax</a></h1>
+<p>
+When \(a \ne 0\), there are two solutions to \(ax^2 + bx + c = 0\) and they
+are \[x = {-b \pm \sqrt{b^2-4ac} \over 2a}.\]
+</p>
+<footer class="footer">
+  Max Mustermann, Graz University of Technology
+</footer>
+</section>
+
+
+
+
+<section>
+<h1>Source Code Highlighting using <a href="https://prismjs.com/">Prism.js</a></h1>
+<pre><code class="language-html">&lt;body&gt;
+  &lt;section&gt;
+    &lt;h1&gt;Source Code Highlighting!&lt;/h1&gt;
+    &lt;h2&gt;Or through third-party tools.&lt;/h2&gt;
+  &lt;/section&gt;
+&lt;/body&gt;</code></pre>
+<p>Inline code highlighting
+  <code class="language-css">background-color: rgba(0, 0, 0, 0.9);</code>
+is also possible.</p>
+<footer class="footer">
+  Max Mustermann, Graz University of Technology
+</footer>
+</section>
 
 </body>
 </html>
