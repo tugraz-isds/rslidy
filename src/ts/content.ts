@@ -7,8 +7,8 @@ export class ContentComponent {
   private slide_input: HTMLElement;
   private slideTransition: SlideTransition;
   private currentSlideIndex: number = -1;
-  private marginTabLeftDown: boolean = false;
-  private marginTabRightDown: boolean = false;
+  private marginTapLeftDown: boolean = false;
+  private marginTapRightDown: boolean = false;
 
   constructor(view) {
     this.view = view;
@@ -37,11 +37,11 @@ export class ContentComponent {
       );
       //set booleans for mouseup
       this.marginTap(e,
-        () => {this.marginTabLeftDown = true},
-        () => {this.marginTabRightDown = true},
+        () => {this.marginTapLeftDown = true},
+        () => {this.marginTapRightDown = true},
         () => {
-          this.marginTabLeftDown = false;
-          this.marginTabRightDown = false;
+          this.marginTapLeftDown = false;
+          this.marginTapRightDown = false;
         }
       );
     });
@@ -49,12 +49,12 @@ export class ContentComponent {
     this.view.addEventListener("mouseup", (e) => {
       this.marginTap(e,
         () => {
-          if(this.marginTabLeftDown) this.navPrevious(true);
-          this.marginTabLeftDown = false;
+          if(this.marginTapLeftDown) this.navPrevious(true);
+          this.marginTapLeftDown = false;
         },
         () => {
-          if(this.marginTabRightDown) this.navNext(true);
-          this.marginTabRightDown = false;
+          if(this.marginTapRightDown) this.navNext(true);
+          this.marginTapRightDown = false;
         },
         () => {}
       );

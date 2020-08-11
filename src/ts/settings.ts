@@ -223,7 +223,25 @@ export class SettingsComponent {
       parseFloat((<HTMLElement>footer).style.fontSize) > this.default_footer)
       (<HTMLElement>footer).style.fontSize = this.default_footer + "em";
 
+    setTimeout(()=>{this.checkToolbarOverflow();}, 1000)
+
     // Prevent default actions after event handling
     if(e) e.preventDefault();
+  }
+
+  // ---
+  // Description: Checks the toolbar for overflow and scales it down if needed.
+  // ---
+  public checkToolbarOverflow(): void {
+    // check if footer is still on the same line
+    var ov = document.querySelector("#rslidy-button-overview").getBoundingClientRect();
+    var toc = document.querySelector("#rslidy-button-toc").getBoundingClientRect();
+
+    console.log(ov.top + " - " + toc.top);
+
+    if(ov.top == toc.top)
+      return
+    else
+      this.changeUIFont(null, -1);
   }
 }

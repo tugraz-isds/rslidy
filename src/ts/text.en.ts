@@ -1,7 +1,7 @@
 // English text definitions
 
 export const help = [
-  `Rslidy Interface Controls`,
+  `Interface Controls`,
   `Function`,
   `Button`,
   `Key`,

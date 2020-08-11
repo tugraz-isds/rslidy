@@ -9,8 +9,12 @@ export const help_text = `
 <div id="rslidy-help" class="rslidy-help-overlay rslidy-ui"
 role="region" aria-label="Help" tabindex="0">
   <div id="rslidy-help-popup">
-  <h1>`+t.help[0]+`</h1>
+  <h1>
+    Rslidy Version 1.0.1
+    <a target="_blank" href="https://github.com/tugraz-isds/rslidy">GitHub</a>
+  </h1>
   <a class="rslidy-help-close" title="`+t.imageviewer[3]+`" href="#">&times;</a>
+  <h2>`+t.help[0]+`</h2>
     <div class="rslidy-help-content">
     <table id="rslidy-help-table">
       <tr>
