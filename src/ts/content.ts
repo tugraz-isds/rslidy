@@ -5,7 +5,7 @@ export class ContentComponent {
   private progress_bar: HTMLElement;
   private slide_caption: HTMLElement;
   private slide_input: HTMLElement;
-  private slideTransition: SlideTransition;
+  public slideTransition: SlideTransition;
   private currentSlideIndex: number = -1;
   private marginTapLeftDown: boolean = false;
   private marginTapRightDown: boolean = false;

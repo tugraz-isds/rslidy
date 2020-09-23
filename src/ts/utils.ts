@@ -204,7 +204,7 @@ export class Utils {
   }
 
   // ---
-  // Description: Insterts an html element at the end of another one
+  // Description: Inserts an html element at the end of another one
   // parent: The html element that gets modified
   // html: The new html element as string
   // ---
@@ -212,5 +212,23 @@ export class Utils {
     const view = this.htmlParse(html);
     parent.appendChild(view);
     return view;
+  }
+
+  // ---
+  // Description: Get the slide with the specified index
+  // index: slide index
+  // ---
+  getSlide(index: number) {
+    return window.rslidy.content.slideTransition.slides[index];
+  }
+
+  // ---
+  // Description: True if an element is visible on screen
+  // elm: the html element to check
+  // ---
+  checkVisible(elm: HTMLElement) {
+    var rect = elm.getBoundingClientRect();
+    var viewHeight = Math.max(document.documentElement.clientHeight, window.innerHeight);
+    return !(rect.bottom < 0 || rect.top - viewHeight >= 0);
   }
 }

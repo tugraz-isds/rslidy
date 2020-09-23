@@ -6,7 +6,7 @@ export class SlideTransition {
   private isSlidein: boolean = false;
 
   private contentSection: HTMLElement;
-  private slides: NodeListOf<Element>;
+  public slides: NodeListOf<Element>;
   private slideThumbnails: HTMLCollectionOf<Element>;
   private hideTimeout: number = 500;
   private slideTimeouts: number[];

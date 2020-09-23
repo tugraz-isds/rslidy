@@ -168,12 +168,26 @@ export class ToolbarComponent {
   // ---
   public displayToggleClicked(): void {
     if (this.allslides) {
+
+      //find first visible slide
+      var num = window.rslidy.content.currentSlideIndex;
+      for (let i: number = 0; i < window.rslidy.num_slides; i++) {
+        var slide = window.rslidy.utils.getSlide(i);
+
+        if(window.rslidy.utils.checkVisible(slide)) {
+          num = i;
+          break;
+        }
+      }
+
       document.getElementsByTagName('head')[0].removeChild(this.allslides);
       this.allslides = null;
       if(this.enableiv)
         window.rslidy.image_viewer = true;
       if(this.printstyle)
         document.getElementsByTagName('head')[0].appendChild(this.printstyle);
+
+      window.rslidy.content.showSlide(num, false);
     }
     else {
       var css = `
@@ -239,6 +253,9 @@ export class ToolbarComponent {
         this.printstyle = window.rslidy.printSettings.style;
         document.getElementsByTagName('head')[0].removeChild(this.printstyle);
       }
+      //scroll to current slide
+      var slide = window.rslidy.utils.getSlide(window.rslidy.content.currentSlideIndex);
+      slide.scrollIntoView();
     }
   }
 
