@@ -101,7 +101,6 @@ export const print_settings = [
   `Show Link Destinations`,
   `Show Slide Numbers`,
   `Show Frame`,
-  `Margin`,
   `Print`
 ];
 

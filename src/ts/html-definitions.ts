@@ -285,14 +285,7 @@ role="region" aria-label="Print Settings" tabindex="0">
     <label for="rslidy-checkbox-frame">`+i.slider_icon+`</label>
   </label>
   <div class="rslidy-menu-content">
-    <label id="rslidy-margin-text">
-      `+t.print_settings[3]+`
-      <input value="10" id="rslidy-margin-input" type="textbox" aria-label="Margin in millimeters">
-      mm
-    </label>
-  </div>
-  <div class="rslidy-menu-content">
-    <button id="rslidy-button-print-submit">`+t.print_settings[4]+`</button>
+    <button id="rslidy-button-print-submit">`+t.print_settings[3]+`</button>
   </div>
 </div>`;
 

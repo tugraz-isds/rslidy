@@ -4,7 +4,6 @@ interface Data {
   links: boolean;
   slidenumbers: boolean;
   frame: boolean;
-  margin: string;
 }
 
 export class PrintSettingsComponent {
@@ -35,12 +34,6 @@ export class PrintSettingsComponent {
       .querySelector("#rslidy-button-print-submit")
       .addEventListener("click", e => this.print());
 
-    //Only allow numbers with decimals for margin input
-    window.rslidy.utils.setInputFilter(
-      document.getElementById("rslidy-margin-input"),
-      function(value) {return /^\d*[.,]?\d*$/.test(value);}
-    );
-
     this.applyPrintSettings();
   }
 
@@ -58,8 +51,6 @@ export class PrintSettingsComponent {
       <HTMLInputElement>(this.view.querySelector("#rslidy-checkbox-snum"));
     var frame =
       <HTMLInputElement>(this.view.querySelector("#rslidy-checkbox-frame"));
-    var margin =
-      <HTMLInputElement>(this.view.querySelector("#rslidy-margin-input"));
 
     var css = "@media print {\n";
 
@@ -86,13 +77,6 @@ export class PrintSettingsComponent {
     if(frame.checked) {
       css += `.slide {
         border: `+window.rslidy.print_frame+`;
-      }`;
-    }
-
-    if(margin.validity.valid) {
-      var mm = "margin: "+ margin.value +"mm;\n";
-      css += `@page {
-        ` + mm + `
       }`;
     }
 
@@ -129,7 +113,6 @@ export class PrintSettingsComponent {
     (<HTMLInputElement>this.view.querySelector("#rslidy-checkbox-link")).checked = data.links;
     (<HTMLInputElement>this.view.querySelector("#rslidy-checkbox-snum")).checked = data.slidenumbers;
     (<HTMLInputElement>this.view.querySelector("#rslidy-checkbox-frame")).checked = data.frame;
-    (<HTMLInputElement>this.view.querySelector("#rslidy-margin-input")).value = data.margin;
     this.applyPrintSettings();
   }
 
@@ -149,16 +132,10 @@ export class PrintSettingsComponent {
   // Description: Generate a JSON string for the localStorage
   // ---
   generateJSON(): string {
-    var me = <HTMLInputElement>(this.view.querySelector("#rslidy-margin-input"));
-    var m = "10";
-    if(me.validity.valid)
-      m = me.value;
-
     const data: Data = {
       links: (<HTMLInputElement>this.view.querySelector("#rslidy-checkbox-link")).checked,
       slidenumbers: (<HTMLInputElement>this.view.querySelector("#rslidy-checkbox-snum")).checked,
-      frame: (<HTMLInputElement>this.view.querySelector("#rslidy-checkbox-frame")).checked,
-      margin: m
+      frame: (<HTMLInputElement>this.view.querySelector("#rslidy-checkbox-frame")).checked
     }
     return JSON.stringify(data);
   }
