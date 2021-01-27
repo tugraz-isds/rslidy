@@ -43,15 +43,14 @@ Download the latest binary release
 
 To install and build Rslidy from source, use the following commands:
 
-```bash
+```
 git clone "https://github.com/tugraz-isds/rslidy.git"
 ```
 Then, in the rslidy folder, run:
 
-```bash
-npm i -g gulp
-npm i
-gulp
+```
+npm install
+npx gulp
 ```
 
 The `rslidy/build` folder will then contain Rslidy's main files, as
@@ -196,15 +195,15 @@ For more information, see the example file `overrides.html`.
 #### The Build System
 To build the project use:
 
-```bash
-gulp build
+```
+npx gulp build
 ```
 Build may be omitted, since it is the default gulp task.
 There is also a gulp task using `Browsersync` and `gulp watch`
 for more convenient development.
 
-```bash
-gulp watch
+```
+npx gulp watch
 ```
 This task will initialise a build and synchronise the
 browser content every time a source files changes.
@@ -213,8 +212,8 @@ browser content every time a source files changes.
 `--slide <file>` a specific file can be synchronised. The file has to
 be in the `examples/tests` directory.
 
-```bash
-gulp watch --slide <file>
+```
+npx gulp watch --slide <file>
 ```
 
 #### Updating Icons
@@ -222,8 +221,8 @@ gulp watch --slide <file>
 To commit changes from the icons located in `src/icons` to Rslidy, the
 following gulp task has to be run:
 
-```bash
-gulp icons
+```
+npx gulp icons
 ```
 
 This creates or updates the file `src/ts/icon-definitions.ts` with
