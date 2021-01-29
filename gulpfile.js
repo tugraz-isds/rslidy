@@ -68,14 +68,14 @@ function webpack() {
 exports.webpack = series(clean, transpile, webpack)
 exports.webpack.description = 'Bundles the main JavaScript file'
 
-function uglifyjs() {
+function minifyjs() {
   return src(paths.build + files.js)
     .pipe(ujs())
     .pipe(rename(files.minjs))
     .pipe(dest(paths.build))
 }
 
-function uglifycss() {
+function minifycss() {
   return src(paths.build + files.css)
     .pipe(ucss())
     .pipe(rename(files.mincss))
@@ -87,17 +87,17 @@ function compress() {
   .pipe(gzip())
   .pipe(dest(paths.build))
 }
-exports.minify = series(parallel(uglifyjs, uglifycss), compress)
+exports.minify = series(parallel(minifyjs, minifycss), compress)
 exports.minify.description = 'Produces .min and .gz files'
 
-function sass() {
+function scss() {
   return src(paths.src + 'css/*.scss')
     .pipe(gsass({ includePaths: ['node_modules'] }))
     .pipe(concat(files.css))
     .pipe(dest(paths.build))
 }
-exports.sass = sass
-exports.sass.description = 'Bundles SCSS source files into rslidy.css'
+exports.scss = scss
+exports.scss.description = 'Bundles SCSS source files into rslidy.css'
 
 function svgo() {
   return src(paths.src + 'icons/*.svg')
@@ -126,7 +126,7 @@ function html() {
   return src(paths.src + 'examples/**/*.*')
     .pipe(dest(paths.build + 'examples/'))
 }
-exports.assemble = parallel(exports.webpack, html, sass)
+exports.assemble = parallel(exports.webpack, html, scss)
 exports.assemble.description = 'Assembles HTML, CSS, and JS output files'
 
 function copy() {
@@ -156,7 +156,7 @@ exports.build.description = 'Cleans and builds the project'
 function stream() {
   return browserSync.stream()
 }
-const buildnc = series(parallel(series(cleantsc, transpile, webpack), html, sass), exports.minify, copy, stream)
+const buildnc = series(parallel(series(cleantsc, transpile, webpack), html, scss), exports.minify, copy, stream)
 
 function loop() {
   var arg = (argv.slide || argv.s);
