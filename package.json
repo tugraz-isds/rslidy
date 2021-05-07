@@ -21,7 +21,7 @@
   ],
   "dependencies": {},
   "devDependencies": {
-    "browser-sync": "^2.26.7",
+    "browser-sync": "^2.26.14",
     "del": "^3.0.0",
     "file-system": "^2.2.2",
     "gulp": "^4.0.2",

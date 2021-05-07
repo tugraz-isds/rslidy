@@ -393,14 +393,7 @@ export class ContentComponent {
     this.currentSlideIndex = targetSlideIndex;
 
     // RespVis Support
-    // @ts-ignore
-    if(window.charts != null) {
-      // @ts-ignore
-      window.charts.forEach(chart => {
-        chart.render();
-        chart.transition();
-      });
-    }
+    window.dispatchEvent(new Event('resize'));
   }
 
   // ---
