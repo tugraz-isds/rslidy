@@ -391,6 +391,16 @@ export class ContentComponent {
     (<HTMLInputElement>this.slide_input).value = "" + (targetSlideIndex + 1);
 
     this.currentSlideIndex = targetSlideIndex;
+
+    // RespVis Support
+    // @ts-ignore
+    if(window.charts != null) {
+      // @ts-ignore
+      window.charts.forEach(chart => {
+        chart.render();
+        chart.transition();
+      });
+    }
   }
 
   // ---
