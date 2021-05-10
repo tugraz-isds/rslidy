@@ -88,6 +88,19 @@ export class PrintSettingsComponent {
     style.innerHTML = css;
     document.getElementsByTagName('head')[0].appendChild(style);
     this.style = style;
+
+    // print support for RespVis (Webkit only), not supported by Firefox
+    // https://bugzilla.mozilla.org/show_bug.cgi?id=774398
+    if (window.matchMedia) {
+      var mediaQueryList = window.matchMedia('print');
+      // non-deprecated version: .addEventListener("change", () => {});
+      // deprecated version gives Safari support for now
+      mediaQueryList.addListener(function (mql) {
+        if (mql.matches) {
+          window.dispatchEvent(new Event('resize'));
+        }
+      });
+    }
   }
 
   // ---

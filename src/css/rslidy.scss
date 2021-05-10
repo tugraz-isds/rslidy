@@ -207,6 +207,11 @@ body {
     max-height: 100% !important;
   }
 
+  /* hide video player controls while printing for webkit browsers */
+  video::-webkit-media-controls {
+    display: none;
+  }
+
   /* In case the user had the low light mode activated */
   .rslidy-color-invert {
     filter: invert(0%) !important;
