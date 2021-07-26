@@ -123,8 +123,10 @@ exports.icons = series(svgo, icon_definitions)
 exports.icons.description = 'Optimises SVG files and writes icon-definitions.ts'
 
 function html() {
-  return src(paths.src + 'examples/**/*.*')
+  src(paths.src + 'examples/**/*.*')
     .pipe(dest(paths.build + 'examples/'))
+  return src(paths.src + 'tests/**/*.*')
+    .pipe(dest(paths.build + 'tests/'))
 }
 exports.assemble = parallel(exports.webpack, html, scss)
 exports.assemble.description = 'Assembles HTML, CSS, and JS output files'
@@ -139,6 +141,10 @@ function copy() {
         .pipe(dest(filepath))
     }
   })
+  src(paths.build + files.minjs)
+    .pipe(dest(paths.build + 'tests/'))
+  src(paths.build + files.mincss)
+    .pipe(dest(paths.build + 'tests/'))
   return Promise.resolve('')
 }
 
