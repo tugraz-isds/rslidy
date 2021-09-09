@@ -166,7 +166,7 @@ const buildnc = series(parallel(series(cleantsc, transpile, webpack), html, scss
 
 function loop() {
   var arg = (argv.slide || argv.s);
-  var dir = 'examples/tests/';
+  var dir = 'tests/';
   var file = 'notes.html';
   if(arg) {
     if(arg.lastIndexOf('/'))
