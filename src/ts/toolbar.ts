@@ -257,6 +257,7 @@ export class ToolbarComponent {
       var slide = window.rslidy.utils.getSlide(window.rslidy.content.currentSlideIndex);
       slide.scrollIntoView();
     }
+    window.dispatchEvent(new Event('resize'));
   }
 
   // ---

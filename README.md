@@ -3,6 +3,8 @@
 
 Rslidy: Lightweight, accessible, and responsive HTML5 slide decks.
 
+![An animation plays that shows Rslidy's slide transition when swiped left or right.](src/examples/rslidy/images/slide-viewer.gif)
+
 
 ## 1 Introduction
 
