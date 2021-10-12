@@ -167,7 +167,7 @@ div.images, div.large-images {
   justify-content: center;
 }
 
-div.images img {
+div.images img, div.images video {
   object-fit: scale-down; /* preserve aspect ratio */
   max-width: 100%;
   max-height: 15em;
@@ -175,7 +175,7 @@ div.images img {
   height: 15em;
 }
 
-div.large-images img {
+div.large-images img, div.large-images video {
   object-fit: scale-down; /* preserve aspect ratio */
   max-width: 100%;
   max-height: 25em;
