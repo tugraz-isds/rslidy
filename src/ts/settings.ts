@@ -125,8 +125,11 @@ export class SettingsComponent {
   // ---
   doCustomSettingAdaptions(): void {
     // Start in night mode if set or user prefers it
-    if (window.rslidy.start_in_low_light_mode ||
-      window.matchMedia("(prefers-color-scheme: dark)").matches) {
+    // Currently low light mode is broken in firefox mobile
+    // filter:invert() causes the page to overflow
+    // add "|| window.matchMedia("(prefers-color-scheme: dark)").matches"
+    // to auto-enable low light mode once its fixed
+    if (window.rslidy.start_in_low_light_mode) {
       var lowlightbtn = (<HTMLInputElement>document.getElementById(
         "rslidy-checkbox-lowlightmode"
       ));
