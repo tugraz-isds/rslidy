@@ -119,6 +119,7 @@ export class PrintSettingsComponent {
       var item = localStorage.getItem("rslidy-print");
     } catch(e) {
       console.log(e);
+      return;
     }
     if (item === null || item === undefined) return;
 

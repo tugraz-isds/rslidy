@@ -108,6 +108,7 @@
   border: 0.05em solid $button-border-color;
   border-radius: 0.15em;
   box-shadow: 0.15em 0.15em $button-border-color;
+  touch-action: manipulation; //prevent double tap zoom
 }
 
 .rslidy-toolbar-button:hover,

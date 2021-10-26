@@ -73,6 +73,7 @@ export class SettingsComponent {
       var item = localStorage.getItem("rslidy");
     } catch(e) {
       console.log(e);
+      return;
     }
     if (item === null || item === undefined) return;
 
