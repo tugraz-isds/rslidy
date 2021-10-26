@@ -24,6 +24,7 @@
 .titleslide h2, .closingslide h2 {
   font-size: 3rem;
   margin-left: 4rem;
+  line-height: 1.6;
 }
 
 .titleslide h3 {
@@ -64,7 +65,7 @@ div.copyright p {
   background-color: #eee;
   padding: 0.2em;
   border-radius: 0.2em;
-  font-size: 60%;
+  font-size: 50%;
   max-width: 35%;
 }
 
@@ -72,4 +73,8 @@ div.copyright p {
 .respvis-title {
   font-size: 75%;
   letter-spacing: 0.1em !important;
+}
+
+.small-code {
+  font-size: 85% !important;
 }
