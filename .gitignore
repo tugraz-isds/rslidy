@@ -7,6 +7,7 @@ temp/
 # editors
 .idea/
 .vscode/
+.vs/
 
 # Logs
 logs
