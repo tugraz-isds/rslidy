@@ -7,7 +7,7 @@
 <!-- for css3 media queries to work properly on mobile devices-->
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
-<title>G1 - rslidy update </title>
+<title>G1 - Rslidy update </title>
 
 <link rel="stylesheet" href="../build/rslidy.css"/>
 <script src="../build/rslidy.js"></script>
@@ -17,7 +17,7 @@
 
 <body>
     <section>
-        <h1>G1 - rslidy Update </h1>
+        <h1>G1 - Rslidy Update </h1>
 
         
         <p> <center>Information Architecture and Web Usability 2023 </center></p>
@@ -30,7 +30,7 @@
     </section>
 
     <section>
-        <h1>About rslidy</h1>
+        <h1>About Rslidy</h1>
 
         <br>
         
@@ -40,7 +40,7 @@
             <br>
             
             <ul>
-                <li> A way to design responsive and lightweigth presentations in html5, css3 and TypeScript.  </li>
+                <li> A way to design responsive and lightweight presentations in html5, css3 and TypeScript.  </li>
                 <li> Runs directly in the web browser. </li>
                 <li> Open source.</li>
                 <li> Offers a variety of options for presentations in html: </li>
@@ -61,58 +61,51 @@
     </section>
 
     <section>
-        <h1> Project Ideas </h1>
+        <h1> Roadmap </h1>
         <br> 
 
         <ul>
-            <li> Scoping to hide rslidy's internal css. </li>
-            <li> Include container queries. </li>
-            <li> Include live code. </li>
+            <li> Adapt mouse cursor shape when hovering over image. </li>
+            <li> Adapt mouse cursor on edge of first an last slide. </li>
+            <li> Adapt toolbar buttons (first, previous) for first and last slide. </li>
+                <ol style="list-style-type: lower-alpha; padding-bottom: 0;">
+                    <li style="margin-left:2em"> Mouse should not appear as clickable. </li>
+                    <li style="margin-left:2em"> Button should appear in a different color (darker grey). </li>
+                </ol>
+            <li> Remove #1 in first slides' link. </li>
+            <li> Replace @media with container size queries. </li>
+            <li> Continues refactoring. </li>
+            <li> Write an introduction to Rslidy slide deck as .md file (slide creator guide). </li>
+            <li> Update the ReadMe.md on Rslidys GitHub. </li>
         </ul>
     </section>
 
     <section>
-        <h1>Scoping To Hide rslidy's Internal css  </h1>
-
-        <body>
-            <ul>
-                <li> This would allow to adapt the status bar at the bottom. </li>
-                <li> Design options could be similar to PowerPoint. </li>
-                <li> Offer the user a variety of design options to choose from. </li>
-                <li> Possible by scoping and hiding the original css. </li>
-            </ul>
-        </body>
-    </section>
-
-    <section>
-        <h1> Inclusion Of Container Queries</h1>
+        <h1> Adapt mouse cursor shape when hovering over image </h1>
 
         <body>
             <body>
-                <ul>
-                    <li> Would allow a design similar to PowerPoint. </li>
-                    <li> User could create containers on the slides. </li>
-                    <li> Possibility to offer basic design patterns for slides. </li>
-                    <li> Open question: how much effort to include this in slidy. </li>
-                </ul>
+                <p>This task is already implemented. </p> 
+                <img src="repo.png" alt="rslidy repo">
             </body>
         </body>
     </section>
 
     <section>
-        <h1> Flawless Inclusion Of Live Code</h1>
+        <h1>Adapt mouse cursor on edge of first an last slide. </h1>
 
         <body>
-            <body>
-                <ul>
-                    <li> Would come with benefits for the user. </li>
-                    <li> We have not found good ways to do so by now. </li>
-                    <li> Open question: What feature would you like to have? </li>
-                    <li> Open question: Is there a nice way? </li>
-                </ul>
-            </body>
+            <p> TODO fix the problem in files toolbar.scss, toolbar.ts and html definitions.js, then show a picture of the fix on this slide </p>
         </body>
     </section>
+
+    <section>
+        <h1> Adapt toolbar buttons (first, previous) for first and last slide.</h1>
+        <body>
+            <p>Todo: explain the problem and what we have to in order to solve it</p>
+        </body>
+    </section>
+
 
 </body>
 </html>
