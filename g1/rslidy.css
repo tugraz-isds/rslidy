@@ -1,0 +1,1519 @@
+#rslidy-content-section {
+  position: relative;
+  flex: 1 1 auto;
+  height: 100%;
+  width: 100%;
+  background-color: white;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  word-wrap: break-word;
+}
+
+#rslidy-content-section .slide {
+  font-size: 1em;
+  transition: 0.3s;
+}
+
+/* Main content area */
+#rslidy-content {
+  padding: 5em 1em 0 1em;
+  text-align: center;
+}
+
+/* Wrapper */
+#rslidy-column-flex {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+#rslidy-row-flex {
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  min-height: 0;
+  overflow: hidden;
+  background-color: white;
+}
+
+/*
+-- Speaker Notes
+*/
+#rslidy-speakernotes-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  opacity: 0.9;
+  z-index: 10;
+}
+
+.rslidy-speakernotes-container {
+  color: white;
+  word-wrap: break-word;
+  font-size: 1.5em;
+  padding: 1em;
+}
+
+.speakernotes {
+  display: none !important;
+}
+.rslidy-slide-image {
+  cursor: pointer;
+}
+
+.rslidy-image-viewer {
+  display: none;
+  position: fixed;
+  z-index: 10;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.9);
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.rslidy-image-viewer-container {
+  position: relative;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.rslidy-image-viewer-content {
+  position: absolute;
+  background-color: white;
+}
+
+.rslidy-transition-enabled {
+  transition: 0.3s;
+}
+
+.rslidy-iv-button {
+  position: fixed;
+  color: #f1f1f1;
+  text-shadow: -0.0625rem -0.0625rem 0 #000, 0.0625rem -0.0625rem 0 #000, -0.0625rem 0.0625rem 0 #000, 0.125rem 0.125rem 0 #000;
+  font-size: 2.5em;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.rslidy-iv-button:hover,
+.rslidy-iv-button:focus {
+  color: #bbb;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.rslidy-iv-close {
+  top: 0.9375em;
+  right: 1em;
+}
+
+.rslidy-iv-zoom-in {
+  bottom: 0.9375em;
+  right: 1em;
+}
+
+.rslidy-iv-zoom-out {
+  bottom: 0.9375em;
+  right: 2.5em;
+}
+
+.rslidy-iv-zoom-reset {
+  bottom: 0.9375em;
+  right: 4em;
+}
+/*! normalize.css v8.0.0 | MIT License | github.com/necolas/normalize.css */
+/* Document
+   ========================================================================== */
+/**
+ * 1. Correct the line height in all browsers.
+ * 2. Prevent adjustments of font size after orientation changes in iOS.
+ */
+html {
+  line-height: 1.15;
+  /* 1 */
+  -webkit-text-size-adjust: 100%;
+  /* 2 */
+}
+
+/* Grouping content
+   ========================================================================== */
+/**
+ * 1. Add the correct box sizing in Firefox.
+ * 2. Show the overflow in Edge and IE.
+ */
+hr {
+  box-sizing: content-box;
+  /* 1 */
+  height: 0;
+  /* 1 */
+  overflow: visible;
+  /* 2 */
+}
+
+/**
+ * 1. Correct the inheritance and scaling of font size in all browsers.
+ * 2. Correct the odd `em` font sizing in all browsers.
+ */
+pre {
+  font-family: monospace, monospace;
+  /* 1 */
+  font-size: 1em;
+  /* 2 */
+}
+
+/* Text-level semantics
+   ========================================================================== */
+/**
+ * Remove the gray background on active links in IE 10.
+ */
+a {
+  background-color: transparent;
+}
+
+/**
+ * 1. Remove the bottom border in Chrome 57-
+ * 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.
+ */
+abbr[title] {
+  border-bottom: none;
+  /* 1 */
+  text-decoration: underline;
+  /* 2 */
+  text-decoration: underline dotted;
+  /* 2 */
+}
+
+/**
+ * Add the correct font weight in Chrome, Edge, and Safari.
+ */
+b,
+strong {
+  font-weight: bolder;
+}
+
+/**
+ * 1. Correct the inheritance and scaling of font size in all browsers.
+ * 2. Correct the odd `em` font sizing in all browsers.
+ */
+code,
+kbd,
+samp {
+  font-family: monospace, monospace;
+  /* 1 */
+  font-size: 1em;
+  /* 2 */
+}
+
+/**
+ * Add the correct font size in all browsers.
+ */
+small {
+  font-size: 80%;
+}
+
+/**
+ * Prevent `sub` and `sup` elements from affecting the line height in
+ * all browsers.
+ */
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+sup {
+  top: -0.5em;
+}
+
+/* Embedded content
+   ========================================================================== */
+/**
+ * Remove the border on images inside links in IE 10.
+ */
+img {
+  border-style: none;
+}
+
+/* Forms
+   ========================================================================== */
+/**
+ * 1. Change the font styles in all browsers.
+ * 2. Remove the margin in Firefox and Safari.
+ */
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: inherit;
+  /* 1 */
+  font-size: 100%;
+  /* 1 */
+  margin: 0;
+  /* 2 */
+}
+
+/**
+ * Show the overflow in IE.
+ * 1. Show the overflow in Edge.
+ */
+button,
+input {
+  /* 1 */
+  overflow: visible;
+}
+
+/**
+ * Remove the inheritance of text transform in Edge, Firefox, and IE.
+ * 1. Remove the inheritance of text transform in Firefox.
+ */
+button,
+select {
+  /* 1 */
+  text-transform: none;
+}
+
+/**
+ * Correct the inability to style clickable types in iOS and Safari.
+ */
+button,
+[type=button],
+[type=reset],
+[type=submit] {
+  -webkit-appearance: button;
+}
+
+/**
+ * Remove the inner border and padding in Firefox.
+ */
+button::-moz-focus-inner,
+[type=button]::-moz-focus-inner,
+[type=reset]::-moz-focus-inner,
+[type=submit]::-moz-focus-inner {
+  border-style: none;
+  padding: 0;
+}
+
+/**
+ * Restore the focus styles unset by the previous rule.
+ */
+button:-moz-focusring,
+[type=button]:-moz-focusring,
+[type=reset]:-moz-focusring,
+[type=submit]:-moz-focusring {
+  outline: 1px dotted ButtonText;
+}
+
+/**
+ * Correct the padding in Firefox.
+ */
+fieldset {
+  padding: 0.35em 0.75em 0.625em;
+}
+
+/**
+ * 1. Correct the text wrapping in Edge and IE.
+ * 2. Correct the color inheritance from `fieldset` elements in IE.
+ * 3. Remove the padding so developers are not caught out when they zero out
+ *    `fieldset` elements in all browsers.
+ */
+legend {
+  box-sizing: border-box;
+  /* 1 */
+  color: inherit;
+  /* 2 */
+  display: table;
+  /* 1 */
+  max-width: 100%;
+  /* 1 */
+  padding: 0;
+  /* 3 */
+  white-space: normal;
+  /* 1 */
+}
+
+/**
+ * Add the correct vertical alignment in Chrome, Firefox, and Opera.
+ */
+progress {
+  vertical-align: baseline;
+}
+
+/**
+ * Remove the default vertical scrollbar in IE 10+.
+ */
+textarea {
+  overflow: auto;
+}
+
+/**
+ * 1. Add the correct box sizing in IE 10.
+ * 2. Remove the padding in IE 10.
+ */
+[type=checkbox],
+[type=radio] {
+  box-sizing: border-box;
+  /* 1 */
+  padding: 0;
+  /* 2 */
+}
+
+/**
+ * Correct the cursor style of increment and decrement buttons in Chrome.
+ */
+[type=number]::-webkit-inner-spin-button,
+[type=number]::-webkit-outer-spin-button {
+  height: auto;
+}
+
+/**
+ * 1. Correct the odd appearance in Chrome and Safari.
+ * 2. Correct the outline style in Safari.
+ */
+[type=search] {
+  -webkit-appearance: textfield;
+  /* 1 */
+  outline-offset: -2px;
+  /* 2 */
+}
+
+/**
+ * Remove the inner padding in Chrome and Safari on macOS.
+ */
+[type=search]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+/**
+ * 1. Correct the inability to style clickable types in iOS and Safari.
+ * 2. Change font properties to `inherit` in Safari.
+ */
+::-webkit-file-upload-button {
+  -webkit-appearance: button;
+  /* 1 */
+  font: inherit;
+  /* 2 */
+}
+
+/* Interactive
+   ========================================================================== */
+/*
+ * Add the correct display in Edge, IE 10+, and Firefox.
+ */
+details {
+  display: block;
+}
+
+/*
+ * Add the correct display in all browsers.
+ */
+summary {
+  display: list-item;
+}
+
+/* Misc
+   ========================================================================== */
+/**
+ * Add the correct display in IE 10+.
+ */
+template {
+  display: none;
+}
+
+/**
+ * Add the correct display in IE 10.
+ */
+[hidden] {
+  display: none;
+}
+.rslidy-overview {
+  width: 18rem;
+  height: 100%;
+  position: fixed;
+  flex: 0 0 auto;
+  z-index: 4;
+  list-style: none;
+  background-color: #f1f1f1;
+  display: block;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  word-wrap: break-word;
+  transition: 0.3s;
+}
+
+.rslidy-overview-visible {
+  position: relative;
+  transform: translateX(0) !important;
+}
+
+#rslidy-overview-slides {
+  left: 0;
+  transform: translateX(-100%);
+}
+
+#rslidy-overview-toc {
+  right: 0;
+  transform: translateX(100%);
+}
+
+/* Items inside the canvas container (e.g. presentation slides) */
+.rslidy-overview-item, .rslidy-overview-item-pv {
+  z-index: -1;
+  display: block;
+  overflow: hidden;
+  background-color: white;
+  filter: brightness(0.9);
+}
+
+.rslidy-slide-thumbnail, .rslidy-slide-thumbnail-pv {
+  display: block;
+  overflow: hidden;
+}
+
+.rslidy-slide-thumbnail:hover {
+  filter: brightness(0.89);
+  cursor: pointer;
+}
+
+.rslidy-slide-selected {
+  filter: brightness(1.18);
+  box-sizing: border-box;
+  border: 0.15em solid lightskyblue;
+}
+
+.rslidy-slide-clickelement {
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.rslidy-slide-link {
+  z-index: 1;
+  font-size: 0.8em;
+  cursor: pointer;
+  margin: 0.25em 0em;
+  padding: 0.5em 1em;
+  text-decoration: underline;
+  color: blue;
+}
+
+.rslidy-slide-link a:visited {
+  color: blue;
+}
+
+.rslidy-slide-link:hover {
+  background-color: #c1c7ca;
+}
+
+.rslidy-thumbnail-caption {
+  font-size: 0.7em;
+  text-align: center;
+  background-color: #c8c8c8;
+  /* Separating border */
+  border-bottom: 0.15em solid gray;
+  border-top: 0.15em solid gray;
+  padding-bottom: 0.15em;
+  padding-top: 0.15em;
+}
+html {
+  box-sizing: border-box;
+  font-size: 100%;
+  font: inherit;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+body, h1, h2, h3, h4, h5, h6, p, ol, ul, tr {
+  margin: 0;
+  padding: 0;
+}
+
+button {
+  -webkit-appearance: none;
+}
+/* Settings applying to everything */
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+
+html {
+  position: absolute;
+}
+
+/* Body */
+body {
+  display: block;
+}
+
+*:focus {
+  outline: 0.125rem solid #7AACFE !important;
+}
+
+/*
+-- Common modifiers
+*/
+.rslidy-hidden {
+  display: none !important;
+}
+
+.rslidy-invisible {
+  visibility: hidden;
+}
+
+.rslidy-link {
+  color: blue;
+}
+
+.rslidy-noselect {
+  user-select: none;
+  -ms-user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  pointer-events: none;
+}
+
+.rslidy-color-invert {
+  filter: invert(100%);
+}
+
+.rslidy-spinner-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  opacity: 1;
+  z-index: 10;
+}
+
+.rslidy-spinner {
+  width: 4rem;
+  height: 4rem;
+  clear: both;
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  margin: -2rem 0 0 -2rem;
+  border: 0.5rem rgba(0, 0, 0, 0.25) solid;
+  border-top: 0.5rem black solid;
+  border-radius: 50%;
+  animation: circle-rotation 0.7s infinite linear;
+}
+
+@keyframes circle-rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}
+/* Styles for smaller screens only */
+@media only all and (max-width: 20rem) {
+  #rslidy-footer {
+    font-size: 30%;
+  }
+
+  #rslidy-menu, #rslidy-print-menu {
+    bottom: 1.1em !important;
+  }
+}
+@media only all and (min-width: 20rem) and (max-width: 24rem) {
+  #rslidy-footer {
+    font-size: 40%;
+  }
+
+  #rslidy-menu, #rslidy-print-menu {
+    bottom: 1.35em !important;
+  }
+}
+@media only all and (min-width: 24rem) and (max-width: 32rem) {
+  #rslidy-footer {
+    font-size: 50%;
+  }
+
+  #rslidy-menu, #rslidy-print-menu {
+    bottom: 1.75em !important;
+  }
+}
+@media only all and (min-width: 28rem) and (max-width: 32rem) {
+  #rslidy-footer {
+    font-size: 60%;
+  }
+
+  #rslidy-menu, #rslidy-print-menu {
+    bottom: 2.1em !important;
+  }
+}
+@media only all and (min-width: 32rem) and (max-width: 36rem) {
+  #rslidy-footer {
+    font-size: 70%;
+  }
+
+  #rslidy-menu, #rslidy-print-menu {
+    bottom: 2.5em !important;
+  }
+}
+@media only all and (min-width: 36rem) and (max-width: 40rem) {
+  #rslidy-footer {
+    font-size: 80%;
+  }
+
+  #rslidy-menu, #rslidy-print-menu {
+    bottom: 2.9em !important;
+  }
+}
+@media only all and (min-width: 40rem) and (max-width: 44rem) {
+  #rslidy-footer {
+    font-size: 90%;
+  }
+
+  #rslidy-menu, #rslidy-print-menu {
+    bottom: 3.3em !important;
+  }
+}
+@media only all and (max-width: 44rem) {
+  .rslidy-overview {
+    width: 50% !important;
+  }
+}
+.rslidy-allslides {
+  color: black !important;
+  background-color: white !important;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Print styles */
+@media print {
+  body {
+    color: black !important;
+    background-color: white !important;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Hide UI */
+  .rslidy-ui {
+    display: none !important;
+  }
+
+  #rslidy-trapezoid-wrapper-display {
+    width: 0 !important;
+  }
+
+  a[href^="http://"]:after, a[href^="https://"]:after {
+    content: " (" attr(href) ") ";
+  }
+
+  .slide, #rslidy-column-flex, #rslidy-row-flex {
+    display: block !important;
+    page-break-after: always;
+    page-break-inside: avoid;
+    /* Do not break the page in the middle of a slide */
+    -webkit-region-break-inside: avoid;
+    position: relative !important;
+    /* Makes slides appear in order */
+  }
+
+  /* Display whole content now */
+  html,
+body,
+#rslidy-content-section, #rslidy-row-flex {
+    overflow: visible !important;
+    /* In case the user had the overview or toc panel open */
+    left: 0em !important;
+    right: 0em !important;
+    max-height: 100% !important;
+  }
+
+  /* prevent images from bleeding over the edge of the printed page */
+  img {
+    max-width: 100% !important;
+    max-height: 100% !important;
+  }
+
+  /* hide video player controls while printing for webkit browsers */
+  video::-webkit-media-controls {
+    display: none;
+  }
+
+  /* In case the user had the low light mode activated */
+  .rslidy-color-invert {
+    filter: invert(0%) !important;
+  }
+}
+#rslidy-menu, #rslidy-print-menu {
+  position: absolute;
+  bottom: 3.7em;
+  right: 1em;
+  background-color: #e1e7ea;
+  padding: 0.5em 0em;
+  z-index: 5;
+}
+
+.rslidy-menu-content {
+  text-align: right;
+  margin-bottom: 0.15em;
+  padding: 0.2em 1em;
+  display: block;
+}
+
+label.rslidy-menu-content {
+  cursor: pointer;
+}
+
+.rslidy-menu-button {
+  width: 1.5em;
+  height: 1.75em;
+  background-size: cover;
+  background-repeat: no-repeat;
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  display: inline-block;
+  fill: #4b4b4b;
+  stroke: #4b4b4b;
+  cursor: pointer;
+}
+
+.rslidy-menu-button:hover,
+.rslidy-menu-content a:hover,
+[id^=rslidy-checkbox-]:not([aria-disabled=true]):hover {
+  background-color: #c1c7ca;
+  border-radius: 0.15em;
+}
+
+.rslidy-icon {
+  width: 1.5em;
+  height: 1.5em;
+  background-size: cover;
+  background-repeat: no-repeat;
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  display: inline-block;
+  fill: #4b4b4b;
+  stroke: #4b4b4b;
+}
+
+#rslidy-margin-input {
+  width: 6em;
+}
+
+#rslidy-input-cols, #rslidy-input-rows {
+  width: 2.6em;
+}
+
+#rslidy-button-print-submit {
+  min-width: inherit;
+  padding: 0.3em 0.7em;
+  margin: 0 0.15em;
+  background-color: #e1e7ea;
+  fill: #4b4b4b;
+  stroke: #4b4b4b;
+  cursor: pointer;
+  border: 0.05em solid #848484;
+  border-radius: 0.15em;
+  box-shadow: 0.15em 0.15em #848484;
+}
+
+#rslidy-button-print-submit:hover {
+  background-color: #c1c7ca;
+}
+
+input[type=checkbox] {
+  display: none;
+}
+
+input[type=checkbox] + label {
+  width: 2em;
+  height: 1em;
+  margin-left: 0.5em;
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: inline-block;
+  fill: #ececec;
+  stroke: #bdbdbd;
+  cursor: pointer;
+}
+
+#rslidy-checkbox-mode-text input[type=checkbox] + label {
+  fill: #3498db;
+  stroke: #85c1e9;
+}
+
+input[type=checkbox]:checked + label {
+  transform: scaleX(-1);
+  fill: #3498db;
+  stroke: #85c1e9;
+}
+
+input[type=checkbox]:disabled + label {
+  cursor: default;
+}
+
+.rslidy-disabled {
+  opacity: 0.3;
+  filter: alpha(opacity=30);
+  cursor: default !important;
+}
+
+.rslidy-help-overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  transition: opacity 250ms;
+  visibility: hidden;
+  opacity: 0;
+  z-index: 20;
+}
+
+.rslidy-help-overlay:target {
+  visibility: visible;
+  opacity: 1;
+}
+
+#rslidy-help-popup {
+  margin: 4em auto;
+  padding: 1.5em;
+  background: white;
+  width: 80%;
+  position: relative;
+  max-height: 80%;
+  overflow: auto;
+}
+
+.rslidy-help-close {
+  position: absolute;
+  top: 0.5em;
+  right: 1em;
+  font-size: 2em;
+  font-weight: bold;
+  text-decoration: none;
+  color: #333;
+}
+
+.rslidy-help-close:hover {
+  color: #666;
+}
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes slideinleft {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0%);
+    opacity: 1;
+  }
+}
+@keyframes slideinright {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0%);
+    opacity: 1;
+  }
+}
+@keyframes zoom {
+  from {
+    transform: scale(0);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+.animated {
+  transition: 1s;
+}
+
+.slide.animated.forwards.fade {
+  animation: fade 0.5s normal cubic-bezier(0.54, 0, 0.54, 1) forwards;
+}
+
+.slide.animated.backwards.fade {
+  animation: fade 0.5s reverse cubic-bezier(0.54, 0, 0.54, 1) forwards;
+}
+
+.slide.animated.forwards.slidein {
+  animation: slideinright 0.5s normal cubic-bezier(0.54, 0, 0.54, 1) forwards;
+}
+
+.slide.animated.backwards.slidein {
+  animation: slideinleft 0.5s reverse cubic-bezier(0.54, 0, 0.54, 1) forwards;
+}
+
+.slide.animated.forwards.slideout {
+  animation: slideinleft 0.5s normal cubic-bezier(0.54, 0, 0.54, 1) forwards;
+}
+
+.slide.animated.backwards.slideout {
+  animation: slideinright 0.5s reverse cubic-bezier(0.54, 0, 0.54, 1) forwards;
+}
+
+.slide.animated.forwards.zoom {
+  animation: zoom 0.5s normal cubic-bezier(0.54, 0, 0.54, 1) forwards;
+}
+
+.slide.animated.backwards.zoom {
+  animation: zoom 0.5s reverse cubic-bezier(0.54, 0, 0.54, 1) forwards;
+}
+body {
+  color: black;
+  background-color: #f9f9f9;
+  font-family: Verdana, sans-serif;
+  /* allow words to be broken at hyphenation points */
+  hyphens: auto;
+  -webkit-hyphens: auto;
+  -moz-hyphens: auto;
+  -ms-hyphens: auto;
+}
+
+/*
+section elements are automatically assigned class slide by rslidy
+a slide is created by a section and/or div.slide
+*/
+.slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  padding: 2rem;
+}
+
+/* turn hyphens off for code, tt, and kbd */
+code, var, kbd, samp, listing, plaintext, xmp, abbr {
+  hyphens: none;
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+}
+
+pre, code {
+  white-space: pre-wrap;
+}
+
+em {
+  font-style: italic;
+}
+
+img {
+  border: none;
+  background: white !important;
+}
+
+figure {
+  margin: 1em auto;
+}
+
+figcaption {
+  margin: 1em 0;
+  font-size: 60%;
+  text-align: center;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: bold;
+}
+
+h1 {
+  font-size: 1.4em;
+  margin: 0 0 0.7em 0;
+}
+
+h2 {
+  font-size: 1.2em;
+  margin: 0 0 0.6em 0;
+}
+
+h3 {
+  font-size: 1.1em;
+  margin: 0 0 0.55em 0;
+}
+
+h4, h5, h6 {
+  font-size: 1em;
+  margin: 0 0 0.5em 0;
+}
+
+p {
+  margin: 0 0 1em 0;
+  text-align: justify;
+}
+
+/* do not justify inside table cells  */
+td p {
+  text-align: left;
+}
+
+/* indent first line of para 2..n in text passage */
+div.textpassage p + p {
+  text-indent: 1em;
+}
+
+blockquote {
+  margin: 0 2em 1em 2em;
+}
+
+code, kbd, samp {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 1em;
+}
+
+/* lists */
+ol {
+  list-style: decimal;
+  padding: 0 0 1em 1.5em;
+}
+
+ul {
+  list-style: disc;
+  padding: 0 0 1em 1.1em;
+}
+
+/* sub-bullet styles */
+ul ul ol ol,
+ul ol ul ol,
+ol ul ol ol,
+ol ol ul ol,
+ol ul ol,
+ol ol {
+  list-style: lower-alpha;
+}
+
+ol ul ol ol,
+ol ol ul ol,
+ul ol ol ol,
+ol ol ol {
+  list-style: lower-roman;
+}
+
+ol ol ol ol {
+  list-style: decimal;
+}
+
+ul ul,
+ol ol ul ul,
+ol ul ol ul,
+ul ol ol ul,
+ol ul ul,
+ul ol ul {
+  list-style: circle;
+}
+
+ol ul ul ul,
+ul ol ul ul,
+ul ul ol ul,
+ul ul ul {
+  list-style: square;
+}
+
+ul ul ul ul {
+  list-style: disc;
+}
+
+/* nested list sizes */
+ul ul,
+ol ol,
+ul ol,
+ol ul {
+  font-size: 0.8em;
+  margin-top: 0.5em;
+}
+
+li {
+  padding: 0;
+  margin: 0 0 1em 0;
+}
+
+table {
+  margin: 0 auto 1em auto;
+  caption-side: bottom;
+  border-style: solid;
+  border-width: thin;
+  border-collapse: collapse;
+  empty-cells: show;
+  line-break: loose;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}
+
+th {
+  font-weight: bold;
+  background-color: #dddddd;
+  padding: 0.5ex;
+  border-style: solid;
+  border-width: thin;
+  text-align: left;
+  vertical-align: top;
+}
+
+tr:nth-child(even) {
+  background: #f8f8f8;
+}
+
+tr:nth-child(odd) {
+  background: #ffffff;
+}
+
+td {
+  padding: 0.5ex;
+  border-style: solid;
+  border-width: thin;
+  text-align: left;
+  vertical-align: top;
+}
+
+/*
+-- Night mode customization
+*/
+:not(a) .rslidy-night-mode {
+  color: white;
+  /* Text color */
+}
+
+a.rslidy-night-mode {
+  color: yellow;
+  /* Text color */
+}
+#rslidy-footer {
+  position: relative;
+  flex: 0 0 auto;
+  min-height: 0.5em;
+  transition: 0.3s;
+}
+
+.rslidy-bar-hidden {
+  height: 0 !important;
+}
+
+#rslidy-progress-bar {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 0%;
+  height: 0.5em;
+  background-color: #003399;
+  z-index: 6;
+  transition: width 1s;
+}
+
+#rslidy-progress-bar-bg {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 0.5em;
+  background-color: #4d88ff;
+  z-index: 5;
+}
+
+#rslidy-progress-bar-nubs {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 0.5em;
+  z-index: 7;
+}
+
+#rslidy-toolbar-area {
+  position: relative;
+  flex: 0 0 auto;
+  width: 100%;
+  height: 3.7em;
+  transition: 0.2s;
+  overflow: hidden;
+  z-index: 4;
+}
+
+#rslidy-toolbar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3.4em;
+  background-color: #e1e7ea;
+  display: table;
+  z-index: 1;
+  transition: 0.3s;
+}
+
+#rslidy-toolbar-content {
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+  padding: 0.5em 0.3em 0.2em 0.3em;
+}
+
+#rslidy-toolbar-button-nav {
+  display: inline-block;
+  margin-top: 0em !important;
+}
+
+#rslidy-timer {
+  float: right;
+  margin-right: 0.15em;
+  padding-right: 0.15em;
+  border-right: 0.15em solid black;
+  cursor: pointer;
+}
+
+#rslidy-slide-input {
+  width: 2.6em;
+  height: 1.4em;
+  line-height: 1.4em;
+  text-align: center;
+  border: 0em;
+  outline: 0;
+}
+
+#rslidy-slide-caption {
+  margin-right: 0.3em;
+  margin-left: -0.2em;
+  line-height: 1.4em;
+  cursor: pointer;
+}
+
+.rslidy-toolbar-button {
+  min-width: inherit;
+  padding: 0.3em 0.7em;
+  margin: 0 0.15em;
+  float: left;
+  background-color: #e1e7ea;
+  fill: #4b4b4b;
+  stroke: #4b4b4b;
+  cursor: pointer;
+  border: 0.05em solid #848484;
+  border-radius: 0.15em;
+  box-shadow: 0.15em 0.15em #848484;
+  touch-action: manipulation;
+}
+
+.rslidy-toolbar-button:hover,
+.rslidy-toolbar-button[aria-expanded=true]:hover {
+  background-color: #c1c7ca;
+}
+
+.rslidy-toolbar-button[aria-expanded=true] {
+  background-color: #fff;
+  box-shadow: 0 0 0 0.15em lightskyblue;
+}
+
+.rslidy-toolbar-slide {
+  margin-top: 0.2em;
+  min-width: inherit;
+  font-size: 1.3em;
+  padding: 0 0.2em;
+  float: left;
+}
+
+.rslidy-toolbar-slide > input {
+  border-radius: 0.15em;
+  margin-left: 0.3em;
+  background-color: white;
+}
+
+.rslidy-float-left {
+  float: left;
+  margin-left: 0.15em;
+  display: block;
+}
+
+.rslidy-float-right {
+  float: right;
+  margin-right: 0.15em;
+  display: block;
+}
+
+.rslidy-tb-button {
+  width: 1.3em;
+  height: 1.3em;
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.rslidy-mirror {
+  transform: scaleX(-1);
+}
+
+.rslidy-tb-show, .rslidy-tb-display {
+  top: -0.45em;
+  position: relative;
+  fill: #4b4b4b;
+  stroke: #4b4b4b;
+}
+
+.rslidy-tb-show {
+  transform: scaleY(-0.8);
+}
+
+.rslidy-tb-display {
+  transform: scale(0.8);
+}
+
+#rslidy-tb-show-trapezoid, #rslidy-tb-display-trapezoid {
+  width: 1.5em;
+  top: -0.5em;
+  text-align: center;
+  position: relative;
+  border-right: 1em solid transparent;
+  border-bottom: 1em solid #e1e7ea;
+  border-left: 1em solid transparent;
+  box-sizing: content-box;
+  z-index: 6;
+}
+
+#rslidy-tb-show-trapezoid:hover, #rslidy-tb-display-trapezoid:hover {
+  border-bottom: 1em solid #c1c7ca;
+}
+
+.rslidy-show-button, .rslidy-display-button {
+  position: relative;
+  top: 1.8em;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  padding: 5vmin;
+  margin: -5vmin;
+}
+
+#rslidy-trapezoid-wrapper {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+  width: 5em;
+}
+
+#rslidy-trapezoid-wrapper-display {
+  display: none;
+  position: fixed;
+  bottom: -0.5em;
+  left: 0;
+  overflow: hidden;
+  width: 5em;
+  z-index: 6;
+}
+
+.rslidy-preview {
+  height: 0.5em;
+  z-index: 8;
+  position: absolute;
+  cursor: pointer;
+}
+.rslidy-preview::after {
+  content: "";
+  float: right;
+  height: 100%;
+  width: 1px;
+  background-color: #003399;
+}
+
+.rslidy-nonubs::after {
+  content: none;
+}
+
+.rslidy-preview-reached::after {
+  background-color: #4d88ff;
+}
+
+.rslidy-preview .rslidy-preview-item {
+  visibility: hidden;
+  background-color: black;
+  border-radius: 0.25em;
+  padding: 0.25em;
+  position: fixed;
+  opacity: 0;
+  z-index: 7;
+}
+
+.rslidy-preview:hover {
+  background-color: #ff7300;
+}
+
+.rslidy-preview:hover .rslidy-preview-item {
+  visibility: visible;
+  opacity: 1;
+  transition: all 0.3s;
+}
+
+#rslidy-help h1 a {
+  font-size: 60%;
+}
+
+#rslidy-help-table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#rslidy-help-table td, #rslidy-help-table th {
+  border: 1px solid #ddd;
+  padding: 0.5em;
+}
+
+#rslidy-help-table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+#rslidy-help-table tr td:nth-child(2) {
+  text-align: center;
+}
+
+#rslidy-help-table th {
+  padding-top: 0.75em;
+  padding-bottom: 0.75em;
+  background-color: #4b4b4b;
+  color: white;
+}
