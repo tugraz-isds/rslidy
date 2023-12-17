@@ -9,15 +9,16 @@
 
 <title>G1 - Rslidy update </title>
 
-<link rel="stylesheet" href="../build/rslidy.css"/>
-<script src="../build/rslidy.js"></script>
+<link rel="stylesheet" href="rslidy.css"/>
+<script src="rslidy.js"></script>
 
 <link rel="stylesheet" href="slides-keith.css"/>
+<link rel="stylesheet" href="slides-g1.css"/>
 </head>
 
 <body>
     <section>
-        <h1>G1 - Rslidy Update </h1>
+        <h1 class="slide-title">Rslidy Update </h1>
 
         
         <p> <center>Information Architecture and Web Usability 2023 </center></p>
@@ -40,10 +41,10 @@
             <br>
             
             <ul>
-                <li> A way to design responsive and lightweight presentations in html5, css3 and TypeScript.  </li>
+                <li> A way to design responsive and lightweight presentations in HTML5, CSS3 and TypeScript.  </li>
                 <li> Runs directly in the web browser. </li>
                 <li> Open source.</li>
-                <li> Offers a variety of options for presentations in html: </li>
+                <li> Offers a variety of options for presentations in HTML: </li>
                 <ol style="list-style-type: lower-alpha; padding-bottom: 0;">
                     <li style="margin-left:2em"> Possibility of slide navigation.</li>
                     <li style="margin-left:2em"> Possibility of slide overview.</li>
@@ -64,19 +65,20 @@
         <h1> Roadmap </h1>
         <br> 
 
-        <ul>
-            <li> Adapt mouse cursor shape when hovering over image. </li>
-            <li> Adapt mouse cursor on edge of first an last slide. </li>
-            <li> Adapt toolbar buttons (first, previous) for first and last slide. </li>
+        <ul class="todo-list">
+            <li class="todo-done"> Adapt mouse cursor shape when hovering over image. </li>
+            <li class="todo-progress"> Adapt mouse cursor on edge of first and last slide to not look like nav bar. </li>
+            <li class="todo-progress"> Change mouse cursor to left or right error when hovering over nav bars.</li>
+            <li class="todo-progress"> Adapt toolbar buttons (first, previous) for first and last slide. </li>
                 <ol style="list-style-type: lower-alpha; padding-bottom: 0;">
-                    <li style="margin-left:2em"> Mouse should not appear as clickable. </li>
-                    <li style="margin-left:2em"> Button should appear in a different color (darker grey). </li>
+                    <li style="margin-left:3em"> Mouse should not appear as clickable. </li>
+                    <li style="margin-left:3em"> Button should appear in a different color (darker grey). </li>
                 </ol>
-            <li> Remove #1 in first slides' link. </li>
-            <li> Replace @media with container size queries. </li>
-            <li> Continues refactoring. </li>
-            <li> Write an introduction to Rslidy slide deck as .md file (slide creator guide). </li>
-            <li> Update the ReadMe.md on Rslidys GitHub. </li>
+            <li class="todo-later"> Remove #1 in first slides' URL. </li>
+            <li class="todo-later"> Replace @media with container size queries. </li>
+            <li class="todo-later"> Continue refactoring. </li>
+            <li class="todo-later"> Write an introduction to Rslidy slide deck as .md file (slide creator guide). </li>
+            <li class="todo-later"> Update the ReadMe.md on Rslidys GitHub. </li>
         </ul>
     </section>
 
@@ -85,24 +87,38 @@
 
         <body>
             <body>
-                <p>This task is already implemented. </p> 
+                <p>When hovering over an image that can be opened in the image viewer, the cursor shape should change to a square.</p>
+                <p>Status: DONE</p>
                 <img src="repo.png" alt="rslidy repo">
             </body>
         </body>
     </section>
 
     <section>
-        <h1>Adapt mouse cursor on edge of first an last slide. </h1>
+        <h1>Adapt mouse cursor on edge of first and last slide to not look like nav bar. </h1>
 
         <body>
+            <p> The first slide should not have a left nav bar and the last slide should not have a right nav bar. They do not exist but the cursor still changes as if they were there. Change this so it looks unmodified from the standard cursor.</p>
+            <p> Status: TODO</p>
             <p> TODO fix the problem in files toolbar.scss, toolbar.ts and html definitions.js, then show a picture of the fix on this slide </p>
         </body>
     </section>
 
     <section>
+        <h1>Change mouse cursor to a left or right error when hovering over nav bars.</h1>
+
+        <body>
+            <p> When hovering above a nav bar on the left or right side of the screen, the cursor should change to the shape of a left arrow or right error respectively.</p>
+            <p>Status: TODO</p>
+        </body>
+
+    </section>
+
+    <section>
         <h1> Adapt toolbar buttons (first, previous) for first and last slide.</h1>
         <body>
-            <p>Todo: explain the problem and what we have to in order to solve it</p>
+            <p>On the first slide the previous button and first button in the toolbar should both be disabled functionally and visually. Same for the next and last buttons on the last slide.</p>
+            <p>Status: TODO</p>
         </body>
     </section>
 

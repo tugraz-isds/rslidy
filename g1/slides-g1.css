@@ -1,0 +1,49 @@
+.slide-title {
+    padding-top: 5em;
+    text-align: center;
+}
+
+
+
+
+.todo-list {
+    list-style-type: lower-alpha;
+    padding-bottom: 0;
+    /*margin-left: 2em*/
+}
+
+.todo-list li {
+    position: relative;
+    padding-left: 2em;
+}
+
+.todo-list li::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin-right: 1em;
+}
+
+.todo-done {
+    list-style-type: none;
+}
+
+.todo-done::before {
+    content: "\2713";
+}
+
+.todo-progress {
+    list-style-type: none;
+}
+
+.todo-progress::before {
+    content: "\2192";
+}
+
+.todo-later {
+    list-style-type: none;
+}
+
+.todo-later::before {
+    content: "\2022";
+}
