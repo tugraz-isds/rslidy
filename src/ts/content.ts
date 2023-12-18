@@ -404,7 +404,40 @@ export class ContentComponent {
 
     // RespVis Support
     window.dispatchEvent(new Event('resize'));
+
+    // Disable toolbar stuff on first / last slide
+    this.enableFirstButtons();
+    this.enableLastButtons();
+
+    if (this.currentSlideIndex == 0)
+      this.disableFirstButtons();
+
+    if (this.currentSlideIndex + 1 == window.rslidy.num_slides)
+      this.disableLastButtons();
+
   }
+
+  public disableFirstButtons(): void {
+    document.getElementById("rslidy-button-first").setAttribute("hidden", "true");
+    document.getElementById("rslidy-button-previous").setAttribute("hidden", "true");
+  }
+
+  public enableFirstButtons(): void {
+    document.getElementById("rslidy-button-first").removeAttribute("hidden");
+    document.getElementById("rslidy-button-previous").removeAttribute("hidden");
+  }
+
+  public disableLastButtons(): void {
+    document.getElementById("rslidy-button-last").setAttribute("hidden", "true");
+    document.getElementById("rslidy-button-next").setAttribute("hidden", "true");
+  }
+
+  public enableLastButtons(): void {
+    document.getElementById("rslidy-button-last").removeAttribute("hidden");
+    document.getElementById("rslidy-button-next").removeAttribute("hidden");
+  }
+
+
 
   // ---
   // Description: Returns the currently displayed slide index (0-indexed).
