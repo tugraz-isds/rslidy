@@ -125,6 +125,14 @@
         </body>
     </section>
 
+    <section>
+        <h1> Gulp Transpile Error</h1>
+        <p>On running 'npx gulp' the following error happens during the transpile step:</p>
+        <p class="shell-text">Error: You must provide the URL of lib/mappings.wasm by calling SourceMapConsumer.initialize({ 'lib/mappings.wasm': ... }) before using SourceMapConsumer at readWasm </p>
+        <p>This seems to originate from an error in one of the packages, utilising a function that is broken by a function in newer versions of Node.js.</p>
+        <p>It definitely works with Node v12.</p>
+        <p>Some sources suggest that the feature was broken with Node v18.</p>
+    </section>
 
 </body>
 </html>

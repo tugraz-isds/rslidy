@@ -3,7 +3,13 @@
     text-align: center;
 }
 
-
+.shell-text {
+    font-family: 'Courier New', monospace;
+    background-color: #000;
+    color: #fff;
+    padding: 1em;
+    border-radius: 0.3em;
+}
 
 
 .todo-list {
