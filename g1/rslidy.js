@@ -1,4 +1,3 @@
-/*Set up initial structure for webpack to manage and execute bundled modules.*/
 /******/ (() => { // webpackBootstrap
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ([
@@ -624,7 +623,7 @@ var PrintSettingsComponent = /** @class */ (function () {
         var link = (this.view.querySelector("#rslidy-checkbox-link"));
         var snum = (this.view.querySelector("#rslidy-checkbox-snum"));
         var frame = (this.view.querySelector("#rslidy-checkbox-frame"));
-        var css = "@media print {\n";                           //TODO: container size queries
+        var css = "@media print {\n";
         if (!link.checked) {
             css += "a[href^=\"http://\"]:after, a[href^=\"https://\"]:after {\n        content: \"\" !important;\n      }";
         }
@@ -1179,7 +1178,17 @@ var ContentComponent = /** @class */ (function () {
             window.rslidy.start_y = e.clientY;
         });
         this.view.addEventListener("mousemove", function (e) {
-            _this.marginTapBoth(e, function () { _this.view.style.cursor = "pointer"; }, function () { _this.view.style.cursor = "auto"; });
+            _this.marginTap(e, function () {
+                if (_this.currentSlideIndex > 0)
+                    _this.view.style.cursor = "url(https://upload.wikimedia.org/wikipedia/commons/c/c5/U%2B2190.svg), w-resize";
+                else
+                    _this.view.style.cursor = "auto";
+            }, function () {
+                if (_this.currentSlideIndex < window.rslidy.num_slides - 1)
+                    _this.view.style.cursor = "url(https://upload.wikimedia.org/wikipedia/commons/8/8d/U%2B2192.svg), e-resize";
+                else
+                    _this.view.style.cursor = "auto";
+            }, function () { _this.view.style.cursor = "auto"; });
         });
         this.view.addEventListener("mousedown", function (e) {
             //prevent double click selection

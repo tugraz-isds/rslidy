@@ -23,10 +23,20 @@ export class ContentComponent {
     });
 
     this.view.addEventListener("mousemove", (e) => {
-      this.marginTapBoth(e,
-        () => {this.view.style.cursor = "pointer"},
-        () => {this.view.style.cursor = "auto"}
-      );
+        this.marginTap(e,
+            () => {
+                if (this.currentSlideIndex > 0)
+                    this.view.style.cursor = "url(https://upload.wikimedia.org/wikipedia/commons/c/c5/U%2B2190.svg), w-resize"
+                else 
+                    this.view.style.cursor = "auto"},
+            () => {
+                if (this.currentSlideIndex < window.rslidy.num_slides - 1)
+                    this.view.style.cursor = "url(https://upload.wikimedia.org/wikipedia/commons/8/8d/U%2B2192.svg), e-resize"
+                else
+                    this.view.style.cursor = "auto"
+            },
+            () => { this.view.style.cursor = "auto"}
+        );
     });
 
     this.view.addEventListener("mousedown", (e) => {
