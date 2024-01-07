@@ -66,7 +66,7 @@
         <br> 
 
         <ul class="todo-list">
-            <li class="todo-progress"> Adapt mouse cursor shape when hovering over image. </li>
+            <li class="todo-done"> Adapt mouse cursor shape when hovering over image. </li>
             <li class="todo-done"> Adapt mouse cursor on edge of first and last slide to not look like nav bar. </li>
             <li class="todo-done"> Change mouse cursor to left or right arrow when hovering over nav bars.</li>
             <li class="todo-done"> Adapt toolbar buttons (first, previous) for first and last slide. </li>
@@ -74,7 +74,7 @@
                     <li style="margin-left:3em"> Mouse should not appear as clickable. </li>
                     <li style="margin-left:3em"> Button should appear in a different color (darker grey). </li>
                 </ol>
-            <li class="todo-later"> Remove #1 in first slides' URL. </li>
+            <li class="todo-done"> Remove #1 in first slides' URL. </li>
             <li class="todo-later"> Replace @media with container size queries. </li>
             <li class="todo-later"> Continue refactoring. </li>
             <li class="todo-later"> Write an introduction to Rslidy slide deck as .md file (slide creator guide). </li>
@@ -126,6 +126,16 @@
     </section>
 
     <section>
+        <h1> Remove #1 in first slides' URL.</h1>
+
+        <img src="title_page_url.png" alt="Title page url">
+
+        <p> On the title slide the url does not contain #1. </p>
+        <p> The new url is simply the url of the html file of the presentation + #.</p>
+        <p> The # is not removed, as it is used in program logic: split(url, "#") at some points. </p>
+    </section>
+
+    <section>
         <h1> Gulp Transpile Error</h1>
         <p>On running 'npx gulp' the following error happens during the transpile step:</p>
         <p class="shell-text">Error: You must provide the URL of lib/mappings.wasm by calling SourceMapConsumer.initialize({ 'lib/mappings.wasm': ... }) before using SourceMapConsumer at readWasm </p>
@@ -133,6 +143,7 @@
         <p>It definitely works with Node v12.</p>
         <p>Some sources suggest that the feature was broken with Node v18.</p>
     </section>
+    
 
 </body>
 </html>

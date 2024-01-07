@@ -392,7 +392,10 @@ export class ContentComponent {
 
     // Set 1-indexed value and new url
     if(window.rslidy.running)
-      window.location.hash = "#" + (targetSlideIndex + 1);
+        if(targetSlideIndex == 0) 
+            window.location.hash = "";
+        else
+            window.location.hash = "#" + (targetSlideIndex + 1);
     else
       history.replaceState({}, null, "#" + (targetSlideIndex + 1));
 
