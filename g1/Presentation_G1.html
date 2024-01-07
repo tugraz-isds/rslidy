@@ -16,18 +16,34 @@
 <link rel="stylesheet" href="slides-g1.css"/>
 </head>
 
+
+<style>
+    img {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .imgContainer{
+    float:left;
+    }
+</style>
+
 <body>
-    <section>
+    <section>    
         <h1 class="slide-title">Rslidy Update </h1>
-
-        
+            
         <p> <center>Information Architecture and Web Usability 2023 </center></p>
-
         <p> Group 1 </p>
-           <br>
+        
+        <br>
+        
         <p>Inge Gsellmann, Martin Heider, Lukas Leitner, Vrutanjali Patel</p>
-
+        
         <p> 12.12.2023 </p>
+            
+        <img src="logo_tu.png" alt="tugraz-isds" style="width:25%;">
+        
     </section>
 
     <section>
@@ -89,7 +105,7 @@
             <body>
                 <p>When hovering over an image that can be opened in the image viewer, the cursor shape should change to a square.</p>
                 <p>Status: In progress</p>
-                <img src="repo.png" alt="rslidy repo">
+                <img src="repo.png" alt="rslidy repo" style="width:50%;">
             </body>
         </body>
     </section>
@@ -101,8 +117,15 @@
             <p> The first slide should not have a left nav bar and the last slide should not have a right nav bar. They do not exist but the cursor still changes as if they were there. Change this so it looks unmodified from the standard cursor.</p>
             <p> Status: DONE</p>
             <p> Notes: This fix was implemented into the content.ts file, where the cursor is changed.</p>
-            <img src="first.png" alt="first slide">
-            <img src="last.png" alt="last slide">
+
+            <div class="image123">
+                <div class="imgContainer">
+                    <img src="first.png" alt="first slide" style="width:75%;">
+                </div>
+                <div class="imgContainer">
+                    <img src="last.png" alt="last slide" style="width:75%;">
+                </div>
+            </div>
         </body>
     </section>
 
@@ -128,7 +151,7 @@
     <section>
         <h1> Remove #1 in first slides' URL.</h1>
 
-        <img src="title_page_url.png" alt="Title page url">
+        <img src="title_page_url.png" alt="Title page url" style="width: 75%;">
 
         <p> On the title slide the url does not contain #1. </p>
         <p> The new url is simply the url of the html file of the presentation + #.</p>
