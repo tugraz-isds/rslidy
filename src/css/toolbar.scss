@@ -121,6 +121,16 @@
   box-shadow: 0 0 0 0.15em lightskyblue;
 }
 
+.rslidy-toolbar-button:disabled,
+.rslidy-toolbar-button:disabled:hover,
+{
+  stroke: $button-disabled-color;
+  fill: $button-disabled-color;
+  background-color: $toolbar-button-bg-color;
+  cursor: not-allowed;
+}
+
+
 .rslidy-toolbar-slide {
   margin-top: 0.20em;
   min-width: inherit;
@@ -153,7 +163,7 @@
   background-size: cover;
   background-repeat: no-repeat;
   display: inline-block;
-  cursor: pointer;
+  cursor: inherit;
 }
 
 .rslidy-mirror {
