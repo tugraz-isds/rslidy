@@ -455,7 +455,7 @@ exports.toolbar_html = "\n<div id=\"rslidy-footer\" class=\"rslidy-ui\">\n  <div
 
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.all_slides_icon = "<svg viewBox=\"0 0 100 100\" baseProfile=\"full\" xmlns=\"http://www.w3.org/2000/svg\"><path stroke-width=\"8\" d=\"M5 5v90M95 5v90\"/><text x=\"50\" y=\"50\" dominant-baseline=\"middle\" text-anchor=\"middle\" font-size=\"100\">n</text></svg>";
+exports.all_slides_icon = "<data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMTAwIDEwMCINCiAgdmVyc2lvbj0iMS4xIg0KICBiYXNlUHJvZmlsZT0iZnVsbCINCiAgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIg0KICB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayINCj4NCjxsaW5lIHgxPSI1IiB5MT0iNSIgeDI9IjUiIHkyPSI5NSIgc3R5bGU9InN0cm9rZTpibGFjaztzdHJva2Utd2lkdGg6OCIvPg0KPGxpbmUgeDE9Ijk1IiB5MT0iNSIgeDI9Ijk1IiB5Mj0iOTUiIHN0eWxlPSJzdHJva2U6YmxhY2s7c3Ryb2tlLXdpZHRoOjgiLz4NCjx0ZXh0IHg9IjUwIiB5PSI1MCIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSIgdGV4dC1hbmNob3I9Im1pZGRsZSINCmZpbGw9ImJsYWNrIiBmb250LXNpemU9IjEwMCI+bjwvdGV4dD4NCjwvc3ZnPg0K>";
 exports.font_minus_icon = "<svg viewBox=\"0 0 100 100\" baseProfile=\"full\" xmlns=\"http://www.w3.org/2000/svg\"><text x=\"50\" y=\"95\" text-anchor=\"middle\" font-size=\"80\">A</text><text x=\"60\" y=\"45\" font-weight=\"bold\" font-size=\"55\">-</text></svg>";
 exports.font_plus_icon = "<svg viewBox=\"0 0 100 100\" baseProfile=\"full\" xmlns=\"http://www.w3.org/2000/svg\"><text x=\"50\" y=\"95\" text-anchor=\"middle\" font-size=\"100\">A</text><text x=\"55\" y=\"40\" font-weight=\"bold\" font-size=\"55\">+</text></svg>";
 exports.font_reset_icon = "<svg viewBox=\"0 0 100 100\" baseProfile=\"full\" xmlns=\"http://www.w3.org/2000/svg\"><text x=\"50\" y=\"95\" text-anchor=\"middle\" font-size=\"90\">A</text></svg>";
@@ -1180,12 +1180,12 @@ var ContentComponent = /** @class */ (function () {
         this.view.addEventListener("mousemove", function (e) {
             _this.marginTap(e, function () {
                 if (_this.currentSlideIndex > 0)
-                    _this.view.style.cursor = "url(https://upload.wikimedia.org/wikipedia/commons/c/c5/U%2B2190.svg), w-resize";
+                    _this.view.style.cursor = "url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjxzdmcKICAgdmlld0JveD0iMCAwIDEwMCAxMDAiCiAgIHZlcnNpb249IjEuMSIKICAgaWQ9InN2ZzEiCiAgIHNvZGlwb2RpOmRvY25hbWU9Im5leHQuc3ZnIgogICBpbmtzY2FwZTp2ZXJzaW9uPSIxLjMuMiAoMDkxZTIwZSwgMjAyMy0xMS0yNSwgY3VzdG9tKSIKICAgeG1sbnM6aW5rc2NhcGU9Imh0dHA6Ly93d3cuaW5rc2NhcGUub3JnL25hbWVzcGFjZXMvaW5rc2NhcGUiCiAgIHhtbG5zOnNvZGlwb2RpPSJodHRwOi8vc29kaXBvZGkuc291cmNlZm9yZ2UubmV0L0RURC9zb2RpcG9kaS0wLmR0ZCIKICAgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIgogICB4bWxuczpzdmc9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8ZGVmcwogICAgIGlkPSJkZWZzMSIgLz4KICA8c29kaXBvZGk6bmFtZWR2aWV3CiAgICAgaWQ9Im5hbWVkdmlldzEiCiAgICAgcGFnZWNvbG9yPSIjNTA1MDUwIgogICAgIGJvcmRlcmNvbG9yPSIjZWVlZWVlIgogICAgIGJvcmRlcm9wYWNpdHk9IjEiCiAgICAgaW5rc2NhcGU6c2hvd3BhZ2VzaGFkb3c9IjAiCiAgICAgaW5rc2NhcGU6cGFnZW9wYWNpdHk9IjAiCiAgICAgaW5rc2NhcGU6cGFnZWNoZWNrZXJib2FyZD0iMCIKICAgICBpbmtzY2FwZTpkZXNrY29sb3I9IiM1MDUwNTAiCiAgICAgaW5rc2NhcGU6em9vbT0iNS44MDUzNDY3IgogICAgIGlua3NjYXBlOmN4PSI0Ny43MTQ2MzUiCiAgICAgaW5rc2NhcGU6Y3k9IjUyLjYyMzkwMyIKICAgICBpbmtzY2FwZTp3aW5kb3ctd2lkdGg9IjE5MjAiCiAgICAgaW5rc2NhcGU6d2luZG93LWhlaWdodD0iMTAxNyIKICAgICBpbmtzY2FwZTp3aW5kb3cteD0iLTgiCiAgICAgaW5rc2NhcGU6d2luZG93LXk9Ii04IgogICAgIGlua3NjYXBlOndpbmRvdy1tYXhpbWl6ZWQ9IjEiCiAgICAgaW5rc2NhcGU6Y3VycmVudC1sYXllcj0ic3ZnMSIgLz4KICA8cG9seWdvbgogICAgIHBvaW50cz0iODUsNTAgMTUsNSAxNSw5NSAiCiAgICAgZmlsbD0iYmxhY2siCiAgICAgc3Ryb2tlPSJibGFjayIKICAgICBzdHJva2Utd2lkdGg9IjEiCiAgICAgaWQ9InBvbHlnb24xIgogICAgIHN0eWxlPSJmaWxsOiM4MDgwODA7ZmlsbC1vcGFjaXR5OjE7c3Ryb2tlOiM4MDgwODA7c3Ryb2tlLW9wYWNpdHk6MSIKICAgICB0cmFuc2Zvcm09Im1hdHJpeCgtMC41LDAsMCwwLjUsNzUuMzE4NDczLDI1KSIgLz4KPC9zdmc+Cg==), w-resize";
                 else
                     _this.view.style.cursor = "auto";
             }, function () {
                 if (_this.currentSlideIndex < window.rslidy.num_slides - 1)
-                    _this.view.style.cursor = "url(https://upload.wikimedia.org/wikipedia/commons/8/8d/U%2B2192.svg), e-resize";
+                    _this.view.style.cursor = "url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjxzdmcKICAgdmlld0JveD0iMCAwIDEwMCAxMDAiCiAgIHZlcnNpb249IjEuMSIKICAgaWQ9InN2ZzEiCiAgIHNvZGlwb2RpOmRvY25hbWU9Im5leHQuc3ZnIgogICBpbmtzY2FwZTp2ZXJzaW9uPSIxLjMuMiAoMDkxZTIwZSwgMjAyMy0xMS0yNSwgY3VzdG9tKSIKICAgeG1sbnM6aW5rc2NhcGU9Imh0dHA6Ly93d3cuaW5rc2NhcGUub3JnL25hbWVzcGFjZXMvaW5rc2NhcGUiCiAgIHhtbG5zOnNvZGlwb2RpPSJodHRwOi8vc29kaXBvZGkuc291cmNlZm9yZ2UubmV0L0RURC9zb2RpcG9kaS0wLmR0ZCIKICAgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIgogICB4bWxuczpzdmc9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8ZGVmcwogICAgIGlkPSJkZWZzMSIgLz4KICA8c29kaXBvZGk6bmFtZWR2aWV3CiAgICAgaWQ9Im5hbWVkdmlldzEiCiAgICAgcGFnZWNvbG9yPSIjNTA1MDUwIgogICAgIGJvcmRlcmNvbG9yPSIjZWVlZWVlIgogICAgIGJvcmRlcm9wYWNpdHk9IjEiCiAgICAgaW5rc2NhcGU6c2hvd3BhZ2VzaGFkb3c9IjAiCiAgICAgaW5rc2NhcGU6cGFnZW9wYWNpdHk9IjAiCiAgICAgaW5rc2NhcGU6cGFnZWNoZWNrZXJib2FyZD0iMCIKICAgICBpbmtzY2FwZTpkZXNrY29sb3I9IiM1MDUwNTAiCiAgICAgaW5rc2NhcGU6em9vbT0iNS44MDUzNDY3IgogICAgIGlua3NjYXBlOmN4PSI0Ny43MTQ2MzUiCiAgICAgaW5rc2NhcGU6Y3k9IjUyLjYyMzkwMyIKICAgICBpbmtzY2FwZTp3aW5kb3ctd2lkdGg9IjE5MjAiCiAgICAgaW5rc2NhcGU6d2luZG93LWhlaWdodD0iMTAxNyIKICAgICBpbmtzY2FwZTp3aW5kb3cteD0iLTgiCiAgICAgaW5rc2NhcGU6d2luZG93LXk9Ii04IgogICAgIGlua3NjYXBlOndpbmRvdy1tYXhpbWl6ZWQ9IjEiCiAgICAgaW5rc2NhcGU6Y3VycmVudC1sYXllcj0ic3ZnMSIgLz4KICA8cG9seWdvbgogICAgIHBvaW50cz0iMTUsNSAxNSw5NSA4NSw1MCAiCiAgICAgZmlsbD0iYmxhY2siCiAgICAgc3Ryb2tlPSJibGFjayIKICAgICBzdHJva2Utd2lkdGg9IjEiCiAgICAgaWQ9InBvbHlnb24xIgogICAgIHN0eWxlPSJmaWxsOiM4MDgwODA7ZmlsbC1vcGFjaXR5OjE7c3Ryb2tlOiM4MDgwODA7c3Ryb2tlLW9wYWNpdHk6MSIKICAgICB0cmFuc2Zvcm09Im1hdHJpeCgwLjUsMCwwLDAuNSwyNS4xMDYxNTksMjUpIiAvPgo8L3N2Zz4K), e-resize";
                 else
                     _this.view.style.cursor = "auto";
             }, function () { _this.view.style.cursor = "auto"; });
@@ -1473,7 +1473,10 @@ var ContentComponent = /** @class */ (function () {
         window.rslidy.toggleSpeakerNotes(null, true);
         // Set 1-indexed value and new url
         if (window.rslidy.running)
-            window.location.hash = "#" + (targetSlideIndex + 1);
+            if (targetSlideIndex == 0)
+                window.location.hash = "";
+            else
+                window.location.hash = "#" + (targetSlideIndex + 1);
         else
             history.replaceState({}, null, "#" + (targetSlideIndex + 1));
         // Update slide caption
@@ -1491,20 +1494,20 @@ var ContentComponent = /** @class */ (function () {
             this.disableLastButtons();
     };
     ContentComponent.prototype.disableFirstButtons = function () {
-        document.getElementById("rslidy-button-first").setAttribute("hidden", "true");
-        document.getElementById("rslidy-button-previous").setAttribute("hidden", "true");
+        document.getElementById("rslidy-button-first").setAttribute("disabled", "true");
+        document.getElementById("rslidy-button-previous").setAttribute("disabled", "true");
     };
     ContentComponent.prototype.enableFirstButtons = function () {
-        document.getElementById("rslidy-button-first").removeAttribute("hidden");
-        document.getElementById("rslidy-button-previous").removeAttribute("hidden");
+        document.getElementById("rslidy-button-first").removeAttribute("disabled");
+        document.getElementById("rslidy-button-previous").removeAttribute("disabled");
     };
     ContentComponent.prototype.disableLastButtons = function () {
-        document.getElementById("rslidy-button-last").setAttribute("hidden", "true");
-        document.getElementById("rslidy-button-next").setAttribute("hidden", "true");
+        document.getElementById("rslidy-button-last").setAttribute("disabled", "true");
+        document.getElementById("rslidy-button-next").setAttribute("disabled", "true");
     };
     ContentComponent.prototype.enableLastButtons = function () {
-        document.getElementById("rslidy-button-last").removeAttribute("hidden");
-        document.getElementById("rslidy-button-next").removeAttribute("hidden");
+        document.getElementById("rslidy-button-last").removeAttribute("disabled");
+        document.getElementById("rslidy-button-next").removeAttribute("disabled");
     };
     // ---
     // Description: Returns the currently displayed slide index (0-indexed).

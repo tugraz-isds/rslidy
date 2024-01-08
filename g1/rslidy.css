@@ -61,7 +61,7 @@
   display: none !important;
 }
 .rslidy-slide-image {
-  cursor: pointer;
+  cursor: zoom-in;
 }
 
 .rslidy-image-viewer {
@@ -1349,6 +1349,14 @@ a.rslidy-night-mode {
   box-shadow: 0 0 0 0.15em lightskyblue;
 }
 
+.rslidy-toolbar-button:disabled,
+.rslidy-toolbar-button:disabled:hover {
+  stroke: #aaa;
+  fill: #aaa;
+  background-color: #e1e7ea;
+  cursor: not-allowed;
+}
+
 .rslidy-toolbar-slide {
   margin-top: 0.2em;
   min-width: inherit;
@@ -1381,7 +1389,7 @@ a.rslidy-night-mode {
   background-size: cover;
   background-repeat: no-repeat;
   display: inline-block;
-  cursor: pointer;
+  cursor: inherit;
 }
 
 .rslidy-mirror {
