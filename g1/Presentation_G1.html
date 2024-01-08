@@ -91,6 +91,7 @@
                     <li style="margin-left:3em"> Button should appear in a different color (darker grey). </li>
                 </ol>
             <li class="todo-done"> Remove #1 in first slides' URL. </li>
+			<li class="todo-progress">Issues with Node.js Version</li>
             <li class="todo-later"> Replace @media with container size queries. </li>
             <li class="todo-later"> Continue refactoring. </li>
             <li class="todo-later"> Write an introduction to Rslidy slide deck as .md file (slide creator guide). </li>
@@ -160,12 +161,22 @@
     </section>
 
     <section>
-        <h1> Gulp Transpile Error</h1>
+        <h1> Issues with Node.js Version</h1>
         <p>On running 'npx gulp' the following error happens during the transpile step:</p>
         <p class="shell-text">Error: You must provide the URL of lib/mappings.wasm by calling SourceMapConsumer.initialize({ 'lib/mappings.wasm': ... }) before using SourceMapConsumer at readWasm </p>
-        <p>This seems to originate from an error in one of the packages, utilising a function that is broken by a function in newer versions of Node.js.</p>
-        <p>It definitely works with Node v12.</p>
-        <p>Some sources suggest that the feature was broken with Node v18.</p>
+		<p>Status:</p>
+		<p>Works until Node.js version 16.20.2, broken in 17.9.1. </p>
+		<p>Previously found error preceded by another error:</p>
+		<p class="shell-text">
+			'webpack' errored after<br>
+			Error: error:0308010C:digital envelope routines::unsupported<br>
+		    at new Hash (node:internal/crypto/hash:67:19)<br>
+			at Object.createHash (node:crypto:135:10)</p>
+		<p>Npm version is downgraded in this version from 8.19.4 to 8.11.0.</p>
+		<p>Versions of other packages stayed the same in this update.</p>
+	
+		<p>Most suggest downgrading Node.js or using other legacy software. However, the source of the error seems to be that Node.js fixed a security hole.</p>
+		<p>Should we update package dependencies in package.json?</p>
     </section>
     
 
