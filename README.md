@@ -253,6 +253,9 @@ The following people have contributed to Rslidy:
 
 - Christopher Kopel  
 
+- Gsellmann Inge, Heider Martin, Leitner Lukas, Patel Vrutanjali Rakesh  
+  IAweb WS 2023 G1
+
 - Angelika Droisner, Ana Korotaj  
   IAweb WS 2018 G1a
 
