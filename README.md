@@ -63,7 +63,7 @@ create new slide decks.
 
 ### 3.1 For Slide Viewers
 
-The Help Panel in an Rslidy presentation contains an overview of
+The Help Panel in a Rslidy presentation contains an overview of
 Rslidy's interface controls.
 
 
@@ -72,25 +72,23 @@ Rslidy's interface controls.
 
 #### How to create a Presentation
 
-To create a new slide deck with Rslidy, a HTML file is constructed
-containing the set of slides. Rslidy's own code is contained within
-two files: JavaScript code in rslidy.js (or rslidy.min.js) and CSS
-code in rslidy.css (or rslidy.min.css) which must both be included in
-the HTML file:
+The creation of a slide deck with Rslidy is done in a single HTML file. 
+
+##### Structure of the HMTL File 
+
+To properly build the slide deck, the HTML file must contain a header 
+including rslidy.js and rslidy.css. Alternatively, the minimized versions, rslidy.min.js 
+and rslidy.min.css offer the same features in a compromised way and can be included instead.
 
 ```html
 <link rel="stylesheet" href="rslidy.min.css" />
-<script src="rslidy.min.js" />
+<script src="rslidy.js" />
 ```
 
 Rslidy is self-contained, there are no additional dependencies.
 
-
-
-##### Creating a Slide
-
-Slide content is placed within the HTML body, each slide
-inside either a `<section>` or `<div class="slide">` element:
+Within the body of the document, the single files are created. Each slide is 
+represented eighter by a `<section>` or a `<div class="slide">` element:
 
 ```html
 <section>
@@ -117,7 +115,6 @@ A paragraph of text.
 </p>
 </div>
 ```
-
 
 ##### Lists
 
