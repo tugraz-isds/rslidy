@@ -120,7 +120,7 @@ To organize slides, bullet points are created as shown in the sniped below.
 <li>First point</li>
 <li>Second point</li>
     <ol style="list-style-type: lower-alpha; padding-bottom: 0;">
-                        <li style="margin-left:3em"> First subpoint of second point </li>
+        <li style="margin-left:3em"> First subpoint of second point </li>
     </ol>
 <li>Third point</li>
 </ul>
