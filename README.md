@@ -87,29 +87,22 @@ and rslidy.min.css offer the same features in a compromised way and can be inclu
 
 Rslidy is self-contained, there are no additional dependencies.
 
-Within the body of the document, the single files are created. Each slide is 
+Within the body of the document, all slides are created. Each slide is 
 represented eighter by a `<section>` or a `<div class="slide">` element:
 
 ```html
 <section>
-<h1>Characteristics of Software</h1>
-<p>
-Three characteristics of software:
-</p>
-<ul>
-<li>fast</li>
-<li>cheap</li>
-<li>good</li>
-</ul>
-<p>
-Choose any two!
-</p>
+<h1>Title of slide 1</h1>
+</section>
+
+<section>
+<h1>Title of slide 2</h1>
 </section>
 ```
 
 ```html
 <div class="slide">
-<h1>Further Information</h1>
+<h1>Alternative version</h1>
 <p>
 A paragraph of text.
 </p>
@@ -118,18 +111,52 @@ A paragraph of text.
 
 ##### Lists
 
+To organize slides, bullet points are created as shown in the sniped below. 
+
 ```html
 <section>
 <h1>Slide Heading</h1>
 <ul>
 <li>First point</li>
 <li>Second point</li>
+    <ol style="list-style-type: lower-alpha; padding-bottom: 0;">
+                        <li style="margin-left:3em"> First subpoint of second point </li>
+    </ol>
 <li>Third point</li>
 </ul>
 </section>
 ```
 To make list items appear one at a time, use the
 `<ul class="incremental">` instead of `<ul>`.
+
+##### Images 
+
+The inclusion of images or other graphical elements works just like in any other HTML file within slides using the standard HTML `<img>`
+element. The same counts for CSS style definitions. However, all CSS definitions must be defined outside the body.
+A possible inclusion of a picture with a CSS might look as shown below: 
+
+```html
+<style>
+    img {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .imgContainer{
+    float:left;
+    }
+</style>
+
+<body>
+    <section>
+    <h1>Image Demo</h1>
+    <img src="logo_tu.png" alt="tugraz-isds" style="width:25%;">
+    </section>
+</body>
+```
+
+Rslidy's image viewer is automatically associated with every image.
 
 
 ##### Animated Slide Transitions
@@ -151,22 +178,6 @@ The desired transition type is added to the body element:
 ```
 
 
-##### Images
-
-Images can be included within slides using the standard HTML `<img>`
-element:
-
-```html
-<section>
-<h1>Image Demo</h1>
-<img width="30em" src="images/collage.svg" />
-</section>
-```
-
-Rslidy's image viewer is automatically associated with every image.
-
-
-
 #### Custom Settings
 
 A number of internal Rslidy settings can be directly overridden using
@@ -185,7 +196,6 @@ JavaScript, as shown below:
 ```
 
 For more information, see the example file `overrides.html`.
-
 
 
 ### 3.3 For Developers
