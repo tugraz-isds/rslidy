@@ -148,15 +148,7 @@ function copy() {
   return Promise.resolve('')
 }
 
-function s9() {
-  src(paths.src + 's9-template/**')
-    .pipe(dest(paths.build + 's9-template/'))
-  src(paths.build + files.minjs)
-    .pipe(dest(paths.build + 's9-template/rslidy/lib'))
-  return src(paths.build + files.mincss)
-    .pipe(dest(paths.build + 's9-template/rslidy/lib'))
-}
-exports.build = series(clean, exports.assemble, exports.minify, copy, s9)
+exports.build = series(clean, exports.assemble, exports.minify, copy)
 exports.build.description = 'Cleans and builds the project'
 
 function stream() {
