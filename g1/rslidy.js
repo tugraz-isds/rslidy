@@ -455,7 +455,7 @@ exports.toolbar_html = "\n<div id=\"rslidy-footer\" class=\"rslidy-ui\">\n  <div
 
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.all_slides_icon = "<data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMTAwIDEwMCINCiAgdmVyc2lvbj0iMS4xIg0KICBiYXNlUHJvZmlsZT0iZnVsbCINCiAgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIg0KICB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayINCj4NCjxsaW5lIHgxPSI1IiB5MT0iNSIgeDI9IjUiIHkyPSI5NSIgc3R5bGU9InN0cm9rZTpibGFjaztzdHJva2Utd2lkdGg6OCIvPg0KPGxpbmUgeDE9Ijk1IiB5MT0iNSIgeDI9Ijk1IiB5Mj0iOTUiIHN0eWxlPSJzdHJva2U6YmxhY2s7c3Ryb2tlLXdpZHRoOjgiLz4NCjx0ZXh0IHg9IjUwIiB5PSI1MCIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSIgdGV4dC1hbmNob3I9Im1pZGRsZSINCmZpbGw9ImJsYWNrIiBmb250LXNpemU9IjEwMCI+bjwvdGV4dD4NCjwvc3ZnPg0K>";
+exports.all_slides_icon = "<svg viewBox=\"0 0 100 100\" baseProfile=\"full\" xmlns=\"http://www.w3.org/2000/svg\"><path stroke-width=\"8\" d=\"M5 5v90M95 5v90\"/><text x=\"50\" y=\"50\" dominant-baseline=\"middle\" text-anchor=\"middle\" font-size=\"100\">n</text></svg>";
 exports.font_minus_icon = "<svg viewBox=\"0 0 100 100\" baseProfile=\"full\" xmlns=\"http://www.w3.org/2000/svg\"><text x=\"50\" y=\"95\" text-anchor=\"middle\" font-size=\"80\">A</text><text x=\"60\" y=\"45\" font-weight=\"bold\" font-size=\"55\">-</text></svg>";
 exports.font_plus_icon = "<svg viewBox=\"0 0 100 100\" baseProfile=\"full\" xmlns=\"http://www.w3.org/2000/svg\"><text x=\"50\" y=\"95\" text-anchor=\"middle\" font-size=\"100\">A</text><text x=\"55\" y=\"40\" font-weight=\"bold\" font-size=\"55\">+</text></svg>";
 exports.font_reset_icon = "<svg viewBox=\"0 0 100 100\" baseProfile=\"full\" xmlns=\"http://www.w3.org/2000/svg\"><text x=\"50\" y=\"95\" text-anchor=\"middle\" font-size=\"90\">A</text></svg>";
@@ -1720,6 +1720,8 @@ var ImageViewerComponent = /** @class */ (function () {
         var _this = this;
         var _loop_1 = function () {
             var image = this_1.images.item(i);
+            if (image.classList.contains('disable_image_viewer') || image.classList.contains('exclude_image_viewer'))
+                return "continue";
             image.ontouchend = function () {
                 _this.touch = true;
             };

@@ -1,6 +1,9 @@
 .rslidy-slide-image {
-  cursor: zoom-in;
+  &:not(.disable_image_viewer, .exclude_image_viewer) {
+    cursor: zoom-in;
+  }
 }
+
 
 .rslidy-image-viewer {
   display: none;
