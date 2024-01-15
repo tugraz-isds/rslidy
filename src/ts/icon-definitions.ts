@@ -14,9 +14,13 @@ export const last_icon = `<svg viewBox="0 0 100 100" baseProfile="full" xmlns="h
 
 export const next_icon = `<svg viewBox="0 0 100 100" baseProfile="full" xmlns="http://www.w3.org/2000/svg"><path d="M15 5v90l70-45z"/></svg>`;
 
+export const next_pointer_icon = `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path fill="gray" stroke="gray" d="M0 1v45l35-22.5z"/></svg>`;
+
 export const one_slide_icon = `<svg viewBox="0 0 100 100" baseProfile="full" xmlns="http://www.w3.org/2000/svg"><path fill="transparent" stroke-width="6" d="M5 5h90v90H5z"/><text x="50" y="50" dominant-baseline="central" text-anchor="middle" font-size="80">1</text></svg>`;
 
 export const overview_icon = `<svg viewBox="0 0 100 100" baseProfile="full" xmlns="http://www.w3.org/2000/svg"><path fill="none" stroke-width="8" d="M0 0h100v100H0z"/><path stroke-width="4" d="M48 0v100"/><path d="M8 7h33v25H8zM8 37.5h33v25H8zM8 68h33v25H8z"/></svg>`;
+
+export const previous_pointer_icon = `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path fill="gray" stroke="gray" d="M0 1v45l-35-22.5z"/></svg>`;
 
 export const print_icon = `<svg viewBox="0 0 100 100" baseProfile="full" xmlns="http://www.w3.org/2000/svg"><path stroke-width="8" d="M6 30h88M10 30v50M22 23h8M70 23h8M90 30v50M6 80h24M94 80H70M6 33h88"/><path stroke-width="12" d="M6 40h14M33 40h61"/><path stroke-width="24" d="M6 55h88M6 75h24M94 75H70"/><path stroke-width="4" d="M35 73h30M35 83h30"/><rect x="30" y="5" width="40" height="25" rx="5" ry="5" fill="none" stroke-width="4"/><rect x="30" y="65" width="40" height="30" rx="5" ry="5" fill="none" stroke-width="4"/></svg>`;
 
