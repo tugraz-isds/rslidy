@@ -8,6 +8,7 @@ temp/
 .idea/
 .vscode/
 .vs/
+src/.vs/
 
 # Logs
 logs

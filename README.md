@@ -63,7 +63,7 @@ create new slide decks.
 
 ### 3.1 For Slide Viewers
 
-The Help Panel in an Rslidy presentation contains an overview of
+The Help Panel in a Rslidy presentation contains an overview of
 Rslidy's interface controls.
 
 
@@ -72,54 +72,46 @@ Rslidy's interface controls.
 
 #### How to create a Presentation
 
-To create a new slide deck with Rslidy, a HTML file is constructed
-containing the set of slides. Rslidy's own code is contained within
-two files: JavaScript code in rslidy.js (or rslidy.min.js) and CSS
-code in rslidy.css (or rslidy.min.css) which must both be included in
-the HTML file:
+The creation of a slide deck with Rslidy is done in a single HTML file. 
+
+##### Structure of the HMTL File 
+
+To properly build the slide deck, the HTML file must contain a header 
+including rslidy.js and rslidy.css. Alternatively, the minimized versions, rslidy.min.js 
+and rslidy.min.css offer the same features in a compromised way and can be included instead.
 
 ```html
 <link rel="stylesheet" href="rslidy.min.css" />
-<script src="rslidy.min.js" />
+<script src="rslidy.js" />
 ```
 
 Rslidy is self-contained, there are no additional dependencies.
 
-
-
-##### Creating a Slide
-
-Slide content is placed within the HTML body, each slide
-inside either a `<section>` or `<div class="slide">` element:
+Within the body of the document, all slides are created. Each slide is 
+represented eighter by a `<section>` or a `<div class="slide">` element:
 
 ```html
 <section>
-<h1>Characteristics of Software</h1>
-<p>
-Three characteristics of software:
-</p>
-<ul>
-<li>fast</li>
-<li>cheap</li>
-<li>good</li>
-</ul>
-<p>
-Choose any two!
-</p>
+<h1>Title of slide 1</h1>
+</section>
+
+<section>
+<h1>Title of slide 2</h1>
 </section>
 ```
 
 ```html
 <div class="slide">
-<h1>Further Information</h1>
+<h1>Alternative version</h1>
 <p>
 A paragraph of text.
 </p>
 </div>
 ```
 
-
 ##### Lists
+
+To organize slides, bullet points are created as shown in the sniped below. 
 
 ```html
 <section>
@@ -127,12 +119,44 @@ A paragraph of text.
 <ul>
 <li>First point</li>
 <li>Second point</li>
+    <ol style="list-style-type: lower-alpha; padding-bottom: 0;">
+        <li style="margin-left:3em"> First subpoint of second point </li>
+    </ol>
 <li>Third point</li>
 </ul>
 </section>
 ```
 To make list items appear one at a time, use the
 `<ul class="incremental">` instead of `<ul>`.
+
+##### Images 
+
+The inclusion of images or other graphical elements works just like in any other HTML file within slides using the standard HTML `<img>`
+element. The same counts for CSS style definitions. However, all CSS definitions must be defined outside the body.
+A possible inclusion of a picture with a CSS might look as shown below: 
+
+```html
+<style>
+    img {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .imgContainer{
+    float:left;
+    }
+</style>
+
+<body>
+    <section>
+    <h1>Image Demo</h1>
+    <img src="logo_tu.png" alt="tugraz-isds" style="width:25%;">
+    </section>
+</body>
+```
+
+Rslidy's image viewer is automatically associated with every image.
 
 
 ##### Animated Slide Transitions
@@ -154,22 +178,6 @@ The desired transition type is added to the body element:
 ```
 
 
-##### Images
-
-Images can be included within slides using the standard HTML `<img>`
-element:
-
-```html
-<section>
-<h1>Image Demo</h1>
-<img width="30em" src="images/collage.svg" />
-</section>
-```
-
-Rslidy's image viewer is automatically associated with every image.
-
-
-
 #### Custom Settings
 
 A number of internal Rslidy settings can be directly overridden using
@@ -188,7 +196,6 @@ JavaScript, as shown below:
 ```
 
 For more information, see the example file `overrides.html`.
-
 
 
 ### 3.3 For Developers
@@ -245,6 +252,9 @@ The following people have contributed to Rslidy:
   Master's Thesis, main developer
 
 - Christopher Kopel  
+
+- Gsellmann Inge, Heider Martin, Leitner Lukas, Patel Vrutanjali Rakesh  
+  IAweb WS 2023 G1
 
 - Angelika Droisner, Ana Korotaj  
   IAweb WS 2018 G1a
