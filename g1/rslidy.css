@@ -60,7 +60,7 @@
 .speakernotes {
   display: none !important;
 }
-.rslidy-slide-image:not(.disable_image_viewer, .exclude_image_viewer) {
+.rslidy-slide-image:not(.disable-image-viewer) {
   cursor: zoom-in;
 }
 

@@ -1722,7 +1722,7 @@ var ImageViewerComponent = /** @class */ (function () {
         var _this = this;
         var _loop_1 = function () {
             var image = this_1.images.item(i);
-            if (image.classList.contains('disable_image_viewer') || image.classList.contains('exclude_image_viewer'))
+            if (image.classList.contains('disable-image-viewer'))
                 return "continue";
             image.ontouchend = function () {
                 _this.touch = true;

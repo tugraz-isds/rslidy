@@ -1,5 +1,5 @@
 .rslidy-slide-image {
-  &:not(.disable_image_viewer, .exclude_image_viewer) {
+  &:not(.disable-image-viewer) {
     cursor: zoom-in;
   }
 }

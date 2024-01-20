@@ -82,7 +82,7 @@ export class ImageViewerComponent {
   addImageOnClickHandlers() {
     for (var i = 0; i < this.images.length; i++) {
       let image: HTMLImageElement = <HTMLImageElement>this.images.item(i);
-	  if (image.classList.contains('disable_image_viewer') || image.classList.contains('exclude_image_viewer')) continue
+	  if (image.classList.contains('disable-image-viewer')) continue
       image.ontouchend = () => {
         this.touch = true;
       };
