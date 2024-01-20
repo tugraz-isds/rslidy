@@ -18,215 +18,241 @@
 
 
 <style>
-    img {
-      display: block;
-      margin-left: auto;
-      margin-right: auto;
-    }
+  img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  }
 
-    .imgContainer{
-    float:left;
-    }
+  .imgContainer{
+  float:left;
+  }
 </style>
 
 <body>
-    <section>    
-        <h1 class="slide-title">Rslidy Update </h1>
-            
-        <p> <center>Information Architecture and Web Usability 2023 </center></p>
-        <p> Group 1 </p>
-        
-        <br>
-        
-        <p>Inge Gsellmann, Martin Heider, Lukas Leitner, Vrutanjali Patel</p>
-        
-        <p> 12.12.2023 </p>
-            
-        <img src="images\logo_tu.png" alt="tugraz-isds" style="width:25%;">
-        
-    </section>
 
-    <section>
-        <h1>About Rslidy</h1>
 
-        <br>
-        
-        <body> 
-            <a href="https://github.com/tugraz-isds/rslidy">https://github.com/tugraz-isds/rslidy</a>
-            
-            <br>
-            
-            <ul>
-                <li> A way to design responsive and lightweight presentations in HTML5, CSS3 and TypeScript.  </li>
-                <li> Runs directly in the web browser. </li>
-                <li> Open source.</li>
-                <li> Offers a variety of options for presentations in HTML: </li>
-                <ol style="list-style-type: lower-alpha; padding-bottom: 0;">
-                    <li style="margin-left:2em"> Possibility of slide navigation.</li>
-                    <li style="margin-left:2em"> Possibility of slide overview.</li>
-                    <li style="margin-left:2em"> Enables a responsive design.</li>
-                    <li style="margin-left:2em"> Enables responsive interactions (incl. shake and tilt).</li>
-                    <li style="margin-left:2em"> Supports CSS styles for a few options (Animations, Fonts).</li>
-                    <li style="margin-left:2em"> Allows embedding of live code. </li>
-                    <li style="margin-left:2em"> Image viewer (incl. zoom and pan).</li>
-                    
-                </ol>                     
-                </ul>
-            <p></p>
-        </body>
-       
-    </section>
 
-    <section>
-        <h1> Roadmap </h1>
-        <br> 
+<!-- Title Slide -->
+<section>
+  <h1 class="slide-title">Rslidy Update </h1>
 
-        <ul class="todo-list">
-            <li class="todo-done"> Adapt mouse cursor shape when hovering over image. </li>
-            <li class="todo-done"> Adapt mouse cursor on edge of first and last slide to not look like nav bar. </li>
-            <li class="todo-done"> Change mouse cursor to left or right arrow when hovering over nav bars.</li>
-            <li class="todo-done"> Adapt toolbar buttons (first, previous) for first and last slide. </li>
-                <ol style="list-style-type: lower-alpha; padding-bottom: 0;">
-                    <li style="margin-left:3em"> Mouse should not appear as clickable. </li>
-                    <li style="margin-left:3em"> Button should appear in a different color (darker grey). </li>
-                </ol>
-            <li class="todo-done"> Remove #1 in first slides' URL. </li>
-			<li class="todo-done">Issues with Node.js Version</li>
-            <li class="todo-later"> Replace @media with container size queries. </li>
-            <li class="todo-later"> Continue refactoring. </li>
-            <li class="todo-progress"> Write an introduction to Rslidy slide deck as .md file (slide creator guide). </li>
-            <li class="todo-progress"> Update the ReadMe.md on Rslidys GitHub. </li>
-			<li class="todo-done">Set a Class to Disable Image Viewer</li>
-			<li class="todo-done">Remove S9 Support</li>
-			<li class="todo-done">Slim Down SVG Files</li>
-			<li class="todo-later">Convert SCSS to Modern CSS</li>
-        </ul>
-    </section>
+  <p> <center>Information Architecture and Web Usability 2023 </center></p>
+  <p> Group 1 </p>
 
-    <section>
-        <h1> Adapt Mouse Cursor Shape When Hovering Over Image </h1>
+  <br>
 
-        <body>
-            <body>
-                <p>When hovering over an image that can be opened in the image viewer, the cursor shape should change to a square.</p>
-                <p>Status: In progress</p>
-                <img src="images\repo.png" alt="rslidy repo" style="width:50%;">
-            </body>
-        </body>
-    </section>
+  <p>Inge Gsellmann, Martin Heider, Lukas Leitner, Vrutanjali Patel</p>
 
-    <section>
-        <h1>Adapt Mouse Cursor on Edge of First and Last Slide to Not Look Like Nav Bar </h1>
+  <p> 12.12.2023 </p>
 
-        <body>
-            <p> The first slide should not have a left nav bar and the last slide should not have a right nav bar. They do not exist but the cursor still changes as if they were there. Change this so it looks unmodified from the standard cursor.</p>
-            <p> Status: DONE</p>
-            <p> Notes: This fix was implemented into the content.ts file, where the cursor is changed.</p>
+  <img src="images\logo_tu.png" alt="tugraz-isds" style="width:25%;">
 
-            <div class="image123">
-                <div class="imgContainer">
-                    <img src="images\first.png" alt="first slide" style="width:75%;">
-                </div>
-                <div class="imgContainer">
-                    <img src="images\last.png" alt="last slide" style="width:75%;">
-                </div>
-            </div>
-        </body>
-    </section>
+</section>
 
-    <section>
-        <h1>Change Mouse Cursor to a Left or Right Arrow When Hovering Over Nav Bars</h1>
 
-        <body>
-            <p> When hovering above a nav bar on the left or right side of the screen, the cursor should change to the shape of a left arrow or right error respectively.</p>
-            <p> Status: quick fix implemented. Most cursor packages do not include a single directional arrow. Current fix is a linked image from wikipedia, as implementing an image does not work.</p>
-            <p> We did not manage to implement dataURL in the other icons yet as they are referenced as exports and simply changing the definitions of the svgs did not work.</p>
-        </body>
 
-    </section>
+<!-- New Slide -->
+  <section>
+  <h1>About Rslidy</h1>
 
-    <section>
-        <h1> Adapt Toolbar Navigation Buttons for First and Last Slide</h1>
-        <body>
-            <p> On the first slide the previous button and first button in the toolbar should both be disabled functionally and visually. Same for the next and last buttons on the last slide.</p>
-            <p> Status: DONE</p>
-            <p> We now changed the cursor as well as the icons to clearly display a disabled button.</p>
-        </body>
-    </section>
+  <br>
 
-    <section>
-        <h1> Remove #1 in first slides' URL.</h1>
+  <a href="https://github.com/tugraz-isds/rslidy">https://github.com/tugraz-isds/rslidy</a>
 
-        <img src="images\title_page_url.png" alt="Title page url" style="width: 75%;">
+  <br>
 
-        <p> On the title slide the url does not contain #1. </p>
-        <p> The new url is simply the url of the html file of the presentation + #.</p>
-        <p> The # is not removed, as it is used in program logic: split(url, "#") at some points. </p>
-    </section>
+  <ul>
+    <li> A way to design responsive and lightweight presentations in HTML5, CSS3 and TypeScript.  </li>
+    <li> Runs directly in the web browser. </li>
+    <li> Open source.</li>
+    <li> Offers a variety of options for presentations in HTML: </li>
+    <ol style="list-style-type: lower-alpha; padding-bottom: 0;">
+      <li style="margin-left:2em"> Possibility of slide navigation.</li>
+      <li style="margin-left:2em"> Possibility of slide overview.</li>
+      <li style="margin-left:2em"> Enables a responsive design.</li>
+      <li style="margin-left:2em"> Enables responsive interactions (incl. shake and tilt).</li>
+      <li style="margin-left:2em"> Supports CSS styles for a few options (Animations, Fonts).</li>
+      <li style="margin-left:2em"> Allows embedding of live code. </li>
+      <li style="margin-left:2em"> Image viewer (incl. zoom and pan).</li>
+    </ol>
+  </ul>
+</section>
 
-    <section>
-        <h1> Issues with Node.js Version</h1>
-        <p>On running 'npx gulp' the following error happens during the transpile step:</p>
-        <p class="shell-text">Error: You must provide the URL of lib/mappings.wasm by calling SourceMapConsumer.initialize({ 'lib/mappings.wasm': ... }) before using SourceMapConsumer at readWasm </p>
-		<p>Status: Done</p>
-		<p>Works until Node.js version 16.20.2, broken from 17.9.1. </p>
-	
-		<p>Most suggest downgrading Node.js or using other legacy software. However, the source of the error seems to be that Node.js fixed a security hole.</p>
-		<p>Fix first issue in package-lock.json by updating source-map version to "^0.7.4" under gulp-typescript.</p>
-		
-		<p>Second issue after that:</p>
-		<p class='shell-text'>'webpack' errored after 2.94 s <br>
-			Error: error:0308010C:digital envelope routines::unsupported <br>
-			at new Hash (node:internal/crypto/hash:68:19)<br>
-			at Object.createHash (node:crypto:138:10)<br></p>
-		<p>This is fixed by updating webpack to the newest version 5.89.0 in package.json</p>
-		
-    </section>
 
-    <section>
-        <h1> Update the ReadMe.md on Rslidys GitHub </h1>
 
-        <p> First adaptions made. </p>
-        <p> Slide creator guide extended. </p>
-        <p> Group added as contributors in Rslidy's team. </p>
-        <p> Continous adaptions with new features necessary. </p>
+<!-- New Slide -->
+<section>
+  <h1> Roadmap </h1>
+  <br> 
 
-        <img src="images\ReadMe_Team.png" alt="ReadMe contributors" style="width: 50%;">
+  <ul class="todo-list">
+    <li class="todo-done"> Adapt mouse cursor shape when hovering over image. </li>
+    <li class="todo-done"> Adapt mouse cursor on edge of first and last slide to not look like nav bar. </li>
+    <li class="todo-done"> Change mouse cursor to left or right arrow when hovering over nav bars.</li>
+    <li class="todo-done"> Adapt toolbar buttons (first, previous) for first and last slide. </li>
+    <ol style="list-style-type: lower-alpha; padding-bottom: 0;">
+      <li style="margin-left:3em"> Mouse should not appear as clickable. </li>
+      <li style="margin-left:3em"> Button should appear in a different color (darker grey). </li>
+    </ol>
+    <li class="todo-done"> Remove #1 in first slides' URL. </li>
+    <li class="todo-done">Issues with Node.js Version</li>
+    <li class="todo-later"> Replace @media with container size queries. </li>
+    <li class="todo-later"> Continue refactoring. </li>
+    <li class="todo-progress"> Write an introduction to Rslidy slide deck as .md file (slide creator guide). </li>
+    <li class="todo-progress"> Update the ReadMe.md on Rslidys GitHub. </li>
+    <li class="todo-done">Set a Class to Disable Image Viewer</li>
+    <li class="todo-done">Remove S9 Support</li>
+    <li class="todo-done">Slim Down SVG Files</li>
+    <li class="todo-later">Convert SCSS to Modern CSS</li>
+  </ul>
+</section>
 
-    </section>
 
-    <section>
-        <h1> Write an introduction to Rslidy slide deck as .md file (slide creator guide). </h1>
-        <p> Slide creator guide on GitHub was extended. </p>
-        <p> More examples in the code snippets. </p>
-        <p> To be discussed, if additional ReadMe is necessary. </p>
 
-        <img src="images\ReadMe_Structure.png" alt="ReadMe structure" style="width: 75%;">
-        <img src="images\ReadMe_Lists.png" alt="ReadMe lists" style="width: 75%;">
-        <img src="images\ReadMe_Images.png" alt="ReadMe Images" style="width: 75%;">
-    </section>
-	
-    <section>
-		<h1>Set a Class to Disable Image Viewer</h1>
-		<p>If an image element has its class set as 'disable-image-viewer' the image does not open the image viewer and also not change the mouse shape.</p>
-		<p>Status: Done</p>
-		<img src="images\imageviewer-off1.png" class="disable-image-viewer" alt="disabled image viewer">
-	
-	</section>
-	
-	<section>
-	<h1>Remove S9 Support</h1>
-	<p>Remove support for S9 slides.</p>
-	<p>Status: Done</p>
-	
-	</section>
-	
-	<section>
-	<h1>Slim Down SVG Files</h1>
-	<p>Get rid of inkscape tags and other unnecessary tags within the newly added SVG files.</p>
-	<p>Status: Done</p>
-	<img src="images\slim-svg.png" alt="slimmed down svg file">
-	</section>
+<!-- New Slide -->
+<section>
+  <h1> Adapt Mouse Cursor Shape When Hovering Over Image </h1>
+  <p>When hovering over an image that can be opened in the image viewer, the cursor shape should change to a square.</p>
+  <p>Status: In progress</p>
+  <img src="images\repo.png" alt="rslidy repo" style="width:50%;">
+</section>
+
+
+
+<!-- New Slide -->
+<section>
+  <h1>Adapt Mouse Cursor on Edge of First and Last Slide to Not Look Like Nav Bar </h1>
+  <p> The first slide should not have a left nav bar and the last slide should not have a right nav bar. They do not exist but the cursor still changes as if they were there. Change this so it looks unmodified from the standard cursor.</p>
+  <p> Status: DONE</p>
+  <p> Notes: This fix was implemented into the content.ts file, where the cursor is changed.</p>
+
+  <div class="image123">
+    <div class="imgContainer">
+      <img src="images\first.png" alt="first slide" style="width:75%;">
+    </div>
+    <div class="imgContainer">
+      <img src="images\last.png" alt="last slide" style="width:75%;">
+    </div>
+  </div>
+</section>
+
+
+
+<!-- New Slide -->
+<section>
+  <h1>Change Mouse Cursor to a Left or Right Arrow When Hovering Over Nav Bars</h1>
+  <p> When hovering above a nav bar on the left or right side of the screen, the cursor should change to the shape of a left arrow or right error respectively.</p>
+  <p> Status: quick fix implemented. Most cursor packages do not include a single directional arrow. Current fix is a linked image from wikipedia, as implementing an image does not work.</p>
+  <p> We did not manage to implement dataURL in the other icons yet as they are referenced as exports and simply changing the definitions of the svgs did not work.</p>
+</section>
+
+
+
+<!-- New Slide -->
+<section>
+  <h1> Adapt Toolbar Navigation Buttons for First and Last Slide</h1>
+
+  <p> On the first slide the previous button and first button in the toolbar should both be disabled functionally and visually. Same for the next and last buttons on the last slide.</p>
+  <p> Status: DONE</p>
+  <p> We now changed the cursor as well as the icons to clearly display a disabled button.</p>
+
+</section>
+
+
+
+<!-- New Slide -->
+<section>
+  <h1> Remove #1 in first slides' URL.</h1>
+
+  <img src="images\title_page_url.png" alt="Title page url" style="width: 75%;">
+
+  <p> On the title slide the url does not contain #1. </p>
+  <p> The new url is simply the url of the html file of the presentation + #.</p>
+  <p> The # is not removed, as it is used in program logic: split(url, "#") at some points. </p>
+</section>
+
+
+
+<!-- New Slide -->
+<section>
+  <h1> Issues with Node.js Version</h1>
+  <p>On running 'npx gulp' the following error happens during the transpile step:</p>
+  <p class="shell-text">Error: You must provide the URL of lib/mappings.wasm by calling SourceMapConsumer.initialize({ 'lib/mappings.wasm': ... }) before using SourceMapConsumer at readWasm </p>
+  <p>Status: Done</p>
+  <p>Works until Node.js version 16.20.2, broken from 17.9.1. </p>
+
+  <p>Most suggest downgrading Node.js or using other legacy software. However, the source of the error seems to be that Node.js fixed a security hole.</p>
+  <p>Fix first issue in package-lock.json by updating source-map version to "^0.7.4" under gulp-typescript.</p>
+
+  <p>Second issue after that:</p>
+  <p class='shell-text'>'webpack' errored after 2.94 s <br>
+    Error: error:0308010C:digital envelope routines::unsupported <br>
+    at new Hash (node:internal/crypto/hash:68:19)<br>
+    at Object.createHash (node:crypto:138:10)<br></p>
+  <p>This is fixed by updating webpack to the newest version 5.89.0 in package.json</p>
+
+</section>
+
+
+
+<!-- New Slide -->
+<section>
+  <h1> Update the ReadMe.md on Rslidys GitHub </h1>
+
+  <p> First adaptions made. </p>
+  <p> Slide creator guide extended. </p>
+  <p> Group added as contributors in Rslidy's team. </p>
+  <p> Continous adaptions with new features necessary. </p>
+
+  <img src="images\ReadMe_Team.png" alt="ReadMe contributors" style="width: 50%;">
+
+</section>
+
+
+
+<!-- New Slide -->
+<section>
+  <h1> Write an introduction to Rslidy slide deck as .md file (slide creator guide). </h1>
+  <p> Slide creator guide on GitHub was extended. </p>
+  <p> More examples in the code snippets. </p>
+  <p> To be discussed, if additional ReadMe is necessary. </p>
+
+  <img src="images\ReadMe_Structure.png" alt="ReadMe structure" style="width: 75%;">
+  <img src="images\ReadMe_Lists.png" alt="ReadMe lists" style="width: 75%;">
+  <img src="images\ReadMe_Images.png" alt="ReadMe Images" style="width: 75%;">
+</section>
+
+
+
+<!-- New Slide -->
+<section>
+  <h1>Set a Class to Disable Image Viewer</h1>
+  <p>If an image element has its class set as 'disable-image-viewer' the image does not open the image viewer and also not change the mouse shape.</p>
+  <p>Status: Done</p>
+  <img src="images\imageviewer-off1.png" class="disable-image-viewer" alt="disabled image viewer">
+
+</section>
+
+
+
+<!-- New Slide -->
+<section>
+  <h1>Remove S9 Support</h1>
+  <p>Remove support for S9 slides.</p>
+  <p>Status: Done</p>
+
+</section>
+
+
+
+<!-- New Slide -->
+<section>
+  <h1>Slim Down SVG Files</h1>
+  <p>Get rid of inkscape tags and other unnecessary tags within the newly added SVG files.</p>
+  <p>Status: Done</p>
+  <img src="images\slim-svg.png" alt="slimmed down svg file">
+</section>
 
 </body>
 </html>
