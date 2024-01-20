@@ -61,7 +61,7 @@
   display: none !important;
 }
 .rslidy-slide-image:not(.disable-image-viewer) {
-  cursor: zoom-in;
+  cursor: pointer;
 }
 
 .rslidy-image-viewer {
