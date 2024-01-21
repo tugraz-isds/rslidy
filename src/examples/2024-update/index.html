@@ -93,7 +93,7 @@
     <li class="todo-done">Set a Class to Disable Image Viewer</li>
     <li class="todo-done">Remove S9 Support</li>
     <li class="todo-done">Remove SVG Compression and Slim Down SVG Files</li>
-    <li class="todo-later">Convert SCSS to Modern CSS</li>
+    <li class="todo-done">Convert SCSS to Modern CSS</li>
 	<li class="todo-later">Import Icons as Data URL in CSS</li>
   </ul>
 </section>
@@ -245,6 +245,17 @@
   <p>Get rid of inkscape tags and other unnecessary tags within the newly added SVG files.</p>
   <p>Delete gulp-svgo from package.json as it is no longer needed.</p>
   <p>Status: DONE</p>
+</section>
+
+
+<!-- New Slide -->
+<section>
+  <h1>Convert SCSS to Modern CSS</h1>
+  <p>Modern CSS now supports variables (called custom properties) so SCSS is no longer needed.</p>
+  <p>Status: DONE</p>
+  <p>Converting SCSS variables to Modern CSS properties by declaring them with a --name instead of a $name and referencing them with var(--name)</p>
+  <p>This has to be done before any automated conversion tools. Afterwards check that all calculations with variables still work as some converters remove operands. $i + $j turns into var(--i)var(--j) for instance.</p>
+  <p>Change the gulpfile so it just takes the CSS files and concatenates them instead of converting. This makes gulp-sass and by extension sass unnecessary so those were also removed from the package.json</p>
 </section>
 
 </body>
