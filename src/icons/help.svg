@@ -1,9 +1,5 @@
 <svg viewBox="0 0 100 100"
-  version="1.1"
-  baseProfile="full"
-  xmlns="http://www.w3.org/2000/svg"
-  xmlns:xlink="http://www.w3.org/1999/xlink"
->
+  xmlns="http://www.w3.org/2000/svg">
 <g transform="scale(0.7)">
 <path fill="none" stroke="black" stroke-width="20" d="M45,67c0-13 1-19 8-26c7-9 18-10 28-8c10,2 22,12 22,26c0,14-11,19-15,22c-7,2-10,6-11,11v20m0,12v16"/>
 </g>

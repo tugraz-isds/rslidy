@@ -92,7 +92,7 @@
     <li class="todo-progress">Update the ReadMe.md on Rslidys GitHub.</li>
     <li class="todo-done">Set a Class to Disable Image Viewer</li>
     <li class="todo-done">Remove S9 Support</li>
-    <li class="todo-done">Slim Down SVG Files</li>
+    <li class="todo-done">Remove SVG Compression and Slim Down SVG Files</li>
     <li class="todo-later">Convert SCSS to Modern CSS</li>
 	<li class="todo-later">Import Icons as Data URL in CSS</li>
   </ul>
@@ -238,11 +238,13 @@
 
 <!-- New Slide -->
 <section>
-  <h1>Slim Down SVG Files</h1>
+  <h1>Remove SVG Compression and Slim Down SVG Files</h1>
+  <p>Alter gulpfile so it doesn't optimise the SVG files anymore, so they stay legible.</p>
+  <p>Without svgo we have to manually remove fill and stroke colours as those will be set in css later. We do not want to remove them from the SVG files so we can still look at them properly.</p>
+  <p>Important: do NOT remove fill type none or some icons will be broken!</p>
   <p>Get rid of inkscape tags and other unnecessary tags within the newly added SVG files.</p>
-  <p>xmlns:svg line is necessary and therefore cannot be removed.</p>
+  <p>Delete gulp-svgo from package.json as it is no longer needed.</p>
   <p>Status: DONE</p>
-  <img src="images/slim-svg.png" alt="slimmed down svg file">
 </section>
 
 </body>

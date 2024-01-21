@@ -4,7 +4,6 @@ var gsass = require('gulp-sass')(require('sass'))
 var concat = require('gulp-concat')
 var ujs = require('gulp-terser')
 var ucss = require('gulp-uglifycss')
-var gsvgo = require('gulp-svgo')
 var rename = require("gulp-rename")
 var merge = require('merge2')
 var fs = require('file-system')
@@ -18,7 +17,6 @@ var argv = require('yargs').argv
 var paths = {
   src: './src/',
   tsbuild: './src/ts/build/',
-  icbuild: './src/icons/build/',
   build: './build/'
 }
 
@@ -35,7 +33,7 @@ function cleantsc() {
   return del([paths.tsbuild])
 }
 function clean() {
-  return del([paths.tsbuild, paths.icbuild , paths.build])
+  return del([paths.tsbuild , paths.build])
 }
 exports.clean = clean
 exports.clean.description = 'Cleans the project'
@@ -99,27 +97,30 @@ function scss() {
 exports.scss = scss
 exports.scss.description = 'Bundles SCSS source files into rslidy.css'
 
-function svgo() {
-  return src(paths.src + 'icons/*.svg')
-      .pipe(gsvgo())
-      .pipe(dest(paths.icbuild))
-}
 
 // Generate icon-definitions.ts from optimized icons
 // This removes stoke and fill colors since we set them with css to save space
 function icon_definitions() {
   var data = ''
-  fs.recurseSync(paths.icbuild, function(filepath, relative, filename) {
+  fs.recurseSync(paths.src+'icons', function(filepath, relative, filename) {
     if (!filename) return
     data += 'export const ' + filename.slice(0, -4).replace('-','_') + '_icon = '
     data += '`' + fs.fs.readFileSync(filepath) + '`;'
     data += '\n\n'
   })
-  data = data.replace(/ stroke="#[0-9A-Fa-f]+"/g,'').replace(/ fill="#[0-9A-Fa-f]+"/g,'')
+  data = data.replace(/ ?stroke="#?[0-9A-Za-z]+"/g,'').replace(/ ?fill="#?[0-9A-Za-z]+"/g,'')
+  data = data.replace(/style="([^"]*)"/g, (match, styleAttr) => {
+    const cleanedStyle = styleAttr.replace(/\b(?:fill|stroke):\s*([^;]*);?/gi, (match, value) => {
+        // Preserve 'none' values for fill and stroke
+        return value.toLowerCase() === 'none' ? `${match};` : '';
+    });
+    return `style="${cleanedStyle}"`;
+});
+  data = data.replace(/ ?style=" *" ?/g,'').replace(/;;/g,';')
   fs.writeFile(paths.src + "ts/icon-definitions.ts", data)
   return Promise.resolve('')
 }
-exports.icons = series(svgo, icon_definitions)
+exports.icons = series(icon_definitions)
 exports.icons.description = 'Optimises SVG files and writes icon-definitions.ts'
 
 function html() {

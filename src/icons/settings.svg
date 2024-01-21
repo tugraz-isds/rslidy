@@ -1,9 +1,5 @@
 <svg viewBox="0 0 100 100"
-  version="1.1"
-  baseProfile="full"
-  xmlns="http://www.w3.org/2000/svg"
-  xmlns:xlink="http://www.w3.org/1999/xlink"
->
+  xmlns="http://www.w3.org/2000/svg">
 <defs>
 <g id="gear">
 <polygon points="40,75 43,95 57,95 60,75" fill="black"/>

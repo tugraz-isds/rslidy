@@ -1,32 +1,130 @@
-export const all_slides_icon = `<svg viewBox="0 0 100 100" baseProfile="full" xmlns="http://www.w3.org/2000/svg"><path stroke-width="8" d="M5 5v90M95 5v90"/><text x="50" y="50" dominant-baseline="middle" text-anchor="middle" font-size="100">n</text></svg>`;
+export const all_slides_icon = `<svg viewBox="0 0 100 100"
+  xmlns="http://www.w3.org/2000/svg">
+<line x1="5" y1="5" x2="5" y2="95" style="stroke-width:8"/>
+<line x1="95" y1="5" x2="95" y2="95" style="stroke-width:8"/>
+<text x="50" y="50" dominant-baseline="middle" text-anchor="middle" font-size="100">n</text>
+</svg>`;
 
-export const font_minus_icon = `<svg viewBox="0 0 100 100" baseProfile="full" xmlns="http://www.w3.org/2000/svg"><text x="50" y="95" text-anchor="middle" font-size="80">A</text><text x="60" y="45" font-weight="bold" font-size="55">-</text></svg>`;
+export const font_minus_icon = `<svg viewBox="0 0 100 100"
+  xmlns="http://www.w3.org/2000/svg">
+<text x="50" y="95" text-anchor="middle" font-size="80">A</text>
+<text x="60" y="45" font-weight="bold" font-size="55">-</text>
+</svg>`;
 
-export const font_plus_icon = `<svg viewBox="0 0 100 100" baseProfile="full" xmlns="http://www.w3.org/2000/svg"><text x="50" y="95" text-anchor="middle" font-size="100">A</text><text x="55" y="40" font-weight="bold" font-size="55">+</text></svg>`;
+export const font_plus_icon = `<svg viewBox="0 0 100 100"
+  xmlns="http://www.w3.org/2000/svg">
+<text x="50" y="95" text-anchor="middle" font-size="100">A</text>
+<text x="55" y="40" font-weight="bold" font-size="55">+</text>
+</svg>`;
 
-export const font_reset_icon = `<svg viewBox="0 0 100 100" baseProfile="full" xmlns="http://www.w3.org/2000/svg"><text x="50" y="95" text-anchor="middle" font-size="90">A</text></svg>`;
+export const font_reset_icon = `<svg viewBox="0 0 100 100"
+  xmlns="http://www.w3.org/2000/svg">
+<text x="50" y="95" text-anchor="middle" font-size="90">A</text>
+</svg>`;
 
-export const help_icon = `<svg viewBox="0 0 100 100" baseProfile="full" xmlns="http://www.w3.org/2000/svg"><path fill="none" stroke-width="14" d="M31.5 46.9c0-9.1.7-13.3 5.6-18.2 4.9-6.3 12.6-7 19.6-5.6 7 1.4 15.4 8.4 15.4 18.2 0 9.8-7.7 13.3-10.5 15.4-4.9 1.4-7 4.2-7.7 7.7v14m0 8.4V98"/></svg>`;
+export const help_icon = `<svg viewBox="0 0 100 100"
+  xmlns="http://www.w3.org/2000/svg">
+<g transform="scale(0.7)">
+<path stroke-width="20" d="M45,67c0-13 1-19 8-26c7-9 18-10 28-8c10,2 22,12 22,26c0,14-11,19-15,22c-7,2-10,6-11,11v20m0,12v16"/>
+</g>
+</svg>`;
 
-export const hide_icon = `<svg viewBox="0 0 100 100" baseProfile="full" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-width="10" d="M20 15l30 30M50 45l30-30M20 55l30 30M50 85l30-30"/></svg>`;
+export const hide_icon = `<svg viewBox="0 0 100 100"
+  xmlns="http://www.w3.org/2000/svg">
+<line stroke-linecap="round" x1="20" y1="15" x2="50" y2="45" stroke-width="10"/>
+<line stroke-linecap="round" x1="50" y1="45" x2="80" y2="15" stroke-width="10"/>
+<line stroke-linecap="round" x1="20" y1="55" x2="50" y2="85" stroke-width="10"/>
+<line stroke-linecap="round" x1="50" y1="85" x2="80" y2="55" stroke-width="10"/>
+</svg>`;
 
-export const last_icon = `<svg viewBox="0 0 100 100" baseProfile="full" xmlns="http://www.w3.org/2000/svg"><path d="M5 5v90l65-45z"/><path stroke-width="15" d="M85 5v90"/></svg>`;
+export const last_icon = `<svg viewBox="0 0 100 100"
+  xmlns="http://www.w3.org/2000/svg">
+<polygon points="5,5 5,95 70,50"
+  stroke-width="1"/>
+<line x1="85" y1="5" x2="85" y2="95" style="stroke-width:15"/>
+</svg>`;
 
-export const next_icon = `<svg viewBox="0 0 100 100" baseProfile="full" xmlns="http://www.w3.org/2000/svg"><path d="M15 5v90l70-45z"/></svg>`;
+export const next_icon = `<svg viewBox="0 0 100 100"
+  xmlns="http://www.w3.org/2000/svg">
+<polygon points="15,5 15,95 85,50"
+  stroke-width="1"/>
+</svg>`;
 
-export const next_pointer_icon = `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path fill="gray" stroke="gray" d="M0 1v45l35-22.5z"/></svg>`;
+export const next_pointer_icon = `<svg viewBox="0 0 100 100"
+   xmlns="http://www.w3.org/2000/svg">
+<polygon points="0,1 0,46 35,23.5"/>
+</svg>`;
 
-export const one_slide_icon = `<svg viewBox="0 0 100 100" baseProfile="full" xmlns="http://www.w3.org/2000/svg"><path fill="transparent" stroke-width="6" d="M5 5h90v90H5z"/><text x="50" y="50" dominant-baseline="central" text-anchor="middle" font-size="80">1</text></svg>`;
+export const one_slide_icon = `<svg viewBox="0 0 100 100"
+  xmlns="http://www.w3.org/2000/svg">
+<rect x="5" y="5" width="90" height="90" style="stroke-width:6;" />
+<text x="50" y="50" dominant-baseline="central" text-anchor="middle" font-size="80">1</text>
+</svg>`;
 
-export const overview_icon = `<svg viewBox="0 0 100 100" baseProfile="full" xmlns="http://www.w3.org/2000/svg"><path fill="none" stroke-width="8" d="M0 0h100v100H0z"/><path stroke-width="4" d="M48 0v100"/><path d="M8 7h33v25H8zM8 37.5h33v25H8zM8 68h33v25H8z"/></svg>`;
+export const overview_icon = `<svg viewBox="0 0 100 100"
+  xmlns="http://www.w3.org/2000/svg">
+<rect x="0" y="0" width="100" height="100" style="fill:none;stroke-width:8;" />
+<line x1="48" y1="0" x2="48" y2="100" style="stroke-width:4"/>
+<rect x="8" y="7" width="33" height="25"/>
+<rect x="8" y="37.5" width="33" height="25"/>
+<rect x="8" y="68" width="33" height="25"/>
+</svg>`;
 
-export const previous_pointer_icon = `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path fill="gray" stroke="gray" d="M0 1v45l-35-22.5z"/></svg>`;
+export const previous_pointer_icon = `<svg viewBox="0 0 100 100"
+   xmlns="http://www.w3.org/2000/svg">
+<polygon points="0,1 0,46 -35,23.5"/>
+</svg>`;
 
-export const print_icon = `<svg viewBox="0 0 100 100" baseProfile="full" xmlns="http://www.w3.org/2000/svg"><path stroke-width="8" d="M6 30h88M10 30v50M22 23h8M70 23h8M90 30v50M6 80h24M94 80H70M6 33h88"/><path stroke-width="12" d="M6 40h14M33 40h61"/><path stroke-width="24" d="M6 55h88M6 75h24M94 75H70"/><path stroke-width="4" d="M35 73h30M35 83h30"/><rect x="30" y="5" width="40" height="25" rx="5" ry="5" fill="none" stroke-width="4"/><rect x="30" y="65" width="40" height="30" rx="5" ry="5" fill="none" stroke-width="4"/></svg>`;
+export const print_icon = `<svg viewBox="0 0 100 100"
+  xmlns="http://www.w3.org/2000/svg">
+<line x1="6" y1="30" x2="94" y2="30" style="stroke-width:8"/>
+<line x1="10" y1="30" x2="10" y2="80" style="stroke-width:8"/>
+<line x1="22" y1="23" x2="30" y2="23" style="stroke-width:8"/>
+<line x1="70" y1="23" x2="78" y2="23" style="stroke-width:8"/>
+<line x1="90" y1="30" x2="90" y2="80" style="stroke-width:8"/>
+<line x1="6" y1="80" x2="30" y2="80" style="stroke-width:8"/>
+<line x1="94" y1="80" x2="70" y2="80" style="stroke-width:8"/>
 
-export const settings_icon = `<svg viewBox="0 0 100 100" baseProfile="full" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><g id="a"><path d="M40 75l3 20h14l3-20zM40 25l3-20h14l3 20zM25 40L5 43v14l20 3zM75 40l20 3v14l-20 3z"/></g></defs><circle cx="50" cy="50" r="25" fill="none" stroke-width="15"/><use xlink:href="#a"/><use xlink:href="#a" transform="rotate(45 50 50)"/></svg>`;
+<line x1="6" y1="33" x2="94" y2="33" style="stroke-width:8"/>
+<line x1="6" y1="40" x2="20" y2="40" style="stroke-width:12"/>
+<line x1="33" y1="40" x2="94" y2="40" style="stroke-width:12"/>
+<line x1="6" y1="55" x2="94" y2="55" style="stroke-width:24"/>
+<line x1="6" y1="75" x2="30" y2="75" style="stroke-width:24"/>
+<line x1="94" y1="75" x2="70" y2="75" style="stroke-width:24"/>
 
-export const slider_icon = `<svg viewBox="0 0 100 50" baseProfile="full" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-width="30" d="M20 25h60"/><circle cx="25" cy="25" r="23"/></svg>`;
+<line x1="35" y1="73" x2="65" y2="73" style="stroke-width:4"/>
+<line x1="35" y1="83" x2="65" y2="83" style="stroke-width:4"/>
 
-export const toc_icon = `<svg viewBox="0 0 100 100" baseProfile="full" xmlns="http://www.w3.org/2000/svg"><path stroke-dasharray="15, 15" stroke-width="20" d="M5 10v85"/><path stroke-width="10" d="M25 17.5h75M25 47.5h75M25 77.5h75"/></svg>`;
+<rect x="30" y="5" width="40" height="25" rx="5" ry="5" style="fill:none;stroke-width:4;"/>
+<rect x="30" y="65" width="40" height="30" rx="5" ry="5" style="fill:none;stroke-width:4;"/>
+</svg>`;
+
+export const settings_icon = `<svg viewBox="0 0 100 100"
+  xmlns="http://www.w3.org/2000/svg">
+<defs>
+<g id="gear">
+<polygon points="40,75 43,95 57,95 60,75"/>
+<polygon points="40,25 43,5 57,5 60,25"/>
+<polygon points="25,40 5,43 5,57 25,60"/>
+<polygon points="75,40 95,43 95,57 75,60"/>
+</g>
+</defs>
+<circle cx="50" cy="50" r="25" style="stroke-width:15" />
+<use xlink:href="#gear"/>
+<use xlink:href="#gear" transform="rotate(45 50 50)"/>
+</svg>`;
+
+export const slider_icon = `<svg viewBox="0 0 100 50"
+  xmlns="http://www.w3.org/2000/svg">
+<line stroke-linecap="round" x1="20" y1="25" x2="80" y2="25" stroke-width="30"/>
+<circle cx="25" cy="25" r="23" stroke-width="3"/>
+</svg>`;
+
+export const toc_icon = `<svg viewBox="0 0 100 100"
+  xmlns="http://www.w3.org/2000/svg">
+<line x1="5" y1="10" x2="5" y2="95" stroke-dasharray="15, 15" style="stroke-width:20"/>
+<line x1="25" y1="17.5" x2="100" y2="17.5" style="stroke-width:10"/>
+<line x1="25" y1="47.5" x2="100" y2="47.5" style="stroke-width:10"/>
+<line x1="25" y1="77.5" x2="100" y2="77.5" style="stroke-width:10"/>
+</svg>`;
 

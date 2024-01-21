@@ -29,7 +29,6 @@
     "gulp-gzip": "^1.4.2",
     "gulp-rename": "^1.4.0",
     "gulp-sass": "^5.0.0",
-    "gulp-svgo": "^1.5.4",
     "gulp-terser": "^2.1.0",
     "gulp-typescript": "^6.0.0-alpha.1",
     "gulp-uglifycss": "^1.1.0",

@@ -1,11 +1,6 @@
 <svg viewBox="0 0 100 100"
-  version="1.1"
-  baseProfile="full"
-  xmlns="http://www.w3.org/2000/svg"
-  xmlns:xlink="http://www.w3.org/1999/xlink"
->
+  xmlns="http://www.w3.org/2000/svg">
 <line x1="5" y1="5" x2="5" y2="95" style="stroke:black;stroke-width:8"/>
 <line x1="95" y1="5" x2="95" y2="95" style="stroke:black;stroke-width:8"/>
-<text x="50" y="50" dominant-baseline="middle" text-anchor="middle"
-fill="black" font-size="100">n</text>
+<text x="50" y="50" dominant-baseline="middle" text-anchor="middle" fill="black" font-size="100">n</text>
 </svg>
