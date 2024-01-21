@@ -102,8 +102,9 @@ function icon_definitions() {
   var data = ''
   fs.recurseSync(paths.src+'icons', function(filepath, relative, filename) {
     if (!filename) return
-    data += 'export const ' + filename.slice(0, -4).replace('-','_') + '_icon = '
-    data += '`' + fs.fs.readFileSync(filepath) + '`;'
+    const fileContent = fs.fs.readFileSync(filepath).toString().replace(/\n/g, '');
+    data += 'export const ' + filename.slice(0, -4).replace('-', '_') + '_icon = '
+    data += '`' + fileContent + '`;';
     data += '\n\n'
   })
   data = data.replace(/ ?stroke="#?[0-9A-Za-z]+"/g,'').replace(/ ?fill="#?[0-9A-Za-z]+"/g,'')
@@ -114,7 +115,7 @@ function icon_definitions() {
     });
     return `style="${cleanedStyle}"`;
 });
-  data = data.replace(/ ?style=" *" ?/g,'').replace(/;;/g,';')
+  data = data.replace(/ ?style=" *" ?/g,'').replace(/;;+/g,';')
   fs.writeFile(paths.src + "ts/icon-definitions.ts", data)
   return Promise.resolve('')
 }
