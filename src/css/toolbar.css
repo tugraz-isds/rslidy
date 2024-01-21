@@ -1,36 +1,3 @@
-:root {
-  --large: 44rem;
-  --medium: 40rem;
-  --small: 36rem;
-  --tiny: 32rem;
-  --mini: 28rem;
-  --nano: 24rem;
-  --pico: 20rem;
-
-  --overview-width: 18rem;
-  --overview-width-small-screen: 50%;
-
-  --slide-input-width: 2.60em;
-
-  --toolbar-bg-color: #e1e7ea;
-  --toolbar-button-bg-color: #e1e7ea;
-  --toolbar-button-color: #4b4b4b;
-  --button-border-color: #848484;
-  --button-hover-color: #c1c7ca;
-  --button-active-color: #fff;
-  --button-disabled-color: #aaa;
-  --progressbar-bg-color-reached: #003399;
-  --progressbar-bg-color-unreached: #4d88ff;
-
-  --toolbar-height: 3.20em;
-  --progressbar-height: 0.50em;
-
-  --slider-fill-off: #ececec;
-  --slider-stroke-off: #bdbdbd;
-  --slider-fill-on: #3498db;
-  --slider-stroke-on: #85c1e9;
-}
-
 #rslidy-footer {
   position: relative;
   flex: 0 0 auto;
@@ -153,7 +120,7 @@
 }
 
 .rslidy-toolbar-button:disabled,
-.rslidy-toolbar-button:disabled:hover,
+.rslidy-toolbar-button:disabled:hover
 {
   stroke: var(--button-disabled-color);
   fill: var(--button-disabled-color);
