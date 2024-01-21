@@ -111,7 +111,7 @@ A paragraph of text.
 
 ##### Lists
 
-To organize slides, bullet points are created as shown in the sniped below. 
+To organize slides, bullet points are created as shown in the snippet below. 
 
 ```html
 <section>
@@ -176,6 +176,13 @@ The desired transition type is added to the body element:
 ```html
 <body class="unanimated">
 ```
+
+#### How to Share an RSlidy Presenation? 
+
+The easiest way of sharing a slide deck created with RSlidy is by zipping the whole folder. However, when simplifying, 
+the zipped folder must contain under all circumstances the html file of the slide deck, the file rslidy.js the file rslidy.css
+as well as all included graphics. If rslidy.min.css or rslidy.min.js are used for the presentation, they must be included instead 
+or additionally to the unminimized version of the files. Sharing only the html file on its own will not be sufficient!
 
 
 #### Custom Settings
