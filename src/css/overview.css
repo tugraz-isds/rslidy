@@ -1,18 +1,16 @@
-@import "variables";
-
 .rslidy-overview {
-  width: $overview-width;
+  width: var(--overview-width);
   height: 100%;
   position: fixed;
   flex: 0 0 auto;
   z-index: 4;
   list-style: none;
-  background-color: #f1f1f1; // rgb(218,218,218);
+  background-color: #f1f1f1;
   display: block;
   overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
   word-wrap: break-word;
-  transition: 0.30s;
+  transition: 0.3s;
 }
 
 .rslidy-overview-visible {
@@ -36,7 +34,7 @@
   display: block;
   overflow: hidden;
   background-color: white;
-  filter: brightness(0.90);
+  filter: brightness(0.9);
 }
 
 .rslidy-slide-thumbnail, .rslidy-slide-thumbnail-pv {
@@ -64,7 +62,7 @@
 
 .rslidy-slide-link {
   z-index: 1;
-  font-size: 0.80em;
+  font-size: 0.8em;
   cursor: pointer;
   margin: 0.25em 0em;
   padding: 0.5em 1em;
@@ -77,14 +75,14 @@
 }
 
 .rslidy-slide-link:hover {
-  background-color: $button-hover-color;
+  background-color: var(--button-hover-color);
 }
 
 .rslidy-thumbnail-caption {
-  font-size: 0.70em;
+  font-size: 0.7em;
   text-align: center;
-  background-color: rgb(200, 200, 200);
-
+  background-color: #c8c8c8;
+  
   /* Separating border */
   border-bottom: 0.15em solid gray;
   border-top: 0.15em solid gray;

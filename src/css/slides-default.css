@@ -9,10 +9,11 @@ body {
   -ms-hyphens: auto;
 }
 
-/*
-section elements are automatically assigned class slide by rslidy
-a slide is created by a section and/or div.slide
+/* 
+section elements are automatically assigned class slide by rslidy 
+a slide is created by a section and/or div.slide 
 */
+
 .slide {
   position: absolute;
   top: 0;
@@ -60,23 +61,23 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-  font-size: 1.40em;
-  margin: 0 0 0.70em 0;
+  font-size: 1.4em;
+  margin: 0 0 0.7em 0;
 }
 
 h2 {
-  font-size: 1.20em;
-  margin: 0 0 0.60em 0;
+  font-size: 1.2em;
+  margin: 0 0 0.6em 0;
 }
 
 h3 {
-  font-size: 1.10em;
+  font-size: 1.1em;
   margin: 0 0 0.55em 0;
 }
 
 h4, h5, h6 {
   font-size: 1em;
-  margin: 0 0 0.50em 0;
+  margin: 0 0 0.5em 0;
 }
 
 p {
@@ -84,7 +85,7 @@ p {
   text-align: justify;
 }
 
-/* do not justify inside table cells  */
+/* do not justify inside table cells */
 td p {
   text-align: left;
 }
@@ -108,28 +109,28 @@ code, kbd, samp {
 
 ol {
   list-style: decimal;
-  padding: 0 0 1em 1.50em;
+  padding: 0 0 1em 1.5em;
 }
 
 ul {
   list-style: disc;
-  padding: 0 0 1em 1.10em;
+  padding: 0 0 1em 1.1em;
 }
 
 /* sub-bullet styles */
 
-ul ul ol ol,
-ul ol ul ol,
-ol ul ol ol,
-ol ol ul ol,
-ol ul ol,
+ul ul ol ol, 
+ul ol ul ol, 
+ol ul ol ol, 
+ol ol ul ol, 
+ol ul ol, 
 ol ol {
   list-style: lower-alpha;
 }
 
-ol ul ol ol,
-ol ol ul ol,
-ul ol ol ol,
+ol ul ol ol, 
+ol ol ul ol, 
+ul ol ol ol, 
 ol ol ol {
   list-style: lower-roman;
 }
@@ -138,18 +139,18 @@ ol ol ol ol {
   list-style: decimal;
 }
 
-ul ul,
-ol ol ul ul,
-ol ul ol ul,
-ul ol ol ul,
-ol ul ul,
+ul ul, 
+ol ol ul ul, 
+ol ul ol ul, 
+ul ol ol ul, 
+ol ul ul, 
 ul ol ul {
   list-style: circle;
 }
 
-ol ul ul ul,
-ul ol ul ul,
-ul ul ol ul,
+ol ul ul ul, 
+ul ol ul ul, 
+ul ul ol ul, 
 ul ul ul {
   list-style: square;
 }
@@ -160,12 +161,12 @@ ul ul ul ul {
 
 /* nested list sizes */
 
-ul ul,
-ol ol,
-ul ol,
+ul ul, 
+ol ol, 
+ul ol, 
 ol ul {
-  font-size: 0.80em;
-  margin-top: 0.50em;
+  font-size: 0.8em;
+  margin-top: 0.5em;
 }
 
 li {
@@ -187,8 +188,8 @@ table {
 
 th {
   font-weight: bold;
-  background-color: #dddddd;
-  padding: 0.50ex;
+  background-color: #ddd;
+  padding: 0.5ex;
   border-style: solid;
   border-width: thin;
   text-align: left;
@@ -198,25 +199,26 @@ th {
 tr:nth-child(even) {
   background: #f8f8f8;
 }
+
 tr:nth-child(odd) {
-  background: #ffffff;
+  background: #fff;
 }
 
 td {
-  padding: 0.50ex;
+  padding: 0.5ex;
   border-style: solid;
   border-width: thin;
   text-align: left;
   vertical-align: top;
 }
 
-/*
+/* 
 -- Night mode customization
 */
 
-//h1, h2, h3, p, li, ul, ol, pre
 :not(a) .rslidy-night-mode {
-  color: white; /* Text color */
+  color: white;
+  /* Text color */
 }
 
 a.rslidy-night-mode {

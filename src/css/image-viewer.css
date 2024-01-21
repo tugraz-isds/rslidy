@@ -1,11 +1,7 @@
-.rslidy-slide-image {
-  &:not(.disable-image-viewer) {
-    cursor: pointer;
-  }
+.rslidy-slide-image:not(.disable-image-viewer) {
+  cursor: pointer;
 }
-
-
-.rslidy-image-viewer {
+ .rslidy-image-viewer {
   display: none;
   position: fixed;
   z-index: 10;
@@ -15,7 +11,6 @@
   height: 100%;
   overflow: auto;
   background-color: rgba(0, 0, 0, 0.9);
-
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -khtml-user-select: none;
@@ -23,57 +18,46 @@
   -ms-user-select: none;
   user-select: none;
 }
-
-.rslidy-image-viewer-container {
+ .rslidy-image-viewer-container {
   position: relative;
   justify-content: center;
   width: 100%;
   height: 100%;
   overflow: hidden;
 }
-
-.rslidy-image-viewer-content {
+ .rslidy-image-viewer-content {
   position: absolute;
   background-color: white;
 }
-
-.rslidy-transition-enabled {
-  transition: 0.30s;
+ .rslidy-transition-enabled {
+  transition: 0.3s;
 }
-
-.rslidy-iv-button {
+ .rslidy-iv-button {
   position: fixed;
   color: #f1f1f1;
-  text-shadow: -0.0625rem -0.0625rem 0 #000, 0.0625rem -0.0625rem 0 #000,
-    -0.0625rem 0.0625rem 0 #000, 0.125rem 0.125rem 0 #000;
-  font-size: 2.50em;
+  text-shadow: -0.0625rem -0.0625rem 0 #000, 0.0625rem -0.0625rem 0 #000, -0.0625rem 0.0625rem 0 #000, 0.125rem 0.125rem 0 #000;
+  font-size: 2.5em;
   font-weight: bold;
-  transition: 0.30s;
+  transition: 0.3s;
 }
-
-.rslidy-iv-button:hover,
-.rslidy-iv-button:focus {
+ .rslidy-iv-button:hover, .rslidy-iv-button:focus {
   color: #bbb;
   text-decoration: none;
   cursor: pointer;
 }
-
-.rslidy-iv-close {
+ .rslidy-iv-close {
   top: 0.9375em;
   right: 1em;
 }
-
-.rslidy-iv-zoom-in {
+ .rslidy-iv-zoom-in {
   bottom: 0.9375em;
   right: 1em;
 }
-
-.rslidy-iv-zoom-out {
+ .rslidy-iv-zoom-out {
   bottom: 0.9375em;
-  right: 2.50em;
+  right: 2.5em;
 }
-
-.rslidy-iv-zoom-reset {
+ .rslidy-iv-zoom-reset {
   bottom: 0.9375em;
   right: 4em;
 }

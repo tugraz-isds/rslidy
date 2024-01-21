@@ -1,10 +1,8 @@
-@import "variables";
-
 #rslidy-menu, #rslidy-print-menu {
   position: absolute;
-  bottom: $progressbar-height + $toolbar-height;
+  bottom: var(--progressbar-height) + var(--toolbar-height);
   right: 1em;
-  background-color: $toolbar-bg-color;
+  background-color: var(--toolbar-bg-color);
   padding: 0.5em 0em;
   z-index: 5;
 }
@@ -12,7 +10,7 @@
 .rslidy-menu-content {
   text-align: right;
   margin-bottom: 0.15em;
-  padding: .20em 1em;
+  padding: 0.2em 1em;
   display: block;
 }
 
@@ -21,59 +19,56 @@ label.rslidy-menu-content {
 }
 
 .rslidy-menu-button {
-  width: 1.50em;
+  width: 1.5em;
   height: 1.75em;
   background-size: cover;
   background-repeat: no-repeat;
   font-family: Verdana, Arial, Helvetica, sans-serif;
   display: inline-block;
-  fill: $toolbar-button-color;
-  stroke: $toolbar-button-color;
+  fill: var(--toolbar-button-color);
+  stroke: var(--toolbar-button-color);
   cursor: pointer;
 }
 
-.rslidy-menu-button:hover,
-.rslidy-menu-content a:hover,
-[id^=rslidy-checkbox-]:not([aria-disabled="true"]):hover {
-  background-color: $button-hover-color;
+.rslidy-menu-button:hover, .rslidy-menu-content a:hover, [id^=rslidy-checkbox-]:not([aria-disabled="true"]):hover {
+  background-color: var(--button-hover-color);
   border-radius: 0.15em;
 }
 
 .rslidy-icon {
-  width: 1.50em;
-  height: 1.50em;
+  width: 1.5em;
+  height: 1.5em;
   background-size: cover;
   background-repeat: no-repeat;
   font-family: Verdana, Arial, Helvetica, sans-serif;
   display: inline-block;
-  fill: $toolbar-button-color;
-  stroke: $toolbar-button-color;
+  fill: var(--toolbar-button-color);
+  stroke: var(--toolbar-button-color);
 }
-
 
 #rslidy-margin-input {
   width: 6em;
 }
 
 #rslidy-input-cols, #rslidy-input-rows {
-  width: $slide-input-width;
+  width: var(--slide-input-width);
 }
 
 #rslidy-button-print-submit {
   min-width: inherit;
-  padding: 0.30em 0.70em;
+  padding: 0.3em 0.7em;
   margin: 0 0.15em;
-  background-color: $toolbar-button-bg-color;
-  fill: $toolbar-button-color;
-  stroke: $toolbar-button-color;
+  background-color: var(--toolbar-button-bg-color);
+  fill: var(--toolbar-button-color);
+  stroke: var(--toolbar-button-color);
   cursor: pointer;
-  border: 0.05em solid $button-border-color;
+  border: 0.05em solid var(--button-border-color);
   border-radius: 0.15em;
-  box-shadow: 0.15em 0.15em $button-border-color;
+  box-shadow: 0.15em 0.15em var(--button-border-color);
 }
 
 #rslidy-button-print-submit:hover {
-  background-color: $button-hover-color;
+  background-color: var(--button-hover-color);
 }
 
 input[type="checkbox"] {
@@ -83,24 +78,24 @@ input[type="checkbox"] {
 input[type="checkbox"] + label {
   width: 2em;
   height: 1em;
-  margin-left: 0.50em;
+  margin-left: 0.5em;
   background-size: cover;
   background-repeat: no-repeat;
   display: inline-block;
-  fill: $slider-fill-off;
-  stroke: $slider-stroke-off;
+  fill: var(--slider-fill-off);
+  stroke: var(--slider-stroke-off);
   cursor: pointer;
 }
 
 #rslidy-checkbox-mode-text input[type="checkbox"] + label {
-  fill: $slider-fill-on;
-  stroke: $slider-stroke-on;
+  fill: var(--slider-fill-on);
+  stroke: var(--slider-stroke-on);
 }
 
 input[type="checkbox"]:checked + label {
   transform: scaleX(-1);
-  fill: $slider-fill-on;
-  stroke: $slider-stroke-on;
+  fill: var(--slider-fill-on);
+  stroke: var(--slider-stroke-on);
 }
 
 input[type="checkbox"]:disabled + label {
@@ -108,7 +103,7 @@ input[type="checkbox"]:disabled + label {
 }
 
 .rslidy-disabled {
-  opacity: 0.30;
+  opacity: 0.3;
   filter: alpha(opacity=30);
   cursor: default !important;
 }
@@ -125,6 +120,7 @@ input[type="checkbox"]:disabled + label {
   opacity: 0;
   z-index: 20;
 }
+
 .rslidy-help-overlay:target {
   visibility: visible;
   opacity: 1;
@@ -132,7 +128,7 @@ input[type="checkbox"]:disabled + label {
 
 #rslidy-help-popup {
   margin: 4em auto;
-  padding: 1.50em;
+  padding: 1.5em;
   background: white;
   width: 80%;
   position: relative;
@@ -142,13 +138,14 @@ input[type="checkbox"]:disabled + label {
 
 .rslidy-help-close {
   position: absolute;
-  top: 0.50em;
+  top: 0.5em;
   right: 1em;
   font-size: 2em;
   font-weight: bold;
   text-decoration: none;
   color: #333;
 }
+
 .rslidy-help-close:hover {
   color: #666;
 }

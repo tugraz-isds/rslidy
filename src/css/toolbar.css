@@ -1,9 +1,40 @@
-@import "variables";
+:root {
+  --large: 44rem;
+  --medium: 40rem;
+  --small: 36rem;
+  --tiny: 32rem;
+  --mini: 28rem;
+  --nano: 24rem;
+  --pico: 20rem;
+
+  --overview-width: 18rem;
+  --overview-width-small-screen: 50%;
+
+  --slide-input-width: 2.60em;
+
+  --toolbar-bg-color: #e1e7ea;
+  --toolbar-button-bg-color: #e1e7ea;
+  --toolbar-button-color: #4b4b4b;
+  --button-border-color: #848484;
+  --button-hover-color: #c1c7ca;
+  --button-active-color: #fff;
+  --button-disabled-color: #aaa;
+  --progressbar-bg-color-reached: #003399;
+  --progressbar-bg-color-unreached: #4d88ff;
+
+  --toolbar-height: 3.20em;
+  --progressbar-height: 0.50em;
+
+  --slider-fill-off: #ececec;
+  --slider-stroke-off: #bdbdbd;
+  --slider-fill-on: #3498db;
+  --slider-stroke-on: #85c1e9;
+}
 
 #rslidy-footer {
   position: relative;
   flex: 0 0 auto;
-  min-height: $progressbar-height;
+  min-height: var(--progressbar-height);
   transition: 0.30s;
 }
 
@@ -15,8 +46,8 @@
   position: absolute;
   left: 0; top: 0; right: 0; bottom: 0;
   width: 0%;
-  height: $progressbar-height;
-  background-color: $progressbar-bg-color-reached;
+  height: var(--progressbar-height);
+  background-color: var(--progressbar-bg-color-reached);
   z-index: 6;
   transition: width 1s;
 }
@@ -25,8 +56,8 @@
   position: absolute;
   left: 0; top: 0; right: 0; bottom: 0;
   width: 100%;
-  height: $progressbar-height;
-  background-color: $progressbar-bg-color-unreached;
+  height: var(--progressbar-height);
+  background-color: var(--progressbar-bg-color-unreached);
   z-index: 5;
 }
 
@@ -34,7 +65,7 @@
   position: absolute;
   left: 0; top: 0; right: 0; bottom: 0;
   width: 100%;
-  height: $progressbar-height;
+  height: var(--progressbar-height);
   z-index: 7;
 }
 
@@ -42,7 +73,7 @@
   position: relative;
   flex: 0 0 auto;
   width: 100%;
-  height: $progressbar-height + $toolbar-height;
+  height: calc(var(--progressbar-height) + var(--toolbar-height));
   transition: 0.20s;
   overflow: hidden;
   z-index: 4;
@@ -53,8 +84,8 @@
   bottom: 0;
   left: 0;
   width: 100%;
-  height: $toolbar-height + 0.20em;
-  background-color: $toolbar-bg-color;
+  height: calc(var(--toolbar-height) + 0.20em);
+  background-color: var(--toolbar-bg-color);
   display: table;
   z-index: 1;
   transition: 0.30s;
@@ -81,7 +112,7 @@
 }
 
 #rslidy-slide-input {
-  width: $slide-input-width;
+  width: var(--slide-input-width);
   height: 1.40em;
   line-height: 1.40em;
   text-align: center;
@@ -101,35 +132,34 @@
   padding: 0.30em 0.70em;
   margin: 0 0.15em;
   float: left;
-  background-color: $toolbar-button-bg-color;
-  fill: $toolbar-button-color;
-  stroke: $toolbar-button-color;
+  background-color: var(--toolbar-button-bg-color);
+  fill: var(--toolbar-button-color);
+  stroke: var(--toolbar-button-color);
   cursor: pointer;
-  border: 0.05em solid $button-border-color;
+  border: 0.05em solid var(--button-border-color);
   border-radius: 0.15em;
-  box-shadow: 0.15em 0.15em $button-border-color;
-  touch-action: manipulation; //prevent double tap zoom
+  box-shadow: 0.15em 0.15em var(--button-border-color);
+  touch-action: manipulation; /* prevent double tap zoom */
 }
 
 .rslidy-toolbar-button:hover,
 .rslidy-toolbar-button[aria-expanded="true"]:hover {
-  background-color: $button-hover-color;
+  background-color: var(--button-hover-color);
 }
 
-.rslidy-toolbar-button[aria-expanded="true"]{
-  background-color: $button-active-color;
+.rslidy-toolbar-button[aria-expanded="true"] {
+  background-color: var(--button-active-color);
   box-shadow: 0 0 0 0.15em lightskyblue;
 }
 
 .rslidy-toolbar-button:disabled,
 .rslidy-toolbar-button:disabled:hover,
 {
-  stroke: $button-disabled-color;
-  fill: $button-disabled-color;
-  background-color: $toolbar-button-bg-color;
+  stroke: var(--button-disabled-color);
+  fill: var(--button-disabled-color);
+  background-color: var(--toolbar-button-bg-color);
   cursor: default;
 }
-
 
 .rslidy-toolbar-slide {
   margin-top: 0.20em;
@@ -173,8 +203,8 @@
 .rslidy-tb-show, .rslidy-tb-display {
   top: -0.45em;
   position: relative;
-  fill: $toolbar-button-color;
-  stroke: $toolbar-button-color;
+  fill: var(--toolbar-button-color);
+  stroke: var(--toolbar-button-color);
 }
 
 .rslidy-tb-show {
@@ -187,18 +217,18 @@
 
 #rslidy-tb-show-trapezoid, #rslidy-tb-display-trapezoid {
   width: 1.50em;
-  top: -$progressbar-height;
+  top: calc(-1 * var(--progressbar-height));
   text-align: center;
   position: relative;
   border-right: 1em solid transparent;
-  border-bottom: 1em solid $toolbar-button-bg-color;
+  border-bottom: 1em solid var(--toolbar-button-bg-color);
   border-left: 1em solid transparent;
   box-sizing: content-box;
   z-index: 6;
 }
 
 #rslidy-tb-show-trapezoid:hover, #rslidy-tb-display-trapezoid:hover {
-  border-bottom: 1em solid $button-hover-color;
+  border-bottom: 1em solid var(--button-hover-color);
 }
 
 .rslidy-show-button, .rslidy-display-button {
@@ -207,7 +237,7 @@
   border: none;
   background-color: transparent;
   cursor: pointer;
-  //button click area
+  /* button click area */
   padding: 5vmin;
   margin: -5vmin;
 }
@@ -231,7 +261,7 @@
 }
 
 .rslidy-preview {
-  height: $progressbar-height;
+  height: var(--progressbar-height);
   z-index: 8;
   position: absolute;
   cursor: pointer;
@@ -241,7 +271,7 @@
     float: right;
     height: 100%;
     width: 1px;
-    background-color: $progressbar-bg-color-reached;
+    background-color: var(--progressbar-bg-color-reached);
   }
 }
 
@@ -253,7 +283,7 @@
 
 .rslidy-preview-reached {
   &::after {
-    background-color: $progressbar-bg-color-unreached;
+    background-color: var(--progressbar-bg-color-unreached);
   }
 }
 
@@ -302,6 +332,6 @@
 #rslidy-help-table th {
   padding-top: 0.75em;
   padding-bottom: 0.75em;
-  background-color: $toolbar-button-color;
+  background-color: var(--toolbar-button-color);
   color: white;
 }

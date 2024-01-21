@@ -1,6 +1,5 @@
 const { src, dest, parallel, series, watch } = require('gulp')
 var ts = require('gulp-typescript')
-var gsass = require('gulp-sass')(require('sass'))
 var concat = require('gulp-concat')
 var ujs = require('gulp-terser')
 var ucss = require('gulp-uglifycss')
@@ -88,14 +87,13 @@ function compress() {
 exports.minify = series(parallel(minifyjs, minifycss), compress)
 exports.minify.description = 'Produces .min and .gz files'
 
-function scss() {
-  return src(paths.src + 'css/*.scss')
-    .pipe(gsass({ includePaths: ['node_modules'] }))
+function css() {
+  return src(paths.src + 'css/*.css')
     .pipe(concat(files.css))
     .pipe(dest(paths.build))
 }
-exports.scss = scss
-exports.scss.description = 'Bundles SCSS source files into rslidy.css'
+exports.css = css
+exports.css.description = 'Bundles CSS source files into rslidy.css'
 
 
 // Generate icon-definitions.ts from optimized icons
@@ -129,7 +127,7 @@ function html() {
   return src(paths.src + 'tests/**/*.*')
     .pipe(dest(paths.build + 'tests/'))
 }
-exports.assemble = parallel(exports.webpack, html, scss)
+exports.assemble = parallel(exports.webpack, html, css)
 exports.assemble.description = 'Assembles HTML, CSS, and JS output files'
 
 function copy() {
@@ -155,7 +153,7 @@ exports.build.description = 'Cleans and builds the project'
 function stream() {
   return browserSync.stream()
 }
-const buildnc = series(parallel(series(cleantsc, transpile, webpack), html, scss), exports.minify, copy, stream)
+const buildnc = series(parallel(series(cleantsc, transpile, webpack), html, css), exports.minify, copy, stream)
 
 function loop() {
   var arg = (argv.slide || argv.s);

@@ -45,33 +45,33 @@
 }
 
 .slide.animated.forwards.fade {
-  animation: fade 0.50s normal cubic-bezier(0.54, 0, 0.54, 1) forwards;
+  animation: fade 0.5s normal cubic-bezier(0.54, 0, 0.54, 1) forwards;
 }
 
 .slide.animated.backwards.fade {
-  animation: fade 0.50s reverse cubic-bezier(0.54, 0, 0.54, 1) forwards;
+  animation: fade 0.5s reverse cubic-bezier(0.54, 0, 0.54, 1) forwards;
 }
 
 .slide.animated.forwards.slidein {
-  animation: slideinright 0.50s normal cubic-bezier(0.54, 0, 0.54, 1) forwards;
+  animation: slideinright 0.5s normal cubic-bezier(0.54, 0, 0.54, 1) forwards;
 }
 
 .slide.animated.backwards.slidein {
-  animation: slideinleft 0.50s reverse cubic-bezier(0.54, 0, 0.54, 1) forwards;
+  animation: slideinleft 0.5s reverse cubic-bezier(0.54, 0, 0.54, 1) forwards;
 }
 
 .slide.animated.forwards.slideout {
-  animation: slideinleft 0.50s normal cubic-bezier(0.54, 0, 0.54, 1) forwards;
+  animation: slideinleft 0.5s normal cubic-bezier(0.54, 0, 0.54, 1) forwards;
 }
 
 .slide.animated.backwards.slideout {
-  animation: slideinright 0.50s reverse cubic-bezier(0.54, 0, 0.54, 1) forwards;
+  animation: slideinright 0.5s reverse cubic-bezier(0.54, 0, 0.54, 1) forwards;
 }
 
 .slide.animated.forwards.zoom {
-  animation: zoom 0.50s normal cubic-bezier(0.54, 0, 0.54, 1) forwards;
+  animation: zoom 0.5s normal cubic-bezier(0.54, 0, 0.54, 1) forwards;
 }
 
 .slide.animated.backwards.zoom {
-  animation: zoom 0.50s reverse cubic-bezier(0.54, 0, 0.54, 1) forwards;
+  animation: zoom 0.5s reverse cubic-bezier(0.54, 0, 0.54, 1) forwards;
 }
