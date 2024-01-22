@@ -81,8 +81,8 @@
     <li class="todo-done">Adapt toolbar buttons (first, previous) for first and last slide.</li>
     <li class="todo-done">Remove #1 in first slides' URL.</li>
     <li class="todo-done">Issues with Node.js Version</li>
-    <li class="todo-later">Replace @media with container size queries.</li>
-    <li class="todo-progress">Write an introduction to Rslidy slide deck as .md file (slide creator guide).</li>
+    <li class="todo-done">Replace @media with container size queries.</li>
+    <li class="todo-done">Write an introduction to Rslidy slide deck as .md file (slide creator guide).</li>
     <li class="todo-progress">Update the ReadMe.md on Rslidys GitHub.</li>
     <li class="todo-done">Set a Class to Disable Image Viewer</li>
     <li class="todo-done">Remove S9 Support</li>
@@ -184,12 +184,37 @@
 
 <!-- New Slide -->
 <section>
+  <h1>Replace @media with container size queries.</h1>
+  <p> Media queries: </p>
+  <ul style="list-style-type: disc; padding-bottom: 0;">
+    <li style="margin-left:2em">Allow to apply CSS styles depending on screen resolution or browser viewport width.</li>
+    <li style="margin-left:2em">Are used to handle big picture stuff and user preferences.</li>
+  </ul>
+  <p>Container queries: </p>
+  <ul style="list-style-type: disc; padding-bottom: 0;">
+    <li style="margin-left:2em"> Are useful for creating modular components that can be reused in different containers. </li>
+    <li style="margin-left:2em"> Are used to take care of micro adjustments inside components.</li>
+  </ul>
+  
+  <p>Status: DONE</p>
+
+  <p> Within rslidy are 9 media queries.</p>
+  <p> All handle layouts (footer and menu bar) depending on screen size.</p>
+  <p> No query is needed to be reused. </p>
+  <p> Media queries are the better choice. </p>
+
+</section>
+
+
+
+<!-- New Slide -->
+<section>
   <h1>Update the ReadMe.md on Rslidys GitHub</h1>
 
-  <p>First adaptions made.</p>
+  <p>Small adaptions made.</p>
   <p>Slide creator guide extended.</p>
   <p>Group added as contributors in Rslidy's team.</p>
-  <p>Continous adaptions with new features necessary.</p>
+  <p>Only point left: update versioning if necessary.</p>
 
   <img src="images/ReadMe_Team.png" alt="ReadMe contributors" style="width: 50%;">
 
@@ -200,6 +225,7 @@
 <!-- New Slide -->
 <section>
   <h1>Write an introduction to Rslidy slide deck as .md file (slide creator guide).</h1>
+  <p>Status: DONE</p>
   <p>Slide creator guide on GitHub was extended.</p>
   <p>More examples in the code snippets.</p>
   <p>To be discussed, if additional ReadMe is necessary.</p>
