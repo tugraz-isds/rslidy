@@ -107,15 +107,16 @@ function icon_definitions() {
     data += '`' + fileContent + '`;';
     data += '\n\n'
   })
-  data = data.replace(/ ?stroke="#?[0-9A-Za-z]+"/g,'').replace(/ ?fill="#?[0-9A-Za-z]+"/g,'')
-  data = data.replace(/style="([^"]*)"/g, (match, styleAttr) => {
+  data = data.replace(/ ?(?:stroke|fill)="(none|#?[0-9A-Za-z]+)"/g, (match, value) => {    //remove stroke and fill attributes: fill="black" or stroke="#aaa"
+    return value.toLowerCase() === 'none' ? `${match}` : '';    // preserve 'none' values for fill and stroke
+});
+  data = data.replace(/style="([^"]*)"/g, (match, styleAttr) => {    //remove stroke and fill elements in style attribute: style="stroke:black"
     const cleanedStyle = styleAttr.replace(/\b(?:fill|stroke):\s*([^;]*);?/gi, (match, value) => {
-        // Preserve 'none' values for fill and stroke
-        return value.toLowerCase() === 'none' ? `${match};` : '';
+        return value.toLowerCase() === 'none' ? `${match};` : '';    // Preserve 'none' values for fill and stroke
     });
     return `style="${cleanedStyle}"`;
 });
-  data = data.replace(/ ?style=" *" ?/g,'').replace(/;;+/g,';')
+  data = data.replace(/ ?style=" *" ?/g,'').replace(/;;+/g,';')    //remove redundant semicolons and empty style attributes
   fs.writeFile(paths.src + "ts/icon-definitions.ts", data)
   return Promise.resolve('')
 }
