@@ -1,6 +1,6 @@
 #rslidy-menu, #rslidy-print-menu {
   position: absolute;
-  bottom: var(--progressbar-height) + var(--toolbar-height);
+  bottom: calc(var(--progressbar-height) + var(--toolbar-height));
   right: 1em;
   background-color: var(--toolbar-bg-color);
   padding: 0.5em 0em;
