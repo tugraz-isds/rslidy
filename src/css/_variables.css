@@ -1,5 +1,5 @@
 :root {
-// screen size breakpoints, in 10% fontsize steps
+/* screen size breakpoints, in 10% fontsize steps */
   --large:   44rem;
   --medium:  40rem;
   --small:   36rem;
@@ -8,13 +8,13 @@
   --nano:    24rem;
   --pico:    20rem;
 
-// shared
+/* shared */
   --overview-width: 18rem;
   --overview-width-small-screen: 50%;
 
   --slide-input-width: 2.60em;
 
-// toolbar
+/* toolbar */
   --toolbar-bg-color: #e1e7ea;
   --toolbar-button-bg-color: #e1e7ea;
   --toolbar-button-color: #4b4b4b;
@@ -28,7 +28,7 @@
   --toolbar-height: 3.20em;
   --progressbar-height: 0.50em;
 
-//settings
+/* settings */
   --slider-fill-off: #ececec;
   --slider-stroke-off: #bdbdbd;
   --slider-fill-on: #3498db;
