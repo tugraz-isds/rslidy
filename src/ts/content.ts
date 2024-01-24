@@ -392,12 +392,9 @@ export class ContentComponent {
 
     // Set 1-indexed value and new url
     if(window.rslidy.running)
-        if(targetSlideIndex == 0) 
-            window.location.hash = "";
-        else
-            window.location.hash = "#" + (targetSlideIndex + 1);
+        window.location.hash = "#" + (targetSlideIndex + 1);
     else
-      history.replaceState({}, null, "#" + (targetSlideIndex + 1));
+        history.replaceState({}, null, "#" + (targetSlideIndex + 1));
 
     // Update slide caption
     this.slide_caption.innerHTML = " /" + window.rslidy.num_slides;
