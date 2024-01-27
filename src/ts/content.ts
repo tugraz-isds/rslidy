@@ -1,4 +1,5 @@
 import { SlideTransition } from "./slide-transition";
+import {next_pointer_icon, previous_pointer_icon} from "./icon-definitions";
 
 export class ContentComponent {
   private view: HTMLElement;
@@ -22,16 +23,18 @@ export class ContentComponent {
       window.rslidy.start_y = e.clientY;
     });
 
+    const prev_url= btoa(previous_pointer_icon)
+    const next_url = btoa(next_pointer_icon)
     this.view.addEventListener("mousemove", (e) => {
         this.marginTap(e,
             () => {
                 if (this.currentSlideIndex > 0)
-                  this.view.style.cursor = "url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjxzdmcKICAgdmlld0JveD0iMCAwIDEwMCAxMDAiCiAgIHZlcnNpb249IjEuMSIKICAgaWQ9InN2ZzEiCiAgIHNvZGlwb2RpOmRvY25hbWU9Im5leHQuc3ZnIgogICBpbmtzY2FwZTp2ZXJzaW9uPSIxLjMuMiAoMDkxZTIwZSwgMjAyMy0xMS0yNSwgY3VzdG9tKSIKICAgeG1sbnM6aW5rc2NhcGU9Imh0dHA6Ly93d3cuaW5rc2NhcGUub3JnL25hbWVzcGFjZXMvaW5rc2NhcGUiCiAgIHhtbG5zOnNvZGlwb2RpPSJodHRwOi8vc29kaXBvZGkuc291cmNlZm9yZ2UubmV0L0RURC9zb2RpcG9kaS0wLmR0ZCIKICAgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIgogICB4bWxuczpzdmc9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8ZGVmcwogICAgIGlkPSJkZWZzMSIgLz4KICA8c29kaXBvZGk6bmFtZWR2aWV3CiAgICAgaWQ9Im5hbWVkdmlldzEiCiAgICAgcGFnZWNvbG9yPSIjNTA1MDUwIgogICAgIGJvcmRlcmNvbG9yPSIjZWVlZWVlIgogICAgIGJvcmRlcm9wYWNpdHk9IjEiCiAgICAgaW5rc2NhcGU6c2hvd3BhZ2VzaGFkb3c9IjAiCiAgICAgaW5rc2NhcGU6cGFnZW9wYWNpdHk9IjAiCiAgICAgaW5rc2NhcGU6cGFnZWNoZWNrZXJib2FyZD0iMCIKICAgICBpbmtzY2FwZTpkZXNrY29sb3I9IiM1MDUwNTAiCiAgICAgaW5rc2NhcGU6em9vbT0iNS44MDUzNDY3IgogICAgIGlua3NjYXBlOmN4PSI0Ny43MTQ2MzUiCiAgICAgaW5rc2NhcGU6Y3k9IjUyLjYyMzkwMyIKICAgICBpbmtzY2FwZTp3aW5kb3ctd2lkdGg9IjE5MjAiCiAgICAgaW5rc2NhcGU6d2luZG93LWhlaWdodD0iMTAxNyIKICAgICBpbmtzY2FwZTp3aW5kb3cteD0iLTgiCiAgICAgaW5rc2NhcGU6d2luZG93LXk9Ii04IgogICAgIGlua3NjYXBlOndpbmRvdy1tYXhpbWl6ZWQ9IjEiCiAgICAgaW5rc2NhcGU6Y3VycmVudC1sYXllcj0ic3ZnMSIgLz4KICA8cG9seWdvbgogICAgIHBvaW50cz0iODUsNTAgMTUsNSAxNSw5NSAiCiAgICAgZmlsbD0iYmxhY2siCiAgICAgc3Ryb2tlPSJibGFjayIKICAgICBzdHJva2Utd2lkdGg9IjEiCiAgICAgaWQ9InBvbHlnb24xIgogICAgIHN0eWxlPSJmaWxsOiM4MDgwODA7ZmlsbC1vcGFjaXR5OjE7c3Ryb2tlOiM4MDgwODA7c3Ryb2tlLW9wYWNpdHk6MSIKICAgICB0cmFuc2Zvcm09Im1hdHJpeCgtMC41LDAsMCwwLjUsNzUuMzE4NDczLDI1KSIgLz4KPC9zdmc+Cg==), w-resize"
-                else 
+                  this.view.style.cursor = "url(data:image/svg+xml;base64," + prev_url + "), w-resize"
+                else
                     this.view.style.cursor = "auto"},
             () => {
                 if (this.currentSlideIndex < window.rslidy.num_slides - 1)
-                  this.view.style.cursor = "url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjxzdmcKICAgdmlld0JveD0iMCAwIDEwMCAxMDAiCiAgIHZlcnNpb249IjEuMSIKICAgaWQ9InN2ZzEiCiAgIHNvZGlwb2RpOmRvY25hbWU9Im5leHQuc3ZnIgogICBpbmtzY2FwZTp2ZXJzaW9uPSIxLjMuMiAoMDkxZTIwZSwgMjAyMy0xMS0yNSwgY3VzdG9tKSIKICAgeG1sbnM6aW5rc2NhcGU9Imh0dHA6Ly93d3cuaW5rc2NhcGUub3JnL25hbWVzcGFjZXMvaW5rc2NhcGUiCiAgIHhtbG5zOnNvZGlwb2RpPSJodHRwOi8vc29kaXBvZGkuc291cmNlZm9yZ2UubmV0L0RURC9zb2RpcG9kaS0wLmR0ZCIKICAgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIgogICB4bWxuczpzdmc9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8ZGVmcwogICAgIGlkPSJkZWZzMSIgLz4KICA8c29kaXBvZGk6bmFtZWR2aWV3CiAgICAgaWQ9Im5hbWVkdmlldzEiCiAgICAgcGFnZWNvbG9yPSIjNTA1MDUwIgogICAgIGJvcmRlcmNvbG9yPSIjZWVlZWVlIgogICAgIGJvcmRlcm9wYWNpdHk9IjEiCiAgICAgaW5rc2NhcGU6c2hvd3BhZ2VzaGFkb3c9IjAiCiAgICAgaW5rc2NhcGU6cGFnZW9wYWNpdHk9IjAiCiAgICAgaW5rc2NhcGU6cGFnZWNoZWNrZXJib2FyZD0iMCIKICAgICBpbmtzY2FwZTpkZXNrY29sb3I9IiM1MDUwNTAiCiAgICAgaW5rc2NhcGU6em9vbT0iNS44MDUzNDY3IgogICAgIGlua3NjYXBlOmN4PSI0Ny43MTQ2MzUiCiAgICAgaW5rc2NhcGU6Y3k9IjUyLjYyMzkwMyIKICAgICBpbmtzY2FwZTp3aW5kb3ctd2lkdGg9IjE5MjAiCiAgICAgaW5rc2NhcGU6d2luZG93LWhlaWdodD0iMTAxNyIKICAgICBpbmtzY2FwZTp3aW5kb3cteD0iLTgiCiAgICAgaW5rc2NhcGU6d2luZG93LXk9Ii04IgogICAgIGlua3NjYXBlOndpbmRvdy1tYXhpbWl6ZWQ9IjEiCiAgICAgaW5rc2NhcGU6Y3VycmVudC1sYXllcj0ic3ZnMSIgLz4KICA8cG9seWdvbgogICAgIHBvaW50cz0iMTUsNSAxNSw5NSA4NSw1MCAiCiAgICAgZmlsbD0iYmxhY2siCiAgICAgc3Ryb2tlPSJibGFjayIKICAgICBzdHJva2Utd2lkdGg9IjEiCiAgICAgaWQ9InBvbHlnb24xIgogICAgIHN0eWxlPSJmaWxsOiM4MDgwODA7ZmlsbC1vcGFjaXR5OjE7c3Ryb2tlOiM4MDgwODA7c3Ryb2tlLW9wYWNpdHk6MSIKICAgICB0cmFuc2Zvcm09Im1hdHJpeCgwLjUsMCwwLDAuNSwyNS4xMDYxNTksMjUpIiAvPgo8L3N2Zz4K), e-resize"
+                  this.view.style.cursor = "url(data:image/svg+xml;base64," + next_url + "), e-resize"
                 else
                     this.view.style.cursor = "auto"
             },
