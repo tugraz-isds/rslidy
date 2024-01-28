@@ -17,8 +17,8 @@ img {
 .logo-page{
   background-image: url('images/logo_tu.png');
   background-repeat: no-repeat;
-  background-position: 2rem 2rem;
-  background-size: 10%;
+  background-position: calc(100% - 2rem) 2rem;
+  background-size: 5%;
 }
 
 .shell-text {
