@@ -71,3 +71,17 @@ img {
 .todo-later::before {
   content: "\2022";
 }
+
+div.copyright {
+  margin-top: auto;
+  text-align: right;
+}
+
+div.copyright p {
+  display: inline-block;
+  background-color: #eee;
+  padding: 0.2em;
+  border-radius: 0.2em;
+  font-size: 50%;
+  max-width: 35%;
+}
