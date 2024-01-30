@@ -20,20 +20,23 @@
 <body>
 
 
-
 <!-- Title Slide -->
 <section class="titleslide logo-page">
 
-  <h1>Updating Rslidy: Responsive HTML5 Slide Decks</h1>
+<h1>Updating Rslidy: Responsive HTML5 Slide Decks</h1>
 
-  <h2>Information Architecture and Web Usability 2023</h2>
-  <p>Group 1</p>
+<h3>Inge Gsellmann, Martin Heider, Lukas Leitner, and Vrutanjali Patel</h3>
 
-  <br />
+<p>Information Architecture and Web Usability 2023</p>
 
-  <p>Inge Gsellmann, Martin Heider, Lukas Leitner, Vrutanjali Patel</p>
+<p>Group 1</p>
 
-  <p>30.01.2024</p>
+
+<div id="location">
+<p>
+Tue 30 Jan 2024, Graz, Austria.
+</p>
+</div>
 
 </section>
 
@@ -41,31 +44,29 @@
 
 <!-- New Slide -->
 <section>
-  <h1>About Rslidy</h1>
+<h1>About Rslidy</h1>
 
-  <br />
+<p>
+<a href="https://github.com/tugraz-isds/rslidy">https://github.com/tugraz-isds/rslidy</a>
+</p/>
 
-  <a href="https://github.com/tugraz-isds/rslidy">https://github.com/tugraz-isds/rslidy</a>
-
-  <br />
-
-  <ul>
-    <li>A way to design responsive and lightweight presentations in HTML5, CSS3 and TypeScript.</li>
-    <li>Runs directly in the web browser.</li>
-    <li>Allows for viewing on all devices completely independently when hosted online</li>
-    <li>Open source.</li>
-    <li>Offers a variety of options for presentations in HTML:
-    <ul style="list-style-type: lower-alpha; padding-bottom: 0;">
-      <li style="margin-left:2em">Possibility of slide navigation.</li>
-      <li style="margin-left:2em">Possibility of slide overview.</li>
-      <li style="margin-left:2em">Enables a responsive design.</li>
-      <li style="margin-left:2em">Enables responsive interactions (incl. shake and tilt).</li>
-      <li style="margin-left:2em">Supports CSS styles for a few options (Animations, Fonts).</li>
-      <li style="margin-left:2em">Allows embedding of live code.</li>
-      <li style="margin-left:2em">Image viewer (incl. zoom and pan).</li>
-    </ul>
-    </li>
+<ul>
+  <li>A way to design responsive and lightweight presentations in HTML5, CSS3 and TypeScript.</li>
+  <li>Slide decks are online, can be viewed with any web browser.</li>
+  <li>Allows for viewing on all devices completely independently when hosted online</li>
+  <li>Open source.</li>
+  <li>Offers a variety of options for presentations in HTML:
+  <ul style="list-style-type: lower-alpha;">
+    <li style="margin-left:0.4em">Possibility of slide navigation.</li>
+    <li style="margin-left:0.4em">Possibility of slide overview.</li>
+    <li style="margin-left:0.4em">Enables a responsive design.</li>
+    <li style="margin-left:0.4em">Enables responsive interactions (incl. shake and tilt).</li>
+    <li style="margin-left:0.4em">Supports CSS styles for a few options (Animations, Fonts).</li>
+    <li style="margin-left:0.4em">Allows embedding of live code.</li>
+    <li style="margin-left:0.4em">Image viewer (incl. zoom and pan).</li>
   </ul>
+  </li>
+</ul>
 </section>
 
 
@@ -96,7 +97,7 @@
 
 <!-- New Slide -->
 <section>
-  <h1>Adapt Mouse Cursor Shape When Hovering Over Image</h1>
+  <h1>Pointer Cursor When Hovering Over Image</h1>
   <p>When hovering over an image that can be opened in the image viewer, the cursor shape should change to a square.</p>
   <p>Status: DONE</p>
   <img src="images/repo.png" alt="rslidy repo" style="width:50%;">
@@ -116,7 +117,7 @@
 
 <!-- New Slide -->
 <section>
-  <h1>Do not apply cursor change on last / first slide</h1>
+  <h1>Do Not Apply Cursor Change on Last / First Slide</h1>
   <p>The first and last slide should not change cursor when no navigation is possible.</p>
   <p>Status: DONE</p>
   <p>Note: This fix was implemented into the content.ts file, where the cursor is changed.</p>
@@ -130,7 +131,7 @@
   <p>On the first and last slide the buttons in the toolbar be disabled functionally and visually.</p>
   <p>Status: DONE</p>
 
-  <img src="images/disabled-buttons.png" alt="Disabled buttons in the nav bar">
+  <img src="images/disabled-buttons.png" alt="Disabled buttons in the nav bar" style="width:40%">
 
 </section>
 
@@ -139,12 +140,12 @@
 <!-- New Slide -->
 <section>
   <h1>Issues with Node.js Version</h1>
-  <p>When having a newer version of Node an error happens during the transpile step.</p>
+  <p>When using a newer version of Node an error happens during the transpile step.</p>
   <p>Status: DONE</p>
   <p>Works until Node.js version 16.20.2, broken from 17.9.1.</p>
 
   <p>Downgrading Node.js is not recommended as the updates patched a security hole.</p>
-  <p>We updated package-lock.json by updating source-map version to "^0.7.4" under gulp-typescript.</p>
+  <p>We updated package.json by adding source-map at version "^0.7.4" as a dependency.</p>
 
   <p>As a resulting issue 'webpack' errored.</p>
   <p>This is fixed by updating webpack to the newest version 5.89.0 in package.json</p>
@@ -155,26 +156,27 @@
 
 <!-- New Slide -->
 <section>
-  <h1>Replace @media with container size queries.</h1>
-  <p> Media queries: </p>
-  <ul style="list-style-type: disc; padding-bottom: 0;">
-    <li style="margin-left:2em">Allow to apply CSS styles depending on screen resolution or browser viewport width.</li>
-    <li style="margin-left:2em">Are used to handle big picture stuff and user preferences.</li>
-  </ul>
-  <p>Container queries: </p>
-  <ul style="list-style-type: disc; padding-bottom: 0;">
-    <li style="margin-left:2em"> Are useful for creating modular components that can be reused in different containers. </li>
-    <li style="margin-left:2em"> Are used to take care of micro adjustments inside components.</li>
-  </ul>
-  
-  <p>Status: DONE</p>
+<h1>Replace @media with Container Size Queries.</h1>
+<p> Media queries: </p>
+<ul>
+  <li>Allow to apply CSS styles depending on screen resolution or browser viewport width.</li>
+  <li>Are used to handle big picture stuff and user preferences.</li>
+</ul>
+<p>Container queries: </p>
+<ul>
+  <li> Are useful for creating modular components that can be reused in different containers.</li>
+  <li> Are used to take care of micro adjustments inside components.</li>
+</ul>
 
-  <p> Within rslidy are 9 media queries.</p>
-  <p> All handle layouts (footer and menu bar) depending on screen size.</p>
-  <p> No query is needed to be reused. </p>
-  <p> Media queries are the better choice. </p>
+<p>Status: DONE</p>
+
+<p>Within rslidy are 9 media queries.</p>
+<p>All handle layouts (footer and menu bar) depending on screen size.</p>
+<p>No query is needed to be reused. </p>
+<p>Media queries are the better choice.</p>
 
 </section>
+
 
 
 
@@ -195,7 +197,7 @@
 
 <!-- New Slide -->
 <section>
-  <h1>Write an introduction to Rslidy slide deck as .md file (slide creator guide).</h1>
+  <h1>Introduction to Rslidy as .md file</h1>
   <p>Status: DONE</p>
   <p>Slide creator guide on GitHub was extended.</p>
   <p>More examples in the code snippets.</p>
@@ -213,7 +215,7 @@
   <p>Slide creators can set 'disable-image-viewer'</p>
   <p>This results in the image not opening the image viewer and also not having a mouse hover.</p>
   <p>Status: DONE</p>
-  <img src="images/imageviewer-off1.png" class="disable-image-viewer" alt="disabled image viewer">
+  <img src="images/imageviewer-off1.png" class="disable-image-viewer" alt="disabled image viewer" style="width:20%">
 
 </section>
 
@@ -256,22 +258,31 @@
 
 <!-- final Slide -->
 <section>
-  <h1>Advantages of using Rslidy</h1>
- 
-  <p>rslidy uses HTML5, CSS3 and TypeScript which help you create dynamic and visually appealing presentations.</p>
-  <p>It ensures the presentation adapts to various screen sizes, providing a consistent user experience.</p>
-  <p>It provides you help and setting options in slide deck.</p>
-  <p>It was some special features like:  </p>
-    <ul style="list-style-type: disc; padding-bottom: 0;">
-      <li style="margin-left:2em">Has build-in Image Viewer.</li>
-      <li style="margin-left:2em">Export slide deck as PDF.</li>
-      <li style="margin-left:2em">Can make responsive charts.</li>
-      <li style="margin-left:2em">Write math equations.</li>
-    </ul>
-  <br />
-  <p>Here is the link of demo video on youtube:</p>
-  <p><a href="https://youtu.be/AXeh42751uM">Demo video</a></p>
-  <br />
+<h1>Advantages of Using Rslidy</h1>
+
+<p>Rslidy uses HTML5, CSS3 and TypeScript which help you create
+dynamic and visually appealing presentations.</p>
+
+<p>It ensures the presentation adapts to various screen sizes,
+providing a consistent user experience.</p>
+
+<p>It provides you help and setting options in slide deck.</p>
+
+<p>It includes special features like:</p>
+<ul>
+  <li>Built-in image viewer.</li>
+  <li>Export slide deck as PDF.</li>
+  <li>Include JavaScript code (e.g. responsive charts).</li>
+  <li>Write math equations.</li>
+</ul>
+
+
+<p>Demo of Rslidy on YouTube:<br/>
+<a href="https://youtu.be/AXeh42751uM">
+<code>https://youtu.be/AXeh42751uM</code></a>
+</p>
+<br/>
+
 </section>
 </body>
 </html>
