@@ -1,6 +1,0 @@
-<svg viewBox="0 0 100 100"
-  xmlns="http://www.w3.org/2000/svg">
-<polygon points="5,5 5,95 70,50"
-  fill="black" stroke="black" stroke-width="1"/>
-<line x1="85" y1="5" x2="85" y2="95" style="stroke:black;stroke-width:15"/>
-</svg>
