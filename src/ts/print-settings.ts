@@ -4,6 +4,7 @@ interface Data {
   links: boolean;
   slidenumbers: boolean;
   frame: boolean;
+  scale: boolean;
 }
 
 export class PrintSettingsComponent {
@@ -12,7 +13,11 @@ export class PrintSettingsComponent {
 
   constructor() {
     this.view =
-      window.rslidy.utils.prependHtmlString(document.body, print_settings_html);
+      window.rslidy.utils.prependHtmlString(document.body,  print_settings_html);
+
+    //set slide numbering and links default to true
+    (<HTMLInputElement>this.view.querySelector("#rslidy-checkbox-snum")).checked = true;
+    (<HTMLInputElement>this.view.querySelector("#rslidy-checkbox-link")).checked = true;
 
     // apply print settings whenever changed, in case the user wants
     // to preview it on firefox
@@ -20,7 +25,6 @@ export class PrintSettingsComponent {
     for (let i=0; i<inputs.length; i++){
       inputs[i].onchange = ()=>this.applyPrintSettings();
     }
-
     this.view
       .querySelector("#rslidy-checkbox-link")
       .addEventListener("click", e => window.rslidy.toolbar.closeMenuOnSelection());
@@ -29,6 +33,9 @@ export class PrintSettingsComponent {
       .addEventListener("click", e => window.rslidy.toolbar.closeMenuOnSelection());
     this.view
       .querySelector("#rslidy-checkbox-frame")
+      .addEventListener("click", e => window.rslidy.toolbar.closeMenuOnSelection());
+    this.view
+      .querySelector("#rslidy-checkbox-scale")
       .addEventListener("click", e => window.rslidy.toolbar.closeMenuOnSelection());
     this.view
       .querySelector("#rslidy-button-print-submit")
@@ -51,6 +58,8 @@ export class PrintSettingsComponent {
       <HTMLInputElement>(this.view.querySelector("#rslidy-checkbox-snum"));
     var frame =
       <HTMLInputElement>(this.view.querySelector("#rslidy-checkbox-frame"));
+    var scale =
+      <HTMLInputElement>(this.view.querySelector("#rslidy-checkbox-scale"));
 
     var css = "@media print {\n";
 
@@ -80,6 +89,56 @@ export class PrintSettingsComponent {
       }`;
     }
 
+
+    if (scale.checked) {
+      const mediaQueryList = window.matchMedia('print');
+      let pageWidthPx, pageHeightPx;
+
+      // Detect current page size in pixels (based on DPI)
+      if (mediaQueryList.matches) {
+        pageWidthPx = window.innerWidth;
+        pageHeightPx = window.innerHeight;
+      } else {
+        // Fallback for typical A4 settings
+        pageWidthPx = 210 * (96 / 25.4);
+        pageHeightPx = 297 * (96 / 25.4);
+      }
+
+      // Find the maximum dimensions of any slide
+      const sections = document.querySelectorAll('.slide');
+      let maxWidth = 0, maxHeight = 0;
+
+      // @ts-ignore
+      for (const section of sections) {
+        const rect = section.getBoundingClientRect();
+        maxWidth = Math.max(maxWidth, rect.width);
+        maxHeight = Math.max(maxHeight, rect.height);
+      }
+
+      // Compute the scaling factor based on the largest dimensions
+      const scaleX = pageWidthPx / maxWidth;
+      const scaleY = pageHeightPx / maxHeight;
+      const scaleFactor = Math.min(scaleX, scaleY);
+
+      // Apply a single zoom factor for all slides
+      css += `
+      body {
+        font-size: 100% !important;
+      }
+      .slide {
+        zoom: ${scaleFactor * 1.5};
+        page-break-after: always;
+        page-break-inside: avoid;
+      }
+      img {
+        max-width: 100vh !important;
+        max-height: 100vh !important;
+      }`;
+
+    }
+
+
+
     css += "\n}";
 
     // inject CSS
@@ -88,6 +147,7 @@ export class PrintSettingsComponent {
     style.innerHTML = css;
     document.getElementsByTagName('head')[0].appendChild(style);
     this.style = style;
+
 
     // print support for RespVis (Webkit only), not supported by Firefox
     // https://bugzilla.mozilla.org/show_bug.cgi?id=774398
@@ -107,8 +167,12 @@ export class PrintSettingsComponent {
   // Description: Called whenever the print button is clicked
   // ---
   print() {
-    this.applyPrintSettings();
-    window.print();
+    try {
+      this.applyPrintSettings();
+      window.print();
+    } catch (e) {
+      console.error("Error during print operation:", e);
+    }
   }
 
   // ---
@@ -127,10 +191,11 @@ export class PrintSettingsComponent {
     (<HTMLInputElement>this.view.querySelector("#rslidy-checkbox-link")).checked = data.links;
     (<HTMLInputElement>this.view.querySelector("#rslidy-checkbox-snum")).checked = data.slidenumbers;
     (<HTMLInputElement>this.view.querySelector("#rslidy-checkbox-frame")).checked = data.frame;
+    (<HTMLInputElement>this.view.querySelector("#rslidy-checkbox-scale")).checked = data.scale;
     this.applyPrintSettings();
   }
 
-  // ---
+  // ---<
   // Description: Save print settings to the localStorage
   // ---
   public saveSettings(): void {
@@ -149,7 +214,8 @@ export class PrintSettingsComponent {
     const data: Data = {
       links: (<HTMLInputElement>this.view.querySelector("#rslidy-checkbox-link")).checked,
       slidenumbers: (<HTMLInputElement>this.view.querySelector("#rslidy-checkbox-snum")).checked,
-      frame: (<HTMLInputElement>this.view.querySelector("#rslidy-checkbox-frame")).checked
+      frame: (<HTMLInputElement>this.view.querySelector("#rslidy-checkbox-frame")).checked,
+      scale: (<HTMLInputElement>this.view.querySelector("#rslidy-checkbox-scale")).checked
     }
     return JSON.stringify(data);
   }

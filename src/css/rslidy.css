@@ -164,28 +164,30 @@ body {
 /* Print styles */
 
 @media print {
+
   body {
     color: black !important;
     background-color: white !important;
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
+    font-size: 70%;
   }
-  
+
   /* Hide UI */
 
   .rslidy-ui {
     display: none !important;
   }
-  
+
   #rslidy-trapezoid-wrapper-display {
     width: 0 !important;
   }
-  
+
   a[href^="http://"]:after, a[href^="https://"]:after {
     content: " (" attr(href) ") ";
   }
-  
+
   .slide, #rslidy-column-flex, #rslidy-row-flex {
     display: block !important;
     page-break-after: always;
@@ -193,7 +195,7 @@ body {
     -webkit-region-break-inside: avoid;
     position: relative !important; /* Makes slides appear in order */
   }
-  
+
   /* Display whole content now */
   html, body, #rslidy-content-section, #rslidy-row-flex {
     overflow: visible !important;
@@ -202,18 +204,18 @@ body {
     right: 0em !important;
     max-height: 100% !important;
   }
-  
+
   /* prevent images from bleeding over the edge of the printed page */
   img {
     max-width: 100% !important;
     max-height: 100% !important;
   }
-  
+
   /* hide video player controls while printing for webkit browsers */
   video::-webkit-media-controls {
     display: none;
   }
-  
+
   /* In case the user had the low light mode activated */
   .rslidy-color-invert {
     filter: invert(0%) !important;

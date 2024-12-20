@@ -284,8 +284,13 @@ role="region" aria-label="Print Settings" tabindex="0">
     <input type="checkbox" value="Numbers" id="rslidy-checkbox-frame">
     <label for="rslidy-checkbox-frame">`+i.slider_icon+`</label>
   </label>
+    <label id="rslidy-checkbox-scale-text" class="rslidy-menu-content">
+    `+t.print_settings[3]+`
+    <input type="checkbox" value="Numbers" id="rslidy-checkbox-scale">
+    <label for="rslidy-checkbox-scale">`+i.slider_icon+`</label>
+  </label>
   <div class="rslidy-menu-content">
-    <button id="rslidy-button-print-submit">`+t.print_settings[3]+`</button>
+    <button id="rslidy-button-print-submit">`+t.print_settings[4]+`</button>
   </div>
 </div>`;
 
