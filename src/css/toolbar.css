@@ -109,6 +109,11 @@
   touch-action: manipulation; /* prevent double tap zoom */
 }
 
+.rslidy-toolbar-button text {
+  dominant-baseline: middle;
+  text-anchor: middle;
+}
+
 .rslidy-toolbar-button:hover,
 .rslidy-toolbar-button[aria-expanded="true"]:hover {
   background-color: var(--button-hover-color);

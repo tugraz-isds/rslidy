@@ -1,0 +1,16 @@
+#chart{width:100%;height:65vh;min-height:25rem;container-type:inline-size}
+#chart .window-rv{--chart-padding-right: 1rem}
+
+@media print {
+    .toolbar__opener {
+        display: none;
+    }
+    #chart {
+        width: 100%;
+        height: 65vh !important; /* Maintain aspect ratio */
+    }
+    #chart svg {
+        width: 100% !important; /* Ensure the SVG fills the page */
+
+    }
+}

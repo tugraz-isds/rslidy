@@ -4,7 +4,8 @@ interface Data {
   links: boolean;
   slidenumbers: boolean;
   frame: boolean;
-  scale: boolean;
+  font_size: string;
+  layout: string;
 }
 
 export class PrintSettingsComponent {
@@ -35,13 +36,22 @@ export class PrintSettingsComponent {
       .querySelector("#rslidy-checkbox-frame")
       .addEventListener("click", e => window.rslidy.toolbar.closeMenuOnSelection());
     this.view
-      .querySelector("#rslidy-checkbox-scale")
+      .querySelector("#rslidy-input-font-size")
       .addEventListener("click", e => window.rslidy.toolbar.closeMenuOnSelection());
     this.view
       .querySelector("#rslidy-button-print-submit")
       .addEventListener("click", e => this.print());
 
+    const customRadio = <HTMLInputElement>document.getElementById("rslidy-checkbox-custom");
+    const scalingInput = <HTMLInputElement>document.getElementById("custom-scaling-input");
+    for (let i = 0; i < document.querySelectorAll('input[name="print-options"]').length; i++){
+      const radio = document.querySelectorAll('input[name="print-options"]')[i];
+      radio.addEventListener("change", function () {
+        scalingInput.disabled = !customRadio.checked;
+      });
+    }
     this.applyPrintSettings();
+
   }
 
   // ---
@@ -58,15 +68,90 @@ export class PrintSettingsComponent {
       <HTMLInputElement>(this.view.querySelector("#rslidy-checkbox-snum"));
     var frame =
       <HTMLInputElement>(this.view.querySelector("#rslidy-checkbox-frame"));
-    var scale =
-      <HTMLInputElement>(this.view.querySelector("#rslidy-checkbox-scale"));
+    var font_size =
+      <HTMLInputElement>(this.view.querySelector("#rslidy-input-font-size"));
+    var layout =
+      <HTMLInputElement>(this.view.querySelector("#rslidy-select-orientation"));
 
     var css = "@media print {\n";
+
+    // Select the fieldset
+    const fieldset = document.getElementById("rslidy-exclusive-checkboxes");
+
+  // Find the selected radio button within the fieldset
+    const selectedOption = fieldset.querySelector('input[name="print-options"]:checked');
+    if (selectedOption && selectedOption instanceof HTMLInputElement) {
+      console.log("Selected value:", selectedOption.value);
+
+      if(selectedOption.value == "actual") {
+        css += `
+        body {
+          transform: none;
+        }
+        .slide {
+          width: auto;
+          height: auto;
+          overflow: visible;
+        }
+    `;
+      }
+      else if(selectedOption.value  == "shrink") {
+        css += `
+        .slide {
+          max-width: 100%; /* Adjust dynamically via JavaScript */
+          height: auto;
+          overflow: hidden;
+        }
+    `;
+      }
+      else if(selectedOption.value  == "fit") {
+        css += `
+         body {
+            transform: scale(0.95); /* Adjust this scale dynamically via JavaScript */
+            transform-origin: top left;
+          }
+      
+        .slide {
+          width: 100%;
+          height: auto;
+          overflow: hidden;
+        }
+    `;
+      }
+      else {
+        var scalingInput = <HTMLInputElement>(this.view.querySelector("#custom-scaling-input"));
+        // Check if the element exists and retrieve its value
+        console.log("scalingInput");
+        if (scalingInput) {
+          const scalingValue = scalingInput.value; // This gives the value as a string
+          console.log("Scaling Input Value:", scalingValue);
+          css += `
+          .slide {
+            zoom: ${scalingValue}%;
+          }
+    `;
+        }
+
+      }
+    }
 
     if(!link.checked) {
       css += `a[href^="http://"]:after, a[href^="https://"]:after {
         content: "" !important;
       }`;
+    }
+    const chart = document.querySelector('#responsive-bar-chart');
+    console.log(chart);
+    if (chart) {
+      // Make sure the chart is visible during printing
+      css += `
+      #responsive-bar-chart {
+        visibility: visible !important;  /* Ensure the chart is visible */
+        display: block !important;       /* Ensure the chart is displayed */
+        opacity: 1 !important;           /* Ensure it's fully opaque */
+        isAnimationActive={false}
+      }
+    `;
     }
 
     if(snum.checked) {
@@ -88,9 +173,21 @@ export class PrintSettingsComponent {
         border: `+window.rslidy.print_frame+`;
       }`;
     }
+    if(layout.value == "portrait") {
+      css += ` @page {
+        size: ${layout.value};
+      }`;
+    }
+
+    if(font_size.value != "") {
+      css += ` body {
+       font-size: ${font_size.value}%;
+      }`;
+    }
 
 
-    if (scale.checked) {
+
+    /*if (scale.checked) {
       const mediaQueryList = window.matchMedia('print');
       let pageWidthPx, pageHeightPx;
 
@@ -135,8 +232,7 @@ export class PrintSettingsComponent {
         max-height: 100vh !important;
       }`;
 
-    }
-
+    }*/
 
 
     css += "\n}";
@@ -191,7 +287,16 @@ export class PrintSettingsComponent {
     (<HTMLInputElement>this.view.querySelector("#rslidy-checkbox-link")).checked = data.links;
     (<HTMLInputElement>this.view.querySelector("#rslidy-checkbox-snum")).checked = data.slidenumbers;
     (<HTMLInputElement>this.view.querySelector("#rslidy-checkbox-frame")).checked = data.frame;
-    (<HTMLInputElement>this.view.querySelector("#rslidy-checkbox-scale")).checked = data.scale;
+    console.log((<HTMLInputElement>this.view.querySelector("#rslidy-input-font-size")).value)
+    console.log(data.font_size)
+
+    if(data.font_size != null && data.font_size != "") {
+      (<HTMLInputElement>this.view.querySelector("#rslidy-input-font-size")).value = data.font_size;
+      console.log("hier");
+    }
+    if(data.layout != null && data.layout != "") {
+      (<HTMLInputElement>this.view.querySelector("#rslidy-select-orientation")).value = data.layout;
+    }
     this.applyPrintSettings();
   }
 
@@ -215,7 +320,8 @@ export class PrintSettingsComponent {
       links: (<HTMLInputElement>this.view.querySelector("#rslidy-checkbox-link")).checked,
       slidenumbers: (<HTMLInputElement>this.view.querySelector("#rslidy-checkbox-snum")).checked,
       frame: (<HTMLInputElement>this.view.querySelector("#rslidy-checkbox-frame")).checked,
-      scale: (<HTMLInputElement>this.view.querySelector("#rslidy-checkbox-scale")).checked
+      font_size: (<HTMLInputElement>this.view.querySelector("#rslidy-input-font-size")).value,
+      layout: (<HTMLInputElement>this.view.querySelector("#rslidy-select-orientation")).value,
     }
     return JSON.stringify(data);
   }

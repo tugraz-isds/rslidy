@@ -98,10 +98,11 @@ export const settings = [
 ];
 
 export const print_settings = [
-  `Show Link Destinations`,
   `Show Slide Numbers`,
   `Show Frame`,
-  `Scale to fit Page`,
+  `Show Link Destinations`,
+  `Font Size:`,
+  `Layout:`,
   `Print`
 ];
 

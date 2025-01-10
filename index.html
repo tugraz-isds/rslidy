@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Print Options Test</title>
+  <style>
+    /* General styles */
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    
+    button {
+      margin: 10px;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    
+    #content {
+      margin-top: 20px;
+      border: 2px solid black;
+      padding: 10px;
+    }
+    
+    /* Default print styles */
+    @media print {
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      
+      #content {
+        transform: none;
+        width: auto;
+        height: auto;
+        margin: 0;
+        padding: 0;
+      }
+      
+      /* Fit to Page */
+      .fit #content {
+        width: 100%; /* Scale content to fit page width */
+        height: auto;
+      }
+      
+      /* Actual Size */
+      .actual-size #content {
+        transform: none; /* Keep original dimensions */
+      }
+      
+      /* Shrink Oversized Pages */
+      .shrink #content {
+        max-width: 95%; /* Prevent overflow */
+        max-height: 95%;
+        overflow: hidden;
+      }
+    }
+  </style>
+</head>
+<body>
+<h1>Print Options Test</h1>
+<p>Click a button below to apply a print option, then print the page to observe the effect.</p>
+<button id="fit">Fit to Page</button>
+<button id="actual-size">Actual Size</button>
+<button id="shrink">Shrink Oversized Pages</button>
+
+<div id="content">
+  <h2>Test Content</h2>
+  <p>This content is designed to help test different print options. Below are elements of various sizes:</p>
+  
+  <!-- Large text block -->
+  <p style="font-size: 40px; background-color: lightyellow;
+  margin:15px 0;">
+    This is a large text block for testing scaling behavior.
+  </p>
+  
+  <!-- Fixed-size large content -->
+  <div style="width: 1200px; height: 600px; background-color: lightblue; text-align: center; line-height: 600px; margin: 10px 0;">
+    1200px x 600px Box (Oversized)
+  </div>
+  
+  <!-- Medium-sized content -->
+  <div style="width: 800px; height: 400px; background-color: lightgreen; text-align: center; line-height: 400px; margin: 10px 0;">
+    800px x 400px Box (Fits Some Page Sizes)
+  </div>
+  
+  <!-- Small content -->
+  <div style="width: 400px; height: 200px; background-color: lightcoral; text-align: center; line-height: 200px; margin: 10px 0;">
+    400px x 200px Box (Should Stay the Same)
+  </div>
+  
+  <!-- Placeholder image -->
+  <img src="https://picsum.photos/800/400" alt="Placeholder Image" style="margin: 10px 0;">
+</div>
+
+<script>
+  // JavaScript to toggle the print styles
+  document.getElementById('fit').addEventListener('click', () => {
+    document.body.className = 'fit';
+    window.print();
+  });
+  
+  document.getElementById('actual-size').addEventListener('click', () => {
+    document.body.className = 'actual-size';
+    window.print();
+  });
+  
+  document.getElementById('shrink').addEventListener('click', () => {
+    document.body.className = 'shrink';
+    window.print();
+  });
+</script>
+</body>
+</html>

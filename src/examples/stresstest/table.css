@@ -1,0 +1,161 @@
+/* tables */
+
+.table-wrapper {
+  overflow-x: auto;
+}
+
+table {
+  /*center table margin: 0 auto 1em auto; */
+  margin: 0 0 1em 0;
+  font-size: 70%;
+  caption-side: bottom;
+  border-style: solid;
+  border-width: thin;
+  border-collapse: collapse;
+  empty-cells: show;
+  line-break: loose;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}
+
+table caption {
+  margin: 1em 0;
+  font-size: 80%;
+  text-align: center;
+}
+
+
+tr:nth-child(even) {
+  background: #f8f8f8;
+}
+
+tr:nth-child(odd) {
+  background: #ffffff;
+}
+
+
+th {
+  font-weight: bold;
+  background-color: #dddddd;
+  padding: 0.50ex;
+  border-style: solid;
+  border-width: thin;
+  text-align: left;
+  vertical-align: top;
+}
+
+td {
+  padding: 0.50ex;
+  border-style: solid;
+  border-width: thin;
+  text-align: left;
+  vertical-align: top;
+}
+
+
+
+th.number, td.number {
+  text-align: right;
+}
+
+th.date, td.date {
+  text-align: center;
+}
+
+.table-tick {
+  color: green;
+}
+.table-cross {
+  color: red;
+}
+
+/*
+Alternative way of aligning table cells right or center
+<table class="col2r col3r col4r col5r">
+*/
+
+.col1r td:nth-child(1), .col1r th:nth-child(1),
+.col2r td:nth-child(2), .col2r th:nth-child(2),
+.col3r td:nth-child(3), .col3r th:nth-child(3),
+.col4r td:nth-child(4), .col4r th:nth-child(4),
+.col5r td:nth-child(5), .col5r th:nth-child(5),
+.col6r td:nth-child(6), .col65 th:nth-child(6),
+.col7r td:nth-child(7), .col7r th:nth-child(7),
+.col8r td:nth-child(8), .col8r th:nth-child(8),
+.col9r td:nth-child(9), .col9r th:nth-child(9),
+.col10r td:nth-child(10), .col10r th:nth-child(10),
+.col11r td:nth-child(11), .col11r th:nth-child(11),
+.col12r td:nth-child(12), .col12r th:nth-child(12) { text-align:right }
+
+.col1c td:nth-child(1), .col1c th:nth-child(1),
+.col2c td:nth-child(2), .col2c th:nth-child(2),
+.col3c td:nth-child(3), .col3c th:nth-child(3),
+.col4c td:nth-child(4), .col4c th:nth-child(4),
+.col5c td:nth-child(5), .col5c th:nth-child(5),
+.col6c td:nth-child(6), .col6c th:nth-child(6),
+.col7c td:nth-child(7), .col7c th:nth-child(7),
+.col8c td:nth-child(8), .col8c th:nth-child(8),
+.col9c td:nth-child(9), .col9c th:nth-child(9),
+.col10c td:nth-child(10), .col10c th:nth-child(10),
+.col11c td:nth-child(11), .col11c th:nth-child(11),
+.col12c td:nth-child(12), .col12c th:nth-child(12) { text-align:center }
+
+
+
+
+
+
+
+
+
+/*
+Responsive table for narrow widths
+*/
+
+@media only all and (max-width: 50rem)  {
+  table {
+    border: 0;
+  }
+
+  /* Hide table headers (but not display: none;, for accessibility) */
+  thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+
+
+  /*
+  Note: using display: flex removes all table semantics for
+  screen readers (need a fix). See:
+  https://adrianroselli.com/2018/02/tables-css-display-properties-and-aria.html
+  */
+
+  tr {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0.8em;
+  }
+
+  td {
+    border-bottom: 0.04em solid black;
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8em;
+    text-align: right !important;
+  }
+
+  td::before {
+    font-weight: bold;
+  }
+
+  table.javaScript-based-slide-deck-comparison td:nth-of-type(1):before { content: "Feature"; }
+  table.javaScript-based-slide-deck-comparison td:nth-of-type(2):before { content: "Shower"; }
+  table.javaScript-based-slide-deck-comparison td:nth-of-type(3):before { content: "Reveal.js"; }
+  table.javaScript-based-slide-deck-comparison td:nth-of-type(4):before { content: "Deck.js"; }
+  table.javaScript-based-slide-deck-comparison td:nth-of-type(5):before { content: "impress.js"; }
+  table.javaScript-based-slide-deck-comparison td:nth-of-type(6):before { content: "Bespoke.js"; }
+  table.javaScript-based-slide-deck-comparison td:nth-of-type(7):before { content: "Inspire.js"; }
+
+
+}

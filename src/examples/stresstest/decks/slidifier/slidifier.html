@@ -1,0 +1,156 @@
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	
+	<title>Slidifier</title> 
+	
+	<link rel="stylesheet" type="text/css" href="lib/reset.css" />
+	<link type="text/css" rel="stylesheet" href="lib/prettify/prettify.css" />
+	<link type="text/css" rel="stylesheet" href="lib/prettify/sunburst.css" />
+	
+	<link rel="stylesheet" type="text/css" href="css/styles.css" />
+	<link rel="stylesheet" type="text/css" href="css/themes/common.css" />
+	
+	<!--[if IE]>
+		<link rel="stylesheet" type="text/css" href="css/ie.css" />
+	<![endif]-->
+	
+	<script type="text/javascript" src="lib/jquery-1.7.1.min.js"></script>
+	<script type="text/javascript" src="lib/jquery-urlparser/jquery.url.js"></script>
+	<script type="text/javascript" src="lib/jquery-fieldselection/jquery-fieldselection.min.js"></script>
+	<script type="text/javascript" src="lib/prettify/prettify.js"></script>
+	<script type="text/javascript" src="lib/resizer/jquery.textarearesizer.js"></script>
+	<script type="text/javascript" src="lib/cbsplit/cbsplit.js"></script>
+	
+	<script type="text/javascript" src="js/ui.js"></script>
+	<script type="text/javascript" src="js/io.js"></script>
+	<script type="text/javascript" src="js/dynamics.js"></script>
+	<script type="text/javascript" src="js/slideparser.js"></script>
+	<script type="text/javascript" src="js/slidifier.js"></script>
+	<script type="text/javascript" src="js/slideeditor.js"></script>
+	
+	<link rel="icon" type="image/gif" href="favicon.gif">
+	<link rel="shortcut icon" href="favicon.gif">
+	
+	<!-- Google Analytics -->
+	<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-23947561-1']);
+		_gaq.push(['_trackPageview']);
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+	</script>
+</head>
+	
+<body>
+	 
+	<div id="slide" class="noselect">
+		<div id="help"><strong>F11</strong> or <strong>&#8679;&#8984;F</strong> for fullscreen - Arrow keys <strong>left/right</strong> or <strong>mouse button</strong> to navigate - <strong>Esc</strong> to exit</div>
+		<span id="clock"></span>
+		<span id="slidecounter"></span>
+		<div id="slidecontent"></div>
+	</div>
+	
+	<div id="slideEdit">
+		<div id="header">
+			<div class="center">
+				<a href="index.html"><img id="logo" src="img/logo.png" /></a>
+				<ul>
+					<li><a href="https://github.com/Espenhh/Slidifier">Github</a></li>
+					<li><a href="about.html">About</a></li>
+					<li><a href="slidifier.html" class="active">Do it!</a></li>
+				</ul>
+			</div>		
+		</div>
+		
+		<div id="urls">
+			<div>This presentation is <strong>saved online</strong> at: <a href="#" id="admin-url"></a></div>
+			<div>A read-only version for <strong>sharing</strong> is at: <a href="#" id="share-url" target="_blank"></a></div>
+		</div>
+
+		<div id="readonlyMsg">
+			<span>Press <strong>Slidify!</strong> to view presentation</span>
+		</div>
+		
+		<form id="srcForm" action="" method="post">
+			<button id="headingbutton" class="slidifierbutton editorbutton smallButton"># Heading</button>
+			<button id="listbutton" class="slidifierbutton editorbutton smallButton">- List</button>
+			<button id="newslidebutton" class="slidifierbutton editorbutton smallButton">--- New slide</button>
+			<button id="picturedialogbutton" class="slidifierbutton editorbutton smallButton"><span class="picturedialogbuttonlabel">Picture</span></button>
+
+			<div id="picturesrcForm">
+				<iframe id="uploadframe" name="uploadframe" src="upload.html" width="500" height="42"></iframe>
+				<em>or ...</em>
+				<span class="slidifierbutton editorbutton">
+					Enter <label for="picturesrc">picture url:</label> <input type="text" id="picturesrc" name="picturesrc" value="http://"/>
+				</span>
+				<button id="insertpicturebutton" class="slidifierbutton smallButton">Insert picture</button>
+				<a href="#" id="cancelpicturelink">Cancel</a>
+			</div>
+
+			<textarea name="slides_src" id="slidesSrc">
+# Slidifier
+
+Slidifier is a simple tool for creating presentations.
+
+---
+
+# This is a heading
+
+With Slidifier, you simply write what you want to say.
+
+No gimmicks! Just use --- to separate your slides.
+
+---
+
+# Slidify today!
+
+Your text will be slidified into an elegant presentation that works on any machine!
+
+- This is a list of bullet points
+- With Slidifier, you think about WHAT you want to say, not how it looks
+- The rest is magic
+
+---
+
+# A picture is worth a thousand words
+
+<img src="http://slidifier.com/uploaded_files/pic.jpg"/>
+
+---
+
+# Technical people
+
+Techies like to have code in their presentations. So you can do that too.
+
+\\
+public int code() {
+	return true;
+}
+\\
+
+## Non-techies don't have to worry about that!
+
+---
+
+# That's it!
+
+## (Try it yourself!)
+</textarea>
+			<div id="themePicker">
+				<b>Theme:</b>
+				<input type="radio" name="theme" value="white" id="whitetheme" checked><label id="whitelabel" for="whitetheme">White</label>
+				<input type="radio" name="theme" value="black" id="blacktheme"><label id="blacklabel" for="blacktheme">Black</label>
+			</div> 
+			<input id="submitButton" class="slidifierbutton" type="submit" value="Slidify!" />
+			<button id="saveButton" class="slidifierbutton smallButton">Save</button>
+			<button id="newButton" class="slidifierbutton smallButton">New</button>
+			<div style="clear: both"></div>
+		</form>
+	</div>
+ 
+</body>
+</html>

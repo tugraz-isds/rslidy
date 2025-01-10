@@ -1,0 +1,48 @@
+<svg viewBox="0 0 300 200"
+  aria-labelledby="title desc"
+  role="img"
+  version="1.1"
+  baseProfile="full"
+  xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+>
+
+<title id="title">Diagram</title>
+<desc id="desc">Example of a vector graphics diagram.</desc>
+
+<!--
+Copyright © 2019 by Keith Andrews.
+This work is placed under a Creative Commons Attribution 4.0
+International (CC BY 4.0) licence.
+https://creativecommons.org/licenses/by/4.0/
+-->
+
+<g>
+
+<rect x="0" y="0" width="300" height="200"
+  fill="none" stroke-width="1" stroke="black"/>
+
+<rect x="10" y="10" width="100" height="60" rx="5" ry="5" 
+  fill="rgb(240,240,240)" stroke-width="1" stroke="black"/>
+<text x="60"  y="40" font-family="Verdana" font-size="20"
+  text-anchor="middle" fill="black" xml:space="default">
+A</text>
+
+<rect x="120" y="10" width="100" height="60" rx="5" ry="5" 
+  fill="rgb(240,240,240)" stroke-width="1" stroke="black"/>
+<text x="170"  y="40" font-family="Verdana" font-size="20"
+  text-anchor="middle" fill="black" xml:space="default">
+B</text>
+
+<circle cx="230" cy="130" r="50" stroke="black"
+  fill="rgb(240,240,240)" stroke-width="1" />
+<text x="230"  y="130" font-family="Verdana" font-size="20"
+  text-anchor="middle" fill="black" xml:space="default">
+C</text>
+
+<polyline points="60,80 60,130 170,130"
+  fill="none" stroke-width="2" stroke="black" stroke-linecap="round"/>
+
+</g>
+
+</svg>

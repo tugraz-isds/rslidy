@@ -1,0 +1,33 @@
+body {
+	text-align: center;
+}
+
+div.frontpagecontainer,
+div#slide {
+	text-align: left;
+}
+
+div.centeredcontent {
+	text-align: center;
+}
+
+#header {
+	padding-top: 10px;
+}
+
+#header ul li a {
+	width: 70px;
+	padding-bottom: 3px;
+}
+
+.slidifierbutton {
+	background-color: #4E4653;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#6E6673', endColorstr='#2E2633');
+	border: 2px solid #353132;
+}
+
+.slidifierbutton:hover {
+	background-color: #99173C;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#A9375C', endColorstr='#69071C');
+	border: 2px solid #Cd6886;
+}

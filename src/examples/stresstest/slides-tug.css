@@ -1,0 +1,80 @@
+/* Set the default font color and padding for slides */
+
+.slide {
+  color: #333333;
+  padding: 2rem 4rem;
+}
+
+/* Styles for the Title slide */
+
+.titleslide {
+  background: url("images/background.png") no-repeat center, linear-gradient(white 20%, gray 100%);
+  background-size: contain;
+  display: flex;
+  flex-direction: column;
+
+}
+
+.titleslide h1, .closingslide h1 {
+  font-size: 4rem;
+  margin-left: 4rem;
+  margin-top: 5%;
+}
+
+.titleslide h2, .closingslide h2 {
+  font-size: 3rem;
+  margin-left: 4rem;
+  line-height: 1.6;
+}
+
+.titleslide h3 {
+  font-size: 2.50rem;
+  margin-left: 4rem;
+}
+
+/* Styles for other slides */
+
+.slide:not(.titleslide) {
+  background: url("images/tugraz-logo.svg") 95% 4%/auto 2em no-repeat;
+}
+
+.slide:not(.titleslide) h1 {
+  padding-right: 3.4em;
+}
+
+/* Footer */
+
+.slide:not(.titleslide) {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer {
+  margin-top: auto;
+  font-size: 50%;
+  text-align: right;
+}
+
+div.copyright {
+  margin-top: auto;
+  text-align: right;
+}
+
+div.copyright p {
+  display: inline-block;
+  background-color: #eee;
+  padding: 0.2em;
+  border-radius: 0.2em;
+  font-size: 50%;
+  max-width: 35%;
+}
+
+/* Resize respvis title labels */
+.respvis-title {
+  font-size: 75%;
+  letter-spacing: 0.1em !important;
+}
+
+.small-code {
+  font-size: 85% !important;
+}
