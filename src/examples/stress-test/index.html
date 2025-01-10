@@ -17,12 +17,7 @@
 
 <!-- for custom css sheets-->
 <link rel="stylesheet" href="slides.css"/>
-<link rel="stylesheet" href="table.css"/>
 
-
-<link rel="stylesheet" href="respvis_3_2/respvis.css"/>
-<link rel="stylesheet" href="respvis_3_2/line-chart.css"/>
-<link rel="stylesheet" href="hypertree/d3-hypertree-light.css"/>
 
 
 <!-- for Math Equations -->
@@ -32,19 +27,8 @@
 -->
 
 
-<!-- Source code highlighting with Prism -->
-<link rel="stylesheet" href="prism/prism.css"/>
-<script src="prism/prism.js"></script>
-
-<!-- For responsive charts -->
-<script src="respvis/d3/d3.v6.js" ></script>
-<script src="respvis/respvis.js" ></script>
-<script src="respvis/respvis_bar_chart.js" ></script>
-  <script type="module">
-    import {createLineChart} from "./respvis_3_2/multi-line-chart.js"
-    createLineChart('#chart')
-  </script>
 </head>
+
 
 
 <body>
@@ -52,7 +36,7 @@
 
 <section class="titleslide">
 
-<h1>Rslidy: Print testing</h1>
+<h1>Rslidy: Print Testing</h1>
 <h2>Fabian Platzer<br/>
     Master's Thesis <br/>
     Graz University of Technology</h2>
@@ -63,7 +47,6 @@ GitHub:<br/>
 <a href="https://github.com/tugraz-isds/rslidy/">
 https://github.com/tugraz-isds/rslidy/</a>
 </p>
-
 
 <div class="copyright">
 <p>Copyright © 2025 by the author, except as otherwise noted. This
@@ -76,28 +59,65 @@ licence.</p>
 
 
 
+
+
 <section>
-<h1>RespVis Bar Chart</h1>
-
-<div id="responsive-bar-chart" style="width: 100%;height: 50vh;min-height: 25rem;"></div>
-
-<div class="credits">
-  <p>
-  Adapted from RespVis example<br/>
-  <a href="https://respvis.netlify.app/examples/grouped-bar.html">
-  <code>https://respvis.netlify.app/examples/grouped-bar.html</code></a>
+  <h1>Advantages of Using Rslidy</h1>
+  
+  <p>Rslidy uses HTML5, CSS3 and TypeScript which help you create
+    dynamic and visually appealing presentations.</p>
+  
+  <p>It ensures the presentation adapts to various screen sizes,
+    providing a consistent user experience.</p>
+  
+  <p>It provides you help and setting options in slide deck.</p>
+  
+  <p>It includes special features like:</p>
+  <ul>
+    <li>Built-in image viewer.</li>
+    <li>Export slide deck as PDF.</li>
+    <li>Include JavaScript code (e.g. responsive charts).</li>
+    <li>Write math equations.</li>
+  </ul>
+  
+  
+  <p>Demo of Rslidy on YouTube:<br/>
+    <a href="https://youtu.be/AXeh42751uM">
+      <code>https://youtu.be/AXeh42751uM</code></a>
   </p>
-  <p>
-  Based on data from StatCounter<br/>
-  <a href="https://gs.statcounter.com/browser-market-share/">
-  <code>https://gs.statcounter.com/browser-market-share/</code></a>
-  </p>
-</div>
+  <br/>
+
+</section>
+
+
+
+
+
+<section>
+<h1>Slidy &amp; Slidy2</h1>
 
 <ul>
-<li>Top Platforms: Windows 10, Android 10, iOS14</li>
-<li>Top Screen Resolutions: 1366x768, 640x360, 1920x1080</li>
+<li>Developed by Dave Raggett in 2005.</li>
+
+<li>One of the first HTML based presentation frameworks.</li>
+
+<li>Slides are defined in blocks <code class="language-html small-code">&lt;div class="slide"&gt;...&lt;/div&gt;</code>.</li>
+
+<li>Includes: show.css, slidy.js, print.css (optional)</li>
+
+<li><a href="decks/slidy/Overview.html" target="_blank">Example</a></li>
 </ul>
+
+<figure>
+<div class="large-images">
+<img src="images/slidy-toc.png" alt="Slidy2 features an auto-generated table of contents." />
+</div>
+<figcaption>
+  Slidy2 features an auto-generated table of contents.<br/>
+  <span class="credit">Screenshot taken from <a href="https://www.w3.org/Talks/Tools/Slidy2/"
+target="_blank">Slidy2</a>.</span>
+</figcaption>
+</figure>
 
 <footer class="footer">
   Patrick Hipp, Graz University of Technology, Thu 28 Oct 2021
@@ -111,9 +131,62 @@ licence.</p>
 
 
 <section>
-  <h1>RespVis 3.2 Multi Line Chart</h1>
+<h1>Beautiful.ai GIF</h1>
+
+<ul>
+<li>Offers AI assistance during the slide creation process.</li>
+
+<li>Smart slide templates are provided: for charts and diagrams.</li>
+
+<li>Offers a free image and icon library.</li>
+
+<li>Paid plans include analytic tools.</li>
+</ul>
+
+<figure>
+<div class="images">
+<img src="images/beautiful-ai.gif" alt="Beautiful.ai offers tools for creating and editing charts and diagrams." />
+</div>
+<figcaption>
+  Beautiful.ai offers tools for creating charts.<br/>
+  <span class="credit">Screencapture taken from <a href="https://beautiful.ai/"
+target="_blank">Beautiful.ai</a>.</span>
+</figcaption>
+</figure>
+
+<footer class="footer">
+  Patrick Hipp, Graz University of Technology, Thu 28 Oct 2021
+</footer>
+
+</section>
+
+
+
+
+<section>
+  <h2>Gesture Support</h2>
   
-  <div id="chart"></div>
+  <div>
+    <ul class="item-auto">
+      <li>Swipe.</li>
+      <li>Margin tap (similar to that of e-readers).</li>
+      <li>Tilt/Tip.</li>
+      <li>Shake.</li>
+    </ul>
+    <figure>
+      <div class="images">
+        <img src="images/tilt-tip-gestures.svg" alt="A graphic describing the tilt and tip gestures available in Rslidy." />
+      </div>
+      <figcaption>
+        Tilt and tip gestures can be used for navigation (in addition to swipe and tap gestures).<br/>
+        <span class="credit">Illustration made by the author using Inkscape.</span>
+      </figcaption>
+    </figure>
+  </div>
+  
+  <footer class="footer">
+    Patrick Hipp, Graz University of Technology, Thu 28 Oct 2021
+  </footer>
 </section>
 
 
@@ -124,6 +197,8 @@ licence.</p>
 
 
 
+
+<link rel="stylesheet" href="resp-table.css"/>
 
 <section>
   <h1>Responsive Table</h1>
@@ -319,119 +394,8 @@ licence.</p>
 
 
 
-
-
-
-
-
-<section>
-<h1>Slidy & Slidy2</h1>
-
-<ul>
-<li>Developed by Dave Raggett in 2005.</li>
-
-<li>One of the first HTML based presentation frameworks.</li>
-
-<li>Slides are defined in blocks <code class="language-html small-code">&lt;div class="slide"&gt;...&lt;/div&gt;</code>.</li>
-
-<li>Includes: show.css, slidy.js, print.css (optional)</li>
-
-<li><a href="decks/slidy/Overview.html" target="_blank">Example</a></li>
-</ul>
-
-<figure>
-<div class="large-images">
-<img src="images/slidy-toc.png" alt="Slidy2 features an auto-generated table of contents." />
-</div>
-<figcaption>
-  Slidy2 features an auto-generated table of contents.<br/>
-  <span class="credit">Screenshot taken from <a href="https://www.w3.org/Talks/Tools/Slidy2/"
-target="_blank">Slidy2</a>.</span>
-</figcaption>
-</figure>
-
-<footer class="footer">
-  Patrick Hipp, Graz University of Technology, Thu 28 Oct 2021
-</footer>
-</section>
-
-
-
-
-
-
-
-
-
-
-
-
-<section>
-<h1>Beautiful.ai GIF</h1>
-
-<ul>
-<li>Offers AI assistance during the slide creation process.</li>
-
-<li>Smart slide templates are provided: for charts and diagrams.</li>
-
-<li>Offers a free image and icon library.</li>
-
-<li>Paid plans include analytic tools.</li>
-</ul>
-
-<figure>
-<div class="images">
-<img src="images/beautiful-ai.gif" alt="Beautiful.ai offers tools for creating and editing charts and diagrams." />
-</div>
-<figcaption>
-  Beautiful.ai offers tools for creating charts.<br/>
-  <span class="credit">Screencapture taken from <a href="https://beautiful.ai/"
-target="_blank">Beautiful.ai</a>.</span>
-</figcaption>
-</figure>
-
-<footer class="footer">
-  Patrick Hipp, Graz University of Technology, Thu 28 Oct 2021
-</footer>
-
-</section>
-
-
-
-
-
-
-
-
-
-<!--
-<section>
-  <h2>Math Equations using <a href="https://www.mathjax.org/">MathJax</a></h2>
-  <p>
-  When \(a \ne 0\), there are two solutions to \(ax^2 + bx + c = 0\) and they
-  are \[x = {-b \pm \sqrt{b^2-4ac} \over 2a}.\]
-  </p>
-  <p>Rendered from this HTML snippet:</p>
-  <pre><code class="language-html">&lt;p&gt;
-  When \(a \ne 0\), there are two solutions to \(ax^2 + bx + c = 0\) and they are
-  \[x = {-b \pm \sqrt{b^2-4ac} \over 2a}.\]
-&lt;/p&gt;</code></pre>
-<footer class="footer">
-  Patrick Hipp, Graz University of Technology, Thu 28 Oct 2021
-</footer>
-</section>
--->
-
-
-
-
-
-
-
-
-
-
-
+<link rel="stylesheet" href="prism/prism.css"/>
+<script src="prism/prism.js"></script>
 
 <section>
 <h1>Source Code Highlighting using <a href="https://prismjs.com/">Prism.js</a></h1>
@@ -449,32 +413,43 @@ is also possible.</p>
 </footer>
 </section>
 
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="respvis/respvis.css"/>
+<link rel="stylesheet" href="respvis/line-chart.css"/>
+
+<script type="module">
+  import {createLineChart} from "./respvis/multi-line-chart.js"
+  createLineChart('#chart')
+</script>
+
+<section>
+  <h1>RespVis 3.2 Multi Line Chart</h1>
+  
+  <div id="chart"></div>
+</section>
+
+
+
+
+
+
+
+
+
 <!-- Example of including live JS code, here a hypertree -->
 
 <script src="hypertree/d3-hypertree.js"></script>
 
-<style>
-  .unitdisk-nav {
-    margin: 3em;
-  }
-  @media print {
-    .unitdisk-nav {
-      position: relative !important;
-      height: 65vh !important;
-      top: 15% !important;
-    }
-  }
-</style>
-
-
-
-
-
-
-
-
-
-
+<link rel="stylesheet" href="hypertree/d3-hypertree-light.css"/>
+<link rel="stylesheet" href="hypertree/d3-hypertree-config.css"/>
 
 
 <section>
@@ -558,107 +533,25 @@ ht.initPromise
 
 
 
+<!--
 <section>
-  <h2>Gesture Support</h2>
-  
-  <div>
-    <ul class="item-auto">
-      <li>Swipe.</li>
-      <li>Margin tap (similar to that of e-readers).</li>
-      <li>Tilt/Tip.</li>
-      <li>Shake.</li>
-    </ul>
-    <figure>
-      <div class="images">
-        <img src="images/tilt-tip-gestures.svg" alt="A graphic describing the tilt and tip gestures available in Rslidy." />
-      </div>
-      <figcaption>
-        Tilt and tip gestures can be used for navigation (in addition to swipe and tap gestures).<br/>
-        <span class="credit">Illustration made by the author using Inkscape.</span>
-      </figcaption>
-    </figure>
-  </div>
-  
-  <footer class="footer">
-    Patrick Hipp, Graz University of Technology, Thu 28 Oct 2021
-  </footer>
-</section>
-
-
-
-
-
-
-
-
-
-
-
-
-<section>
-  <h1>Example Slide with Code and Image</h1>
-  <div class="columns-even">
-<pre class="language">
-<code class="language-html">&lt;section&gt;
-  &lt;h1&gt;Rslidy Example Slide&lt;/h1&gt;
-  &lt;div class="slide-content"&gt;
-    &lt;div class="bullets"&gt;
-      &lt;ul&gt;
-        &lt;li&gt;Bullet Point 1&lt;/li&gt;
-        &lt;li&gt;Bullet Point 2&lt;/li&gt;
-        &lt;li&gt;Bullet Point 3&lt;/li&gt;
-      &lt;/ul&gt;
-    &lt;/div&gt;
-    &lt;div class="image"&gt;
-      &lt;img src="./images/example.svg" alt="Rslidy"&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-&lt;/section&gt;
-</code>
-</pre>
-    <div class="figures-half">
-      <figure>
-        <div class="images">
-          <img src="images/rslidy_example_slide.png"
-               alt="Rslidy: Example Slide"
-               style="max-height:20em; border: 1px solid #D3D3D3;" />
-        </div>
-        <figcaption>Rslidy: Example slide.</figcaption>
-      </figure>
-    </div>
-  </div>
-</section>
-
-
-
-
-<section>
-  <h1>Advantages of Using Rslidy</h1>
-  
-  <p>Rslidy uses HTML5, CSS3 and TypeScript which help you create
-    dynamic and visually appealing presentations.</p>
-  
-  <p>It ensures the presentation adapts to various screen sizes,
-    providing a consistent user experience.</p>
-  
-  <p>It provides you help and setting options in slide deck.</p>
-  
-  <p>It includes special features like:</p>
-  <ul>
-    <li>Built-in image viewer.</li>
-    <li>Export slide deck as PDF.</li>
-    <li>Include JavaScript code (e.g. responsive charts).</li>
-    <li>Write math equations.</li>
-  </ul>
-  
-  
-  <p>Demo of Rslidy on YouTube:<br/>
-    <a href="https://youtu.be/AXeh42751uM">
-      <code>https://youtu.be/AXeh42751uM</code></a>
+  <h2>Math Equations using <a href="https://www.mathjax.org/">MathJax</a></h2>
+  <p>
+  When \(a \ne 0\), there are two solutions to \(ax^2 + bx + c = 0\) and they
+  are \[x = {-b \pm \sqrt{b^2-4ac} \over 2a}.\]
   </p>
-  <br/>
-
+  <p>Rendered from this HTML snippet:</p>
+  <pre><code class="language-html">&lt;p&gt;
+  When \(a \ne 0\), there are two solutions to \(ax^2 + bx + c = 0\) and they are
+  \[x = {-b \pm \sqrt{b^2-4ac} \over 2a}.\]
+&lt;/p&gt;</code></pre>
+<footer class="footer">
+  Patrick Hipp, Graz University of Technology, Thu 28 Oct 2021
+</footer>
 </section>
+-->
+
+
 
 
 
