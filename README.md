@@ -43,28 +43,21 @@ Download the latest binary release
 [here](https://github.com/tugraz-isds/rslidy/releases/latest).
 
 
-To install and build Rslidy from source, use the following commands:
+To install and build Rslidy from source, use the following command:
 
 ```
 git clone "https://github.com/tugraz-isds/rslidy.git"
 ```
-Then, in the rslidy folder, if you want to run the project with npm,
-use the following commands:
-
+In the `rslidy/` folder, install the project dependencies with:
 ```
-npm install
-npx gulp
+yarn
 ```
 
-If you want to run the project with yarn,
-use the following commands:
-
+Then, build Rslidy with the command:
 ```
-yarn install
-yarn build
+npx gulp build
 ```
-
-The `rslidy/build` folder will then contain Rslidy's main files, as
+The `rslidy/build` folder then contain Rslidy's main files, as
 well as some example presentations, which can be copied and adapted to
 create new slide decks.
 
@@ -231,14 +224,10 @@ yarn build
 Build may be omitted, since it is the default gulp task.
 There is also a gulp task using `Browsersync` and `gulp watch`
 for more convenient development.
-
 ```
 npx gulp watch
 ```
-or
-```
-yarn watch
-```
+
 
 This task will initialise a build and synchronise the
 browser content every time a source files changes.
@@ -282,8 +271,11 @@ The following people have contributed to Rslidy:
   [kandrews@iicm.edu](mailto:kandrews@iicm.edu?subject=Rslidy)  
   Project Leader
 
-- Patrick Hipp  
+- Fabian Platzer  
   Master's Thesis, main developer
+
+- Patrick Hipp  
+  Master's Thesis, original developer
 
 - Christopher Kopel  
 
@@ -307,8 +299,5 @@ The following people have contributed to Rslidy:
 
 - Elias Zeitfogel, Patrick Kasper, Karina Priebernig, Clemens Meinhart  
   IAweb WS 2013 G4
-
-- Fabian Platzer  
-  Master's Thesis
 
 
