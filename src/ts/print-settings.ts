@@ -83,38 +83,70 @@ export class PrintSettingsComponent {
     if (selectedOption && selectedOption instanceof HTMLInputElement) {
       console.log("Selected value:", selectedOption.value);
 
-      if(selectedOption.value == "actual") {
+      if(selectedOption.value === "actual") {
         css += `
         body {
-          transform: none;
-        }
-        .slide {
-          width: auto;
-          height: auto;
-          overflow: visible;
+        transform: none !important; /* No scaling */
+        margin: 0 !important; /* Optional: Remove unintended margins */
+        padding: 0 !important; /* Optional: Remove unintended padding */
+      }
+      #rslidy-content-section .slide {
+        width: auto !important;
+        height: auto !important;
+        overflow: visible !important; /* Content won't be clipped */
+      }
+    `;
+      }
+      else if(selectedOption.value  === "shrink") {
+        css += `
+        #rslidy-content-section .slide {
+          max-width: 100% !important; /* Ensure it fits within the page */
+          height: auto !important; /* Maintain aspect ratio */
+          overflow: hidden !important; /* Clip content exceeding dimensions */
+          box-sizing: border-box !important; /* Include padding/border in dimensions */
         }
     `;
       }
-      else if(selectedOption.value  == "shrink") {
+      else if(selectedOption.value  == "fit2") {
+        const content = document.querySelector('.slide'); // Your content container
+        if (!content) return;
+
+        // Get content dimensions
+        const contentWidth = content.scrollWidth;
+        const contentHeight = content.scrollHeight;
+
+        // Set printable area dimensions (adjust for printer margins if necessary)
+        const printableWidth = window.innerWidth; // Or a fixed page width in pixels
+        const printableHeight = window.innerHeight; // Or a fixed page height in pixels
+
+        // Calculate the scaling factor
+        const scaleX = printableWidth / contentWidth;
+        const scaleY = printableHeight / contentHeight;
+        const scaleFactor = Math.min(scaleX, scaleY);
+
+        // Apply scaling dynamically
         css += `
-        .slide {
-          max-width: 100%; /* Adjust dynamically via JavaScript */
-          height: auto;
-          overflow: hidden;
+        #rslidy-content-section .slide {
+            transform: scale(${scaleFactor}) !important;
+            transform-origin: top left !important;
         }
     `;
+
+        console.log(`Content scaled to ${scaleFactor * 100}% to fit one page.`);
       }
       else if(selectedOption.value  == "fit") {
         css += `
          body {
-            transform: scale(0.95); /* Adjust this scale dynamically via JavaScript */
-            transform-origin: top left;
-          }
-      
-        .slide {
-          width: 100%;
-          height: auto;
-          overflow: hidden;
+          transform: scale(0.95) !important; /* Dynamically calculate the scale if needed */
+          transform-origin: top left !important; /* Ensure scaling starts from the top-left corner */
+          margin: 0 !important; /* Remove unnecessary margins */
+          padding: 0 !important;
+        }
+        #rslidy-content-section .slide {
+          width: auto !important; /* Let the scaling handle resizing */
+          height: auto !important;
+          overflow: hidden !important; /* Prevent content from spilling */
+          box-sizing: border-box !important; /* Handle padding and borders correctly */
         }
     `;
       }
@@ -123,15 +155,28 @@ export class PrintSettingsComponent {
         // Check if the element exists and retrieve its value
         console.log("scalingInput");
         if (scalingInput) {
-          const scalingValue = scalingInput.value; // This gives the value as a string
+          const scalingValue = parseFloat(scalingInput.value); // Parse the input as a number
           console.log("Scaling Input Value:", scalingValue);
-          css += `
-          .slide {
-            zoom: ${scalingValue}%;
-          }
-    `;
-        }
 
+          // Ensure scalingValue is a valid percentage and apply scaling
+          if (!isNaN(scalingValue) && scalingValue > 0) {
+            const scaleFactor = scalingValue / 100; // Convert percentage to scale factor (e.g., 50% -> 0.5)
+            css += `
+            #rslidy-content-section .slide {
+                transform: scale(${scaleFactor}) !important;
+                transform-origin: center !important; /* Optional: Define the scaling origin */
+                width: auto !important;
+                height: auto !important;
+                overflow: visible !important;
+            }
+        `;
+
+            // Apply the CSS dynamically (depending on your setup, you might need a style element or similar logic)
+            console.log(css);
+          } else {
+            console.error("Invalid scaling value:", scalingValue);
+          }
+        }
       }
     }
 

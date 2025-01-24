@@ -48,11 +48,20 @@ To install and build Rslidy from source, use the following commands:
 ```
 git clone "https://github.com/tugraz-isds/rslidy.git"
 ```
-Then, in the rslidy folder, run:
+Then, in the rslidy folder, if you want to run the project with npm,
+use the following commands:
 
 ```
 npm install
 npx gulp
+```
+
+If you want to run the project with yarn,
+use the following commands:
+
+```
+yarn install
+yarn build
 ```
 
 The `rslidy/build` folder will then contain Rslidy's main files, as
@@ -214,6 +223,11 @@ To build the project use:
 ```
 npx gulp build
 ```
+or if you use yarn:
+
+```
+yarn build
+```
 Build may be omitted, since it is the default gulp task.
 There is also a gulp task using `Browsersync` and `gulp watch`
 for more convenient development.
@@ -221,6 +235,11 @@ for more convenient development.
 ```
 npx gulp watch
 ```
+or
+```
+yarn watch
+```
+
 This task will initialise a build and synchronise the
 browser content every time a source files changes.
 
@@ -231,6 +250,10 @@ be in the `examples/tests` directory.
 ```
 npx gulp watch --slide <file>
 ```
+or
+```
+yarn watch --slide <file>
+```
 
 #### Updating Icons
 
@@ -239,6 +262,10 @@ following gulp task has to be run:
 
 ```
 npx gulp icons
+```
+or
+```
+yarn build icons
 ```
 
 This creates or updates the file `src/ts/icon-definitions.ts` with
@@ -280,5 +307,8 @@ The following people have contributed to Rslidy:
 
 - Elias Zeitfogel, Patrick Kasper, Karina Priebernig, Clemens Meinhart  
   IAweb WS 2013 G4
+
+- Fabian Platzer  
+  Master's Thesis
 
 

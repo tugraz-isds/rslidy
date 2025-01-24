@@ -126,6 +126,10 @@ exports.icons.description = 'Optimises SVG files and writes icon-definitions.ts'
 function html() {
   src(paths.src + 'examples/**/*.*')
     .pipe(dest(paths.build + 'examples/'))
+
+  src(paths.src + 'examples/stress-test/**/*.*')
+    .pipe(dest(paths.build + 'tests/stress-test/'));
+
   return src(paths.src + 'tests/**/*.*')
     .pipe(dest(paths.build + 'tests/'))
 }
