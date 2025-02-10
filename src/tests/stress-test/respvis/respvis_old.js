@@ -15,7 +15,7 @@ LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
 OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
 PERFORMANCE OF THIS SOFTWARE.
 ***************************************************************************** */
-/* global Reflect, Promise, SuppressedError, Symbol */
+/* global Reflect, Promise, SuppressedError, Symbol, Iterator */
 
 var extendStatics = function(d, b) {
     extendStatics = Object.setPrototypeOf ||
@@ -6492,8 +6492,9 @@ function bboxDiffSVG(svgS1, svgS2) {
     var bbox1 = (_a = svgS1.node()) === null || _a === void 0 ? void 0 : _a.getBBox();
     var bbox2 = (_b = svgS2.node()) === null || _b === void 0 ? void 0 : _b.getBBox();
     if (!bbox1 || !bbox2) {
-        /* DEV_MODE_ONLY_START */
-        throw new Error();
+        return { leftCornersXDiff: 0, horizontalDiff: 0, leftCornersYDiff: 0, verticalDiff: 0,
+            bbox1: new DOMRect(0, 0, 0, 0), bbox2: new DOMRect(0, 0, 0, 0),
+        };
     }
     return {
         leftCornersXDiff: bbox2.x - bbox1.x,
@@ -6791,7 +6792,7 @@ function rectToViewBox(selectionOrTransition, rect) {
         .call(function (s) {
         var _a = positionRound(rect), x = _a.x, y = _a.y;
         var _b = sizeRound(rect), width = _b.width, height = _b.height;
-        s.attr('viewBox', "".concat(x, " ").concat(y, " ").concat(width, " ").concat(height));
+        s.attr('viewbox', "".concat(x, ", ").concat(y, ", ").concat(width, ", ").concat(height));
     });
 }
 function rectToAttrs(selectionOrTransition, rect) {
@@ -8013,16 +8014,14 @@ function renderTooltip() {
         .join('div')
         .attr('id', 'tooltip-rv');
     drawAreaS.on('pointermove.tooltipVisibility', function () {
-        var windowRV = windowS.data().find(function (windowRV) { return windowRV === null || windowRV === void 0 ? void 0 : windowRV.tooltip.isVisible(); });
-        setTooltipVisibility(!!windowRV ? 'visible' : 'hidden');
+        var window = windowS.data().find(function (window) { return window.tooltip.isVisible(); });
+        setTooltipVisibility(!!window ? 'visible' : 'hidden');
     }).on('pointerout.tooltipVisibility', function () {
         setTooltipVisibility('hidden');
     });
     select(window).on('pointermove.tooltipVisibility', function (e) {
-        var windowHovered = windowS.data().find(function (windowRV) {
-            if (!windowRV)
-                return false;
-            var rect = elementFromSelection(windowRV.renderer.drawAreaBgS).getBoundingClientRect();
+        var windowHovered = windowS.data().find(function (window) {
+            var rect = elementFromSelection(window.renderer.drawAreaBgS).getBoundingClientRect();
             return (!(e.clientX < rect.x || e.clientX > rect.x + rect.width ||
                 e.clientY < rect.y || e.clientY > rect.y + rect.height));
         });
@@ -8379,9 +8378,6 @@ function layoutNodeBounds(selection) {
             svgS.attr('bounds', rectToString(bounds));
             switch (svgE.tagName) {
                 case 'svg':
-                    svgS.call(function (s) { return rectToAttrs(s, bounds); });
-                    svgS.call(function (s) { return rectToViewBox(s, bounds); });
-                    break;
                 case 'rect':
                     svgS.call(function (s) { return rectToAttrs(s, bounds); });
                     break;
@@ -8667,9 +8663,6 @@ var Chart = /** @class */ (function () {
     };
     Chart.prototype.inRenderLoop = function () {
         if (this.subsequentRenderCount > 3) {
-            /* DEV_MODE_ONLY_START */
-            console.log('TOO MANY RENDERS. THERE MUST BE A PROBLEM');
-            /* DEV_MODE_ONLY_END */
             return true;
         }
         this.subsequentRenderCount++;
@@ -8907,9 +8900,9 @@ function validateLegend(data) {
     };
 }
 
-var downloadSVGRaw = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" stroke-width=\"1.5\" stroke=\"#2c3e50\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n    <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"/>\n    <path d=\"M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2\" />\n    <path d=\"M7 11l5 5l5 -5\" />\n    <path d=\"M12 4l0 12\" />\n</svg>\n";
+var downloadSVGRaw = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" stroke-width=\"1.5\" stroke=\"#2c3e50\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\r\n    <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"/>\r\n    <path d=\"M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2\" />\r\n    <path d=\"M7 11l5 5l5 -5\" />\r\n    <path d=\"M12 4l0 12\" />\r\n</svg>\r\n";
 
-var cancelSVGRaw = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"12\" cy=\"12\" r=\"10\"></circle><line x1=\"15\" y1=\"9\" x2=\"9\" y2=\"15\"></line><line x1=\"9\" y1=\"9\" x2=\"15\" y2=\"15\"></line></svg>\n";
+var cancelSVGRaw = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"12\" cy=\"12\" r=\"10\"></circle><line x1=\"15\" y1=\"9\" x2=\"9\" y2=\"15\"></line><line x1=\"9\" y1=\"9\" x2=\"15\" y2=\"15\"></line></svg>\r\n";
 
 function renderDialog(parentS) {
     var classes = [];
@@ -9178,9 +9171,6 @@ function applyDownloadStyle(original, clone, renderer) {
             break;
         default: {
             attrsFromComputedStyle(clone, original);
-            /* DEV_MODE_ONLY_START */
-            throw new Error(ErrorMessages.invalidScaledValuesCombination);
-            /* DEV_MODE_ONLY_END */
         }
     }
 }
@@ -9414,7 +9404,7 @@ function renderInputLabel(labelS) {
     applyClassList(labelS, (_c = d.data.inactiveClasses) !== null && _c !== void 0 ? _c : [], false);
 }
 
-var InfoSVG = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" stroke-width=\"1.5\" stroke=\"#000000\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n    <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"/>\n    <path d=\"M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0\" />\n    <path d=\"M12 9h.01\" />\n    <path d=\"M11 12h1v4h1\" />\n</svg>\n";
+var InfoSVG = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" stroke-width=\"1.5\" stroke=\"#000000\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\r\n    <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"/>\r\n    <path d=\"M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0\" />\r\n    <path d=\"M12 9h.01\" />\r\n    <path d=\"M11 12h1v4h1\" />\r\n</svg>\r\n";
 
 function renderSVGSeries(parentS, rawSVGs) {
     var parser = new DOMParser();
@@ -9462,7 +9452,7 @@ var RadioLabel = /** @class */ (function () {
     return RadioLabel;
 }());
 
-var CollapseDownRAW = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" stroke-width=\"1.5\" stroke=\"#2c3e50\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n    <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"/>\n    <path d=\"M15 11l-3 3l-3 -3\" />\n    <path d=\"M12 3a9 9 0 1 0 0 18a9 9 0 0 0 0 -18z\" />\n</svg>\n";
+var CollapseDownRAW = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" stroke-width=\"1.5\" stroke=\"#2c3e50\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\r\n    <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"/>\r\n    <path d=\"M15 11l-3 3l-3 -3\" />\r\n    <path d=\"M12 3a9 9 0 1 0 0 18a9 9 0 0 0 0 -18z\" />\r\n</svg>\r\n";
 
 function renderFieldset(parentS, data) {
     var classes = [];
@@ -9616,32 +9606,21 @@ var NumberLabel = /** @class */ (function () {
     }
     NumberLabel.prototype.render = function (labelS) {
         var _this = this;
-        var _a = this.data, initialValue = _a.initialValue, onChange = _a.onChange, onInput = _a.onInput, label = _a.label, min = _a.min, max = _a.max, step = _a.step;
-        labelS.selectAll('.label')
-            .data([null])
-            .join('span')
-            .classed('label', true)
-            .text(label);
-        var inputWrapperS = labelS.selectAll('.input-wrapper')
-            .data([null])
-            .join('div')
-            .classed('input-wrapper', true);
-        var inputS = inputWrapperS.selectAll('input[type="number"]')
+        var _a = this.data, value = _a.value, onChange = _a.onChange, onInput = _a.onInput, label = _a.label, min = _a.min, max = _a.max, step = _a.step;
+        labelS.selectAll('input[type="number"]')
             .data([null])
             .join('input')
             .attr('type', 'number')
+            .attr('value', value)
             .attr('min', min !== null && min !== void 0 ? min : null)
             .attr('max', max !== null && max !== void 0 ? max : null)
             .attr('step', step !== null && step !== void 0 ? step : null)
             .on('change', function (e) { return onChange === null || onChange === void 0 ? void 0 : onChange(e, _this); })
             .on('input', function (e) { return onInput === null || onInput === void 0 ? void 0 : onInput(e, _this); });
-        if (inputS.attr('value') === undefined || inputS.attr('value') === null || inputS.attr('value') === '') {
-            inputS.attr('value', initialValue);
-        }
-        inputWrapperS.selectAll('.error-message')
+        labelS.selectAll('span')
             .data([null])
             .join('span')
-            .classed('error-message', true);
+            .text(label);
         return labelS;
     };
     NumberLabel.prototype.valueAsInt = function (e) {
@@ -9658,61 +9637,37 @@ var NumberLabel = /** @class */ (function () {
     return NumberLabel;
 }());
 
-function validateNumberLabel(e, d) {
-    var _a, _b;
-    var value = parseInt(e.value);
-    var errorS = select(e.parentNode).selectAll('.error-message');
-    if (isNaN(value))
-        errorS === null || errorS === void 0 ? void 0 : errorS.text('No valid number!');
-    else if (!d.inMinMaxRange(value))
-        errorS === null || errorS === void 0 ? void 0 : errorS.text('Number not in allowed range!');
-    else {
-        errorS === null || errorS === void 0 ? void 0 : errorS.text('');
-        (_a = e.closest('label')) === null || _a === void 0 ? void 0 : _a.classList.remove('error');
-    }
-    if (errorS === null || errorS === void 0 ? void 0 : errorS.text()) {
-        (_b = e.closest('label')) === null || _b === void 0 ? void 0 : _b.classList.add('error');
-        return null;
-    }
-    return value.toString();
-}
-// const onInputNumber = (e, d: NumberLabel) => {
-//   const value = d.valueAsInt(e)
-//   if (isNaN(value)) e.target.value = currentSettings.state[d.data.type]
-// }
-// const onChangeNumber = (e, d: NumberLabel) => {
-//   const value = d.valueAsInt(e)
-//   if (isNaN(value) || !d.inMinMaxRange(value)) {
-//     e.target.value = currentSettings.state[d.data.type]
-//   }
-//   currentSettings.state[d.data.type] = (e.target as HTMLInputElement).value
-// }
-
 function renderDecimalNumberOptions(selection, renderer) {
     var currentSettings = renderer.windowS.datum().settings.state;
     var onChangeActive = function (e, type) {
         currentSettings[type] = e.target.checked;
         renderer.windowS.dispatch('resize');
     };
+    var onInputNumber = function (e, d) {
+        var value = d.valueAsInt(e);
+        if (isNaN(value))
+            e.target.value = currentSettings[d.data.type];
+    };
     var onChangeNumber = function (e, d) {
-        var value = validateNumberLabel(e.target, d);
-        if (value === null)
-            return;
-        currentSettings[d.data.type] = value;
-        e.target.value = value;
+        var value = d.valueAsInt(e);
+        if (isNaN(value) || !d.inMinMaxRange(value)) {
+            e.target.value = currentSettings[d.data.type];
+        }
+        currentSettings[d.data.type] = e.target.value;
     };
     var data = [{
-            legend: 'Number of Decimal Places',
+            legend: 'Number of Decimal Points',
             labelData: [new CheckBoxLabel({
-                    label: 'Limit Decimal Places',
+                    label: 'Limit Decimal Points',
                     type: windowSettingsKeys.downloadAttributeMaxDecimalsActive,
                     defaultVal: currentSettings.downloadAttributeMaxDecimalsActive,
                     onChange: onChangeActive,
                 }), new NumberLabel({
                     label: '',
                     type: windowSettingsKeys.downloadAttributeMaxDecimals,
-                    initialValue: currentSettings.downloadAttributeMaxDecimals,
+                    value: currentSettings.downloadAttributeMaxDecimals,
                     min: 1, max: 20, step: 1, size: 2,
+                    onInput: onInputNumber,
                     onChange: onChangeNumber,
                     activeClasses: !currentSettings.downloadAttributeMaxDecimalsActive ? ['disabled'] : [],
                     inactiveClasses: currentSettings.downloadAttributeMaxDecimalsActive ? ['disabled'] : [],
@@ -9728,12 +9683,17 @@ function renderPrettifyOptions(selection, renderer) {
         currentSettings[type] = e.target.checked;
         renderer.windowS.dispatch('resize');
     };
+    var onInputNumber = function (e, d) {
+        var value = d.valueAsInt(e);
+        if (isNaN(value))
+            e.target.value = currentSettings[d.data.type];
+    };
     var onChangeNumber = function (e, d) {
-        var value = validateNumberLabel(e.target, d);
-        if (value === null)
-            return;
-        currentSettings[d.data.type] = value;
-        e.target.value = value;
+        var value = d.valueAsInt(e);
+        if (isNaN(value) || !d.inMinMaxRange(value)) {
+            e.target.value = currentSettings[d.data.type];
+        }
+        currentSettings[d.data.type] = e.target.value;
     };
     var data = [{
             legend: 'Prettify SVG',
@@ -9745,8 +9705,9 @@ function renderPrettifyOptions(selection, renderer) {
                 }), new NumberLabel({
                     label: 'Indentation spaces',
                     type: windowSettingsKeys.downloadPrettifyIndentionSpaces,
-                    initialValue: currentSettings.downloadPrettifyIndentionSpaces,
+                    value: currentSettings.downloadPrettifyIndentionSpaces,
                     min: 1, max: 20, step: 1, size: 2,
+                    onInput: onInputNumber,
                     onChange: onChangeNumber,
                     activeClasses: !currentSettings.downloadPrettifyActive ? ['disabled'] : [],
                     inactiveClasses: currentSettings.downloadPrettifyActive ? ['disabled'] : [],
@@ -9771,12 +9732,17 @@ function renderMarginOptions(selection, renderer) {
             abbreviation: 'bottom'
         }
     ];
+    var onInputNumber = function (e, d) {
+        var value = d.valueAsInt(e);
+        if (isNaN(value))
+            e.target.value = currentSettings.state[d.data.type];
+    };
     var onChangeNumber = function (e, d) {
-        var value = validateNumberLabel(e.target, d);
-        if (value === null)
-            return;
-        currentSettings.state[d.data.type] = value;
-        e.target.value = value;
+        var value = d.valueAsInt(e);
+        if (isNaN(value) || !d.inMinMaxRange(value)) {
+            e.target.value = currentSettings.state[d.data.type];
+        }
+        currentSettings.state[d.data.type] = e.target.value;
     };
     var data = [{
             legend: 'Margin',
@@ -9784,8 +9750,9 @@ function renderMarginOptions(selection, renderer) {
                 return new NumberLabel({
                     label: "Margin-".concat(option.abbreviation),
                     type: windowSettingsKeys[option.settingKey],
-                    initialValue: currentSettings.get(option.settingKey),
+                    value: currentSettings.get(option.settingKey),
                     min: 0, max: 10000, step: 1, size: 5,
+                    onInput: onInputNumber,
                     onChange: onChangeNumber,
                 });
             })
@@ -9819,11 +9786,8 @@ function downloadButtonRender(selection, renderer) {
         .classed('button--icon button--download', true)
         .on('click', function () {
         var _a;
-        if (!selection.selectAll('label.error').empty()) {
-            alert('Please fix invalid inputs before download.');
-            return;
-        }
-        select(this.closest('.window-rv')).selectAll('.layouter > svg.chart')
+        select(this.closest('.window-rv'))
+            .selectAll('.layouter > svg.chart')
             .call(function (s) { return downloadChart(s, 'chart.svg', renderer); });
         (_a = select(this.closest('dialog')).datum()) === null || _a === void 0 ? void 0 : _a.triggerExit();
     });
@@ -9868,7 +9832,7 @@ function renderElementRemovalOptions(selection, renderer) {
     return renderFieldset(selection, data, 'item', 'item--removal-elements');
 }
 
-var filterSVGRaw = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" stroke-width=\"1.5\" stroke=\"#2c3e50\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n    <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"/>\n    <path d=\"M4 4h16v2.172a2 2 0 0 1 -.586 1.414l-4.414 4.414v7l-6 2v-8.5l-4.48 -4.928a2 2 0 0 1 -.52 -1.345v-2.227z\" />\n</svg>\n";
+var filterSVGRaw = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" stroke-width=\"1.5\" stroke=\"#2c3e50\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\r\n    <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"/>\r\n    <path d=\"M4 4h16v2.172a2 2 0 0 1 -.586 1.414l-4.414 4.414v7l-6 2v-8.5l-4.48 -4.928a2 2 0 0 1 -.52 -1.345v-2.227z\" />\r\n</svg>\r\n";
 
 var RangeLabel = /** @class */ (function () {
     function RangeLabel(data) {
@@ -10120,7 +10084,7 @@ function createKeyedAxisCheckboxLabel(axis) {
     });
 }
 
-var crossSVGRaw = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" stroke-width=\"1.5\" stroke=\"#2c3e50\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n    <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"/>\n    <path d=\"M18 9l3 3l-3 3\" />\n    <path d=\"M15 12h6\" />\n    <path d=\"M6 9l-3 3l3 3\" />\n    <path d=\"M3 12h6\" />\n    <path d=\"M9 18l3 3l3 -3\" />\n    <path d=\"M12 15v6\" />\n    <path d=\"M15 6l-3 -3l-3 3\" />\n    <path d=\"M12 3v6\" />\n</svg>\n";
+var crossSVGRaw = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" stroke-width=\"1.5\" stroke=\"#2c3e50\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\r\n    <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"/>\r\n    <path d=\"M18 9l3 3l-3 3\" />\r\n    <path d=\"M15 12h6\" />\r\n    <path d=\"M6 9l-3 3l3 3\" />\r\n    <path d=\"M3 12h6\" />\r\n    <path d=\"M9 18l3 3l3 -3\" />\r\n    <path d=\"M12 15v6\" />\r\n    <path d=\"M15 6l-3 -3l-3 3\" />\r\n    <path d=\"M12 3v6\" />\r\n</svg>\r\n";
 
 function clickSAddEnterExitAttributes(clickS, refS, delayMs) {
     var refE = refS.node();
@@ -10167,9 +10131,9 @@ function renderCrossTool(toolbarS, seriesCollection) {
     seriesCollection.forEach(function (series) { return renderMovableCrossTooltip(series); });
 }
 
-var ChevronsRight = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\"\n     stroke-linejoin=\"round\" width=\"24\" height=\"24\" stroke-width=\"2\">\n    <path d=\"M7 7l5 5l-5 5\"></path>\n    <path d=\"M13 7l5 5l-5 5\"></path>\n</svg>\n";
+var ChevronsRight = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\"\r\n     stroke-linejoin=\"round\" width=\"24\" height=\"24\" stroke-width=\"2\">\r\n    <path d=\"M7 7l5 5l-5 5\"></path>\r\n    <path d=\"M13 7l5 5l-5 5\"></path>\r\n</svg>\r\n";
 
-var chartSVGRaw = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" stroke-width=\"1.5\" stroke=\"#2c3e50\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n    <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"/>\n    <path d=\"M10.325 4.317c.426 -1.756 2.924 -1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543 -.94 3.31 .826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756 .426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543 -.826 3.31 -2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756 -2.924 1.756 -3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543 .94 -3.31 -.826 -2.37 -2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756 -.426 -1.756 -2.924 0 -3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94 -1.543 .826 -3.31 2.37 -2.37c1 .608 2.296 .07 2.572 -1.065z\" />\n    <path d=\"M9 12a3 3 0 1 0 6 0a3 3 0 0 0 -6 0\" />\n</svg>\n";
+var chartSVGRaw = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" stroke-width=\"1.5\" stroke=\"#2c3e50\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\r\n    <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"/>\r\n    <path d=\"M10.325 4.317c.426 -1.756 2.924 -1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543 -.94 3.31 .826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756 .426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543 -.826 3.31 -2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756 -2.924 1.756 -3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543 .94 -3.31 -.826 -2.37 -2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756 -.426 -1.756 -2.924 0 -3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94 -1.543 .826 -3.31 2.37 -2.37c1 .608 2.296 .07 2.572 -1.065z\" />\r\n    <path d=\"M9 12a3 3 0 1 0 6 0a3 3 0 0 0 -6 0\" />\r\n</svg>\r\n";
 
 function renderChartTool(toolbarS, seriesCollection) {
     if (seriesCollection.filter(function (series) { return series.renderTool; }).length <= 0)
@@ -11910,7 +11874,7 @@ var LineChart = /** @class */ (function (_super) {
 }(Chart));
 applyMixins(LineChart, [DataSeriesChartMixin, CartesianChartMixin]);
 
-var checkSVGRaw = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" stroke-width=\"1.5\" stroke=\"#2c3e50\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n    <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"/>\n    <path d=\"M5 12l5 5l10 -10\" />\n</svg>\n";
+var checkSVGRaw = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" stroke-width=\"1.5\" stroke=\"#2c3e50\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\r\n    <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"/>\r\n    <path d=\"M5 12l5 5l10 -10\" />\r\n</svg>\r\n";
 
 function onDragAxisParcoord(e, d, drawAreaBackgroundS) {
     if (!(e.sourceEvent instanceof MouseEvent || e.sourceEvent instanceof TouchEvent))
@@ -12479,7 +12443,7 @@ function addLimiterDrag(axisS) {
     setUpRectLimiterDrag();
 }
 
-var ArrowUpNarrowSVG = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 12 19\" stroke-width=\"1.5\" stroke=\"#2c3e50\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n    <path d=\"M1 7l5 -6l5 6l-10 0\" fill=\"#2c3e50\"/>\n    <path d=\"M6 8l0 10\" />\n</svg>\n";
+var ArrowUpNarrowSVG = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 12 19\" stroke-width=\"1.5\" stroke=\"#2c3e50\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\r\n    <path d=\"M1 7l5 -6l5 6l-10 0\" fill=\"#2c3e50\"/>\r\n    <path d=\"M6 8l0 10\" />\r\n</svg>\r\n";
 
 function renderAxisInverter(axisS) {
     var series = axisS.datum().series;
@@ -12692,4 +12656,4 @@ var ParcoordChart = /** @class */ (function (_super) {
 applyMixins(ParcoordChart, [DataSeriesChartMixin]);
 
 export { AxisLayouts, AxisLayoutsHorizontal, AxisLayoutsVertical, Bar, BarChart, BarGroupedSeries, BarLabelsDataCollection, BarStackedSeries, BarStandardSeries, BreakpointProperty, Breakpoints, CSSBreakpointLengthRegex, CSSLengthRegex, CartesianChartMixin, CartesianResponsiveState, CartesianSeries, Chart, CheckBoxLabel, ComponentBreakpoints, DataSeriesChartMixin, EmptySeries, ErrorMessages, Key, LengthDimensions, LineChart, LineSeries, Orientations, ParcoordChart, ParcoordResponsiveState, ParcoordSeries, Point, PointLabelsDataCollection, PointSeries, RVArray, ResponsivePropertyBase, ResponsiveState, ResponsiveValue, Revertible, ScaledValuesCategorical, ScaledValuesCumulativeSummation, ScaledValuesNumeric, ScaledValuesSpatialBase, ScaledValuesTemporal, ScatterPlot, ThrottleScheduled, Tooltip, addCSSTransitionEnterClass, addCSSTransitionExitClass, addD3TransitionClass, addD3TransitionClassForSelection, addLegendHoverHighlighting, addSeriesHighlighting, alignScaledValuesLengths, applyClassList, applyMixins, attachActiveCursorLocking, backgroundSVGOnly, bboxDiffSVG, bindOpenerToDialog, calcLimited, cancelExitClassOnUpdate, categoryRegex, circleEquals, circleFitStroke, circleFromAttrs, circleFromString, circleInsideRect, circleMinimized, circleOutsideRect, circlePosition, circleRound, circleToAttrs, circleToAttrsFromSelection, circleToPath, circleToString, cloneCartesianSeriesData, cloneParcoordData, clonePointSeriesData, combineKeys, createLegendItems, createPoints, createSelectionClasses, cssLengthInPx, cssVarDefaultsKeys, cssVarFromSelection, cssVars, cssVarsDefaults, defaultExtrema, defaultLayoutIndex, defaultScope, defaultStyleClass, defaultWindowSettings, detectClassChange, elementAbsoluteBounds, elementComputedStyleWithoutDefaults, elementFromSelection, elementRelativeBounds, elementSVGPresentationAttrs, elementSVGTransformStyles, ellipseInsideRect, ellipseToAttrs, fieldsetCollapseWrapperRender, format, formatWithDecimalZero, genKeyObjectFromObject, getActiveKeys, getCSSVarLengthInPx, getCurrentResponsiveValue, getLayoutWidthIndexFromCSS, handleZoom, hasDrag, isBaseRadiusUserArgs, isBreakpointPropertyUserArgsResponsive, isCSSBreakpointLengthValue, isCSSLengthValue, isElement, isExtrema, isResponsiveValueUserArgsResponsive, isScale, isScaleCategory, isScaleNumeric, isScaleTime, joinBarSeries, joinLineSeries, joinPointSeries, layedOutChildren, layoutContainerCompute, layoutNodeChildren, layouterCompute, lineToPath, mapSelection, maxBreakpointCount, mergeKeys, noParentKey, normalizeAngle, orderScaledValuesSpatial, positionEquals, positionFromAttrs, positionFromString, positionRound, positionSVGTextToLayoutCenter, positionToAttrs, positionToString, positionToTransformAttr, pxLowerLimit, pxUpperLimit, rectBottom, rectBottomLeft, rectBottomRight, rectCenter, rectEquals, rectFitStroke, rectFromAttrs, rectFromSize, rectFromString, rectLeft, rectMinimized, rectPosition, rectRight, rectRound, rectToAttrs, rectToPath, rectToString, rectToViewBox, rectTop, rectTopLeft, rectTopRight, relateDragWayToSelection, relateDragWayToSelectionByDiff, removeD3TransitionClassSelection, renderAttributeRemovalOptions, renderAxisLayout, renderAxisSequence, renderBarSeries, renderBgSVGOnlyBBox, renderBgSVGOnlyByRect, renderCartesianAxes, renderChart, renderDataSeriesTooltip, renderDecimalNumberOptions, renderDialog, renderDownloadTool, renderElementRemovalOptions, renderFieldset, renderGrid, renderInputLabel, renderInputLabels, renderLabelSeries, renderLabels, renderLayouter, renderLegend, renderLegendCategories, renderLineSeries, renderMovableCrossTooltip, renderOriginLine, renderPointSeries, renderSVGSeries, renderStyleTypeOptions, renderToolbar, renderTooltip, renderWindow, resizeEventListener, band as scaleBand, linear as scaleLinear, ordinal as scaleOrdinal, point as scalePoint, pow as scalePow, sequential as scaleSequential, select, selectAll, setTooltipVisibility, sizeEquals, sizeFromAttrs, sizeFromString, sizeRound, sizeToAttrs, sizeToString, splitKey, throttle, timeFormat, timeYear, tooltipPositionStrategies, tooltipSelector, uniqueId, updateTooltipPositionCSSVars, validateBarChart, validateBaseAxis, validateBaseRadius, validateBreakpointProperty, validateBubbleRadius, validateCartesianAxis, validateCartesianChart, validateCartesianSeriesArgs, validateCategories, validateChart, validateDataSeriesArgs, validateKeyedAxis, validateLegend, validateLineChart, validateParcoordChart, validateParcoordSeriesArgs, validatePointSeriesArgs, validateResponsiveValue, validateScaledValuesSpatial, validateScatterPlot, validateSequentialColor, validateWindow, validateZoom, windowSettingsKeys };
-//# sourceMappingURL=respvis.js.map
+//# sourceMappingURL=respvis_old.js.map

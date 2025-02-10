@@ -80,6 +80,14 @@ export class PrintSettingsComponent {
 
   // Find the selected radio button within the fieldset
     const selectedOption = fieldset.querySelector('input[name="print-options"]:checked');
+    css += `
+        #chart .window-rv  {
+        display: block;
+       }
+       #rslidy-content-section .slide {
+         display:block;
+       }
+    `;
     if (selectedOption && selectedOption instanceof HTMLInputElement) {
       console.log("Selected value:", selectedOption.value);
 
@@ -89,66 +97,58 @@ export class PrintSettingsComponent {
         transform: none !important; /* No scaling */
         margin: 0 !important; /* Optional: Remove unintended margins */
         padding: 0 !important; /* Optional: Remove unintended padding */
+        max-height: 100% !important;
       }
       #rslidy-content-section .slide {
-        width: auto !important;
-        height: auto !important;
-        overflow: visible !important; /* Content won't be clipped */
+        width: ${window.innerWidth}px !important;  /* Use current viewport width */
+        height: auto !important; /* Maintain aspect ratio */
+        max-width: 85% !important;
+        overflow: visible !important; /* Ensure nothing is clipped */
+        page-break-after: always !important; /* Ensure slides break correctly */
       }
     `;
       }
-      else if(selectedOption.value  === "shrink") {
+      else if(selectedOption.value  === "fit-width") {
         css += `
-        #rslidy-content-section .slide {
-          max-width: 100% !important; /* Ensure it fits within the page */
-          height: auto !important; /* Maintain aspect ratio */
-          overflow: hidden !important; /* Clip content exceeding dimensions */
-          box-sizing: border-box !important; /* Include padding/border in dimensions */
-        }
-    `;
-      }
-      else if(selectedOption.value  == "fit2") {
-        const content = document.querySelector('.slide'); // Your content container
-        if (!content) return;
-
-        // Get content dimensions
-        const contentWidth = content.scrollWidth;
-        const contentHeight = content.scrollHeight;
-
-        // Set printable area dimensions (adjust for printer margins if necessary)
-        const printableWidth = window.innerWidth; // Or a fixed page width in pixels
-        const printableHeight = window.innerHeight; // Or a fixed page height in pixels
-
-        // Calculate the scaling factor
-        const scaleX = printableWidth / contentWidth;
-        const scaleY = printableHeight / contentHeight;
-        const scaleFactor = Math.min(scaleX, scaleY);
-
-        // Apply scaling dynamically
-        css += `
-        #rslidy-content-section .slide {
-            transform: scale(${scaleFactor}) !important;
-            transform-origin: top left !important;
-        }
-    `;
-
-        console.log(`Content scaled to ${scaleFactor * 100}% to fit one page.`);
-      }
-      else if(selectedOption.value  == "fit") {
-        css += `
-         body {
-          transform: scale(0.95) !important; /* Dynamically calculate the scale if needed */
-          transform-origin: top left !important; /* Ensure scaling starts from the top-left corner */
-          margin: 0 !important; /* Remove unnecessary margins */
+        body {
+          margin: 0 !important;
           padding: 0 !important;
+          transform: none !important;
         }
+        
         #rslidy-content-section .slide {
-          width: auto !important; /* Let the scaling handle resizing */
+          width: 794px !important;  /* Fit A4 width */
+          max-width: 100% !important;
           height: auto !important;
-          overflow: hidden !important; /* Prevent content from spilling */
-          box-sizing: border-box !important; /* Handle padding and borders correctly */
+          overflow: visible !important;
+          display: block !important;
         }
-    `;
+      `;
+      }
+      else if(selectedOption.value === "fit2") {
+        const pageWidth = 794;  // Approx A4 width in px at 96 DPI
+        const pageHeight = 1123; // Approx A4 height in px at 96 DPI
+
+        // Select all slides
+        const slides = document.querySelectorAll("#rslidy-content-section .slide");
+
+        // @ts-ignore
+        slides.forEach(slide => {
+          const rect = slide.getBoundingClientRect();  // Get slide size
+          const scaleX = pageWidth / rect.width;
+          const scaleY = pageHeight / rect.height;
+          const scaleFactor = Math.min(scaleX, scaleY); // Maintain aspect ratio
+
+          slide.style.transform = `scale(${scaleFactor})`;
+          slide.style.transformOrigin = "top left"; // Scale from top-left corner
+          slide.style.width = `${rect.width * scaleFactor}px`; // Ensure proper sizing
+          slide.style.height = `${rect.height * scaleFactor}px`;
+          slide.style.overflow = "hidden"; // Prevent overflow issues
+        });
+      }
+
+      else if (selectedOption.value == "fit") {
+
       }
       else {
         var scalingInput = <HTMLInputElement>(this.view.querySelector("#custom-scaling-input"));
@@ -309,8 +309,13 @@ export class PrintSettingsComponent {
   // ---
   print() {
     try {
-      this.applyPrintSettings();
-      window.print();
+      this.applyPrintSettings(); // Apply print-specific styles
+
+      // Trigger the print dialog
+      setTimeout(() => {
+        window.print();
+      }, 100);
+
     } catch (e) {
       console.error("Error during print operation:", e);
     }

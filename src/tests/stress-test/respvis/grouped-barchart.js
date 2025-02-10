@@ -1,4 +1,4 @@
-import { BarChart, layouterCompute } from './respvis.js';
+import {BarChart, layouterCompute, scaleLinear} from './respvis.js';
 import { compensations, sites, years } from './data.js';
 import * as d3 from './d3-7.6.0/d3.js';
 export function renderGroupedBarChart(selector) {
@@ -14,7 +14,7 @@ export function renderGroupedBarChart(selector) {
         series: {
             type: 'grouped',
             x: { values: sites },
-            y: { values: compensations },
+            y: { values: compensations},
             categories: {
                 values: years,
                 title: 'Years'

@@ -308,7 +308,7 @@ role="region" aria-label="Print Settings" tabindex="0">
     </label>
     <br>
     <label id="rslidy-checkbox-shrink-text" class="rslidy-print-sizing">
-      <input type="radio" name="print-options" value="shrink" id="rslidy-checkbox-shrink" class="print-checkbox"> Shrink Oversized Pages
+      <input type="radio" name="print-options" value="fit-width" id="rslidy-checkbox-shrink" class="print-checkbox"> Fit to Width
     </label>
     <br>
     <label id="rslidy-checkbox-custom-text" class="rslidy-print-sizing">

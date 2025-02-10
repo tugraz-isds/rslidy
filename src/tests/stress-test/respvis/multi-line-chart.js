@@ -1,4 +1,5 @@
-import { LineChart, formatWithDecimalZero, select, format, timeFormat, timeYear, } from '../respvis/respvis.js';
+import { LineChart, formatWithDecimalZero, select, format, timeFormat, timeYear, } from './respvis.js';
+import {scaleLinear} from "./respvis.js";
 
 //  Data Sources: Studierendenstatistik
 //  Tu  Graz: https://online.tugraz.at/tug_online/studierendenstatistik.html
@@ -60,7 +61,8 @@ export function createLineChart(selector) {
           3618,
           3688,
           3818,
-        ]
+        ],
+        scale: scaleLinear().domain([0, 14000])
       },
       "categories": {
         "values": [
@@ -87,7 +89,7 @@ export function createLineChart(selector) {
           "Med Uni Graz",
           "Med Uni Graz",
         ],
-        "title": "University"
+        "title": "University",
       },
       "markerTooltipGenerator": "(n,i)=>`Year:${i.xValue}<br/>Pow. Consumption: ${i.yValue}kWh`",
       "flipped": {
