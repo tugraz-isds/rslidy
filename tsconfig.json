@@ -1,11 +1,21 @@
 {
     "compilerOptions": {
-        "target": "ES5",
-        "module": "commonjs",
+        "target": "ES2015",
+        "module": "ESNext",
         "declaration": true,
         "sourceMap": true,
         "types": [],
         "typeRoots": ["./node_modules/@types/"],
-        "pretty": true
-    }
+        "pretty": true,
+        "lib": ["ES2015", "DOM"],
+        "moduleResolution": "Node",
+        "esModuleInterop": true,
+        "skipLibCheck": true,
+        "baseUrl": "./",
+        "paths": {
+            "html2canvas": ["node_modules/html2canvas"]
+        }
+    },
+    "include": ["src/**/*"],
+    "exclude": ["node_modules"]
 }

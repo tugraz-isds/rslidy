@@ -675,6 +675,85 @@ ht.initPromise
 
 
 
+
+<link rel="stylesheet" href="vorolib/vorolib.css"/>
+<section>
+  <h2>VoroLib</h2>
+  <div class="columns-even">
+    <ul>
+      <li>Interactive Voronoi treemap web library.</li>
+      <li>Developed from VoroTree.</li>
+      <li>Open source.</li>
+      <li>Supports mobile/touch use.</li>
+      <li>Input data in CSV & JSON.</li>
+      <li>Easy to set up & can be embedded in any web page.</li>
+      <li><a href="https://github.com/somestudentcoder/vorolib">
+        <code>https://github.com/somestudentcoder/vorolib</code></a></li>
+    </ul>
+    <div class="column-vorolib">
+      <button id="btn">resize</button>
+      <button id="bun">color</button>
+      <button id="view">weight</button>
+      <button id="svg">svg</button>
+      
+      <div id="vorotree"></div>
+      
+      <script src="vorolib/vorolib.js"></script>
+      <script>
+        function resizeVoroTree() {
+          var container = document.getElementById("vorotree");
+          var width = container.clientWidth || 500; // Fallback to 500 if not available
+          var height = container.clientHeight || 500; // Fallback to 500 if not available
+          
+          vt.resize(width, height);
+        }
+        var vt = new VoroLib.VoroTree("vorolib/cars.csv", "vorotree",
+          1, 1);
+        
+        var resizing = function() {
+          vt.resize(750, 600);
+          document.getElementById('btn').removeEventListener('click', resizing);
+        };
+        
+        var coloring = function() {
+          vt.changeColorScheme(['#ff0000', '#ffb300', '#3afa00'])
+          document.getElementById('bun').removeEventListener('click', coloring);
+        };
+        
+        var weighting = function() {
+          vt.changeWeightAttribute("size");
+          document.getElementById('view').removeEventListener('click', weighting);
+        };
+        
+        var svging = function() {
+          vt.exportSVG();
+          document.getElementById('svg').removeEventListener('click', svging);
+        };
+        
+        document.getElementById('btn').addEventListener('click', resizing);
+        
+        document.getElementById('bun').addEventListener('click', coloring);
+        
+        document.getElementById('view').addEventListener('click', weighting);
+        
+        document.getElementById('svg').addEventListener('click', svging);
+        // Resize on window load
+        window.addEventListener("load", resizeVoroTree);
+        
+        // Resize on window resize
+        window.addEventListener("resize", resizeVoroTree);
+      </script>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+
 <!--
 <section>
   <h2>Math Equations using <a href="https://www.mathjax.org/">MathJax</a></h2>

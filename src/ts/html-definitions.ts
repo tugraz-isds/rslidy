@@ -289,12 +289,25 @@ role="region" aria-label="Print Settings" tabindex="0">
     <input type="number" id="rslidy-input-font-size" value="80" min="0" max="100">
   <span class="percent">%</span>
   </label>
-  
   <label id="rslidy-select-orientation-text" class="rslidy-menu-content">
     `+t.print_settings[4]+`
     <select id="rslidy-select-orientation">
       <option value="portrait">Portrait</option>
       <option selected="selected" value="landscape">Landscape</option>
+    </select>
+  </label>
+   <label id="rslidy-select-paper-size-text" class="rslidy-menu-content">
+    `+t.print_settings[5]+`
+    <select id="rslidy-select-paper-size">
+    <option value="216mm 356mm">Legal</option>
+    <option value="216mm 279mm">Letter</option>
+    <option value="279mm 432mm">Tabloid</option>
+    <option value="841mm 1189mm">A0</option>
+    <option value="594mm 841mm">A1</option>
+    <option value="420mm 594mm">A2</option>
+    <option value="297mm 420mm">A3</option>
+    <option selected="selected" value="210mm 297mm">A4</option>
+    <option value="148mm 210mm">A5</option>
     </select>
   </label>
   <fieldset id="rslidy-exclusive-checkboxes" style="margin-top: 1.5em;">
@@ -316,9 +329,51 @@ role="region" aria-label="Print Settings" tabindex="0">
       <input type="number" id="custom-scaling-input" value="100" class="scaling-input" min="1" max="100" disabled placeholder="100">
       <span class="percent">%</span>
     </label>
+    <div id="rslidy-transform-origin-subsection">
+      <h4>Position</h4>
+      <div class="button-container">
+        <label id="rslidy-checkbox-transform-origin-top-left" class="rslidy-print-sizing">
+          <input type="radio" name="transform-origin" value="top left" id="rslidy-checkbox-transform-origin-top-left" class="print-checkbox"> Top Left
+        </label>
+        <label id="rslidy-checkbox-transform-origin-top-center" class="rslidy-print-sizing">
+          <input type="radio" name="transform-origin" value="top center" id="rslidy-checkbox-transform-origin-top-center" class="print-checkbox"> Top Center
+        </label>
+        <label id="rslidy-checkbox-transform-origin-top-right" class="rslidy-print-sizing">
+          <input type="radio" name="transform-origin" value="top right" id="rslidy-checkbox-transform-origin-top-right" class="print-checkbox"> Top Right
+        </label>
+      </div>
+
+      <div class="button-container">
+        <label id="rslidy-checkbox-transform-origin-center-left" class="rslidy-print-sizing">
+          <input type="radio" name="transform-origin" value="center left" id="rslidy-checkbox-transform-origin-center-left" class="print-checkbox"> Center Left
+        </label>
+        <br>
+        <label id="rslidy-checkbox-transform-origin-center" class="rslidy-print-sizing">
+          <input type="radio" name="transform-origin" value="center" id="rslidy-checkbox-transform-origin-center" class="print-checkbox" checked> Center
+        </label>
+        <br>
+        <label id="rslidy-checkbox-transform-origin-center-right" class="rslidy-print-sizing">
+          <input type="radio" name="transform-origin" value="center right" id="rslidy-checkbox-transform-origin-center-right" class="print-checkbox"> Center Right
+        </label>
+        </div>
+      <div class="button-container">
+        <label id="rslidy-checkbox-transform-origin-bottom-left" class="rslidy-print-sizing">
+          <input type="radio" name="transform-origin" value="bottom left" id="rslidy-checkbox-transform-origin-bottom-left" class="print-checkbox"> Bottom Left
+        </label>
+        <br>
+        <label id="rslidy-checkbox-transform-origin-bottom-center" class="rslidy-print-sizing">
+          <input type="radio" name="transform-origin" value="bottom center" id="rslidy-checkbox-transform-origin-bottom-center" class="print-checkbox"> Bottom Center
+        </label>
+        <br>
+        <label id="rslidy-checkbox-transform-origin-bottom-right" class="rslidy-print-sizing">
+          <input type="radio" name="transform-origin" value="bottom right" id="rslidy-checkbox-transform-origin-bottom-right" class="print-checkbox"> Bottom Right
+        </label>
+        </div>
+    </div>
   </fieldset>
   <div class="rslidy-menu-content">
-    <button id="rslidy-button-print-submit">`+t.print_settings[5]+`</button>
+    <button id="rslidy-button-print-submit">`+t.print_settings[6]+`</button>
+    <button id="rslidy-button-export-pdf">`+t.print_settings[7]+`</button>
   </div>
 </div>`;
 

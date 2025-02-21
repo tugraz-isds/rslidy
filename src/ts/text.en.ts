@@ -103,7 +103,9 @@ export const print_settings = [
   `Show Link Destinations`,
   `Font Size:`,
   `Layout:`,
-  `Print`
+  `Paper Size:`,
+  `Print`,
+  `Save as PDF`
 ];
 
 export const toolbar = [

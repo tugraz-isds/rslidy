@@ -1,0 +1,9 @@
+
+@media print {
+    #vorotree canvas {
+        display: block; /* Prevent any inline element behavior */
+        position: relative !important;
+        max-width: 100% !important;
+        height: auto !important;
+    }
+}

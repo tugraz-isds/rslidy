@@ -1,6 +1,6 @@
 {
   "name": "rslidy",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Rslidy: Lightweight, Accessible, and Responsive HTML5 Slide Decks",
   "main": "build/rslidy.js",
   "author": "Keith Andrews",
@@ -20,6 +20,7 @@
     "slide decks"
   ],
   "devDependencies": {
+    "@types/node": "^22.13.4",
     "browser-sync": "^2.27.5",
     "bufferutil": "^4.0.4",
     "del": "^3.0.0",
@@ -27,19 +28,24 @@
     "gulp": "^4.0.2",
     "gulp-concat": "^2.6.1",
     "gulp-gzip": "^1.4.2",
+    "gulp-header": "^2.0.9",
     "gulp-rename": "^1.4.0",
     "gulp-terser": "^2.1.0",
     "gulp-typescript": "^6.0.0-alpha.1",
     "gulp-uglifycss": "^1.1.0",
-    "gulp-header": "^2.0.9",
     "lodash.template": "^4.5.0",
     "merge2": "^1.3.0",
     "source-map": "0.7.4",
     "svgo": "^2.7.0",
-    "typescript": "^2.9.2",
+    "typescript": "^5.7.3",
     "utf-8-validate": "^5.0.6",
     "webpack": "^5.89.0",
     "webpack-stream": "^7.0.0",
     "yargs": "^15.0.2"
+  },
+  "dependencies": {
+    "@types/html2canvas": "^1.0.0",
+    "html2canvas": "^1.4.1",
+    "jspdf": "^2.5.2"
   }
 }

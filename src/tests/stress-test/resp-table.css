@@ -111,7 +111,7 @@ Alternative way of aligning table cells right or center
 Responsive table for narrow widths
 */
 
-@media only all and (max-width: 50rem)  {
+@media only all and (max-width: 40rem)  {
   table {
     border: 0;
   }

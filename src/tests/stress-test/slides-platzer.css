@@ -325,6 +325,17 @@ figure.gallery {
   align-content: flex-start;
 }
 
+
+.column-vorolib {
+  width: 50%;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 1em;
+  justify-content: center;
+  align-items: flex-start;
+  align-content: flex-start;
+}
+
 .figures-half figure figcaption {
   margin: 0.5em auto 0 auto;
 

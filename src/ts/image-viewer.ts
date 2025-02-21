@@ -200,7 +200,7 @@ export class ImageViewerComponent {
       mouseWheelEvent.preventDefault();
       var delta = Math.max(
         -1,
-        Math.min(1, mouseWheelEvent.wheelDelta || -mouseWheelEvent.deltaY)
+        Math.min(1, mouseWheelEvent.deltaY || -mouseWheelEvent.deltaY)
       );
       if (delta > 0) {
         this.zoomIn();
