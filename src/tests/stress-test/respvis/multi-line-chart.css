@@ -7,7 +7,6 @@
     }
     #multi-line-chart {
         width: 100%;
-        height: auto !important;
     }
     #tooltip-rv {
         display:none;

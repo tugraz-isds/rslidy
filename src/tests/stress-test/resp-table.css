@@ -111,7 +111,8 @@ Alternative way of aligning table cells right or center
 Responsive table for narrow widths
 */
 
-@media only all and (max-width: 40rem)  {
+@media only screen and (max-width: 720px) {
+
   table {
     border: 0;
   }
@@ -155,6 +156,51 @@ Responsive table for narrow widths
   table.javaScript-based-slide-deck-comparison td:nth-of-type(5):before { content: "impress.js"; }
   table.javaScript-based-slide-deck-comparison td:nth-of-type(6):before { content: "Bespoke.js"; }
   table.javaScript-based-slide-deck-comparison td:nth-of-type(7):before { content: "Inspire.js"; }
-
-
 }
+
+@media print and (max-width: 520px) {
+  table {
+    border: 0;
+  }
+
+  /* Hide table headers (but not display: none;, for accessibility) */
+  thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+
+
+  /*
+  Note: using display: flex removes all table semantics for
+  screen readers (need a fix). See:
+  https://adrianroselli.com/2018/02/tables-css-display-properties-and-aria.html
+  */
+
+  tr {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0.8em;
+  }
+
+  td {
+    border-bottom: 0.04em solid black;
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8em;
+    text-align: right !important;
+  }
+
+  td::before {
+    font-weight: bold;
+  }
+
+  table.javaScript-based-slide-deck-comparison td:nth-of-type(1):before { content: "Feature"; }
+  table.javaScript-based-slide-deck-comparison td:nth-of-type(2):before { content: "Shower"; }
+  table.javaScript-based-slide-deck-comparison td:nth-of-type(3):before { content: "Reveal.js"; }
+  table.javaScript-based-slide-deck-comparison td:nth-of-type(4):before { content: "Deck.js"; }
+  table.javaScript-based-slide-deck-comparison td:nth-of-type(5):before { content: "impress.js"; }
+  table.javaScript-based-slide-deck-comparison td:nth-of-type(6):before { content: "Bespoke.js"; }
+  table.javaScript-based-slide-deck-comparison td:nth-of-type(7):before { content: "Inspire.js"; }
+}
+

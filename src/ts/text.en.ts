@@ -101,11 +101,11 @@ export const print_settings = [
   `Show Slide Numbers`,
   `Show Frame`,
   `Show Link Destinations`,
+  `Sildes to Print:`,
   `Font Size:`,
-  `Layout:`,
-  `Paper Size:`,
+  `Orientation:`,
+  `Page Size:`,
   `Print`,
-  `Save as PDF`
 ];
 
 export const toolbar = [

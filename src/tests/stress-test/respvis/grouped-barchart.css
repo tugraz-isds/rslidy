@@ -1,7 +1,7 @@
 #chart {
   width: 100%;
   height: 65vh;
-  min-height: 20rem;
+  min-height: 18rem;
   container-type: inline-size;
   .window-rv {
     --font-size-legend-label: 1rem;
@@ -52,7 +52,7 @@
   }
   #chart {
     width: 100%;
-    height: auto;
+    height: auto !important;
   }
   #tooltip-rv {
     display:none;

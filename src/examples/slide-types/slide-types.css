@@ -72,7 +72,7 @@
 .columns-even {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-evenly;
+  justify-content: flex-start;
 }
 
 .item-half {
