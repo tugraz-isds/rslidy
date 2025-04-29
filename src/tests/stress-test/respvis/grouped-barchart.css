@@ -50,6 +50,9 @@
   .toolbar__opener {
     display: none;
   }
+  .toolbar__bar {
+    display: none;
+  }
   #chart {
     width: 100%;
     height: auto !important;

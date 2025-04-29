@@ -84,7 +84,7 @@ body {
 
 /* Styles for smaller screens only */
 
-@media only all and (max-width: var(--pico)) {
+@media only all and (max-width: 20rem) {
   #rslidy-footer {
     font-size: 30%;
   }
@@ -93,7 +93,7 @@ body {
   }
 }
 
-@media only all and (min-width: var(--pico)) and (max-width: var(--nano)) {
+@media only all and (min-width: 20rem) and (max-width: 24rem) {
   #rslidy-footer {
     font-size: 40%;
   }
@@ -102,7 +102,7 @@ body {
   }
 }
 
-@media only all and (min-width: var(--nano)) and (max-width: var(--tiny)) {
+@media only all and (min-width: 24rem) and (max-width: 28rem) {
   #rslidy-footer {
     font-size: 50%;
   }
@@ -111,7 +111,7 @@ body {
   }
 }
 
-@media only all and (min-width: var(--mini)) and (max-width: var(--tiny)) {
+@media only all and (min-width: 28rem) and (max-width: 32rem) {
   #rslidy-footer {
     font-size: 60%;
   }
@@ -120,7 +120,7 @@ body {
   }
 }
 
-@media only all and (min-width: var(--tiny)) and (max-width: var(--small)) {
+@media only all and (min-width: 32rem) and (max-width: 36rem) {
   #rslidy-footer {
     font-size: 70%;
   }
@@ -129,7 +129,7 @@ body {
   }
 }
 
-@media only all and (min-width: var(--small)) and (max-width: var(--medium)) {
+@media only all and (min-width: 36rem) and (max-width: 40rem) {
   #rslidy-footer {
     font-size: 80%;
   }
@@ -138,7 +138,7 @@ body {
   }
 }
 
-@media only all and (min-width: var(--medium)) and (max-width: var(--large)) {
+@media only all and (min-width: 40rem) and (max-width: 44rem) {
   #rslidy-footer {
     font-size: 90%;
   }

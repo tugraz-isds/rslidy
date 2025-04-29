@@ -14,13 +14,13 @@ var browserSync = require('browser-sync').create();
 var argv = require('yargs').argv;
 var BannerPlugin = require('webpack').BannerPlugin; // Add BannerPlugin
 var header = require('gulp-header');
-var bannerText = (type) => `// Rslidy version 1.1 ${type}\n`;
+var bannerText = (type) => `// Rslidy version 2.0 ${type}\n`;
 
 var paths = {
   src: './src/',
   tsbuild: './src/ts/build/',
   build: './build/',
-  libraries: './build/libraries/' // New path for libraries
+  library: './build/library/' // New path for library
 };
 
 var files = {
@@ -110,7 +110,7 @@ function webpack() {
             extensions: ['.ts', '.js']
           }
         }))
-        .pipe(dest(paths.libraries + (config.output.library.type === 'module' ? 'esm' : 'cjs'))) // Output to libraries folder
+        .pipe(dest(paths.library + (config.output.library.type === 'module' ? 'esm' : 'cjs'))) // Output to library folder
         .pipe(browserSync.stream())
     )
   );
@@ -122,18 +122,18 @@ exports.webpack.description = 'Bundles the main JavaScript file into ESM and CJS
 function minifyjs() {
   return merge([
     // Minify ESM version
-    src(paths.libraries + 'esm/**/*.js')
+    src(paths.library + 'esm/**/*.js')
       .pipe(ujs()) // Minify JS
       .pipe(header(bannerText('ESM'))) // Add ESM banner
       .pipe(rename({ suffix: '.min' }))
-      .pipe(dest(paths.libraries + 'esm')),
+      .pipe(dest(paths.library + 'esm')),
 
     // Minify CJS version
-    src(paths.libraries + 'cjs/**/*.js')
+    src(paths.library + 'cjs/**/*.js')
       .pipe(ujs()) // Minify JS
       .pipe(header(bannerText('CommonJS'))) // Add CJS banner
       .pipe(rename({ suffix: '.min' }))
-      .pipe(dest(paths.libraries + 'cjs'))
+      .pipe(dest(paths.library + 'cjs'))
   ]);
 }
 
@@ -145,9 +145,9 @@ function minifycss() {
 }
 
 function compress() {
-  return src(paths.libraries + '**/*.min.js') // Look for minified JS in libraries folder
+  return src(paths.library + '**/*.min.js') // Look for minified JS in library folder
     .pipe(gzip())
-    .pipe(dest(paths.libraries)); // Output compressed files to the libraries folder
+    .pipe(dest(paths.library)); // Output compressed files to the library folder
 }
 exports.minify = series(parallel(minifyjs, minifycss), compress);
 exports.minify.description = 'Produces .min and .gz files';
@@ -207,7 +207,7 @@ function copy() {
   fs.readdirSync(paths.build + 'examples').forEach(file => {
     const filePath = paths.build + 'examples/' + file;
     if (fs.statSync(filePath).isDirectory()) {
-      src(paths.libraries + 'esm/' + files.minjs) // Copy minified JS
+      src(paths.library + 'esm/' + files.minjs) // Copy minified JS
         .pipe(dest(filePath));
     }
   });
@@ -221,7 +221,7 @@ function copy() {
   });
 
   // Copy rslidy.min.js and rslidy.min.css to tests/stress-test folder
-  src(paths.libraries + 'esm/' + files.minjs)
+  src(paths.library + 'esm/' + files.minjs)
     .pipe(dest(paths.build + 'tests/stress-test/'));
   src(paths.build + files.mincss)
     .pipe(dest(paths.build + 'tests/stress-test/'));

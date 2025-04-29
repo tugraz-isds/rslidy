@@ -93,7 +93,7 @@ export class PrintSettingsComponent {
           'input[name="transform-origin"]:checked'
         ) as HTMLInputElement | null;
         if (selectedPosition) {
-          selectedPosition.closest('label')?.querySelector('rect')?.setAttribute("fill", "black");
+          selectedPosition.closest('label')?.querySelector('rect')?.setAttribute("fill", "#4D4D4D");
         }
       }
     };
@@ -115,7 +115,7 @@ export class PrintSettingsComponent {
         document.querySelectorAll(".rslidy-print-position svg rect").forEach(rect => {
           rect.setAttribute("fill", "grey");
         });
-        this.closest('label')?.querySelector('rect')?.setAttribute("fill", "black");
+        this.closest('label')?.querySelector('rect')?.setAttribute("fill", "#4D4D4D");
       });
     });
 
@@ -203,10 +203,9 @@ export class PrintSettingsComponent {
           break;
 
         case "fit-width":
-          const pageWidth = paperSize.value.split(" ")[0];
           css += `
               #rslidy-content-section .slide {
-                  width: ${pageWidth} !important;
+                  width: 100%%! important;
                   max-width: 100% !important;
                   height: auto !important;
                   overflow: visible !important;
@@ -217,16 +216,31 @@ export class PrintSettingsComponent {
 
 
       case "shrink":
-        console.log("shrink");
+        const [pageWidth, pageHeight] = paperSize.value.split(" ");
+
+        const mmToPx = mm => mm * 3.7795;
+        const pageHeightPx1 = mmToPx(parseFloat(pageHeight));
+        const slide = document.querySelector('.slide'); // or loop over all
+        const slides = document.querySelectorAll('.slide');
+
+        slides.forEach(slide => {
+          if (!(slide instanceof HTMLElement)) return;
+
+          const rawHeight = pageHeight.replace("mm", ""); // removes 'mm'
+          const rect = slide.getBoundingClientRect();
+          const height = rect.height;
+          const scale = Math.min(mmToPx(parseFloat('210')) / height, 1);
+          slide.style.transform = `scale(${scale})`;
+          slide.style.transformOrigin = 'top left';
+        });
+
         css += `
-            #rslidy-content-section .slide {
-                width: ${pageWidth} !important;
-                max-width: 100% !important;
-                height: auto !important;
-                overflow: visible !important;
-                padding: 2rem !important;
-            }
-        `;
+              #rslidy-content-section .slide {
+                  margin: 0 auto;
+                  overflow: visible;
+                  page-break-after: always;
+              }
+          `;
         break;
         case "fit":
           const [widthStr, heightStr] = paperSize.value.split(" ");
@@ -330,11 +344,16 @@ export class PrintSettingsComponent {
             const origin = selectedOrigin?.value || "center";
             css += `
               #rslidy-content-section .slide {
+                bottom: 0 !important;
+                left: 0 !important;
+              
                 transform: scale(${scaleFactor}) !important;
                 transform-origin: ${origin} !important;
                 width: auto !important;
                 height: auto !important;
                 overflow: visible !important;
+                margin: 0;
+                box-sizing: border-box;
               }
             `;
           }

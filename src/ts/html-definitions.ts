@@ -1,6 +1,7 @@
 import * as i from "./icon-definitions";
 import * as t from "./text.en";
 
+
 export const spinner_html = `
 <div id="rslidy-spinner" class="rslidy-spinner-overlay">
 <div class="rslidy-spinner"></div></div>`;
@@ -227,38 +228,38 @@ export const preview_html = (idx) => `
 export const settings_html = `
 <div id="rslidy-menu" class="rslidy-hidden rslidy-ui" role="region"
 aria-label="Settings" tabindex="0">
-  <label id="rslidy-checkbox-tilt-text" class="rslidy-menu-content rslidy-disabled" aria-disabled="true">
+  <label id="rslidy-checkbox-tilt-text" class="rslidy-menu-content-settings rslidy-disabled" aria-disabled="true">
     `+t.settings[0]+`
     <input type="checkbox" value="Tilt" id="rslidy-checkbox-tilt" disabled>
     <label for="rslidy-checkbox-tilt">`+i.slider_icon+`</label>
   </label>
-  <label id="rslidy-checkbox-shake-text" class="rslidy-menu-content rslidy-disabled" aria-disabled="true">
+  <label id="rslidy-checkbox-shake-text" class="rslidy-menu-content-settings rslidy-disabled" aria-disabled="true">
     `+t.settings[1]+`
     <input type="checkbox" value="Shake" id="rslidy-checkbox-shake" disabled>
     <label for="rslidy-checkbox-shake">`+i.slider_icon+`</label>
   </label>
-  <label id="rslidy-checkbox-space-text" class="rslidy-menu-content">
+  <label id="rslidy-checkbox-space-text" class="rslidy-menu-content-settings">
     `+t.settings[2]+`
     <input type="checkbox" value="Tap" id="rslidy-checkbox-space" checked>
     <label for="rslidy-checkbox-space">`+i.slider_icon+`</label>
   </label>
-  <label id="rslidy-checkbox-margintap-text" class="rslidy-menu-content">
+  <label id="rslidy-checkbox-margintap-text" class="rslidy-menu-content-settings">
     `+t.settings[3]+`
     <input type="checkbox" value="Tap" id="rslidy-checkbox-margintap" checked>
     <label for="rslidy-checkbox-margintap">`+i.slider_icon+`</label>
   </label>
-  <label id="rslidy-checkbox-lowlight-text" class="rslidy-menu-content">
+  <label id="rslidy-checkbox-lowlight-text" class="rslidy-menu-content-settings">
     `+t.settings[4]+`
     <input type="checkbox" value="Low Light Mode" id="rslidy-checkbox-lowlightmode">
     <label for="rslidy-checkbox-lowlightmode">`+i.slider_icon+`</label>
   </label>
-  <div class="rslidy-menu-content">
+  <div class="rslidy-menu-content-settings">
     <label>`+t.settings[5]+`</label>
     <a href="#" title="`+t.settings[7]+`" id="rslidy-button-font-minus"><span class="rslidy-menu-button">`+i.font_minus_icon+`</span></a>
     <a href="#" title="`+t.settings[8]+`" id="rslidy-button-font-reset"><span class="rslidy-menu-button">`+i.font_reset_icon+`</span></a>
     <a href="#" title="`+t.settings[9]+`" id="rslidy-button-font-plus"><span class="rslidy-menu-button">`+i.font_plus_icon+`</span></a>
   </div>
-  <div class="rslidy-menu-content">
+  <div class="rslidy-menu-content-settings">
     <label>`+t.settings[6]+`</label>
     <a href="#" title="`+t.settings[10]+`" id="rslidy-button-font-minus-ui"><span class="rslidy-menu-button">`+i.font_minus_icon+`</span></a>
     <a href="#" title="`+t.settings[11]+`" id="rslidy-button-font-reset-ui"><span class="rslidy-menu-button">`+i.font_reset_icon+`</span></a>
@@ -300,7 +301,7 @@ role="region" aria-label="Print Settings" tabindex="0">
   </fieldset>
   <label id="rslidy-input-font-size-text" class="rslidy-menu-content">
     `+t.print_settings[4]+`
-    <input type="number" id="rslidy-input-font-size" value="80" min="0" max="100">
+    <input type="number" id="rslidy-input-font-size" value="100" min="0" max="100">
   <span class="percent">%</span>
   </label>
   <label id="rslidy-select-orientation-text" class="rslidy-menu-content">
@@ -354,7 +355,7 @@ role="region" aria-label="Print Settings" tabindex="0">
       <input type="radio" name="transform-origin" value="top left" class="print-checkbox">
       <svg width="25" height="25" viewBox="0 0 25 25">
         <rect width="25" height="25" fill="grey" />
-        <circle cx="5" cy="5" r="3.5" fill="blue" />
+        <circle cx="5" cy="5" r="3.5" fill="lightblue" />
       </svg>
     </label>
 
@@ -362,7 +363,7 @@ role="region" aria-label="Print Settings" tabindex="0">
       <input type="radio" name="transform-origin" value="top center" class="print-checkbox">
       <svg width="25" height="25" viewBox="0 0 25 25">
         <rect width="25" height="25" fill="grey" />
-        <circle cx="12.5" cy="5" r="3.5" fill="blue" />
+        <circle cx="12.5" cy="5" r="3.5" fill="lightblue" />
       </svg>
     </label>
 
@@ -370,7 +371,7 @@ role="region" aria-label="Print Settings" tabindex="0">
       <input type="radio" name="transform-origin" value="top right" class="print-checkbox">
       <svg width="25" height="25" viewBox="0 0 25 25">
         <rect width="25" height="25" fill="grey" />
-        <circle cx="20" cy="5" r="3.5" fill="blue" />
+        <circle cx="20" cy="5" r="3.5" fill="lightblue" />
       </svg>
     </label>
   </div>
@@ -379,7 +380,7 @@ role="region" aria-label="Print Settings" tabindex="0">
           <input type="radio" name="transform-origin" value="center left" class="print-checkbox">
           <svg width="25" height="25" viewBox="0 0 25 25">
             <rect width="25" height="25" fill="grey" />
-            <circle cx="5" cy="12.5" r="3.5" fill="blue" />
+            <circle cx="5" cy="12.5" r="3.5" fill="lightblue" />
           </svg>
         </label>
     
@@ -387,7 +388,7 @@ role="region" aria-label="Print Settings" tabindex="0">
           <input type="radio" name="transform-origin" value="center" class="print-checkbox" checked>
           <svg width="25" height="25" viewBox="0 0 25 25">
             <rect width="25" height="25" fill="grey" />
-            <circle cx="12.5" cy="12.5" r="3.5" fill="blue" />
+            <circle cx="12.5" cy="12.5" r="3.5" fill="lightblue" />
           </svg>
         </label>
     
@@ -395,33 +396,33 @@ role="region" aria-label="Print Settings" tabindex="0">
           <input type="radio" name="transform-origin" value="center right" class="print-checkbox">
           <svg width="25" height="25" viewBox="0 0 25 25">
             <rect width="25" height="25" fill="grey" />
-            <circle cx="20" cy="12.5" r="3.5" fill="blue" />
+            <circle cx="20" cy="12.5" r="3.5" fill="lightblue" />
           </svg>
         </label>
       </div>
     
       <div class="button-container">
         <label class="rslidy-print-position" data-tooltip="Bottom Left">
-          <input type="radio" name="transform-origin" value="bottom left" class="print-checkbox">
+          <input type="radio" name="transform-origin" value="left bottom" class="print-checkbox">
           <svg width="25" height="25" viewBox="0 0 25 25">
             <rect width="25" height="25" fill="grey" />
-            <circle cx="5" cy="20" r="3.5" fill="blue" />
+            <circle cx="5" cy="20" r="3.5" fill="lightblue" />
           </svg>
         </label>
     
         <label class="rslidy-print-position" data-tooltip="Bottom Center">
-          <input type="radio" name="transform-origin" value="bottom center" class="print-checkbox">
+          <input type="radio" name="transform-origin" value="center bottom" class="print-checkbox">
           <svg width="25" height="25" viewBox="0 0 25 25">
             <rect width="25" height="25" fill="grey" />
-            <circle cx="12.5" cy="20" r="3.5" fill="blue" />
+            <circle cx="12.5" cy="20" r="3.5" fill="lightblue" />
           </svg>
         </label>
     
         <label class="rslidy-print-position" data-tooltip="Bottom Right">
-          <input type="radio" name="transform-origin" value="bottom right" class="print-checkbox">
+          <input type="radio" name="transform-origin" value="right bottom" class="print-checkbox">
           <svg width="25" height="25" viewBox="0 0 25 25">
             <rect width="25" height="25" fill="grey" />
-            <circle cx="20" cy="20" r="3.5" fill="blue" />
+            <circle cx="20" cy="20" r="3.5" fill="lightblue" />
           </svg>
         </label>
       </div>

@@ -5,6 +5,9 @@
     .toolbar__opener {
         display: none;
     }
+    .toolbar__bar {
+        display: none;
+    }
     #multi-line-chart {
         width: 100%;
     }

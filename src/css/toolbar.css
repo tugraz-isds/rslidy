@@ -40,7 +40,7 @@
   position: relative;
   flex: 0 0 auto;
   width: 100%;
-  height: calc(var(--progressbar-height) + var(--toolbar-height));
+  height:3.7em;
   transition: 0.20s;
   overflow: hidden;
   z-index: 4;
