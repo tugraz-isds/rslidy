@@ -1,6 +1,8 @@
 #multi-line-chart{width:100%;height:65vh;min-height:25rem;container-type:inline-size}
 #multi-line-chart .window-rv{--chart-padding-right: 1rem}
-
+.toolbar__opener {
+    margin-right: 3em;
+}
 @media print {
     .toolbar__opener {
         display: none;

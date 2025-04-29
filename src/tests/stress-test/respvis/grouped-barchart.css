@@ -3,6 +3,9 @@
   height: 65vh;
   min-height: 18rem;
   container-type: inline-size;
+  .toolbar__opener {
+    margin-right: 3em;
+    }
   .window-rv {
     --font-size-legend-label: 1rem;
     [data-style=categorical-0] { --color-categorical-0: #4f8c9d; }
