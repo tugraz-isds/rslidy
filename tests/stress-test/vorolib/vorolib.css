@@ -26,3 +26,7 @@
         height: auto !important;
     }
 }
+
+#center-div canvas {
+    max-width: 100% !important;
+}

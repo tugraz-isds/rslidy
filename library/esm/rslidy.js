@@ -657,14 +657,18 @@ role="region" aria-label="Print Settings" tabindex="0">
       <input type="radio" name="print-options" value="actual" id="rslidy-checkbox-actual" class="print-checkbox" checked> Actual Size
     </label>
     <br>
+     <!--
     <label id="rslidy-checkbox-scale-text" class="rslidy-print-sizing">
       <input type="radio" name="print-options" value="fit" id="rslidy-checkbox-fit" class="print-checkbox"> Fit
     </label>
     <br>
+     -->
+    <!--
     <label id="rslidy-checkbox-scale-text" class="rslidy-print-sizing">
       <input type="radio" name="print-options" value="shrink" id="rslidy-checkbox-fit" class="print-checkbox"> Shrink
     </label>
     <br>
+    -->
     <label id="rslidy-checkbox-shrink-text" class="rslidy-print-sizing">
       <input type="radio" name="print-options" value="fit-width" id="rslidy-checkbox-shrink" class="print-checkbox"> Fit to Width
     </label>
@@ -1035,7 +1039,8 @@ class PrintSettingsComponent {
         this.initializeSlideRangeToggle();
         // Set default values
         this.view.querySelector("#rslidy-checkbox-snum").checked = true;
-        this.view.querySelector("#rslidy-checkbox-link").checked = true;
+        this.view.querySelector("#rslidy-checkbox-frame").checked = true;
+        this.view.querySelector("#rslidy-checkbox-link").checked = false;
         // Apply print settings on change
         const inputs = this.view.getElementsByTagName("input");
         for (let i = 0; i < inputs.length; i++) {
@@ -1094,6 +1099,15 @@ class PrintSettingsComponent {
                 const selectedPosition = this.view.querySelector('input[name="transform-origin"]:checked');
                 if (selectedPosition) {
                     (_b = (_a = selectedPosition.closest('label')) === null || _a === void 0 ? void 0 : _a.querySelector('rect')) === null || _b === void 0 ? void 0 : _b.setAttribute("fill", "#4D4D4D");
+                }
+            }
+            const heading = this.view.querySelector("#rslidy-transform-origin-subsection h4");
+            if (heading) {
+                if (isCustomScale) {
+                    heading.classList.remove("disabled");
+                }
+                else {
+                    heading.classList.add("disabled");
                 }
             }
         };
@@ -1158,6 +1172,7 @@ class PrintSettingsComponent {
             dimensions = `${height} ${width}`;
         }
         css += `
+      .slide { margin: auto !important; }
       #chart .window-rv { display: block; }
       #rslidy-content-section .slide { display: block; }
       .slide.animated { animation: none !important; }
@@ -1191,7 +1206,6 @@ class PrintSettingsComponent {
                 case "fit-width":
                     css += `
               #rslidy-content-section .slide {
-                  width: 100%%! important;
                   max-width: 100% !important;
                   height: auto !important;
                   overflow: visible !important;
@@ -1200,118 +1214,55 @@ class PrintSettingsComponent {
           `;
                     break;
                 case "shrink":
-                    const [pageWidth, pageHeight] = paperSize.value.split(" ");
-                    const mmToPx = mm => mm * 3.7795;
-                    const pageHeightPx1 = mmToPx(parseFloat(pageHeight));
-                    const slide = document.querySelector('.slide'); // or loop over all
-                    const slides = document.querySelectorAll('.slide');
-                    slides.forEach(slide => {
-                        if (!(slide instanceof HTMLElement))
-                            return;
-                        const rawHeight = pageHeight.replace("mm", ""); // removes 'mm'
-                        const rect = slide.getBoundingClientRect();
-                        const height = rect.height;
-                        const scale = Math.min(mmToPx(parseFloat('210')) / height, 1);
-                        slide.style.transform = `scale(${scale})`;
-                        slide.style.transformOrigin = 'top left';
-                    });
-                    css += `
-              #rslidy-content-section .slide {
-                  margin: 0 auto;
-                  overflow: visible;
-                  page-break-after: always;
-              }
-          `;
-                    break;
+                /*const [pageWidth, pageHeight] = paperSize.value.split(" ");
+        
+                const mmToPx = mm => mm * 3.7795;
+                const pageHeightPx1 = mmToPx(parseFloat(pageHeight));
+                const slide = document.querySelector('.slide'); // or loop over all
+                const slides = document.querySelectorAll('.slide');
+        
+                slides.forEach(slide => {
+                  if (!(slide instanceof HTMLElement)) return;
+        
+                  const rawHeight = pageHeight.replace("mm", ""); // removes 'mm'
+                  const rect = slide.getBoundingClientRect();
+                  const height = rect.height;
+                  const scale = Math.min(mmToPx(parseFloat('210')) / height, 1);
+                  slide.style.transform = `scale(${scale})`;
+                  slide.style.transformOrigin = 'top left';
+                });
+        
+                css += `
+                      #rslidy-content-section .slide {
+                          margin: 0 auto;
+                          overflow: visible;
+                          page-break-after: always;
+                      }
+                  `;
+                break;*/
                 case "fit":
-                    const [widthStr, heightStr] = paperSize.value.split(" ");
-                    const width = parseFloat(widthStr);
-                    const height = parseFloat(heightStr);
-                    const isLandscape = layout.value === "landscape";
-                    // Convert paper dimensions from mm/in to pixels (assuming 96dpi)
-                    const unit = widthStr.replace(/[0-9.]/g, ''); // Extract unit (mm or in)
-                    let pageWidthPx, pageHeightPx;
-                    if (unit === "mm") {
-                        pageWidthPx = (isLandscape ? height : width) / 25.4 * 96;
-                        pageHeightPx = (isLandscape ? width : height) / 25.4 * 96;
-                    }
-                    else {
-                        pageWidthPx = (isLandscape ? height : width) * 96;
-                        pageHeightPx = (isLandscape ? width : height) * 96;
-                    }
-                    const marginPx = 10 / 25.4 * 96;
-                    const printableWidth = pageWidthPx - (2 * marginPx);
-                    const printableHeight = pageHeightPx - (2 * marginPx);
-                    css += `
-    #rslidy-content-section .slide {
-      width: ${printableWidth}px !important;
-      height: ${printableHeight}px !important;
-      transform-origin: top left !important;
-     transform: scale(var(--slide-scale-factor)) !important;
-      page-break-after: always !important;
-      overflow: visible !important;
-      position: relative !important;
-      padding: 2rem !important;
-      display: block !important; /* Ensure slides are visible for calculation */
-    }
-    
-    #rslidy-content-section .slide > div {
-     
-      transform-origin: top left !important;
-      width: 100% !important;
-      height: 100% !important;
-    }
-  `;
-                    const script = document.createElement('script');
-                    script.textContent = `
-    // Force reflow
-    document.body.offsetHeight;
-    
-    setTimeout(() => {
-      document.querySelectorAll('#rslidy-content-section .slide').forEach(slide => {
-        // Save original style
-        const originalDisplay = slide.style.display;
-        const originalVisibility = slide.style.visibility;
-        const originalPosition = slide.style.position;
-
-        // Force visibility for measurement
-        slide.style.display = 'block';
-        slide.style.visibility = 'hidden';
-        slide.style.position = 'absolute';
-
-        // Trigger reflow and get slide dimensions
-        const rect = slide.getBoundingClientRect();
-        const slideWidth = rect.width;
-        const slideHeight = rect.height;
-
-        // Restore original styles
-        slide.style.display = originalDisplay;
-        slide.style.visibility = originalVisibility;
-        slide.style.position = originalPosition;
-
-        if (slideWidth <= 0 || slideHeight <= 0) {
-          console.warn('Skipping slide with invalid dimensions');
-          return;
-        }
-
-        // Calculate dynamic scaling for each slide
-        const scaleX = ${printableWidth} / slideWidth;
-        const scaleY = ${printableHeight} / slideHeight;
-
-        // Apply the smaller scale factor to fit the slide on the page
-        const scaleFactor = Math.min(scaleX, scaleY);
-
-        if (!isFinite(scaleFactor)) {
-          console.error('Invalid scale factor calculated:', scaleFactor);
-          return;
-        }
-
-        // Apply the dynamic scale factor for each slide
-        slide.style.setProperty('--slide-scale-factor', scaleFactor);
-      });
-    }, 100);
-  `;
-                    document.head.appendChild(script);
+                    /*css += `
+                      @page {
+                        size: ${paperSize.value} ${layout.value};
+                        margin: 10mm;
+                      }
+                      
+                      #rslidy-content-section .slide {
+                        width: 100% !important;
+                        height: 100% !important;
+                        page-break-after: always !important;
+                        transform: scale(1) !important;
+                        transform-origin: top left !important;
+                        contain: size !important;
+                      }
+                      
+                      #rslidy-content-section .slide > div {
+                        transform: scale(calc(var(--print-scale-factor, 1))) !important;
+                        transform-origin: top left !important;
+                        width: 100% !important;
+                        height: 100% !important;
+                      }
+                    `;*/
                     break;
                 case "custom":
                     const scalingValue = parseFloat(scalingInput.value);
