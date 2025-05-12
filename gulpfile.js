@@ -71,7 +71,7 @@ function webpack() {
       optimization: { minimize: false }, // Disable minification
       plugins: [
         new BannerPlugin({
-          banner: '// Rslidy version 1.1 ESM', // Add comment for ESM
+          banner: '// Rslidy version 2.0.0 ESM', // Add comment for ESM
           raw: true
         })
       ]
@@ -83,7 +83,7 @@ function webpack() {
       optimization: { minimize: false }, // Disable minification
       plugins: [
         new BannerPlugin({
-          banner: '// Rslidy version 1.1 CommonJS', // Add comment
+          banner: '// Rslidy version 2.0.0 CommonJS', // Add comment
           // for CJS
           raw: true
         })
