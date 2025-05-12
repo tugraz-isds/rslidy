@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Responsive SVG Line Chart</title>
+
+<style>
+#chart {width:100%;}
+</style>
+</head>
+
+<body>
+
+<div id="chart">
+<svg
+  viewBox="0 0 100 100"
+  version="1.1"
+  baseProfile="full"
+  xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink">
+<defs>
+<style>
+#labels text {font-size: 0.2em;}
+
+@media only screen and (max-width: 35em) {
+  #line {stroke-width: 0.04em}
+  #labels text {font-size: 0.3em;}
+}
+</style>
+</defs>
+<polyline id="line" points="0,0 20,20 40,20 60,10 80,20"
+  fill="none" stroke="steelblue" stroke-width="0.02em"/>
+<g id="labels" font-size="">
+<text x="0"  y="25" fill="red">2000</text>
+<text x="20" y="25" fill="red">2001</text>
+<text x="40" y="25" fill="red">2002</text>
+<text x="60" y="25" fill="red">2003</text>
+<text x="80" y="25" fill="red">2004</text>
+</g>
+</svg>
+</div>
+
+</body>
+</html>

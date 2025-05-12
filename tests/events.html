@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+
+<head>
+<meta charset="UTF-8"/>
+
+<!-- for css3 media queries to work properly on mobile devices-->
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>rslidy Test - Preserve Event Listeners</title>
+
+<!-- Copyright © 2018 Keith Andrews -->
+
+<link rel="stylesheet" href="rslidy.min.css"/>
+<script src="rslidy.min.js"></script>
+
+</head>
+
+
+<body>
+
+<div class="slide">
+  <h1>Event Listeners</h1>
+
+  <p>This example uses the addEventListener() method to attach a click event to a button.</p>
+
+  <pre>
+    document.getElementById("myBtn").addEventListener("click", function(){
+        document.getElementById("demo").innerHTML = "Hello World";
+    });
+  </pre>
+
+  <button id="myBtn">Try it</button>
+
+  <p><strong>Note:</strong> The addEventListener() method is not supported in Internet Explorer 8 and earlier versions.</p>
+
+  <p id="demo"></p>
+
+  <script>
+  document.getElementById("myBtn").addEventListener("click", function(){
+      document.getElementById("demo").innerHTML = "Hello World";
+  });
+  </script>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,464 @@
+
+/*
+Fabian Platzer: extra CSS for my rslidy slides, based on the CSS from
+Keith Andrews.
+*/
+
+
+/* Configure Rslidy */
+
+#rslidy-content-section .slide {
+  font-family: Verdana, Arial, sans-serif;
+  font-size: 1.3em;
+  color: black;
+  background: white;
+  line-height: 1.3;
+  hyphens: auto;
+
+}
+
+
+
+
+/* My Own Look and Feel */
+
+.recommendations {
+  margin-bottom: 1.5em;
+}
+
+
+p {
+  margin: 0 0 1em 0;
+  padding: 0;
+  max-width: 60ch;
+}
+
+
+p.note {
+  font-size: 80%;
+  max-width: 75ch;
+}
+
+p.note:before {
+  content: "[" ;
+}
+
+p.note:after {
+  content: "]" ;
+}
+
+
+
+p.small {
+  font-size: 80%;
+  max-width: 75ch;
+}
+
+
+li p {
+  margin: 0 0 0.5em 0;
+}
+
+
+
+
+li {
+  max-width: 60ch;
+  margin: 0 0 1em 0;
+  padding: 0;
+}
+
+
+
+
+
+ul {
+  max-width: 60ch;
+  margin: 0 0 1em 0;
+  padding: 0 0 0 1em;
+  list-style: disc;
+}
+
+
+
+ol {
+  max-width: 60ch;
+  margin: 0 0 1em 0;
+  padding: 0 0 0 1.3em;
+  list-style: decimal;
+}
+
+
+ol.compact li, ul.compact li {
+  margin: 0 0 0.4em 0;
+}
+
+ol.loose > li, ul.loose > li {
+  margin: 0.5em 0 2.5em 0;
+}
+
+
+div.credits {
+  margin: 1em 0;
+  font-size: 70%;
+  text-align: center;
+}
+
+
+ul ul, ol ol ul ul, ol ul ol ul, ul ol ol ul, ol ul ul, ul ol ul {
+  list-style: circle;
+}
+
+ol ul ul ul, ul ol ul ul, ul ul ol ul, ul ul ul {
+  list-style: square;
+}
+
+ul ul ul ul {
+  list-style: disc;
+}
+
+
+
+
+ul ul ol ol, ul ol ul ol, ol ul ol ol, ol ol ul ol, ol ul ol, ol ol {
+  list-style: lower-alpha;
+}
+
+ol ul ol ol, ol ol ul ol, ul ol ol ol, ol ol ol {
+  list-style: lower-roman;
+}
+
+ol ol ol ol {
+  list-style: decimal;
+}
+
+
+
+
+
+span.li-intro {
+  font-style: italic;
+}
+
+
+
+span.li-heading {
+  font-weight: bold;
+}
+
+p:has(span[class="li-heading"]) {
+  margin: 0 0 0.4em 0;
+}
+
+
+
+
+
+ul.credits {
+  font-size: 0.8em;
+}
+
+
+div#location {
+  margin: 1em 0;
+  text-align: right;
+}
+
+div#location p {
+  display: inline;
+  background-color: #eee;
+  padding: 0.2em;
+  border-radius: 0.2em;
+  font-size: 60%;
+}
+
+
+
+div#licence {
+  margin: 2em 0 1em 0;
+  text-align: center;
+  line-height: 0.5em;
+}
+
+div#licence p {
+  display: inline;
+  padding: 0;
+  font-size: 0.4em;
+}
+
+
+
+span.isbn:before {
+  content: "ISBN";
+}
+
+span.isbn {
+  font-size: 80%;
+}
+
+
+
+/* title slide has larger and centered text*/
+
+
+.titleslide
+{
+  text-align: center;
+}
+
+.titleslide h1
+{
+  padding-top: 0.5em;
+  font-size: 2em;
+  margin-bottom: 1.4em;
+}
+
+.titleslide h2
+{
+  font-size: 1.6em;
+  margin-bottom: 1.4em;
+}
+
+.titleslide h3
+{
+  font-size: 1.3em;
+  margin-bottom: 1.2em;
+}
+
+.titleslide p
+{
+  font-size: 0.8em;
+  padding: 0.5em 0;
+}
+
+
+#rslidy-content-section .slide:not(.titleslide) {
+  background: url("images/tugraz-logo.svg") 95% 4%/auto 2em no-repeat;
+}
+
+/* section header slide */
+
+.valign {
+  position: relative;
+  top: 30%;
+}
+
+.sectionheader {
+  text-align: center;
+}
+
+.sectionheader h1 {
+  font-size: 2em;
+  hyphens: none;
+}
+
+
+
+/* bullets and figures */
+
+
+div.grid-2col {
+  margin: 0 0 1em 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2em;
+}
+
+figure.gallery {
+  width: 100%;
+  height: 100%;
+}
+
+
+
+
+
+
+.columns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1em;
+  justify-content: flex-start;
+  align-items: flex-start;
+  align-content: flex-start;
+}
+
+.columns-spaced {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1em;
+}
+
+.columns-even {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: flex-start;
+  gap: 2em;
+}
+.left-column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
+.right-column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
+
+
+.bullets-half {
+  padding: 1em;
+}
+
+.figures-half {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 1em;
+  justify-content: center;
+  align-items: flex-start;
+  align-content: flex-start;
+}
+
+
+.column-vorolib {
+  width: 50%;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 1em;
+  justify-content: center;
+  align-items: flex-start;
+  align-content: flex-start;
+}
+
+.figures-half figure figcaption {
+  margin: 0.5em auto 0 auto;
+
+}
+
+/* Styling for the positive and negative lists */
+ul.positive-list, ul.negative-list {
+  list-style-type: none;  /* Remove default bullet points */
+  padding-left: 0;        /* Remove indentation */
+}
+
+ul.positive-list li::before {
+  content: "+ ";  /* Display the plus sign before each item */
+  font-weight: bold; /* Make the plus sign bold */
+  color: green;      /* Optional: Style the plus sign */
+}
+
+ul.negative-list li::before {
+  content: "- ";  /* Display the minus sign before each item */
+  font-weight: bold; /* Make the minus sign bold */
+  color: red;      /* Optional: Style the minus sign */
+}
+
+.figures {
+  margin: .5em 0;
+}
+/* figures */
+
+
+figure {
+  margin: 0 auto;
+}
+
+div.images {
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2em;
+  justify-content: center;
+  align-items: flex-end;
+  align-content: flex-start;
+}
+
+div.images img {
+  max-width: 100%;
+  max-height: 15em;
+}
+
+div.images img.frame {
+  border-style: solid;
+  border-width: 0.005em;
+}
+
+pre.test {
+  margin: 0;
+}
+
+
+figcaption {
+  margin: 1em auto 0 auto;
+  font-size: 85%;
+  text-align: center;
+  max-width: 80%;
+}
+
+figcaption span.fig-label {
+  font-weight: bold;
+}
+
+figcaption span.credit {
+  font-size: 80%;
+}
+
+figcaption span.credit:before {
+  content: "[";
+}
+
+figcaption span.credit:after {
+  content: "]";
+}
+
+
+
+
+
+div.footnotes {
+  margin: 1em auto 0 auto;
+  font-size: 75%;
+}
+
+
+
+
+
+
+
+/* adjust prismjs settings for code */
+
+pre[class*="language"] {
+  padding: 0.5em !important;
+  margin:  0 !important;
+  line-height: 1 !important;
+  white-space: pre-wrap !important;
+}
+
+code[class*="language-"] {
+  padding: 0 !important;
+  margin:  0 !important;
+  font-size: 0.8em !important;
+  white-space: pre-wrap !important;
+}
+
+
+
+/* 
+code.block {
+  display: inline-block;
+  width: 100%;
+  margin-left: 1em;
+  margin-bottom: 1em;
+}
+*/
+
+
+
+
