@@ -1,6 +1,6 @@
 {
   "name": "rslidy",
-  "version": "1.1.0",
+  "version": "2.0.0",
   "description": "Rslidy: Lightweight, Accessible, and Responsive HTML5 Slide Decks",
   "main": "build/rslidy.js",
   "author": "Keith Andrews",
@@ -44,8 +44,5 @@
     "yargs": "^15.0.2"
   },
   "dependencies": {
-    "@types/html2canvas": "^1.0.0",
-    "html2canvas": "^1.4.1",
-    "jspdf": "^2.5.2"
   }
 }
