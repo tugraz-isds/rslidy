@@ -178,7 +178,6 @@ export function createLineChart(selector) {
       }
     }
   })
-  console.log("buildChart")
   chart.buildChart()
 }
 window.addEventListener("beforeprint", (event) => {

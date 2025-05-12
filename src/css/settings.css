@@ -32,10 +32,16 @@
 }
 #rslidy-transform-origin-subsection h4 {
   margin-bottom: 0.5em;
-  font-size: 0.9em;
-  font-weight: bold;
+  font-size:  1em;
+  font-weight: 500;
 }
 
+#rslidy-transform-origin-subsection h4.disabled {
+  color: grey;
+  font-weight: normal;
+  opacity: 0.8;
+  pointer-events: none;
+}
 /*.button-container {
   display: flex;
   justify-content: space-between;

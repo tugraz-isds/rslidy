@@ -77,6 +77,11 @@ Responsive HTML5, CSS3, JavaScript (TypeScript).
 </li>
 
 <li>
+  Slides are defined in blocks <code class="language-html small-code">&lt;div
+  class="slide"&gt;...&lt;/div&gt;</code> or <code class="language-html small-code">&lt;section&gt;...&lt;/section&gt;</code>.
+</li>
+
+<li>
 No other dependencies.
 </li>
 
@@ -118,115 +123,55 @@ Lightweight.
 
 
 <section>
-<h2>Overview of Rslidy's Features</h2>
-
-<ul>
-<li>
-Slide Viewer:
-<ul>
-<li>Animated slide transitions.</li>
-<li>Overview panel.</li>
-<li>Table of contents panel.</li>
-<li>Navigable progress bar.</li>
-<li>Image viewer with pan + zoom.</li>
-<li>All slides view.</li>
-<li>Low light mode.</li>
-<li>Help page.</li>
-</ul>
-</li>
-
-<li>
-Responsive Layout:
-<ul>
-<li>Portrait + landscape.</li>
-<li>Print style sheet.</li>
-</ul>
-</li>
-
-<li>
-Responsive Interaction:
-<ul>
-<li>Swipe, pinch, tap.</li>
-<li>Tilt, shake.</li>
-<li>Keyboard.</li>
-<li>Mouse pointer, mouse wheel.</li>
-</ul>
-</li>
-
-</ul>
-</section>
-
-
-
-
-
-<section>
-
-  <h2>Slide Viewer</h2>
-
-  <figure>
-    <div class="large-images">
-    <video controls autoplay muted loop poster="images/slide-viewer.gif">
-      <source src="images/slide-viewer.mp4" type="video/mp4"/>
-      <img src="images/slide-viewer.gif" alt="An animation shows the slide viewer in usage. The overview, table of contents, and progress bar are shown." />
-    </video>
-    </div>
-    <figcaption>
-    The slide viewer features a toolbar, a collapsible slide overview on the left side, a table of contents on the right side, and a navigable progress bar.<br/>
-    <span class="credit">Screen capture taken from Rslidy.</span>
-    </figcaption>
-  </figure>
-</section>
-
-
-
-
-
-
-<section>
-
-  <h2>Settings</h2>
-
-<div class="columns">
-  <ul class="item-auto">
-    <li>Toggle features.</li>
-    <li>Adjust font sizes.</li>
-    <li>Low light mode.</li>
+  <h2>Overview of Rslidy's Features</h2>
+  
+  <ul>
+    <li>
+      Slide Viewer:
+      <ul>
+        <li>Animated slide transitions.</li>
+        <li>Overview panel.</li>
+        <li>Table of contents panel.</li>
+        <li>Navigable progress bar.</li>
+        <li>All slides view.</li>
+        <li>Help page.</li>
+      </ul>
+    </li>
+    
+    <li>
+      Responsive Layout and Interactions:
+      <ul>
+        <li>Portrait + landscape.</li>
+        <li>Swipe, pinch, tap.</li>
+        <li>Tilt, shake.</li>
+        <li>Keyboard.</li>
+        <li>Mouse pointer, mouse wheel.</li>
+      </ul>
+    </li>
   </ul>
-  <figure>
-    <div class="large-images">
-    <video controls autoplay muted loop poster="images/settings.gif">
-      <source src="images/settings.mp4" type="video/mp4"/>
-      <img src="images/settings.gif" alt="An animation shows Rslidy's settings panel. It is then used to adjust font sizes." />
-    </video>
-    </div>
-    <figcaption>
-    The settings panel can be used to adjust slide and UI font sizes.<br/>
-    <span class="credit">Screen capture taken from Rslidy.</span>
-    </figcaption>
-  </figure>
-</div>
 </section>
 
 
 
 
 
-<section>
 
+
+<section>
+  
   <h2>Image Viewer</h2>
-
+  
   <figure>
     <div class="large-images">
-    <video controls autoplay muted loop poster="images/image-viewer.gif">
-      <source src="images/image-viewer.mp4" type="video/mp4"/>
-      <img src="images/image-viewer.gif" alt="An animation shows the image viewer in usage." />
-    </video>
+      <video controls autoplay muted loop poster="images/image-viewer.gif">
+        <source src="images/image-viewer.mp4" type="video/mp4"/>
+        <img src="images/image-viewer.gif" alt="An animation shows the image viewer in usage." />
+      </video>
     </div>
     <figcaption>
-    The image viewer is automatically attached to every image.<br/>
-    Pan and zoom via mouse, keyboard, or on-screen controls.<br/>
-    <span class="credit">Screen capture taken from Rslidy.</span>
+      The image viewer is automatically attached to every image.<br/>
+      Pan and zoom via mouse, keyboard, or on-screen controls.<br/>
+      <span class="credit">Screen capture taken from Rslidy.</span>
     </figcaption>
   </figure>
 
@@ -234,61 +179,47 @@ Responsive Interaction:
 
 
 
-
-
-
-
-
 <section>
-
-<h2>Accessibility</h2>
-
-<div class="columns">
-  <ul class="item-auto">
-    <li>ARIA roles and properties, updated at runtime.</li>
-    <li>Accessible HTML5 elements, such as <code>&lt;nav&gt;</code> and <code>&lt;main&gt;</code>.</li>
-    <li>Fully navigable with keyboard shortcuts.</li>
-    <li>Font sizes are freely adjustable.</li>
-    <li>Screen reader friendly. (Tested with JAWS and NVDA. Special thanks go to Christopher Kopel.)</li>
-  </ul>
-  <figure>
-    <div class="images">
-    <video controls autoplay muted loop poster="images/dynamic-aria-roles.gif">
-      <source src="images/dynamic-aria-roles.mp4" type="video/mp4"/>
-      <img src="images/dynamic-aria-roles.gif" alt="An animation shows how aria roles are dynamically updated whenever the state of a button, setting, or panel changes." />
-    </video>
-    </div>
-    <figcaption>
-    Aria roles are dynamically updated whenever the state of a button, setting, or panel changes.<br/>
-    <span class="credit">Screen capture taken from Rslidy.</span>
-    </figcaption>
-  </figure>
-  <figure>
-    <div class="images">
-    <video controls autoplay muted loop poster="images/accessible-settings.gif">
-      <source src="images/accessible-settings.mp4" type="video/mp4"/>
-      <img src="images/accessible-settings.gif" alt="An animation shows how panels can be navigated with the Tab and Return keys." />
-    </video>
-    </div>
-    <figcaption>
-    Panels are navigable with the <kbd class="key">Tab&#x2b7e;</kbd> and
-    <kbd class="key">Return&#x23ce;</kbd> keys.<br/>
-    <span class="credit">Screen capture taken from Rslidy.</span>
-    </figcaption>
-  </figure>
-</div>
-
-</section>
-
-
-
-
-
-<section>
-
-  <h2>Gesture Support</h2>
-
+  
+  <h2>Settings</h2>
+  
   <div class="columns">
+    <ul class="item-auto">
+      <li>Toggle features.</li>
+      <li>Adjust font sizes.</li>
+      <li>Low light mode.</li>
+      <li>Print style sheet.</li>
+      <li>Both stored in localstorage (if available).</li>
+    </ul>
+  
+  </div>
+  
+</section>
+
+
+<section>
+  
+  <h2>Accessibility</h2>
+  
+  <div class="columns">
+    <ul class="item-auto">
+      <li>ARIA (Accessible Rich Internet Applications) roles and properties, updated at runtime.</li>
+      <li>Accessible HTML5 elements, such as <code>&lt;nav&gt;</code> and <code>&lt;main&gt;</code>.</li>
+      <li>Fully navigable with keyboard shortcuts.</li>
+      <li>Font sizes are freely adjustable.</li>
+      <li>Screen reader friendly. (Tested with JAWS and NVDA. Special thanks go to Christopher Kopel.)</li>
+    </ul>
+  </div>
+  
+</section>
+
+
+
+
+<section>
+  <h2>Gesture Support</h2>
+  
+  <div>
     <ul class="item-auto">
       <li>Swipe.</li>
       <li>Margin tap (similar to that of e-readers).</li>
@@ -297,28 +228,352 @@ Responsive Interaction:
     </ul>
     <figure>
       <div class="images">
-      <video controls autoplay muted loop poster="images/swipe.gif">
-        <source src="images/swipe.mp4" type="video/mp4"/>
-        <img src="images/swipe.gif" alt="An animation plays that shows Rslidy's slide transition when swiped left or right." />
-      </video>
+        <img src="images/tilt-tip-gestures.svg" alt="A graphic describing the tilt and tip gestures available in Rslidy." />
       </div>
       <figcaption>
-      Swipe to advance slides.<br/>
-      <span class="credit">Screen capture taken from Rslidy.</span>
-      </figcaption>
-    </figure>
-    <figure>
-      <div class="images">
-      <img src="images/tilt-tip-gestures.svg" alt="A graphic describing the tilt and tip gestures available in Rslidy." />
-      </div>
-      <figcaption>
-      Tilt and tip gestures can be used for navigation (in addition to swipe and tap gestures).<br/>
-      <span class="credit">Illustration made by the author using Inkscape.</span>
+        Tilt and tip gestures can be used for navigation (in addition to swipe and tap gestures).<br/>
+        <span class="credit">Illustration made by the author using Inkscape.</span>
       </figcaption>
     </figure>
   </div>
-
 </section>
+
+
+
+<section>
+  <h2>Math Equations using <a href="https://www.mathjax.org/">MathJax</a></h2>
+  <p>
+    When \(a \ne 0\), there are two solutions to \(ax^2 + bx + c = 0\) and they
+    are \[x = {-b \pm \sqrt{b^2-4ac} \over 2a}.\]
+  </p>
+  <p>Rendered from this HTML snippet:</p>
+  <pre><code class="language-html">&lt;p&gt;
+  When \(a \ne 0\), there are two solutions to \(ax^2 + bx + c = 0\) and they are
+  \[x = {-b \pm \sqrt{b^2-4ac} \over 2a}.\]
+&lt;/p&gt;</code></pre>
+</section>
+
+
+
+
+<section>
+  <h1>Source Code Highlighting using <a href="https://prismjs.com/">Prism.js</a></h1>
+  <pre><code class="language-html">&lt;body&gt;
+  &lt;section&gt;
+    &lt;h1&gt;Source Code Highlighting!&lt;/h1&gt;
+    &lt;h2&gt;Or through third-party tools.&lt;/h2&gt;
+  &lt;/section&gt;
+&lt;/body&gt;</code></pre>
+  <p>Inline code highlighting
+    <code class="language-css">background-color: rgba(0, 0, 0, 0.9);</code>
+    is also possible.</p>
+</section>
+
+
+<!-- Example of including live JS code, here a hypertree -->
+<link rel="stylesheet" href="hypertree/d3-hypertree-light.css">
+<script src="hypertree/d3-hypertree.js"></script>
+<style>
+  .unitdisk-nav {
+    margin: 3em;
+  }
+</style>
+
+
+<section>
+  <h1>Including Live Code for Interactive Content</h1>
+  <div id="tree"></div>
+</section>
+
+
+
+<script>
+  const ht = new hyt.Hypertree(
+    {
+      parent: document.querySelector('#tree')
+    },
+    {
+      dataloader: hyt.loaders.fromFile('hypertree/products.d3.json'),
+      langInitBFS: (ht, n) => n.precalc.label = n.data.name,
+      
+      layout: {
+        rootWedge: {
+          angle: 6.283184,
+        }
+      },
+      
+      filter: {
+        maxlabels: 55
+      },
+      
+      geometry: {
+        layerOptions: {
+          'stem-arc': {
+            invisible: true,
+            hideOnDrag: true,
+          },
+          'center-node': {
+            invisible: true,
+            hideOnDrag: true,
+          },
+          'labels-force':
+            {
+              invisible: true,
+              hideOnDrag: true,
+            },
+          'labels':
+            {
+              invisible: false,
+              hideOnDrag: false,
+            }
+          
+        },
+      },
+      
+      interaction: {
+        λbounds: [.3, .84],
+        onNodeClick: (n, m, l) => {
+          ht.api.goto({ re: -n.layout.z.re, im: -n.layout.z.im }, null)
+            .then(() => ht.drawDetailFrame())
+        }
+      }
+    }
+  )
+  
+  ht.initPromise
+    .then(() => new Promise((ok, err) => ht.animateUp(ok, err)))
+    .then(() => ht.drawDetailFrame())
+</script>
+
+
+<link rel="stylesheet" href="respvis/respvis.css"/>
+<link rel="stylesheet" href="respvis/grouped-barchart.css"/>
+
+<section class="bar-chart">
+  <h1>Responsive Charts using
+    <a href="https://github.com/tugraz-isds/respvis/">
+    RespVis</a></h1>
+  <div id="chart"></div>
+  <div class="credits">
+    <p>
+      Adapted from RespVis example<br/>
+      <a href="https://respvis-dev.netlify.app/barcharts/grouped-barchart/grouped-barchart">
+        <code>https://respvis-dev.netlify.app/barcharts/grouped-barchart/grouped-barchart</code></a>
+    </p>
+    <p>
+      Based on data from StatCounter<br/>
+      <a href="https://gs.statcounter.com/browser-market-share/">
+        <code>https://gs.statcounter.com/browser-market-share/</code></a>
+    </p>
+  </div>
+  
+  <footer class="footer">
+    <a href="https://github.com/tugraz-isds/respvis">RespVis</a>
+    reads its data from a file and hence needs to be hosted on a server
+    in order for the chart to work correctly.]<br/>
+  </footer>
+</section>
+
+<script type="module">
+  import { renderGroupedBarChart } from "./respvis/grouped-barchart.js";
+  
+  document.addEventListener('DOMContentLoaded', () => {
+    const chartElement = document.querySelector('#chart');
+    if (chartElement) {
+      renderGroupedBarChart('#chart');
+    } else {
+      console.error('#chart element not found');
+    }
+  });
+</script>
+
+
+
+
+
+<section>
+  <h1>Responsive Tables with css styling</h1>
+  <div id="table-container" class="table-container">
+    <table class="responsive-table squishing stacking">
+      <thead>
+      <tr>
+        <th scope="col">Feature</th>
+        <th scope="col">Shower</th>
+        <th scope="col">Reveal.js</th>
+        <th scope="col">Deck.js</th>
+        <th scope="col">impress.js</th>
+        <th scope="col">Bespoke.js</th>
+        <th scope="col">Inspire.js</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td data-label="Feature" class="text">Collaborative</td>
+        <td data-label="Shower" class="text"><span class="table-cross">&#10008;</span></td>
+        <td data-label="Reveal.js" class="text"><span class="table-cross">&#10008;</span></td>
+        <td data-label="Deck.js" class="text"><span class="table-cross">&#10008;</span></td>
+        <td data-label="impress.js" class="text"><span class="table-cross">&#10008;</span></td>
+        <td data-label="Bespoke.js" class="text"><span class="table-cross">&#10008;</span></td>
+        <td data-label="Inspire.js" class="text"><span class="table-cross">&#10008;</span></td>
+      </tr>
+      <tr>
+        <td data-label="Feature" class="text">SVG Inclusion</td>
+        <td data-label="Shower" class="text"><span class="table-tick">&#10004;</span></td>
+        <td data-label="Reveal.js" class="text"><span class="table-tick">&#10004;</span></td>
+        <td data-label="Deck.js" class="text"><span class="table-tick">&#10004;</span></td>
+        <td data-label="impress.js" class="text"><span class="table-tick">&#10004;</span></td>
+        <td data-label="Bespoke.js" class="text"><span class="table-tick">&#10004;</span></td>
+        <td data-label="Inspire.js" class="text"><span class="table-tick">&#10004;</span></td>
+      </tr>
+      <tr>
+        <td data-label="Feature" class="text">Globally Change Bullet Spacing</td>
+        <td data-label="Shower" class="text"><span class="table-tick">&#10004;</span></td>
+        <td data-label="Reveal.js" class="text"><span class="table-tick">&#10004;</span></td>
+        <td data-label="Deck.js" class="text"><span class="table-tick">&#10004;</span></td>
+        <td data-label="impress.js" class="text"><span class="table-tick">&#10004;</span></td>
+        <td data-label="Bespoke.js" class="text"><span class="table-tick">&#10004;</span></td>
+        <td data-label="Inspire.js" class="text"><span class="table-tick">&#10004;</span></td>
+      </tr>
+      <tr>
+        <td data-label="Feature" class="text">Globally Change Bullet Indentation</td>
+        <td data-label="Shower" class="text"><span class="table-tick">&#10004;</span></td>
+        <td data-label="Reveal.js" class="text"><span class="table-tick">&#10004;</span></td>
+        <td data-label="Deck.js" class="text"><span class="table-tick">&#10004;</span></td>
+        <td data-label="impress.js" class="text"><span class="table-tick">&#10004;</span></td>
+        <td data-label="Bespoke.js" class="text"><span class="table-tick">&#10004;</span></td>
+        <td data-label="Inspire.js" class="text"><span class="table-tick">&#10004;</span></td>
+      </tr>
+      <tr>
+        <td data-label="Feature" class="text">Export as PDF</td>
+        <td data-label="Shower" class="text"><span class="table-tick">&#10004;</span></td>
+        <td data-label="Reveal.js" class="text"><span class="table-tick">&#10004;</span></td>
+        <td data-label="Deck.js" class="text"><span class="table-cross">&#10008;</span></td>
+        <td data-label="impress.js" class="text"><span class="table-cross">&#10008;</span></td>
+        <td data-label="Bespoke.js" class="text"><span class="table-tick">&#10004;</span></td>
+        <td data-label="Inspire.js" class="text"><span class="table-cross">&#10008;</span></td>
+      </tr>
+      <tr>
+        <td data-label="Feature" class="text">Export as HTML</td>
+        <td data-label="Shower" class="text"><span class="table-tick">&#10004;</span></td>
+        <td data-label="Reveal.js" class="text"><span class="table-tick">&#10004;</span></td>
+        <td data-label="Deck.js" class="text"><span class="table-tick">&#10004;</span></td>
+        <td data-label="impress.js" class="text"><span class="table-tick">&#10004;</span></td>
+        <td data-label="Bespoke.js" class="text"><span class="table-tick">&#10004;</span></td>
+        <td data-label="Inspire.js" class="text"><span class="table-tick">&#10004;</span></td>
+      </tr>
+      <tr>
+        <td data-label="Feature" class="text">Export as PowerPoint</td>
+        <td data-label="Shower" class="text"><span class="table-cross">&#10008;</span></td>
+        <td data-label="Reveal.js" class="text"><span class="table-cross">&#10008;</span></td>
+        <td data-label="Deck.js" class="text"><span class="table-cross">&#10008;</span></td>
+        <td data-label="impress.js" class="text"><span class="table-cross">&#10008;</span></td>
+        <td data-label="Bespoke.js" class="text"><span class="table-cross">&#10008;</span></td>
+        <td data-label="Inspire.js" class="text"><span class="table-cross">&#10008;</span></td>
+      </tr>
+      <tr>
+        <td data-label="Feature" class="text">Slide numbering</td>
+        <td data-label="Shower" class="text"><span class="table-tick">&#10004;</span></td>
+        <td data-label="Reveal.js" class="text"><span class="table-tick">&#10004;</span></td>
+        <td data-label="Deck.js" class="text"><span class="table-tick">&#10004;</span></td>
+        <td data-label="impress.js" class="text"><span class="table-tick">&#10004;</span></td>
+        <td data-label="Bespoke.js" class="text"><span class="table-tick">&#10004;</span></td>
+        <td data-label="Inspire.js" class="text"><span class="table-tick">&#10004;</span></td>
+      </tr>
+      <tr>
+        <td data-label="Feature" class="text">Live Code Integration</td>
+        <td data-label="Shower" class="text"><span class="table-cross">&#10008;</span></td>
+        <td data-label="Reveal.js" class="text"><span class="table-cross">&#10008;</span></td>
+        <td data-label="Deck.js" class="text"><span class="table-cross">&#10008;</span></td>
+        <td data-label="impress.js" class="text"><span class="table-cross">&#10008;</span></td>
+        <td data-label="Bespoke.js" class="text"><span class="table-cross">&#10008;</span></td>
+        <td data-label="Inspire.js" class="text"><span class="table-cross">&#10008;</span></td>
+      </tr>
+      <tr>
+        <td data-label="Feature" class="text">Open-source</td>
+        <td data-label="Shower" class="text"><span class="table-tick">&#10004;</span></td>
+        <td data-label="Reveal.js" class="text"><span class="table-tick">&#10004;</span></td>
+        <td data-label="Deck.js" class="text"><span class="table-tick">&#10004;</span></td>
+        <td data-label="impress.js" class="text"><span class="table-tick">&#10004;</span></td>
+        <td data-label="Bespoke.js" class="text"><span class="table-tick">&#10004;</span></td>
+        <td data-label="Inspire.js" class="text"><span class="table-tick">&#10004;</span></td>
+      </tr>
+      <tr>
+        <td data-label="Feature" class="text">Licence</td>
+        <td data-label="Shower" class="text">MIT</td>
+        <td data-label="Reveal.js" class="text">MIT</td>
+        <td data-label="Deck.js" class="text">MIT</td>
+        <td data-label="impress.js" class="text">MIT</td>
+        <td data-label="Bespoke.js" class="text">MIT</td>
+        <td data-label="Inspire.js" class="text">MIT</td>
+      </tr>
+      <tr>
+        <td data-label="Feature" class="text">First Release</td>
+        <td data-label="Shower" class="text">2010-10-25</td>
+        <td data-label="Reveal.js" class="text">2011-06-07</td>
+        <td data-label="Deck.js" class="text">2011-06-24</td>
+        <td data-label="impress.js" class="text">2011-12-28</td>
+        <td data-label="Bespoke.js" class="text">2012-12-13</td>
+        <td data-label="Inspire.js" class="text">2018-09</td>
+      </tr>
+      <tr>
+        <td data-label="Feature" class="text">Last Update</td>
+        <td data-label="Shower" class="text">2024-10-25</td>
+        <td data-label="Reveal.js" class="text">2024-05-15</td>
+        <td data-label="Deck.js" class="text">2016-05-04</td>
+        <td data-label="impress.js" class="text">2024-04-26</td>
+        <td data-label="Bespoke.js" class="text">2020-09-08</td>
+        <td data-label="Inspire.js" class="text">2024-06-27</td>
+      </tr>
+      <tr>
+        <td data-label="Feature" class="text">Popularity (GitHub stars)</td>
+        <td data-label="Shower" class="text">4.8k</td>
+        <td data-label="Reveal.js" class="text">67.4k</td>
+        <td data-label="Deck.js" class="text">5.4k</td>
+        <td data-label="impress.js" class="text">37.6k</td>
+        <td data-label="Bespoke.js" class="text">4.7k</td>
+        <td data-label="Inspire.js" class="text">1.7k</td>
+      </tr>
+      <tr>
+        <td data-label="Feature" class="text">Swipe Navigation</td>
+        <td data-label="Shower" class="text"><span class="table-tick">&#10004;</span></td>
+        <td data-label="Reveal.js" class="text"><span class="table-tick">&#10004;</span></td>
+        <td data-label="Deck.js" class="text"><span class="table-tick">&#10004;</span></td>
+        <td data-label="impress.js" class="text"><span class="table-tick">&#10004;</span></td>
+        <td data-label="Bespoke.js" class="text"><span class="table-tick">&#10004;</span></td>
+        <td data-label="Inspire.js" class="text"><span class="table-tick">&#10004;</span></td>
+      </tr>
+      <tr>
+        <td data-label="Feature" class="text">Margin Navigation</td>
+        <td data-label="Shower" class="text"><span class="table-tick">&#10004;</span></td>
+        <td data-label="Reveal.js" class="text"><span class="table-tick">&#10004;</span></td>
+        <td data-label="Deck.js" class="text"><span class="table-tick">&#10004;</span></td>
+        <td data-label="impress.js" class="text"><span class="table-tick">&#10004;</span></td>
+        <td data-label="Bespoke.js" class="text"><span class="table-tick">&#10004;</span></td>
+        <td data-label="Inspire.js" class="text"><span class="table-tick">&#10004;</span></td>
+      </tr>
+      <tr>
+        <td data-label="Feature" class="text">Figure Zooming and Panning</td>
+        <td data-label="Shower" class="text"><span class="table-cross">&#10008;</span></td>
+        <td data-label="Reveal.js" class="text"><span class="table-cross">&#10008;</span></td>
+        <td data-label="Deck.js" class="text"><span class="table-cross">&#10008;</span></td>
+        <td data-label="impress.js" class="text"><span class="table-tick">&#10004;</span></td>
+        <td data-label="Bespoke.js" class="text"><span class="table-tick">&#10004;</span></td>
+        <td data-label="Inspire.js" class="text"><span class="table-cross">&#10008;</span></td>
+      </tr>
+      <tr>
+        <td data-label="Feature" class="text">Presenter mode</td>
+        <td data-label="Shower" class="text"><span class="table-tick">&#10004;</span></td>
+        <td data-label="Reveal.js" class="text"><span class="table-tick">&#10004;</span></td>
+        <td data-label="Deck.js" class="text"><span class="table-tick">&#10004;</span></td>
+        <td data-label="impress.js" class="text"><span class="table-tick">&#10004;</span></td>
+        <td data-label="Bespoke.js" class="text"><span class="table-tick">&#10004;</span></td>
+        <td data-label="Inspire.js" class="text"><span class="table-tick">&#10004;</span></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
 
 
 
@@ -346,6 +601,9 @@ Responsive Interaction:
 
 
 
+
+
+
 <section>
   <h2>All Slides View</h2>
 
@@ -366,82 +624,6 @@ Responsive Interaction:
 
 
 
-
-
-<section>
-  <h2>Responsive Charts using <a href="https://github.com/AlmostBearded/respvis/">RespVis</a></h2>
-
-  <div id="responsive-bar-chart" style="width: 100%;height: 50vh;min-height: 25rem;"></div>
-  
-  <div class="credits">>
-    <p>
-    Adapted from RespVis example<br/>
-    <a href="https://respvis.netlify.app/examples/grouped-bar.html">
-    <code>https://respvis.netlify.app/examples/grouped-bar.html</code></a>
-    </p>
-    <p>
-    Based on data from StatCounter<br/>
-    <a href="https://gs.statcounter.com/browser-market-share/">
-    <code>https://gs.statcounter.com/browser-market-share/</code></a> 
-    </p>
-  </div>
-  <script async src="respvis/respvis_bar_chart.js" ></script>  
-</section>
-
-
-
-
-<section>
-<h2>Source Code Highlighting using <a href="https://prismjs.com/">Prism.js</a></h2>
-<pre><code class="language-html">&lt;body&gt;
-  &lt;section&gt;
-    &lt;h1&gt;Source Code Highlighting!&lt;/h1&gt;
-    &lt;h2&gt;through third-party tools.&lt;/h2&gt;
-  &lt;/section&gt;
-&lt;/body&gt;</code></pre>
-<p>Inline code highlighting
-  <code class="language-css">background-color: rgba(0, 0, 0, 0.9);</code>
-is also possible.</p>
-</section>
-
-
-
-
-<section>
-  <h2>Math Equations using <a href="https://www.mathjax.org/">MathJax</a></h2>
-  <p>
-  When \(a \ne 0\), there are two solutions to \(ax^2 + bx + c = 0\) and they
-  are \[x = {-b \pm \sqrt{b^2-4ac} \over 2a}.\]
-  </p>
-  <p>Rendered from this HTML snippet:</p>
-  <pre><code class="language-html">&lt;p&gt;
-  When \(a \ne 0\), there are two solutions to \(ax^2 + bx + c = 0\) and they are
-  \[x = {-b \pm \sqrt{b^2-4ac} \over 2a}.\]
-&lt;/p&gt;</code></pre>
-</section>
-  
-  
-  
-  
-
-
-
-
-
-<section>
-<h2>Future Work</h2>
-
-<ul class="compact">
-<li>Remote control support.</li>
-<li>Screen wake lock.</li>
-<li>Speaker view, with timer and notes.</li>
-<li>Container queries.</li>
-<li>Web Speech API.</li>
-<li>Accessibility Object Model.</li>
-<li>Generic Sensor API.</li>
-</ul>
-
-</section>
 
 
 
@@ -587,8 +769,15 @@ The following people have contributed to Rslidy:
 </p>
 <ul class="compact">
 <li>Keith Andrews</li>
+<!-- MSc 2024 -->
+<li>Fabian Platzer</li>
 <!-- MSc 2018 -->
 <li>Patrick Hipp</li>
+<!-- IAweb WS 2023 G1 -->
+<li>Christopher Kopel</li>
+<li>Gsellmann Inge, Heider Martin, Leitner Lukas, Patel Vrutanjali Rakesh</li>
+<!-- IAweb WS 2018 G1a -->
+<li>Angelika Droisner, Ana Korotaj</li>
 <!-- IAweb WS 2017 G1 -->
 <li>Thomas Eibl, Michael Glatzhofer, Christoph Heidenreich, Verena Schiffer</li>
 <!-- BSc 02 Nov 2015 -->

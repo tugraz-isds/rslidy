@@ -331,14 +331,18 @@ role="region" aria-label="Print Settings" tabindex="0">
       <input type="radio" name="print-options" value="actual" id="rslidy-checkbox-actual" class="print-checkbox" checked> Actual Size
     </label>
     <br>
+     <!--
     <label id="rslidy-checkbox-scale-text" class="rslidy-print-sizing">
       <input type="radio" name="print-options" value="fit" id="rslidy-checkbox-fit" class="print-checkbox"> Fit
     </label>
     <br>
+     -->
+    <!--
     <label id="rslidy-checkbox-scale-text" class="rslidy-print-sizing">
       <input type="radio" name="print-options" value="shrink" id="rslidy-checkbox-fit" class="print-checkbox"> Shrink
     </label>
     <br>
+    -->
     <label id="rslidy-checkbox-shrink-text" class="rslidy-print-sizing">
       <input type="radio" name="print-options" value="fit-width" id="rslidy-checkbox-shrink" class="print-checkbox"> Fit to Width
     </label>
