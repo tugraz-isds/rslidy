@@ -1,0 +1,265 @@
+/* Helpers */
+
+.valign {
+  position: relative;
+  top: 50%;
+  transform: perspective(1px) translateY(-50%);
+}
+
+@media print {
+  .valign {
+    transform: none !important;
+    top: 0;
+  }
+}
+
+/*
+Keith Andrews: extra CSS for my rslidy slides
+*/
+
+#rslidy-content-section .slide {
+  font-size: 1.5em;
+}
+
+
+
+span.li-intro {
+/*  font-style: italic; */
+  font-weight: bold;
+}
+
+
+
+ul.credits {
+  font-size: 0.8em;
+}
+
+
+div#location {
+  margin-top: 2em;
+  text-align: right;
+}
+
+div#location p {
+  display: inline;
+  background-color: #eee;
+  padding: 0.2em;
+  border-radius: 0.2em;
+  font-size: 60%;
+}
+
+
+span.isbn:before {
+  content: "ISBN";
+  font-size: 80%;
+}
+
+
+
+/* title slide has larger and centered text*/
+
+
+.titleslide
+{
+  text-align: center;
+}
+
+.titleslide h1
+{
+  padding-top: 0.5em;
+  font-size: 1.6em;
+  margin-bottom: 1.4em;
+}
+
+.titleslide h2
+{
+  font-size: 1.2em;
+  margin-bottom: 1.4em;
+}
+
+.titleslide h3
+{
+  font-size: 1em;
+  margin-bottom: 1.2em;
+}
+
+.titleslide p
+{
+  padding: 0.5em 0;
+}
+
+
+
+
+/* columns */
+
+.columns {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.columns ul {
+  margin: 0.5em;
+}
+
+/* columns spaced */
+
+.columns-spaced {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.columns-spaced ul {
+  margin: 0.5em;
+}
+
+/* Two columns spaced evenly */
+
+.columns-even {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.item-half {
+  padding: 1em;
+  width: 50%;
+}
+
+.item-auto {
+  padding: 1em;
+  width: auto;
+}
+
+/* Description is marked in gray */
+
+.description {
+  background-color: lightgray;
+}
+
+/* CSS Grid */
+
+.grid {
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  grid-template-columns: repeat(auto-fit, minmax(25em,1fr));
+}
+
+
+
+
+
+
+/* figures */
+
+
+figure {
+  margin: 0.5em auto;
+  display: table;
+}
+
+div.images, div.large-images, div.small-images {
+  margin: 0 auto;
+  padding: 0.5em;
+  display: flex;
+  justify-content: center;
+}
+
+div.images img, div.images video {
+  object-fit: scale-down; /* preserve aspect ratio */
+  max-width: 100%;
+  max-height: 15em;
+  width: auto;
+  height: 15em;
+}
+
+div.large-images img, div.large-images video {
+  object-fit: scale-down; /* preserve aspect ratio */
+  max-width: 100%;
+  max-height: 25em;
+  width: auto;
+  height: 25em;
+}
+
+div.small-images img, div.small-images video {
+  object-fit: scale-down; /* preserve aspect ratio */
+  max-width: 100%;
+  max-height: 10em;
+  width: auto;
+  height: 10em;
+}
+
+figcaption {
+  margin: 1em 0;
+  font-size: 60%;
+  text-align: center;
+  display: table-caption;
+  caption-side: bottom;
+}
+
+figcaption span.fig-label {
+  font-weight: bold;
+}
+
+figcaption span.credit {
+  font-size: 80%;
+}
+
+figcaption span.credit:before {
+  content: "[";
+}
+
+figcaption span.credit:after {
+  content: "]";
+}
+
+
+div.credits {
+  margin: 1em 0;
+  font-size: 60%;
+  text-align: center;
+}
+
+
+/* code snippets */
+
+code.block {
+  display: inline-block;
+  margin-right:100%;
+  margin-left: 1em;
+  margin-bottom: 1em;
+}
+
+
+
+
+
+/* keys */
+
+kbd.key {
+  border-radius: 3px;
+  padding: 1px 2px 0;
+  border: 1px solid black;
+}
+
+
+
+
+/* notes */
+
+p.note {
+  font-size: 80%;
+  margin-top: -0.7em;
+}
+
+p.note:before {
+  content: "[" ;
+}
+
+p.note:after {
+  content: "]" ;
+}
+
+
