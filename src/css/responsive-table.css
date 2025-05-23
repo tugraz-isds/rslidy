@@ -67,11 +67,11 @@
  transform: translateY(-50%);
 }
 
-.responsive-table th.sorted-ascending:after {
+.responsive-table th.sorted-asc:after {
  content: " ▲";
 }
 
-.responsive-table th.sorted-descending:after {
+.responsive-table th.sorted-desc:after {
  content: " ▼";
 }
 

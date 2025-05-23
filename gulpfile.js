@@ -138,10 +138,10 @@ function minifyjs() {
 }
 
 function minifycss() {
-  return src(paths.build + files.css)
+  return src(paths.library + files.css)
     .pipe(ucss())
     .pipe(rename(files.mincss))
-    .pipe(dest(paths.build));
+    .pipe(dest(paths.library));
 }
 
 function compress() {
@@ -156,7 +156,7 @@ exports.minify.description = 'Produces .min and .gz files';
 function css() {
   return src(paths.src + 'css/*.css')
     .pipe(concat(files.css))
-    .pipe(dest(paths.build));
+    .pipe(dest(paths.library));
 }
 exports.css = css;
 exports.css.description = 'Bundles CSS source files into rslidy.css';
@@ -215,7 +215,7 @@ function copy() {
   // Copy minified CSS to examples and tests folders
   fs.readdirSync(paths.build + 'examples').forEach(file => {
     if (fs.statSync(paths.build + 'examples/' + file).isDirectory()) {
-      src(paths.build + files.mincss)
+      src(paths.library + files.mincss)
         .pipe(dest(paths.build + 'examples/' + file));
     }
   });
@@ -223,8 +223,10 @@ function copy() {
   // Copy rslidy.min.js and rslidy.min.css to tests/stress-test folder
   src(paths.library + 'esm/' + files.minjs)
     .pipe(dest(paths.build + 'tests/stress-test/'));
-  src(paths.build + files.mincss)
+  src(paths.library + files.mincss)
     .pipe(dest(paths.build + 'tests/stress-test/'));
+
+
 
   return Promise.resolve('');
 }

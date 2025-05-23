@@ -20,7 +20,7 @@ transitions.
 For an introduction to HTML5, see
 [HTML Dog](https://htmldog.com/)
 or
-[HTML5 Intro](https://w3schools.com/html/html5_intro.asp).
+[web.dev/html](https://web.dev/html).
 
 - Slide navigation.
 - Slide overview.

@@ -63,6 +63,7 @@ export class SettingsComponent {
       window.rslidy.toolbar.closeMenuOnSelection(
         () => window.rslidy.toggleLowLightMode()
       ));
+      this.setupTableSorting();
   }
 
   // ---
@@ -248,4 +249,47 @@ export class SettingsComponent {
     else
       this.changeUIFont(null, -1);
   }
+  private setupTableSorting(): void {
+    const tables = document.querySelectorAll("table.responsive-table");
+
+    tables.forEach((table) => {
+      const headers = table.querySelectorAll("th");
+      headers.forEach((header, columnIndex) => {
+        header.addEventListener("click", () => {
+          const tbody = table.querySelector("tbody");
+          if (!tbody) return;
+
+          const rows = Array.from(tbody.querySelectorAll("tr"));
+          const isNumeric = !isNaN(parseFloat(rows[0]?.children[columnIndex]?.textContent || ""));
+          const ascending = !(header.classList.contains("sorted-asc"));
+
+          // Clear previous sort indicators
+          headers.forEach(h => h.classList.remove("sorted-asc", "sorted-desc"));
+
+          rows.sort((a, b) => {
+            const cellA = a.children[columnIndex].textContent?.trim() || "";
+            const cellB = b.children[columnIndex].textContent?.trim() || "";
+
+            if (isNumeric) {
+              const valA = parseFloat(cellA);
+              const valB = parseFloat(cellB);
+              return ascending ? valA - valB : valB - valA;
+            } else {
+              return ascending
+                ? cellA.localeCompare(cellB)
+                : cellB.localeCompare(cellA);
+            }
+          });
+
+          // Append sorted rows back
+          rows.forEach(row => tbody.appendChild(row));
+
+          // Set class for current header
+          header.classList.add(ascending ? "sorted-asc" : "sorted-desc");
+        });
+      });
+    });
+  }
 }
+
+
