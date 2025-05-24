@@ -275,7 +275,6 @@ export class PrintSettingsComponent {
             }
           `;*/
           break;
-
         case "custom":
           const scalingValue = parseFloat(scalingInput.value);
           if (!isNaN(scalingValue) && scalingValue > 0) {
@@ -286,7 +285,7 @@ export class PrintSettingsComponent {
                 bottom: 0 !important;
                 left: 0 !important;
               
-                transform: scale(${scaleFactor}) !important;
+                zoom: ${scalingValue}% !important;
                 transform-origin: ${origin} !important;
                 width: auto !important;
                 height: auto !important;
@@ -295,6 +294,70 @@ export class PrintSettingsComponent {
                 box-sizing: border-box;
               }
             `;
+          }
+          break;
+
+        case "custom2":
+          const scalingInput2 = <HTMLInputElement>this.view.querySelector("#custom-scaling-input");
+          const scalingValue2 = parseFloat(scalingInput.value);
+
+          if (!isNaN(scalingValue)) {
+            // Get paper dimensions
+            const paperSizeParts = paperSize.value.split(' ');
+            const paperWidth = parseFloat(paperSizeParts[0]);
+            const paperHeight = parseFloat(paperSizeParts[1]);
+            const unit = paperSizeParts[0].replace(/[0-9]/g, ''); // get 'mm' or 'in'
+
+            // Convert to pixels (approximate)
+            const pixelsPerMM = 3.78;
+            const pageWidthPx = paperWidth * pixelsPerMM;
+            const pageHeightPx = paperHeight * pixelsPerMM;
+
+            // Calculate scale factor to fit page
+            const scaleFactor = Math.min(
+              pageWidthPx / window.innerWidth,
+              pageHeightPx / window.innerHeight
+            ) * (scalingValue / 100);
+
+            const origin = selectedOrigin?.value || "center";
+
+            css += `
+            @page {
+              size: ${paperSize.value};
+              margin: 0;
+            }
+            
+            body {
+              width: ${pageWidthPx}px !important;
+              height: ${pageHeightPx}px !important;
+              margin: 0 !important;
+              padding: 0 !important;
+            }
+            
+            #rslidy-content-section {
+              width: 100% !important;
+              height: 100% !important;
+              position: relative !important;
+            }
+            
+            #rslidy-content-section .slide {
+              width: ${100/scaleFactor}% !important;
+              height: ${100/scaleFactor}% !important;
+              transform: scale(${scaleFactor}) !important;
+              transform-origin: ${origin} !important;
+              position: absolute !important;
+              top: 50% !important;
+              left: 50% !important;
+              margin: 0 !important;
+              page-break-after: always !important;
+            }
+            
+            #rslidy-content-section .slide > div {
+              width: 100% !important;
+              height: 100% !important;
+              overflow: visible !important;
+            }
+          `;
           }
           break;
       }

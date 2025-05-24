@@ -16,17 +16,15 @@
 <link rel="stylesheet" href="slides.css"/>
 <link rel="stylesheet" href="table.css"/>
 
-<!-- for Math Equations -->
+<!-- for Math Equations
 <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+-->
 
 <!-- Source code highlighting with Prism -->
 <link rel="stylesheet" href="prism/prism.css"/>
 <script src="prism/prism.js"></script>
 
-<!-- For responsive charts -->
-<script src="respvis/d3/d3.v6.js" ></script>
-<script src="respvis/respvis.js" ></script>
 
 </head>
 
@@ -164,7 +162,6 @@ Lightweight.
   <figure>
     <div class="large-images">
       <video controls autoplay muted loop poster="images/image-viewer.gif">
-        <source src="images/image-viewer.mp4" type="video/mp4"/>
         <img src="images/image-viewer.gif" alt="An animation shows the image viewer in usage." />
       </video>
     </div>
@@ -218,14 +215,16 @@ Lightweight.
 
 <section>
   <h2>Gesture Support</h2>
-  
-  <div>
+  <div class="columns-even">
+  <div class="left-column">
     <ul class="item-auto">
       <li>Swipe.</li>
       <li>Margin tap (similar to that of e-readers).</li>
       <li>Tilt/Tip.</li>
       <li>Shake.</li>
     </ul>
+  </div>
+  <div class="right-column">
     <figure>
       <div class="images">
         <img src="images/tilt-tip-gestures.svg" alt="A graphic describing the tilt and tip gestures available in Rslidy." />
@@ -236,10 +235,12 @@ Lightweight.
       </figcaption>
     </figure>
   </div>
+  </div>
 </section>
 
 
 
+<!--
 <section>
   <h2>Math Equations using <a href="https://www.mathjax.org/">MathJax</a></h2>
   <p>
@@ -252,21 +253,22 @@ Lightweight.
   \[x = {-b \pm \sqrt{b^2-4ac} \over 2a}.\]
 &lt;/p&gt;</code></pre>
 </section>
+-->
 
 
 
 
 <section>
   <h1>Source Code Highlighting using <a href="https://prismjs.com/">Prism.js</a></h1>
+  <p>Displayed code snippets:</p>
   <pre><code class="language-html">&lt;body&gt;
-  &lt;section&gt;
+  &lt;section id="code-example"&gt;
     &lt;h1&gt;Source Code Highlighting!&lt;/h1&gt;
     &lt;h2&gt;Or through third-party tools.&lt;/h2&gt;
   &lt;/section&gt;
 &lt;/body&gt;</code></pre>
-  <p>Inline code highlighting
-    <code class="language-css">background-color: rgba(0, 0, 0, 0.9);</code>
-    is also possible.</p>
+  <p>Inline code snippets:
+    <code class="language-css">background-color: rgba(0, 0, 0, 0.9);</code></p>
 </section>
 
 
@@ -624,137 +626,6 @@ Lightweight.
 
 
 
-
-
-
-
-
-
-<section>
-  <h2>The History of Rslidy - First Iteration</h2>
-
-  <figure>
-    <div class="large-images">
-    <img src="images/rslidy-v1.png" alt="An image shows the the first iteration of Rslidy, featuring a slide and the slide overview panel. " />
-    </div>
-    <figcaption>
-    The first iteration of Rslidy delivered a rudimentary interface for web-based slide decks.<br/>
-    <span class="credit">Screenshot taken from Rslidy.</span>
-    </figcaption>
-  </figure>
-
-  <div class="credits">
-    <p>
-    Credits: Patrick Kasper, Clemens Meinhart, Karina Priebernig, and Elias Zeitfogel.
-    </p>
-  </div>
-</section>
-
-
-
-
-<section>
-  <h2>The History of Rslidy - Second Iteration</h2>
-
-  <figure>
-    <div class="large-images">
-    <img src="images/rslidy-v2.png" alt="An image shows the the second iteration of Rslidy, featuring a partially obscured table of contents. " />
-    </div>
-    <figcaption>
-      The second iteration of Rslidy had some UI issues, for example the table of contents could become partially obscured.<br/>
-    <span class="credit">Screenshot taken from Rslidy.</span>
-    </figcaption>
-  </figure>
-
-  <div class="credits">
-    <p>
-    Credits: Filippo Garolla, Sabine Lukas, Matthias Schlesinger, and Karin Wilding.<br/>
-    <a href="https://github.com/GPhilo/rSlidy2/">
-    <code>https://github.com/GPhilo/rSlidy2/</code></a> 
-    </p>
-  </div>
-</section>
-
-
-
-<section>
-  <h2>The History of Rslidy - Third Iteration</h2>
-
-  <figure>
-    <div class="large-images">
-    <img src="images/rslidy-v3.png" alt="An image shows the the third iteration of Rslidy, featuring a slide, the slide overview panel, and a settings window." />
-    </div>
-    <figcaption>
-      The third iteration of Rslidy provided a simple but efficient interface for web-based slide decks.<br/>
-    <span class="credit">Screenshot taken from Rslidy.</span>
-    </figcaption>
-  </figure>
-
-  <div class="credits">
-    <p>
-    Credits: Markus Schofnegger.<br/>
-    <a href="https://ftp.isds.tugraz.at/pub/theses/mschofnegger-2015-bsc.pdf">
-    <code>https://ftp.isds.tugraz.at/pub/theses/mschofnegger-2015-bsc.pdf</code></a> 
-    </p>
-  </div>
-</section>
-
-
-
-<section>
-  <h2>The History of Rslidy - Fourth Iteration</h2>
-
-  <div class="columns">
-  <figure>
-    <div class="images">
-    <img src="images/rslidy-v4.png" alt="An image shows the the fourth iteration of Rslidy, featuring a slide, the slide overview panel, and a settings window." />
-    </div>
-    <figcaption>
-      The fourth iteration of Rslidy provided several UI enhancements, as well as support for animations and third party tools. The on-screen buttons flip and display an X while they are active.<br/>
-    <span class="credit">Screenshot taken from Rslidy.</span>
-    </figcaption>
-  </figure>
-  <figure>
-    <div class="images">
-    <img src="images/rslidy-v4iv.png" alt="An image shows the the fourth iteration of Rslidy's image viewer component. " />
-    </div>
-    <figcaption>
-      The fourth iteration of Rslidy provided a simple image viewer, allowing for magnification of images. <br/>
-    <span class="credit">Screenshot taken from Rslidy.</span>
-    </figcaption>
-  </figure>
-  </div>
-
-  <div class="credits">
-    <p>
-    Credits: Rok Kogovšek, Alexei Kruglov, Fernando Pulido Ruiz, and Helmut Zöhrer.<br/>
-    <a href="https://github.com/kogi18/IAWEB/">
-    <code>https://github.com/kogi18/IAWEB/</code></a> 
-    </p>
-  </div>
-</section>
-
-
-
-<section>
-  <h2>The History of Rslidy - Fifth Iteration</h2>
-
-  <figure>
-    <div class="large-images">
-    <img src="images/rslidy-v5.png" alt="An image shows the the fifth iteration of Rslidy, featuring a slide, the slide overview panel, and a settings window." />
-    </div>
-    <figcaption>
-    The fifth iteration of Rslidy relied on a third party library for fonts and icons.<br/>
-    <span class="credit">Screenshot taken from Rslidy.</span>
-    </figcaption>
-  </figure>
-
-  <div class="credits">
-    <p>
-    Credits: Thomas Eibl, Michael Glatzhofer, Christoph Heidenreich, and Verena Schiffer.
-    </p>
-  </div>
-</section>
 
 
 

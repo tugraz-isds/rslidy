@@ -35,9 +35,15 @@ or
 - Accessibility through ARIA roles.
 - Live code can be embedded.
 
+## 3 Examples
+Live presentations and examples for different use cases of Rslidy 
+can be seen at: https://tugraz-isds.github.io/rslidy/
+
+These examples showcase Rslidy’s features, design responsiveness, 
+and interactive elements in action.
 
 
-## 3 Installation and Setup
+## 4 Installation and Setup
 
 Download the latest binary release
 [here](https://github.com/tugraz-isds/rslidy/releases/latest).
@@ -63,14 +69,14 @@ create new slide decks.
 
 
 
-### 3.1 For Slide Viewers
+### 4.1 For Slide Viewers
 
 The Help Panel in a Rslidy presentation contains an overview of
 Rslidy's interface controls.
 
 
 
-### 3.2 For Slide Creators
+### 4.2 For Slide Creators
 
 #### How to create a Presentation
 
@@ -207,7 +213,7 @@ JavaScript, as shown below:
 For more information, see the example file `overrides.html`.
 
 
-### 3.3 For Developers
+### 4.3 For Developers
 
 
 #### The Build System
@@ -263,7 +269,7 @@ optimised SVG icon strings.
 
 
 
-## 4 Rslidy Team
+## 5 Rslidy Team
 
 The following people have contributed to Rslidy:
 
