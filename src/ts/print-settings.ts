@@ -276,16 +276,18 @@ export class PrintSettingsComponent {
           `;*/
           break;
         case "custom":
-          const scalingValue = parseFloat(scalingInput.value);
-          if (!isNaN(scalingValue) && scalingValue > 0) {
-            const scaleFactor = scalingValue / 100;
+          const zoomValueInput = <HTMLInputElement>this.view.querySelector("#custom-scaling-input");
+          const zoomValue = parseFloat(zoomValueInput.value);
+          console.log(zoomValue)
+          if (!isNaN(zoomValue) && zoomValue > 0) {
+            const scaleFactor = zoomValue / 100;
             const origin = selectedOrigin?.value || "center";
             css += `
               #rslidy-content-section .slide {
                 bottom: 0 !important;
                 left: 0 !important;
               
-                zoom: ${scalingValue}% !important;
+                zoom: ${zoomValue}% !important;
                 transform-origin: ${origin} !important;
                 width: auto !important;
                 height: auto !important;
@@ -298,8 +300,8 @@ export class PrintSettingsComponent {
           break;
 
         case "custom2":
-          const scalingInput2 = <HTMLInputElement>this.view.querySelector("#custom-scaling-input");
-          const scalingValue2 = parseFloat(scalingInput.value);
+          const scalingInput = <HTMLInputElement>this.view.querySelector("#custom-scaling-input");
+          const scalingValue = parseFloat(scalingInput.value);
 
           if (!isNaN(scalingValue)) {
             // Get paper dimensions

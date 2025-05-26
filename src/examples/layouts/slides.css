@@ -14,13 +14,18 @@
 }
 
 /*
-Keith Andrews: extra CSS for my rslidy slides
+Fabian Platzer: extra CSS for my rslidy slides
 */
 
 #rslidy-content-section .slide {
   font-size: 1.5em;
 }
 
+.footer {
+  margin-top: auto;
+  font-size: 50%;
+  text-align: right;
+}
 
 
 span.li-intro {
@@ -54,6 +59,18 @@ span.isbn:before {
   font-size: 80%;
 }
 
+
+div#licence {
+  margin: 2em 0 1em 0;
+  text-align: center;
+  line-height: 0.5em;
+}
+
+div#licence p {
+  display: inline;
+  padding: 0;
+  font-size: 0.4em;
+}
 
 
 /* title slide has larger and centered text*/
@@ -118,8 +135,22 @@ span.isbn:before {
 
 .columns-even {
   display: flex;
-  flex-wrap: wrap;
   justify-content: space-evenly;
+  align-items: flex-start;
+  gap: 2em;
+}
+
+.left-column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
+.right-column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
 }
 
 .item-half {
@@ -160,7 +191,7 @@ figure {
   display: table;
 }
 
-div.images, div.large-images, div.small-images {
+div.images, div.large-images {
   margin: 0 auto;
   padding: 0.5em;
   display: flex;
@@ -181,14 +212,6 @@ div.large-images img, div.large-images video {
   max-height: 25em;
   width: auto;
   height: 25em;
-}
-
-div.small-images img, div.small-images video {
-  object-fit: scale-down; /* preserve aspect ratio */
-  max-width: 100%;
-  max-height: 10em;
-  width: auto;
-  height: 10em;
 }
 
 figcaption {
@@ -261,5 +284,13 @@ p.note:before {
 p.note:after {
   content: "]" ;
 }
+
+p {
+  margin: 0 0 1em 0;
+  padding: 0;
+  max-width: 60ch;
+}
+
+
 
 

@@ -24,10 +24,10 @@
 }
 
 #rslidy-transform-origin-subsection {
-  margin-top: 1em;
+  margin-top: 0.5em;
   display: flex;
   flex-direction: column;
-  gap: .5em;
+  gap: .2em;
   margin-left: 1.5em;
 }
 #rslidy-transform-origin-subsection h4 {
@@ -91,6 +91,7 @@ label {
 .rslidy-print-sizing {
   display: flex;
   align-items: center;
+  margin-bottom: 0.5em;
 }
 .rslidy-print-slides {
   cursor: pointer;

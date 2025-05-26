@@ -50,6 +50,11 @@ figure {
   margin: 1em auto;
 }
 
+.figure-left {
+  margin-left: 0;
+  margin-top: 0;
+}
+
 figcaption {
   margin: 1em 0;
   font-size: 60%;

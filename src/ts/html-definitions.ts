@@ -326,11 +326,10 @@ role="region" aria-label="Print Settings" tabindex="0">
     </select>
   </label>
   <fieldset id="rslidy-exclusive-checkboxes" style="margin-top: 1.5em;">
-  <h4 style="margin-bottom: 1.5em;">Print Sizing</h4>
+  <h4 style="margin-bottom: 0.8em; font-weight: 600;">Print Sizing</h4>
    <label id="rslidy-checkbox-actual-size-text" class="rslidy-print-sizing">
       <input type="radio" name="print-options" value="actual" id="rslidy-checkbox-actual" class="print-checkbox" checked> Actual Size
     </label>
-    <br>
      <!--
     <label id="rslidy-checkbox-scale-text" class="rslidy-print-sizing">
       <input type="radio" name="print-options" value="fit" id="rslidy-checkbox-fit" class="print-checkbox"> Fit
@@ -345,9 +344,15 @@ role="region" aria-label="Print Settings" tabindex="0">
     -->
     <label id="rslidy-checkbox-shrink-text" class="rslidy-print-sizing">
       <input type="radio" name="print-options" value="fit-width" id="rslidy-checkbox-shrink" class="print-checkbox"> Fit to Width
+    </label> 
+    <!--
+    <label id="rslidy-checkbox-zoom-text" class="rslidy-print-sizing">
+      <input type="radio" name="print-options" value="zoom" id="rslidy-checkbox-zoom" class="print-checkbox"> Custom Zoom:
+      <input type="number" id="custom-zoom-input" value="100" class="scaling-input" min="1" max="100" disabled placeholder="100">
+      <span class="percent">%</span>
     </label>
-    <br>
-    <label id="rslidy-checkbox-custom-text" class="rslidy-print-sizing">
+     -->
+    <label id="rslidy-checkbox-zoom-text" class="rslidy-print-sizing">
       <input type="radio" name="print-options" value="custom" id="rslidy-checkbox-custom" class="print-checkbox"> Custom Scale:
       <input type="number" id="custom-scaling-input" value="100" class="scaling-input" min="1" max="100" disabled placeholder="100">
       <span class="percent">%</span>

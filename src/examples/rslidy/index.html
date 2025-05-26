@@ -88,28 +88,28 @@ Lightweight.
 </li>
 </ul>
 
-<table class="table tc2 tr3">
+<table class="responsive-table squishing stacking">
   <caption>Rslidy File Sizes</caption>
   <thead>
     <tr>
       <th scope="col">File</th>
-      <th scope="col">Size</th>
-      <th scope="col">Minified Size (bytes)</th>
-      <th scope="col">Minified and Gzipped  (bytes)</th>
+      <th scope="col" class="numeric">Size (Bytes)</th>
+      <th scope="col" class="numeric">Minified Size (Bytes)</th>
+      <th scope="col" class="numeric">Minified and Gzipped  (Bytes)</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td scope="row" data-label="Filename">rslidy.js</td>
-      <td data-label="Regular">133,306</td>
-      <td data-label="Minified">70,223</td>
-      <td data-label="Gzipped">15,069</td>
+      <td data-label="Filename" class="text">rslidy.js</td>
+      <td data-label="Regular" class="numeric">149,083</td>
+      <td data-label="Minified" class="numeric">84,163</td>
+      <td data-label="Gzipped" class="numeric">18,069</td>
     </tr>
     <tr>
-      <td scope="row" data-label="Filename">rslidy.css</td>
-      <td data-label="Regular">26,086</td>
-      <td data-label="Minified">17,270</td>
-      <td data-label="Gzipped">4,362</td>
+      <td data-label="Filename" class="text">rslidy.css</td>
+      <td data-label="Regular" class="numeric">37,043</td>
+      <td data-label="Minified" class="numeric">24,339</td>
+      <td data-label="Gzipped" class="numeric">6,362</td>
     </tr>
   </tbody>
 </table>
@@ -161,9 +161,8 @@ Lightweight.
   
   <figure>
     <div class="large-images">
-      <video controls autoplay muted loop poster="images/image-viewer.gif">
-        <img src="images/image-viewer.gif" alt="An animation shows the image viewer in usage." />
-      </video>
+        <img src="images/image_viewer_example_slide.png"
+             alt="Rslidy Image Viewer"/>
     </div>
     <figcaption>
       The image viewer is automatically attached to every image.<br/>
@@ -272,28 +271,38 @@ Lightweight.
 </section>
 
 
+
+
+
+
+
+
 <!-- Example of including live JS code, here a hypertree -->
-<link rel="stylesheet" href="hypertree/d3-hypertree-light.css">
 <script src="hypertree/d3-hypertree.js"></script>
-<style>
-  .unitdisk-nav {
-    margin: 3em;
-  }
-</style>
+
+<link rel="stylesheet" href="hypertree/d3-hypertree-light.css">
+<link rel="stylesheet" href="hypertree/d3-hypertree-config.css"/>
 
 
 <section>
   <h1>Including Live Code for Interactive Content</h1>
   <div id="tree"></div>
+  
+  
+  <footer class="footer">
+    [Michael Glatzhofer's <a href="https://github.com/glouwa/d3-hypertree">Hypertree</a>
+    reads its data from a file and hence needs to be hosted on a server
+    in order for this demo to work.]<br/>
+    Fabian Platzer, Graz University of Technology, Fri 24 Jan 2025
+  </footer>
 </section>
 
-
-
 <script>
-  const ht = new hyt.Hypertree(
-    {
-      parent: document.querySelector('#tree')
-    },
+  document.addEventListener('DOMContentLoaded', function() {
+    const ht = new hyt.Hypertree(
+      {
+        parent: document.querySelector('#tree')
+      },
     {
       dataloader: hyt.loaders.fromFile('hypertree/products.d3.json'),
       langInitBFS: (ht, n) => n.precalc.label = n.data.name,
@@ -341,11 +350,20 @@ Lightweight.
       }
     }
   )
-  
-  ht.initPromise
-    .then(() => new Promise((ok, err) => ht.animateUp(ok, err)))
-    .then(() => ht.drawDetailFrame())
+    
+    ht.initPromise
+      .then(() => new Promise((ok, err) => ht.animateUp(ok, err)))
+      .then(() => ht.drawDetailFrame())
+      .then(() => {
+        document.documentElement.classList.add('rslidy-ready');
+      });
+  });
 </script>
+
+
+
+
+
 
 
 <link rel="stylesheet" href="respvis/respvis.css"/>
@@ -394,7 +412,7 @@ Lightweight.
 
 
 <section>
-  <h1>Responsive Tables with css styling</h1>
+  <h1>Responsive Tables with CSS styling</h1>
   <div id="table-container" class="table-container">
     <table class="responsive-table squishing stacking">
       <thead>
@@ -409,167 +427,167 @@ Lightweight.
       </tr>
       </thead>
       <tbody>
-      <tr>
-        <td data-label="Feature" class="text">Collaborative</td>
-        <td data-label="Shower" class="text"><span class="table-cross">&#10008;</span></td>
-        <td data-label="Reveal.js" class="text"><span class="table-cross">&#10008;</span></td>
-        <td data-label="Deck.js" class="text"><span class="table-cross">&#10008;</span></td>
-        <td data-label="impress.js" class="text"><span class="table-cross">&#10008;</span></td>
-        <td data-label="Bespoke.js" class="text"><span class="table-cross">&#10008;</span></td>
-        <td data-label="Inspire.js" class="text"><span class="table-cross">&#10008;</span></td>
+      <tr class="text">
+        <td data-label="Feature">Collaborative</td>
+        <td data-label="Shower"><span class="table-cross">&#10008;</span></td>
+        <td data-label="Reveal.js"><span class="table-cross">&#10008;</span></td>
+        <td data-label="Deck.js"><span class="table-cross">&#10008;</span></td>
+        <td data-label="impress.js"><span class="table-cross">&#10008;</span></td>
+        <td data-label="Bespoke.js"><span class="table-cross">&#10008;</span></td>
+        <td data-label="Inspire.js"><span class="table-cross">&#10008;</span></td>
       </tr>
-      <tr>
-        <td data-label="Feature" class="text">SVG Inclusion</td>
-        <td data-label="Shower" class="text"><span class="table-tick">&#10004;</span></td>
-        <td data-label="Reveal.js" class="text"><span class="table-tick">&#10004;</span></td>
-        <td data-label="Deck.js" class="text"><span class="table-tick">&#10004;</span></td>
-        <td data-label="impress.js" class="text"><span class="table-tick">&#10004;</span></td>
-        <td data-label="Bespoke.js" class="text"><span class="table-tick">&#10004;</span></td>
-        <td data-label="Inspire.js" class="text"><span class="table-tick">&#10004;</span></td>
+      <tr class="text">
+        <td data-label="Feature">SVG Inclusion</td>
+        <td data-label="Shower"><span class="table-tick">&#10004;</span></td>
+        <td data-label="Reveal.js"><span class="table-tick">&#10004;</span></td>
+        <td data-label="Deck.js"><span class="table-tick">&#10004;</span></td>
+        <td data-label="impress.js"><span class="table-tick">&#10004;</span></td>
+        <td data-label="Bespoke.js"><span class="table-tick">&#10004;</span></td>
+        <td data-label="Inspire.js"><span class="table-tick">&#10004;</span></td>
       </tr>
-      <tr>
-        <td data-label="Feature" class="text">Globally Change Bullet Spacing</td>
-        <td data-label="Shower" class="text"><span class="table-tick">&#10004;</span></td>
-        <td data-label="Reveal.js" class="text"><span class="table-tick">&#10004;</span></td>
-        <td data-label="Deck.js" class="text"><span class="table-tick">&#10004;</span></td>
-        <td data-label="impress.js" class="text"><span class="table-tick">&#10004;</span></td>
-        <td data-label="Bespoke.js" class="text"><span class="table-tick">&#10004;</span></td>
-        <td data-label="Inspire.js" class="text"><span class="table-tick">&#10004;</span></td>
+      <tr class="text">
+        <td data-label="Feature">Globally Change Bullet Spacing</td>
+        <td data-label="Shower"><span class="table-tick">&#10004;</span></td>
+        <td data-label="Reveal.js"><span class="table-tick">&#10004;</span></td>
+        <td data-label="Deck.js"><span class="table-tick">&#10004;</span></td>
+        <td data-label="impress.js"><span class="table-tick">&#10004;</span></td>
+        <td data-label="Bespoke.js"><span class="table-tick">&#10004;</span></td>
+        <td data-label="Inspire.js"><span class="table-tick">&#10004;</span></td>
       </tr>
-      <tr>
-        <td data-label="Feature" class="text">Globally Change Bullet Indentation</td>
-        <td data-label="Shower" class="text"><span class="table-tick">&#10004;</span></td>
-        <td data-label="Reveal.js" class="text"><span class="table-tick">&#10004;</span></td>
-        <td data-label="Deck.js" class="text"><span class="table-tick">&#10004;</span></td>
-        <td data-label="impress.js" class="text"><span class="table-tick">&#10004;</span></td>
-        <td data-label="Bespoke.js" class="text"><span class="table-tick">&#10004;</span></td>
-        <td data-label="Inspire.js" class="text"><span class="table-tick">&#10004;</span></td>
+      <tr class="text">
+        <td data-label="Feature">Globally Change Bullet Indentation</td>
+        <td data-label="Shower"><span class="table-tick">&#10004;</span></td>
+        <td data-label="Reveal.js"><span class="table-tick">&#10004;</span></td>
+        <td data-label="Deck.js"><span class="table-tick">&#10004;</span></td>
+        <td data-label="impress.js"><span class="table-tick">&#10004;</span></td>
+        <td data-label="Bespoke.js"><span class="table-tick">&#10004;</span></td>
+        <td data-label="Inspire.js"><span class="table-tick">&#10004;</span></td>
       </tr>
-      <tr>
-        <td data-label="Feature" class="text">Export as PDF</td>
-        <td data-label="Shower" class="text"><span class="table-tick">&#10004;</span></td>
-        <td data-label="Reveal.js" class="text"><span class="table-tick">&#10004;</span></td>
-        <td data-label="Deck.js" class="text"><span class="table-cross">&#10008;</span></td>
-        <td data-label="impress.js" class="text"><span class="table-cross">&#10008;</span></td>
-        <td data-label="Bespoke.js" class="text"><span class="table-tick">&#10004;</span></td>
-        <td data-label="Inspire.js" class="text"><span class="table-cross">&#10008;</span></td>
+      <tr class="text">
+        <td data-label="Feature">Export as PDF</td>
+        <td data-label="Shower"><span class="table-tick">&#10004;</span></td>
+        <td data-label="Reveal.js"><span class="table-tick">&#10004;</span></td>
+        <td data-label="Deck.js"><span class="table-cross">&#10008;</span></td>
+        <td data-label="impress.js"><span class="table-cross">&#10008;</span></td>
+        <td data-label="Bespoke.js"><span class="table-tick">&#10004;</span></td>
+        <td data-label="Inspire.js"><span class="table-cross">&#10008;</span></td>
       </tr>
-      <tr>
-        <td data-label="Feature" class="text">Export as HTML</td>
-        <td data-label="Shower" class="text"><span class="table-tick">&#10004;</span></td>
-        <td data-label="Reveal.js" class="text"><span class="table-tick">&#10004;</span></td>
-        <td data-label="Deck.js" class="text"><span class="table-tick">&#10004;</span></td>
-        <td data-label="impress.js" class="text"><span class="table-tick">&#10004;</span></td>
-        <td data-label="Bespoke.js" class="text"><span class="table-tick">&#10004;</span></td>
-        <td data-label="Inspire.js" class="text"><span class="table-tick">&#10004;</span></td>
+      <tr class="text">
+        <td data-label="Feature">Export as HTML</td>
+        <td data-label="Shower"><span class="table-tick">&#10004;</span></td>
+        <td data-label="Reveal.js"><span class="table-tick">&#10004;</span></td>
+        <td data-label="Deck.js"><span class="table-tick">&#10004;</span></td>
+        <td data-label="impress.js"><span class="table-tick">&#10004;</span></td>
+        <td data-label="Bespoke.js"><span class="table-tick">&#10004;</span></td>
+        <td data-label="Inspire.js"><span class="table-tick">&#10004;</span></td>
       </tr>
-      <tr>
-        <td data-label="Feature" class="text">Export as PowerPoint</td>
-        <td data-label="Shower" class="text"><span class="table-cross">&#10008;</span></td>
-        <td data-label="Reveal.js" class="text"><span class="table-cross">&#10008;</span></td>
-        <td data-label="Deck.js" class="text"><span class="table-cross">&#10008;</span></td>
-        <td data-label="impress.js" class="text"><span class="table-cross">&#10008;</span></td>
-        <td data-label="Bespoke.js" class="text"><span class="table-cross">&#10008;</span></td>
-        <td data-label="Inspire.js" class="text"><span class="table-cross">&#10008;</span></td>
+      <tr class="text">
+        <td data-label="Feature">Export as PowerPoint</td>
+        <td data-label="Shower"><span class="table-cross">&#10008;</span></td>
+        <td data-label="Reveal.js"><span class="table-cross">&#10008;</span></td>
+        <td data-label="Deck.js"><span class="table-cross">&#10008;</span></td>
+        <td data-label="impress.js"><span class="table-cross">&#10008;</span></td>
+        <td data-label="Bespoke.js"><span class="table-cross">&#10008;</span></td>
+        <td data-label="Inspire.js"><span class="table-cross">&#10008;</span></td>
       </tr>
-      <tr>
-        <td data-label="Feature" class="text">Slide numbering</td>
-        <td data-label="Shower" class="text"><span class="table-tick">&#10004;</span></td>
-        <td data-label="Reveal.js" class="text"><span class="table-tick">&#10004;</span></td>
-        <td data-label="Deck.js" class="text"><span class="table-tick">&#10004;</span></td>
-        <td data-label="impress.js" class="text"><span class="table-tick">&#10004;</span></td>
-        <td data-label="Bespoke.js" class="text"><span class="table-tick">&#10004;</span></td>
-        <td data-label="Inspire.js" class="text"><span class="table-tick">&#10004;</span></td>
+      <tr class="text">
+        <td data-label="Feature">Slide numbering</td>
+        <td data-label="Shower"><span class="table-tick">&#10004;</span></td>
+        <td data-label="Reveal.js"><span class="table-tick">&#10004;</span></td>
+        <td data-label="Deck.js"><span class="table-tick">&#10004;</span></td>
+        <td data-label="impress.js"><span class="table-tick">&#10004;</span></td>
+        <td data-label="Bespoke.js"><span class="table-tick">&#10004;</span></td>
+        <td data-label="Inspire.js"><span class="table-tick">&#10004;</span></td>
       </tr>
-      <tr>
-        <td data-label="Feature" class="text">Live Code Integration</td>
-        <td data-label="Shower" class="text"><span class="table-cross">&#10008;</span></td>
-        <td data-label="Reveal.js" class="text"><span class="table-cross">&#10008;</span></td>
-        <td data-label="Deck.js" class="text"><span class="table-cross">&#10008;</span></td>
-        <td data-label="impress.js" class="text"><span class="table-cross">&#10008;</span></td>
-        <td data-label="Bespoke.js" class="text"><span class="table-cross">&#10008;</span></td>
-        <td data-label="Inspire.js" class="text"><span class="table-cross">&#10008;</span></td>
+      <tr class="text">
+        <td data-label="Feature">Live Code Integration</td>
+        <td data-label="Shower"><span class="table-cross">&#10008;</span></td>
+        <td data-label="Reveal.js"><span class="table-cross">&#10008;</span></td>
+        <td data-label="Deck.js"><span class="table-cross">&#10008;</span></td>
+        <td data-label="impress.js"><span class="table-cross">&#10008;</span></td>
+        <td data-label="Bespoke.js"><span class="table-cross">&#10008;</span></td>
+        <td data-label="Inspire.js"><span class="table-cross">&#10008;</span></td>
       </tr>
-      <tr>
-        <td data-label="Feature" class="text">Open-source</td>
-        <td data-label="Shower" class="text"><span class="table-tick">&#10004;</span></td>
-        <td data-label="Reveal.js" class="text"><span class="table-tick">&#10004;</span></td>
-        <td data-label="Deck.js" class="text"><span class="table-tick">&#10004;</span></td>
-        <td data-label="impress.js" class="text"><span class="table-tick">&#10004;</span></td>
-        <td data-label="Bespoke.js" class="text"><span class="table-tick">&#10004;</span></td>
-        <td data-label="Inspire.js" class="text"><span class="table-tick">&#10004;</span></td>
+      <tr class="text">
+        <td data-label="Feature">Open-source</td>
+        <td data-label="Shower"><span class="table-tick">&#10004;</span></td>
+        <td data-label="Reveal.js"><span class="table-tick">&#10004;</span></td>
+        <td data-label="Deck.js"><span class="table-tick">&#10004;</span></td>
+        <td data-label="impress.js"><span class="table-tick">&#10004;</span></td>
+        <td data-label="Bespoke.js"><span class="table-tick">&#10004;</span></td>
+        <td data-label="Inspire.js"><span class="table-tick">&#10004;</span></td>
       </tr>
-      <tr>
-        <td data-label="Feature" class="text">Licence</td>
-        <td data-label="Shower" class="text">MIT</td>
-        <td data-label="Reveal.js" class="text">MIT</td>
-        <td data-label="Deck.js" class="text">MIT</td>
-        <td data-label="impress.js" class="text">MIT</td>
-        <td data-label="Bespoke.js" class="text">MIT</td>
-        <td data-label="Inspire.js" class="text">MIT</td>
+      <tr class="text">
+        <td data-label="Feature">Licence</td>
+        <td data-label="Shower">MIT</td>
+        <td data-label="Reveal.js">MIT</td>
+        <td data-label="Deck.js">MIT</td>
+        <td data-label="impress.js">MIT</td>
+        <td data-label="Bespoke.js">MIT</td>
+        <td data-label="Inspire.js">MIT</td>
       </tr>
-      <tr>
-        <td data-label="Feature" class="text">First Release</td>
-        <td data-label="Shower" class="text">2010-10-25</td>
-        <td data-label="Reveal.js" class="text">2011-06-07</td>
-        <td data-label="Deck.js" class="text">2011-06-24</td>
-        <td data-label="impress.js" class="text">2011-12-28</td>
-        <td data-label="Bespoke.js" class="text">2012-12-13</td>
-        <td data-label="Inspire.js" class="text">2018-09</td>
+      <tr class="text">
+        <td data-label="Feature">First Release</td>
+        <td data-label="Shower">2010-10-25</td>
+        <td data-label="Reveal.js">2011-06-07</td>
+        <td data-label="Deck.js">2011-06-24</td>
+        <td data-label="impress.js">2011-12-28</td>
+        <td data-label="Bespoke.js">2012-12-13</td>
+        <td data-label="Inspire.js">2018-09</td>
       </tr>
-      <tr>
-        <td data-label="Feature" class="text">Last Update</td>
-        <td data-label="Shower" class="text">2024-10-25</td>
-        <td data-label="Reveal.js" class="text">2024-05-15</td>
-        <td data-label="Deck.js" class="text">2016-05-04</td>
-        <td data-label="impress.js" class="text">2024-04-26</td>
-        <td data-label="Bespoke.js" class="text">2020-09-08</td>
-        <td data-label="Inspire.js" class="text">2024-06-27</td>
+      <tr class="text">
+        <td data-label="Feature">Last Update</td>
+        <td data-label="Shower">2024-10-25</td>
+        <td data-label="Reveal.js">2024-05-15</td>
+        <td data-label="Deck.js">2016-05-04</td>
+        <td data-label="impress.js">2024-04-26</td>
+        <td data-label="Bespoke.js">2020-09-08</td>
+        <td data-label="Inspire.js">2024-06-27</td>
       </tr>
-      <tr>
-        <td data-label="Feature" class="text">Popularity (GitHub stars)</td>
-        <td data-label="Shower" class="text">4.8k</td>
-        <td data-label="Reveal.js" class="text">67.4k</td>
-        <td data-label="Deck.js" class="text">5.4k</td>
-        <td data-label="impress.js" class="text">37.6k</td>
-        <td data-label="Bespoke.js" class="text">4.7k</td>
-        <td data-label="Inspire.js" class="text">1.7k</td>
+      <tr class="text">
+        <td data-label="Feature">Popularity (GitHub stars)</td>
+        <td data-label="Shower">4.8k</td>
+        <td data-label="Reveal.js">67.4k</td>
+        <td data-label="Deck.js">5.4k</td>
+        <td data-label="impress.js">37.6k</td>
+        <td data-label="Bespoke.js">4.7k</td>
+        <td data-label="Inspire.js">1.7k</td>
       </tr>
-      <tr>
-        <td data-label="Feature" class="text">Swipe Navigation</td>
-        <td data-label="Shower" class="text"><span class="table-tick">&#10004;</span></td>
-        <td data-label="Reveal.js" class="text"><span class="table-tick">&#10004;</span></td>
-        <td data-label="Deck.js" class="text"><span class="table-tick">&#10004;</span></td>
-        <td data-label="impress.js" class="text"><span class="table-tick">&#10004;</span></td>
-        <td data-label="Bespoke.js" class="text"><span class="table-tick">&#10004;</span></td>
-        <td data-label="Inspire.js" class="text"><span class="table-tick">&#10004;</span></td>
+      <tr class="text">
+        <td data-label="Feature">Swipe Navigation</td>
+        <td data-label="Shower"><span class="table-tick">&#10004;</span></td>
+        <td data-label="Reveal.js"><span class="table-tick">&#10004;</span></td>
+        <td data-label="Deck.js"><span class="table-tick">&#10004;</span></td>
+        <td data-label="impress.js"><span class="table-tick">&#10004;</span></td>
+        <td data-label="Bespoke.js"><span class="table-tick">&#10004;</span></td>
+        <td data-label="Inspire.js"><span class="table-tick">&#10004;</span></td>
       </tr>
-      <tr>
-        <td data-label="Feature" class="text">Margin Navigation</td>
-        <td data-label="Shower" class="text"><span class="table-tick">&#10004;</span></td>
-        <td data-label="Reveal.js" class="text"><span class="table-tick">&#10004;</span></td>
-        <td data-label="Deck.js" class="text"><span class="table-tick">&#10004;</span></td>
-        <td data-label="impress.js" class="text"><span class="table-tick">&#10004;</span></td>
-        <td data-label="Bespoke.js" class="text"><span class="table-tick">&#10004;</span></td>
-        <td data-label="Inspire.js" class="text"><span class="table-tick">&#10004;</span></td>
+      <tr class="text">
+        <td data-label="Feature">Margin Navigation</td>
+        <td data-label="Shower"><span class="table-tick">&#10004;</span></td>
+        <td data-label="Reveal.js"><span class="table-tick">&#10004;</span></td>
+        <td data-label="Deck.js"><span class="table-tick">&#10004;</span></td>
+        <td data-label="impress.js"><span class="table-tick">&#10004;</span></td>
+        <td data-label="Bespoke.js"><span class="table-tick">&#10004;</span></td>
+        <td data-label="Inspire.js"><span class="table-tick">&#10004;</span></td>
       </tr>
-      <tr>
-        <td data-label="Feature" class="text">Figure Zooming and Panning</td>
-        <td data-label="Shower" class="text"><span class="table-cross">&#10008;</span></td>
-        <td data-label="Reveal.js" class="text"><span class="table-cross">&#10008;</span></td>
-        <td data-label="Deck.js" class="text"><span class="table-cross">&#10008;</span></td>
-        <td data-label="impress.js" class="text"><span class="table-tick">&#10004;</span></td>
-        <td data-label="Bespoke.js" class="text"><span class="table-tick">&#10004;</span></td>
-        <td data-label="Inspire.js" class="text"><span class="table-cross">&#10008;</span></td>
+      <tr class="text">
+        <td data-label="Feature">Figure Zooming and Panning</td>
+        <td data-label="Shower"><span class="table-cross">&#10008;</span></td>
+        <td data-label="Reveal.js"><span class="table-cross">&#10008;</span></td>
+        <td data-label="Deck.js"><span class="table-cross">&#10008;</span></td>
+        <td data-label="impress.js"><span class="table-tick">&#10004;</span></td>
+        <td data-label="Bespoke.js"><span class="table-tick">&#10004;</span></td>
+        <td data-label="Inspire.js"><span class="table-cross">&#10008;</span></td>
       </tr>
-      <tr>
-        <td data-label="Feature" class="text">Presenter mode</td>
-        <td data-label="Shower" class="text"><span class="table-tick">&#10004;</span></td>
-        <td data-label="Reveal.js" class="text"><span class="table-tick">&#10004;</span></td>
-        <td data-label="Deck.js" class="text"><span class="table-tick">&#10004;</span></td>
-        <td data-label="impress.js" class="text"><span class="table-tick">&#10004;</span></td>
-        <td data-label="Bespoke.js" class="text"><span class="table-tick">&#10004;</span></td>
-        <td data-label="Inspire.js" class="text"><span class="table-tick">&#10004;</span></td>
+      <tr class="text">
+        <td data-label="Feature">Presenter mode</td>
+        <td data-label="Shower"><span class="table-tick">&#10004;</span></td>
+        <td data-label="Reveal.js"><span class="table-tick">&#10004;</span></td>
+        <td data-label="Deck.js"><span class="table-tick">&#10004;</span></td>
+        <td data-label="impress.js"><span class="table-tick">&#10004;</span></td>
+        <td data-label="Bespoke.js"><span class="table-tick">&#10004;</span></td>
+        <td data-label="Inspire.js"><span class="table-tick">&#10004;</span></td>
       </tr>
       </tbody>
     </table>
@@ -583,22 +601,6 @@ Lightweight.
 
 
 
-<section>
-  <h2>Print Style Sheet</h2>
-
-  <figure>
-    <div class="large-images">
-    <video controls autoplay muted loop poster="images/print-sheet.gif">
-      <source src="images/print-sheet.mp4" type="video/mp4"/>
-      <img src="images/print-sheet.gif" alt="An animation shows the print style sheet of Rslidy, switching between landscape and portrait mode." />
-    </video>
-    </div>
-    <figcaption>
-    Rslidy's print style sheet adjust to portrait and landscape mode. Multiple slides can fit onto one sheet of paper.
-    <span class="credit">Screen capture taken from Rslidy.</span>
-    </figcaption>
-  </figure>
-</section>
 
 
 

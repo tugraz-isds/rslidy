@@ -8,7 +8,7 @@
  border-spacing: 0;
  font-size: 70%;
  border: none;
- width:100%;
+ width: 100%;
  max-width: 100%;
 }
 
@@ -79,8 +79,9 @@
  background-color: inherit;
 }
 
+/* Cell-based alignment */
 .responsive-table td.text {
- text-align: right;
+ text-align: left;
 }
 
 .responsive-table td:first-child {
@@ -91,10 +92,22 @@
  text-align: right;
 }
 
+.responsive-table t´h.numeric {
+ text-align: right;
+}
+
+/* Row-based alignment (NEW) */
+.responsive-table tr.text > td {
+ text-align: left;
+}
+
+.responsive-table tr.numeric > td {
+ text-align: right;
+}
+
 /* Responsive Styling */
 @media screen and (max-width: 40em), print and (max-width: 40em) {
  .responsive-table,
-
  .stacking {
   align-items: center;
   display: flex;
@@ -102,7 +115,7 @@
   margin-left: auto;
   margin-right: 5.5em;
   text-align: center;
-  width:auto !important;
+  width: auto !important;
  }
 
  .stacking thead {
@@ -145,6 +158,24 @@
  }
 
  .responsive-table td.text {
+  text-align: left;
+ }
+
+ .responsive-table th.text {
+  text-align: right;
+ }
+ .responsive-table th.numeric {
+  text-align: right;
+ }
+ .responsive-table td.numeric {
+  text-align: right;
+ }
+ /* Responsive row-based alignment (NEW) */
+ .stacking tr.text > td {
+  text-align: right;
+ }
+
+ .stacking tr.numeric > td {
   text-align: right;
  }
 }
@@ -201,8 +232,15 @@
  }
 
  .responsive-table td.text {
-  text-align: right !important;
+  text-align: left !important;
+ }
+
+ /* Print row-based alignment (NEW) */
+ .stacking tr.text > td {
+  text-align: left;
+ }
+
+ .stacking tr.numeric > td {
+  text-align: right;
  }
 }
-
-

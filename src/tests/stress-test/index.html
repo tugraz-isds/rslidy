@@ -7,7 +7,7 @@
 <!-- for css3 media queries to work properly on mobile devices-->
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
-<title>Rslidy</title>
+<title>Stress Test</title>
 
 <link rel="stylesheet" href="rslidy.min.css"/>
 <script type="module" src="rslidy.min.js"></script>
@@ -783,61 +783,66 @@ Fabian Platzer, Graz University of Technology, Fri 24 Jan 2025
 
 
 <script>
-const ht = new hyt.Hypertree(
-  {
-    parent: document.querySelector('#tree')
-  },
-  {
-    dataloader: hyt.loaders.fromFile('hypertree/products.d3.json'),
-    langInitBFS: (ht, n) => n.precalc.label = n.data.name,
-
-    layout: {
-      rootWedge: {
-        angle: 6.283184,
-      }
-    },
-
-    filter: {
-      maxlabels: 55
-    },
-
-    geometry: {
-      layerOptions: {
-        'stem-arc': {
-          invisible: true,
-          hideOnDrag: true,
-        },
-        'center-node': {
-          invisible: true,
-          hideOnDrag: true,
-        },
-        'labels-force':
-        {
-          invisible: true,
-          hideOnDrag: true,
-        },
-        'labels':
-        {
-          invisible: false,
-          hideOnDrag: false,
-        }
-
+  document.addEventListener('DOMContentLoaded', function() {
+    const ht = new hyt.Hypertree(
+      {
+        parent: document.querySelector('#tree')
       },
-    },
-
-    interaction: {
-      λbounds: [.3, .84],
-      onNodeClick: (n, m, l) => {
-        ht.api.goto({ re: -n.layout.z.re, im: -n.layout.z.im }, null)
-          .then(() => ht.drawDetailFrame())
+      {
+        dataloader: hyt.loaders.fromFile('hypertree/products.d3.json'),
+        langInitBFS: (ht, n) => n.precalc.label = n.data.name,
+        
+        layout: {
+          rootWedge: {
+            angle: 6.283184,
+          }
+        },
+        
+        filter: {
+          maxlabels: 55
+        },
+        
+        geometry: {
+          layerOptions: {
+            'stem-arc': {
+              invisible: true,
+              hideOnDrag: true,
+            },
+            'center-node': {
+              invisible: true,
+              hideOnDrag: true,
+            },
+            'labels-force':
+              {
+                invisible: true,
+                hideOnDrag: true,
+              },
+            'labels':
+              {
+                invisible: false,
+                hideOnDrag: false,
+              }
+            
+          },
+        },
+        
+        interaction: {
+          λbounds: [.3, .84],
+          onNodeClick: (n, m, l) => {
+            ht.api.goto({ re: -n.layout.z.re, im: -n.layout.z.im }, null)
+              .then(() => ht.drawDetailFrame())
+          }
+        }
       }
-    }
-  }
-)
-
-ht.initPromise
-  .then(() => new Promise((ok, err) => ht.animateUp(ok, err)))
-  .then(() => ht.drawDetailFrame())
+    )
+    
+    ht.initPromise
+      .then(() => new Promise((ok, err) => ht.animateUp(ok, err)))
+      .then(() => ht.drawDetailFrame())
+      .then(() => {
+        document.documentElement.classList.add('rslidy-ready');
+      });
+  });
 </script>
 
 

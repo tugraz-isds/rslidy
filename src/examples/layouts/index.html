@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+
+<head>
+<meta charset="UTF-8"/>
+
+<!-- for css3 media queries to work properly on mobile devices-->
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>Rslidy Layouts</title>
+
+<link rel="stylesheet" href="rslidy.min.css"/>
+<script type="module" src="rslidy.min.js"></script>
+
+<!-- for custom css sheets-->
+<link rel="stylesheet" href="slides.css"/>
+<link rel="stylesheet" href="table.css"/>
+
+
+</head>
+
+
+<body>
+
+
+<section class="titleslide">
+  <h1>Rslidy Layouts</h1>
+  <h2>Titleslide</h2>
+  <h4>Graz University of Technology, Austria</h4>
+  
+  
+  <div id="licence">
+    <p>
+      © Copyright 2024 by the author(s), except as otherwise noted.<br/>
+      This work is placed under a Creative Commons Attribution 4.0 International
+      (<a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>) licence.
+    </p>
+  </div>
+</section>
+
+
+
+
+
+<section>
+<h1>Simple Bullet Points</h1>
+
+<ul>
+  <li>Exmaple Bullet Point 1</li>
+  <li>Exmaple Bullet Point 2</li>
+  <li>Exmaple Bullet Point 3</li>
+  <li>Exmaple Bullet Point 4</li>
+  <li>Exmaple Bullet Point 5</li>
+</ul>
+</section>
+
+
+
+
+
+<section>
+  <h2>Simple Image Layout</h2>
+  
+  <figure>
+    <div class="large-images">
+      <img src="images/image_viewer_example_slide.png"
+           alt="Rslidy Image Viewer"/>
+    </div>
+    <figcaption>
+      The image viewer is automatically attached to every image.<br/>
+      Pan and zoom via mouse, keyboard, or on-screen controls.<br/>
+      <span class="credit">Screen capture taken from Rslidy.</span>
+    </figcaption>
+  </figure>
+</section>
+
+
+
+<section>
+  <h2>Simple Gif Layout</h2>
+  
+  <figure>
+    <div class="large-images">
+      <video controls autoplay muted loop poster="images/image-viewer.gif">
+        <img src="images/image-viewer.gif" alt="An animation shows the image viewer in usage." />
+      </video>
+    </div>
+    <figcaption>
+      Showing the image viewer as a GIF.<br/>
+      <span class="credit">Screen capture taken from Rslidy.</span>
+    </figcaption>
+  </figure>
+</section>
+
+<section>
+  <h2>Simple Video Layout</h2>
+  
+  <figure>
+    <div class="large-images">
+      <video controls autoplay muted loop poster="images/all-slides.gif">
+        <source src="images/image-viewer.mp4" type="video/mp4"/>
+        <img src="images/image-viewer.gif"
+             alt="An animation shows the all slides view, in which all slides are stacked vertically, generating a single scrollable HTML page." />
+      </video>
+    </div>
+    <figcaption>
+      Showing the image viewer as an mp4 video.<br/>
+      <span class="credit">Screen capture taken from Rslidy.</span>
+    </figcaption>
+  </figure>
+</section>
+
+
+<section>
+  <h2>Simple Responsive Table Layout</h2>
+  
+  <table class="responsive-table squishing stacking">
+    <caption>Rslidy File Sizes</caption>
+    <thead>
+    <tr>
+      <th scope="col">File</th>
+      <th scope="col" class="numeric">Size (Bytes)</th>
+      <th scope="col" class="numeric">Minified Size (Bytes)</th>
+      <th scope="col" class="numeric">Minified and Gzipped  (Bytes)</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td data-label="Filename" class="text">rslidy.js</td>
+      <td data-label="Regular" class="numeric">149,083</td>
+      <td data-label="Minified" class="numeric">84,163</td>
+      <td data-label="Gzipped" class="numeric">18,069</td>
+    </tr>
+    <tr>
+      <td data-label="Filename" class="text">rslidy.css</td>
+      <td data-label="Regular" class="numeric">37,043</td>
+      <td data-label="Minified" class="numeric">24,339</td>
+      <td data-label="Gzipped" class="numeric">6,362</td>
+    </tr>
+    </tbody>
+  </table>
+</section>
+
+
+
+
+
+
+<section>
+  <h1>Two-Columns Bullet Points</h1>
+  <div class="columns-even">
+    <div class="left-column">
+      <ul>
+        <li>Example Bullet Point 1</li>
+        <li>Example Bullet Point 2</li>
+        <li>Example Bullet Point 3</li>
+        <li>Example Bullet Point 4</li>
+        <li>Example Bullet Point 5</li>
+      </ul>
+    </div>
+    <div class="right-column">
+      <ul>
+        <li>Example Bullet Point 1</li>
+        <li>Example Bullet Point 2</li>
+        <li>Example Bullet Point 3</li>
+        <li>Example Bullet Point 4</li>
+        <li>Example Bullet Point 5</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+
+
+<section>
+  <h1>Bullet Points Left - Image Right</h1>
+  <div class="columns-even">
+    <div class="left-column">
+      <ul>
+        <li>Example Bullet Point 1</li>
+        <li>Example Bullet Point 2</li>
+        <li>Example Bullet Point 3</li>
+        <li>Example Bullet Point 4</li>
+        <li>Example Bullet Point 5</li>
+      </ul>
+    </div>
+    <div class="right-column">
+      <figure>
+        <div class="images">
+          <img src="images/rslidy_example_slide.png"
+               alt=" example slidePrezi: Example Slide"
+               style="max-height:20em; border: 1px solid #D3D3D3;" />
+        </div>
+        <figcaption>Rslidy: Example slide.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+<section>
+  <h1>Image Left - Bullet Points Right</h1>
+  <div class="columns-even">
+    <div class="left-column">
+      <figure class="figure-left">
+        <div class="images">
+          <img src="images/rslidy_example_slide.png"
+               alt=" example slidePrezi: Example Slide"
+               style="max-height:20em; border: 1px solid #D3D3D3;" />
+        </div>
+        <figcaption>Rslidy: Example slide.</figcaption>
+      </figure>
+    </div>
+    <div class="right-column">
+      <ul>
+        <li>Example Bullet Point 1</li>
+        <li>Example Bullet Point 2</li>
+        <li>Example Bullet Point 3</li>
+        <li>Example Bullet Point 4</li>
+        <li>Example Bullet Point 5</li>
+      </ul>
+    </div>
+  </div>
+
+</section>
+
+
+
+
+</body>
+</html>
