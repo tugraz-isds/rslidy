@@ -279,6 +279,7 @@ export class PrintSettingsComponent {
           const zoomValueInput = <HTMLInputElement>this.view.querySelector("#custom-scaling-input");
           const zoomValue = parseFloat(zoomValueInput.value);
           console.log(zoomValue)
+          console.log("zoomy22");
           if (!isNaN(zoomValue) && zoomValue > 0) {
             const scaleFactor = zoomValue / 100;
             const origin = selectedOrigin?.value || "center";

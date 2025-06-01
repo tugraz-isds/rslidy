@@ -239,14 +239,27 @@ exports.build.description = 'Cleans and builds the project';
 exports.cleanAll = parallel(clean, cleanNodeModules, cleanPackageLock);
 exports.cleanAll.description = 'Cleans the build folder and the node_modules folder';
 
-// Watch task
+
+const buildnc = series(
+  parallel(
+    series(cleantsc, transpile, webpack),
+    html,
+    css
+  ),
+  exports.minify,
+  copy,
+  () => browserSync.stream()
+);
+
 function loop() {
   var arg = (argv.slide || argv.s);
   var dir = 'tests/';
   var file = 'notes.html';
+
   if (arg) {
-    if (arg.lastIndexOf('/'))
+    if (arg.lastIndexOf('/')) {
       dir = arg.substring(0, arg.lastIndexOf('/') + 1);
+    }
     file = arg.substring(arg.lastIndexOf('/') + 1);
   }
 
@@ -256,6 +269,7 @@ function loop() {
       baseDir: [paths.build, paths.build + dir],
     }
   });
+
   watch(paths.src + '**/*.*', buildnc);
 }
 const gwatch = series(exports.build, loop);
