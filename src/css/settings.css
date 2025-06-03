@@ -92,6 +92,7 @@ label {
   display: flex;
   align-items: center;
   margin-bottom: 0.5em;
+  min-height: 1.3em;
 }
 .rslidy-print-slides {
   cursor: pointer;

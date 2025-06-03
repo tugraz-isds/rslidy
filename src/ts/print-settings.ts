@@ -54,7 +54,9 @@ export class PrintSettingsComponent {
     const rangeInput = <HTMLInputElement>this.view.querySelector("#rslidy-slide-range-input");
     const positionRadios = this.view.querySelectorAll('input[name="transform-origin"]');
     const customScaleRadio = <HTMLInputElement>this.view.querySelector('#rslidy-checkbox-custom');
+    const customZoomRadio = <HTMLInputElement>this.view.querySelector('#rslidy-checkbox-zoom');
     const scalingInput = <HTMLInputElement>this.view.querySelector('#custom-scaling-input');
+    const zoomInput = <HTMLInputElement>this.view.querySelector('#custom-zoom-input');
 
     if (!slideRadios.length || !rangeInput || !customScaleRadio) {
       console.error("Print settings elements not found!");
@@ -70,12 +72,16 @@ export class PrintSettingsComponent {
 
       const isCustomSlide = checkedSlideRadio?.value === "custom";
       const isCustomScale = customScaleRadio.checked;
+      const isCustomZoom = customZoomRadio.checked;
 
       // Slide range input
       rangeInput.disabled = !isCustomSlide;
 
-      // Rest of the method remains the same...
+      // Enable/disable scaling and zoom inputs
       scalingInput.disabled = !isCustomScale;
+      zoomInput.disabled = !isCustomZoom;
+
+      // Handle position radios
       positionRadios.forEach(radio => {
         (radio as HTMLInputElement).disabled = !isCustomScale;
         const label = radio.closest('label');
@@ -176,6 +182,7 @@ export class PrintSettingsComponent {
       dimensions = `${height} ${width}`;
     }
 
+
     css += `
       .slide { margin: auto !important; }
       #chart .window-rv { display: block; }
@@ -210,6 +217,71 @@ export class PrintSettingsComponent {
                 padding: 2rem !important;
             }
                 `;
+          console.log(window.innerWidth);
+          if (window.innerWidth <= 640) {
+                    css += `
+              @media print {
+                .stacking tr {
+                  break-inside: avoid !important; /* Prevent row from breaking across pages */
+                }
+
+                .responsive-table, .stacking { 
+                    align-items: center !important;
+                    display: flex !important;
+                    flex-direction: column !important;
+                    margin-left: auto !important;
+                    margin-right: 5.5em !important;
+                    text-align: center !important;
+                    width: auto !important;
+                    overflow-x: visible !important;
+                }
+                .stacking thead {
+                    display: none !important;
+                }
+                .stacking tbody,
+                .stacking td,
+                .stacking tr {
+                    display: block !important;
+                    width: 100% !important;
+                }
+                .stacking tr {
+                    margin-bottom: 1em !important;
+                }
+                .stacking td {
+                    min-width: 15em !important;
+                    padding-left: 10% !important;
+                    position: relative !important;
+                    text-align: right !important;
+                }
+                .stacking td:before {
+                    color: #000 !important;
+                    content: attr(data-label) !important;
+                    font-weight: 700 !important;
+                    left: 0 !important;
+                    padding-left: 0.5em !important;
+                    position: absolute !important;
+                    text-align: left !important;
+                }
+                .stacking td:first-of-type {
+                    background-color: #eaf1f5 !important;
+                    color: #2b2b2b !important;
+                    font-weight: 400 !important;
+                }
+                .stacking tr.text > td {
+                    text-align: right !important;
+                }
+                .stacking tr.numeric > td {
+                    text-align: right !important;
+                }
+               .columns-even {
+                flex-direction: column !important;
+               }
+               .columns-even > * {
+                width: 100% !important;
+               }
+              }
+            `;
+          }
           break;
 
         case "fit-width":
@@ -275,11 +347,9 @@ export class PrintSettingsComponent {
             }
           `;*/
           break;
-        case "custom":
-          const zoomValueInput = <HTMLInputElement>this.view.querySelector("#custom-scaling-input");
+        case "zoom":
+          const zoomValueInput = <HTMLInputElement>this.view.querySelector("#custom-zoom-input");
           const zoomValue = parseFloat(zoomValueInput.value);
-          console.log(zoomValue)
-          console.log("zoomy22");
           if (!isNaN(zoomValue) && zoomValue > 0) {
             const scaleFactor = zoomValue / 100;
             const origin = selectedOrigin?.value || "center";
@@ -300,67 +370,29 @@ export class PrintSettingsComponent {
           }
           break;
 
-        case "custom2":
-          const scalingInput = <HTMLInputElement>this.view.querySelector("#custom-scaling-input");
+        case "custom":
           const scalingValue = parseFloat(scalingInput.value);
-
-          if (!isNaN(scalingValue)) {
-            // Get paper dimensions
-            const paperSizeParts = paperSize.value.split(' ');
-            const paperWidth = parseFloat(paperSizeParts[0]);
-            const paperHeight = parseFloat(paperSizeParts[1]);
-            const unit = paperSizeParts[0].replace(/[0-9]/g, ''); // get 'mm' or 'in'
-
-            // Convert to pixels (approximate)
-            const pixelsPerMM = 3.78;
-            const pageWidthPx = paperWidth * pixelsPerMM;
-            const pageHeightPx = paperHeight * pixelsPerMM;
-
-            // Calculate scale factor to fit page
-            const scaleFactor = Math.min(
-              pageWidthPx / window.innerWidth,
-              pageHeightPx / window.innerHeight
-            ) * (scalingValue / 100);
-
+          if (!isNaN(scalingValue) && scalingValue > 0) {
+            const scaleFactor = scalingValue / 100;
             const origin = selectedOrigin?.value || "center";
-
             css += `
-            @page {
-              size: ${paperSize.value};
-              margin: 0;
-            }
-            
-            body {
-              width: ${pageWidthPx}px !important;
-              height: ${pageHeightPx}px !important;
-              margin: 0 !important;
-              padding: 0 !important;
-            }
-            
-            #rslidy-content-section {
-              width: 100% !important;
-              height: 100% !important;
-              position: relative !important;
-            }
-            
-            #rslidy-content-section .slide {
-              width: ${100/scaleFactor}% !important;
-              height: ${100/scaleFactor}% !important;
-              transform: scale(${scaleFactor}) !important;
-              transform-origin: ${origin} !important;
-              position: absolute !important;
-              top: 50% !important;
-              left: 50% !important;
-              margin: 0 !important;
-              page-break-after: always !important;
-            }
-            
-            #rslidy-content-section .slide > div {
-              width: 100% !important;
-              height: 100% !important;
-              overflow: visible !important;
-            }
-          `;
+              #rslidy-content-section .slide {
+                bottom: 0 !important;
+                left: 0 !important;
+              
+                transform: scale(${scaleFactor}) !important;
+                transform-origin: ${origin} !important;
+                width: auto !important;
+                height: auto !important;
+                overflow: visible !important;
+                margin: 0;
+                box-sizing: border-box;
+                break-inside: avoid;
+                page-break-inside: avoid; /* for legacy browser support */+#
+                box-sizing: border-box !important;
+                overflow: visible !important;
+              }
+            `;
           }
           break;
       }

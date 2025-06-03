@@ -169,6 +169,9 @@ body {
   cursor: pointer;
 }
 .scaling-input {
+  margin-left: 0.45em;
+}
+.zoom-input {
   margin-left: 0.3em;
 }
 

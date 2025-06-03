@@ -17,8 +17,21 @@
 Fabian Platzer: extra CSS for my rslidy slides
 */
 
+/* Layer overrides */
+/*@layer custom {
+  :root {
+    --toolbar-bg-color: #222;
+    --large: 50rem;
+  }
+}*/
+
 #rslidy-content-section .slide {
   font-size: 1.5em;
+}
+
+.slide:not(.titleslide) {
+  display: flex;
+  flex-direction: column;
 }
 
 .footer {
@@ -29,8 +42,7 @@ Fabian Platzer: extra CSS for my rslidy slides
 
 
 span.li-intro {
-/*  font-style: italic; */
-  font-weight: bold;
+ font-style: italic;
 }
 
 
@@ -69,9 +81,8 @@ div#licence {
 div#licence p {
   display: inline;
   padding: 0;
-  font-size: 0.4em;
+  font-size: 0.5em;
 }
-
 
 /* title slide has larger and centered text*/
 
@@ -180,20 +191,17 @@ div#licence p {
 
 
 
-
-
-
 /* figures */
 
 
 figure {
-  margin: 0.5em auto;
+  margin: 0 auto;
   display: table;
 }
 
 div.images, div.large-images {
   margin: 0 auto;
-  padding: 0.5em;
+  padding: 0;
   display: flex;
   justify-content: center;
 }
@@ -266,9 +274,6 @@ kbd.key {
   padding: 1px 2px 0;
   border: 1px solid black;
 }
-
-
-
 
 /* notes */
 

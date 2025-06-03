@@ -345,14 +345,12 @@ role="region" aria-label="Print Settings" tabindex="0">
     <label id="rslidy-checkbox-shrink-text" class="rslidy-print-sizing">
       <input type="radio" name="print-options" value="fit-width" id="rslidy-checkbox-shrink" class="print-checkbox"> Fit to Width
     </label> 
-    <!--
     <label id="rslidy-checkbox-zoom-text" class="rslidy-print-sizing">
       <input type="radio" name="print-options" value="zoom" id="rslidy-checkbox-zoom" class="print-checkbox"> Custom Zoom:
-      <input type="number" id="custom-zoom-input" value="100" class="scaling-input" min="1" max="100" disabled placeholder="100">
+      <input type="number" id="custom-zoom-input" value="100" class="zoom-input" min="1" max="100" disabled placeholder="100">
       <span class="percent">%</span>
     </label>
-     -->
-    <label id="rslidy-checkbox-zoom-text" class="rslidy-print-sizing">
+    <label id="rslidy-checkbox-scale-text" class="rslidy-print-sizing">
       <input type="radio" name="print-options" value="custom" id="rslidy-checkbox-custom" class="print-checkbox"> Custom Scale:
       <input type="number" id="custom-scaling-input" value="100" class="scaling-input" min="1" max="100" disabled placeholder="100">
       <span class="percent">%</span>

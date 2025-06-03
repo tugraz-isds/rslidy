@@ -178,12 +178,12 @@ button:-moz-focusring, [type="button"]:-moz-focusring, [type="reset"]:-moz-focus
  * Correct the padding in Firefox.
  */
 fieldset {
-  padding: 0.35em 0.75em 0.625em;
+  padding: 1em 0.75em 1em;
   margin-top: 1em;
   margin-bottom: 1em;
   border:none;
   border-top: 2px groove threedface;
-  border-bottom: 2px groove threedface;
+  border-bottom: 2px groove threedface
 }
 
 

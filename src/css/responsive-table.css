@@ -1,6 +1,3 @@
-/**
- * RespTable Open Source Library
- */
 
 .responsive-table {
  margin: 0 0 1em 0;
@@ -116,6 +113,7 @@
   margin-right: 5.5em;
   text-align: center;
   width: auto !important;
+  overflow-x: visible;
  }
 
  .stacking thead {
@@ -180,7 +178,7 @@
  }
 }
 
-@media print and (max-width: 40em) {
+@media print and (max-width: 640px) {
  .responsive-table,
  .stacking {
   align-items: center !important;
@@ -190,6 +188,7 @@
   margin-right: 5.5em !important;
   text-align: center !important;
   width: auto !important;
+  overflow-x: visible !important;
  }
 
  .stacking thead {

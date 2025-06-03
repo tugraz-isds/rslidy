@@ -1,22 +1,24 @@
+/* Declare layer order: base for variables, components for scoped styles, utilities for responsive classes */
 @layer base, components, utilities;
 
+/* Global variables for external customization */
 @layer base {
   :root {
     /* screen size breakpoints, in 10% fontsize steps */
-    --large:   44rem;
-    --medium:  40rem;
-    --small:   36rem;
-    --tiny:    32rem;
-    --mini:    28rem;
-    --nano:    24rem;
-    --pico:    20rem;
+    --large: 44rem;
+    --medium: 40rem;
+    --small: 36rem;
+    --tiny: 32rem;
+    --mini: 28rem;
+    --nano: 24rem;
+    --pico: 20rem;
 
     /* shared */
     --overview-width: 18rem;
     --overview-width-small-screen: 50%;
     --slide-input-width: 2.60em;
 
-    /* toolbar colors */
+    /* toolbar */
     --toolbar-bg-color: #e1e7ea;
     --toolbar-button-bg-color: #e1e7ea;
     --toolbar-button-color: #4b4b4b;
@@ -27,7 +29,6 @@
     --progressbar-bg-color-reached: #003399;
     --progressbar-bg-color-unreached: #4d88ff;
 
-    /* toolbar sizes */
     --toolbar-height: 3.20em;
     --progressbar-height: 0.50em;
 
@@ -39,35 +40,74 @@
   }
 }
 
+
+/* Component-specific styles using variables from base layer */
 @layer components {
+  /* Fallback for toolbar styles (for browsers without @scope support) */
+  .toolbar {
+    background-color: var(--toolbar-bg-color);
+    height: var(--toolbar-height);
+  }
+  .toolbar .button {
+    background-color: var(--toolbar-button-bg-color);
+    color: var(--toolbar-button-color);
+    border-color: var(--button-border-color);
+  }
+  .toolbar .button:hover {
+    background-color: var(--button-hover-color);
+  }
+  .toolbar .button:active {
+    background-color: var(--button-active-color);
+  }
+  .toolbar .button:disabled {
+    color: var(--button-disabled-color);
+  }
+  .toolbar .progressbar {
+    height: var(--progressbar-height);
+  }
+  .toolbar .progressbar > .reached {
+    background-color: var(--progressbar-bg-color-reached);
+  }
+  .toolbar .progressbar > .unreached {
+    background-color: var(--progressbar-bg-color-unreached);
+  }
+
+  /* Fallback for settings styles */
+  .settings .slider {
+    fill: var(--slider-fill-off);
+    stroke: var(--slider-stroke-off);
+  }
+  .settings .slider.on {
+    fill: var(--slider-fill-on);
+    stroke: var(--slider-stroke-on);
+  }
+
   /* Scoped toolbar styles */
   @scope (.toolbar) {
+  :scope {
+    background-color: var(--toolbar-bg-color);
+    height: var(--toolbar-height);
+  }
   .button {
     background-color: var(--toolbar-button-bg-color);
     color: var(--toolbar-button-color);
     border-color: var(--button-border-color);
   }
-
   .button:hover {
     background-color: var(--button-hover-color);
   }
-
   .button:active {
     background-color: var(--button-active-color);
   }
-
   .button:disabled {
     color: var(--button-disabled-color);
   }
-
   .progressbar {
     height: var(--progressbar-height);
   }
-
   .progressbar > .reached {
     background-color: var(--progressbar-bg-color-reached);
   }
-
   .progressbar > .unreached {
     background-color: var(--progressbar-bg-color-unreached);
   }
@@ -79,7 +119,6 @@
     fill: var(--slider-fill-off);
     stroke: var(--slider-stroke-off);
   }
-
   .slider.on {
     fill: var(--slider-fill-on);
     stroke: var(--slider-stroke-on);
@@ -87,15 +126,25 @@
 }
 }
 
+/* Utility classes for responsive design */
 @layer utilities {
-  /* Responsive utilities */
-  @scope ([class*="screen-"]) {
-  &[class*="-large"] { max-width: var(--large); }
-  &[class*="-medium"] { max-width: var(--medium); }
-  &[class*="-small"] { max-width: var(--small); }
-  &[class*="-tiny"] { max-width: var(--tiny); }
-  &[class*="-mini"] { max-width: var(--mini); }
-  &[class*="-nano"] { max-width: var(--nano); }
-  &[class*="-pico"] { max-width: var(--pico); }
+  /* Fallback for responsive utilities */
+  .rslidy-container[class*="-large"] { max-width: var(--large); }
+  .rslidy-container[class*="-medium"] { max-width: var(--medium); }
+  .rslidy-container[class*="-small"] { max-width: var(--small); }
+  .rslidy-container[class*="-tiny"] { max-width: var(--tiny); }
+  .rslidy-container[class*="-mini"] { max-width: var(--mini); }
+  .rslidy-container[class*="-nano"] { max-width: var(--nano); }
+  .rslidy-container[class*="-pico"] { max-width: var(--pico); }
+
+  /* Scoped responsive utilities */
+  @scope (.rslidy-container) {
+  [class*="-large"] { max-width: var(--large); }
+  [class*="-medium"] { max-width: var(--medium); }
+  [class*="-small"] { max-width: var(--small); }
+  [class*="-tiny"] { max-width: var(--tiny); }
+  [class*="-mini"] { max-width: var(--mini); }
+  [class*="-nano"] { max-width: var(--nano); }
+  [class*="-pico"] { max-width: var(--pico); }
 }
 }
