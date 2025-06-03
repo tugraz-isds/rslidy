@@ -180,13 +180,13 @@ span.isbn:before {
 
 
 figure {
-  margin: 0.5em auto;
+  margin: 0 auto;
   display: table;
 }
 
 div.images, div.large-images {
   margin: 0 auto;
-  padding: 0.5em;
+  padding: 0;
   display: flex;
   justify-content: center;
 }
