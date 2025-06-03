@@ -155,8 +155,12 @@
   font-weight: 400;
  }
 
+ .responsive-table td:first-child {
+  text-align: right;
+ }
+
  .responsive-table td.text {
-  text-align: left;
+  text-align: right;
  }
 
  .responsive-table th.text {
@@ -237,6 +241,9 @@
  /* Print row-based alignment (NEW) */
  .stacking tr.text > td {
   text-align: left;
+ }
+ .responsive-table td:first-child {
+  text-align: right !important;
  }
 
  .stacking tr.numeric > td {

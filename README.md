@@ -115,11 +115,142 @@ A paragraph of text.
 </p>
 </div>
 ```
-To have a closer look at how 
+
+## CSS Variables
+
+Rslidy defines a set of CSS custom properties in 
+`rslidy/src/css/_variables.css`, enabling theming and customisation. These variables are grouped into global and component-specific categories.
+
+### Global Variables
+
+Declared on the `:root` selector within the `base` layer, these are accessible throughout the document:
+
+- **Breakpoints**: `--large`, `--medium`, `--small`, `--tiny`, `--mini`, `--nano`, `--pico`
+- **Shared**: e.g. `--overview-width`, `--slide-input-width`
+- **Toolbar**: Includes background, button, and progress bar styling variables
+- **Settings**: Colour options for sliders (on/off states)
+
+### CSS Layers
+
+Rslidy separates styles into three layers:
+
+- `base`: Global theming variables
+- `components`: Component styles (e.g. `.toolbar`, `.settings`)
+- `utilities`: Responsive utility classes
+
+Example:
+
+```css
+@layer base, components, utilities;
+```
+
+User-defined layers (e.g. `my-styles`) that come after Rslidy’s will 
+override them due to CSS layering precedence.
+
+### CSS Scope
+
+RSlidy employs `@scope` to confine styles to components like `.toolbar` or `.settings`, avoiding unintended global effects.
+
+Example:
+
+```css
+@scope (.toolbar) {
+  :scope {
+    background-colour: var(--toolbar-bg-colour);
+  }
+}
+```
+
+## Customising Rslidy
+
+Rslidy variables may be tailored globally or component-specifically via:
+
+### 1. Global Customisation with `@layer`
+
+Define a higher-priority layer:
+
+```css
+@layer my-styles {
+  :root {
+    --toolbar-bg-colour: #f0f0f0;
+    --large: 48rem;
+  }
+}
+```
+
+Include your custom CSS *after* RSlidy’s.
+
+### 2. Component-Specific Customisation with `@scope`
+
+Override within a specific component scope:
+
+```css
+@scope (.toolbar) {
+  :scope {
+    --toolbar-bg-colour: #d3d3d3;
+  }
+  .button {
+    --toolbar-button-colour: #000;
+  }
+}
+```
+
+### 3. Inline Customisation
+
+Apply directly via `style` attributes:
+
+```html
+<div class="toolbar" style="--toolbar-bg-colour: #e0e0e0;">...</div>
+```
+
+## Example Usage
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="rslidy/src/css/_variables.css">
+  <style>
+    @layer my-styles {
+      :root {
+        --toolbar-bg-colour: #f0f0f0;
+      }
+    }
+    @scope (.settings) {
+      .slider.on {
+        --slider-fill-on: #e74c3c;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="toolbar">
+    <button class="button">Click me</button>
+    <div class="progressbar">
+      <div class="reached"></div>
+      <div class="unreached"></div>
+    </div>
+  </div>
+  <div class="settings">
+    <div class="slider on"></div>
+  </div>
+  <div class="rslidy-container small">Content</div>
+</body>
+</html>
+```
+
+## Browser Compatibility
+
+- **CSS Variables**: Fully supported in modern browsers.
+- **@layer**: Supported in most modern environments.
+- **@scope**: Experimental; fallback styles included.  
+  → See [MDN: @scope](https://developer.mozilla.org/en-US/docs/Web/CSS/@scope)
+
 
 ##### Lists
 
-To organize slides, bullet points are created as shown in the snippet below. 
+To organise slides, bullet points are created as shown in the 
+snippet below. 
 
 ```html
 <section>

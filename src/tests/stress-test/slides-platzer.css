@@ -16,7 +16,13 @@ Keith Andrews.
   hyphens: auto;
 }
 
+.responsive-table .table-tick {
+  color: green;
+}
 
+.responsive-table .table-cross {
+  color: red;
+}
 
 
 /* My Own Look and Feel */
@@ -232,7 +238,8 @@ span.isbn {
 
 
 #rslidy-content-section .slide:not(.titleslide) {
-  background: url("images/tugraz-logo.svg") 95% 4%/auto 2em no-repeat;
+  /* disable background image for testing */
+  /* background: url("images/tugraz-logo.svg") 95% 4%/auto 2em no-repeat;*/
 }
 
 /* section header slide */
@@ -291,7 +298,7 @@ figure.gallery {
 
 .columns-even {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: flex-start;
   align-items: flex-start;
   gap: 2em;
 }

@@ -1,29 +1,27 @@
 const { src, dest, parallel, series, watch } = require('gulp');
-var ts = require('gulp-typescript');
-var concat = require('gulp-concat');
-var ujs = require('gulp-terser');
-var ucss = require('gulp-uglifycss');
-var rename = require('gulp-rename');
-var merge = require('merge2');
-var fs = require('fs');
-var del = require('del');
-var gzip = require('gulp-gzip');
-var wp = require('webpack');
-var webpacks = require('webpack-stream');
-var browserSync = require('browser-sync').create();
-var argv = require('yargs').argv;
-var BannerPlugin = require('webpack').BannerPlugin; // Add BannerPlugin
-var header = require('gulp-header');
-var bannerText = (type) => `// Rslidy version 2.0 ${type}\n`;
+const ts = require('gulp-typescript');
+const concat = require('gulp-concat');
+const ujs = require('gulp-terser');
+const ucss = require('gulp-uglifycss');
+const rename = require('gulp-rename');
+const merge = require('merge2');
+const fs = require('fs');
+const del = require('del');
+const gzip = require('gulp-gzip');
+const wp = require('webpack');
+const webpacks = require('webpack-stream');
+const browserSync = require('browser-sync').create();
+const argv = require('yargs').argv;
+const header = require('gulp-header');
 
-var paths = {
+const paths = {
   src: './src/',
   tsbuild: './src/ts/build/',
   build: './build/',
-  library: './build/library/' // New path for library
+  library: './build/library/'
 };
 
-var files = {
+const files = {
   css: 'rslidy.css',
   mincss: 'rslidy.min.css',
   mainjs: 'js/ts/rslidy.js',
@@ -32,33 +30,21 @@ var files = {
 };
 
 // Clean tasks
-function cleantsc() {
-  return del([paths.tsbuild]);
-}
 function clean() {
   return del([paths.tsbuild, paths.build]);
-}
-function cleanNodeModules() {
-  return del('node_modules', { force: true,  dot: true });
-}
-function cleanPackageLock() {
-  return del('yarn.lock', { force: true });
 }
 exports.clean = clean;
 exports.clean.description = 'Cleans the project';
 
 // Transpile TypeScript
 function transpile() {
-  var tsResult = src(paths.src + '**/*.ts')
+  const tsResult = src(paths.src + '**/*.ts')
     .pipe(ts.createProject(require('./tsconfig').compilerOptions)());
-
   return merge([
     tsResult.dts.pipe(dest(paths.tsbuild + 'd/')),
     tsResult.js.pipe(dest(paths.tsbuild + 'js/'))
   ]);
 }
-exports.transpile = series(clean, transpile);
-exports.transpile.description = 'Transpiles .ts files using tsconfig.json';
 
 // Webpack task for ESM and CJS outputs
 function webpack() {
@@ -68,10 +54,10 @@ function webpack() {
       experiments: { outputModule: true },
       mode: 'production',
       devtool: 'source-map',
-      optimization: { minimize: false }, // Disable minification
+      optimization: { minimize: false },
       plugins: [
-        new BannerPlugin({
-          banner: '// Rslidy version 2.0.0 ESM', // Add comment for ESM
+        new wp.BannerPlugin({
+          banner: '// Rslidy version 2.0.0 ESM',
           raw: true
         })
       ]
@@ -80,11 +66,10 @@ function webpack() {
       output: { filename: files.js, library: { type: 'commonjs' } },
       mode: 'production',
       devtool: 'source-map',
-      optimization: { minimize: false }, // Disable minification
+      optimization: { minimize: false },
       plugins: [
-        new BannerPlugin({
-          banner: '// Rslidy version 2.0.0 CommonJS', // Add comment
-          // for CJS
+        new wp.BannerPlugin({
+          banner: '// Rslidy version 2.0.0 CommonJS',
           raw: true
         })
       ]
@@ -96,7 +81,6 @@ function webpack() {
       src(paths.tsbuild + files.mainjs)
         .pipe(webpacks({
           ...config,
-          plugins: [new wp.NoEmitOnErrorsPlugin(), ...config.plugins], // Include BannerPlugin
           module: {
             rules: [
               {
@@ -110,28 +94,22 @@ function webpack() {
             extensions: ['.ts', '.js']
           }
         }))
-        .pipe(dest(paths.library + (config.output.library.type === 'module' ? 'esm' : 'cjs'))) // Output to library folder
-        .pipe(browserSync.stream())
+        .pipe(dest(paths.library + (config.output.library.type === 'module' ? 'esm' : 'cjs')))
     )
   );
 }
-exports.webpack = series(clean, transpile, webpack);
-exports.webpack.description = 'Bundles the main JavaScript file into ESM and CJS formats';
 
 // Minify and compress tasks
 function minifyjs() {
   return merge([
-    // Minify ESM version
     src(paths.library + 'esm/**/*.js')
-      .pipe(ujs()) // Minify JS
-      .pipe(header(bannerText('ESM'))) // Add ESM banner
+      .pipe(ujs())
+      .pipe(header('// Rslidy version 2.0 ESM\n'))
       .pipe(rename({ suffix: '.min' }))
       .pipe(dest(paths.library + 'esm')),
-
-    // Minify CJS version
     src(paths.library + 'cjs/**/*.js')
-      .pipe(ujs()) // Minify JS
-      .pipe(header(bannerText('CommonJS'))) // Add CJS banner
+      .pipe(ujs())
+      .pipe(header('// Rslidy version 2.0 CommonJS\n'))
       .pipe(rename({ suffix: '.min' }))
       .pipe(dest(paths.library + 'cjs'))
   ]);
@@ -141,16 +119,15 @@ function minifycss() {
   return src(paths.library + files.css)
     .pipe(ucss())
     .pipe(rename(files.mincss))
-    .pipe(dest(paths.library));
+    .pipe(dest(paths.library))
+    .pipe(browserSync.stream()); // Stream CSS changes directly
 }
 
 function compress() {
-  return src(paths.library + '**/*.min.js') // Look for minified JS in library folder
+  return src(paths.library + '**/*.min.js')
     .pipe(gzip())
-    .pipe(dest(paths.library)); // Output compressed files to the library folder
+    .pipe(dest(paths.library));
 }
-exports.minify = series(parallel(minifyjs, minifycss), compress);
-exports.minify.description = 'Produces .min and .gz files';
 
 // CSS task
 function css() {
@@ -158,21 +135,17 @@ function css() {
     .pipe(concat(files.css))
     .pipe(dest(paths.library));
 }
-exports.css = css;
-exports.css.description = 'Bundles CSS source files into rslidy.css';
 
 // Icon definitions task
 function icon_definitions() {
-  var data = '';
+  let data = '';
   fs.readdirSync(paths.src + 'icons').forEach(file => {
     if (!file) return;
     const fileContent = fs.readFileSync(paths.src + 'icons/' + file).toString().replace(/\n/g, '');
-    data += 'export const ' + file.slice(0, -4).replace('-', '_') + '_icon = ';
-    data += '`' + fileContent + '`;';
-    data += '\n\n';
+    data += `export const ${file.slice(0, -4).replace('-', '_')}_icon = \`${fileContent}\`;\n\n`;
   });
   data = data.replace(/ ?(?:stroke|fill)="(none|#?[0-9A-Za-z]+)"/g, (match, value) => {
-    return value.toLowerCase() === 'none' ? `${match}` : '';
+    return value.toLowerCase() === 'none' ? match : '';
   });
   data = data.replace(/style="([^"]*)"/g, (match, styleAttr) => {
     const cleanedStyle = styleAttr.replace(/\b(?:fill|stroke):\s*([^;]*);?/gi, (match, value) => {
@@ -185,96 +158,72 @@ function icon_definitions() {
   return Promise.resolve('');
 }
 exports.icons = series(icon_definitions);
-exports.icons.description = 'Optimises SVG files and writes icon-definitions.ts';
 
 // HTML task
 function html() {
   src(paths.src + 'examples/**/*.*')
     .pipe(dest(paths.build + 'examples/'));
-
   src(paths.src + 'examples/stress-test/**/*.*')
     .pipe(dest(paths.build + 'tests/stress-test/'));
-
   return src(paths.src + 'tests/**/*.*')
     .pipe(dest(paths.build + 'tests/'));
 }
-exports.assemble = parallel(exports.webpack, html, css);
-exports.assemble.description = 'Assembles HTML, CSS, and JS output files';
 
 // Copy task
 function copy() {
-  // Copy rslidy.min.js (ESM) to every folder in examples
   fs.readdirSync(paths.build + 'examples').forEach(file => {
     const filePath = paths.build + 'examples/' + file;
     if (fs.statSync(filePath).isDirectory()) {
-      src(paths.library + 'esm/' + files.minjs) // Copy minified JS
+      src(paths.library + 'esm/' + files.minjs)
+        .pipe(dest(filePath));
+      src(paths.library + files.mincss)
         .pipe(dest(filePath));
     }
   });
-
-  // Copy minified CSS to examples and tests folders
-  fs.readdirSync(paths.build + 'examples').forEach(file => {
-    if (fs.statSync(paths.build + 'examples/' + file).isDirectory()) {
-      src(paths.library + files.mincss)
-        .pipe(dest(paths.build + 'examples/' + file));
-    }
-  });
-
-  // Copy rslidy.min.js and rslidy.min.css to tests/stress-test folder
   src(paths.library + 'esm/' + files.minjs)
     .pipe(dest(paths.build + 'tests/stress-test/'));
   src(paths.library + files.mincss)
     .pipe(dest(paths.build + 'tests/stress-test/'));
-
-
-
   return Promise.resolve('');
 }
 
 // Build task
-exports.build = series(clean, exports.assemble, exports.minify, copy);
-exports.build.description = 'Cleans and builds the project';
+const build = series(clean, parallel(series(transpile, webpack), html, css), parallel(minifyjs, minifycss), compress, copy);
+exports.build = build;
 
-// Clean all task
-exports.cleanAll = parallel(clean, cleanNodeModules, cleanPackageLock);
-exports.cleanAll.description = 'Cleans the build folder and the node_modules folder';
-
-
-const buildnc = series(
-  parallel(
-    series(cleantsc, transpile, webpack),
-    html,
-    css
-  ),
-  exports.minify,
-  copy,
-  () => browserSync.stream()
-);
-
-function loop() {
-  var arg = (argv.slide || argv.s);
-  var dir = 'tests/';
-  var file = 'notes.html';
+// Watch task
+function watchTask() {
+  const arg = argv.slide || argv.s;
+  let dir = 'examples/layouts/'; // Updated to match your output
+  let file = 'index.html'; // Default file, adjust if needed
 
   if (arg) {
-    if (arg.lastIndexOf('/')) {
+    if (arg.includes('/')) {
       dir = arg.substring(0, arg.lastIndexOf('/') + 1);
+      file = arg.substring(arg.lastIndexOf('/') + 1);
+    } else {
+      file = arg;
     }
-    file = arg.substring(arg.lastIndexOf('/') + 1);
   }
 
   browserSync.init({
     server: {
-      index: dir + file,
+      index: file,
       baseDir: [paths.build, paths.build + dir],
-    }
+    },
+    notify: false,
+    reloadDebounce: 500 // Debounce reloads to prevent buffering
   });
 
-  watch(paths.src + '**/*.*', buildnc);
+  // Watch specific file types with debounce
+  watch(paths.src + '**/*.ts', { delay: 500 }, series(transpile, webpack, minifyjs, compress, copy)).on('change', () => browserSync.reload());
+  watch(paths.src + 'css/*.css', { delay: 500 }, series(css, minifycss, copy)); // CSS uses stream, no reload needed
+  watch([paths.src + 'examples/**/*.*', paths.src + 'tests/**/*.*'], { delay: 500 }, series(html, copy)).on('change', () => browserSync.reload());
+  watch(paths.src + 'icons/*.svg', { delay: 500 }, series(icon_definitions, transpile, webpack, minifyjs, compress, copy)).on('change', () => browserSync.reload());
 }
-const gwatch = series(exports.build, loop);
-exports.watch = gwatch;
-exports.watch.description = 'Automatically triggers build whenever a source file is changed and updates the browser';
-exports.watch.flags = { '--slide | -s': 'Pass a custom slide deck to display (e.g. examples/rslidy-intro/index.html)' };
 
-exports.default = exports.build;
+exports.watch = series(build, watchTask);
+exports.watch.description = 'Builds and watches for changes, reloading the browser as needed';
+exports.watch.flags = { '--slide | -s': 'Pass a custom slide deck (e.g., examples/rslidy-intro/index.html)' };
+
+exports.default = build;

@@ -1,6 +1,186 @@
 # Rslidy Slide Creator Guide
 
-This guide demonstrates how to create slides using Rslidy, focusing on common use cases: responsive images, responsive tables, multiple columns, source code highlighting, and live code. Examples are drawn from the provided HTML slide deck, adapted for British English.
+This guide demonstrates how to create slides using Rslidy, focusing 
+on common use cases: responsive images, responsive tables, multiple 
+columns, source code highlighting, and live code integration.
+# RSlidy CSS Framework
+
+RSlidy is a lightweight CSS framework for creating responsive slideshows and presentations. It leverages modern CSS features like `@layer`, `@scope`, and custom properties (CSS variables) to provide a flexible and maintainable styling system.
+
+## CSS Variables
+
+RSlidy defines a set of CSS custom properties in `rslidy/src/css/_variables.css` to enable theming and customization. These variables are organized into global and component-scoped variables.
+
+### Global Variables
+Defined on the `:root` selector in the `base` layer, these variables are accessible throughout the document:
+
+- **Breakpoints**:
+  - `--large`: Large screen breakpoint (default: `44rem`).
+  - `--medium`: Medium screen breakpoint (default: `40rem`).
+  - `--small`: Small screen breakpoint (default: `36rem`).
+  - `--tiny`: Tiny screen breakpoint (default: `32rem`).
+  - `--mini`: Mini screen breakpoint (default: `28rem`).
+  - `--nano`: Nano screen breakpoint (default: `24rem`).
+  - `--pico`: Pico screen breakpoint (default: `20rem`).
+- **Shared**:
+  - `--overview-width`: Overview width (default: `18rem`).
+  - `--overview-width-small-screen`: Overview width on small screens (default: `50%`).
+  - `--slide-input-width`: Slide input width (default: `2.60em`).
+- **Toolbar**:
+  - `--toolbar-bg-color`: Toolbar background (default: `#e1e7ea`).
+  - `--toolbar-button-bg-color`: Button background (default: `#e1e7ea`).
+  - `--toolbar-button-color`: Button text color (default: `#4b4b4b`).
+  - `--button-border-color`: Button border color (default: `#848484`).
+  - `--button-hover-color`: Button hover background (default: `#c1c7ca`).
+  - `--button-active-color`: Button active background (default: `#fff`).
+  - `--button-disabled-color`: Button disabled text color (default: `#aaa`).
+  - `--progressbar-bg-color-reached`: Progress bar reached color (default: `#003399`).
+  - `--progressbar-bg-color-unreached`: Progress bar unreached color (default: `#4d88ff`).
+  - `--toolbar-height`: Toolbar height (default: `3.20em`).
+  - `--progressbar-height`: Progress bar height (default: `0.50em`).
+- **Settings**:
+  - `--slider-fill-off`: Slider off fill color (default: `#ececec`).
+  - `--slider-stroke-off`: Slider off stroke color (default: `#bdbdbd`).
+  - `--slider-fill-on`: Slider on fill color (default: `#3498db`).
+  - `--slider-stroke-on`: Slider on stroke color (default: `#85c1e9`).
+
+### CSS Layers
+RSlidy organizes styles into three layers:
+- `base`: Contains global variables for theming.
+- `components`: Includes styles for components like `.toolbar` and `.settings`.
+- `utilities`: Provides responsive utility classes for breakpoints.
+
+Example layer declaration:
+```css
+@layer base, components, utilities;
+```
+
+User-defined layers (e.g., `my-styles`) declared after RSlidy’s layers will override them due to higher precedence.
+
+### CSS Scope
+RSlidy uses `@scope` to limit styles to specific components (e.g., `.toolbar`, `.settings`, `.rslidy-container`), preventing style leakage to other elements.
+
+Example:
+```css
+@scope (.toolbar) {
+  :scope {
+    background-color: var(--toolbar-bg-color);
+  }
+}
+```
+
+*Note*: `@scope` is experimental in some browsers (as of June 2025). RSlidy includes fallback styles for compatibility. Check [MDN: @scope](https://developer.mozilla.org/en-US/docs/Web/CSS/@scope) for browser support.
+
+## Customizing RSlidy
+
+RSlidy’s variables can be customized globally or for specific components using `@layer`, `@scope`, inline styles, or JavaScript.
+
+### 1. Global Customization with `@layer`
+Override global variables by defining them in a custom layer with higher priority than `base`.
+
+**Example**:
+```css
+@layer my-styles {
+  :root {
+    --toolbar-bg-color: #f0f0f0; /* Change toolbar background */
+    --large: 48rem; /* Adjust large breakpoint */
+    --slider-fill-on: #ff5733; /* Change slider on color */
+  }
+}
+```
+
+- **How to use**: Add this CSS after including `rslidy/src/css/_variables.css`.
+- **Why it works**: The `my-styles` layer has higher precedence than RSlidy’s `base` layer.
+
+### 2. Component-Specific Customization with `@scope`
+Customize variables for specific components (e.g., `.toolbar`, `.settings`) by redefining them within a scoped selector.
+
+**Example**:
+```css
+@scope (.toolbar) {
+  :scope {
+    --toolbar-bg-color: #d3d3d3; /* Custom toolbar background */
+  }
+  .button {
+    --toolbar-button-color: #000000; /* Custom button text color */
+  }
+}
+```
+
+- **How to use**: Apply to specific components using `@scope` or a class selector.
+- **Why it works**: Scoped styles only affect elements within the specified scope (e.g., `.toolbar`).
+
+### 3. Inline Customization
+Apply custom variable values directly on elements using inline CSS.
+
+**Example**:
+```html
+<div class="toolbar" style="--toolbar-bg-color: #e0e0e0;">...</div>
+```
+
+- **How to use**: Add the `style` attribute to the desired element.
+- **Why it works**: Inline styles have higher specificity than layered or scoped styles.
+
+### 4. JavaScript Customization
+Dynamically update variables for effects like theme switching.
+
+**Example**:
+```javascript
+document.documentElement.style.setProperty('--toolbar-bg-color', '#c0c0c0');
+```
+
+- **How to use**: Run JavaScript to update `:root` variables.
+- **Why it works**: Changes to `:root` variables propagate to all elements using them.
+
+### Protecting Internal Styles
+- **Layer Priority**: RSlidy’s `base` layer has low priority, ensuring user-defined layers (e.g., `my-styles`) override it only when intended.
+- **Scoped Styles**: `@scope` rules (e.g., `@scope (.toolbar)`) limit styles to RSlidy components, preventing interference with other page elements.
+- **Fallbacks**: RSlidy includes non-scoped fallback styles for browsers without `@scope` support, maintaining compatibility.
+- **Naming**: Variables use descriptive names (e.g., `--toolbar-bg-color`) to avoid conflicts with user variables.
+
+### Exposed Variables
+All global variables on `:root` (e.g., `--toolbar-bg-color`, `--large`) are exposed for customization. Component-specific styles in `@scope` blocks rely on these variables, allowing targeted overrides.
+
+## Example Usage
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="rslidy/src/css/_variables.css">
+  <style>
+    @layer my-styles {
+      :root {
+        --toolbar-bg-color: #f0f0f0; /* Custom toolbar background */
+        --slider-fill-on: #ff5733; /* Custom slider on color */
+      }
+    }
+    @scope (.settings) {
+      .slider.on {
+        --slider-fill-on: #e74c3c; /* Custom slider color for settings */
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="toolbar">
+    <button class="button">Click me</button>
+    <div class="progressbar">
+      <div class="reached"></div>
+      <div class="unreached"></div>
+    </div>
+  </div>
+  <div class="settings">
+    <div class="slider on"></div>
+  </div>
+  <div class="rslidy-container small">Content</div>
+</body>
+</html>
+```
+
+## Browser Compatibility
+- **CSS Variables**: Supported in all modern browsers (post-April 2017).
+- **@layer**: Supported in modern browsers.
+- **@scope**: Experimental; use fallbacks for production. See [MDN: @scope](https://developer.mozilla.org/en-US/docs/Web/CSS/@scope).
 
 ## 1. Responsive Images
 Rslidy supports responsive images that scale with the viewport. Use 
@@ -22,12 +202,13 @@ Rslidy supports responsive images that scale with the viewport. Use
   </figure>
 </section>
 ```
-- **Tip**: Use the `large-images` class for proper scaling. Ensure image paths are correct and include `alt` text for accessibility.
 
 ## 2. Responsive Table
 Create responsive tables using the `responsive-table` class with optional `squishing` and `stacking` classes for adaptive behaviour on smaller screens.
+Include to container `<div class="table-container">` to also have 
+scrolling on the table.
 
-**Example 1** (Comparison Table):
+**Example ** (Comparison Table):
 ```html
 <section>
   <h1>Responsive Tables with CSS Styling</h1>
@@ -56,39 +237,10 @@ Create responsive tables using the `responsive-table` class with optional `squis
   </div>
 </section>
 ```
-
-**Example 2** (File Sizes Table):
-```html
-<section>
-  <h2>Rslidy File Sizes</h2>
-  <table class="responsive-table squishing stacking">
-    <caption>Rslidy File Sizes</caption>
-    <thead>
-      <tr>
-        <th scope="col">File</th>
-        <th scope="col" class="numeric">Size (Bytes)</th>
-        <th scope="col" class="numeric">Minified Size (Bytes)</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td data-label="Filename" class="text">rslidy.js</td>
-        <td data-label="Regular" class="numeric">149,083</td>
-        <td data-label="Minified" class="numeric">84,163</td>
-      </tr>
-      <tr>
-        <td data-label="Filename" class="text">rslidy.css</td>
-        <td data-label="Regular" class="numeric">37,043</td>
-        <td data-label="Minified" class="numeric">24,339</td>
-      </tr>
-    </tbody>
-  </table>
-</section>
-```
-- **Tip**: Use `data-label` attributes for accessibility and `squishing stacking` classes for responsive behaviour. Add `<caption>` for table descriptions.
+- Use `data-label` attributes for accessibility and `squishing stacking` classes for responsive behaviour. Add `<caption>` for table descriptions.
 
 ## 3. Multiple Columns
-Use the `columns` or `columns-even` class to create multi-column layouts for balanced content presentation.
+Use the `columns` or `columns-even` class to create multi-column layouts.
 
 **Example**:
 ```html
@@ -117,7 +269,7 @@ Use the `columns` or `columns-even` class to create multi-column layouts for bal
   </div>
 </section>
 ```
-- **Tip**: Use `columns-even` for equal-width columns or `columns` for custom widths. Assign classes like `left-column` and `right-column` for clarity.
+
 
 ## 4. Source Code Highlighting
 Rslidy uses Prism.js for syntax highlighting. Wrap code in `<pre><code>` tags with the appropriate `language-<lang>` class for displayed code, or use `<code>` for inline snippets.
@@ -148,7 +300,7 @@ Rslidy uses Prism.js for syntax highlighting. Wrap code in `<pre><code>` tags wi
 }</code></pre>
 </section>
 ```
-- **Tip**: Use `language-html`, `language-css`, `language-javascript`, etc., for syntax highlighting. Include `prism.css` and `prism.js` in the `<head>`.
+Use `language-html`, `language-css`, `language-javascript`, etc., for syntax highlighting. Include `prism.css` and `prism.js` in the `<head>`.
 
 ## 5. Live Code
 Embed interactive content using `<script>` tags. Examples include visualisations like D3-based hypertrees or RespVis charts, which require external scripts and data files.
@@ -221,6 +373,8 @@ Embed interactive content using `<script>` tags. Examples include visualisations
 - **Slide Structure**: Define slides using `<section>` elements. Use `<div class="slide">` as an alternative.
 - **Dependencies**: Include `rslidy.min.css`, `rslidy.min.js`, and Prism.js for code highlighting in the `<head>`.
 - **Accessibility**: Use semantic HTML (e.g., `<figure>`, `<figcaption>`, `data-label`) and ARIA roles for better accessibility.
+- External Libraries: For external libraries like Hypertree or 
+  RespVis, review and adapt their CSS styling (e.g., d3-hypertree-light.css, respvis.css) to match your slide deck’s design and ensure compatibility with Rslidy’s layout.
 - **Testing**: Host slides on a server for features like live code that require data loading. Test responsiveness across devices.
 
 For more details, refer to the [Rslidy GitHub repository](https://github.com/tugraz-isds/rslidy).

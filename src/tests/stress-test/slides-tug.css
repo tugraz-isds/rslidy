@@ -7,7 +7,8 @@
 /* Styles for other slides */
 
 .slide:not(.titleslide) {
-  background: url("images/tugraz-logo.svg") 95% 4%/auto 2em no-repeat;
+  /* disable background image for testing */
+  /* background: url("images/tugraz-logo.svg") 95% 4%/auto 2em no-repeat;*/
 }
 
 .slide:not(.titleslide) h1 {

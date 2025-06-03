@@ -70,7 +70,7 @@
 
 .columns-even {
  display: flex;
- justify-content: space-evenly;
+ justify-content: flex-start;
  align-items: flex-start;
  gap: 2em;
  flex-wrap: wrap; /* Optional: allows wrapping even before media query kicks in */
@@ -85,6 +85,7 @@
   width: 100%; /* Optional: makes each column take full width */
  }
 }
+
 
 
 .left-column {

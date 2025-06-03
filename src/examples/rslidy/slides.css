@@ -44,6 +44,9 @@ ul.credits {
   font-size: 0.8em;
 }
 
+.numeric {
+  text-align: right;
+}
 
 div#location {
   margin-top: 2em;

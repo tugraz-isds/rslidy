@@ -192,6 +192,73 @@ export class PrintSettingsComponent {
       #vorotree canvas { display: block; position: relative !important; max-width: 100% !important; height: auto !important; }
       @page { size: ${dimensions}; }
     `;
+    if (window.innerWidth <= 640) {
+      css += `
+        @media print {
+          .stacking tr {
+            break-inside: avoid !important; /* Prevent row from breaking across pages */
+          }
+
+          .responsive-table, .stacking { 
+              align-items: center !important;
+              display: flex !important;
+              flex-direction: column !important;
+              margin-left: auto !important;
+              margin-right: 5.5em !important;
+              text-align: center !important;
+              width: auto !important;
+              overflow-x: visible !important;
+          }
+           .responsive-table td:first-child {
+              text-align: right;
+             }
+          .stacking thead {
+              display: none !important;
+          }
+          .stacking tbody,
+          .stacking td,
+          .stacking tr {
+              display: block !important;
+              width: 100% !important;
+          }
+          .stacking tr {
+              margin-bottom: 1em !important;
+          }
+          .stacking td {
+              min-width: 15em !important;
+              padding-left: 10% !important;
+              position: relative !important;
+              text-align: right !important;
+          }
+          .stacking td:before {
+              color: #000 !important;
+              content: attr(data-label) !important;
+              font-weight: 700 !important;
+              left: 0 !important;
+              padding-left: 0.5em !important;
+              position: absolute !important;
+              text-align: left !important;
+          }
+          .stacking td:first-of-type {
+              background-color: #eaf1f5 !important;
+              color: #2b2b2b !important;
+              font-weight: 400 !important;
+          }
+          .stacking tr.text > td {
+              text-align: right !important;
+          }
+          .stacking tr.numeric > td {
+              text-align: right !important;
+          }
+         .columns-even {
+          flex-direction: column !important;
+         }
+         .columns-even > * {
+          width: 100% !important;
+         }
+        }
+      `;
+    }
 
     // Handle print sizing options
     const selectedOption = this.view.querySelector(
@@ -217,71 +284,6 @@ export class PrintSettingsComponent {
                 padding: 2rem !important;
             }
                 `;
-          console.log(window.innerWidth);
-          if (window.innerWidth <= 640) {
-                    css += `
-              @media print {
-                .stacking tr {
-                  break-inside: avoid !important; /* Prevent row from breaking across pages */
-                }
-
-                .responsive-table, .stacking { 
-                    align-items: center !important;
-                    display: flex !important;
-                    flex-direction: column !important;
-                    margin-left: auto !important;
-                    margin-right: 5.5em !important;
-                    text-align: center !important;
-                    width: auto !important;
-                    overflow-x: visible !important;
-                }
-                .stacking thead {
-                    display: none !important;
-                }
-                .stacking tbody,
-                .stacking td,
-                .stacking tr {
-                    display: block !important;
-                    width: 100% !important;
-                }
-                .stacking tr {
-                    margin-bottom: 1em !important;
-                }
-                .stacking td {
-                    min-width: 15em !important;
-                    padding-left: 10% !important;
-                    position: relative !important;
-                    text-align: right !important;
-                }
-                .stacking td:before {
-                    color: #000 !important;
-                    content: attr(data-label) !important;
-                    font-weight: 700 !important;
-                    left: 0 !important;
-                    padding-left: 0.5em !important;
-                    position: absolute !important;
-                    text-align: left !important;
-                }
-                .stacking td:first-of-type {
-                    background-color: #eaf1f5 !important;
-                    color: #2b2b2b !important;
-                    font-weight: 400 !important;
-                }
-                .stacking tr.text > td {
-                    text-align: right !important;
-                }
-                .stacking tr.numeric > td {
-                    text-align: right !important;
-                }
-               .columns-even {
-                flex-direction: column !important;
-               }
-               .columns-even > * {
-                width: 100% !important;
-               }
-              }
-            `;
-          }
           break;
 
         case "fit-width":
