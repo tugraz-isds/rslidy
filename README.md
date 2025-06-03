@@ -243,7 +243,7 @@ Apply directly via `style` attributes:
 
 - **CSS Variables**: Fully supported in modern browsers.
 - **@layer**: Supported in most modern environments.
-- **@scope**: Experimental; fallback styles included.  
+- **@scope**: Still experimental; fallback styles should be included.  
   → See [MDN: @scope](https://developer.mozilla.org/en-US/docs/Web/CSS/@scope)
 
 
@@ -341,8 +341,7 @@ JavaScript, as shown below:
 </script>
 ```
 
-For more information and various use cases of RSlidy elements, have a look at the [Slide Creator Guide](slide-creator-guide.md).  
-`overrides.html`.
+For more information and various use cases of RSlidy elements, have a look at the [Slide Creator Guide](slide-creator-guide.md).
 
 
 ### 4.3 For Developers
