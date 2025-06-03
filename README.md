@@ -3,7 +3,6 @@
 
 Rslidy: Lightweight, accessible, and responsive HTML5 slide decks.
 
-![An animation plays that shows Rslidy's slide transition when swiped left or right.](src/examples/rslidy/images/slide-viewer.gif)
 
 
 ## 1 Introduction
@@ -116,6 +115,7 @@ A paragraph of text.
 </p>
 </div>
 ```
+To have a closer look at how 
 
 ##### Lists
 
@@ -185,7 +185,7 @@ The desired transition type is added to the body element:
 <body class="unanimated">
 ```
 
-#### How to Share an RSlidy Presenation? 
+#### How to Share an Rslidy Presenation? 
 
 The easiest way of sharing a slide deck created with RSlidy is by zipping the whole folder. However, when simplifying, 
 the zipped folder must contain under all circumstances the html file of the slide deck, the file rslidy.js the file rslidy.css
@@ -210,7 +210,8 @@ JavaScript, as shown below:
 </script>
 ```
 
-For more information, see the example file `overrides.html`.
+For more information and various use cases of RSlidy elements, have a look at the [Slide Creator Guide](slide-creator-guide.md).  
+`overrides.html`.
 
 
 ### 4.3 For Developers
