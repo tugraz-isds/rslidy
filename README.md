@@ -163,7 +163,7 @@ Example:
 
 ## Customising Rslidy
 
-Rslidy variables may be tailored globally or component-specifically via:
+Rslidy variables may be used globally or component-specifically via:
 
 ### 1. Global Customisation with `@layer`
 
