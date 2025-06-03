@@ -149,7 +149,7 @@ override them due to CSS layering precedence.
 
 ### CSS Scope
 
-RSlidy employs `@scope` to confine styles to components like `.toolbar` or `.settings`, avoiding unintended global effects.
+Rslidy uses `@scope` to confine styles to components like `.toolbar` or `.settings`, avoiding unintended global effects.
 
 Example:
 
