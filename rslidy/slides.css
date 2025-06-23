@@ -177,7 +177,13 @@ span.isbn:before {
 
 
 
+.responsive-table .table-tick {
+  color: green;
+}
 
+.responsive-table .table-cross {
+  color: red;
+}
 
 /* figures */
 
@@ -288,5 +294,13 @@ p {
 }
 
 
+/* test properies
+#rslidy-toolbar {
+  --toolbar-height: 4em;
+}
 
+ #rslidy-toolbar {
+  --toolbar-height: orange;
+}
+*/
 
