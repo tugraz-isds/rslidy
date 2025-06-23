@@ -44,9 +44,6 @@ and interactive elements in action.
 
 ## 4 Installation and Setup
 
-Download the latest binary release
-[here](https://github.com/tugraz-isds/rslidy/releases/latest).
-
 
 To install and build Rslidy from source, use the following command:
 
@@ -60,7 +57,7 @@ yarn
 
 Then, build Rslidy with the command:
 ```
-npx gulp build
+yarn run gulp build
 ```
 The `rslidy/build` folder then contain Rslidy's main files, as
 well as some example presentations, which can be copied and adapted to

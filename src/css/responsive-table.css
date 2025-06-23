@@ -1,17 +1,15 @@
-
 .responsive-table {
  margin: 0 0 1em 0;
  border-collapse: separate;
  border-spacing: 0;
  font-size: 70%;
  border: none;
- width: 100%;
+ width: fit-content;
  max-width: 100%;
 }
 
 #table-container {
  overflow-x: auto;
- width: 100%;
 }
 
 .table-filter {
@@ -50,7 +48,6 @@
  border-width: 0.0625em;
  color: #000;
  cursor: pointer;
- padding-right: 1.3em;
  position: relative;
  top: 0;
  z-index: 1;
@@ -76,7 +73,6 @@
  background-color: inherit;
 }
 
-/* Cell-based alignment */
 .responsive-table td.text {
  text-align: left;
 }
@@ -85,53 +81,47 @@
  text-align: left;
 }
 
-.responsive-table td.numeric {
+.responsive-table td.numeric,
+.responsive-table th.numeric {
  text-align: right;
 }
 
-.responsive-table t´h.numeric {
- text-align: right;
-}
-
-/* Row-based alignment (NEW) */
-.responsive-table tr.text > td {
+.responsive-table tr.text td {
  text-align: left;
 }
 
-.responsive-table tr.numeric > td {
+.responsive-table tr.numeric td {
  text-align: right;
 }
 
-/* Responsive Styling */
+/* Responsive Styling - handled under responsive-table now */
 @media screen and (max-width: 40em), print and (max-width: 40em) {
- .responsive-table,
- .stacking {
+ .responsive-table {
   align-items: center;
   display: flex;
   flex-direction: column;
-  margin-left: auto;
   margin-right: 5.5em;
   text-align: center;
   width: auto !important;
   overflow-x: visible;
  }
 
- .stacking thead {
+ .responsive-table thead {
   display: none;
  }
 
- .stacking tbody,
- .stacking td,
- .stacking tr {
+ .responsive-table tbody,
+ .responsive-table td,
+ .responsive-table tr {
   display: block;
   width: 100%;
  }
 
- .stacking tr {
+ .responsive-table tr {
   margin-bottom: 1em;
  }
 
- .stacking td {
+ .responsive-table td {
   min-width: 15em;
   padding-left: 10%;
   position: relative;
@@ -139,7 +129,7 @@
   white-space: nowrap;
  }
 
- .stacking td:before {
+ .responsive-table td:before {
   color: #000;
   content: attr(data-label);
   font-weight: 700;
@@ -149,14 +139,10 @@
   text-align: left;
  }
 
- .stacking td:first-of-type {
+ .responsive-table td:first-of-type {
   background-color: #eaf1f5;
   color: #2b2b2b;
   font-weight: 400;
- }
-
- .responsive-table td:first-child {
-  text-align: right;
  }
 
  .responsive-table td.text {
@@ -166,25 +152,24 @@
  .responsive-table th.text {
   text-align: right;
  }
+
+ .responsive-table td.numeric,
  .responsive-table th.numeric {
   text-align: right;
  }
- .responsive-table td.numeric {
-  text-align: right;
- }
- /* Responsive row-based alignment (NEW) */
- .stacking tr.text > td {
+
+ .responsive-table tr.text > td {
   text-align: right;
  }
 
- .stacking tr.numeric > td {
+ .responsive-table tr.numeric > td {
   text-align: right;
  }
 }
 
+/* Print-specific responsive rules */
 @media print and (max-width: 640px) {
- .responsive-table,
- .stacking {
+ .responsive-table {
   align-items: center !important;
   display: flex !important;
   flex-direction: column !important;
@@ -195,22 +180,22 @@
   overflow-x: visible !important;
  }
 
- .stacking thead {
+ .responsive-table thead {
   display: none !important;
  }
 
- .stacking tbody,
- .stacking td,
- .stacking tr {
+ .responsive-table tbody,
+ .responsive-table td,
+ .responsive-table tr {
   display: block !important;
   width: 100% !important;
  }
 
- .stacking tr {
+ .responsive-table tr {
   margin-bottom: 1em !important;
  }
 
- .stacking td {
+ .responsive-table td {
   min-width: 15em !important;
   padding-left: 10% !important;
   position: relative !important;
@@ -218,7 +203,7 @@
   white-space: nowrap !important;
  }
 
- .stacking td:before {
+ .responsive-table td:before {
   color: #000 !important;
   content: attr(data-label) !important;
   font-weight: 700 !important;
@@ -228,7 +213,7 @@
   text-align: left !important;
  }
 
- .stacking td:first-of-type {
+ .responsive-table td:first-of-type {
   background-color: #eaf1f5 !important;
   color: #2b2b2b !important;
   font-weight: 400 !important;
@@ -238,15 +223,15 @@
   text-align: left !important;
  }
 
- /* Print row-based alignment (NEW) */
- .stacking tr.text > td {
+ .responsive-table tr.text > td {
   text-align: left;
  }
+
  .responsive-table td:first-child {
   text-align: right !important;
  }
 
- .stacking tr.numeric > td {
+ .responsive-table tr.numeric > td {
   text-align: right;
  }
 }

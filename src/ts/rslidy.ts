@@ -155,7 +155,6 @@ export class Rslidy {
     this.printSettings = new PrintSettingsComponent();
     this.overview = new OverviewComponent(slides_html);
     this.content = new ContentComponent(cs);
-
     // If hash is on help, show the first slide and the help panel
     if(window.location.hash.match("#rslidy-help")) {
       this.content.showSlide(0, false);

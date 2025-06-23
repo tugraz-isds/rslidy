@@ -1,7 +1,6 @@
 #chart {
   width: 100%;
-  height: 65vh;
-  min-height: 18rem;
+  min-height: 20rem;
   container-type: inline-size;
   .toolbar__opener {
     margin-right: 3em;
@@ -62,7 +61,6 @@
   }
   #chart {
     width: 100%;
-    height: auto !important;
   }
   #tooltip-rv {
     display:none;

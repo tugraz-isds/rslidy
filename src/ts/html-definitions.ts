@@ -350,6 +350,7 @@ role="region" aria-label="Print Settings" tabindex="0">
       <input type="number" id="custom-zoom-input" value="100" class="zoom-input" min="1" max="100" disabled placeholder="100">
       <span class="percent">%</span>
     </label>
+    <!--
     <label id="rslidy-checkbox-scale-text" class="rslidy-print-sizing">
       <input type="radio" name="print-options" value="custom" id="rslidy-checkbox-custom" class="print-checkbox"> Custom Scale:
       <input type="number" id="custom-scaling-input" value="100" class="scaling-input" min="1" max="100" disabled placeholder="100">
@@ -434,6 +435,7 @@ role="region" aria-label="Print Settings" tabindex="0">
         </label>
       </div>
     </div>
+      -->
   </fieldset>
   <div class="rslidy-menu-content">
     <button id="rslidy-button-print-submit">`+t.print_settings[7]+`</button>

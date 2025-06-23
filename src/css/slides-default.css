@@ -20,11 +20,13 @@ a slide is created by a section and/or div.slide
   left: 0;
   right: 0;
   bottom: 0;
-  margin: 0.5em 1.5em 1.5em 1.5em;
+  /* margin: 0.5em 1.5em 1.5em 1.5em;*/
+  margin: 0.5em 1em 1em 1em;
   padding: 2.2rem;
-}
+  overflow-x: auto;
+ }
 
-/* turn hyphens off for code, tt, and kbd */
+ /* turn hyphens off for code, tt, and kbd */
 
 code, var, kbd, samp, listing, plaintext, xmp, abbr {
   hyphens: none;
@@ -189,6 +191,13 @@ table {
   line-break: loose;
   overflow-wrap: break-word;
   word-wrap: break-word;
+}
+
+caption {
+  margin: 0.8em auto;
+  font-weight: bold;
+  font-size: 1.1em;
+  text-align: center;
 }
 
 th {

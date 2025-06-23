@@ -53,12 +53,14 @@ export class PrintSettingsComponent {
     const slideRadios = this.view.querySelectorAll('input[name="slide-print-option"]');
     const rangeInput = <HTMLInputElement>this.view.querySelector("#rslidy-slide-range-input");
     const positionRadios = this.view.querySelectorAll('input[name="transform-origin"]');
-    const customScaleRadio = <HTMLInputElement>this.view.querySelector('#rslidy-checkbox-custom');
+    //const customScaleRadio =
+    // <HTMLInputElement>this.view.querySelector('#rslidy-checkbox-custom');
     const customZoomRadio = <HTMLInputElement>this.view.querySelector('#rslidy-checkbox-zoom');
-    const scalingInput = <HTMLInputElement>this.view.querySelector('#custom-scaling-input');
+    //const scalingInput =
+    // <HTMLInputElement>this.view.querySelector('#custom-scaling-input');
     const zoomInput = <HTMLInputElement>this.view.querySelector('#custom-zoom-input');
 
-    if (!slideRadios.length || !rangeInput || !customScaleRadio) {
+    if (!slideRadios.length || !rangeInput) {
       console.error("Print settings elements not found!");
       return;
     }
@@ -71,46 +73,17 @@ export class PrintSettingsComponent {
       ) as HTMLInputElement | null;
 
       const isCustomSlide = checkedSlideRadio?.value === "custom";
-      const isCustomScale = customScaleRadio.checked;
+      //const isCustomScale = customScaleRadio.checked;
       const isCustomZoom = customZoomRadio.checked;
 
       // Slide range input
       rangeInput.disabled = !isCustomSlide;
 
       // Enable/disable scaling and zoom inputs
-      scalingInput.disabled = !isCustomScale;
+      //scalingInput.disabled = !isCustomScale;
       zoomInput.disabled = !isCustomZoom;
 
       // Handle position radios
-      positionRadios.forEach(radio => {
-        (radio as HTMLInputElement).disabled = !isCustomScale;
-        const label = radio.closest('label');
-        if (label) {
-          label.style.opacity = isCustomScale ? "1" : "0.5";
-          label.style.cursor = isCustomScale ? "pointer" : "not-allowed";
-        }
-      });
-
-      // Update position visual feedback
-      document.querySelectorAll(".rslidy-print-position svg rect").forEach(rect => {
-        rect.setAttribute("fill", "grey");
-      });
-      if (isCustomScale) {
-        const selectedPosition = this.view.querySelector(
-          'input[name="transform-origin"]:checked'
-        ) as HTMLInputElement | null;
-        if (selectedPosition) {
-          selectedPosition.closest('label')?.querySelector('rect')?.setAttribute("fill", "#4D4D4D");
-        }
-      }
-      const heading = this.view.querySelector("#rslidy-transform-origin-subsection h4");
-      if (heading) {
-        if (isCustomScale) {
-          heading.classList.remove("disabled");
-        } else {
-          heading.classList.add("disabled");
-        }
-      }
     };
 
     // Initialize states
@@ -121,18 +94,6 @@ export class PrintSettingsComponent {
       radio.addEventListener("change", updateStates);
     });
 
-    customScaleRadio.addEventListener("change", updateStates);
-
-    // Position selection highlighting
-    positionRadios.forEach(radio => {
-      radio.addEventListener("change", function() {
-        if (!customScaleRadio.checked) return;
-        document.querySelectorAll(".rslidy-print-position svg rect").forEach(rect => {
-          rect.setAttribute("fill", "grey");
-        });
-        this.closest('label')?.querySelector('rect')?.setAttribute("fill", "#4D4D4D");
-      });
-    });
 
     // Print options changes
     document.querySelectorAll('input[name="print-options"]').forEach(radio => {
@@ -146,23 +107,23 @@ export class PrintSettingsComponent {
     }
 
     // Get all settings values
-    const link = <HTMLInputElement>this.view.querySelector("#rslidy-checkbox-link");
-    const snum = <HTMLInputElement>this.view.querySelector("#rslidy-checkbox-snum");
-    const frame = <HTMLInputElement>this.view.querySelector("#rslidy-checkbox-frame");
-    const font_size = <HTMLInputElement>this.view.querySelector("#rslidy-input-font-size");
-    const layout = <HTMLSelectElement>this.view.querySelector("#rslidy-select-orientation");
-    const paperSize = <HTMLSelectElement>this.view.querySelector("#rslidy-select-paper-size");
-    const selectedSlideOption = <HTMLInputElement>this.view.querySelector('input[name="slide-print-option"]:checked');
-    const slideRangeInput = <HTMLInputElement>this.view.querySelector("#rslidy-slide-range-input");
-    const selectedOrigin = this.view.querySelector(
-      'input[name="transform-origin"]:checked'
-    ) as HTMLInputElement | null;
-    const origin = selectedOrigin?.value || "center";    const scalingInput = <HTMLInputElement>this.view.querySelector("#custom-scaling-input");
+        const link = <HTMLInputElement>this.view.querySelector("#rslidy-checkbox-link");
+      const snum = <HTMLInputElement>this.view.querySelector("#rslidy-checkbox-snum");
+      const frame = <HTMLInputElement>this.view.querySelector("#rslidy-checkbox-frame");
+      const font_size = <HTMLInputElement>this.view.querySelector("#rslidy-input-font-size");
+      const layout = <HTMLSelectElement>this.view.querySelector("#rslidy-select-orientation");
+      const paperSize = <HTMLSelectElement>this.view.querySelector("#rslidy-select-paper-size");
+      const selectedSlideOption = <HTMLInputElement>this.view.querySelector('input[name="slide-print-option"]:checked');
+      const slideRangeInput = <HTMLInputElement>this.view.querySelector("#rslidy-slide-range-input");
+      const selectedOrigin = this.view.querySelector(
+        'input[name="transform-origin"]:checked'
+      ) as HTMLInputElement | null;
+      const origin = selectedOrigin?.value || "center";    const scalingInput = <HTMLInputElement>this.view.querySelector("#custom-scaling-input");
 
-    let css = "@media print {\n";
+      let css = "@media print {\n";
 
-    // Handle slide visibility
-    if (selectedSlideOption.value === "custom") {
+      // Handle slide visibility
+      if (selectedSlideOption.value === "custom") {
       const range = this.parseSlideRange(slideRangeInput.value);
       css += this.applyCustomSlideRange(range);
     } else if (selectedSlideOption.value === "current") {
@@ -194,71 +155,81 @@ export class PrintSettingsComponent {
     `;
     if (window.innerWidth <= 640) {
       css += `
-        @media print {
-          .stacking tr {
-            break-inside: avoid !important; /* Prevent row from breaking across pages */
-          }
+    @media print {
+      .responsive-table tr {
+        break-inside: avoid !important; /* Prevent row from breaking across pages */
+        margin-bottom: 1em !important;
+        display: block !important;
+        width: 100% !important;
+      }
 
-          .responsive-table, .stacking { 
-              align-items: center !important;
-              display: flex !important;
-              flex-direction: column !important;
-              margin-left: auto !important;
-              margin-right: 5.5em !important;
-              text-align: center !important;
-              width: auto !important;
-              overflow-x: visible !important;
-          }
-           .responsive-table td:first-child {
-              text-align: right;
-             }
-          .stacking thead {
-              display: none !important;
-          }
-          .stacking tbody,
-          .stacking td,
-          .stacking tr {
-              display: block !important;
-              width: 100% !important;
-          }
-          .stacking tr {
-              margin-bottom: 1em !important;
-          }
-          .stacking td {
-              min-width: 15em !important;
-              padding-left: 10% !important;
-              position: relative !important;
-              text-align: right !important;
-          }
-          .stacking td:before {
-              color: #000 !important;
-              content: attr(data-label) !important;
-              font-weight: 700 !important;
-              left: 0 !important;
-              padding-left: 0.5em !important;
-              position: absolute !important;
-              text-align: left !important;
-          }
-          .stacking td:first-of-type {
-              background-color: #eaf1f5 !important;
-              color: #2b2b2b !important;
-              font-weight: 400 !important;
-          }
-          .stacking tr.text > td {
-              text-align: right !important;
-          }
-          .stacking tr.numeric > td {
-              text-align: right !important;
-          }
-         .columns-even {
-          flex-direction: column !important;
-         }
-         .columns-even > * {
-          width: 100% !important;
-         }
-        }
-      `;
+      .responsive-table {
+        align-items: center !important;
+        display: flex !important;
+        flex-direction: column !important;
+        margin-left: auto !important;
+        margin-right: 5.5em !important;
+        text-align: center !important;
+        width: auto !important;
+        overflow-x: visible !important;
+      }
+
+      .responsive-table thead {
+        display: none !important;
+      }
+
+      .responsive-table tbody,
+      .responsive-table td {
+        display: block !important;
+        width: 100% !important;
+      }
+
+      .responsive-table td {
+        min-width: 15em !important;
+        padding-left: 10% !important;
+        position: relative !important;
+        text-align: right !important;
+      }
+
+      .responsive-table td:before {
+        color: #000 !important;
+        content: attr(data-label) !important;
+        font-weight: 700 !important;
+        left: 0 !important;
+        padding-left: 0.5em !important;
+        position: absolute !important;
+        text-align: left !important;
+      }
+
+      .responsive-table td:first-of-type {
+        background-color: #eaf1f5 !important;
+        color: #2b2b2b !important;
+        font-weight: 400 !important;
+      }
+
+      .responsive-table tr.text > td {
+        text-align: right !important;
+      }
+
+      .responsive-table tr.numeric > td {
+        text-align: right !important;
+      }
+
+      .responsive-table td:first-child {
+        text-align: right !important;
+      }
+
+      .columns-even {
+        flex-direction: column !important;
+      }
+
+      .columns-even > * {
+        width: 100% !important;
+      }
     }
+  `;
+    }
+
 
     // Handle print sizing options
     const selectedOption = this.view.querySelector(
@@ -298,7 +269,7 @@ export class PrintSettingsComponent {
           break;
 
 
-      case "shrink":
+        case "shrink":
         /*const [pageWidth, pageHeight] = paperSize.value.split(" ");
 
         const mmToPx = mm => mm * 3.7795;
@@ -331,7 +302,7 @@ export class PrintSettingsComponent {
               size: ${paperSize.value} ${layout.value};
               margin: 10mm;
             }
-            
+
             #rslidy-content-section .slide {
               width: 100% !important;
               height: 100% !important;
@@ -340,7 +311,7 @@ export class PrintSettingsComponent {
               transform-origin: top left !important;
               contain: size !important;
             }
-            
+
             #rslidy-content-section .slide > div {
               transform: scale(calc(var(--print-scale-factor, 1))) !important;
               transform-origin: top left !important;
@@ -446,108 +417,108 @@ export class PrintSettingsComponent {
   }
 
   private parseSlideRange(input: string): number[] {
-    return input.split(',').reduce<number[]>((acc, part) => {
-      if (part.includes('-')) {
-        const [start, end] = part.split('-').map(Number);
-        if (!isNaN(start) && !isNaN(end) && start <= end) {
-          for (let i = start; i <= end; i++) acc.push(i);
+      return input.split(',').reduce<number[]>((acc, part) => {
+        if (part.includes('-')) {
+          const [start, end] = part.split('-').map(Number);
+          if (!isNaN(start) && !isNaN(end) && start <= end) {
+            for (let i = start; i <= end; i++) acc.push(i);
+          }
+        } else {
+          const num = Number(part);
+          if (!isNaN(num)) acc.push(num);
         }
-      } else {
-        const num = Number(part);
-        if (!isNaN(num)) acc.push(num);
-      }
-      return acc;
-    }, []);
-  }
+        return acc;
+      }, []);
+    }
 
   private applyCustomSlideRange(range: number[]): string {
-    const slides = document.querySelectorAll("#rslidy-content-section .slide");
-    const totalSlides = slides.length;
-    const validRange = range.filter(num => num >= 1 && num <= totalSlides);
+      const slides = document.querySelectorAll("#rslidy-content-section .slide");
+      const totalSlides = slides.length;
+      const validRange = range.filter(num => num >= 1 && num <= totalSlides);
 
-    const visibleSlides = validRange
-      .map(num => `#rslidy-content-section .slide:nth-of-type(${num}) { display: block !important; }`)
-      .join("\n");
+      const visibleSlides = validRange
+        .map(num => `#rslidy-content-section .slide:nth-of-type(${num}) { display: block !important; }`)
+        .join("\n");
 
-    return `
+      return `
       #rslidy-content-section .slide { display: none !important; }
       ${visibleSlides}
     `;
-  }
+    }
 
   private applyCurrentSlideOnly(): string {
-    const currentSlideIndex = window.rslidy.content.getCurrentSlideIndex();
-    return `
+      const currentSlideIndex = window.rslidy.content.getCurrentSlideIndex();
+      return `
       #rslidy-content-section .slide { display: none !important; }
       #rslidy-content-section .slide:nth-of-type(${currentSlideIndex + 1}) { display: block !important; }
     `;
-  }
+    }
 
   public print() {
-    try {
-      this.applyPrintSettings();
-      const slides = document.querySelectorAll("#rslidy-content-section .slide");
-      const originalHiddenSlides = new Set();
-
-      slides.forEach(slide => {
-        if (slide.classList.contains("rslidy-hidden")) {
-          originalHiddenSlides.add(slide);
-          slide.classList.remove("rslidy-hidden");
-        }
-      });
-
-      setTimeout(() => {
-        window.print();
+      try {
+        this.applyPrintSettings();
+        const slides = document.querySelectorAll("#rslidy-content-section .slide");
+        const originalHiddenSlides = new Set();
 
         slides.forEach(slide => {
-          if (originalHiddenSlides.has(slide)) {
-            slide.classList.add("rslidy-hidden");
+          if (slide.classList.contains("rslidy-hidden")) {
+            originalHiddenSlides.add(slide);
+            slide.classList.remove("rslidy-hidden");
           }
         });
-      }, 200);
-    } catch (e) {
-      console.error("Print error:", e);
+
+        setTimeout(() => {
+          window.print();
+
+          slides.forEach(slide => {
+            if (originalHiddenSlides.has(slide)) {
+              slide.classList.add("rslidy-hidden");
+            }
+          });
+        }, 200);
+      } catch (e) {
+        console.error("Print error:", e);
+      }
     }
-  }
 
   public loadSettings(): void {
-    try {
-      const item = localStorage.getItem("rslidy-print");
-      if (!item) return;
+      try {
+        const item = localStorage.getItem("rslidy-print");
+        if (!item) return;
 
-      const data: Data = JSON.parse(item);
-      (<HTMLInputElement>this.view.querySelector("#rslidy-checkbox-link")).checked = data.links;
-      (<HTMLInputElement>this.view.querySelector("#rslidy-checkbox-snum")).checked = data.slidenumbers;
-      (<HTMLInputElement>this.view.querySelector("#rslidy-checkbox-frame")).checked = data.frame;
+    const data: Data = JSON.parse(item);
+    (<HTMLInputElement>this.view.querySelector("#rslidy-checkbox-link")).checked = data.links;
+    (<HTMLInputElement>this.view.querySelector("#rslidy-checkbox-snum")).checked = data.slidenumbers;
+    (<HTMLInputElement>this.view.querySelector("#rslidy-checkbox-frame")).checked = data.frame;
 
-      if (data.font_size) {
-        (<HTMLInputElement>this.view.querySelector("#rslidy-input-font-size")).value = data.font_size;
-      }
-      if (data.layout) {
-        (<HTMLSelectElement>this.view.querySelector("#rslidy-select-orientation")).value = data.layout;
-      }
-      if (data.paperSize) {
-        (<HTMLSelectElement>this.view.querySelector("#rslidy-select-paper-size")).value = data.paperSize;
-      }
+    if (data.font_size) {
+      (<HTMLInputElement>this.view.querySelector("#rslidy-input-font-size")).value = data.font_size;
+    }
+    if (data.layout) {
+      (<HTMLSelectElement>this.view.querySelector("#rslidy-select-orientation")).value = data.layout;
+    }
+    if (data.paperSize) {
+      (<HTMLSelectElement>this.view.querySelector("#rslidy-select-paper-size")).value = data.paperSize;
+    }
 
-      this.applyPrintSettings();
-    } catch (e) {
+    this.applyPrintSettings();
+  } catch (e) {
       console.error("Error loading settings:", e);
     }
   }
 
   public saveSettings(): void {
-    try {
-      localStorage.setItem("rslidy-print", this.generateJSON());
-    } catch (e) {
-      console.error("Error saving settings:", e);
+      try {
+        localStorage.setItem("rslidy-print", this.generateJSON());
+      } catch (e) {
+        console.error("Error saving settings:", e);
+      }
     }
-  }
 
   private generateJSON(): string {
-    return JSON.stringify({
-      links: (<HTMLInputElement>this.view.querySelector("#rslidy-checkbox-link")).checked,
-      slidenumbers: (<HTMLInputElement>this.view.querySelector("#rslidy-checkbox-snum")).checked,
+      return JSON.stringify({
+        links: (<HTMLInputElement>this.view.querySelector("#rslidy-checkbox-link")).checked,
+        slidenumbers: (<HTMLInputElement>this.view.querySelector("#rslidy-checkbox-snum")).checked,
       frame: (<HTMLInputElement>this.view.querySelector("#rslidy-checkbox-frame")).checked,
       font_size: (<HTMLInputElement>this.view.querySelector("#rslidy-input-font-size")).value,
       layout: (<HTMLSelectElement>this.view.querySelector("#rslidy-select-orientation")).value,

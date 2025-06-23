@@ -26,15 +26,12 @@ Rslidy supports responsive images that scale with the viewport. Use
 ```
 
 ## 2. Responsive Table
-Create responsive tables using the `responsive-table` class with optional `squishing` and `stacking` classes for adaptive behaviour on smaller screens.
-Include to container `<div class="table-container">` to also have 
-scrolling on the table.
+Create responsive tables using the `responsive-table` class.
 
 **Example ** (Comparison Table):
 ```html
 <section>
   <h1>Responsive Tables with CSS Styling</h1>
-  <div class="table-container">
     <table class="responsive-table squishing stacking">
       <thead>
         <tr>
@@ -45,21 +42,22 @@ scrolling on the table.
       </thead>
       <tbody>
         <tr class="text">
-          <td data-label="Feature">Collaborative</td>
-          <td data-label="Shower"><span class="table-cross">✘</span></td>
-          <td data-label="Reveal.js"><span class="table-cross">✘</span></td>
+          <td>Collaborative</td>
+          <td><span class="table-cross">✘</span></td>
+          <td><span class="table-cross">✘</span></td>
         </tr>
         <tr class="text">
-          <td data-label="Feature">SVG Inclusion</td>
-          <td data-label="Shower"><span class="table-tick">✔</span></td>
-          <td data-label="Reveal.js"><span class="table-tick">✔</span></td>
+          <td>SVG Inclusion</td>
+          <td><span class="table-tick">✔</span></td>
+          <td><span class="table-tick">✔</span></td>
         </tr>
       </tbody>
     </table>
-  </div>
 </section>
 ```
-- Use `data-label` attributes for accessibility and `squishing stacking` classes for responsive behaviour. Add `<caption>` for table descriptions.
+The `data-label` values are automatically added via JavaScript assuming 
+your table includes a proper `<thead>` with `<th scope="col">` headers. 
+You can also add a `<caption>` element for table descriptions.
 
 ## 3. Multiple Columns
 Use the `columns` or `columns-even` class to create multi-column layouts.

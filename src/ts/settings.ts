@@ -64,6 +64,7 @@ export class SettingsComponent {
         () => window.rslidy.toggleLowLightMode()
       ));
       this.setupTableSorting();
+      this.applyResponsiveTableLabels();
   }
 
   // ---
@@ -286,6 +287,25 @@ export class SettingsComponent {
 
           // Set class for current header
           header.classList.add(ascending ? "sorted-asc" : "sorted-desc");
+        });
+      });
+    });
+  }
+
+  applyResponsiveTableLabels(): void {
+    const tables = document.querySelectorAll("table.responsive-table");
+    tables.forEach((table) => {
+      const headers = Array.from(table.querySelectorAll("thead th")).map(th =>
+        th.textContent?.trim() || ""
+      );
+      const rows = table.querySelectorAll("tbody tr");
+
+      rows.forEach((row) => {
+        const cells = row.querySelectorAll("td");
+        cells.forEach((cell, index) => {
+          if (!cell.hasAttribute("data-label") && headers[index]) {
+            cell.setAttribute("data-label", headers[index]);
+          }
         });
       });
     });
