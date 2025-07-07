@@ -22,8 +22,7 @@ a slide is created by a section and/or div.slide
   bottom: 0;
   margin: 0.5em 1.5em 1.5em 1.5em;
   padding: 2.5rem;
-
-  --button-active-color: 10px;
+  /*--button-active-color: 10px;*/
  }
 
  /* turn hyphens off for code, tt, and kbd */

@@ -46,8 +46,8 @@ and interactive elements in action.
 
 ### 4.1 Prerequisites
 - Node.js (version 16 or higher)
-- pnpm (if you don't have it, install it using one of these methods):
-- Installing pnpm using npm (recommended):
+- pnpm
+Installing pnpm using npm (recommended):
 ```
 npm install -g pnpm
 ```
