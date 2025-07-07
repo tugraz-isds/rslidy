@@ -11,6 +11,7 @@ Rslidy is a presentation tool using HTML5, CSS3, and TypeScript which
 runs directly inside the web browser. Slides are created within sections
 inside the HTML5 body element and are presented one at a time with
 transitions.
+<img src="src/tests/images/rslidy.png" alt="Rslidy" style="border:1px solid;">
 
 
 ## 2 Features
