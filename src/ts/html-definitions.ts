@@ -343,7 +343,7 @@ role="region" aria-label="Print Settings" tabindex="0">
     <br>
     -->
     <label id="rslidy-checkbox-shrink-text" class="rslidy-print-sizing">
-      <input type="radio" name="print-options" value="fit-width" id="rslidy-checkbox-shrink" class="print-checkbox"> Fit to Width
+      <input type="radio" name="print-options" value="fit-width" id="rslidy-checkbox-shrink" class="print-checkbox"> Fit to Page Width
     </label> 
     <label id="rslidy-checkbox-zoom-text" class="rslidy-print-sizing">
       <input type="radio" name="print-options" value="zoom" id="rslidy-checkbox-zoom" class="print-checkbox"> Custom Zoom:

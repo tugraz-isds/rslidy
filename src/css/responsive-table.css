@@ -6,6 +6,10 @@
  border: none;
  width: fit-content;
  max-width: 100%;
+ overflow-x: auto;
+ white-space: nowrap;
+ display:block;
+
 }
 
 #table-container {
@@ -30,11 +34,11 @@
 }
 
 .responsive-table tr:nth-child(odd) {
- background-color: #d4e4ec;
+ background-color: #fff;
 }
 
 .responsive-table tr:nth-child(2n) {
- background-color: #e5f1f8;
+ background-color: #f2f2f2;
 }
 
 .responsive-table td,
@@ -44,13 +48,14 @@
 }
 
 .responsive-table th {
- background-color: #89b2c7;
  border-width: 0.0625em;
+ background-color: #c0c0c0;
  color: #000;
  cursor: pointer;
  position: relative;
  top: 0;
  z-index: 1;
+ padding-left: 1.6em;
 }
 
 .responsive-table th:after {
@@ -61,11 +66,11 @@
  transform: translateY(-50%);
 }
 
-.responsive-table th.sorted-asc:after {
+.responsive-table th.sorted-asc:before {
  content: " ▲";
 }
 
-.responsive-table th.sorted-desc:after {
+.responsive-table th.sorted-desc:before {
  content: " ▼";
 }
 
@@ -74,7 +79,7 @@
 }
 
 .responsive-table td.text {
- text-align: left;
+ text-align: left !important;
 }
 
 .responsive-table td:first-child {
@@ -90,8 +95,40 @@
  text-align: left;
 }
 
+.responsive-table td.symbol,
+.responsive-table th.symbol {
+ text-align: center;
+}
+
+.responsive-table tr.symbol td {
+ text-align: center;
+}
+
+
 .responsive-table tr.numeric td {
  text-align: right;
+}
+
+.responsive-table th::before {
+ content: "▲";
+ position: absolute;
+ left: 0.3125em;
+ top: 1.08em;
+ transform: translateY(-50%);
+ color: #666; /* Grayed out (disabled) */
+ transition: color 0.2s ease;
+}
+
+/* Sorted ascending: change color and arrow */
+.responsive-table th.sorted-asc::before {
+ content: "▲";
+ color: #000; /* Active arrow */
+}
+
+/* Sorted descending: change arrow and color */
+.responsive-table th.sorted-desc::before {
+ content: "▼";
+ color: #000; /* Active arrow */
 }
 
 /* Responsive Styling - handled under responsive-table now */
@@ -146,10 +183,19 @@
  }
 
  .responsive-table td.text {
-  text-align: right;
+  text-align: right !important;;
  }
 
  .responsive-table th.text {
+  text-align: right !important;;
+ }
+
+ .responsive-table td.symbol,
+ .responsive-table th.symbol {
+  text-align: right;
+ }
+
+ .responsive-table tr.symbol > td {
   text-align: right;
  }
 
@@ -182,6 +228,14 @@
 
  .responsive-table thead {
   display: none !important;
+ }
+ .responsive-table td.symbol,
+ .responsive-table th.symbol {
+  text-align: center !important;
+ }
+
+ .responsive-table tr.symbol > td {
+  text-align: center !important;
  }
 
  .responsive-table tbody,

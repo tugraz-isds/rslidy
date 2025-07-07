@@ -44,20 +44,25 @@ and interactive elements in action.
 
 ## 4 Installation and Setup
 
-
+### 4.1 Prerequisites
+- Node.js (version 16 or higher)
+- pnpm (if you don't have it, install it using one of these methods):
+- Installing pnpm using npm (recommended):
+```
+npm install -g pnpm
+```
 To install and build Rslidy from source, use the following command:
-
 ```
 git clone "https://github.com/tugraz-isds/rslidy.git"
 ```
 In the `rslidy/` folder, install the project dependencies with:
 ```
-yarn
+pnpm install
 ```
 
 Then, build Rslidy with the command:
 ```
-yarn run gulp build
+pnpm exec gulp build
 ```
 The `rslidy/build` folder then contain Rslidy's main files, as
 well as some example presentations, which can be copied and adapted to
@@ -120,128 +125,15 @@ Rslidy defines a set of CSS custom properties in
 
 ### Global Variables
 
-Declared on the `:root` selector within the `base` layer, these are accessible throughout the document:
-
 - **Breakpoints**: `--large`, `--medium`, `--small`, `--tiny`, `--mini`, `--nano`, `--pico`
 - **Shared**: e.g. `--overview-width`, `--slide-input-width`
 - **Toolbar**: Includes background, button, and progress bar styling variables
 - **Settings**: Colour options for sliders (on/off states)
 
-### CSS Layers
-
-Rslidy separates styles into three layers:
-
-- `base`: Global theming variables
-- `components`: Component styles (e.g. `.toolbar`, `.settings`)
-- `utilities`: Responsive utility classes
-
-Example:
-
-```css
-@layer base, components, utilities;
-```
-
-User-defined layers (e.g. `my-styles`) that come after Rslidy’s will 
-override them due to CSS layering precedence.
-
-### CSS Scope
-
-Rslidy uses `@scope` to confine styles to components like `.toolbar` or `.settings`, avoiding unintended global effects.
-
-Example:
-
-```css
-@scope (.toolbar) {
-  :scope {
-    background-colour: var(--toolbar-bg-colour);
-  }
-}
-```
 
 ## Customising Rslidy
 
 Rslidy variables may be used globally or component-specifically via:
-
-### 1. Global Customisation with `@layer`
-
-Define a higher-priority layer:
-
-```css
-@layer my-styles {
-  :root {
-    --toolbar-bg-colour: #f0f0f0;
-    --large: 48rem;
-  }
-}
-```
-
-Include your custom CSS *after* RSlidy’s.
-
-### 2. Component-Specific Customisation with `@scope`
-
-Override within a specific component scope:
-
-```css
-@scope (.toolbar) {
-  :scope {
-    --toolbar-bg-colour: #d3d3d3;
-  }
-  .button {
-    --toolbar-button-colour: #000;
-  }
-}
-```
-
-### 3. Inline Customisation
-
-Apply directly via `style` attributes:
-
-```html
-<div class="toolbar" style="--toolbar-bg-colour: #e0e0e0;">...</div>
-```
-
-## Example Usage
-
-```html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <link rel="stylesheet" href="rslidy/src/css/_variables.css">
-  <style>
-    @layer my-styles {
-      :root {
-        --toolbar-bg-colour: #f0f0f0;
-      }
-    }
-    @scope (.settings) {
-      .slider.on {
-        --slider-fill-on: #e74c3c;
-      }
-    }
-  </style>
-</head>
-<body>
-  <div class="toolbar">
-    <button class="button">Click me</button>
-    <div class="progressbar">
-      <div class="reached"></div>
-      <div class="unreached"></div>
-    </div>
-  </div>
-  <div class="settings">
-    <div class="slider on"></div>
-  </div>
-  <div class="rslidy-container small">Content</div>
-</body>
-</html>
-```
-
-## Browser Compatibility
-
-- **CSS Variables**: Fully supported in modern browsers.
-- **@layer**: Supported in most modern environments.
-- **@scope**: Still experimental; fallback styles should be included.  
-  → See [MDN: @scope](https://developer.mozilla.org/en-US/docs/Web/CSS/@scope)
 
 
 ##### Lists
@@ -348,18 +240,14 @@ For more information and various use cases of RSlidy elements, have a look at th
 To build the project use:
 
 ```
-npx gulp build
+pnpm exec gulp build
 ```
-or if you use yarn:
 
-```
-yarn build
-```
 Build may be omitted, since it is the default gulp task.
 There is also a gulp task using `Browsersync` and `gulp watch`
 for more convenient development.
 ```
-npx gulp watch
+pnpm exec gulp watch
 ```
 
 
@@ -369,14 +257,10 @@ browser content every time a source files changes.
 `notes.html` will be shown as default presentation, however, with
 `--slide <file>` a specific file can be synchronised. The file has to
 be in the `examples/tests` directory.
+```
+pnpm exec gulp watch --slide <file>
+```
 
-```
-npx gulp watch --slide <file>
-```
-or
-```
-yarn watch --slide <file>
-```
 
 #### Updating Icons
 
@@ -384,11 +268,7 @@ To commit changes from the icons located in `src/icons` to Rslidy, the
 following gulp task has to be run:
 
 ```
-npx gulp icons
-```
-or
-```
-yarn build icons
+pnpm exec gulp icons
 ```
 
 This creates or updates the file `src/ts/icon-definitions.ts` with

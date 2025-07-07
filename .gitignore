@@ -121,5 +121,5 @@ $RECYCLE.BIN/
 
 ## do not commit lockfiles at the moment (forces dev updates)
 package-lock.json
-yarn.lock
+pnpm-lock.yaml
 
