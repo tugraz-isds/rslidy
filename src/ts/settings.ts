@@ -250,47 +250,77 @@ export class SettingsComponent {
     else
       this.changeUIFont(null, -1);
   }
+
   private setupTableSorting(): void {
-    const tables = document.querySelectorAll("table.responsive-table");
+    const tables = document.querySelectorAll("table.rslidy-responsive-table");
+
+    const normalize = (text: string) => {
+      if (text.includes("✔")) return 1;
+      if (text.includes("✘")) return 0;
+      if (!isNaN(Date.parse(text))) return new Date(text).getTime();
+      return parseFloat(text.replace(/[^\d.-]/g, "")) || text.toLowerCase();
+    };
 
     tables.forEach((table) => {
+      if (table.classList.contains("rs-disable-sorting")) return;
+
       const headers = table.querySelectorAll("th");
+      const tbody = table.querySelector("tbody");
+      if (!tbody) return;
+
+      // 🔒 Save original row order
+      const originalRows = Array.from(tbody.querySelectorAll("tr"));
+
       headers.forEach((header, columnIndex) => {
         header.addEventListener("click", () => {
-          const tbody = table.querySelector("tbody");
-          if (!tbody) return;
+          const currentState = header.classList.contains("sorted-asc")
+            ? "asc"
+            : header.classList.contains("sorted-desc")
+              ? "desc"
+              : "none";
 
-          const rows = Array.from(tbody.querySelectorAll("tr"));
-          const isNumeric = !isNaN(parseFloat(rows[0]?.children[columnIndex]?.textContent || ""));
-          const ascending = !(header.classList.contains("sorted-asc"));
-
-          // Clear previous sort indicators
+          // Clear sort classes from all headers
           headers.forEach(h => h.classList.remove("sorted-asc", "sorted-desc"));
 
-          rows.sort((a, b) => {
-            const cellA = a.children[columnIndex].textContent?.trim() || "";
-            const cellB = b.children[columnIndex].textContent?.trim() || "";
+          if (currentState === "none") {
+            // 1st click → Ascending
+            header.classList.add("sorted-asc");
+            sortTable("asc");
+          } else if (currentState === "asc") {
+            // 2nd click → Descending
+            header.classList.add("sorted-desc");
+            sortTable("desc");
+          } else {
+            // 3rd click → Reset to original
+            originalRows.forEach(row => tbody.appendChild(row));
+          }
 
-            if (isNumeric) {
-              const valA = parseFloat(cellA);
-              const valB = parseFloat(cellB);
-              return ascending ? valA - valB : valB - valA;
-            } else {
-              return ascending
-                ? cellA.localeCompare(cellB)
-                : cellB.localeCompare(cellA);
-            }
-          });
+          function sortTable(direction: "asc" | "desc") {
+            const rows = Array.from(tbody.querySelectorAll("tr"));
 
-          // Append sorted rows back
-          rows.forEach(row => tbody.appendChild(row));
+            rows.sort((a, b) => {
+              const cellA = a.children[columnIndex].textContent?.trim() || "";
+              const cellB = b.children[columnIndex].textContent?.trim() || "";
 
-          // Set class for current header
-          header.classList.add(ascending ? "sorted-asc" : "sorted-desc");
+              const valA = normalize(cellA);
+              const valB = normalize(cellB);
+
+              if (typeof valA === "number" && typeof valB === "number") {
+                return direction === "asc" ? valA - valB : valB - valA;
+              } else {
+                return direction === "asc"
+                  ? valA.toString().localeCompare(valB.toString())
+                  : valB.toString().localeCompare(valA.toString());
+              }
+            });
+
+            rows.forEach(row => tbody.appendChild(row));
+          }
         });
       });
     });
   }
+
 
   applyResponsiveTableLabels(): void {
     const tables = document.querySelectorAll("table.responsive-table");

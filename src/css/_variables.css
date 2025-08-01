@@ -1,148 +1,148 @@
-@property --large {
+@property --rs-large {
   syntax: "<length>";
   inherits: false;
   initial-value: 44rem;
 }
 
-@property --medium {
+@property --rs-medium {
   syntax: "<length>";
   inherits: false;
   initial-value: 40rem;
 }
 
-@property --small {
+@property --rs-small {
   syntax: "<length>";
   inherits: false;
   initial-value: 36rem;
 }
 
-@property --tiny {
+@property --rs-tiny {
   syntax: "<length>";
   inherits: false;
   initial-value: 32rem;
 }
 
-@property --mini {
+@property --rs-mini {
   syntax: "<length>";
   inherits: false;
   initial-value: 28rem;
 }
 
-@property --nano {
+@property --rs-nano {
   syntax: "<length>";
   inherits: false;
   initial-value: 24rem;
 }
 
-@property --pico {
+@property --rs-pico {
   syntax: "<length>";
   inherits: false;
   initial-value: 20rem;
 }
 
-@property --overview-width {
+@property --rs-overview-width {
   syntax: "<length>";
   inherits: false;
   initial-value: 18rem;
 }
 
-@property --overview-width-small-screen {
+@property --rs-overview-width-small-screen {
   syntax: "<percentage>";
   inherits: false;
   initial-value: 50%;
 }
 
-@property --slide-input-width {
+@property --rs-slide-input-width {
   syntax: "<length>";
   inherits: false;
   initial-value: 2.60em;
 }
 
-@property --toolbar-bg-color {
+@property --rs-toolbar-bg-color {
   syntax: "<color>";
   inherits: true;
   initial-value: #e1e7ea;
 }
 
-@property --toolbar-button-bg-color {
+@property --rs-toolbar-button-bg-color {
   syntax: "<color>";
   inherits: true;
   initial-value: #e1e7ea;
 }
 
-@property --toolbar-button-color {
+@property --rs-toolbar-button-color {
   syntax: "<color>";
   inherits: true;
   initial-value: #4b4b4b;
 }
 
-@property --button-border-color {
+@property --rs-button-border-color {
   syntax: "<color>";
   inherits: true;
   initial-value: #848484;
 }
 
-@property --button-hover-color {
+@property --rs-button-hover-color {
   syntax: "<color>";
   inherits: true;
   initial-value: #c1c7ca;
 }
 
-@property --button-active-color {
+@property --rs-button-active-color {
   syntax: "<color>";
   inherits: true;
   initial-value: #fff;
 }
 
-@property --button-disabled-color {
+@property --rs-button-disabled-color {
   syntax: "<color>";
   inherits: true;
   initial-value: #aaa;
 }
 
-@property --progressbar-bg-color-reached {
+@property --rs-progressbar-bg-color-reached {
   syntax: "<color>";
   inherits: true;
   initial-value: #003399;
 }
 
-@property --progressbar-bg-color-unreached {
+@property --rs-progressbar-bg-color-unreached {
   syntax: "<color>";
   inherits: true;
   initial-value: #4d88ff;
 }
 
-@property --toolbar-height {
+@property --rs-toolbar-height {
   syntax: "<length>";
   inherits: false;
   initial-value: 3.20em;
 }
 
-@property --progressbar-height {
+@property --rs-progressbar-height {
   syntax: "<length>";
   inherits: false;
   initial-value: 0.50em;
 }
 
-@property --slider-fill-off {
+@property --rs-slider-fill-off {
   syntax: "<color>";
   inherits: true;
   initial-value: #ececec;
 }
 
-@property --slider-stroke-off {
+@property --rs-slider-stroke-off {
   syntax: "<color>";
   inherits: true;
   initial-value: #bdbdbd;
 }
 
-@property --slider-fill-on {
+@property --rs-slider-fill-on {
   syntax: "<color>";
   inherits: true;
   initial-value: #3498db;
 }
 
-@property --slider-stroke-on {
+@property --rs-slider-stroke-on {
   syntax: "<color>";
   inherits: true;
   initial-value: #85c1e9;
@@ -150,35 +150,35 @@
 
 /* Global custom property definitions */
 :root {
-  --large: 44rem;
-  --medium: 40rem;
-  --small: 36rem;
-  --tiny: 32rem;
-  --mini: 28rem;
-  --nano: 24rem;
-  --pico: 20rem;
+  --rs-large: 44rem;
+  --rs-medium: 40rem;
+  --rs-small: 36rem;
+  --rs-tiny: 32rem;
+  --rs-mini: 28rem;
+  --rs-nano: 24rem;
+  --rs-pico: 20rem;
 
   /* shared */
-  --overview-width: 18rem;
-  --overview-width-small-screen: 50%;
-  --slide-input-width: 2.60em;
+  --rs-overview-width: 18rem;
+  --rs-overview-width-small-screen: 50%;
+  --rs-slide-input-width: 2.60em;
 
   /* toolbar */
-  --toolbar-bg-color: #e1e7ea;
-  --toolbar-button-bg-color: #e1e7ea;
-  --toolbar-button-color: #4b4b4b;
-  --button-border-color: #848484;
-  --button-hover-color: #c1c7ca;
-  --button-active-color: #fff;
-  --button-disabled-color: #aaa;
-  --progressbar-bg-color-reached: #003399;
-  --progressbar-bg-color-unreached: #4d88ff;
-  --toolbar-height: 3.20em;
-  --progressbar-height: 0.50em;
+  --rs-toolbar-bg-color: #e1e7ea;
+  --rs-toolbar-button-bg-color: #e1e7ea;
+  --rs-toolbar-button-color: #4b4b4b;
+  --rs-button-border-color: #848484;
+  --rs-button-hover-color: #c1c7ca;
+  --rs-button-active-color: #fff;
+  --rs-button-disabled-color: #aaa;
+  --rs-progressbar-bg-color-reached: #003399;
+  --rs-progressbar-bg-color-unreached: #4d88ff;
+  --rs-toolbar-height: 3.20em;
+  --rs-progressbar-height: 0.50em;
 
   /* settings */
-  --slider-fill-off: #ececec;
-  --slider-stroke-off: #bdbdbd;
-  --slider-fill-on: #3498db;
-  --slider-stroke-on: #85c1e9;
+  --rs-slider-fill-off: #ececec;
+  --rs-slider-stroke-off: #bdbdbd;
+  --rs-slider-fill-on: #3498db;
+  --rs-slider-stroke-on: #85c1e9;
 }

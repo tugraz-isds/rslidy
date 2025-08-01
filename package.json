@@ -5,10 +5,10 @@
   "main": "build/rslidy.js",
   "author": "Keith Andrews",
   "license": "MIT",
-  "homepage": "https://projects.isds.tugraz.at/rslidy/",
+  "homepage": "https://tugraz-isds.github.io/rslidy/",
   "repository": {
     "type": "git",
-    "url": "https://github.com/tugraz-isds/rslidy.git"
+    "url": "git+https://github.com/tugraz-isds/rslidy.git"
   },
   "keywords": [
     "Rslidy",
@@ -20,6 +20,7 @@
     "slide decks"
   ],
   "devDependencies": {
+    "@tauri-apps/cli": "^2.7.1",
     "@types/node": "^22.13.4",
     "browser-sync": "^2.27.5",
     "del": "^3.0.0",
@@ -38,6 +39,7 @@
     "webpack-stream": "^7.0.0",
     "yargs": "^15.0.2"
   },
+
   "dependencies": {
   }
 }

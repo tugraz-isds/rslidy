@@ -1,8 +1,8 @@
 #rslidy-menu, #rslidy-print-menu {
   position: absolute;
-  bottom: calc(var(--progressbar-height) + var(--toolbar-height));
+  bottom: calc(var(--rs-progressbar-height) + var(--rs-toolbar-height));
   right: 1em;
-  background-color: var(--toolbar-bg-color);
+  background-color: var(--rs-toolbar-bg-color);
   padding: 0.5em 0em;
   z-index: 5;
   max-height: 80%;
@@ -119,13 +119,13 @@ label.rslidy-menu-content {
   background-repeat: no-repeat;
   font-family: Verdana, Arial, Helvetica, sans-serif;
   display: inline-block;
-  fill: var(--toolbar-button-color);
-  stroke: var(--toolbar-button-color);
+  fill: var(--rs-toolbar-button-color);
+  stroke: var(--rs-toolbar-button-color);
   cursor: pointer;
 }
 
 .rslidy-menu-button:hover, .rslidy-menu-content a:hover, [id^=rslidy-checkbox-]:not([aria-disabled="true"]):hover {
-  background-color: var(--button-hover-color);
+  background-color: var(--rs-button-hover-color);
   border-radius: 0.15em;
 }
 
@@ -136,8 +136,8 @@ label.rslidy-menu-content {
   background-repeat: no-repeat;
   font-family: Verdana, Arial, Helvetica, sans-serif;
   display: inline-block;
-  fill: var(--toolbar-button-color);
-  stroke: var(--toolbar-button-color);
+  fill: var(--rs-toolbar-button-color);
+  stroke: var(--rs-toolbar-button-color);
 }
 
 #rslidy-margin-input {
@@ -145,24 +145,24 @@ label.rslidy-menu-content {
 }
 
 #rslidy-input-cols, #rslidy-input-rows {
-  width: var(--slide-input-width);
+  width: var(--rs-slide-input-width);
 }
 
 #rslidy-button-print-submit, #rslidy-button-export-pdf {
   min-width: inherit;
   padding: 0.3em 0.7em;
   margin: 0 0.15em;
-  background-color: var(--toolbar-button-bg-color);
-  fill: var(--toolbar-button-color);
-  stroke: var(--toolbar-button-color);
+  background-color: var(--rs-toolbar-button-bg-color);
+  fill: var(--rs-toolbar-button-color);
+  stroke: var(--rs-toolbar-button-color);
   cursor: pointer;
-  border: 0.05em solid var(--button-border-color);
+  border: 0.05em solid var(--rs-button-border-color);
   border-radius: 0.15em;
-  box-shadow: 0.15em 0.15em var(--button-border-color);
+  box-shadow: 0.15em 0.15em var(--rs-button-border-color);
 }
 
 #rslidy-button-print-submit:hover, #rslidy-button-export-pdf:hover {
-  background-color: var(--button-hover-color);
+  background-color: var(--rs-button-hover-color);
 }
 
 input[type="checkbox"] {
@@ -176,20 +176,20 @@ input[type="checkbox"] + label {
   background-size: cover;
   background-repeat: no-repeat;
   display: inline-block;
-  fill: var(--slider-fill-off);
-  stroke: var(--slider-stroke-off);
+  fill: var(--rs-slider-fill-off);
+  stroke: var(--rs-slider-stroke-off);
   cursor: pointer;
 }
 
 #rslidy-checkbox-mode-text input[type="checkbox"] + label {
-  fill: var(--slider-fill-on);
-  stroke: var(--slider-stroke-on);
+  fill: var(--rs-slider-fill-on);
+  stroke: var(--rs-slider-stroke-on);
 }
 
 input[type="checkbox"]:checked + label {
   transform: scaleX(-1);
-  fill: var(--slider-fill-on);
-  stroke: var(--slider-stroke-on);
+  fill: var(--rs-slider-fill-on);
+  stroke: var(--rs-slider-stroke-on);
 }
 
 input[type="checkbox"]:disabled + label {

@@ -130,7 +130,7 @@ licence.</p>
       <figure>
         <div class="images">
           <img src="images/slidy-toc.png" alt="Slidy features."
-               style="max-height:20em; border: 1px solid #D3D3D3;" />
+               style="max-height:20em; border: 0.5em solid #D3D3D3;" />
         </div>
         <figcaption>
           Slidy2 features an auto-generated table of contents.<br/>
@@ -236,194 +236,116 @@ licence.</p>
 
 
 
-<!--
 
 <section>
-  <h1>Responsive Table</h1>
-  <table class="custom-table">
-    <caption>
-      <span class="label">Table 2</span>: Comparison of
-      JavaScript-based slide deck tools.
-    </caption>
+  <h1>Responsive Table with Filtering: Smartphone Market Share (2024)</h1>
+  <table class="rslidy-responsive-table">
     <thead>
     <tr>
       <th scope="col">Feature</th>
-      <th scope="col">Shower</th>
-      <th scope="col">Reveal.js</th>
-      <th scope="col">Deck.js</th>
-      <th scope="col">impress.js</th>
-      <th scope="col">Bespoke.js</th>
-      <th scope="col">Inspire.js</th>
+      <th scope="col">Samsung</th>
+      <th scope="col">Apple</th>
+      <th scope="col">Xiaomi</th>
+      <th scope="col">Oppo</th>
+      <th scope="col">Vivo</th>
+      <th scope="col">Transsion</th>
+      <th scope="col">Realme</th>
+      <th scope="col">Huawei</th>
+      <th scope="col">Motorola</th>
     </tr>
     </thead>
     <tbody>
-    <tr>
-      <td>Collaborative</td>
-      <td><span class="table-cross">&#10008;</span></td>
-      <td><span class="table-cross">&#10008;</span></td>
-      <td><span class="table-cross">&#10008;</span></td>
-      <td><span class="table-cross">&#10008;</span></td>
-      <td><span class="table-cross">&#10008;</span></td>
-      <td><span class="table-cross">&#10008;</span></td>
+    <tr class="text">
+      <td class="text">Country</td>
+      <td>South Korea</td>
+      <td>USA</td>
+      <td>China</td>
+      <td>China</td>
+      <td>China</td>
+      <td>China</td>
+      <td>China</td>
+      <td>China</td>
+      <td>USA</td>
     </tr>
-    <tr>
-      <td>SVG Inclusion</td>
-      <td><span class="table-tick">&#10004;</span></td>
-      <td><span class="table-tick">&#10004;</span></td>
-      <td><span class="table-tick">&#10004;</span></td>
-      <td><span class="table-tick">&#10004;</span></td>
-      <td><span class="table-tick">&#10004;</span></td>
-      <td><span class="table-tick">&#10004;</span></td>
+    <tr class="numeric">
+      <td class="text">Market Share (%)</td>
+      <td>19.3</td>
+      <td>18.0</td>
+      <td>13.2</td>
+      <td>9.8</td>
+      <td>8.5</td>
+      <td>7.6</td>
+      <td>3.9</td>
+      <td>2.7</td>
+      <td>2.5</td>
     </tr>
-    <tr>
-      <td>Globally Change Bullet Spacing</td>
-      <td><span class="table-tick">&#10004;</span></td>
-      <td><span class="table-tick">&#10004;</span></td>
-      <td><span class="table-tick">&#10004;</span></td>
-      <td><span class="table-tick">&#10004;</span></td>
-      <td><span class="table-tick">&#10004;</span></td>
-      <td><span class="table-tick">&#10004;</span></td>
+    <tr class="numeric">
+      <td class="text">Units Shipped (Millions)</td>
+      <td>265</td>
+      <td>247</td>
+      <td>181</td>
+      <td>134</td>
+      <td>116</td>
+      <td>104</td>
+      <td>53</td>
+      <td>37</td>
+      <td>34</td>
     </tr>
-    <tr>
-      <td>Globally Change Bullet Indentation</td>
-      <td><span class="table-tick">&#10004;</span></td>
-      <td><span class="table-tick">&#10004;</span></td>
-      <td><span class="table-tick">&#10004;</span></td>
-      <td><span class="table-tick">&#10004;</span></td>
-      <td><span class="table-tick">&#10004;</span></td>
-      <td><span class="table-tick">&#10004;</span></td>
+    <tr class="numeric">
+      <td class="text">Average Price (USD)</td>
+      <td>350</td>
+      <td>900</td>
+      <td>300</td>
+      <td>280</td>
+      <td>270</td>
+      <td>150</td>
+      <td>200</td>
+      <td>320</td>
+      <td>220</td>
     </tr>
-    <tr>
-      <td>Export as PDF</td>
-      <td><span class="table-tick">&#10004;</span></td>
-      <td><span class="table-tick">&#10004;</span></td>
-      <td><span class="table-cross">&#10008;</span></td>
-      <td><span class="table-cross">&#10008;</span></td>
-      <td><span class="table-tick">&#10004;</span></td>
-      <td><span class="table-cross">&#10008;</span></td>
+    <tr class="date">
+      <td class="text">Year Founded</td>
+      <td>1938</td>
+      <td>1976</td>
+      <td>2010</td>
+      <td>2004</td>
+      <td>2009</td>
+      <td>2006</td>
+      <td>2018</td>
+      <td>1987</td>
+      <td>1928</td>
     </tr>
-    <tr>
-      <td>Export as HTML</td>
-      <td><span class="table-tick">&#10004;</span></td>
-      <td><span class="table-tick">&#10004;</span></td>
-      <td><span class="table-tick">&#10004;</span></td>
-      <td><span class="table-tick">&#10004;</span></td>
-      <td><span class="table-tick">&#10004;</span></td>
-      <td><span class="table-tick">&#10004;</span></td>
+    <tr class="numeric">
+      <td class="text">R&D Spending (Billion USD)</td>
+      <td>15.0</td>
+      <td>27.0</td>
+      <td>3.5</td>
+      <td>2.5</td>
+      <td>2.0</td>
+      <td>0.8</td>
+      <td>1.0</td>
+      <td>5.0</td>
+      <td>1.2</td>
     </tr>
-    <tr>
-      <td>Export as PowerPoint</td>
-      <td><span class="table-cross">&#10008;</span></td>
-      <td><span class="table-cross">&#10008;</span></td>
-      <td><span class="table-cross">&#10008;</span></td>
-      <td><span class="table-cross">&#10008;</span></td>
-      <td><span class="table-cross">&#10008;</span></td>
-      <td><span class="table-cross">&#10008;</span></td>
-    </tr>
-    <tr>
-      <td>Slide numbering</td>
-      <td><span class="table-tick">&#10004;</span></td>
-      <td><span class="table-tick">&#10004;</span></td>
-      <td><span class="table-tick">&#10004;</span></td>
-      <td><span class="table-tick">&#10004;</span></td>
-      <td><span class="table-tick">&#10004;</span></td>
-      <td><span class="table-tick">&#10004;</span></td>
-    </tr>
-    <tr>
-      <td>Live Code Integration</td>
-      <td><span class="table-cross">&#10008;</span></td>
-      <td><span class="table-cross">&#10008;</span></td>
-      <td><span class="table-cross">&#10008;</span></td>
-      <td><span class="table-cross">&#10008;</span></td>
-      <td><span class="table-cross">&#10008;</span></td>
-      <td><span class="table-cross">&#10008;</span></td>
-    </tr>
-    <tr>
-      <td>Open-source</td>
-      <td><span class="table-tick">&#10004;</span></td>
-      <td><span class="table-tick">&#10004;</span></td>
-      <td><span class="table-tick">&#10004;</span></td>
-      <td><span class="table-tick">&#10004;</span></td>
-      <td><span class="table-tick">&#10004;</span></td>
-      <td><span class="table-tick">&#10004;</span></td>
-    </tr>
-    <tr>
-      <td>Licence</td>
-      <td>MIT</td>
-      <td>MIT</td>
-      <td>MIT</td>
-      <td>MIT</td>
-      <td>MIT</td>
-      <td>MIT</td>
-    </tr>
-    <tr>
-      <td>First Release</td>
-      <td>2010-10-25</td>
-      <td>2011-06-07</td>
-      <td>2011-06-24</td>
-      <td>2011-12-28</td>
-      <td>2012-12-13</td>
-      <td>2018-09</td>
-    </tr>
-    <tr>
-      <td>Last Update</td>
-      <td>2024-10-25</td>
-      <td>2024-05-15</td>
-      <td>2016-05-04</td>
-      <td>2024-04-26</td>
-      <td>2020-09-08</td>
-      <td>2024-06-27</td>
-    </tr>
-    <tr>
-      <td>Popularity (GitHub stars)</td>
-      <td>4.8k</td>
-      <td>67.4k</td>
-      <td>5.4k</td>
-      <td>37.6k</td>
-      <td>4.7k</td>
-      <td>1.7k</td>
-    </tr>
-    <tr>
-      <td>Swipe Navigation</td>
-      <td><span class="table-tick">&#10004;</span></td>
-      <td><span class="table-tick">&#10004;</span></td>
-      <td><span class="table-tick">&#10004;</span></td>
-      <td><span class="table-tick">&#10004;</span></td>
-      <td><span class="table-tick">&#10004;</span></td>
-      <td><span class="table-tick">&#10004;</span></td>
-    </tr>
-    <tr>
-      <td>Margin Navigation</td>
-      <td><span class="table-tick">&#10004;</span></td>
-      <td><span class="table-tick">&#10004;</span></td>
-      <td><span class="table-tick">&#10004;</span></td>
-      <td><span class="table-tick">&#10004;</span></td>
-      <td><span class="table-tick">&#10004;</span></td>
-      <td><span class="table-tick">&#10004;</span></td>
-    </tr>
-    <tr>
-      <td>Figure Zooming and Panning</td>
-      <td><span class="table-cross">&#10008;</span></td>
-      <td><span class="table-cross">&#10008;</span></td>
-      <td><span class="table-cross">&#10008;</span></td>
-      <td><span class="table-tick">&#10004;</span></td>
-      <td><span class="table-tick">&#10004;</span></td>
-      <td><span class="table-cross">&#10008;</span></td>
-    </tr>
-    <tr>
-      <td>Presenter mode</td>
-      <td><span class="table-tick">&#10004;</span></td>
-      <td><span class="table-tick">&#10004;</span></td>
-      <td><span class="table-tick">&#10004;</span></td>
-      <td><span class="table-tick">&#10004;</span></td>
-      <td><span class="table-tick">&#10004;</span></td>
-      <td><span class="table-tick">&#10004;</span></td>
+    <tr class="date">
+      <td class="text">Flagship Model Release Year</td>
+      <td>2024</td>
+      <td>2024</td>
+      <td>2024</td>
+      <td>2024</td>
+      <td>2024</td>
+      <td>2024</td>
+      <td>2024</td>
+      <td>2023</td>
+      <td>2023</td>
     </tr>
     </tbody>
   </table>
 </section>
 
--->
+
+
+
 
 
 
@@ -433,8 +355,8 @@ licence.</p>
 
 
 <section>
-  <h1>Responsive Tables</h1>
-  <table class="responsive-table">
+  <h1>Responsive Table without Filtering</h1>
+  <table class="rslidy-responsive-table rs-disable-sorting">
     <thead>
     <tr>
       <th scope="col">Feature</th>
@@ -612,6 +534,12 @@ licence.</p>
     </tbody>
   </table>
 </section>
+
+
+
+
+
+
 
 
 

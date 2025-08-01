@@ -73,6 +73,23 @@ function webpack() {
           raw: true
         })
       ]
+    },
+    {
+      output: {
+        filename: files.js,
+        library: 'Rslidy', // Name of the UMD library
+        libraryTarget: 'umd',
+        umdNamedDefine: true
+      },
+      mode: 'production',
+      devtool: 'source-map',
+      optimization: { minimize: false },
+      plugins: [
+        new wp.BannerPlugin({
+          banner: '// Rslidy version 2.0.0 UMD',
+          raw: true
+        })
+      ]
     }
   ];
 
@@ -94,7 +111,13 @@ function webpack() {
             extensions: ['.ts', '.js']
           }
         }))
-        .pipe(dest(paths.library + (config.output.library.type === 'module' ? 'esm' : 'cjs')))
+        .pipe(dest(paths.library +
+          (config.output.library?.type === 'module'
+            ? 'esm'
+            : config.output.library?.type === 'commonjs'
+              ? 'cjs'
+              : 'umd')
+        ))
     )
   );
 }
@@ -107,11 +130,18 @@ function minifyjs() {
       .pipe(header('// Rslidy version 2.0 ESM\n'))
       .pipe(rename({ suffix: '.min' }))
       .pipe(dest(paths.library + 'esm')),
+
     src(paths.library + 'cjs/**/*.js')
       .pipe(ujs())
       .pipe(header('// Rslidy version 2.0 CommonJS\n'))
       .pipe(rename({ suffix: '.min' }))
-      .pipe(dest(paths.library + 'cjs'))
+      .pipe(dest(paths.library + 'cjs')),
+
+    src(paths.library + 'umd/**/*.js')
+      .pipe(ujs())
+      .pipe(header('// Rslidy version 2.0 UMD\n'))
+      .pipe(rename({ suffix: '.min' }))
+      .pipe(dest(paths.library + 'umd'))
   ]);
 }
 

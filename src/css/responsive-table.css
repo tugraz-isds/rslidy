@@ -1,4 +1,4 @@
-.responsive-table {
+.rslidy-responsive-table {
  margin: 0 0 1em 0;
  border-collapse: separate;
  border-spacing: 0;
@@ -9,14 +9,13 @@
  overflow-x: auto;
  white-space: nowrap;
  display:block;
-
 }
 
 #table-container {
  overflow-x: auto;
 }
 
-.table-filter {
+.rslidy-table-filter {
  border: 0.0625em solid #ccc;
  border-radius: 0.25em;
  box-sizing: border-box;
@@ -26,39 +25,39 @@
  width: 89%;
 }
 
-.no-results {
+.rslidy-no-results {
  color: #888;
  font-size: 1.2em;
  margin-top: 1.25em;
  text-align: center;
 }
 
-.responsive-table tr:nth-child(odd) {
+.rslidy-responsive-table tr:nth-child(odd) {
  background-color: #fff;
 }
 
-.responsive-table tr:nth-child(2n) {
+.rslidy-responsive-table tr:nth-child(2n) {
  background-color: #f2f2f2;
 }
 
-.responsive-table td,
-.responsive-table th {
+.rslidy-responsive-table td,
+.rslidy-responsive-table th {
  border: 0.0625em solid #2b2b2b;
  padding: 0.5em;
 }
 
-.responsive-table th {
+.rslidy-responsive-table th {
  border-width: 0.0625em;
- background-color: #c0c0c0;
+ background-color: gainsboro;
  color: #000;
  cursor: pointer;
  position: relative;
  top: 0;
  z-index: 1;
- padding-left: 1.6em;
+ padding-left: 1.5em;
 }
 
-.responsive-table th:after {
+.rslidy-responsive-table th:after {
  content: "";
  position: absolute;
  right: 0.3125em;
@@ -66,74 +65,86 @@
  transform: translateY(-50%);
 }
 
-.responsive-table th.sorted-asc:before {
- content: " ▲";
+.rslidy-responsive-table th.sorted-asc:before {
+ content: " ↕";
+ font-size: 1.4em;
 }
 
-.responsive-table th.sorted-desc:before {
- content: " ▼";
+.rslidy-responsive-table th.sorted-desc:before {
+ content: " ↕";
+ font-size: 1.4em;
 }
 
-.responsive-table td {
+.rslidy-responsive-table.rs-disable-sorting th::before,
+.rslidy-responsive-table.rs-disable-sorting th.sorted-asc::before,
+.rslidy-responsive-table.rs-disable-sorting th.sorted-desc::before {
+ content: none !important;
+}
+.rslidy-responsive-table.rs-disable-sorting th {
+ cursor: auto;
+ padding-left: 0.5em;
+}
+
+.rslidy-responsive-table td {
  background-color: inherit;
 }
 
-.responsive-table td.text {
+.rslidy-responsive-table td.rslidy-text {
  text-align: left !important;
 }
 
-.responsive-table td:first-child {
+.rslidy-responsive-table td:first-child {
  text-align: left;
 }
 
-.responsive-table td.numeric,
-.responsive-table th.numeric {
+.rslidy-responsive-table td.rslidy-numeric,
+.rslidy-responsive-table th.rslidy-numeric {
  text-align: right;
 }
 
-.responsive-table tr.text td {
+.rslidy-responsive-table tr.rslidy-text td {
  text-align: left;
 }
+.rslidy-responsive-table td.rslidy-date {
+ text-align: left !important;
+}
 
-.responsive-table td.symbol,
-.responsive-table th.symbol {
+.rslidy-responsive-table td.rslidy-symbol,
+.rslidy-responsive-table th.rslidy-symbol {
  text-align: center;
 }
 
-.responsive-table tr.symbol td {
+.rslidy-responsive-table tr.rslidy-symbol td {
  text-align: center;
 }
 
-
-.responsive-table tr.numeric td {
+.rslidy-responsive-table tr.rslidy-numeric td {
  text-align: right;
 }
 
-.responsive-table th::before {
- content: "▲";
+.rslidy-responsive-table th::before {
+ content: "↕";
  position: absolute;
  left: 0.3125em;
- top: 1.08em;
+ font-size: 1.4em;
+ top: 0.7em;
  transform: translateY(-50%);
- color: #666; /* Grayed out (disabled) */
+ color: #666;
  transition: color 0.2s ease;
 }
 
-/* Sorted ascending: change color and arrow */
-.responsive-table th.sorted-asc::before {
- content: "▲";
- color: #000; /* Active arrow */
+.rslidy-responsive-table th.sorted-asc::before {
+ content: "↑";
+ color: #000;
 }
 
-/* Sorted descending: change arrow and color */
-.responsive-table th.sorted-desc::before {
- content: "▼";
- color: #000; /* Active arrow */
+.rslidy-responsive-table th.sorted-desc::before {
+ content: "↓";
+ color: #000;
 }
 
-/* Responsive Styling - handled under responsive-table now */
 @media screen and (max-width: 40em), print and (max-width: 40em) {
- .responsive-table {
+ .rslidy-responsive-table {
   align-items: center;
   display: flex;
   flex-direction: column;
@@ -143,22 +154,22 @@
   overflow-x: visible;
  }
 
- .responsive-table thead {
+ .rslidy-responsive-table thead {
   display: none;
  }
 
- .responsive-table tbody,
- .responsive-table td,
- .responsive-table tr {
+ .rslidy-responsive-table tbody,
+ .rslidy-responsive-table td,
+ .rslidy-responsive-table tr {
   display: block;
   width: 100%;
  }
 
- .responsive-table tr {
+ .rslidy-responsive-table tr {
   margin-bottom: 1em;
  }
 
- .responsive-table td {
+ .rslidy-responsive-table td {
   min-width: 15em;
   padding-left: 10%;
   position: relative;
@@ -166,7 +177,7 @@
   white-space: nowrap;
  }
 
- .responsive-table td:before {
+ .rslidy-responsive-table td:before {
   color: #000;
   content: attr(data-label);
   font-weight: 700;
@@ -176,46 +187,51 @@
   text-align: left;
  }
 
- .responsive-table td:first-of-type {
+ .rslidy-responsive-table td:first-of-type {
   background-color: #eaf1f5;
   color: #2b2b2b;
   font-weight: 400;
  }
 
- .responsive-table td.text {
-  text-align: right !important;;
+ .rslidy-responsive-table td.rslidy-text {
+  text-align: right !important;
+ }
+ .rslidy-responsive-table td.rslidy-date {
+  text-align: right !important;
  }
 
- .responsive-table th.text {
-  text-align: right !important;;
+ .rslidy-responsive-table th.rslidy-date {
+  text-align: right !important;
+ }
+ .rslidy-responsive-table th.rslidy-text {
+  text-align: right !important;
  }
 
- .responsive-table td.symbol,
- .responsive-table th.symbol {
+ .rslidy-responsive-table td.rslidy-symbol,
+ .rslidy-responsive-table th.rslidy-symbol {
   text-align: right;
  }
 
- .responsive-table tr.symbol > td {
+ .rslidy-responsive-table tr.rslidy-symbol > td {
   text-align: right;
  }
 
- .responsive-table td.numeric,
- .responsive-table th.numeric {
+ .rslidy-responsive-table td.rslidy-numeric,
+ .rslidy-responsive-table th.rslidy-numeric {
   text-align: right;
  }
 
- .responsive-table tr.text > td {
+ .rslidy-responsive-table tr.rslidy-text > td {
   text-align: right;
  }
 
- .responsive-table tr.numeric > td {
+ .rslidy-responsive-table tr.rslidy-numeric > td {
   text-align: right;
  }
 }
 
-/* Print-specific responsive rules */
 @media print and (max-width: 640px) {
- .responsive-table {
+ .rslidy-responsive-table {
   align-items: center !important;
   display: flex !important;
   flex-direction: column !important;
@@ -226,30 +242,31 @@
   overflow-x: visible !important;
  }
 
- .responsive-table thead {
+ .rslidy-responsive-table thead {
   display: none !important;
  }
- .responsive-table td.symbol,
- .responsive-table th.symbol {
+
+ .rslidy-responsive-table td.rslidy-symbol,
+ .rslidy-responsive-table th.rslidy-symbol {
   text-align: center !important;
  }
 
- .responsive-table tr.symbol > td {
+ .rslidy-responsive-table tr.rslidy-symbol > td {
   text-align: center !important;
  }
 
- .responsive-table tbody,
- .responsive-table td,
- .responsive-table tr {
+ .rslidy-responsive-table tbody,
+ .rslidy-responsive-table td,
+ .rslidy-responsive-table tr {
   display: block !important;
   width: 100% !important;
  }
 
- .responsive-table tr {
+ .rslidy-responsive-table tr {
   margin-bottom: 1em !important;
  }
 
- .responsive-table td {
+ .rslidy-responsive-table td {
   min-width: 15em !important;
   padding-left: 10% !important;
   position: relative !important;
@@ -257,7 +274,7 @@
   white-space: nowrap !important;
  }
 
- .responsive-table td:before {
+ .rslidy-responsive-table td:before {
   color: #000 !important;
   content: attr(data-label) !important;
   font-weight: 700 !important;
@@ -267,25 +284,25 @@
   text-align: left !important;
  }
 
- .responsive-table td:first-of-type {
+ .rslidy-responsive-table td:first-of-type {
   background-color: #eaf1f5 !important;
   color: #2b2b2b !important;
   font-weight: 400 !important;
  }
 
- .responsive-table td.text {
+ .rslidy-responsive-table td.rslidy-text {
   text-align: left !important;
  }
 
- .responsive-table tr.text > td {
+ .rslidy-responsive-table tr.rslidy-text > td {
   text-align: left;
  }
 
- .responsive-table td:first-child {
+ .rslidy-responsive-table td:first-child {
   text-align: right !important;
  }
 
- .responsive-table tr.numeric > td {
+ .rslidy-responsive-table tr.rslidy-numeric > td {
   text-align: right;
  }
 }

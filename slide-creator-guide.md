@@ -26,7 +26,7 @@ Rslidy supports responsive images that scale with the viewport. Use
 ```
 
 ## 2. Responsive Table
-Create responsive tables using the `responsive-table` class.
+Create responsive tables using the `rslidy-responsive-table` class.
 
 **Example ** (Comparison Table):
 ```html
@@ -59,32 +59,32 @@ The `data-label` values are automatically added via JavaScript assuming
 your table includes a proper `<thead>` with `<th scope="col">` headers. 
 You can also add a `<caption>` element for table descriptions.
 
-## 3. Multiple Columns
-Use the `columns` or `columns-even` class to create multi-column layouts.
+## 3. Two Columns
+Use the `columns-even` class and the classes `left-column` and `right-column` to 
+create two-column layouts.
 
 **Example**:
 ```html
 <section>
-  <h2>Gesture Support</h2>
+  <h1>Two-Columns Bullet Points</h1>
   <div class="columns-even">
     <div class="left-column">
-      <ul class="item-auto">
-        <li>Swipe.</li>
-        <li>Margin tap (similar to that of e-readers).</li>
-        <li>Tilt/Tip.</li>
-        <li>Shake.</li>
+      <ul>
+        <li>Example Bullet Point 1</li>
+        <li>Example Bullet Point 2</li>
+        <li>Example Bullet Point 3</li>
+        <li>Example Bullet Point 4</li>
+        <li>Example Bullet Point 5</li>
       </ul>
     </div>
     <div class="right-column">
-      <figure>
-        <div class="images">
-          <img src="images/tilt-tip-gestures.svg" alt="Tilt and tip gestures in Rslidy." />
-        </div>
-        <figcaption>
-          Tilt and tip gestures can be used for navigation.<br/>
-          <span class="credit">Illustration created by the author using Inkscape.</span>
-        </figcaption>
-      </figure>
+      <ul>
+        <li>Example Bullet Point 1</li>
+        <li>Example Bullet Point 2</li>
+        <li>Example Bullet Point 3</li>
+        <li>Example Bullet Point 4</li>
+        <li>Example Bullet Point 5</li>
+      </ul>
     </div>
   </div>
 </section>
@@ -187,8 +187,6 @@ Embed interactive content using `<script>` tags. Examples include visualisations
   </div>
 </section>
 ```
-- **Tip**: Include external scripts (e.g., `d3-hypertree.js`, `grouped-barchart.js`) and CSS files. Host on a server to load data files correctly. Use `type="module"` for ES modules.
-
 ## Additional Notes
 - **Slide Structure**: Define slides using `<section>` elements. Use `<div class="slide">` as an alternative.
 - **Dependencies**: Include `rslidy.min.css`, `rslidy.min.js`, and Prism.js for code highlighting in the `<head>`.
@@ -197,4 +195,4 @@ Embed interactive content using `<script>` tags. Examples include visualisations
   RespVis, review and adapt their CSS styling (e.g., d3-hypertree-light.css, respvis.css) to match your slide deck’s design and ensure compatibility with Rslidy’s layout.
 - **Testing**: Host slides on a server for features like live code that require data loading. Test responsiveness across devices.
 
-For more details, refer to the [Rslidy GitHub repository](https://github.com/tugraz-isds/rslidy).
+Back to the [Rslidy GitHub repository](https://github.com/tugraz-isds/rslidy).

@@ -42,52 +42,16 @@ can be seen at: https://tugraz-isds.github.io/rslidy/
 These examples showcase Rslidy’s features, design responsiveness, 
 and interactive elements in action.
 
-
-## 4 Installation and Setup
-
-### 4.1 Prerequisites
-- Node.js (version 16 or higher)
-- pnpm
-Installing pnpm using npm (recommended):
-```
-npm install -g pnpm
-```
-To install and build Rslidy from source, use the following command:
-```
-git clone "https://github.com/tugraz-isds/rslidy.git"
-```
-In the `rslidy/` folder, install the project dependencies with:
-```
-pnpm install
-```
-
-Then, build Rslidy with the command:
-```
-pnpm exec gulp build
-```
-The `rslidy/build` folder then contain Rslidy's main files, as
-well as some example presentations, which can be copied and adapted to
-create new slide decks.
-
-
-
-### 4.1 For Slide Viewers
-
-The Help Panel in a Rslidy presentation contains an overview of
-Rslidy's interface controls.
-
-
-
-### 4.2 For Slide Creators
+## 4 For Slide Creators
 
 #### How to create a Presentation
 
-The creation of a slide deck with Rslidy is done in a single HTML file. 
+The creation of a slide deck with Rslidy is done in a single HTML file.
 
-##### Structure of the HMTL File 
+##### Structure of the HMTL File
 
-To properly build the slide deck, the HTML file must contain a header 
-including rslidy.js and rslidy.css. Alternatively, the minimized versions, rslidy.min.js 
+To properly build the slide deck, the HTML file must contain a header
+including rslidy.js and rslidy.css. Alternatively, the minimized versions, rslidy.min.js
 and rslidy.min.css offer the same features in a compromised way and can be included instead.
 
 ```html
@@ -97,7 +61,7 @@ and rslidy.min.css offer the same features in a compromised way and can be inclu
 
 Rslidy is self-contained, there are no additional dependencies.
 
-Within the body of the document, all slides are created. Each slide is 
+Within the body of the document, all slides are created. Each slide is
 represented eighter by a `<section>` or a `<div class="slide">` element:
 
 ```html
@@ -121,13 +85,14 @@ A paragraph of text.
 
 ## CSS Variables
 
-Rslidy defines a set of CSS custom properties in 
+Rslidy defines a set of CSS custom properties in
 `rslidy/src/css/_variables.css`, enabling theming and customisation. These variables are grouped into global and component-specific categories.
 
 ### Global Variables
 
-- **Breakpoints**: `--large`, `--medium`, `--small`, `--tiny`, `--mini`, `--nano`, `--pico`
-- **Shared**: e.g. `--overview-width`, `--slide-input-width`
+- **Breakpoints**: `--rs-large`, `--rs-medium`, `--rs-small`, 
+  `--rs-tiny`, `--rs-mini`, `--rs-nano`, `--rs-pico`
+- **Shared**: e.g. `--rs-overview-width`, `--rs-slide-input-width`
 - **Toolbar**: Includes background, button, and progress bar styling variables
 - **Settings**: Colour options for sliders (on/off states)
 
@@ -139,8 +104,8 @@ Rslidy variables may be used globally or component-specifically via:
 
 ##### Lists
 
-To organise slides, bullet points are created as shown in the 
-snippet below. 
+To organise slides, bullet points are created as shown in the
+snippet below.
 
 ```html
 <section>
@@ -158,11 +123,11 @@ snippet below.
 To make list items appear one at a time, use the
 `<ul class="incremental">` instead of `<ul>`.
 
-##### Images 
+##### Images
 
 The inclusion of images or other graphical elements works just like in any other HTML file within slides using the standard HTML `<img>`
 element. The same counts for CSS style definitions. However, all CSS definitions must be defined outside the body.
-A possible inclusion of a picture with a CSS might look as shown below: 
+A possible inclusion of a picture with a CSS might look as shown below:
 
 ```html
 <style>
@@ -206,11 +171,11 @@ The desired transition type is added to the body element:
 <body class="unanimated">
 ```
 
-#### How to Share an Rslidy Presenation? 
+#### How to Share an Rslidy Presenation?
 
-The easiest way of sharing a slide deck created with RSlidy is by zipping the whole folder. However, when simplifying, 
+The easiest way of sharing a slide deck created with RSlidy is by zipping the whole folder. However, when simplifying,
 the zipped folder must contain under all circumstances the html file of the slide deck, the file rslidy.js the file rslidy.css
-as well as all included graphics. If rslidy.min.css or rslidy.min.js are used for the presentation, they must be included instead 
+as well as all included graphics. If rslidy.min.css or rslidy.min.js are used for the presentation, they must be included instead
 or additionally to the unminimized version of the files. Sharing only the html file on its own will not be sufficient!
 
 
@@ -233,8 +198,39 @@ JavaScript, as shown below:
 
 For more information and various use cases of RSlidy elements, have a look at the [Slide Creator Guide](slide-creator-guide.md).
 
+### 4.1 For Slide Viewers
 
-### 4.3 For Developers
+The Help Panel in a Rslidy presentation contains an overview of
+Rslidy's interface controls.
+
+## 5 Installation and Setup
+
+### 5.1 Prerequisites
+- Node.js (version 16 or higher)
+- pnpm
+Installing pnpm using npm (recommended):
+```
+npm install -g pnpm
+```
+To install and build Rslidy from source, use the following command:
+```
+git clone "https://github.com/tugraz-isds/rslidy.git"
+```
+In the `rslidy/` folder, install the project dependencies with:
+```
+pnpm install
+```
+
+Then, build Rslidy with the command:
+```
+pnpm exec gulp build
+```
+The `rslidy/build` folder then contain Rslidy's main files, as
+well as some example presentations, which can be copied and adapted to
+create new slide decks.
+
+
+### 5.2 For Developers
 
 
 #### The Build System
@@ -278,7 +274,7 @@ optimised SVG icon strings.
 
 
 
-## 5 Rslidy Team
+## 6 Rslidy Team
 
 The following people have contributed to Rslidy:
 

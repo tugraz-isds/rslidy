@@ -147,9 +147,9 @@ body {
   }
 }
 
-@media only all and (max-width: var(--large)) {
+@media only all and (max-width: var(--rs-large)) {
   .rslidy-overview {
-    width: var(--overview-width-small-screen) !important;
+    width: var(--rs-overview-width-small-screen) !important;
   }
 }
 
