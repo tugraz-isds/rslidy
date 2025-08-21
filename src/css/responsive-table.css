@@ -123,24 +123,28 @@
 }
 
 .rslidy-responsive-table th::before {
- content: "↕";
+ content: "";
  position: absolute;
  left: 0.3125em;
- font-size: 1.4em;
- top: 0.7em;
+ top: 50%;
  transform: translateY(-50%);
- color: #666;
- transition: color 0.2s ease;
+ width: 1em;
+ height: 1em;
+ background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHNoYXBlLXJlbmRlcmluZz0iZ2VvbWV0cmljUHJlY2lzaW9uIiB0ZXh0LXJlbmRlcmluZz0iZ2VvbWV0cmljUHJlY2lzaW9uIiBpbWFnZS1yZW5kZXJpbmc9Im9wdGltaXplUXVhbGl0eSIgZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIHZpZXdCb3g9IjAgMCAzMjAgNTEyLjI5Ij48cGF0aCBmaWxsLXJ1bGU9Im5vbnplcm8iIGQ9Ik01MS40OSAxNjkuNDFoMjE4LjE4TDE2My4zOSA0MC45NiA1MS40OSAxNjkuNDF6TTE2LjEgMzEwLjY2aDI4Ny43OWM4LjkgMCAxNi4xMSA3LjIxIDE2LjExIDE2LjExIDAgNC4xOC0xLjU5IDcuOTgtNC4yIDEwLjg1TDE3Ni4xIDUwNi40NmMtNS42NiA2Ljg1LTE1LjgyIDcuOC0yMi42NiAyLjE0bC0xLjg4LTEuODNMMy45NiAzMzcuMzRjLTUuODQtNi43LTUuMTQtMTYuODggMS41Ny0yMi43MWExNi4wOSAxNi4wOSAwIDAgMSAxMC41Ny0zLjk3em0yNTMuNTcgMzIuMjJINTEuNDlsMTExLjkgMTI4LjQ1IDEwNi4yOC0xMjguNDV6bTM0LjIyLTE0MS4yNUgxNi4xYy0zLjc1IDAtNy41Mi0xLjMxLTEwLjU3LTMuOTYtNi43MS01Ljg0LTcuNDEtMTYuMDEtMS41Ny0yMi43MkwxNTEuNTUgNS41MmwxLjg5LTEuODNjNi44NC01LjY2IDE3LTQuNyAyMi42NiAyLjE0bDEzOS43IDE2OC44NGMyLjYxIDIuODcgNC4yIDYuNjggNC4yIDEwLjg1IDAgOC45LTcuMjEgMTYuMTEtMTYuMTEgMTYuMTF6Ii8+Cjwvc3ZnPg==');
+ background-size: contain;
+ background-repeat: no-repeat;
+ opacity: 0.6;
+ transition: opacity 0.2s ease;
 }
 
 .rslidy-responsive-table th.sorted-asc::before {
- content: "↑";
- color: #000;
+ background-image: url('data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMTAwIDEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnL3N2ZyI+PHBvbHlnb24gcG9pbnRzPSI1MCwwIDEsNDAgOTksNDAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iYmxhY2siIHN0cm9rZS13aWR0aD0iMTAiLz48L3N2Zz4=');
+ opacity: 1;
 }
 
 .rslidy-responsive-table th.sorted-desc::before {
- content: "↓";
- color: #000;
+ background-image: url('data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMTAwIDEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnL3N2ZyI+PHBvbHlnb24gcG9pbnRzPSI1MCwxMDAgMSw2MCA5OSw2MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJibGFjayIgc3Ryb2tlLXdpZHRoPSIxMCIvPjwvc3ZnPg==');
+ opacity: 1;
 }
 
 @media screen and (max-width: 40em), print and (max-width: 40em) {
