@@ -13,7 +13,7 @@
 <script type="module" src="rslidy.min.js"></script>
 
 <!-- for custom css sheets-->
-<link rel="stylesheet" href="slides.css"/>
+<link rel="stylesheet" href="lauyout-slides.css"/>
 </head>
 <body>
 
@@ -60,7 +60,7 @@ This work is placed under a Creative Commons Attribution 4.0 International
 <h2>Single Image Layout</h2>
 
 <figure>
-<div class="large-images">
+<div class="rslidy-large-images">
 <img src="images/image_viewer_example_slide.png"
      alt="Rslidy Image Viewer"/>
 </div>
@@ -89,7 +89,7 @@ Pan and zoom via mouse, keyboard, or on-screen controls.<br/>
 <section>
   <h2>Single Video Layout</h2>
   <figure>
-  <div class="large-images">
+  <div class="rslidy-large-images">
   <video controls autoplay muted loop poster="images/all-slides.gif">
   <source src="images/image-viewer.mp4" type="video/mp4"/>
   <img src="images/image-viewer.gif"
@@ -114,8 +114,8 @@ Pan and zoom via mouse, keyboard, or on-screen controls.<br/>
 
 <section>
   <h1>Two-Columns Bullet Points</h1>
-  <div class="columns-even">
-  <div class="left-column">
+  <div class="rslidy-columns-even">
+  <div class="rslidy-left-column">
   <ul>
     <li>Example Bullet Point 1</li>
     <li>Example Bullet Point 2</li>
@@ -124,7 +124,7 @@ Pan and zoom via mouse, keyboard, or on-screen controls.<br/>
     <li>Example Bullet Point 5</li>
   </ul>
   </div>
-  <div class="right-column">
+  <div class="rslidy-right-column">
   <ul>
     <li>Example Bullet Point 1</li>
     <li>Example Bullet Point 2</li>
@@ -145,8 +145,8 @@ Pan and zoom via mouse, keyboard, or on-screen controls.<br/>
 
 <section>
 <h1>Bullet Points Left - Image Right</h1>
-<div class="columns-even">
-  <div class="left-column">
+<div class="rslidy-columns-even">
+  <div class="rslidy-left-column">
   <ul>
     <li>Example Bullet Point 1</li>
     <li>Example Bullet Point 2</li>
@@ -155,7 +155,7 @@ Pan and zoom via mouse, keyboard, or on-screen controls.<br/>
     <li>Example Bullet Point 5</li>
   </ul>
   </div>
-  <div class="right-column">
+  <div class="rslidy-right-column">
   <figure>
   <div class="images">
   <img src="images/rslidy_example_slide.png"
@@ -177,8 +177,147 @@ Pan and zoom via mouse, keyboard, or on-screen controls.<br/>
 
 
 <section>
-  <h1>Responsive Tables</h1>
-  <table class="responsive-table">
+  <h1>Responsive Table with Filtering: Smartphone Features Comparison (2025)</h1>
+  <table class="rslidy-responsive-table">
+    <thead>
+    <tr>
+      <th scope="col">Smartphone</th>
+      <th scope="col">Operating System</th>
+      <th scope="col">Display Size (inch)</th>
+      <th scope="col">Battery (mAh)</th>
+      <th scope="col">RAM (GB)</th>
+      <th scope="col">Storage (GB)</th>
+      <th scope="col">Price (USD)</th>
+      <th scope="col">Release Date</th>
+      <th scope="col">Camera Resolution (MP)</th>
+      <th scope="col">Weight (g)</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr class="text">
+      <td class="text">Samsung Galaxy</td>
+      <td>Android</td>
+      <td>6.8</td>
+      <td>5000</td>
+      <td>12</td>
+      <td>512</td>
+      <td>1199</td>
+      <td>2025-03-15</td>
+      <td>200</td>
+      <td>230</td>
+    </tr>
+    <tr class="text">
+      <td class="text">iPhone</td>
+      <td>iOS</td>
+      <td>6.7</td>
+      <td>4500</td>
+      <td>8</td>
+      <td>512</td>
+      <td>1399</td>
+      <td>2025-09-22</td>
+      <td>120</td>
+      <td>240</td>
+    </tr>
+    <tr class="text">
+      <td class="text">Xiaomi</td>
+      <td>Android</td>
+      <td>6.7</td>
+      <td>4800</td>
+      <td>12</td>
+      <td>256</td>
+      <td>899</td>
+      <td>2025-02-28</td>
+      <td>200</td>
+      <td>221</td>
+    </tr>
+    <tr class="text">
+      <td class="text">Oppo Find</td>
+      <td>Android</td>
+      <td>6.7</td>
+      <td>4600</td>
+      <td>12</td>
+      <td>256</td>
+      <td>999</td>
+      <td>2025-05-10</td>
+      <td>150</td>
+      <td>225</td>
+    </tr>
+    <tr class="text">
+      <td class="text">Vivo</td>
+      <td>Android</td>
+      <td>6.8</td>
+      <td>4700</td>
+      <td>12</td>
+      <td>512</td>
+      <td>849</td>
+      <td>2025-07-05</td>
+      <td>108</td>
+      <td>223</td>
+    </tr>
+    <tr class="text">
+      <td class="text">Realme</td>
+      <td>Android</td>
+      <td>6.7</td>
+      <td>4500</td>
+      <td>12</td>
+      <td>256</td>
+      <td>749</td>
+      <td>2025-04-18</td>
+      <td>100</td>
+      <td>220</td>
+    </tr>
+    <tr class="text">
+      <td class="text">Huawei</td>
+      <td>HarmonyOS</td>
+      <td>6.8</td>
+      <td>5000</td>
+      <td>12</td>
+      <td>512</td>
+      <td>1099</td>
+      <td>2025-06-01</td>
+      <td>200</td>
+      <td>240</td>
+    </tr>
+    <tr class="text">
+      <td class="text">Motorola</td>
+      <td>Android</td>
+      <td>6.5</td>
+      <td>4400</td>
+      <td>8</td>
+      <td>256</td>
+      <td>699</td>
+      <td>2025-08-12</td>
+      <td>40</td>
+      <td>210</td>
+    </tr>
+    <tr class="text">
+      <td class="text">Google Pixel</td>
+      <td>Android</td>
+      <td>6.4</td>
+      <td>4350</td>
+      <td>8</td>
+      <td>256</td>
+      <td>799</td>
+      <td>2025-01-30</td>
+      <td>50</td>
+      <td>50</td>
+    </tr>
+    </tbody>
+  </table>
+</section>
+
+
+
+
+
+
+
+
+
+
+<section>
+  <h1>Responsive Table without Filtering</h1>
+  <table class="rslidy-responsive-table rslidy-disable-sorting">
     <thead>
     <tr>
       <th scope="col">Feature</th>
@@ -191,8 +330,8 @@ Pan and zoom via mouse, keyboard, or on-screen controls.<br/>
     </tr>
     </thead>
     <tbody>
-    <tr class="text">
-      <td>Collaborative</td>
+    <tr class="symbol">
+      <td class="text">Collaborative</td>
       <td><span class="table-cross">&#10008;</span></td>
       <td><span class="table-cross">&#10008;</span></td>
       <td><span class="table-cross">&#10008;</span></td>
@@ -200,8 +339,8 @@ Pan and zoom via mouse, keyboard, or on-screen controls.<br/>
       <td><span class="table-cross">&#10008;</span></td>
       <td><span class="table-cross">&#10008;</span></td>
     </tr>
-    <tr class="text">
-      <td>SVG Inclusion</td>
+    <tr class="symbol">
+      <td class="text">SVG Inclusion</td>
       <td><span class="table-tick">&#10004;</span></td>
       <td><span class="table-tick">&#10004;</span></td>
       <td><span class="table-tick">&#10004;</span></td>
@@ -209,8 +348,8 @@ Pan and zoom via mouse, keyboard, or on-screen controls.<br/>
       <td><span class="table-tick">&#10004;</span></td>
       <td><span class="table-tick">&#10004;</span></td>
     </tr>
-    <tr class="text">
-      <td>Globally Change Bullet Spacing</td>
+    <tr class="symbol">
+      <td class="text">Globally Change Bullet Spacing</td>
       <td><span class="table-tick">&#10004;</span></td>
       <td><span class="table-tick">&#10004;</span></td>
       <td><span class="table-tick">&#10004;</span></td>
@@ -218,8 +357,8 @@ Pan and zoom via mouse, keyboard, or on-screen controls.<br/>
       <td><span class="table-tick">&#10004;</span></td>
       <td><span class="table-tick">&#10004;</span></td>
     </tr>
-    <tr class="text">
-      <td>Globally Change Bullet Indentation</td>
+    <tr class="symbol">
+      <td class="text">Change Bullet Indentation</td>
       <td><span class="table-tick">&#10004;</span></td>
       <td><span class="table-tick">&#10004;</span></td>
       <td><span class="table-tick">&#10004;</span></td>
@@ -227,8 +366,8 @@ Pan and zoom via mouse, keyboard, or on-screen controls.<br/>
       <td><span class="table-tick">&#10004;</span></td>
       <td><span class="table-tick">&#10004;</span></td>
     </tr>
-    <tr class="text">
-      <td>Export as PDF</td>
+    <tr class="symbol">
+      <td class="text">Export as PDF</td>
       <td><span class="table-tick">&#10004;</span></td>
       <td><span class="table-tick">&#10004;</span></td>
       <td><span class="table-cross">&#10008;</span></td>
@@ -236,8 +375,8 @@ Pan and zoom via mouse, keyboard, or on-screen controls.<br/>
       <td><span class="table-tick">&#10004;</span></td>
       <td><span class="table-cross">&#10008;</span></td>
     </tr>
-    <tr class="text">
-      <td>Export as HTML</td>
+    <tr class="symbol">
+      <td class="text">Export as HTML</td>
       <td><span class="table-tick">&#10004;</span></td>
       <td><span class="table-tick">&#10004;</span></td>
       <td><span class="table-tick">&#10004;</span></td>
@@ -245,8 +384,8 @@ Pan and zoom via mouse, keyboard, or on-screen controls.<br/>
       <td><span class="table-tick">&#10004;</span></td>
       <td><span class="table-tick">&#10004;</span></td>
     </tr>
-    <tr class="text">
-      <td>Export as PowerPoint</td>
+    <tr class="symbol">
+      <td class="text">Export as PowerPoint</td>
       <td><span class="table-cross">&#10008;</span></td>
       <td><span class="table-cross">&#10008;</span></td>
       <td><span class="table-cross">&#10008;</span></td>
@@ -254,8 +393,8 @@ Pan and zoom via mouse, keyboard, or on-screen controls.<br/>
       <td><span class="table-cross">&#10008;</span></td>
       <td><span class="table-cross">&#10008;</span></td>
     </tr>
-    <tr class="text">
-      <td>Slide numbering</td>
+    <tr class="symbol">
+      <td class="text">Slide numbering</td>
       <td><span class="table-tick">&#10004;</span></td>
       <td><span class="table-tick">&#10004;</span></td>
       <td><span class="table-tick">&#10004;</span></td>
@@ -263,8 +402,8 @@ Pan and zoom via mouse, keyboard, or on-screen controls.<br/>
       <td><span class="table-tick">&#10004;</span></td>
       <td><span class="table-tick">&#10004;</span></td>
     </tr>
-    <tr class="text">
-      <td>Live Code Integration</td>
+    <tr class="symbol">
+      <td class="text">Live Code Integration</td>
       <td><span class="table-cross">&#10008;</span></td>
       <td><span class="table-cross">&#10008;</span></td>
       <td><span class="table-cross">&#10008;</span></td>
@@ -272,8 +411,8 @@ Pan and zoom via mouse, keyboard, or on-screen controls.<br/>
       <td><span class="table-cross">&#10008;</span></td>
       <td><span class="table-cross">&#10008;</span></td>
     </tr>
-    <tr class="text">
-      <td>Open-source</td>
+    <tr class="symbol">
+      <td class="text">Open-source</td>
       <td><span class="table-tick">&#10004;</span></td>
       <td><span class="table-tick">&#10004;</span></td>
       <td><span class="table-tick">&#10004;</span></td>
@@ -290,8 +429,8 @@ Pan and zoom via mouse, keyboard, or on-screen controls.<br/>
       <td>MIT</td>
       <td>MIT</td>
     </tr>
-    <tr class="text">
-      <td>First Release</td>
+    <tr class="numeric">
+      <td class="text">First Release</td>
       <td>2010-10-25</td>
       <td>2011-06-07</td>
       <td>2011-06-24</td>
@@ -299,8 +438,8 @@ Pan and zoom via mouse, keyboard, or on-screen controls.<br/>
       <td>2012-12-13</td>
       <td>2018-09</td>
     </tr>
-    <tr class="text">
-      <td>Last Update</td>
+    <tr class="numeric">
+      <td class="text">Last Update</td>
       <td>2024-10-25</td>
       <td>2024-05-15</td>
       <td>2016-05-04</td>
@@ -308,26 +447,17 @@ Pan and zoom via mouse, keyboard, or on-screen controls.<br/>
       <td>2020-09-08</td>
       <td>2024-06-27</td>
     </tr>
-    <tr class="text">
-      <td>Popularity (GitHub stars)</td>
-      <td>4.8k</td>
-      <td>67.4k</td>
-      <td>5.4k</td>
-      <td>37.6k</td>
-      <td>4.7k</td>
-      <td>1.7k</td>
+    <tr class="numeric">
+      <td class="text">Popularity (GitHub stars)</td>
+      <td>4,800</td>
+      <td>67,400</td>
+      <td>5,400</td>
+      <td>37,600</td>
+      <td>4,700</td>
+      <td>1,700</td>
     </tr>
-    <tr class="text">
-      <td>Swipe Navigation</td>
-      <td><span class="table-tick">&#10004;</span></td>
-      <td><span class="table-tick">&#10004;</span></td>
-      <td><span class="table-tick">&#10004;</span></td>
-      <td><span class="table-tick">&#10004;</span></td>
-      <td><span class="table-tick">&#10004;</span></td>
-      <td><span class="table-tick">&#10004;</span></td>
-    </tr>
-    <tr class="text">
-      <td>Margin Navigation</td>
+    <tr class="symbol">
+      <td class="text">Swipe Navigation</td>
       <td><span class="table-tick">&#10004;</span></td>
       <td><span class="table-tick">&#10004;</span></td>
       <td><span class="table-tick">&#10004;</span></td>
@@ -335,8 +465,17 @@ Pan and zoom via mouse, keyboard, or on-screen controls.<br/>
       <td><span class="table-tick">&#10004;</span></td>
       <td><span class="table-tick">&#10004;</span></td>
     </tr>
-    <tr class="text">
-      <td>Figure Zooming and Panning</td>
+    <tr class="symbol">
+      <td class="text">Margin Navigation</td>
+      <td><span class="table-tick">&#10004;</span></td>
+      <td><span class="table-tick">&#10004;</span></td>
+      <td><span class="table-tick">&#10004;</span></td>
+      <td><span class="table-tick">&#10004;</span></td>
+      <td><span class="table-tick">&#10004;</span></td>
+      <td><span class="table-tick">&#10004;</span></td>
+    </tr>
+    <tr class="symbol">
+      <td class="text">Figure Zooming and Panning</td>
       <td><span class="table-cross">&#10008;</span></td>
       <td><span class="table-cross">&#10008;</span></td>
       <td><span class="table-cross">&#10008;</span></td>
@@ -344,8 +483,8 @@ Pan and zoom via mouse, keyboard, or on-screen controls.<br/>
       <td><span class="table-tick">&#10004;</span></td>
       <td><span class="table-cross">&#10008;</span></td>
     </tr>
-    <tr class="text">
-      <td>Presenter mode</td>
+    <tr class="symbol">
+      <td class="text">Presenter mode</td>
       <td><span class="table-tick">&#10004;</span></td>
       <td><span class="table-tick">&#10004;</span></td>
       <td><span class="table-tick">&#10004;</span></td>
@@ -356,6 +495,9 @@ Pan and zoom via mouse, keyboard, or on-screen controls.<br/>
     </tbody>
   </table>
 </section>
+
+
+
 
 
 </body>
