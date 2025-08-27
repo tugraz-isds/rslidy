@@ -147,9 +147,9 @@ body {
   }
 }
 
-@media only all and (max-width: var(--rs-large)) {
+@media only all and (max-width: var(--rslidy-large)) {
   .rslidy-overview {
-    width: var(--rs-overview-width-small-screen) !important;
+    width: var(--rslidy-overview-width-small-screen) !important;
   }
 }
 

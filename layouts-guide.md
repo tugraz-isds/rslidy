@@ -6,14 +6,14 @@ columns, source code highlighting, and live code integration.
 
 ## 1. Responsive Images
 Rslidy supports responsive images that scale with the viewport. Use 
-`<img>` tags within a `<figure>` element and apply classes like `large-images` for styling.
+`<img>` tags within a `<figure>` element and apply classes like `rslidy-large-images` for styling.
 
 **Example**:
 ```html
 <section>
   <h2>Image Viewer</h2>
   <figure>
-    <div class="large-images">
+    <div class="rslidy-rslidy-large-images">
       <img src="images/image_viewer_example_slide.png" alt="Rslidy Image Viewer"/>
     </div>
     <figcaption>
@@ -32,7 +32,7 @@ Create responsive tables using the `rslidy-responsive-table` class.
 ```html
 <section>
   <h1>Responsive Tables with CSS Styling</h1>
-    <table class="responsive-table squishing stacking">
+    <table class="rslidy-responsive-table">
       <thead>
         <tr>
           <th scope="col">Feature</th>
@@ -59,16 +59,20 @@ The `data-label` values are automatically added via JavaScript assuming
 your table includes a proper `<thead>` with `<th scope="col">` headers. 
 You can also add a `<caption>` element for table descriptions.
 
+Adding the class `rslidy-disable-sorting` to 
+`rslidy-responsive-table` disables the sorting feature.
+
 ## 3. Two Columns
-Use the `columns-even` class and the classes `left-column` and `right-column` to 
+Use the `rslidy-rslidy-columns-even` class and the classes 
+`rslidy-rslidy-left-column` and `rslidy-rslidy-right-column` to 
 create two-column layouts.
 
 **Example**:
 ```html
 <section>
   <h1>Two-Columns Bullet Points</h1>
-  <div class="columns-even">
-    <div class="left-column">
+  <div class="rslidy-rslidy-columns-even">
+    <div class="rslidy-rslidy-left-column">
       <ul>
         <li>Example Bullet Point 1</li>
         <li>Example Bullet Point 2</li>
@@ -77,7 +81,7 @@ create two-column layouts.
         <li>Example Bullet Point 5</li>
       </ul>
     </div>
-    <div class="right-column">
+    <div class="rslidy-right-column">
       <ul>
         <li>Example Bullet Point 1</li>
         <li>Example Bullet Point 2</li>

@@ -1,5 +1,5 @@
 .rslidy-overview {
-  width: var(--rs-overview-width);
+  width: var(--rslidy-overview-width);
   height: 100%;
   position: fixed;
   flex: 0 0 auto;
@@ -75,7 +75,7 @@
 }
 
 .rslidy-slide-link:hover {
-  background-color: var(--rs-button-hover-color);
+  background-color: var(--rslidy-button-hover-color);
 }
 
 .rslidy-thumbnail-caption {

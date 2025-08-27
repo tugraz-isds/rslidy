@@ -296,19 +296,19 @@ figure.gallery {
   gap: 1em;
 }
 
-.columns-even {
+.rslidy-columns-even {
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
   gap: 2em;
 }
-.left-column {
+.rslidy-left-column {
   flex: 1;
   display: flex;
   flex-direction: column;
   gap: 0.5em;
 }
-.right-column {
+.rslidy-right-column {
   flex: 1;
   display: flex;
   flex-direction: column;

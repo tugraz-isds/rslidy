@@ -42,6 +42,30 @@ can be seen at: https://tugraz-isds.github.io/rslidy/
 These examples showcase Rslidy’s features, design responsiveness, 
 and interactive elements in action.
 
+Examples can also be launched locally using bun.
+To launch any Rslidy example presentation locally:
+### Install bun globally via npm if you don't already have it:
+```
+npm install -g bun
+
+```
+### Run the bun script with the example you want to create as a flag
+```
+bun run create-executable.js --example rslidy
+```
+
+### With short flags
+```
+bun run create-executable.js -e rslidy
+```
+
+### With custom output name
+```
+bun run create-executable.js -e rslidy -o MyPresentation
+```
+This creates a "example.exe" file in the folder "executables" which can 
+then be launched locally.
+
 ## 4 For Slide Creators
 
 #### How to create a Presentation
@@ -90,9 +114,9 @@ Rslidy defines a set of CSS custom properties in
 
 ### Global Variables
 
-- **Breakpoints**: `--rs-large`, `--rs-medium`, `--rs-small`, 
-  `--rs-tiny`, `--rs-mini`, `--rs-nano`, `--rs-pico`
-- **Shared**: e.g. `--rs-overview-width`, `--rs-slide-input-width`
+- **Breakpoints**: `--rslidy-large`, `--rslidy-medium`, `--rslidy-small`, 
+  `--rslidy-tiny`, `--rslidy-mini`, `--rslidy-nano`, `--rslidy-pico`
+- **Shared**: e.g. `--rslidy-overview-width`, `--rslidy-slide-input-width`
 - **Toolbar**: Includes background, button, and progress bar styling variables
 - **Settings**: Colour options for sliders (on/off states)
 
@@ -196,7 +220,8 @@ JavaScript, as shown below:
 </script>
 ```
 
-For more information and various use cases of RSlidy elements, have a look at the [Slide Creator Guide](slide-creator-guide.md).
+For more information and various use cases of RSlidy elements, have 
+a look at the [Layout Guide](layouts-guide.md).
 
 ### 4.1 For Slide Viewers
 

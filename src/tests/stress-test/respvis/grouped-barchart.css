@@ -12,7 +12,7 @@
     [data-style=categorical-1] { --color-categorical-1: #e23209; }
     [data-style=categorical-2] { --color-categorical-2: #539322; }
     .toolbar {
-      --rs-toolbar-bg-color: none;
+      --rslidy-toolbar-bg-color: none;
     }
   }
   .legend {

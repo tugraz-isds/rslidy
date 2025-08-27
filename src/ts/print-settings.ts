@@ -219,11 +219,11 @@ export class PrintSettingsComponent {
         text-align: right !important;
       }
 
-      .columns-even {
+      .rslidy-columns-even {
         flex-direction: column !important;
       }
 
-      .columns-even > * {
+      .rslidy-columns-even > * {
         width: 100% !important;
       }
     }

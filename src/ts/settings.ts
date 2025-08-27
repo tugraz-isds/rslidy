@@ -130,7 +130,7 @@ export class SettingsComponent {
     // Start in night mode if set or user prefers it
     // Currently low light mode is broken in firefox mobile
     // filter:invert() causes the page to overflow
-    // add "|| window.matchMedia("(prefers-color-scheme: dark)").matches"
+    // add "|| window.matchMedia("(preferslidy-color-scheme: dark)").matches"
     // to auto-enable low light mode once its fixed
     if (window.rslidy.start_in_low_light_mode) {
       var lowlightbtn = (<HTMLInputElement>document.getElementById(
@@ -255,66 +255,115 @@ export class SettingsComponent {
     const tables = document.querySelectorAll("table.rslidy-responsive-table");
 
     const normalize = (text: string) => {
+      text = text.trim();
+
+      // Only treat as number if the entire string is numeric
+      if (/^-?\d+(\.\d+)?$/.test(text)) {
+        return parseFloat(text);
+      }
+
+      // Tick/cross
       if (text.includes("✔")) return 1;
       if (text.includes("✘")) return 0;
-      if (!isNaN(Date.parse(text))) return new Date(text).getTime();
-      return parseFloat(text.replace(/[^\d.-]/g, "")) || text.toLowerCase();
+
+      // Date
+      const timestamp = Date.parse(text);
+      if (!isNaN(timestamp)) return timestamp;
+
+      // Default: string
+      return text.toLowerCase();
     };
 
     tables.forEach((table) => {
-      if (table.classList.contains("rs-disable-sorting")) return;
+      if (table.classList.contains("rslidy-disable-sorting")) return;
 
       const headers = table.querySelectorAll("th");
       const tbody = table.querySelector("tbody");
       if (!tbody) return;
 
-      // 🔒 Save original row order
       const originalRows = Array.from(tbody.querySelectorAll("tr"));
+      let currentSort = { column: -1, direction: 'none' };
 
       headers.forEach((header, columnIndex) => {
+        header.style.cursor = 'pointer';
+        header.title = 'Click to sort';
+
         header.addEventListener("click", () => {
-          const currentState = header.classList.contains("sorted-asc")
-            ? "asc"
-            : header.classList.contains("sorted-desc")
-              ? "desc"
-              : "none";
-
-          // Clear sort classes from all headers
-          headers.forEach(h => h.classList.remove("sorted-asc", "sorted-desc"));
-
-          if (currentState === "none") {
-            // 1st click → Ascending
-            header.classList.add("sorted-asc");
-            sortTable("asc");
-          } else if (currentState === "asc") {
-            // 2nd click → Descending
-            header.classList.add("sorted-desc");
-            sortTable("desc");
-          } else {
-            // 3rd click → Reset to original
-            originalRows.forEach(row => tbody.appendChild(row));
+          // Debug specific column
+          if (columnIndex === 8) { // Camera column
+            console.log("=== SORTING CAMERA COLUMN ===");
           }
 
-          function sortTable(direction: "asc" | "desc") {
-            const rows = Array.from(tbody.querySelectorAll("tr"));
+          headers.forEach(h => h.classList.remove("sorted-asc", "sorted-desc"));
 
-            rows.sort((a, b) => {
-              const cellA = a.children[columnIndex].textContent?.trim() || "";
-              const cellB = b.children[columnIndex].textContent?.trim() || "";
+          let newDirection: "asc" | "desc" | "none";
+
+          if (currentSort.column !== columnIndex) {
+            newDirection = "asc";
+          } else {
+            if (currentSort.direction === "none") {
+              newDirection = "asc";
+            } else if (currentSort.direction === "asc") {
+              newDirection = "desc";
+            } else {
+              newDirection = "none";
+            }
+          }
+
+          currentSort = { column: columnIndex, direction: newDirection };
+
+          if (newDirection === "none") {
+            originalRows.forEach(row => tbody.appendChild(row));
+          } else {
+            header.classList.add(newDirection === "asc" ? "sorted-asc" : "sorted-desc");
+
+            const currentRows = Array.from(tbody.querySelectorAll("tr"));
+
+            currentRows.sort((a, b) => {
+              const cellA = a.children[columnIndex].textContent || "";
+              const cellB = b.children[columnIndex].textContent || "";
 
               const valA = normalize(cellA);
               const valB = normalize(cellB);
 
+              // Debug the comparison
+              if (columnIndex === 8) {
+                console.log(`Comparing: "${cellA}"->${valA} (${typeof valA}) vs "${cellB}"->${valB} (${typeof valB})`);
+              }
+
+              // CRITICAL FIX: Ensure both values are treated consistently
               if (typeof valA === "number" && typeof valB === "number") {
-                return direction === "asc" ? valA - valB : valB - valA;
-              } else {
-                return direction === "asc"
-                  ? valA.toString().localeCompare(valB.toString())
-                  : valB.toString().localeCompare(valA.toString());
+                const result = newDirection === "asc" ? valA - valB : valB - valA;
+                if (columnIndex === 8) console.log(`Numeric comparison result: ${result}`);
+                return result;
+              }
+              // If one is number and one is string, convert both to same type
+              else if (typeof valA === "number" && typeof valB === "string") {
+                const result = newDirection === "asc"
+                  ? valA.toString().localeCompare(valB)
+                  : valB.localeCompare(valA.toString());
+                if (columnIndex === 8) console.log(`Mixed comparison (num vs string) result: ${result}`);
+                return result;
+              }
+              else if (typeof valA === "string" && typeof valB === "number") {
+                const result = newDirection === "asc"
+                  ? valA.localeCompare(valB.toString())
+                  : valB.toString().localeCompare(valA);
+                if (columnIndex === 8) console.log(`Mixed comparison (string vs num) result: ${result}`);
+                return result;
+              }
+              else {
+                const result = newDirection === "asc"
+                  ? String(valA).localeCompare(String(valB))
+                  : String(valB).localeCompare(String(valA));
+                if (columnIndex === 8) console.log(`String comparison result: ${result}`);
+                return result;
               }
             });
 
-            rows.forEach(row => tbody.appendChild(row));
+            // Clear and re-add
+            tbody.innerHTML = '';
+            currentRows.forEach(row => tbody.appendChild(row));
           }
         });
       });
@@ -323,7 +372,7 @@ export class SettingsComponent {
 
 
   applyResponsiveTableLabels(): void {
-    const tables = document.querySelectorAll("table.responsive-table");
+    const tables = document.querySelectorAll("table.rslidy-responsive-table");
     tables.forEach((table) => {
       const headers = Array.from(table.querySelectorAll("thead th")).map(th =>
         th.textContent?.trim() || ""

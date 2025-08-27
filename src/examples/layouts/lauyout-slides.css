@@ -26,7 +26,7 @@ Fabian Platzer: extra CSS for my rslidy slides
 }*/
 
 #rslidy-content-section .slide {
-  font-size: 1.5em;
+  font-size: 1.3em;
 }
 
 .slide:not(.titleslide) {
@@ -144,20 +144,20 @@ div#licence p {
 
 /* Two columns spaced evenly */
 
-.columns-even {
+.rslidy-columns-even {
   display: flex;
   justify-content: space-evenly;
   align-items: flex-start;
   gap: 2em;
 }
 
-.left-column {
+.rslidy-left-column {
   flex: 1;
   display: flex;
   flex-direction: column;
   gap: 0.5em;
 }
-.right-column {
+.rslidy-right-column {
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -199,7 +199,7 @@ figure {
   display: table;
 }
 
-div.images, div.large-images {
+div.images, div.rslidy-large-images {
   margin: 0 auto;
   padding: 0;
   display: flex;
@@ -214,7 +214,7 @@ div.images img, div.images video {
   height: 15em;
 }
 
-div.large-images img, div.large-images video {
+div.rslidy-large-images img, div.rslidy-large-images video {
   object-fit: scale-down; /* preserve aspect ratio */
   max-width: 100%;
   max-height: 25em;

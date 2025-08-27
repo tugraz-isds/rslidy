@@ -2,7 +2,7 @@
 #multi-line-chart .window-rv
 {--chart-padding-right: 1rem;
 .toolbar {
-    --rs-toolbar-bg-color: none;
+    --rslidy-toolbar-bg-color: none;
 }}
 .toolbar__opener {
     margin-right: 3em;

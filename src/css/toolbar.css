@@ -1,7 +1,7 @@
 #rslidy-footer {
   position: relative;
   flex: 0 0 auto;
-  min-height: var(--rs-progressbar-height);
+  min-height: var(--rslidy-progressbar-height);
   transition: 0.30s;
 }
 
@@ -13,8 +13,8 @@
   position: absolute;
   left: 0; top: 0; right: 0; bottom: 0;
   width: 0%;
-  height: var(--rs-progressbar-height);
-  background-color: var(--rs-progressbar-bg-color-reached);
+  height: var(--rslidy-progressbar-height);
+  background-color: var(--rslidy-progressbar-bg-color-reached);
   z-index: 6;
   transition: width 1s;
 }
@@ -23,8 +23,8 @@
   position: absolute;
   left: 0; top: 0; right: 0; bottom: 0;
   width: 100%;
-  height: var(--rs-progressbar-height);
-  background-color: var(--rs-progressbar-bg-color-unreached);
+  height: var(--rslidy-progressbar-height);
+  background-color: var(--rslidy-progressbar-bg-color-unreached);
   z-index: 5;
 }
 
@@ -32,7 +32,7 @@
   position: absolute;
   left: 0; top: 0; right: 0; bottom: 0;
   width: 100%;
-  height: var(--rs-progressbar-height);
+  height: var(--rslidy-progressbar-height);
   z-index: 7;
 }
 
@@ -51,8 +51,8 @@
   bottom: 0;
   left: 0;
   width: 100%;
-  height: calc(var(--rs-toolbar-height) + 0.20em);
-  background-color: var(--rs-toolbar-bg-color);
+  height: calc(var(--rslidy-toolbar-height) + 0.20em);
+  background-color: var(--rslidy-toolbar-bg-color);
   display: table;
   z-index: 1;
   transition: 0.30s;
@@ -79,7 +79,7 @@
 }
 
 #rslidy-slide-input {
-  width: var(--rs-slide-input-width);
+  width: var(--rslidy-slide-input-width);
   height: 1.40em;
   line-height: 1.40em;
   text-align: center;
@@ -99,13 +99,13 @@
   padding: 0.30em 0.70em;
   margin: 0 0.15em;
   float: left;
-  background-color: var(--rs-toolbar-button-bg-color);
-  fill: var(--rs-toolbar-button-color);
-  stroke: var(--rs-toolbar-button-color);
+  background-color: var(--rslidy-toolbar-button-bg-color);
+  fill: var(--rslidy-toolbar-button-color);
+  stroke: var(--rslidy-toolbar-button-color);
   cursor: pointer;
-  border: 0.05em solid var(--rs-button-border-color);
+  border: 0.05em solid var(--rslidy-button-border-color);
   border-radius: 0.15em;
-  box-shadow: 0.15em 0.15em var(--rs-button-border-color);
+  box-shadow: 0.15em 0.15em var(--rslidy-button-border-color);
   touch-action: manipulation; /* prevent double tap zoom */
 }
 
@@ -116,20 +116,20 @@
 
 .rslidy-toolbar-button:hover,
 .rslidy-toolbar-button[aria-expanded="true"]:hover {
-  background-color: var(--rs-button-hover-color);
+  background-color: var(--rslidy-button-hover-color);
 }
 
 .rslidy-toolbar-button[aria-expanded="true"] {
-  background-color: var(--rs-button-active-color);
+  background-color: var(--rslidy-button-active-color);
   box-shadow: 0 0 0 0.15em lightskyblue;
 }
 
 .rslidy-toolbar-button:disabled,
 .rslidy-toolbar-button:disabled:hover
 {
-  stroke: var(--rs-button-disabled-color);
-  fill: var(--rs-button-disabled-color);
-  background-color: var(--rs-toolbar-button-bg-color);
+  stroke: var(--rslidy-button-disabled-color);
+  fill: var(--rslidy-button-disabled-color);
+  background-color: var(--rslidy-toolbar-button-bg-color);
   cursor: default;
 }
 
@@ -175,8 +175,8 @@
 .rslidy-tb-show, .rslidy-tb-display {
   top: -0.45em;
   position: relative;
-  fill: var(--rs-toolbar-button-color);
-  stroke: var(--rs-toolbar-button-color);
+  fill: var(--rslidy-toolbar-button-color);
+  stroke: var(--rslidy-toolbar-button-color);
 }
 
 .rslidy-tb-show {
@@ -189,18 +189,18 @@
 
 #rslidy-tb-show-trapezoid, #rslidy-tb-display-trapezoid {
   width: 1.50em;
-  top: calc(-1 * var(--rs-progressbar-height));
+  top: calc(-1 * var(--rslidy-progressbar-height));
   text-align: center;
   position: relative;
   border-right: 1em solid transparent;
-  border-bottom: 1em solid var(--rs-toolbar-button-bg-color);
+  border-bottom: 1em solid var(--rslidy-toolbar-button-bg-color);
   border-left: 1em solid transparent;
   box-sizing: content-box;
   z-index: 6;
 }
 
 #rslidy-tb-show-trapezoid:hover, #rslidy-tb-display-trapezoid:hover {
-  border-bottom: 1em solid var(--rs-button-hover-color);
+  border-bottom: 1em solid var(--rslidy-button-hover-color);
 }
 
 .rslidy-show-button, .rslidy-display-button {
@@ -233,7 +233,7 @@
 }
 
 .rslidy-preview {
-  height: var(--rs-progressbar-height);
+  height: var(--rslidy-progressbar-height);
   z-index: 8;
   position: absolute;
   cursor: pointer;
@@ -243,7 +243,7 @@
     float: right;
     height: 100%;
     width: 1px;
-    background-color: var(--rs-progressbar-bg-color-reached);
+    background-color: var(--rslidy-progressbar-bg-color-reached);
   }
 }
 
@@ -255,7 +255,7 @@
 
 .rslidy-preview-reached {
   &::after {
-    background-color: var(--rs-progressbar-bg-color-unreached);
+    background-color: var(--rslidy-progressbar-bg-color-unreached);
   }
 }
 
@@ -304,6 +304,6 @@
 #rslidy-help-table th {
   padding-top: 0.75em;
   padding-bottom: 0.75em;
-  background-color: var(--rs-toolbar-button-color);
+  background-color: var(--rslidy-toolbar-button-color);
   color: white;
 }
