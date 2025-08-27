@@ -253,7 +253,10 @@ try {
     '--outfile',
     join(executablesDir, outputName + '.exe'),
     '--target',
-    'bun-windows-x64-baseline'
+    'bun-windows-x64-baseline',
+    '--minify',
+    '--compress',
+    '--no-source-maps'
   ], {
     stdio: 'inherit',
     cwd: __dirname
