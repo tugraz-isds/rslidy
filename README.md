@@ -44,7 +44,7 @@ and interactive elements in action.
 
 Examples can also be launched locally using bun once the project is 
 built. 
-See [Installation and Setup](#5 Installation and Setup).
+See [Installation and Setup](#5-installation-and-setup).
 
 To launch any Rslidy example presentation locally:
 ### Install bun globally via npm if you don't already have it:
