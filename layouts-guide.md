@@ -1,10 +1,46 @@
-# Rslidy Slide Creator Guide
+# Rslidy Slide Layout Guide
 
 This guide demonstrates how to create slides using Rslidy, focusing 
 on common use cases: responsive images, responsive tables, multiple 
 columns, source code highlighting, and live code integration.
 
-## 1. Responsive Images
+
+
+## 1. Title Slide
+Use the `titleslide` class for a well-structured introduction slide. 
+Add titles, subtitles, author information, and copyright/license.
+
+**Example**:
+```html
+<section class="titleslide">
+  <h1>Rslidy Layouts</h1>
+  <h2>Titleslide</h2>
+  <h4>Graz University of Technology, Austria</h4>
+  <div id="licence">
+    <p>
+      © Copyright 2024 by the author(s).<br/>
+      Licensed under
+      <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.
+    </p>
+  </div>
+</section>
+```
+
+## 2. Simple Bullet Points
+```html
+<section>
+  <h1>Simple Bullet Points</h1>
+  <ul>
+    <li>Example Bullet Point 1</li>
+    <li>Example Bullet Point 2</li>
+    <li>Example Bullet Point 3</li>
+    <li>Example Bullet Point 4</li>
+    <li>Example Bullet Point 5</li>
+  </ul>
+</section>
+```
+
+## 3. Responsive Images
 Rslidy supports responsive images that scale with the viewport. Use 
 `<img>` tags within a `<figure>` element and apply classes like `rslidy-large-images` for styling.
 
@@ -25,7 +61,29 @@ Rslidy supports responsive images that scale with the viewport. Use
 </section>
 ```
 
-## 2. Responsive Table
+
+## 4. Video Layouts
+Embed videos using `<video>` within a figure.
+**Example**:
+```html
+<section>
+  <h2>Single Video Layout</h2>
+  <figure>
+    <div class="rslidy-large-images">
+      <video controls autoplay muted loop poster="images/all-slides.gif">
+        <source src="images/image-viewer.mp4" type="video/mp4"/>
+        <img src="images/image-viewer.gif" alt="Fallback preview image"/>
+      </video>
+    </div>
+    <figcaption>
+      Showing the image viewer as an mp4 video.<br/>
+      <span class="credit">Screen capture taken from Rslidy.</span>
+    </figcaption>
+  </figure>
+</section>
+```
+
+## 5. Responsive Table
 Create responsive tables using the `rslidy-responsive-table` class.
 
 **Example ** (Comparison Table):
@@ -62,7 +120,7 @@ You can also add a `<caption>` element for table descriptions.
 Adding the class `rslidy-disable-sorting` to 
 `rslidy-responsive-table` disables the sorting feature.
 
-## 3. Two Columns
+## 6. Two Columns
 Use the `rslidy-rslidy-columns-even` class and the classes 
 `rslidy-rslidy-left-column` and `rslidy-rslidy-right-column` to 
 create two-column layouts.
@@ -95,7 +153,7 @@ create two-column layouts.
 ```
 
 
-## 4. Source Code Highlighting
+## 7. Source Code Highlighting
 Rslidy uses Prism.js for syntax highlighting. Wrap code in `<pre><code>` tags with the appropriate `language-<lang>` class for displayed code, or use `<code>` for inline snippets.
 
 **Example 1** (HTML Code):
@@ -126,7 +184,7 @@ Rslidy uses Prism.js for syntax highlighting. Wrap code in `<pre><code>` tags wi
 ```
 Use `language-html`, `language-css`, `language-javascript`, etc., for syntax highlighting. Include `prism.css` and `prism.js` in the `<head>`.
 
-## 5. Live Code
+## 8. Live Code with Hypertree or RespVis charts
 Embed interactive content using `<script>` tags. Examples include visualisations like D3-based hypertrees or RespVis charts, which require external scripts and data files.
 
 **Example 1** (D3 Hypertree):
