@@ -42,7 +42,10 @@ can be seen at: https://tugraz-isds.github.io/rslidy/
 These examples showcase Rslidy’s features, design responsiveness, 
 and interactive elements in action.
 
-Examples can also be launched locally using bun.
+Examples can also be launched locally using bun once the project is 
+built. 
+See [Installation and Setup](#5 Installation and Setup).
+
 To launch any Rslidy example presentation locally:
 ### Install bun globally via npm if you don't already have it:
 ```
