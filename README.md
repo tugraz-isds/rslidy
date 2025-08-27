@@ -35,7 +35,11 @@ or
 - Accessibility through ARIA roles.
 - Live code can be embedded.
 
+
+
+
 ## 3 Examples
+
 Live presentations and examples for different use cases of Rslidy 
 can be seen at: https://tugraz-isds.github.io/rslidy/
 
@@ -47,84 +51,94 @@ built.
 See [Installation and Setup](#5-installation-and-setup).
 
 To launch any Rslidy example presentation locally:
-### Install bun globally via npm if you don't already have it:
+Install bun globally via npm if you don't already have it:
 ```
 npm install -g bun
 
 ```
-### Run the bun script with the example you want to create as a flag
+Run the bun script with the example you want to create as a flag:
 ```
 bun run create-executable.js --example rslidy
 ```
 
-### With short flags
+With short flags:
 ```
 bun run create-executable.js -e rslidy
 ```
 
-### With custom output name
+With custom output name:
 ```
 bun run create-executable.js -e rslidy -o MyPresentation
 ```
 This creates a "example.exe" file in the folder "executables" which can 
 then be launched locally.
 
+
+
+
 ## 4 For Slide Creators
 
-#### How to create a Presentation
+For users who wish to create a slide deck using Rslidy.
+
+
+### Structure of HMTL File
 
 The creation of a slide deck with Rslidy is done in a single HTML file.
 
-##### Structure of the HMTL File
-
-To properly build the slide deck, the HTML file must contain a header
-including rslidy.js and rslidy.css. Alternatively, the minimized versions, rslidy.min.js
-and rslidy.min.css offer the same features in a compromised way and can be included instead.
-
+First, the HTML file must contain a header to include the files
+`rslidy.css` and `rslidy.js` (or, alternatively, to save on download
+size, their minimised versions `rslidy.min.css` and `rslidy.min.js`):
 ```html
-<link rel="stylesheet" href="rslidy.min.css" />
+<link rel="stylesheet" href="rslidy.css" />
 <script src="rslidy.js" />
 ```
+Rslidy is self-contained, there are no additional dependencies beyond
+its own `rslidy.css` and `rslidy.js` files.
 
-Rslidy is self-contained, there are no additional dependencies.
 
-Within the body of the document, all slides are created. Each slide is
-represented eighter by a `<section>` or a `<div class="slide">` element:
+
+Slides are created within the body of the document. Each slide is
+contained within a `<section>` element (or, alternatively, a `<div
+class="slide">` element):
 
 ```html
 <section>
 <h1>Title of slide 1</h1>
+<ul>
+<li>First point</li>
+<li>Second point</li>
+<li>Third point</li>
+</ul>
 </section>
 
 <section>
 <h1>Title of slide 2</h1>
-</section>
-```
-
-```html
-<div class="slide">
-<h1>Alternative version</h1>
 <p>
 A paragraph of text.
 </p>
-</div>
+</section>
 ```
 
-## CSS Variables
+
+
+### Global CSS Variables
 
 Rslidy defines a set of CSS custom properties in
-`rslidy/src/css/_variables.css`, enabling theming and customisation. These variables are grouped into global and component-specific categories.
-
-### Global Variables
+`rslidy/src/css/_variables.css`, enabling theming and customisation:
 
 - **Breakpoints**: `--rslidy-large`, `--rslidy-medium`, `--rslidy-small`, 
-  `--rslidy-tiny`, `--rslidy-mini`, `--rslidy-nano`, `--rslidy-pico`
-- **Shared**: e.g. `--rslidy-overview-width`, `--rslidy-slide-input-width`
-- **Toolbar**: Includes background, button, and progress bar styling variables
-- **Settings**: Colour options for sliders (on/off states)
+  `--rslidy-tiny`, `--rslidy-mini`, `--rslidy-nano`, and `--rslidy-pico`.
+
+- **Shared**: e.g. `--rslidy-overview-width` and `--rslidy-slide-input-width`.
+
+- **Toolbar**: Includes background, button, and progress bar styling variables.
+
+- **Settings**: Colour options for sliders (on/off states).
 
 
-## Customising Rslidy
+
+
+### Customising Slide Decks
 
 Rslidy variables may be used globally or component-specifically via:
 
@@ -226,20 +240,26 @@ JavaScript, as shown below:
 For more information and various use cases of RSlidy elements, have 
 a look at the [Layout Guide](layouts-guide.md).
 
-### 4.1 For Slide Viewers
 
-The Help Panel in a Rslidy presentation contains an overview of
-Rslidy's interface controls.
 
-## 5 Installation and Setup
+
+## 5 For Developers
+
+For developers whoi wish to modify Rslidy and build it from source.
+
 
 ### 5.1 Prerequisites
+
 - Node.js (version 16 or higher)
-- pnpm
-Installing pnpm using npm (recommended):
-```
-npm install -g pnpm
-```
+
+- pnpm, which can be installed using npm (recommended):
+  ```
+  npm install -g pnpm
+  ```
+
+
+### 5.2 Installation
+
 To install and build Rslidy from source, use the following command:
 ```
 git clone "https://github.com/tugraz-isds/rslidy.git"
@@ -249,45 +269,38 @@ In the `rslidy/` folder, install the project dependencies with:
 pnpm install
 ```
 
-Then, build Rslidy with the command:
+
+
+### 5.3 Building
+
+Rslidy can be built with the command:
 ```
 pnpm exec gulp build
 ```
-The `rslidy/build` folder then contain Rslidy's main files, as
+The `rslidy/build` folder then contains Rslidy's main files, as
 well as some example presentations, which can be copied and adapted to
 create new slide decks.
 
 
-### 5.2 For Developers
-
-
-#### The Build System
-To build the project use:
-
-```
-pnpm exec gulp build
-```
-
-Build may be omitted, since it is the default gulp task.
-There is also a gulp task using `Browsersync` and `gulp watch`
-for more convenient development.
+There is also a gulp task `gulp watch`, which uses Browsersync
+to provide a more convenient development environment:
 ```
 pnpm exec gulp watch
 ```
 
+This task initiates a rebuild and synchronises the browser every time
+a source files changes.
 
-This task will initialise a build and synchronise the
-browser content every time a source files changes.
-
-`notes.html` will be shown as default presentation, however, with
-`--slide <file>` a specific file can be synchronised. The file has to
-be in the `examples/tests` directory.
+a specific file can be synchronised with `--slide <file>`:
 ```
 pnpm exec gulp watch --slide <file>
 ```
+The file has to be in the `examples/tests/` directory.
 
 
-#### Updating Icons
+
+
+### 5.4 Updating Icons
 
 To commit changes from the icons located in `src/icons` to Rslidy, the
 following gulp task has to be run:
@@ -331,7 +344,7 @@ The following people have contributed to Rslidy:
   IAweb WS 2016 G5
 
 - Markus Schofnegger  
-  BSc 02 Nov 2015
+  Bachelor's Thesis, 02 Nov 2015
 
 - Filippo Garolla, Sabine Lukas, Matthias Schlesinger, Karin Wilding  
   IAweb WS 2014 G1
