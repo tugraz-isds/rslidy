@@ -21,7 +21,7 @@ a slide is created by a section and/or div.slide
   right: 0;
   bottom: 0;
   margin: 0.5em 1.5em 1.5em 1.5em;
-  padding: 2.5rem;
+  padding: 2.3rem;
   /*--button-active-color: 10px;*/
  }
 
@@ -32,6 +32,19 @@ code, var, kbd, samp, listing, plaintext, xmp, abbr {
   -webkit-hyphens: none;
   -moz-hyphens: none;
   -ms-hyphens: none;
+}
+
+div.copyright {
+  margin-top: auto;
+}
+
+div.copyright p {
+  display: inline-block;
+  background-color: #eee;
+  padding: 0.2em;
+  border-radius: 0.2em;
+  font-size: 50%;
+  max-width: 35%;
 }
 
 pre, code {
@@ -47,21 +60,74 @@ img {
   background: white !important;
 }
 
-figure {
-  margin: 1em auto;
-}
 
 .figure-left {
   margin-left: 0;
   margin-top: 0;
 }
 
+
+/* figures */
+
+
+figure {
+  margin: 0 auto;
+  display: table;
+}
+
+div.rslidy-images, div.rslidy-large-images {
+  margin: 0 auto;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+}
+
+div.rslidy-images img, div.images video {
+  object-fit: scale-down; /* preserve aspect ratio */
+  max-width: 100%;
+  max-height: 15em;
+  width: auto;
+  height: 15em;
+}
+
+div.rslidy-large-images img, div.rslidy-large-images video {
+  object-fit: scale-down; /* preserve aspect ratio */
+  max-width: 100%;
+  max-height: 25em;
+  width: auto;
+  height: 25em;
+}
+
 figcaption {
   margin: 1em 0;
   font-size: 60%;
   text-align: center;
+  display: table-caption;
+  caption-side: bottom;
 }
 
+figcaption span.fig-label {
+  font-weight: bold;
+}
+
+figcaption span.credit {
+  font-size: 80%;
+}
+
+figcaption span.credit:before {
+  content: "[";
+}
+
+figcaption span.credit:after {
+  content: "]";
+}
+
+
+div.credits {
+  margin: 1em 0;
+  font-size: 60%;
+  text-align: center;
+}
 h1, h2, h3, h4, h5, h6 {
   font-weight: bold;
 }
@@ -201,21 +267,14 @@ caption {
 
 th {
   font-weight: bold;
-  background-color: #ddd;
-  padding: 0.5ex;
-  border-style: solid;
+  /*background-color: #ddd;*/
+  padding: 0.5em;
+  /*border-style: solid;*/
   border-width: thin;
   text-align: left;
   vertical-align: top;
 }
 
-tr:nth-child(even) {
-  background: #f8f8f8;
-}
-
-tr:nth-child(odd) {
-  background: #fff;
-}
 
 td {
   padding: 0.5ex;

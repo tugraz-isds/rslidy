@@ -1,6 +1,6 @@
 {
   "name": "rslidy",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Rslidy: Lightweight, Accessible, and Responsive HTML5 Slide Decks",
   "main": "build/rslidy.js",
   "author": "Keith Andrews",

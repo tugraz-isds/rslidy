@@ -206,38 +206,38 @@ span.isbn {
 /* title slide has larger and centered text*/
 
 
-.titleslide
+.rslidy-titleslide
 {
   text-align: center;
 }
 
-.titleslide h1
+.rslidy-titleslide h1
 {
   padding-top: 0.5em;
   font-size: 2em;
   margin-bottom: 1.4em;
 }
 
-.titleslide h2
+.rslidy-titleslide h2
 {
   font-size: 1.6em;
   margin-bottom: 1.4em;
 }
 
-.titleslide h3
+.rslidy-titleslide h3
 {
-  font-size: 1.3em;
+  font-size: 1.2em;
   margin-bottom: 1.2em;
 }
 
-.titleslide p
+.rslidy-titleslide p
 {
   font-size: 0.8em;
   padding: 0.5em 0;
 }
 
 
-#rslidy-content-section .slide:not(.titleslide) {
+#rslidy-content-section .slide:not(.rslidy-titleslide) {
   /* disable background image for testing */
   /* background: url("images/tugraz-logo.svg") 95% 4%/auto 2em no-repeat;*/
 }

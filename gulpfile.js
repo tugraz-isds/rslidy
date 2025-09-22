@@ -224,7 +224,7 @@ exports.build = build;
 // Watch task
 function watchTask() {
   const arg = argv.slide || argv.s;
-  let dir = 'examples/layouts/'; // Updated to match your output
+  let dir = 'examples/rslidy/'; // Updated to match your output
   let file = 'index.html'; // Default file, adjust if needed
 
   if (arg) {

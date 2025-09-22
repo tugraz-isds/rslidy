@@ -45,31 +45,31 @@ span.isbn:before {
 /* title slide has larger and centered text*/
 
 
-.titleslide
+.rslidy-titleslide
 {
   text-align: center;
 }
 
-.titleslide h1
+.rslidy-titleslide h1
 {
   padding-top: 0.5em;
   font-size: 1.6em;
   margin-bottom: 1.4em;
 }
 
-.titleslide h2
+.rslidy-titleslide h2
 {
   font-size: 1.2em;
   margin-bottom: 1.4em;
 }
 
-.titleslide h3
+.rslidy-titleslide h3
 {
   font-size: 1em;
   margin-bottom: 1.2em;
 }
 
-.titleslide p
+.rslidy-titleslide p
 {
   padding: 0.5em 0;
 }

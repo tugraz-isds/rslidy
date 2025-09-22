@@ -21,7 +21,7 @@ Keith Andrews: extra CSS for my rslidy slides
   font-size: 1.5em;
 }
 
-.slide:not(.titleslide) {
+.slide:not(.rslidy-titleslide) {
   display: flex;
   flex-direction: column;
 }
@@ -72,31 +72,31 @@ span.isbn:before {
 /* title slide has larger and centered text*/
 
 
-.titleslide
+.rslidy-titleslide
 {
   text-align: center;
 }
 
-.titleslide h1
+.rslidy-titleslide h1
 {
   padding-top: 0.5em;
   font-size: 1.6em;
   margin-bottom: 1.4em;
 }
 
-.titleslide h2
+.rslidy-titleslide h2
 {
   font-size: 1.2em;
   margin-bottom: 1.4em;
 }
 
-.titleslide h3
+.rslidy-titleslide h3
 {
   font-size: 1em;
   margin-bottom: 1.2em;
 }
 
-.titleslide p
+.rslidy-titleslide p
 {
   padding: 0.5em 0;
 }
@@ -193,14 +193,14 @@ figure {
   display: table;
 }
 
-div.images, div.rslidy-large-images {
+div.rslidy-images, div.rslidy-large-images {
   margin: 0 auto;
   padding: 0;
   display: flex;
   justify-content: center;
 }
 
-div.images img, div.images video {
+div.rslidy-images img, div.images video {
   object-fit: scale-down; /* preserve aspect ratio */
   max-width: 100%;
   max-height: 15em;
