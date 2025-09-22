@@ -95,8 +95,7 @@ A paragraph of text.
 
 ### Global CSS Variables
 
-Rslidy defines a set of CSS custom properties in  
-`rslidy/src/css/_variables.css`, enabling theming and customisation.
+Rslidy defines a set of CSS custom properties in`rslidy/src/css/_variables.css`, enabling theming and customisation.
 
 For a full overview of all global variables and their usage, have a 
 look at the [Variables Guide](README-variables.md).
