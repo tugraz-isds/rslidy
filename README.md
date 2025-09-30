@@ -210,7 +210,7 @@ a look at the [Layout Guide](README-layouts.md).
 
 ## 5 For Developers
 
-For developers whoi wish to modify Rslidy and build it from source.
+For developers who wish to modify Rslidy and build it from source.
 
 
 ### 5.1 Prerequisites

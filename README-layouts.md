@@ -1,14 +1,14 @@
 # Rslidy Layout Guide
 
 This guide demonstrates the main layout options available in
-**Rslidy**, based on provided templates. It covers title slides,
+**Rslidy**, based on provided templates. It covers a title slide,
 simple slide layouts and multi-column layouts.
 
 ---
 
 ## 1. Title Slide
-Use the `rslidy-titleslide` class for the opening slide. Include
-title, subtitle, affiliation, and licence.
+Use the `rslidy-titleslide` class for an opening slide.
+You can also add a licence using a `<div>` with the id `licence`.
 
 **Example**:
 ```html
@@ -17,7 +17,7 @@ title, subtitle, affiliation, and licence.
   <h2>Titleslide</h2>
   <h4>Graz University of Technology, Austria</h4>
 
-  <div id="licence">
+  <div id="rslidy-licence">
     <p>
       © Copyright 2025 by the author(s), except as otherwise
       noted.<br/>
@@ -39,7 +39,7 @@ title, subtitle, affiliation, and licence.
 
 ## 2. Simple Slide Layouts with Content Elements
 ### 2.1 Simple Bullet Points
-Create a slide with an unordered bullet list.
+Simple slide with an unordered bullet list.
 
 **Example**:
 ```html
@@ -91,7 +91,7 @@ interactions using the `rslidy-large-images` or `rslidy-images` class.
 
 
 ### 2.3 Single Video Layout
-Embed a video inside a figure.
+Single video slide with a video inside a figure.
 
 **Example**:
 ```html
@@ -161,7 +161,7 @@ both sides.
 
 ### 3.2 Bullet Points Left – Image Right
 
-Combine text on the left with an image on the right.
+Combine Bullet Points on the left with an image on the right.
 
 **Example**:
 ```html
@@ -234,7 +234,7 @@ Display images side-by-side.
 
 ### 3.4 One Image – One Video
 
-Mix an image on the left with a video on the right.
+Example with an image on the left with a video on the right.
 
 **Example**:
 ```html

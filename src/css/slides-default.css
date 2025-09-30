@@ -22,16 +22,22 @@ a slide is created by a section and/or div.slide
   bottom: 0;
   margin: 0.5em 1.5em 1.5em 1.5em;
   padding: 2.3rem;
-  /*--button-active-color: 10px;*/
- }
+  font-size: 1.3em; /* from first CSS */
+}
 
- /* turn hyphens off for code, tt, and kbd */
+.slide:not(.rslidy-titleslide) {
+  display: flex;
+  flex-direction: column;
+}
 
+/* turn hyphens off for code, tt, and kbd */
 code, var, kbd, samp, listing, plaintext, xmp, abbr {
   hyphens: none;
   -webkit-hyphens: none;
   -moz-hyphens: none;
   -ms-hyphens: none;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 1em;
 }
 
 div.copyright {
@@ -60,16 +66,12 @@ img {
   background: white !important;
 }
 
-
 .figure-left {
   margin-left: 0;
   margin-top: 0;
 }
 
-
 /* figures */
-
-
 figure {
   margin: 0 auto;
   display: table;
@@ -80,14 +82,14 @@ div.rslidy-images, div.rslidy-large-images {
   padding: 0;
   display: flex;
   justify-content: center;
+  min-width: 5em; /* from first CSS */
 }
 
-div.rslidy-images img, div.images video {
+div.rslidy-images img, div.rslidy-images video {
   object-fit: scale-down; /* preserve aspect ratio */
   max-width: 100%;
   max-height: 15em;
   width: auto;
-  height: 15em;
 }
 
 div.rslidy-large-images img, div.rslidy-large-images video {
@@ -95,7 +97,6 @@ div.rslidy-large-images img, div.rslidy-large-images video {
   max-width: 100%;
   max-height: 25em;
   width: auto;
-  height: 25em;
 }
 
 figcaption {
@@ -122,12 +123,194 @@ figcaption span.credit:after {
   content: "]";
 }
 
-
 div.credits {
   margin: 1em 0;
   font-size: 60%;
   text-align: center;
 }
+
+/* Footer, location, licence */
+.footer {
+  margin-top: auto;
+  font-size: 50%;
+  text-align: right;
+}
+
+div#location {
+  margin-top: 2em;
+  text-align: right;
+}
+
+div#location p {
+  display: inline;
+  background-color: #eee;
+  padding: 0.2em;
+  border-radius: 0.2em;
+  font-size: 60%;
+}
+
+span.li-intro {
+  font-style: italic;
+}
+
+span.isbn:before {
+  content: "ISBN";
+  font-size: 80%;
+}
+
+div#rslidy-licence {
+  margin: 2em 0 1em 0;
+  text-align: center;
+  line-height: 0.5em;
+}
+
+div#rslidy-licence p {
+  display: inline;
+  padding: 0;
+  font-size: 0.5em;
+}
+
+/* title slide has larger and centered text */
+.rslidy-titleslide {
+  text-align: center;
+}
+
+.rslidy-titleslide h1 {
+  padding-top: 0.5em;
+  font-size: 1.6em;
+  margin-bottom: 1.4em;
+}
+
+.rslidy-titleslide h2 {
+  font-size: 1.2em;
+  margin-bottom: 1.4em;
+}
+
+.rslidy-titleslide h3 {
+  font-size: 1em;
+  margin-bottom: 1.2em;
+}
+
+.rslidy-titleslide p {
+  padding: 0.5em 0;
+}
+
+/* columns */
+.columns {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.columns ul {
+  margin: 0.5em;
+}
+
+/* columns spaced */
+.columns-spaced {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.columns-spaced ul {
+  margin: 0.5em;
+}
+
+/* Two columns spaced evenly */
+.rslidy-columns-even {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: flex-start;
+  gap: 2em;
+}
+
+.rslidy-left-column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
+
+.rslidy-right-column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
+
+.item-half {
+  padding: 1em;
+  width: 50%;
+}
+
+.item-auto {
+  padding: 1em;
+  width: auto;
+}
+
+/* Description is marked in gray */
+.description {
+  background-color: lightgray;
+}
+
+/* CSS Grid */
+.grid {
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  grid-template-columns: repeat(auto-fit, minmax(25em,1fr));
+}
+
+/* code snippets */
+code.block {
+  display: inline-block;
+  margin-right: 100%;
+  margin-left: 1em;
+  margin-bottom: 1em;
+}
+
+/* keys */
+kbd.key {
+  border-radius: 3px;
+  padding: 1px 2px 0;
+  border: 1px solid black;
+}
+
+/* notes */
+p.note {
+  font-size: 80%;
+  margin-top: -0.7em;
+}
+
+p.note:before {
+  content: "[";
+}
+
+p.note:after {
+  content: "]";
+}
+
+p {
+  margin: 0 0 1em 0;
+  padding: 0;
+  max-width: 60ch;
+  text-align: justify;
+}
+
+/* do not justify inside table cells */
+td p {
+  text-align: left;
+}
+
+/* indent first line of para 2..n in text passage */
+div.textpassage p + p {
+  text-indent: 1em;
+}
+
+blockquote {
+  margin: 0 2em 1em 2em;
+}
+
 h1, h2, h3, h4, h5, h6 {
   font-weight: bold;
 }
@@ -152,33 +335,7 @@ h4, h5, h6 {
   margin: 0 0 0.5em 0;
 }
 
-p {
-  margin: 0 0 1em 0;
-  text-align: justify;
-}
-
-/* do not justify inside table cells */
-td p {
-  text-align: left;
-}
-
-/* indent first line of para 2..n in text passage */
-
-div.textpassage p + p {
-  text-indent: 1em;
-}
-
-blockquote {
-  margin: 0 2em 1em 2em;
-}
-
-code, kbd, samp {
-  font-family: "Courier New", Courier, monospace;
-  font-size: 1em;
-}
-
 /* lists */
-
 ol {
   list-style: decimal;
   padding: 0 0 1em 1.5em;
@@ -190,19 +347,18 @@ ul {
 }
 
 /* sub-bullet styles */
-
-ul ul ol ol, 
-ul ol ul ol, 
-ol ul ol ol, 
-ol ol ul ol, 
-ol ul ol, 
+ul ul ol ol,
+ul ol ul ol,
+ol ul ol ol,
+ol ol ul ol,
+ol ul ol,
 ol ol {
   list-style: lower-alpha;
 }
 
-ol ul ol ol, 
-ol ol ul ol, 
-ul ol ol ol, 
+ol ul ol ol,
+ol ol ul ol,
+ul ol ol ol,
 ol ol ol {
   list-style: lower-roman;
 }
@@ -211,18 +367,18 @@ ol ol ol ol {
   list-style: decimal;
 }
 
-ul ul, 
-ol ol ul ul, 
-ol ul ol ul, 
-ul ol ol ul, 
-ol ul ul, 
+ul ul,
+ol ol ul ul,
+ol ul ol ul,
+ul ol ol ul,
+ol ul ul,
 ul ol ul {
   list-style: circle;
 }
 
-ol ul ul ul, 
-ul ol ul ul, 
-ul ul ol ul, 
+ol ul ul ul,
+ul ol ul ul,
+ul ul ol ul,
 ul ul ul {
   list-style: square;
 }
@@ -232,10 +388,9 @@ ul ul ul ul {
 }
 
 /* nested list sizes */
-
-ul ul, 
-ol ol, 
-ul ol, 
+ul ul,
+ol ol,
+ul ol,
 ol ul {
   font-size: 0.8em;
   margin-top: 0.5em;
@@ -275,7 +430,6 @@ th {
   vertical-align: top;
 }
 
-
 td {
   padding: 0.5ex;
   border-style: solid;
@@ -284,15 +438,25 @@ td {
   vertical-align: top;
 }
 
-/* 
--- Night mode customization
-*/
-
+/* Night mode customization */
 :not(a) .rslidy-night-mode {
   color: white;
-  /* Text color */
 }
 
 a.rslidy-night-mode {
-  color: yellow; /* Text color */
+  color: yellow;
+}
+
+/* Helpers */
+.valign {
+  position: relative;
+  top: 50%;
+  transform: perspective(1px) translateY(-50%);
+}
+
+@media print {
+  .valign {
+    transform: none !important;
+    top: 0;
+  }
 }

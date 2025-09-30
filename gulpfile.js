@@ -127,19 +127,19 @@ function minifyjs() {
   return merge([
     src(paths.library + 'esm/**/*.js')
       .pipe(ujs())
-      .pipe(header('// Rslidy version 2.0 ESM\n'))
+      .pipe(header('// Rslidy version 2.0.1 ESM\n'))
       .pipe(rename({ suffix: '.min' }))
       .pipe(dest(paths.library + 'esm')),
 
     src(paths.library + 'cjs/**/*.js')
       .pipe(ujs())
-      .pipe(header('// Rslidy version 2.0 CommonJS\n'))
+      .pipe(header('// Rslidy version 2.0.1 CommonJS\n'))
       .pipe(rename({ suffix: '.min' }))
       .pipe(dest(paths.library + 'cjs')),
 
     src(paths.library + 'umd/**/*.js')
       .pipe(ujs())
-      .pipe(header('// Rslidy version 2.0 UMD\n'))
+      .pipe(header('// Rslidy version 2.0.1 UMD\n'))
       .pipe(rename({ suffix: '.min' }))
       .pipe(dest(paths.library + 'umd'))
   ]);
