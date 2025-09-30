@@ -16,11 +16,12 @@ transitions.
 
 ## 2 Features
 
-- Use standard HTML5 elements to create slides.
-For an introduction to HTML5, see
+Rslidy has the following features:
+- Standard HTML5 elements to create slides.  
+[For an introduction to HTML5, see
 [HTML Dog](https://htmldog.com/)
 or
-[web.dev/html](https://web.dev/html).
+[web.dev/html](https://web.dev/html).]
 
 - Slide navigation.
 - Slide overview.
@@ -53,7 +54,7 @@ and interactive elements in action.
 For users who wish to create a slide deck using Rslidy.
 
 
-### Structure of HMTL File
+### 4.1 Structure of HMTL File
 
 The creation of a slide deck with Rslidy is done in a single HTML file.
 
@@ -93,22 +94,23 @@ A paragraph of text.
 
 
 
-### Global CSS Variables
+### 4.2 Global CSS Variables
 
-Rslidy defines a set of CSS custom properties in`rslidy/src/css/_variables.css`, enabling theming and customisation.
+Rslidy defines a set of CSS custom properties in
+`rslidy/src/css/_variables.css`, enabling theming and customisation.
 
-For a full overview of all global variables and their usage, have a 
-look at the [Variables Guide](README-variables.md).
+For a full overview of all global variables and their usage, see
+the [Rslidy CSS Variables](README-variables.md) guide.
 
 
 
 
-### Customising Slide Decks
+### 4.3 Customising Slide Decks
 
 Rslidy variables may be used globally or component-specifically via:
 
 
-##### Lists
+#### Lists
 
 To organise slides, bullet points are created as shown in the
 snippet below.
@@ -119,9 +121,9 @@ snippet below.
 <ul>
 <li>First point</li>
 <li>Second point</li>
-    <ol style="list-style-type: lower-alpha; padding-bottom: 0;">
-        <li style="margin-left:3em"> First subpoint of second point </li>
-    </ol>
+  <ol style="list-style-type: lower-alpha; padding-bottom: 0;">
+    <li style="margin-left:3em">First subpoint of second point</li>
+  </ol>
 <li>Third point</li>
 </ul>
 </section>
@@ -129,37 +131,39 @@ snippet below.
 To make list items appear one at a time, use the
 `<ul class="incremental">` instead of `<ul>`.
 
-##### Images
+#### Images
 
-The inclusion of images or other graphical elements works just like in any other HTML file within slides using the standard HTML `<img>`
-element. The same counts for CSS style definitions. However, all CSS definitions must be defined outside the body.
-A possible inclusion of a picture with a CSS might look as shown below:
+The inclusion of images or other graphical elements works just like in
+any other HTML file within slides using the standard HTML `<img>`
+element. The same counts for CSS style definitions. However, all CSS
+definitions must be defined outside the body.  A possible inclusion of
+a picture with a CSS might look as shown below:
 
 ```html
 <style>
-    img {
-      display: block;
-      margin-left: auto;
-      margin-right: auto;
-    }
+  img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
 
-    .imgContainer{
-    float:left;
-    }
+  .imgContainer{
+  float:left;
+  }
 </style>
 
 <body>
-    <section>
-    <h1>Image Demo</h1>
-    <img src="logo_tu.png" alt="tugraz-isds" style="width:25%;">
-    </section>
+  <section>
+  <h1>Image Demo</h1>
+  <img src="logo_tu.png" alt="tugraz-isds" style="width:25%;">
+  </section>
 </body>
 ```
 
 Rslidy's image viewer is automatically associated with every image.
 
 
-##### Animated Slide Transitions
+#### Animated Slide Transitions
 
 There are currently four transition types between slides:
 - `slidein` (default)
@@ -177,15 +181,20 @@ The desired transition type is added to the body element:
 <body class="unanimated">
 ```
 
-#### How to Share an Rslidy Presenation?
 
-The easiest way of sharing a slide deck created with RSlidy is by zipping the whole folder. However, when simplifying,
-the zipped folder must contain under all circumstances the html file of the slide deck, the file rslidy.js the file rslidy.css
-as well as all included graphics. If rslidy.min.css or rslidy.min.js are used for the presentation, they must be included instead
-or additionally to the unminimized version of the files. Sharing only the html file on its own will not be sufficient!
+### 4.4 How to Share an Rslidy Presentation?
+
+The easiest way of sharing a slide deck created with RSlidy is by
+zipping the whole folder. However, when simplifying, the zipped folder
+must contain under all circumstances the html file of the slide deck,
+the file rslidy.js the file rslidy.css as well as all included
+graphics. If rslidy.min.css or rslidy.min.js are used for the
+presentation, they must be included instead or additionally to the
+unminimized version of the files. Sharing only the html file on its
+own will not be sufficient!
 
 
-#### Custom Settings
+### 4.5 Custom Settings
 
 A number of internal Rslidy settings can be directly overridden using
 JavaScript, as shown below:
@@ -202,8 +211,8 @@ JavaScript, as shown below:
 </script>
 ```
 
-For more information and various use cases of RSlidy elements, have 
-a look at the [Layout Guide](README-layouts.md).
+For more information and various use cases of RSlidy elements, see
+the [Rslidy Layouts](README-layouts.md) guide.
 
 
 

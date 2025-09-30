@@ -1,32 +1,33 @@
-# Rslidy Layout Guide
+
+# Rslidy Layouts
 
 This guide demonstrates the main layout options available in
-**Rslidy**, based on provided templates. It covers a title slide,
+Rslidy, based on provided templates. It covers a title slide,
 simple slide layouts and multi-column layouts.
 
----
+
 
 ## 1. Title Slide
+
 Use the `rslidy-titleslide` class for an opening slide.
 You can also add a licence using a `<div>` with the id `licence`.
 
-**Example**:
 ```html
 <section class="rslidy-titleslide">
-  <h1>Rslidy Layouts</h1>
-  <h2>Titleslide</h2>
-  <h4>Graz University of Technology, Austria</h4>
+<h1>Rslidy Layouts</h1>
+<h2>Title Slide</h2>
+<h3>Graz University of Technology, Austria</h3>
 
-  <div id="rslidy-licence">
-    <p>
-      © Copyright 2025 by the author(s), except as otherwise
-      noted.<br/>
-      This work is placed under a Creative Commons Attribution
-      4.0 International
-      (<a href="https://creativecommons.org/licenses/by/4.0/">
-      CC BY 4.0</a>) licence.
-    </p>
-  </div>
+<div id="rslidy-licence">
+  <p>
+    © Copyright 2025 by the author(s), except as otherwise
+    noted.<br/>
+    This work is placed under a Creative Commons Attribution
+    4.0 International
+    (<a href="https://creativecommons.org/licenses/by/4.0/">
+    CC BY 4.0</a>) licence.
+  </p>
+</div>
 </section>
 ```
 
@@ -38,10 +39,11 @@ You can also add a licence using a `<div>` with the id `licence`.
 
 
 ## 2. Simple Slide Layouts with Content Elements
+
+
 ### 2.1 Simple Bullet Points
 Simple slide with an unordered bullet list.
 
-**Example**:
 ```html
 <section>
   <h1>Simple Bullet Points</h1>
@@ -58,13 +60,10 @@ Simple slide with an unordered bullet list.
 
 
 
-
-
 ### 2.2 Single Image Layout
 Insert a responsive image that supports pan and zoom
 interactions using the `rslidy-large-images` or `rslidy-images` class.
 
-**Example**:
 ```html
 <section>
   <h2>Single Image Layout</h2>
@@ -88,9 +87,8 @@ interactions using the `rslidy-large-images` or `rslidy-images` class.
 
 
 
-
-
 ### 2.3 Single Video Layout
+
 Single video slide with a video inside a figure.
 
 **Example**:
@@ -120,14 +118,17 @@ Single video slide with a video inside a figure.
 
 
 
+
+
 ## 3. Multi-Column Layouts
+
+
 
 ### 3.1 Two-Columns Bullet Points
 
 Divide the slide into two evenly sized columns with bullet points on 
 both sides.
 
-**Example**:
 ```html
 <section>
   <h1>Two-Columns Bullet Points</h1>
@@ -153,8 +154,6 @@ both sides.
   </div>
 </section>
 ```
-
-
 
 
 
