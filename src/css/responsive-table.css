@@ -4,7 +4,6 @@
  border-spacing: 0;
  font-size: 70%;
  border: none;
- width: fit-content;
  max-width: 100%;
  overflow-x: auto;
  white-space: nowrap;
@@ -13,16 +12,6 @@
 
 #table-container {
  overflow-x: auto;
-}
-
-.rslidy-table-filter {
- border: 0.0625em solid #ccc;
- border-radius: 0.25em;
- box-sizing: border-box;
- font-size: 1em;
- margin-bottom: 0.625em;
- padding: 0.5em;
- width: 89%;
 }
 
 .rslidy-no-results {
@@ -54,12 +43,12 @@
 
 .rslidy-responsive-table th {
  border-bottom: 0.0625em solid #2b2b2b;
- padding: 0.7em 0.9em;
+ padding: 0.7em 0.9em 0.7em 0.5em;
 }
 
 .rslidy-responsive-table td {
  border: none;
- padding: 0.7em 0.9em;
+ padding: 0.7em 0.9em 0.7em 0.5em;
 }
 
 .rslidy-responsive-table th {
@@ -86,6 +75,9 @@
 .rslidy-responsive-table.rslidy-disable-sorting th.sorted-asc::before,
 .rslidy-responsive-table.rslidy-disable-sorting th.sorted-desc::before {
  content: none !important;
+ pointer-events: none; !important /* Disable clicks on the icon */
+ cursor:default;
+
 }
 .rslidy-responsive-table.rslidy-disable-sorting th {
  cursor: auto;

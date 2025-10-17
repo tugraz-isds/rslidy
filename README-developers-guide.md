@@ -97,9 +97,13 @@ Additionally, `rslidy.css` and `rslidy.min.css` are placed in the
 The ESM build is the default and recommended standard, as it is the 
 most modern format supported by browsers and bundlers.
 
+ESM modules must be served over HTTP(S) (for example via a local 
+server or live-server) and will not work if opened directly from a 
+folder in a browser.
+
 Also, the `rslidy.min.js` file from the ESM build is automatically
 copied into every example and test folder, since it is the standard
 for Rslidy.
-
+shortly
 
 

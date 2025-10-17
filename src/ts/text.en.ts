@@ -94,7 +94,8 @@ export const settings = [
   `Make Slide Fonts Larger (+)`,
   `Make UI Fonts Smaller (Shift -)`,
   `Reset UI Fonts (Shift R)`,
-  `Make UI Fonts Larger (Shift +)`
+  `Make UI Fonts Larger (Shift +)`,
+  `Theme:`
 ];
 
 export const print_settings = [

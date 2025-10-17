@@ -23,6 +23,13 @@
   display: block;
 }
 
+.rslidy-setting-group {
+  text-align: right;
+  margin-bottom: 0.15em;
+  padding: 0.2em 1em;
+  display: block;
+}
+
 #rslidy-transform-origin-subsection {
   margin-top: 0.5em;
   display: flex;

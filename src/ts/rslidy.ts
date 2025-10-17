@@ -6,6 +6,7 @@ import { OverviewComponent } from "./overview";
 import { ContentComponent } from "./content";
 import { ImageViewerComponent } from "./image-viewer";
 import { help_text, content_section, notes_text, spinner_html } from './html-definitions';
+import { rslidy_favicon_icon } from "./icon-definitions";
 
 // The main class, including events and style injections.
 
@@ -114,6 +115,8 @@ export class Rslidy {
   // menus.
   // ---
   init(): void {
+    this.addFaviconFromSvg(rslidy_favicon_icon);
+
     // check for section over div slide and add classes for compatibility
     const sections = document.getElementsByTagName("section");
     for (let i = 0; i < sections.length; i++)
@@ -614,6 +617,49 @@ export class Rslidy {
     }
   }
 
+
+  async loadRslidyTheme(themeName?: string): Promise<void> {
+    try {
+      // 1️⃣ Remove all currently loaded themes
+      document.querySelectorAll('link[data-rslidy-theme]').forEach(link => link.remove());
+
+      // 2️⃣ Reset to default theme first
+      document.documentElement.setAttribute('data-theme', 'default');
+      console.log('[rslidy] Reset to default theme.');
+
+      // 3️⃣ If no new theme or default, stop here
+      if (!themeName || themeName === 'default') {
+        console.log('[rslidy] Default theme applied.');
+        return;
+      }
+
+      // 4️⃣ Check if the theme is already loaded (should not happen, but safe)
+      const existing = document.querySelector(`link[data-rslidy-theme="${themeName}"]`);
+      if (existing) {
+        document.documentElement.setAttribute('data-theme', themeName);
+        console.log(`[rslidy] Theme '${themeName}' already loaded.`);
+        return;
+      }
+
+      // 5️⃣ Load the new theme
+      console.log(`[rslidy] Loading theme: ${themeName}`);
+      const link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.href = `../../library/themes/${themeName}/theme.css`; // adjust path if needed
+      link.dataset.rslidyTheme = themeName;
+      link.onload = () => console.log(`[rslidy] Theme '${themeName}' loaded.`);
+      link.onerror = () => console.warn(`[rslidy] Failed to load theme '${themeName}'.`);
+      document.head.appendChild(link);
+
+      // 6️⃣ Set the new theme attribute
+      document.documentElement.setAttribute('data-theme', themeName);
+
+    } catch (err) {
+      console.warn('[rslidy] Could not load theme:', err);
+    }
+  }
+
+
   // ---
   // Description: Called whenever the acceleration of the device changes.
   // e: Event.
@@ -670,6 +716,27 @@ export class Rslidy {
             this.content.navFirst();
           this.last_shake = now;
         }
+  }
+
+
+  addFaviconFromSvg(svgContent: string) {
+    const head = document.head || document.getElementsByTagName("head")[0];
+    if (!head) return;
+
+    // Remove existing favicon if any
+    const existing = head.querySelector('link[rel="icon"]');
+    if (existing) head.removeChild(existing);
+
+    // Convert SVG string to data URL
+    const svgDataUrl = `data:image/svg+xml;base64,${btoa(svgContent)}`;
+
+    // Create new link element
+    const link = document.createElement("link");
+    link.rel = "icon";
+    link.type = "image/svg+xml";
+    link.href = svgDataUrl;
+
+    head.appendChild(link);
   }
 
   // ---
@@ -736,19 +803,22 @@ declare global {
   }
 }
 
-function start() {
-  var t0 = performance.now();
-  //inject loading spinner and hide body overflowing behind the spinner
-  document.body.insertAdjacentHTML('afterbegin',spinner_html);
+async function start() {
+  const t0 = performance.now();
+  document.body.insertAdjacentHTML('afterbegin', spinner_html);
   document.body.style.overflow = 'hidden';
-  //timeout allows the browser to repaint and display the spinner
-  setTimeout(()=>{
+
+  // Theme laden über die Instanz
+  await window.rslidy.loadRslidyTheme();
+
+  setTimeout(() => {
     window.rslidy.init();
-    //hide the spinner again after rslidy is done
-    document.getElementById('rslidy-spinner').classList.add('rslidy-hidden');
-    var t1 = performance.now();
-    console.log("Time to first slide: " + (t1 - t0) + " milliseconds.");
-  },1);
+    const spinner = document.getElementById('rslidy-spinner');
+    if (spinner) spinner.classList.add('rslidy-hidden');
+    const t1 = performance.now();
+    console.log(`[rslidy] Time to first slide: ${(t1 - t0).toFixed(1)} ms`);
+  }, 1);
 }
+
 window.rslidy = new Rslidy();
-document.addEventListener("DOMContentLoaded", start);
+document.addEventListener('DOMContentLoaded', start);

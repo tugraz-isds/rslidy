@@ -161,20 +161,9 @@ function compress() {
 
 // CSS task
 function css() {
-  // Basis-Rslidy CSS
-  const base = src(paths.src + 'css/*.css')
+  return src(paths.src + 'css/*.css')
     .pipe(concat(files.css))
     .pipe(dest(paths.library));
-
-  // Themes (z. B. tu-graz)
-  const themes = src(paths.src + 'themes/**/*.css')
-    .pipe(dest(paths.library + 'themes/'));
-
-  // Theme-Bilder (z. B. Logos, Hintergründe)
-  const themeAssets = src(paths.src + 'themes/**/*.{png,jpg,jpeg,svg,gif}')
-    .pipe(dest(paths.library + 'themes/'));
-
-  return merge([base, themes, themeAssets]);
 }
 
 // Icon definitions task
@@ -212,28 +201,21 @@ function html() {
 
 // Copy task
 function copy() {
-  // Standardverhalten: JS + CSS kopieren
   fs.readdirSync(paths.build + 'examples').forEach(file => {
     const filePath = paths.build + 'examples/' + file;
     if (fs.statSync(filePath).isDirectory()) {
-      src(paths.library + 'esm/' + files.minjs).pipe(dest(filePath));
-      src(paths.library + files.mincss).pipe(dest(filePath));
-      // Themes nicht mehr in Example-Ordner kopieren
-      // src(paths.library + 'themes/**/*').pipe(dest(filePath + '/themes/'));
+      src(paths.library + 'esm/' + files.minjs)
+        .pipe(dest(filePath));
+      src(paths.library + files.mincss)
+        .pipe(dest(filePath));
     }
   });
-
   src(paths.library + 'esm/' + files.minjs)
     .pipe(dest(paths.build + 'tests/stress-test/'));
   src(paths.library + files.mincss)
     .pipe(dest(paths.build + 'tests/stress-test/'));
-  // Themes ebenfalls nur einmal global in library belassen
-  // src(paths.library + 'themes/**/*')
-  //   .pipe(dest(paths.build + 'tests/stress-test/themes/'));
-
   return Promise.resolve('');
 }
-
 
 // Build task
 const build = series(clean, parallel(series(transpile, webpack), html, css), parallel(minifyjs, minifycss), compress, copy);

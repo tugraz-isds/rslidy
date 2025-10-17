@@ -8,7 +8,7 @@
 
 .slide:not(.rslidy-titleslide) {
   /* disable background image for testing */
-  /* background: url("images/tugraz-logo.svg") 95% 4%/auto 2em no-repeat;*/
+  /* background: url("images/tu-graz-logo.svg") 95% 4%/auto 2em no-repeat;*/
 }
 
 .slide:not(.rslidy-titleslide) h1 {
