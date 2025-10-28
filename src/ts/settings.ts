@@ -8,7 +8,6 @@ interface Data {
   space: boolean;
   margintap: boolean;
   lowlightmode: boolean;
-  theme?: string;
 }
 
 export class SettingsComponent {
@@ -64,13 +63,6 @@ export class SettingsComponent {
       window.rslidy.toolbar.closeMenuOnSelection(
         () => window.rslidy.toggleLowLightMode()
       ));
-    this.view
-      .querySelector("#rslidy-select-theme")
-      .addEventListener("change", async (e: Event) => {
-        const theme = (e.target as HTMLSelectElement).value;
-        await window.rslidy.loadRslidyTheme(theme);
-        this.saveSettings();
-      });
       this.setupTableSorting();
       this.applyResponsiveTableLabels();
   }
@@ -101,11 +93,6 @@ export class SettingsComponent {
     (<HTMLInputElement>this.view.querySelector("#rslidy-checkbox-lowlightmode")).checked = data.lowlightmode;
     if (data.lowlightmode)
       window.rslidy.toggleLowLightMode();
-    if (data.theme) {
-      const themeSelect = <HTMLSelectElement>this.view.querySelector("#rslidy-select-theme");
-      themeSelect.value = data.theme; // update the dropdown
-      window.rslidy.loadRslidyTheme(data.theme); // apply the theme
-    }
   }
 
   // ---
@@ -133,8 +120,7 @@ export class SettingsComponent {
       shake: (<HTMLInputElement>this.view.querySelector("#rslidy-checkbox-shake")).checked,
       space: (<HTMLInputElement>this.view.querySelector("#rslidy-checkbox-space")).checked,
       margintap: (<HTMLInputElement>this.view.querySelector("#rslidy-checkbox-margintap")).checked,
-      lowlightmode: (<HTMLInputElement>this.view.querySelector("#rslidy-checkbox-lowlightmode")).checked,
-      theme: themeSelect?.value || "default"  // save the current theme
+      lowlightmode: (<HTMLInputElement>this.view.querySelector("#rslidy-checkbox-lowlightmode")).checked
     }
     return JSON.stringify(data);
   }
@@ -270,26 +256,50 @@ export class SettingsComponent {
   private setupTableSorting(): void {
     const tables = document.querySelectorAll("table.rslidy-responsive-table");
 
+    // --- Normalize text values for comparison ---
     const normalize = (text: string) => {
       text = text.trim();
 
-      // Only treat as number if the entire string is numeric
-      if (/^-?\d+(\.\d+)?$/.test(text)) {
-        return parseFloat(text);
-      }
+      // Numeric values
+      if (/^-?\d+(\.\d+)?$/.test(text)) return parseFloat(text);
 
-      // Tick/cross
+      // Checkmarks / Crosses
       if (text.includes("✔")) return 1;
       if (text.includes("✘")) return 0;
 
-      // Date
+      // Dates
       const timestamp = Date.parse(text);
       if (!isNaN(timestamp)) return timestamp;
 
-      // Default: string
+      // Default: lowercase string
       return text.toLowerCase();
     };
 
+    // --- Helper: Sort table body ---
+    const sortTable = (tbody: Element, columnIndex: number, direction: "asc" | "desc") => {
+      const rows = Array.from(tbody.querySelectorAll("tr"));
+
+      rows.sort((a, b) => {
+        const cellA = a.children[columnIndex]?.textContent || "";
+        const cellB = b.children[columnIndex]?.textContent || "";
+
+        const valA = normalize(cellA);
+        const valB = normalize(cellB);
+
+        if (typeof valA === "number" && typeof valB === "number") {
+          return direction === "asc" ? valA - valB : valB - valA;
+        } else {
+          return direction === "asc"
+            ? String(valA).localeCompare(String(valB))
+            : String(valB).localeCompare(String(valA));
+        }
+      });
+
+      tbody.innerHTML = "";
+      rows.forEach((r) => tbody.appendChild(r));
+    };
+
+    // --- Enable sorting for all responsive tables ---
     tables.forEach((table) => {
       if (table.classList.contains("rslidy-disable-sorting")) return;
 
@@ -301,7 +311,7 @@ export class SettingsComponent {
       let currentSort = { column: -1, direction: "none" as "asc" | "desc" | "none" };
 
       headers.forEach((header, columnIndex) => {
-        // --- Add dynamic cursor + title management ---
+        // --- Update cursor and tooltip dynamically ---
         const updateCursorAndTitle = (evt: MouseEvent) => {
           const rect = header.getBoundingClientRect();
           const cs = getComputedStyle(header);
@@ -313,11 +323,10 @@ export class SettingsComponent {
           const rightIconLeft = rightIconRight - 1.1 * fontSize;
           const x = evt.clientX;
 
-          const overIcon = (x >= leftIconLeft && x <= leftIconRight) || (x >= rightIconLeft && x <= rightIconRight);
+          const overIcon =
+            (x >= leftIconLeft && x <= leftIconRight) || (x >= rightIconLeft && x <= rightIconRight);
 
-          // Update cursor and title dynamically
           if (overIcon) {
-            header.style.cursor = "default";
             header.removeAttribute("title");
           } else {
             header.style.cursor = "pointer";
@@ -325,30 +334,69 @@ export class SettingsComponent {
           }
         };
 
-        // Keep pointer feedback up to date as mouse moves
         header.addEventListener("mousemove", updateCursorAndTitle);
 
+        // --- Click handler for sorting ---
         header.addEventListener("click", (evt: MouseEvent) => {
-          // ----- Ignore clicks on icon area -----
           const rect = header.getBoundingClientRect();
           const cs = getComputedStyle(header);
           const fontSize = parseFloat(cs.fontSize) || 16;
 
+          // Calculate clickable icon areas
           const leftIconLeft = rect.left + 0.3125 * fontSize;
           const leftIconRight = leftIconLeft + 1.1 * fontSize;
           const rightIconRight = rect.right - 0.3125 * fontSize;
           const rightIconLeft = rightIconRight - 1.1 * fontSize;
+
           const x = evt.clientX;
+          const y = evt.clientY;
 
-          const clickedIcon =
-            (x >= leftIconLeft && x <= leftIconRight) || (x >= rightIconLeft && x <= rightIconRight);
+          const clickedLeftIcon = x >= leftIconLeft && x <= leftIconRight;
+          const clickedRightIcon = x >= rightIconLeft && x <= rightIconRight;
 
-          if (clickedIcon) {
+          // Vertical split for top/bottom triangle detection
+          const iconHeight = 1.1 * fontSize;
+          const iconTop = rect.top + rect.height / 2 - iconHeight / 2;
+          const clickedUpperHalf = y < iconTop + iconHeight / 2;
+          const clickedLowerHalf = y >= iconTop + iconHeight / 2;
+
+          // --- Handle direct clicks on icons ---
+          if (clickedLeftIcon || clickedRightIcon) {
             evt.stopPropagation();
-            return; // don’t sort if click landed on icon
+
+            // Reset all header states
+            headers.forEach((h) => h.classList.remove("sorted-asc", "sorted-desc"));
+
+            if (clickedUpperHalf) {
+              // ▲ clicked → toggle ASC / default
+              if (currentSort.column === columnIndex && currentSort.direction === "asc") {
+                // Already ascending → reset to default
+                originalRows.forEach((row) => tbody.appendChild(row));
+                currentSort = { column: -1, direction: "none" };
+              } else {
+                // Sort ascending
+                header.classList.add("sorted-asc");
+                sortTable(tbody, columnIndex, "asc");
+                currentSort = { column: columnIndex, direction: "asc" };
+              }
+            } else if (clickedLowerHalf) {
+              // ▼ clicked → toggle DESC / default
+              if (currentSort.column === columnIndex && currentSort.direction === "desc") {
+                // Already descending → reset to default
+                originalRows.forEach((row) => tbody.appendChild(row));
+                currentSort = { column: -1, direction: "none" };
+              } else {
+                // Sort descending
+                header.classList.add("sorted-desc");
+                sortTable(tbody, columnIndex, "desc");
+                currentSort = { column: columnIndex, direction: "desc" };
+              }
+            }
+
+            return;
           }
 
-          // ---------------- Sorting Logic ----------------
+          // --- Default header click (outside icons) ---
           headers.forEach((h) => h.classList.remove("sorted-asc", "sorted-desc"));
 
           let newDirection: "asc" | "desc" | "none";
@@ -367,40 +415,13 @@ export class SettingsComponent {
             originalRows.forEach((row) => tbody.appendChild(row));
           } else {
             header.classList.add(newDirection === "asc" ? "sorted-asc" : "sorted-desc");
-
-            const currentRows = Array.from(tbody.querySelectorAll("tr"));
-            currentRows.sort((a, b) => {
-              const cellA = a.children[columnIndex]?.textContent || "";
-              const cellB = b.children[columnIndex]?.textContent || "";
-
-              const valA = normalize(cellA);
-              const valB = normalize(cellB);
-
-              // Numeric comparison
-              if (typeof valA === "number" && typeof valB === "number") {
-                return newDirection === "asc" ? valA - valB : valB - valA;
-              } else if (typeof valA === "number" && typeof valB === "string") {
-                return newDirection === "asc"
-                  ? valA.toString().localeCompare(valB)
-                  : valB.localeCompare(valA.toString());
-              } else if (typeof valA === "string" && typeof valB === "number") {
-                return newDirection === "asc"
-                  ? valA.localeCompare(valB.toString())
-                  : valB.toString().localeCompare(valA);
-              } else {
-                return newDirection === "asc"
-                  ? String(valA).localeCompare(String(valB))
-                  : String(valB).localeCompare(String(valA));
-              }
-            });
-
-            tbody.innerHTML = "";
-            currentRows.forEach((row) => tbody.appendChild(row));
+            sortTable(tbody, columnIndex, newDirection);
           }
         });
       });
     });
   }
+
 
 
 

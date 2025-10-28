@@ -427,3 +427,26 @@ Example with an image on the left and a video on the right.
 
 [Rslidy Slide Deck](https://tugraz-isds.github.io/rslidy/rslidy/index.html)
 
+
+
+## 5. Themes
+Rslidy supports themes that define the visual appearance of
+slides, including background-colours, typography, and background images.
+Each theme is implemented as a CSS file located in the `library/themes`
+directory. You can apply a theme by importing its CSS file into the `<head>` 
+section of your HTML document:
+
+```html
+<head>
+  <meta charset="UTF-8"/>
+  <!-- for css3 media queries to work properly on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  
+  <title>Layouts</title>
+  
+  <link rel="stylesheet" href="rslidy.min.css"/>
+  <script type="module" src="rslidy.min.js"></script>
+  <!-- for custom css sheets-->
+  <link rel="stylesheet" href="../../library/themes/tu-graz/theme.css"/>
+</head>
+```

@@ -1,6 +1,6 @@
 {
   "name": "rslidy",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Rslidy: Lightweight, Accessible, and Responsive HTML5 Slide Decks",
   "main": "build/rslidy.js",
   "author": "Keith Andrews",
@@ -20,7 +20,6 @@
     "slide decks"
   ],
   "devDependencies": {
-    "@tauri-apps/cli": "^2.7.1",
     "@types/node": "^22.13.4",
     "browser-sync": "^2.27.5",
     "del": "^3.0.0",
@@ -29,6 +28,7 @@
     "gulp-gzip": "^1.4.2",
     "gulp-header": "^2.0.9",
     "gulp-rename": "^1.4.0",
+    "gulp-replace": "^1.1.4",
     "gulp-terser": "^2.1.0",
     "gulp-typescript": "^6.0.0-alpha.1",
     "gulp-uglifycss": "^1.1.0",
@@ -38,8 +38,5 @@
     "webpack": "^5.89.0",
     "webpack-stream": "^7.0.0",
     "yargs": "^15.0.2"
-  },
-
-  "dependencies": {
   }
 }

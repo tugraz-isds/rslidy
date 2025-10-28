@@ -76,7 +76,6 @@
 .rslidy-responsive-table.rslidy-disable-sorting th.sorted-desc::before {
  content: none !important;
  pointer-events: none; !important /* Disable clicks on the icon */
- cursor:default;
 
 }
 .rslidy-responsive-table.rslidy-disable-sorting th {

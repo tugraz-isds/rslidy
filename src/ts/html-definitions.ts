@@ -11,7 +11,7 @@ export const help_text = `
 role="region" aria-label="Help" tabindex="0">
   <div id="rslidy-help-popup">
   <h1>
-    Rslidy Version 2.0.1
+    Rslidy Version 2.0.2
     <a target="_blank" href="https://github.com/tugraz-isds/rslidy">GitHub</a>
   </h1>
   <a class="rslidy-help-close" title="`+t.imageviewer[3]+`" href="#">&times;</a>
@@ -253,14 +253,6 @@ aria-label="Settings" tabindex="0">
     <input type="checkbox" value="Low Light Mode" id="rslidy-checkbox-lowlightmode">
     <label for="rslidy-checkbox-lowlightmode">`+i.slider_icon+`</label>
   </label>
-  <div class="rslidy-setting-group">
-  <label for="rslidy-select-theme">Theme:</label>
-  <select id="rslidy-select-theme" class="rslidy-select">
-    <option value="default">Default</option>
-    <option value="tu-graz">TU Graz</option>
-    <option value="modern">Modern</option>
-  </select>
-</div>
   <div class="rslidy-menu-content-settings">
     <label>`+t.settings[5]+`</label>
     <a href="#" title="`+t.settings[7]+`" id="rslidy-button-font-minus"><span class="rslidy-menu-button">`+i.font_minus_icon+`</span></a>

@@ -1,4 +1,4 @@
-/* Titel-Slide */
+/* Title Slide */
 .rslidy-titleslide {
     background: url("images/background.png") no-repeat center, linear-gradient(white 0%, gray 100%);
     background-size: contain;
@@ -7,13 +7,16 @@
     color: #000000;
 }
 
-/* Normale Slides */
+/* Normal Slides */
 .slide:not(.rslidy-titleslide) {
     background: url("images/tugraz-logo.svg") 95% 4%/auto 2em no-repeat;
     color: #000000;
+    padding-right: 5em; /* adds space so text doesn’t overlap logo */
+    padding-top: 2em;   /* optional: extra space from top edge */
+    box-sizing: border-box;
 }
 
-/* Toolbar-Farben, falls benötigt */
+/* Toolbar colors, if needed */
 :root {
     --rslidy-toolbar-bg-color: #e1e7ea;
     --rslidy-toolbar-button-color: #4b4b4b;

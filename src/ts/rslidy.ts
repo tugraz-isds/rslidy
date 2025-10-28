@@ -1,4 +1,4 @@
-﻿import { Utils } from "./utils";
+import { Utils } from "./utils";
 import { SettingsComponent } from "./settings";
 import { PrintSettingsComponent } from "./print-settings";
 import { ToolbarComponent } from "./toolbar";

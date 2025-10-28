@@ -1,20 +1,27 @@
-/* Toolbar-Farben
+/* Toolbar colors
 :root {
     --rslidy-toolbar-bg-color: #2c3e50;
     --rslidy-toolbar-button-color: #fffff;
 }
 */
 
-/* Titel-Slide */
+
+/* Title Slide */
 .rslidy-titleslide {
     background: linear-gradient(135deg, #3498db 0%, #9b59b6 100%);
     display: flex;
     flex-direction: column;
-    color: #ffffff; /* weiße Schrift auf Gradient */
+    color: #ffffff; /* white text on gradient */
 }
 
-/* Normale Slides */
+/* Normal Slides */
 .slide:not(.rslidy-titleslide) {
     background: linear-gradient(90deg, #1abc9c 0%, #16a085 100%);
     color: #ffffff;
 }
+
+.rslidy-responsive-table th{
+    color: #ffffff;
+}
+
+

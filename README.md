@@ -13,7 +13,7 @@ inside the HTML5 body element and are presented one at a time with
 transitions.
 
 <img src="src/tests/images/rslidy-1600x900.png" alt="Figure1" style="border:0.1em solid;">
-[Rslidy Slide Deck](https://tugraz-isds.github.io/rslidy/rslidy/index.html)
+[Rslidy Slide Deck] (https://tugraz-isds.github.io/rslidy/rslidy/index.html)
 
 
 ## 2 Features
@@ -131,7 +131,7 @@ snippet below.
 </section>
 ```
 To make list items appear one at a time, use the
-`<ul class="incremental">` instead of `<ul>`.
+`<ul class="rslidy-incremental">` instead of `<ul>`.
 
 #### Images
 
@@ -213,7 +213,17 @@ JavaScript, as shown below:
 </script>
 ```
 
-For more information and various use cases of RSlidy elements, see
+
+
+### 4.6 Rslidy Layouts
+
+The Rslidy Layouts Guide provides an overview of the various layout 
+options available for creating slide decks in Rslidy.
+It demonstrates how to use templates or classes to design title slides, 
+section dividers, content slides (with text, lists, images, videos, and 
+responsive tables), as well as multi-column layouts.
+
+For a full overview of the layouts and their usage, see
 the [Rslidy Layouts](README-layouts.md) guide.
 
 

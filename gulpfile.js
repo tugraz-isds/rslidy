@@ -1,10 +1,15 @@
 const { src, dest, parallel, series, watch } = require('gulp');
+
+
+const replace = require('gulp-replace');
 const ts = require('gulp-typescript');
 const concat = require('gulp-concat');
 const ujs = require('gulp-terser');
 const ucss = require('gulp-uglifycss');
 const rename = require('gulp-rename');
 const merge = require('merge2');
+const pkg = require('./package.json');
+const version = pkg.version;
 const fs = require('fs');
 const del = require('del');
 const gzip = require('gulp-gzip');
@@ -13,6 +18,8 @@ const webpacks = require('webpack-stream');
 const browserSync = require('browser-sync').create();
 const argv = require('yargs').argv;
 const header = require('gulp-header');
+
+console.log('[Gulp] Using version:', version);
 
 const paths = {
   src: './src/',
@@ -57,7 +64,7 @@ function webpack() {
       optimization: { minimize: false },
       plugins: [
         new wp.BannerPlugin({
-          banner: '// Rslidy version 2.0.0 ESM',
+          banner: `// Rslidy version ${version} ESM`,
           raw: true
         })
       ]
@@ -69,7 +76,7 @@ function webpack() {
       optimization: { minimize: false },
       plugins: [
         new wp.BannerPlugin({
-          banner: '// Rslidy version 2.0.0 CommonJS',
+          banner: `// Rslidy version ${version} CommonJS`,
           raw: true
         })
       ]
@@ -86,7 +93,7 @@ function webpack() {
       optimization: { minimize: false },
       plugins: [
         new wp.BannerPlugin({
-          banner: '// Rslidy version 2.0.0 UMD',
+          banner: `// Rslidy version ${version} UMD`,
           raw: true
         })
       ]
@@ -127,19 +134,19 @@ function minifyjs() {
   return merge([
     src(paths.library + 'esm/**/*.js')
       .pipe(ujs())
-      .pipe(header('// Rslidy version 2.0.1 ESM\n'))
+      .pipe(header(`// Rslidy version ${version} ESM\n`))
       .pipe(rename({ suffix: '.min' }))
       .pipe(dest(paths.library + 'esm')),
 
     src(paths.library + 'cjs/**/*.js')
       .pipe(ujs())
-      .pipe(header('// Rslidy version 2.0.1 CommonJS\n'))
+      .pipe(header(`// Rslidy version ${version} CommonJS\n`))
       .pipe(rename({ suffix: '.min' }))
       .pipe(dest(paths.library + 'cjs')),
 
     src(paths.library + 'umd/**/*.js')
       .pipe(ujs())
-      .pipe(header('// Rslidy version 2.0.1 UMD\n'))
+      .pipe(header(`// Rslidy version ${version} UMD\n`))
       .pipe(rename({ suffix: '.min' }))
       .pipe(dest(paths.library + 'umd'))
   ]);
@@ -236,7 +243,10 @@ function copy() {
 
 
 // Build task
-const build = series(clean, parallel(series(transpile, webpack), html, css), parallel(minifyjs, minifycss), compress, copy);
+const build = series(clean,
+  updateVersionStrings,
+  parallel(series(transpile, webpack), html, css),
+  parallel(minifyjs, minifycss), compress, copy);
 exports.build = build;
 
 // Watch task
@@ -269,6 +279,16 @@ function watchTask() {
   watch([paths.src + 'examples/**/*.*', paths.src + 'tests/**/*.*'], { delay: 500 }, series(html, copy)).on('change', () => browserSync.reload());
   watch(paths.src + 'icons/*.svg', { delay: 500 }, series(icon_definitions, transpile, webpack, minifyjs, compress, copy)).on('change', () => browserSync.reload());
 }
+
+function updateVersionStrings() {
+  return src(['src/**/*.ts', 'src/**/*.js', 'src/**/*.html', 'src/**/*.md'], { base: './' })
+    // Replace version number patterns like: "Rslidy Version 2.0.1"
+    .pipe(replace(/Rslidy Version [0-9]+\.[0-9]+\.[0-9]+/g, `Rslidy Version ${version}`))
+    // Optional: also replace generic placeholders like __VERSION__
+    .pipe(replace(/__VERSION__/g, version))
+    .pipe(dest('./'));
+}
+exports.updateVersionStrings = updateVersionStrings;
 
 exports.watch = series(build, watchTask);
 exports.watch.description = 'Builds and watches for changes, reloading the browser as needed';

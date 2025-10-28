@@ -207,7 +207,7 @@ export class ContentComponent {
       slide_index
     ];
     var incremental_items: any = (<HTMLElement>slide).querySelectorAll(
-      "ul.incremental li"
+      "ul.rslidy-incremental li"
     );
     if (only_visible == false) return incremental_items.length;
     else {
@@ -332,7 +332,7 @@ export class ContentComponent {
       this.currentSlideIndex
     ];
     var incr_items: any = (<HTMLElement>current_slide).querySelectorAll(
-      "ul.incremental li"
+      "ul.rslidy-incremental li"
     );
 
     // Show items with index < n, hide items with index >= n

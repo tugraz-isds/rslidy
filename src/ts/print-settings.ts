@@ -153,82 +153,113 @@ export class PrintSettingsComponent {
       #vorotree canvas { display: block; position: relative !important; max-width: 100% !important; height: auto !important; }
       @page { size: ${dimensions}; }
     `;
+
     if (window.innerWidth <= 640) {
       css += `
     @media print {
-      .responsive-table tr {
-        break-inside: avoid !important; /* Prevent row from breaking across pages */
-        margin-bottom: 1em !important;
-        display: block !important;
-        width: 100% !important;
-      }
-
-      .responsive-table {
-        align-items: center !important;
-        display: flex !important;
-        flex-direction: column !important;
-        margin-left: auto !important;
-        margin-right: 5.5em !important;
-        text-align: center !important;
-        width: auto !important;
-        overflow-x: visible !important;
-      }
-
-      .responsive-table thead {
-        display: none !important;
-      }
-
-      .responsive-table tbody,
-      .responsive-table td {
-        display: block !important;
-        width: 100% !important;
-      }
-
-      .responsive-table td {
-        min-width: 15em !important;
-        padding-left: 10% !important;
-        position: relative !important;
-        text-align: right !important;
-      }
-
-      .responsive-table td:before {
-        color: #000 !important;
-        content: attr(data-label) !important;
-        font-weight: 700 !important;
-        left: 0 !important;
-        padding-left: 0.5em !important;
-        position: absolute !important;
-        text-align: left !important;
-      }
-
-      .responsive-table td:first-of-type {
-        background-color: #eaf1f5 !important;
-        color: #2b2b2b !important;
-        font-weight: 400 !important;
-      }
-
-      .responsive-table tr.text > td {
-        text-align: right !important;
-      }
-
-      .responsive-table tr.numeric > td {
-        text-align: right !important;
-      }
-
-      .responsive-table td:first-child {
-        text-align: right !important;
-      }
-
-      .rslidy-columns-even {
-        flex-direction: column !important;
-      }
-
-      .rslidy-columns-even > * {
-        width: 100% !important;
-      }
-    }
+    .rslidy-responsive-table {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    margin-right: 5.5em;
+    text-align: center;
+    width: auto !important;
+    overflow-x: visible;
+   }
+  
+   .rslidy-responsive-table thead {
+    display: none;
+   }
+  
+   .rslidy-responsive-table tbody,
+   .rslidy-responsive-table td,
+   .rslidy-responsive-table tr {
+    display: block;
+    width: 100%;
+   }
+  
+   .rslidy-responsive-table tr {
+    margin-bottom: 1em;
+   }
+  
+   .rslidy-responsive-table td {
+    min-width: 15em;
+    padding-left: 10%;
+    position: relative;
+    text-align: right;
+    white-space: nowrap;
+   }
+  
+   .rslidy-responsive-table td:before {
+    color: #000;
+    content: attr(data-label);
+    font-weight: 700;
+    left: 0;
+    padding-left: 0.5em;
+    position: absolute;
+    text-align: left;
+   }
+  
+   .rslidy-responsive-table td:first-of-type {
+    background-color: gainsboro;
+    color: #2b2b2b;
+    font-weight: 400;
+    text-align: right !important;
+   }
+  
+   .rslidy-responsive-table td.rslidy-text {
+    text-align: right !important;
+   }
+   .rslidy-responsive-table td.rslidy-date {
+    text-align: right !important;
+   }
+  
+   .rslidy-responsive-table th.rslidy-date {
+    text-align: right !important;
+   }
+   .rslidy-responsive-table th.rslidy-text {
+    text-align: right !important;
+   }
+  
+   .rslidy-responsive-table td.rslidy-symbol,
+   .rslidy-responsive-table th.rslidy-symbol {
+    text-align: right;
+   }
+  
+   .rslidy-responsive-table tr.rslidy-symbol > td {
+    text-align: right;
+   }
+  
+   .rslidy-responsive-table td.rslidy-numeric,
+   .rslidy-responsive-table th.rslidy-numeric {
+    text-align: right;
+   }
+  
+   .rslidy-responsive-table tr.rslidy-text > td {
+    text-align: right;
+   }
+  
+   .rslidy-responsive-table tr.rslidy-numeric > td {
+    text-align: right;
+   }
+   .rslidy-fit {
+    font-size: clamp(0.7rem, 2.2vw, 1rem);
+    width: 100%; /* let table expand */
+    table-layout: auto; /* allow dynamic resizing */
+    word-wrap: break-word; /* break long words */
+   }
+  
+   /* Make sure table cells shrink properly */
+   .rslidy-fit td,
+   .rslidy-fit th {
+    white-space: normal; /* allow wrapping */
+    overflow: hidden;
+    text-overflow: ellipsis;
+   }
+ }
   `;
     }
+
 
 
     // Handle print sizing options
