@@ -22,7 +22,7 @@ a slide is created by a section and/or div.slide
   bottom: 0;
   margin: 0.5em 1.5em 1.5em 1.5em;
   padding: 2.3rem;
-  font-size: 1.4em; /* from first CSS */
+  font-size: 1.5em; /* from first CSS */
 }
 
 .slide:not(.rslidy-titleslide) {
