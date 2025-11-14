@@ -1,3 +1,4 @@
+/* === Property definitions remain unchanged === */
 @property --rslidy-large {
   syntax: "<length>";
   inherits: false;
@@ -61,55 +62,55 @@
 @property --rslidy-toolbar-bg-color {
   syntax: "<color>";
   inherits: true;
-  initial-value: #e1e7ea;
+  initial-value: light-dark(#e1e7ea, #1a1a1a);
 }
 
 @property --rslidy-toolbar-button-bg-color {
   syntax: "<color>";
   inherits: true;
-  initial-value: #e1e7ea;
+  initial-value: light-dark(#e1e7ea, #2a2a2a);
 }
 
 @property --rslidy-toolbar-button-color {
   syntax: "<color>";
   inherits: true;
-  initial-value: #4b4b4b;
+  initial-value: light-dark(#4b4b4b, #e0e0e0);
 }
 
 @property --rslidy-button-border-color {
   syntax: "<color>";
   inherits: true;
-  initial-value: #848484;
+  initial-value: light-dark(#848484, #666);
 }
 
 @property --rslidy-button-hover-color {
   syntax: "<color>";
   inherits: true;
-  initial-value: #c1c7ca;
+  initial-value: light-dark(#c1c7ca, #444);
 }
 
 @property --rslidy-button-active-color {
   syntax: "<color>";
   inherits: true;
-  initial-value: #fff;
+  initial-value: light-dark(#fff, #000);
 }
 
 @property --rslidy-button-disabled-color {
   syntax: "<color>";
   inherits: true;
-  initial-value: #aaa;
+  initial-value: light-dark(#aaa, #555);
 }
 
 @property --rslidy-progressbar-bg-color-reached {
   syntax: "<color>";
   inherits: true;
-  initial-value: #003399;
+  initial-value: light-dark(#003399, #6b8cff);
 }
 
 @property --rslidy-progressbar-bg-color-unreached {
   syntax: "<color>";
   inherits: true;
-  initial-value: #4d88ff;
+  initial-value: light-dark(#4d88ff, #3355aa);
 }
 
 @property --rslidy-toolbar-height {
@@ -127,29 +128,32 @@
 @property --rslidy-slider-fill-off {
   syntax: "<color>";
   inherits: true;
-  initial-value: #ececec;
+  initial-value: light-dark(#ececec, #333);
 }
 
 @property --rslidy-slider-stroke-off {
   syntax: "<color>";
   inherits: true;
-  initial-value: #bdbdbd;
+  initial-value: light-dark(#bdbdbd, #555);
 }
 
 @property --rslidy-slider-fill-on {
   syntax: "<color>";
   inherits: true;
-  initial-value: #3498db;
+  initial-value: light-dark(#3498db, #5dade2);
 }
 
 @property --rslidy-slider-stroke-on {
   syntax: "<color>";
   inherits: true;
-  initial-value: #85c1e9;
+  initial-value: light-dark(#85c1e9, #2874a6);
 }
 
-/* Global custom property definitions */
+/* === Global variables === */
 :root {
+  color-scheme: light dark;
+
+  /* sizes */
   --rslidy-large: 44rem;
   --rslidy-medium: 40rem;
   --rslidy-small: 36rem;
@@ -163,22 +167,30 @@
   --rslidy-overview-width-small-screen: 50%;
   --rslidy-slide-input-width: 2.60em;
 
-  /* toolbar */
-  --rslidy-toolbar-bg-color: #e1e7ea;
-  --rslidy-toolbar-button-bg-color: #e1e7ea;
-  --rslidy-toolbar-button-color: #4b4b4b;
-  --rslidy-button-border-color: #848484;
-  --rslidy-button-hover-color: #c1c7ca;
-  --rslidy-button-active-color: #fff;
-  --rslidy-button-disabled-color: #aaa;
-  --rslidy-progressbar-bg-color-reached: #003399;
-  --rslidy-progressbar-bg-color-unreached: #4d88ff;
+  /* toolbar and buttons */
+  --rslidy-toolbar-bg-color: light-dark(#e1e7ea, #1a1a1a);
+  --rslidy-toolbar-button-bg-color: light-dark(#e1e7ea, #2a2a2a);
+  --rslidy-toolbar-button-color: light-dark(#4b4b4b, #e0e0e0);
+  --rslidy-button-border-color: light-dark(#848484, #666);
+  --rslidy-button-hover-color: light-dark(#c1c7ca, #444);
+  --rslidy-button-active-color: light-dark(#fff, #000);
+  --rslidy-button-disabled-color: light-dark(#aaa, #555);
+  --rslidy-progressbar-bg-color-reached: light-dark(#003399, #6b8cff);
+  --rslidy-progressbar-bg-color-unreached: light-dark(#4d88ff, #3355aa);
   --rslidy-toolbar-height: 3.20em;
   --rslidy-progressbar-height: 0.50em;
 
-  /* settings */
-  --rslidy-slider-fill-off: #ececec;
-  --rslidy-slider-stroke-off: #bdbdbd;
-  --rslidy-slider-fill-on: #3498db;
-  --rslidy-slider-stroke-on: #85c1e9;
+  /* settings sliders */
+  --rslidy-slider-fill-off: light-dark(#ececec, #333);
+  --rslidy-slider-stroke-off: light-dark(#bdbdbd, #555);
+  --rslidy-slider-fill-on: light-dark(#3498db, #5dade2);
+  --rslidy-slider-stroke-on: light-dark(#85c1e9, #2874a6);
+}
+:root.theme-light {
+  color-scheme: light;
+}
+
+/* Force DARK mode (user override) */
+:root.theme-dark {
+  color-scheme: dark;
 }

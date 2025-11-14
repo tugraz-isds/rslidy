@@ -1,23 +1,31 @@
 /* Title Slide */
 .rslidy-titleslide {
-    background: url("images/background.png") no-repeat center, linear-gradient(white 0%, gray 100%);
+    background: url("background.png") no-repeat center, linear-gradient(white 0%, gray 80%);
     background-size: contain;
     display: flex;
     flex-direction: column;
     color: #000000;
+
 }
 
 /* Normal Slides */
 .slide:not(.rslidy-titleslide) {
-    background: url("images/tugraz-logo.svg") 95% 4%/auto 2em no-repeat;
-    color: #000000;
+    background: url("tugraz-logo.svg") 95% 4%/auto 2em no-repeat;
     padding-right: 5em; /* adds space so text doesn’t overlap logo */
     padding-top: 2em;   /* optional: extra space from top edge */
     box-sizing: border-box;
 }
 
-/* Toolbar colors, if needed */
-:root {
-    --rslidy-toolbar-bg-color: #e1e7ea;
-    --rslidy-toolbar-button-color: #4b4b4b;
+@media (prefers-color-scheme: dark) {
+    .rslidy-titleslide {
+        filter: invert(100%); /* now only the background */
+    }
+
+    .rslidy-titleslide a,
+    .rslidy-titleslide a:visited {
+        filter: invert(100%); /* cancels parent inversion */
+        color: #4da3ff;       /* optional: force blue */
+    }
+
 }
+

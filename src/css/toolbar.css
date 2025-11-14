@@ -144,7 +144,7 @@
 .rslidy-toolbar-slide > input {
   border-radius: 0.15em;
   margin-left: 0.30em;
-  background-color: white;
+  background-color: light-dark(white, black);
 }
 
 .rslidy-float-left {
@@ -288,13 +288,14 @@
   width: 100%;
 }
 
-#rslidy-help-table td, #rslidy-help-table th {
-  border: 1px solid #ddd;
+#rslidy-help-table td,
+#rslidy-help-table th {
+  border: 1px solid light-dark(#ddd, #555);
   padding: 0.50em;
 }
 
 #rslidy-help-table tr:nth-child(even) {
-  background-color: #f2f2f2;
+  background-color: light-dark(#f2f2f2, #2a2a2a);
 }
 
 #rslidy-help-table tr td:nth-child(2) {
@@ -304,6 +305,6 @@
 #rslidy-help-table th {
   padding-top: 0.75em;
   padding-bottom: 0.75em;
-  background-color: var(--rslidy-toolbar-button-color);
-  color: white;
+  background-color: light-dark(var(--rslidy-toolbar-button-color), transparent);
+  color: light-dark(white, #ccc);
 }

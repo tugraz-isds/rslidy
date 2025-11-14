@@ -3,10 +3,10 @@
   flex: 1 1 auto;
   height: 100%;
   width: 100%;
-  background-color: white;
   overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
   word-wrap: break-word;
+ background-color: light-dark(white, black);
 }
  #rslidy-content-section .slide {
   transition: 0.3s;
@@ -28,8 +28,8 @@
   flex-direction: row;
   min-height: 0;
   overflow: hidden;
-  background-color: white;
-}
+  background-color: light-dark(#white, #black);
+ }
 /* -- Speaker Notes */
  #rslidy-speakernotes-overlay {
   position: absolute;

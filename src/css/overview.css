@@ -33,7 +33,7 @@
   z-index: -1;
   display: block;
   overflow: hidden;
-  background-color: white;
+  background-color: light-dark(white, #1a1a1a);
   filter: brightness(0.9);
 }
 

@@ -42,6 +42,33 @@ export class ContentComponent {
         );
     });
 
+    document.addEventListener("keydown", (event) => {
+      if (event.key !== "Enter") return;
+
+      // don't interfere with typing
+      const t = event.target as HTMLElement | null;
+      if (t && (t.tagName === "INPUT" || t.tagName === "TEXTAREA" || t.isContentEditable)) return;
+
+      // ensure we have a valid index
+      const current_index =
+        this.currentSlideIndex >= 0 ? this.currentSlideIndex : this.getCurrentSlideIndex();
+
+      const num_incr_items = this.getNumIncrItems(current_index, false);
+      if (num_incr_items <= 0) return;
+
+      const num_incr_items_shown = this.getNumIncrItems(current_index, true);
+
+      // show only the next incremental item (or all with Shift)
+      if (num_incr_items > num_incr_items_shown) {
+        if (!window.rslidy.shift_pressed) {
+          this.showItemsUpToN(num_incr_items_shown + 1);
+        } else {
+          this.showItemsUpToN(num_incr_items);
+        }
+        event.preventDefault();
+      }
+    });
+
     this.view.addEventListener("mousedown", (e) => {
       //prevent double click selection
       this.marginTapBoth(e,

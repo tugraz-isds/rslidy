@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     shape-rendering="geometricPrecision"
+     text-rendering="geometricPrecision"
+     image-rendering="optimizeQuality"
+     fill-rule="evenodd"
+     clip-rule="evenodd"
+     viewBox="0 0 320 512.29">
+
+  <style>
+    @media (prefers-color-scheme: light) {
+    .icon-fill { fill: #000000; stroke: #000000; }
+    }
+    @media (prefers-color-scheme: dark) {
+    .icon-fill { fill: #ffffff; stroke: #ffffff; }
+    }
+  </style>
+
+  <!-- Filled space between top triangles (outer rounded, inner sharp) -->
+  <path class="icon-fill" stroke-width="1"
+        d="M303.89 201.63H16.1c-3.75 0-7.52-1.31-10.57-3.96-6.71-5.84-7.41-16.01-1.57-22.72L151.55 5.52l1.89-1.83c6.84-5.66 17-4.7 22.66 2.14l139.7 168.84c2.61 2.87 4.2 6.68 4.2 10.85 0 8.9-7.21 16.11-16.11 16.11z
+           M51.49 169.41h218.18L163.39 40.96 51.49 169.41z"/>
+
+  <!-- Bottom triangle -->
+  <path class="icon-fill" stroke-width="1"
+        d="M269.67 342.88H51.49l111.90 128.45 106.28-128.45z"/>
+
+  <!-- Diamond (middle connector) -->
+  <path class="icon-fill" stroke-width="1"
+        d="M16.1 310.66h287.79c8.9 0 16.11 7.21 16.11 16.11 0 4.18-1.59 7.98-4.2 10.85L176.1 506.46c-5.66 6.85-15.82 7.8-22.66 2.14l-1.88-1.83L3.96 337.34c-5.84-6.7-5.14-16.88 1.57-22.71a16.09 16.09 0 0 1 10.57-3.97z"/>
+</svg>

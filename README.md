@@ -13,7 +13,8 @@ inside the HTML5 body element and are presented one at a time with
 transitions.
 
 <img src="src/tests/images/rslidy-1600x900.png" alt="Figure1" style="border:0.1em solid;">
-[Rslidy Slide Deck] (https://tugraz-isds.github.io/rslidy/rslidy/index.html)
+
+[Rslidy Slide Deck](https://tugraz-isds.github.io/rslidy/rslidy/index.html)
 
 
 ## 2 Features

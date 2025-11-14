@@ -1,6 +1,6 @@
 const { src, dest, parallel, series, watch } = require('gulp');
 
-
+const brotli = require('gulp-brotli');
 const replace = require('gulp-replace');
 const ts = require('gulp-typescript');
 const concat = require('gulp-concat');
@@ -161,9 +161,20 @@ function minifycss() {
 }
 
 function compress() {
-  return src(paths.library + '**/*.min.js')
+  const sourceFiles = src(paths.library + '**/*.min.js');
+
+  const gzipFiles = sourceFiles
     .pipe(gzip())
     .pipe(dest(paths.library));
+
+  const brotliFiles = src(paths.library + '**/*.min.js')
+    .pipe(brotli.compress({
+      extension: 'br',
+      quality: 11
+    }))
+    .pipe(dest(paths.library));
+
+  return merge([gzipFiles, brotliFiles]);
 }
 
 // CSS task
@@ -219,27 +230,56 @@ function html() {
 
 // Copy task
 function copy() {
-  // Standardverhalten: JS + CSS kopieren
-  fs.readdirSync(paths.build + 'examples').forEach(file => {
-    const filePath = paths.build + 'examples/' + file;
-    if (fs.statSync(filePath).isDirectory()) {
-      src(paths.library + 'esm/' + files.minjs).pipe(dest(filePath));
-      src(paths.library + files.mincss).pipe(dest(filePath));
-      // Themes nicht mehr in Example-Ordner kopieren
-      // src(paths.library + 'themes/**/*').pipe(dest(filePath + '/themes/'));
+  // Copy into each example folder
+  fs.readdirSync(paths.build + 'examples').forEach(folder => {
+    const full = paths.build + 'examples/' + folder;
+
+    if (fs.statSync(full).isDirectory()) {
+
+      // JS + Brotli
+      src([paths.library + 'esm/' + files.minjs, paths.library + 'esm/' + files.minjs + '.br'], { allowEmpty: true })
+        .pipe(dest(full));
+
+      // CSS + Brotli
+      src([paths.library + files.mincss, paths.library + files.mincss + '.br'], { allowEmpty: true })
+        .pipe(dest(full));
+
+      // Themes folder
+      src(paths.library + 'themes/**/*.*', { allowEmpty: true })
+        .pipe(dest(full + '/themes/'));
     }
   });
 
-  src(paths.library + 'esm/' + files.minjs)
+  // Copy into stress-test folder
+  src([paths.library + 'esm/' + files.minjs, paths.library + 'esm/' + files.minjs + '.br'], { allowEmpty: true })
     .pipe(dest(paths.build + 'tests/stress-test/'));
-  src(paths.library + files.mincss)
-    .pipe(dest(paths.build + 'tests/stress-test/'));
-  // Themes ebenfalls nur einmal global in library belassen
-  // src(paths.library + 'themes/**/*')
-  //   .pipe(dest(paths.build + 'tests/stress-test/themes/'));
 
-  return Promise.resolve('');
+  src([paths.library + files.mincss, paths.library + files.mincss + '.br'], { allowEmpty: true })
+    .pipe(dest(paths.build + 'tests/stress-test/'));
+
+  src(paths.library + 'themes/**/*.*', { allowEmpty: true })
+    .pipe(dest(paths.build + 'tests/stress-test/themes/'));
+
+  // Copy into ALL test folders (not only stress-test)
+  fs.readdirSync(paths.build + 'tests').forEach(folder => {
+    const full = paths.build + 'tests/' + folder;
+
+    if (fs.statSync(full).isDirectory() && folder !== 'stress-test') {
+
+      src([paths.library + 'esm/' + files.minjs, paths.library + 'esm/' + files.minjs + '.br'], { allowEmpty: true })
+        .pipe(dest(full));
+
+      src([paths.library + files.mincss, paths.library + files.mincss + '.br'], { allowEmpty: true })
+        .pipe(dest(full));
+
+      src(paths.library + 'themes/**/*.*', { allowEmpty: true })
+        .pipe(dest(full + '/themes/'));
+    }
+  });
+
+  return Promise.resolve();
 }
+
 
 
 // Build task

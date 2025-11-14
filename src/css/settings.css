@@ -230,7 +230,7 @@ input[type="checkbox"]:disabled + label {
 #rslidy-help-popup {
   margin: 4em auto;
   padding: 1.5em;
-  background: white;
+  background: light-dark(white, #1a1a1a);
   width: 80%;
   position: relative;
   max-height: 80%;
@@ -244,9 +244,9 @@ input[type="checkbox"]:disabled + label {
   font-size: 2em;
   font-weight: bold;
   text-decoration: none;
-  color: #333;
+  color: light-dark(#333, #ccc);
 }
 
 .rslidy-help-close:hover {
-  color: #666;
+  color: light-dark(#666, #eee);
 }

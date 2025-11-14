@@ -1,27 +1,48 @@
-/* Toolbar colors
-:root {
-    --rslidy-toolbar-bg-color: #2c3e50;
-    --rslidy-toolbar-button-color: #fffff;
-}
-*/
+/* ---------- Light Mode ---------- */
+@media (prefers-color-scheme: light) {
 
+    /* Title Slide */
+    .rslidy-titleslide {
+        background: linear-gradient(135deg, #3498db 0%, #9b59b6 100%);
+        display: flex;
+        flex-direction: column;
+        color: #ffffff;
+    }
 
-/* Title Slide */
-.rslidy-titleslide {
-    background: linear-gradient(135deg, #3498db 0%, #9b59b6 100%);
-    display: flex;
-    flex-direction: column;
-    color: #ffffff; /* white text on gradient */
-}
+    /* Normal Slides */
+    .slide:not(.rslidy-titleslide) {
+        background: linear-gradient(90deg, #1abc9c 0%, #16a085 100%);
+        color: #ffffff;
+    }
 
-/* Normal Slides */
-.slide:not(.rslidy-titleslide) {
-    background: linear-gradient(90deg, #1abc9c 0%, #16a085 100%);
-    color: #ffffff;
-}
-
-.rslidy-responsive-table th{
-    color: #ffffff;
+    /* Table Header */
+    .rslidy-responsive-table th {
+        color: #ffffff;
+    }
 }
 
 
+/* ---------- Dark Mode ---------- */
+@media (prefers-color-scheme: dark) {
+
+    /* Title Slide */
+    .rslidy-titleslide {
+        background: linear-gradient(135deg, #1f2a44 0%, #3a1f4a 100%);
+        /* darker equivalents of your existing colors */
+        display: flex;
+        flex-direction: column;
+        color: #e6e6e6;
+    }
+
+    /* Normal Slides */
+    .slide:not(.rslidy-titleslide) {
+        background: linear-gradient(90deg, #0f6b5c 0%, #0c4e42 100%);
+        /* darkened teal gradient */
+        color: #e6e6e6;
+    }
+
+    /* Table Header */
+    .rslidy-responsive-table th {
+        color: #e6e6e6;
+    }
+}

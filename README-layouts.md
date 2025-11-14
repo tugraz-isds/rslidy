@@ -30,7 +30,9 @@ You can also add a licence using a `<div>` with the id `licence`.
 </div>
 </section>
 ```
+<img src="src/tests/images/layouts/rslidy-title-slide.png" alt="Figure1" style="border:0.1em solid;">
 
+[Rslidy Slide Deck](https://tugraz-isds.github.io/rslidy/layouts/index.html#1)
 
 
 
@@ -47,7 +49,9 @@ slide, to separate presentation chapter.
   <h1>Simple Slide Layouts</h1>
 </section>
 ```
+<img src="src/tests/images/layouts/rslidy-section-slide-example.png" alt="Figure1" style="border:0.1em solid;">
 
+[Rslidy Slide Deck](https://tugraz-isds.github.io/rslidy/layouts/index.html#2)
 
 
 
@@ -61,7 +65,7 @@ videos, or responsive tables in a clear single-column design.
 
 
 
-### 3.1 Simple Bullet Points
+### 3.1 Single Bullet Points
 Simple slide with an unordered bullet list.
 
 ```html
@@ -78,7 +82,7 @@ Simple slide with an unordered bullet list.
 ```
 <img src="src/tests/images/layouts/rslidy-simple-bullet-points.png" alt="Figure1" style="border:0.1em solid;">
 
-[Rslidy Slide Deck](https://tugraz-isds.github.io/rslidy/rslidy/index.html)
+[Rslidy Slide Deck](https://tugraz-isds.github.io/rslidy/layouts/index.html#3)
 
 
 
@@ -110,13 +114,51 @@ while the class `rslidy-large-images` is used for images up to 25 em.
 </section>
 ```
 <img src="src/tests/images/layouts/rslidy-simple-image.png" alt="Figure1" style="border:0.1em solid;">
-[Rslidy Slide Deck](https://tugraz-isds.github.io/rslidy/rslidy/index.html)
+
+[Rslidy Slide Deck](https://tugraz-isds.github.io/rslidy/layouts/index.html#4)
 
 
 
 
 
-### 3.3 Single Video
+### 3.3 Responsive Image
+Use the `picture` element to load different image crops depending on 
+screen size (portrait for phones, medium for tablets, wide for desktops).
+```html
+<section>
+  <h2>Responsive Image</h2>
+  <figure>
+    <div class="rslidy-large-images">
+      <picture>
+        <!-- Portrait crop for narrow screens -->
+        <source media="(max-width: 600px)" srcset="images/graz-uhrturm-portrait.jpg">
+        <!-- Medium crop for tablets -->
+        <source media="(max-width: 1200px)" srcset="images/graz-uhrturm-medium.jpg">
+        <!-- Wide crop for desktops -->
+        <img src="images/graz-uhrturm-wide.jpg"
+             alt="Responsive Uhrturm Graz example"
+             style="max-width:100%; height:auto;">
+      </picture>
+    </div>
+    <figcaption>
+      This slide demonstrates responsive images using the
+      <code>&lt;picture&gt;</code> element.
+      Depending on screen width, a different crop of the same scene is loaded.
+      <br/>
+    </figcaption>
+  </figure>
+</section>
+```
+<img src="src/tests/images/layouts/rslidy-responsive-image.png" alt="Figure1" style="border:0.1em solid;">
+
+[Rslidy Slide Deck](https://tugraz-isds.github.io/rslidy/layouts/index.html#5)
+
+
+
+
+
+
+### 3.4 Single Video
 
 Embed a video using the same structure as image slides.
 When wrapped in .rslidy-images or .rslidy-large-images, videos scale 
@@ -144,11 +186,12 @@ responsively while maintaining their aspect ratio.
 </section>
 ```
 <img src="src/tests/images/layouts/rslidy-simple-video.png" alt="Figure1" style="border:0.1em solid;">
-[Rslidy Slide Deck](https://tugraz-isds.github.io/rslidy/rslidy/index.html)
+
+[Rslidy Slide Deck](https://tugraz-isds.github.io/rslidy/layouts/index.html#6)
 
 
 
-### 3.3 Responsive Table
+### 3.5 Responsive Table
 Use the `rslidy-responsive-table` class to create a responsive, 
 sortable table that adapts to any screen size. Combine it with
 `rslidy-fit` for automatic font size scaling, or the class `zebra` for 
@@ -261,7 +304,8 @@ remains clearly labelled in the mobile stacked layout.
 </section>
 ```
 <img src="src/tests/images/layouts/rslidy-responsive-table.png" alt="Figure1" style="border:0.1em solid;">
-[Rslidy Slide Deck](https://tugraz-isds.github.io/rslidy/rslidy/index.html)
+
+[Rslidy Slide Deck](https://tugraz-isds.github.io/rslidy/layouts/index.html#7)
 
 
 
@@ -273,6 +317,8 @@ Use the `rslidy-columns-even` class to create two equally wide columns
 for parallel content.
 The `rslidy-left-column` and `rslidy-right-column` classes define 
 structure and spacing.
+
+
 
 ### 4.1 Two-Columns Bullet Points
 
@@ -306,7 +352,7 @@ both sides.
 ```
 <img src="src/tests/images/layouts/rslidy-two-columns-bullets.png" alt="Figure1" style="border:0.1em solid;">
 
-[Rslidy Slide Deck](https://tugraz-isds.github.io/rslidy/rslidy/index.html)
+[Rslidy Slide Deck](https://tugraz-isds.github.io/rslidy/layouts/index.html#9)
 
 
 
@@ -341,7 +387,7 @@ Combine Bullet Points on the left with an image on the right.
 ```
 <img src="src/tests/images/layouts/rslidy-bullets-left-image-right.png" alt="Figure1" style="border:0.1em solid;">
 
-[Rslidy Slide Deck](https://tugraz-isds.github.io/rslidy/rslidy/index.html)
+[Rslidy Slide Deck](https://tugraz-isds.github.io/rslidy/layouts/index.html#10)
 
 
 
@@ -378,14 +424,14 @@ Display images side-by-side.
 ```
 <img src="src/tests/images/layouts/rslidy-two-images.png" alt="Figure1" style="border:0.1em solid;">
 
-[Rslidy Slide Deck](https://tugraz-isds.github.io/rslidy/rslidy/index.html)
+[Rslidy Slide Deck](https://tugraz-isds.github.io/rslidy/layouts/index.html#11)
 
 
 
 
 
 
-### 4.4 Two Column: One Image - One Video
+### 4.4 Two Column: One Image, One Video
 
 Example with an image on the left and a video on the right.
 
@@ -425,15 +471,15 @@ Example with an image on the left and a video on the right.
 ```
 <img src="src/tests/images/layouts/rslidy-two-images.png" alt="Figure1" style="border:0.1em solid;">
 
-[Rslidy Slide Deck](https://tugraz-isds.github.io/rslidy/rslidy/index.html)
+[Rslidy Slide Deck](https://tugraz-isds.github.io/rslidy/layouts/index.html#12)
 
 
 
 ## 5. Themes
 Rslidy supports themes that define the visual appearance of
 slides, including background-colours, typography, and background images.
-Each theme is implemented as a CSS file located in the `library/themes`
-directory. You can apply a theme by importing its CSS file into the `<head>` 
+Each theme is implemented as a CSS file located in the `themes`
+folder. You can apply a theme by importing its CSS file into the`<head>` 
 section of your HTML document:
 
 ```html
@@ -447,6 +493,6 @@ section of your HTML document:
   <link rel="stylesheet" href="rslidy.min.css"/>
   <script type="module" src="rslidy.min.js"></script>
   <!-- for custom css sheets-->
-  <link rel="stylesheet" href="../../library/themes/tu-graz/theme.css"/>
+  <link rel="stylesheet" href=".themes/tu-graz/theme.css"/>
 </head>
 ```

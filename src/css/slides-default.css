@@ -1,6 +1,6 @@
 body {
-  color: black;
-  background-color: #f9f9f9;
+  color: light-dark(black, white);
+  background-color: light-dark(#f9f9f9, #121212);
   font-family: Verdana, sans-serif;
   /* allow words to be broken at hyphenation points */
   hyphens: auto;
@@ -159,7 +159,7 @@ span.isbn:before {
 }
 
 div#rslidy-licence {
-  margin: 2em 0 1em 0;
+  margin: 5em 0 1em 0;
   text-align: center;
   line-height: 0.5em;
 }
@@ -177,22 +177,22 @@ div#rslidy-licence p {
 
 .rslidy-titleslide h1 {
   padding-top: 0.5em;
-  font-size: 1.6em;
+  font-size: 2em;
   margin-bottom: 1.4em;
 }
 
 .rslidy-titleslide h2 {
-  font-size: 1.2em;
+  font-size: 1.6em;
   margin-bottom: 1.4em;
 }
 
 .rslidy-titleslide h3 {
-  font-size: 1em;
+  font-size: 1.4em;
   margin-bottom: 1.2em;
 }
 
 .rslidy-titleslide p {
-  padding: 0.5em 0;
+  padding: 0.8em 0;
 }
 
 .rslidy-sectionslide {
@@ -204,7 +204,7 @@ div#rslidy-licence p {
 
 .rslidy-sectionslide h1 {
   text-align: center;
-  font-size: 3rem;
+  font-size: 2.5em;
   padding: 0;
 }
 

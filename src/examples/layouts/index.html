@@ -12,8 +12,9 @@
 <script type="module" src="rslidy.min.js"></script>
 
 <!-- for custom css sheets-->
-<link rel="stylesheet" href="../../library/themes/tu-graz/tu-graz.css"/>
-<!--link rel="stylesheet" href="../../library/themes/coloured/coloured.css"/-->
+<!--link rel="stylesheet" href="./themes/tu-graz/tu-graz.css"-->
+<!--link rel="stylesheet"
+  href="./themes/coloured/coloured.css"-->
 </head>
 <body>
 
@@ -25,7 +26,6 @@
 <h1>Rslidy Layouts</h1>
 <h2>Titleslide</h2>
 <h3>Graz University of Technology, Austria</h3>
-
 
 <div id="rslidy-licence">
 <p>
@@ -43,7 +43,7 @@ This work is placed under a Creative Commons Attribution 4.0 International
 
 
 <section class="rslidy-sectionslide">
-  <h1>Simple Slide Layouts with Content Elements</h1>
+  <h1>Example Section Slide</h1>
 </section>
 
 
@@ -53,8 +53,9 @@ This work is placed under a Creative Commons Attribution 4.0 International
 
 
 
+
 <section>
-<h1>Simple Bullet Points</h1>
+<h1>Single Bullet Points</h1>
 <ul>
   <li>Bullet Point 1</li>
   <li>Bullet Point 2</li>
@@ -70,11 +71,11 @@ This work is placed under a Creative Commons Attribution 4.0 International
 
 
 <section>
-<h2>Simple Image</h2>
+<h2>Single Image</h2>
 
 <figure>
 <div class="rslidy-large-images">
-<img src="images/rslidy-image.png"
+<img src="images/rslidy-example-slide.svg"
      alt="Rslidy Example Image"/>
 </div>
 <figcaption>
@@ -93,10 +94,41 @@ Pan and zoom via mouse, keyboard, or on-screen controls.
 
 
 
+<section>
+  <h2>Responsive Image</h2>
+  <figure>
+    <div class="rslidy-large-images">
+      <picture>
+        <!-- Portrait crop for narrow screens -->
+        <source media="(max-width: 600px)" srcset="images/graz-uhrturm-portrait.jpg">
+        <!-- Medium crop for tablets -->
+        <source media="(max-width: 1200px)" srcset="images/graz-uhrturm-medium.jpg">
+        <!-- Wide crop for desktops -->
+        <img src="images/graz-uhrturm-wide.jpg"
+             alt="Responsive Uhrturm Graz example"
+             style="max-width:100%; height:auto;">
+      </picture>
+    </div>
+    <figcaption>
+      This slide demonstrates responsive images using the
+      <code>&lt;picture&gt;</code> element.
+      Depending on screen width, a different crop of the same scene is loaded.
+      <br/>
+    </figcaption>
+  </figure>
+</section>
+
+
+
+
+
+
+
+
 
 
 <section>
-  <h2>Simple Video</h2>
+  <h2>Single Video</h2>
   <figure>
   <div class="rslidy-large-images">
   <video controls autoplay muted loop poster="images/all-slides.gif">
@@ -112,6 +144,8 @@ Pan and zoom via mouse, keyboard, or on-screen controls.
   </figcaption>
   </figure>
 </section>
+
+
 
 
 
@@ -268,7 +302,7 @@ Pan and zoom via mouse, keyboard, or on-screen controls.
 
 
 <section>
-<h1>Two Column: Bullets Left - Image Right</h1>
+<h1>Two Column: Bullets Left, Image Right</h1>
 <div class="rslidy-columns-even">
   <div class="rslidy-left-column">
   <ul>
@@ -282,7 +316,7 @@ Pan and zoom via mouse, keyboard, or on-screen controls.
   <div class="rslidy-right-column">
   <figure>
   <div class="rslidy-large-images">
-    <img src="images/rslidy-image.png"
+    <img src="images/rslidy-example-slide.svg"
          alt="Rslidy Example Image"/>
   </div>
   <figcaption>Generic Rslidy example image</figcaption>
@@ -299,13 +333,15 @@ Pan and zoom via mouse, keyboard, or on-screen controls.
 
 
 
+
+
 <section>
   <h1>Two Column: Two Images</h1>
   <div class="rslidy-columns-even">
     <div class="rslidy-left-column">
       <figure>
         <div class="rslidy-large-images">
-          <img src="images/rslidy-image.png"
+          <img src="images/rslidy-example-slide.svg"
                alt="Rslidy Example Image"/>
         </div>
         <figcaption>Generic Rslidy example image</figcaption>
@@ -314,7 +350,7 @@ Pan and zoom via mouse, keyboard, or on-screen controls.
     <div class="rslidy-right-column">
       <figure>
         <div class="rslidy-large-images">
-          <img src="images/rslidy-generic-image-2.png"
+          <img src="images/graz-uhrturm.jpg"
                alt="Rslidy Example Image"/>
         </div>
         <figcaption>Generic Rslidy example image</figcaption>
@@ -329,13 +365,15 @@ Pan and zoom via mouse, keyboard, or on-screen controls.
 
 
 
+
+
 <section>
-  <h1>Two Column: One Image - One Video</h1>
+  <h1>Two Column: One Image, One Video</h1>
   <div class="rslidy-columns-even">
-    div class="rslidy-left-column"><
+    <div class="rslidy-left-column">
       <figure>
         <div class="rslidy-large-images">
-          <img src="images/rslidy-image.png"
+          <img src="images/rslidy-example-slide.svg"
                alt="Rslidy Example Image"/>
         </div>
         <figcaption>Generic Rslidy example image</figcaption>
