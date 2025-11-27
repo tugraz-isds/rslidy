@@ -485,39 +485,7 @@ export class Rslidy {
     }
   }
 
-  // ---
-  // Description: Called whenever the night mode button is clicked.
-  // ---
-  toggleLowLightMode(): void {
-    // Inverts everything, then reverts individual elements again after "html"
-    // which should stay the same (e.g. images)
-    const invert = ["html", "img"];
-    for (let i = 0; i < invert.length; i++) {
-      let elements = document.getElementsByTagName(invert[i]);
-      this.utils.switchElementsClass(elements, "rslidy-color-invert");
-    }
 
-    // Add custom classes to h1, h2, h3, p, span, li, ul, ol, pre and a
-    const custom_classes = [
-      "h1",
-      "h2",
-      "h3",
-      "p",
-      //"span",
-      "li",
-      "ul",
-      "ol",
-      "pre",
-      "a"
-    ];
-    for (let i = 0; i < custom_classes.length; i++) {
-      let elements = document.getElementsByTagName(custom_classes[i]);
-      this.utils.switchElementsClass(elements, "rslidy-night-mode");
-      this.utils.invertElementsColor(elements, this.low_light_mode);
-    }
-
-    this.low_light_mode = !this.low_light_mode;
-  }
 
   // ---
   // Description: Called whenever the address field content changes.

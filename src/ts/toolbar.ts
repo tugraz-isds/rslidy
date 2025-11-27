@@ -233,7 +233,7 @@ export class ToolbarComponent {
         font: 80% Sans-Serif;
       }
       .slide {
-        border: `+window.rslidy.print_frame+`;
+        border: 0.05rem solid light-dark(black, #f0f0f0);
       }
       #rslidy-trapezoid-wrapper-display {
         display: block !important;

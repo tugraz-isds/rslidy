@@ -248,11 +248,6 @@ aria-label="Settings" tabindex="0">
     <input type="checkbox" value="Tap" id="rslidy-checkbox-margintap" checked>
     <label for="rslidy-checkbox-margintap">`+i.slider_icon+`</label>
   </label>
-  <label id="rslidy-checkbox-lowlight-text" class="rslidy-menu-content-settings">
-    `+t.settings[4]+`
-    <input type="checkbox" value="Low Light Mode" id="rslidy-checkbox-lowlightmode">
-    <label for="rslidy-checkbox-lowlightmode">`+i.slider_icon+`</label>
-  </label>
   <div class="rslidy-menu-content-settings">
     <label>`+t.settings[5]+`</label>
     <a href="#" title="`+t.settings[7]+`" id="rslidy-button-font-minus"><span class="rslidy-menu-button">`+i.font_minus_icon+`</span></a>

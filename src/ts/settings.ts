@@ -7,7 +7,6 @@ interface Data {
   shake: boolean;
   space: boolean;
   margintap: boolean;
-  lowlightmode: boolean;
 }
 
 export class SettingsComponent {
@@ -57,12 +56,6 @@ export class SettingsComponent {
     this.view
       .querySelector("#rslidy-checkbox-margintap")
       .addEventListener("click", e => window.rslidy.toolbar.closeMenuOnSelection());
-    this.view
-      .querySelector("#rslidy-checkbox-lowlightmode")
-      .addEventListener("click", e =>
-      window.rslidy.toolbar.closeMenuOnSelection(
-        () => window.rslidy.toggleLowLightMode()
-      ));
       this.setupTableSorting();
       this.applyResponsiveTableLabels();
   }
@@ -90,9 +83,6 @@ export class SettingsComponent {
     (<HTMLInputElement>this.view.querySelector("#rslidy-checkbox-shake")).checked = data.shake;
     (<HTMLInputElement>this.view.querySelector("#rslidy-checkbox-space")).checked = data.space;
     (<HTMLInputElement>this.view.querySelector("#rslidy-checkbox-margintap")).checked = data.margintap;
-    (<HTMLInputElement>this.view.querySelector("#rslidy-checkbox-lowlightmode")).checked = data.lowlightmode;
-    if (data.lowlightmode)
-      window.rslidy.toggleLowLightMode();
   }
 
   // ---
@@ -119,8 +109,7 @@ export class SettingsComponent {
       tilt: (<HTMLInputElement>this.view.querySelector("#rslidy-checkbox-tilt")).checked,
       shake: (<HTMLInputElement>this.view.querySelector("#rslidy-checkbox-shake")).checked,
       space: (<HTMLInputElement>this.view.querySelector("#rslidy-checkbox-space")).checked,
-      margintap: (<HTMLInputElement>this.view.querySelector("#rslidy-checkbox-margintap")).checked,
-      lowlightmode: (<HTMLInputElement>this.view.querySelector("#rslidy-checkbox-lowlightmode")).checked
+      margintap: (<HTMLInputElement>this.view.querySelector("#rslidy-checkbox-margintap")).checked
     }
     return JSON.stringify(data);
   }
@@ -129,20 +118,6 @@ export class SettingsComponent {
   // Description: Used for final style adaptions.
   // ---
   doCustomSettingAdaptions(): void {
-    // Start in night mode if set or user prefers it
-    // Currently low light mode is broken in firefox mobile
-    // filter:invert() causes the page to overflow
-    // add "|| window.matchMedia("(preferslidy-color-scheme: dark)").matches"
-    // to auto-enable low light mode once its fixed
-    if (window.rslidy.start_in_low_light_mode) {
-      var lowlightbtn = (<HTMLInputElement>document.getElementById(
-        "rslidy-checkbox-lowlightmode"
-      ));
-      if(!lowlightbtn.checked) {
-        window.rslidy.toggleLowLightMode();
-        lowlightbtn.checked = true;
-      }
-    }
 
     // Block slide text selection if set
     if (window.rslidy.block_slide_text_selection) {

@@ -278,11 +278,11 @@ pnpm exec gulp watch
 This task initiates a rebuild and synchronises the browser every time
 a source files changes.
 
-a specific file can be synchronised with `--slide <file>`:
+a specific slide deck can be synchronised with `--slide <slide-deck>`:
 ```
-pnpm exec gulp watch --slide <file>
+pnpm exec gulp watch --slide <slide-deck>
 ```
-The file has to be in the `examples/tests/` directory.
+The file has to be in the `examples/` directory.
 
 
 

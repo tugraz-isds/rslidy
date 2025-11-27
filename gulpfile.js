@@ -43,10 +43,10 @@ function clean() {
 exports.clean = clean;
 exports.clean.description = 'Cleans the project';
 
-// Transpile TypeScript
+// Transpile TypeScript (fixed)
 function transpile() {
-  const tsResult = src(paths.src + '**/*.ts')
-    .pipe(ts.createProject(require('./tsconfig').compilerOptions)());
+  const tsProject = ts.createProject('tsconfig.json');
+  const tsResult = src(paths.src + '**/*.ts').pipe(tsProject());
   return merge([
     tsResult.dts.pipe(dest(paths.tsbuild + 'd/')),
     tsResult.js.pipe(dest(paths.tsbuild + 'js/'))
@@ -84,7 +84,7 @@ function webpack() {
     {
       output: {
         filename: files.js,
-        library: 'Rslidy', // Name of the UMD library
+        library: 'Rslidy',
         libraryTarget: 'umd',
         umdNamedDefine: true
       },
@@ -114,9 +114,7 @@ function webpack() {
               }
             ]
           },
-          resolve: {
-            extensions: ['.ts', '.js']
-          }
+          resolve: { extensions: ['.ts', '.js'] }
         }))
         .pipe(dest(paths.library +
           (config.output.library?.type === 'module'
@@ -157,7 +155,7 @@ function minifycss() {
     .pipe(ucss())
     .pipe(rename(files.mincss))
     .pipe(dest(paths.library))
-    .pipe(browserSync.stream()); // Stream CSS changes directly
+    .pipe(browserSync.stream());
 }
 
 function compress() {
@@ -179,16 +177,13 @@ function compress() {
 
 // CSS task
 function css() {
-  // Basis-Rslidy CSS
   const base = src(paths.src + 'css/*.css')
     .pipe(concat(files.css))
     .pipe(dest(paths.library));
 
-  // Themes (z. B. tu-graz)
   const themes = src(paths.src + 'themes/**/*.css')
     .pipe(dest(paths.library + 'themes/'));
 
-  // Theme-Bilder (z. B. Logos, Hintergründe)
   const themeAssets = src(paths.src + 'themes/**/*.{png,jpg,jpeg,svg,gif}')
     .pipe(dest(paths.library + 'themes/'));
 
@@ -230,79 +225,85 @@ function html() {
 
 // Copy task
 function copy() {
-  // Copy into each example folder
   fs.readdirSync(paths.build + 'examples').forEach(folder => {
     const full = paths.build + 'examples/' + folder;
-
     if (fs.statSync(full).isDirectory()) {
-
-      // JS + Brotli
-      src([paths.library + 'esm/' + files.minjs, paths.library + 'esm/' + files.minjs + '.br'], { allowEmpty: true })
+      src(paths.library + 'esm/' + files.minjs, { allowEmpty: true })
         .pipe(dest(full));
-
-      // CSS + Brotli
-      src([paths.library + files.mincss, paths.library + files.mincss + '.br'], { allowEmpty: true })
+      src(paths.library + files.mincss, { allowEmpty: true })
         .pipe(dest(full));
-
-      // Themes folder
       src(paths.library + 'themes/**/*.*', { allowEmpty: true })
         .pipe(dest(full + '/themes/'));
     }
   });
 
-  // Copy into stress-test folder
-  src([paths.library + 'esm/' + files.minjs, paths.library + 'esm/' + files.minjs + '.br'], { allowEmpty: true })
+  src(paths.library + 'esm/' + files.minjs, { allowEmpty: true })
     .pipe(dest(paths.build + 'tests/stress-test/'));
-
-  src([paths.library + files.mincss, paths.library + files.mincss + '.br'], { allowEmpty: true })
+  src(paths.library + files.mincss, { allowEmpty: true })
     .pipe(dest(paths.build + 'tests/stress-test/'));
-
   src(paths.library + 'themes/**/*.*', { allowEmpty: true })
     .pipe(dest(paths.build + 'tests/stress-test/themes/'));
 
-  // Copy into ALL test folders (not only stress-test)
   fs.readdirSync(paths.build + 'tests').forEach(folder => {
     const full = paths.build + 'tests/' + folder;
-
     if (fs.statSync(full).isDirectory() && folder !== 'stress-test') {
-
-      src([paths.library + 'esm/' + files.minjs, paths.library + 'esm/' + files.minjs + '.br'], { allowEmpty: true })
+      src(paths.library + 'esm/' + files.minjs, { allowEmpty: true })
         .pipe(dest(full));
-
-      src([paths.library + files.mincss, paths.library + files.mincss + '.br'], { allowEmpty: true })
+      src(paths.library + files.mincss, { allowEmpty: true })
         .pipe(dest(full));
-
       src(paths.library + 'themes/**/*.*', { allowEmpty: true })
         .pipe(dest(full + '/themes/'));
     }
   });
-
   return Promise.resolve();
 }
 
-
+// Helper: reload BrowserSync safely
+function reloadBrowser(done) {
+  browserSync.reload();
+  done();
+}
 
 // Build task
-const build = series(clean,
+const build = series(
+  clean,
   updateVersionStrings,
   parallel(series(transpile, webpack), html, css),
-  parallel(minifyjs, minifycss), compress, copy);
+  parallel(minifyjs, minifycss),
+  compress,
+  copy
+);
 exports.build = build;
 
-// Watch task
+// Watch task (fixed and improved)
 function watchTask() {
   const arg = argv.slide || argv.s;
-  let dir = 'examples/rslidy/'; // Updated to match your output
-  let file = 'index.html'; // Default file, adjust if needed
+  let dir = 'examples/rslidy/';
+  let file = 'index.html';
 
   if (arg) {
-    if (arg.includes('/')) {
-      dir = arg.substring(0, arg.lastIndexOf('/') + 1);
-      file = arg.substring(arg.lastIndexOf('/') + 1);
+    // Normalize argument (remove leading/trailing slashes)
+    const slideArg = arg.replace(/^\/+|\/+$/g, '');
+
+    // If user only provides a folder (e.g. "layouts"),
+    // use it as examples/<folder>/index.html
+    if (!slideArg.includes('/')) {
+      dir = `examples/${slideArg}/`;
+      file = 'index.html';
+    }
+    // If user provides a partial path (e.g. "layouts/custom.html")
+    else if (!slideArg.endsWith('.html')) {
+      dir = `examples/${slideArg}/`;
+      file = 'index.html';
     } else {
-      file = arg;
+      dir = slideArg.substring(0, slideArg.lastIndexOf('/') + 1);
+      file = slideArg.substring(slideArg.lastIndexOf('/') + 1);
+      // Prepend "examples/" if user omitted it
+      if (!dir.startsWith('examples/')) dir = `examples/${dir}`;
     }
   }
+
+  console.log(`[Watch] Serving ${paths.build}${dir}${file}`);
 
   browserSync.init({
     server: {
@@ -310,21 +311,32 @@ function watchTask() {
       baseDir: [paths.build, paths.build + dir],
     },
     notify: false,
-    reloadDebounce: 500 // Debounce reloads to prevent buffering
+    reloadDebounce: 500
   });
 
-  // Watch specific file types with debounce
-  watch(paths.src + '**/*.ts', { delay: 500 }, series(transpile, webpack, minifyjs, compress, copy)).on('change', () => browserSync.reload());
-  watch(paths.src + 'css/*.css', { delay: 500 }, series(css, minifycss, copy)); // CSS uses stream, no reload needed
-  watch([paths.src + 'examples/**/*.*', paths.src + 'tests/**/*.*'], { delay: 500 }, series(html, copy)).on('change', () => browserSync.reload());
-  watch(paths.src + 'icons/*.svg', { delay: 500 }, series(icon_definitions, transpile, webpack, minifyjs, compress, copy)).on('change', () => browserSync.reload());
+  // --- Watchers ---
+  watch(paths.src + '**/*.ts', { delay: 500 },
+    series(transpile, webpack, minifyjs, compress, copy, reloadBrowser)
+  );
+
+  watch(paths.src + 'css/*.css', { delay: 500 },
+    series(css, minifycss, copy)
+  );
+
+  watch([paths.src + 'examples/**/*.*', paths.src + 'tests/**/*.*'], { delay: 500 },
+    series(html, copy, reloadBrowser)
+  );
+
+  watch(paths.src + 'icons/*.svg', { delay: 500 },
+    series(icon_definitions, transpile, webpack, minifyjs, compress, copy, reloadBrowser)
+  );
 }
+
+
 
 function updateVersionStrings() {
   return src(['src/**/*.ts', 'src/**/*.js', 'src/**/*.html', 'src/**/*.md'], { base: './' })
-    // Replace version number patterns like: "Rslidy Version 2.0.1"
     .pipe(replace(/Rslidy Version [0-9]+\.[0-9]+\.[0-9]+/g, `Rslidy Version ${version}`))
-    // Optional: also replace generic placeholders like __VERSION__
     .pipe(replace(/__VERSION__/g, version))
     .pipe(dest('./'));
 }

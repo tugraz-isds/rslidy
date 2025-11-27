@@ -5,12 +5,13 @@
   flex: 0 0 auto;
   z-index: 4;
   list-style: none;
-  background-color: #f1f1f1;
+  background-color: light-dark(#f1f1f1, #1e1e1e);
+  color: light-dark(#222, #f1f1f1);
   display: block;
   overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
   word-wrap: break-word;
-  transition: 0.3s;
+  transition: background-color 0.3s, color 0.3s;
 }
 
 .rslidy-overview-visible {
@@ -67,11 +68,11 @@
   margin: 0.25em 0em;
   padding: 0.5em 1em;
   text-decoration: underline;
-  color: blue;
+  color: light-dark(blue, #8ab4f8);
 }
 
 .rslidy-slide-link a:visited {
-  color: blue;
+  color: light-dark(blue, #8ab4f8);
 }
 
 .rslidy-slide-link:hover {

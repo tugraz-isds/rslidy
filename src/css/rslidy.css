@@ -1,5 +1,5 @@
 ﻿/* Settings applying to everything */
- html, body {
+html, body {
   width: 100%;
   height: 100%;
   margin: 0;
@@ -18,10 +18,7 @@ body {
   outline: 0.125rem solid #7aacfe !important;
 }
 
-/*
- -- Common modifiers
- */
-
+/* Common modifiers */
 .rslidy-hidden {
   display: none !important;
 }
@@ -74,77 +71,44 @@ body {
 }
 
 @keyframes circle-rotation {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(359deg);
-  }
+  from { transform: rotate(0deg); }
+  to { transform: rotate(359deg); }
 }
 
 /* Styles for smaller screens only */
-
 @media only all and (max-width: 20rem) {
-  #rslidy-footer {
-    font-size: 30%;
-  }
-  #rslidy-menu, #rslidy-print-menu {
-    bottom: 1.1em !important;
-  }
+  #rslidy-footer { font-size: 30%; }
+  #rslidy-menu, #rslidy-print-menu { bottom: 1.1em !important; }
 }
 
 @media only all and (min-width: 20rem) and (max-width: 24rem) {
-  #rslidy-footer {
-    font-size: 40%;
-  }
-  #rslidy-menu, #rslidy-print-menu {
-    bottom: 1.35em !important;
-  }
+  #rslidy-footer { font-size: 40%; }
+  #rslidy-menu, #rslidy-print-menu { bottom: 1.35em !important; }
 }
 
 @media only all and (min-width: 24rem) and (max-width: 28rem) {
-  #rslidy-footer {
-    font-size: 50%;
-  }
-  #rslidy-menu, #rslidy-print-menu {
-    bottom: 1.75em !important;
-  }
+  #rslidy-footer { font-size: 50%; }
+  #rslidy-menu, #rslidy-print-menu { bottom: 1.75em !important; }
 }
 
 @media only all and (min-width: 28rem) and (max-width: 32rem) {
-  #rslidy-footer {
-    font-size: 60%;
-  }
-  #rslidy-menu, #rslidy-print-menu {
-    bottom: 2.1em !important;
-  }
+  #rslidy-footer { font-size: 60%; }
+  #rslidy-menu, #rslidy-print-menu { bottom: 2.1em !important; }
 }
 
 @media only all and (min-width: 32rem) and (max-width: 36rem) {
-  #rslidy-footer {
-    font-size: 70%;
-  }
-  #rslidy-menu, #rslidy-print-menu {
-    bottom: 2.5em !important;
-  }
+  #rslidy-footer { font-size: 70%; }
+  #rslidy-menu, #rslidy-print-menu { bottom: 2.5em !important; }
 }
 
 @media only all and (min-width: 36rem) and (max-width: 40rem) {
-  #rslidy-footer {
-    font-size: 80%;
-  }
-  #rslidy-menu, #rslidy-print-menu {
-    bottom: 2.9em !important;
-  }
+  #rslidy-footer { font-size: 80%; }
+  #rslidy-menu, #rslidy-print-menu { bottom: 2.9em !important; }
 }
 
 @media only all and (min-width: 40rem) and (max-width: 44rem) {
-  #rslidy-footer {
-    font-size: 90%;
-  }
-  #rslidy-menu, #rslidy-print-menu {
-    bottom: 3.3em !important;
-  }
+  #rslidy-footer { font-size: 90%; }
+  #rslidy-menu, #rslidy-print-menu { bottom: 3.3em !important; }
 }
 
 @media only all and (max-width: var(--rslidy-large)) {
@@ -153,6 +117,7 @@ body {
   }
 }
 
+/* Light mode (default) */
 .rslidy-allslides {
   color: black !important;
   background-color: white !important;
@@ -160,26 +125,39 @@ body {
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
-.rslidy-print-sizing {
-  display: flex;
-  cursor: pointer;
-}
-.print-checkbox {
-  margin-right: 0.5em;
-  cursor: pointer;
-}
-.scaling-input {
-  margin-left: 0.45em;
-}
-.zoom-input {
-  margin-left: 0.3em;
-}
 
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+  body, html, .rslidy-allslides {
+    color: #f0f0f0 !important;
+    background-color: #121212 !important;
+  }
+
+  .rslidy-link {
+    color: #6ca0ff !important;
+  }
+
+  .rslidy-spinner-overlay {
+    background-color: #1a1a1a !important;
+  }
+
+  .rslidy-spinner {
+    border: 0.5rem rgba(255, 255, 255, 0.25) solid;
+    border-top: 0.5rem rgba(255, 255, 255, 1) solid;
+  }
+
+  pre[class*="language-"] {
+    background: #2b2b2b !important;
+    color: #eaeaea !important;
+  }
+
+  .rslidy-color-invert {
+    filter: invert(0%) !important;
+  }
+}
 
 /* Print styles */
-
 @media print {
-
   body {
     color: black !important;
     background-color: white !important;
@@ -192,15 +170,8 @@ body {
     background: #f5f2f0 !important;
   }
 
-  /* Hide UI */
-
-  .rslidy-ui {
-    display: none !important;
-  }
-
-  #rslidy-trapezoid-wrapper-display {
-    width: 0 !important;
-  }
+  .rslidy-ui { display: none !important; }
+  #rslidy-trapezoid-wrapper-display { width: 0 !important; }
 
   a[href^="http://"]:after, a[href^="https://"]:after {
     content: " (" attr(href) ") ";
@@ -209,27 +180,23 @@ body {
   .slide, #rslidy-column-flex, #rslidy-row-flex {
     display: block !important;
     page-break-after: always;
-    page-break-inside: avoid; /* Do not break the page in the middle of a slide */
+    page-break-inside: avoid;
     -webkit-region-break-inside: avoid;
-    position: relative !important; /* Makes slides appear in order */
+    position: relative !important;
   }
 
-  /* Display whole content now */
   html, body, #rslidy-content-section, #rslidy-row-flex {
     overflow: visible !important;
-    /* In case the user had the overview or toc panel open */
-    left: 0em !important;
-    right: 0em !important;
+    left: 0 !important;
+    right: 0 !important;
     max-height: 100% !important;
   }
 
-  /* prevent images from bleeding over the edge of the printed page */
   img {
     max-width: 100% !important;
     max-height: 100% !important;
   }
 
-  /* hide video player controls while printing for webkit browsers */
   video::-webkit-media-controls {
     display: none;
   }
@@ -237,9 +204,8 @@ body {
   #responsive-bar-chart {
     display: block !important;
   }
-  /* In case the user had the low light mode activated */
+
   .rslidy-color-invert {
     filter: invert(0%) !important;
   }
 }
- 
