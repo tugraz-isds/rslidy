@@ -30,8 +30,13 @@ You can also add a licence using a `<div>` with the id `licence`.
 </div>
 </section>
 ```
-<img src="src/tests/images/layouts/rslidy-title-slide.png" alt="Figure1" style="border:0.2em solid;">
+<style>
+img.border {
+  border: 0.1em solid;
+}
+</style>
 
+<img src="src/tests/images/layouts/rslidy-title-slide.png" alt="Figure 1" class="border">
 
 
 [Rslidy Layout Example](https://tugraz-isds.github.io/rslidy/layouts/index.html#1)
