@@ -32,7 +32,7 @@ You can also add a licence using a `<div>` with the id `licence`.
 ```
 <img src="src/tests/images/layouts/rslidy-title-slide.png" alt="Figure1" style="border:0.1em solid;">
 
-[Rslidy Slide Deck](https://tugraz-isds.github.io/rslidy/layouts/index.html#1)
+[Rslidy Layout Example](https://tugraz-isds.github.io/rslidy/layouts/index.html#1)
 
 
 
@@ -46,12 +46,12 @@ slide, to separate presentation chapter.
 
 ```html
 <section class="rslidy-sectionslide">
-  <h1>Simple Slide Layouts</h1>
+  <h1>Example Section Slide</h1>
 </section>
 ```
 <img src="src/tests/images/layouts/rslidy-section-slide-example.png" alt="Figure1" style="border:0.1em solid;">
 
-[Rslidy Slide Deck](https://tugraz-isds.github.io/rslidy/layouts/index.html#2)
+[Rslidy Layout Example](https://tugraz-isds.github.io/rslidy/layouts/index.html#2)
 
 
 
@@ -70,7 +70,7 @@ Simple slide with an unordered bullet list.
 
 ```html
 <section>
-  <h1>Simple Bullet Points</h1>
+  <h1>Single Bullet Points</h1>
   <ul>
     <li>Bullet Point 1</li>
     <li>Bullet Point 2</li>
@@ -80,9 +80,9 @@ Simple slide with an unordered bullet list.
   </ul>
 </section>
 ```
-<img src="src/tests/images/layouts/rslidy-simple-bullet-points.png" alt="Figure1" style="border:0.1em solid;">
+<img src="src/tests/images/layouts/rslidy-single-bullet-points.png" alt="Figure1" style="border:0.1em solid;">
 
-[Rslidy Slide Deck](https://tugraz-isds.github.io/rslidy/layouts/index.html#3)
+[Rslidy Layout Example](https://tugraz-isds.github.io/rslidy/layouts/index.html#3)
 
 
 
@@ -107,58 +107,103 @@ while the class `rslidy-large-images` is used for images up to 25 em.
       image.<br/>
       Pan and zoom via mouse, keyboard, or on-screen
       controls.<br/>
-      <span class="credit">Screen capture taken from Rslidy.
       </span>
     </figcaption>
   </figure>
 </section>
 ```
-<img src="src/tests/images/layouts/rslidy-simple-image.png" alt="Figure1" style="border:0.1em solid;">
+<img src="src/tests/images/layouts/rslidy-single-image.png" alt="Figure1" style="border:0.1em solid;">
 
-[Rslidy Slide Deck](https://tugraz-isds.github.io/rslidy/layouts/index.html#4)
-
-
+[Rslidy Layout Example](https://tugraz-isds.github.io/rslidy/layouts/index.html#4)
 
 
 
-### 3.3 Responsive Image
+
+
+### 3.3 Responsive Image (Art Direction)
 Use the `picture` element to load different image crops depending on 
 screen size (portrait for phones, medium for tablets, wide for desktops).
 ```html
 <section>
-  <h2>Responsive Image</h2>
+  <h2>Responsive Image (Art Direction)</h2>
   <figure>
     <div class="rslidy-large-images">
       <picture>
-        <!-- Portrait crop for narrow screens -->
-        <source media="(max-width: 600px)" srcset="images/graz-uhrturm-portrait.jpg">
+        <!-- Narrow crop for narrow screens -->
+        <source media="(max-width: 600px)"
+                srcset="images/graz-uhrturm-narrow.jpg">
         <!-- Medium crop for tablets -->
         <source media="(max-width: 1200px)" srcset="images/graz-uhrturm-medium.jpg">
-        <!-- Wide crop for desktops -->
-        <img src="images/graz-uhrturm-wide.jpg"
-             alt="Responsive Uhrturm Graz example"
-             style="max-width:100%; height:auto;">
+        <!-- Wide for desktops -->
+        <img src="images/graz-uhrturm.jpg"
+             alt="Responsive Uhrturm Graz example">
       </picture>
     </div>
     <figcaption>
       This slide demonstrates responsive images using the
       <code>&lt;picture&gt;</code> element.
-      Depending on screen width, a different crop of the same scene is loaded.
+      Depending on screen width, a different crop of the same image is
+      loaded.
       <br/>
+      <span class="credit">Image used from
+    <a
+      href="https://pixabay.com/photos/graz-austria-styria-clock-tower-1638892/">Pixabay,</a>
+      under the terms of the Pixabay <a href="https://pixabay.com/service/license-summary/">license.</a>
+        </span>
     </figcaption>
   </figure>
 </section>
 ```
-<img src="src/tests/images/layouts/rslidy-responsive-image.png" alt="Figure1" style="border:0.1em solid;">
+<img src="src/tests/images/layouts/rslidy-responsive-image-art-direction.png" alt="Figure1" style="border:0.1em solid;">
 
-[Rslidy Slide Deck](https://tugraz-isds.github.io/rslidy/layouts/index.html#5)
-
-
+[Rslidy Layout Example](https://tugraz-isds.github.io/rslidy/layouts/index.html#5)
 
 
 
 
-### 3.4 Single Video
+
+### 3.4 Responsive Image (Resolution Switching)
+
+```html
+<section>
+  <h<section>
+  <h2>Responsive Image (Art Direction)</h2>
+  <figure>
+    <div class="rslidy-large-images">
+      <picture>
+        <!-- Narrow crop for narrow screens -->
+        <source media="(max-width: 600px)"
+                srcset="images/graz-uhrturm-narrow.jpg">
+        <!-- Medium crop for tablets -->
+        <source media="(max-width: 1200px)" srcset="images/graz-uhrturm-medium.jpg">
+        <!-- Wide for desktops -->
+        <img src="images/graz-uhrturm.jpg"
+             alt="Responsive Uhrturm Graz example">
+      </picture>
+    </div>
+    <figcaption>
+      This slide demonstrates responsive images using the
+      <code>&lt;picture&gt;</code> element.
+      Depending on screen width, a different crop of the same image is
+      loaded.
+      <br/>
+      <span class="credit">Image used from
+    <a
+      href="https://pixabay.com/photos/graz-austria-styria-clock-tower-1638892/">Pixabay,</a>
+      under the terms of the Pixabay <a href="https://pixabay.com/service/license-summary/">license.</a>
+        </span>
+    </figcaption>
+  </figure>
+</section>
+```
+
+<img src="src/tests/images/layouts/rslidy-responsive-image-resolution-switching.png" alt="Figure1" style="border:0.1em solid;">
+
+[Rslidy Layout Example](https://tugraz-isds.github.io/rslidy/layouts/index.html#6)
+
+
+
+### 3.5 Single Video
 
 Embed a video using the same structure as image slides.
 When wrapped in .rslidy-images or .rslidy-large-images, videos scale 
@@ -169,29 +214,31 @@ responsively while maintaining their aspect ratio.
   <h2>Single Video</h2>
   <figure>
     <div class="rslidy-large-images">
-      <video controls autoplay muted loop
-             poster="images/all-slides.gif">
-        <source src="images/image-viewer.mp4"
-                type="video/mp4"/>
-        <img src="images/image-viewer.gif"
-             alt="All slides view preview" />
+      <video controls autoplay muted loop poster="images/skiing-thumbnail.jpg">
+        <source src="images/skiing.mp4" type="video/mp4"/>
+        <img src="images/skiing-thumbnail.jpg"
+             alt="Skiing Video." />
       </video>
     </div>
     <figcaption>
-      Showing the image viewer as an mp4 video.<br/>
-      <span class="credit">Screen capture taken from Rslidy.
-      </span>
+      Short skiing video with sound.
+      <br/>
+      <span class="credit">Video used from
+    <a href="https://www.pexels.com/video/ski-montagne-skier-piste-de-ski-4274798/">Pexels,</a>
+    under the terms of the Pexels <a href="https://www.pexels.com/license/">license.</a>
+    </span>
     </figcaption>
   </figure>
 </section>
 ```
-<img src="src/tests/images/layouts/rslidy-simple-video.png" alt="Figure1" style="border:0.1em solid;">
+<img src="src/tests/images/layouts/rslidy-single-video.png" alt="Figure1" style="border:0.1em solid;">
 
-[Rslidy Slide Deck](https://tugraz-isds.github.io/rslidy/layouts/index.html#6)
+[Rslidy Layout Example](https://tugraz-isds.github.io/rslidy/layouts/index.html#7)
 
 
 
-### 3.5 Responsive Table
+
+### 3.6 Responsive Table
 Use the `rslidy-responsive-table` class to create a responsive, 
 sortable table that adapts to any screen size. Combine it with
 `rslidy-fit` for automatic font size scaling, or the class `zebra` for 
@@ -305,7 +352,7 @@ remains clearly labelled in the mobile stacked layout.
 ```
 <img src="src/tests/images/layouts/rslidy-responsive-table.png" alt="Figure1" style="border:0.1em solid;">
 
-[Rslidy Slide Deck](https://tugraz-isds.github.io/rslidy/layouts/index.html#7)
+[Rslidy Layout Example](https://tugraz-isds.github.io/rslidy/layouts/index.html#8)
 
 
 
@@ -320,17 +367,20 @@ structure and spacing.
 
 
 
-### 4.1 Two-Columns Bullet Points
+### 4.1 Two-Columns Bullet Points (Incremental)
 
 Divide the slide into two evenly sized columns with bullet points on 
 both sides.
+By applying the `rslidy-incremental` class to each `<ul>` element, the
+bullet points appear incrementally in response to user input during the
+presentation (e.g. pressing the arrow keys or space bar).
 
 ```html
 <section>
-  <h1>Two-Columns Bullet Points</h1>
+  <h1>Two Column: Bullet Points (Incremental)</h1>
   <div class="rslidy-columns-even">
     <div class="rslidy-left-column">
-      <ul>
+      <ul class="rslidy-incremental">
         <li>Left Bullet Point 1</li>
         <li>Left Bullet Point 2</li>
         <li>Left Bullet Point 3</li>
@@ -339,7 +389,7 @@ both sides.
       </ul>
     </div>
     <div class="rslidy-right-column">
-      <ul>
+      <ul class="rslidy-incremental">
         <li>Right Bullet Point 1</li>
         <li>Right Bullet Point 2</li>
         <li>Right Bullet Point 3</li>
@@ -352,7 +402,7 @@ both sides.
 ```
 <img src="src/tests/images/layouts/rslidy-two-columns-bullets.png" alt="Figure1" style="border:0.1em solid;">
 
-[Rslidy Slide Deck](https://tugraz-isds.github.io/rslidy/layouts/index.html#9)
+[Rslidy Layout Example](https://tugraz-isds.github.io/rslidy/layouts/index.html#10)
 
 
 
@@ -387,7 +437,7 @@ Combine Bullet Points on the left with an image on the right.
 ```
 <img src="src/tests/images/layouts/rslidy-bullets-left-image-right.png" alt="Figure1" style="border:0.1em solid;">
 
-[Rslidy Slide Deck](https://tugraz-isds.github.io/rslidy/layouts/index.html#10)
+[Rslidy Layout Example](https://tugraz-isds.github.io/rslidy/layouts/index.html#11)
 
 
 
@@ -424,7 +474,7 @@ Display images side-by-side.
 ```
 <img src="src/tests/images/layouts/rslidy-two-images.png" alt="Figure1" style="border:0.1em solid;">
 
-[Rslidy Slide Deck](https://tugraz-isds.github.io/rslidy/layouts/index.html#11)
+[Rslidy Layout Example](https://tugraz-isds.github.io/rslidy/layouts/index.html#12)
 
 
 
@@ -437,7 +487,7 @@ Example with an image on the left and a video on the right.
 
 ```html
 <section>
-  <h1>One Image - One Video</h1>
+  <h1>One Image, One Video</h1>
   <div class="rslidy-columns-even">
     <div class="rslidy-left-column">
       <figure>
@@ -469,9 +519,10 @@ Example with an image on the left and a video on the right.
   </div>
 </section>
 ```
-<img src="src/tests/images/layouts/rslidy-two-images.png" alt="Figure1" style="border:0.1em solid;">
+<img src="src/tests/images/layouts/rslidy-one-image-one-video.png" alt="Figure1" style="border:0.1em solid;">
 
-[Rslidy Slide Deck](https://tugraz-isds.github.io/rslidy/layouts/index.html#12)
+
+[Rslidy Layout Example](https://tugraz-isds.github.io/rslidy/layouts/index.html#13)
 
 
 

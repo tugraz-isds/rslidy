@@ -159,20 +159,32 @@ function minifycss() {
 }
 
 function compress() {
-  const sourceFiles = src(paths.library + '**/*.min.js');
-
-  const gzipFiles = sourceFiles
+  // --- JS compression ---
+  const gzipJS = src(paths.library + '**/*.min.js')
     .pipe(gzip())
     .pipe(dest(paths.library));
 
-  const brotliFiles = src(paths.library + '**/*.min.js')
+  const brotliJS = src(paths.library + '**/*.min.js')
     .pipe(brotli.compress({
       extension: 'br',
       quality: 11
     }))
     .pipe(dest(paths.library));
 
-  return merge([gzipFiles, brotliFiles]);
+  // --- CSS compression ---
+  const gzipCSS = src(paths.library + '**/*.min.css')
+    .pipe(gzip())
+    .pipe(dest(paths.library));
+
+  const brotliCSS = src(paths.library + '**/*.min.css')
+    .pipe(brotli.compress({
+      extension: 'br',
+      quality: 11
+    }))
+    .pipe(dest(paths.library));
+
+  // --- Merge all ---
+  return merge([gzipJS, brotliJS, gzipCSS, brotliCSS]);
 }
 
 // CSS task
