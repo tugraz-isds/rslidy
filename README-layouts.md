@@ -32,7 +32,7 @@ You can also add a licence using a `<div>` with the id `licence`.
 ```
 <img src="src/tests/images/layouts/rslidy-title-slide.png" alt="Figure1" style="border:0.1em solid;">
 
-[Rslidy Layout Example](https://tugraz-isds.github.io/rslidy/layouts/index.html#1)
+[Rslidy Layout Example](https://tugraz-isds.github.io/rslidy/layouts/index.html)
 
 
 
