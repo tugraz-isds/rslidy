@@ -44,7 +44,7 @@ This work is placed under a Creative Commons Attribution 4.0 International
 
 
 <section class="rslidy-sectionslide">
-  <h1>Simple Layouts</h1>
+<h1>1. Simple Layouts</h1>
 </section>
 
 
@@ -72,17 +72,17 @@ This work is placed under a Creative Commons Attribution 4.0 International
 
 
 <section>
-<h2>Single Image</h2>
+<h1>Single Image or Diagram</h1>
 
 <figure>
 <div class="rslidy-large-images">
 <img class="svg" src="images/rslidy-example-slide.svg"
-     alt="Rslidy Example Image"/>
+     alt="Generic SVG diagram."/>
 </div>
 <figcaption>
-The image viewer is automatically attached to every image.
-Pan and zoom via mouse, keyboard, or on-screen controls.
-<br/>
+The Rslidy image viewer is automatically attached to every
+<code>&lt;img&gt;</code> element, enabling pan and zoom via mouse,
+keyboard, or on-screen controls.
 </figcaption>
 </figure>
 </section>
@@ -95,33 +95,31 @@ Pan and zoom via mouse, keyboard, or on-screen controls.
 
 
 <section>
-  <h2>Responsive Image (Art Direction)</h2>
-  <figure>
-    <div class="rslidy-large-images">
-      <picture>
-        <!-- Narrow crop for narrow screens -->
-        <source media="(max-width: 600px)"
-                srcset="images/graz-uhrturm-narrow.jpg">
-        <!-- Medium crop for tablets -->
-        <source media="(max-width: 1200px)" srcset="images/graz-uhrturm-medium.jpg">
-        <!-- Wide for desktops -->
-        <img src="images/graz-uhrturm.jpg"
-             alt="Responsive Uhrturm Graz example">
-      </picture>
-    </div>
-    <figcaption>
-      This slide demonstrates responsive images using the
-      <code>&lt;picture&gt;</code> element.
-      Depending on screen width, a different crop of the same image is
-      loaded.
-      <br/>
-      <span class="credit">Image used from
-    <a
-      href="https://pixabay.com/photos/graz-austria-styria-clock-tower-1638892/">Pixabay,</a>
-      under the terms of the Pixabay <a href="https://pixabay.com/service/license-summary/">license.</a>
-        </span>
-    </figcaption>
-  </figure>
+<h1>Responsive Image (Art Direction)</h1>
+
+<figure>
+<div class="rslidy-large-images">
+<picture>
+  <!-- Narrow crop for narrow widths -->
+  <source media="(max-width: 40rem)"
+    srcset="images/graz-uhrturm-narrow.jpg">
+  <!-- Medium crop for medium widths -->
+  <source media="(max-width: 80rem)" srcset="images/graz-uhrturm-medium.jpg">
+  <!-- Original wide image -->
+  <img src="images/graz-uhrturm.jpg"
+       alt="Photo of Graz Clock Tower, in three diffeent crop widths.">
+</picture>
+</div>
+<figcaption>
+This slide demonstrates responsive images using the <code>&lt;picture&gt;</code> element.
+Depending on screen width, a different crop of the same image is loaded.
+<br/><span class="credit">Image from
+<a href="https://pixabay.com/photos/graz-austria-styria-clock-tower-1638892/">Pixabay,</a>
+used under the terms of the
+Pixabay <a href="https://pixabay.com/service/license-summary/">licence.</a>
+</span>
+</figcaption>
+</figure>
 </section>
 
 
@@ -131,40 +129,38 @@ Pan and zoom via mouse, keyboard, or on-screen controls.
 
 
 
-
 <section>
-  <h2>Responsive Image (Resolution Switching)</h2>
-  <figure>
-    <div class="rslidy-large-images">
-      <img
-        src="images/obama-speaking.jpg"
-        srcset="
-        images/obama-speaking-narrow.jpg 400w,
-        images/obama-speaking-medium.jpg 800w,
-        images/obama-speaking.jpg 1200w
-      "
-        sizes="(max-width: 600px) 50vw,
-         (max-width: 900px) 75vw,
-         (max-width: 1400px) 50vw,
-         60vw"
-        alt="Barack Obama giving a speech at Chrysler, Toledo">
-    </div>
-    <figcaption>
-      This slide demonstrates responsive images using
-      <code>&lt;img srcset&gt;</code> and <code>sizes</code>.
-      The same image is used at multiple resolutions to improve loading
-      speed and display quality on different devices.
-      <br/>
-      <span class="credit">
-      Image from
-      <a href="https://www.flickr.com/photos/barackobamadotcom/5795228030/">
-        Flickr – Barack Obama at Chrysler, Toledo</a>, under
-        terms of the <a
-        href="https://creativecommons.org/licenses/by-nc-sa/2.0/">CC
-        BY-NC-SA 2.0</a> license.
-    </span>
-    </figcaption>
-  </figure>
+<h1>Responsive Image (Art Direction + Resolution Switching)</h1>
+
+<figure>
+<div class="rslidy-large-images">
+  <img
+    src="images/obama-speaking.jpg"
+    srcset="
+    images/obama-speaking-narrow.jpg 400w,
+    images/obama-speaking-medium.jpg 800w,
+    images/obama-speaking.jpg 1200w
+  "
+    sizes="(max-width: 600px) 50vw,
+     (max-width: 900px) 75vw,
+     (max-width: 1400px) 50vw,
+     60vw"
+    alt="Barack Obama giving a speech at Chrysler, Toledo.">
+</div>
+<figcaption>
+This slide demonstrates responsive images using the
+<code>srcset</code> and <code>sizes</code> attributes on
+an <code>&lt;img&gt;</code> element. The image is fetched at
+the appropriate resolution for the device.
+<br/><span class="credit">
+Image from
+<a href="https://www.flickr.com/photos/barackobamadotcom/5795228030/">
+Flickr – Barack Obama at Chrysler, Toledo</a>, used under terms of
+the <a href="https://creativecommons.org/licenses/by-nc-sa/2.0/">CC
+BY-NC-SA 2.0</a> license.
+</span>
+</figcaption>
+</figure>
 </section>
 
 
@@ -181,24 +177,24 @@ Pan and zoom via mouse, keyboard, or on-screen controls.
 
 
 <section>
-  <h2>Single Video</h2>
-  <figure>
-  <div class="rslidy-large-images">
-  <video controls autoplay muted loop poster="images/skiing-thumbnail.jpg">
-  <source src="images/skiing.mp4" type="video/mp4"/>
-  <img src="images/skiing-thumbnail.jpg"
-       alt="Skiing Video." />
-  </video>
-  </div>
-    <figcaption>
-      Short skiing video with sound.
-      <br/>
-      <span class="credit">Video used from
-    <a href="https://www.pexels.com/video/ski-montagne-skier-piste-de-ski-4274798/">Pexels,</a>
-    under the terms of the Pexels <a href="https://www.pexels.com/license/">license.</a>
-    </span>
-    </figcaption>
-  </figure>
+<h1>Single Video</h1>
+<figure>
+<div class="rslidy-large-images">
+<video controls autoplay muted loop poster="images/skiing-thumbnail.jpg">
+<source src="images/skiing.mp4" type="video/mp4"/>
+<img src="images/skiing-thumbnail.jpg"
+     alt="Skiing video." />
+</video>
+</div>
+<figcaption>
+Short skiing video with sound.
+<br/><span class="credit">Video from
+<a href="https://pexels.com/video/ski-montagne-skier-piste-de-ski-4274798/">Pexels,</a>
+used under the terms of the
+Pexels <a href="https://pexels.com/license/">licence.</a>
+</span>
+</figcaption>
+</figure>
 </section>
 
 
@@ -208,104 +204,103 @@ Pan and zoom via mouse, keyboard, or on-screen controls.
 
 
 <section>
-  <h1>Responsive Table with Sorting: Smartphone Features Comparison
-    (2025)</h1>
-  <table class="rslidy-responsive-table rslidy-fit">
-    <thead>
-    <tr>
-      <th scope="col" class="rslidy-text">Smartphone</th>
-      <th scope="col" class="rslidy-text">Operating System</th>
-      <th scope="col" class="rslidy-numeric">Battery (mAh)</th>
-      <th scope="col" class="rslidy-numeric">Display Size (″)</th>
-      <th scope="col" class="rslidy-numeric">Storage (GB)</th>
-      <th scope="col" class="rslidy-numeric">Price ($)</th>
-      <th scope="col" class="rslidy-text">Release Date</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-      <td class="rslidy-text">Samsung Galaxy</td>
-      <td class="rslidy-text">Android</td>
-      <td class="rslidy-numeric">5000</td>
-      <td class="rslidy-numeric">6.8</td>
-      <td class="rslidy-numeric">512</td>
-      <td class="rslidy-numeric">1199</td>
-      <td class="rslidy-text">2025-03-15</td>
-    </tr>
-    <tr>
-      <td class="rslidy-text">iPhone</td>
-      <td class="rslidy-text">iOS</td>
-      <td class="rslidy-numeric">4500</td>
-      <td class="rslidy-numeric">6.7</td>
-      <td class="rslidy-numeric">512</td>
-      <td class="rslidy-numeric">1399</td>
-      <td class="rslidy-text">2025-09-22</td>
-    </tr>
-    <tr>
-      <td class="rslidy-text">Xiaomi</td>
-      <td class="rslidy-text">Android</td>
-      <td class="rslidy-numeric">4800</td>
-      <td class="rslidy-numeric">6.7</td>
-      <td class="rslidy-numeric">256</td>
-      <td class="rslidy-numeric">899</td>
-      <td class="rslidy-text">2025-02-28</td>
-    </tr>
-    <tr>
-      <td class="rslidy-text">Oppo Find</td>
-      <td class="rslidy-text">Android</td>
-      <td class="rslidy-numeric">4600</td>
-      <td class="rslidy-numeric">6.7</td>
-      <td class="rslidy-numeric">256</td>
-      <td class="rslidy-numeric">999</td>
-      <td class="rslidy-text">2025-05-10</td>
-    </tr>
-    <tr>
-      <td class="rslidy-text">Vivo</td>
-      <td class="rslidy-text">Android</td>
-      <td class="rslidy-numeric">4700</td>
-      <td class="rslidy-numeric">6.8</td>
-      <td class="rslidy-numeric">512</td>
-      <td class="rslidy-numeric">849</td>
-      <td class="rslidy-text">2025-07-05</td>
-    </tr>
-    <tr>
-      <td class="rslidy-text">Realme</td>
-      <td class="rslidy-text">Android</td>
-      <td class="rslidy-numeric">4500</td>
-      <td class="rslidy-numeric">6.7</td>
-      <td class="rslidy-numeric">256</td>
-      <td class="rslidy-numeric">749</td>
-      <td class="rslidy-text">2025-04-18</td>
-    </tr>
-    <tr>
-      <td class="rslidy-text">Huawei</td>
-      <td class="rslidy-text">HarmonyOS</td>
-      <td class="rslidy-numeric">5000</td>
-      <td class="rslidy-numeric">6.8</td>
-      <td class="rslidy-numeric">512</td>
-      <td class="rslidy-numeric">1099</td>
-      <td class="rslidy-text">2025-06-01</td>
-    </tr>
-    <tr>
-      <td class="rslidy-text">Motorola</td>
-      <td class="rslidy-text">Android</td>
-      <td class="rslidy-numeric">4400</td>
-      <td class="rslidy-numeric">6.5</td>
-      <td class="rslidy-numeric">256</td>
-      <td class="rslidy-numeric">699</td>
-      <td class="rslidy-text">2025-08-12</td>
-    </tr>
-    <tr>
-      <td class="rslidy-text">Google Pixel</td>
-      <td class="rslidy-text">Android</td>
-      <td class="rslidy-numeric">4350</td>
-      <td class="rslidy-numeric">6.4</td>
-      <td class="rslidy-numeric">256</td>
-      <td class="rslidy-numeric">799</td>
-      <td class="rslidy-text">2025-01-30</td>
-    </tr>
-    </tbody>
-  </table>
+<h1>Responsive Table with Sorting</h1>
+<table class="rslidy-responsive-table rslidy-fit">
+  <thead>
+  <tr>
+    <th scope="col" class="rslidy-text">Smartphone</th>
+    <th scope="col" class="rslidy-text">Operating System</th>
+    <th scope="col" class="rslidy-numeric">Battery (mAh)</th>
+    <th scope="col" class="rslidy-numeric">Display Size (″)</th>
+    <th scope="col" class="rslidy-numeric">Storage (GB)</th>
+    <th scope="col" class="rslidy-numeric">Price ($)</th>
+    <th scope="col" class="rslidy-text">Release Date</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td class="rslidy-text">Samsung Galaxy</td>
+    <td class="rslidy-text">Android</td>
+    <td class="rslidy-numeric">5000</td>
+    <td class="rslidy-numeric">6.8</td>
+    <td class="rslidy-numeric">512</td>
+    <td class="rslidy-numeric">1199</td>
+    <td class="rslidy-text">2025-03-15</td>
+  </tr>
+  <tr>
+    <td class="rslidy-text">iPhone</td>
+    <td class="rslidy-text">iOS</td>
+    <td class="rslidy-numeric">4500</td>
+    <td class="rslidy-numeric">6.7</td>
+    <td class="rslidy-numeric">512</td>
+    <td class="rslidy-numeric">1399</td>
+    <td class="rslidy-text">2025-09-22</td>
+  </tr>
+  <tr>
+    <td class="rslidy-text">Xiaomi</td>
+    <td class="rslidy-text">Android</td>
+    <td class="rslidy-numeric">4800</td>
+    <td class="rslidy-numeric">6.7</td>
+    <td class="rslidy-numeric">256</td>
+    <td class="rslidy-numeric">899</td>
+    <td class="rslidy-text">2025-02-28</td>
+  </tr>
+  <tr>
+    <td class="rslidy-text">Oppo Find</td>
+    <td class="rslidy-text">Android</td>
+    <td class="rslidy-numeric">4600</td>
+    <td class="rslidy-numeric">6.7</td>
+    <td class="rslidy-numeric">256</td>
+    <td class="rslidy-numeric">999</td>
+    <td class="rslidy-text">2025-05-10</td>
+  </tr>
+  <tr>
+    <td class="rslidy-text">Vivo</td>
+    <td class="rslidy-text">Android</td>
+    <td class="rslidy-numeric">4700</td>
+    <td class="rslidy-numeric">6.8</td>
+    <td class="rslidy-numeric">512</td>
+    <td class="rslidy-numeric">849</td>
+    <td class="rslidy-text">2025-07-05</td>
+  </tr>
+  <tr>
+    <td class="rslidy-text">Realme</td>
+    <td class="rslidy-text">Android</td>
+    <td class="rslidy-numeric">4500</td>
+    <td class="rslidy-numeric">6.7</td>
+    <td class="rslidy-numeric">256</td>
+    <td class="rslidy-numeric">749</td>
+    <td class="rslidy-text">2025-04-18</td>
+  </tr>
+  <tr>
+    <td class="rslidy-text">Huawei</td>
+    <td class="rslidy-text">HarmonyOS</td>
+    <td class="rslidy-numeric">5000</td>
+    <td class="rslidy-numeric">6.8</td>
+    <td class="rslidy-numeric">512</td>
+    <td class="rslidy-numeric">1099</td>
+    <td class="rslidy-text">2025-06-01</td>
+  </tr>
+  <tr>
+    <td class="rslidy-text">Motorola</td>
+    <td class="rslidy-text">Android</td>
+    <td class="rslidy-numeric">4400</td>
+    <td class="rslidy-numeric">6.5</td>
+    <td class="rslidy-numeric">256</td>
+    <td class="rslidy-numeric">699</td>
+    <td class="rslidy-text">2025-08-12</td>
+  </tr>
+  <tr>
+    <td class="rslidy-text">Google Pixel</td>
+    <td class="rslidy-text">Android</td>
+    <td class="rslidy-numeric">4350</td>
+    <td class="rslidy-numeric">6.4</td>
+    <td class="rslidy-numeric">256</td>
+    <td class="rslidy-numeric">799</td>
+    <td class="rslidy-text">2025-01-30</td>
+  </tr>
+  </tbody>
+</table>
 </section>
 
 
@@ -316,7 +311,7 @@ Pan and zoom via mouse, keyboard, or on-screen controls.
 
 
 <section class="rslidy-sectionslide">
-  <h1>Multi-Column Layouts</h1>
+<h1>2. Multi-Column Layouts</h1>
 </section>
 
 
@@ -324,63 +319,62 @@ Pan and zoom via mouse, keyboard, or on-screen controls.
 
 
 
-
-
-
 <section>
-  <h1>Two Column: Bullet Points (Incremental)</h1>
-  <div class="rslidy-columns-even">
-  <div class="rslidy-left-column">
-  <ul class="rslidy-incremental">
-    <li>Left Bullet Point 1</li>
-    <li>Left Bullet Point 2</li>
-    <li>Left Bullet Point 3</li>
-    <li>Left Bullet Point 4</li>
-    <li>Left Bullet Point 5</li>
-  </ul>
-  </div>
-  <div class="rslidy-right-column">
-  <ul class="rslidy-incremental">
-    <li>Right Bullet Point 1</li>
-    <li>Right Bullet Point 2</li>
-    <li>Right Bullet Point 3</li>
-    <li>Right Bullet Point 4</li>
-    <li>Right Bullet Point 5</li>
-  </ul>
-  </div>
-  </div>
-</section>
+<h1>Two Columns: Bullet Points (Incremental)</h1>
 
-
-
-
-
-
-
-
-
-
-<section>
-<h1>Two Column: Bullets Left, Image Right</h1>
 <div class="rslidy-columns-even">
-  <div class="rslidy-left-column">
-  <ul>
-    <li>Bullet Point 1</li>
-    <li>Bullet Point 2</li>
-    <li>Bullet Point 3</li>
-    <li>Bullet Point 4</li>
-    <li>Bullet Point 5</li>
-  </ul>
-  </div>
-  <div class="rslidy-right-column">
-  <figure>
-  <div class="rslidy-large-images">
-    <img src="images/rslidy-example-slide.svg"
-         alt="Rslidy Example Image"/>
-  </div>
-  <figcaption>Generic Rslidy SVG layout example.</figcaption>
-  </figure>
-  </div>
+<div class="rslidy-left-column">
+<ul class="rslidy-incremental">
+  <li>Left Bullet Point 1</li>
+  <li>Left Bullet Point 2</li>
+  <li>Left Bullet Point 3</li>
+  <li>Left Bullet Point 4</li>
+  <li>Left Bullet Point 5</li>
+</ul>
+</div>
+<div class="rslidy-right-column">
+<ul class="rslidy-incremental">
+  <li>Right Bullet Point 1</li>
+  <li>Right Bullet Point 2</li>
+  <li>Right Bullet Point 3</li>
+  <li>Right Bullet Point 4</li>
+  <li>Right Bullet Point 5</li>
+</ul>
+</div>
+</div>
+</section>
+
+
+
+
+
+
+
+
+
+
+<section>
+<h1>Two Columns: Bullets Left, Image or Diagram Right</h1>
+
+<div class="rslidy-columns-even">
+<div class="rslidy-left-column">
+<ul>
+  <li>Bullet Point 1</li>
+  <li>Bullet Point 2</li>
+  <li>Bullet Point 3</li>
+  <li>Bullet Point 4</li>
+  <li>Bullet Point 5</li>
+</ul>
+</div>
+<div class="rslidy-right-column">
+<figure>
+<div class="rslidy-large-images">
+  <img src="images/rslidy-example-slide.svg"
+       alt="Generic SVG diagram."/>
+</div>
+<figcaption>Generic SVG diagram.</figcaption>
+</figure>
+</div>
 </div>
 </section>
 
@@ -395,27 +389,30 @@ Pan and zoom via mouse, keyboard, or on-screen controls.
 
 
 <section>
-  <h1>Two Column: Two Images</h1>
-  <div class="rslidy-columns-even">
-    <div class="rslidy-left-column">
-      <figure>
-        <div class="rslidy-large-images">
-          <img src="images/rslidy-example-slide.svg"
-               alt="Rslidy Example Image"/>
-        </div>
-        <figcaption>Generic Rslidy SVG layout example.</figcaption>
-      </figure>
-    </div>
-    <div class="rslidy-right-column">
-      <figure>
-        <div class="rslidy-large-images">
-          <img src="images/graz-uhrturm.jpg"
-               alt="Rslidy Example Image"/>
-        </div>
-        <figcaption>JPG image of the Graz Clock Tower.</figcaption>
-      </figure>
-    </div>
+<h1>Two Columns: Two Images or Diagrams</h1>
+
+<div class="rslidy-columns-even">
+
+<div class="rslidy-left-column">
+<figure>
+  <div class="rslidy-large-images">
+    <img src="images/rslidy-example-slide.svg"
+         alt="Generic SVG diagram."/>
   </div>
+  <figcaption>Generic SVG diagram.</figcaption>
+</figure>
+</div>
+
+<div class="rslidy-right-column">
+<figure>
+  <div class="rslidy-large-images">
+    <img src="images/graz-uhrturm.jpg"
+         alt="JPEG photo of the Graz Clock Tower."/>
+  </div>
+  <figcaption>JPEG photo of the Graz Clock Tower.</figcaption>
+</figure>
+</div>
+</div>
 </section>
 
 
@@ -427,37 +424,38 @@ Pan and zoom via mouse, keyboard, or on-screen controls.
 
 
 <section>
-  <h1>Two Column: One Image, One Video</h1>
-  <div class="rslidy-columns-even">
-    <div class="rslidy-left-column">
-      <figure>
-        <div class="rslidy-large-images">
-          <img src="images/rslidy-example-slide.svg"
-               alt="Rslidy Example Image"/>
-        </div>
-        <figcaption>Generic Rslidy svg layout example.</figcaption>
-      </figure>
-    </div>
-    <div class="rslidy-right-column">
-      <figure>
-        <div class="rslidy-large-images">
-          <video controls autoplay muted loop poster="images/skiing-thumbnail.jpg">
-            <source src="images/skiing.mp4" type="video/mp4"/>
-            <img src="images/skiing-thumbnail.jpg"
-                  alt="Short skiing video with sound.." />
-          </video>
-        </div>
-        <figcaption>
-          Short skiing video with sound.
-          <br/>
-          <span class="credit">Video used from
-          <a href="https://www.pexels.com/video/ski-montagne-skier-piste-de-ski-4274798/">Pexels,</a>
-          under the terms of the Pexels <a href="https://www.pexels.com/license/">license.</a>
-          </span>
-        </figcaption>
-      </figure>
-    </div>
+<h1>Two Columns: One Image or Diagram, One Video</h1>
+
+<div class="rslidy-columns-even">
+<div class="rslidy-left-column">
+<figure>
+  <div class="rslidy-large-images">
+    <img src="images/rslidy-example-slide.svg"
+         alt="Rslidy Example Image"/>
   </div>
+  <figcaption>Generic SVG diagram.</figcaption>
+</figure>
+</div>
+
+<div class="rslidy-right-column">
+<figure>
+<div class="rslidy-large-images">
+  <video controls autoplay muted loop poster="images/skiing-thumbnail.jpg">
+    <source src="images/skiing.mp4" type="video/mp4"/>
+    <img src="images/skiing-thumbnail.jpg"
+       alt="Short skiing video with sound." />
+  </video>
+</div>
+<figcaption>
+  Short skiing video with sound.
+  <br/><span class="credit">Video from
+  <a href="https://pexels.com/video/ski-montagne-skier-piste-de-ski-4274798/">Pexels,</a>
+  used under the terms of the Pexels <a href="https://pexels.com/license/">licence.</a>
+  </span>
+</figcaption>
+</figure>
+</div>
+</div>
 </section>
 
 
