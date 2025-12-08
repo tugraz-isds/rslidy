@@ -76,7 +76,7 @@ This work is placed under a Creative Commons Attribution 4.0 International
 
 <figure>
 <div class="rslidy-large-images">
-<img class="svg" src="images/rslidy-example-slide.svg"
+<img class="svg" src="diagrams/rslidy-example-slide.svg"
      alt="Generic SVG diagram."/>
 </div>
 <figcaption>
@@ -128,36 +128,32 @@ Pixabay <a href="https://pixabay.com/service/license-summary/">licence.</a>
 
 
 
-
 <section>
-<h1>Responsive Image (Art Direction + Resolution Switching)</h1>
+<h1>Responsive Image (Resolution Switching)</h1>
 
 <figure>
 <div class="rslidy-large-images">
   <img
-    src="images/obama-speaking.jpg"
+    src="images/graz-uhrturm.jpg"
     srcset="
-    images/obama-speaking-narrow.jpg 400w,
-    images/obama-speaking-medium.jpg 800w,
-    images/obama-speaking.jpg 1200w
+    images/graz-uhrturm-480.jpg 480w,
+    images/graz-uhrturm-800.jpg 800w,
+    images/graz-uhrturm-1200.jpg 1200w
   "
-    sizes="(max-width: 600px) 50vw,
-     (max-width: 900px) 75vw,
-     (max-width: 1400px) 50vw,
-     60vw"
-    alt="Barack Obama giving a speech at Chrysler, Toledo.">
+    sizes="(max-width: 40rem) 25vw,
+       (max-width: 60rem) 75vw,
+       100vw"
+    alt="The clock tower overlooking the city of Graz, Austria">
 </div>
 <figcaption>
 This slide demonstrates responsive images using the
 <code>srcset</code> and <code>sizes</code> attributes on
 an <code>&lt;img&gt;</code> element. The image is fetched at
 the appropriate resolution for the device.
-<br/><span class="credit">
-Image from
-<a href="https://www.flickr.com/photos/barackobamadotcom/5795228030/">
-Flickr – Barack Obama at Chrysler, Toledo</a>, used under terms of
-the <a href="https://creativecommons.org/licenses/by-nc-sa/2.0/">CC
-BY-NC-SA 2.0</a> license.
+<br/><span class="credit">Image from
+<a href="https://pixabay.com/photos/graz-austria-styria-clock-tower-1638892/">Pixabay,</a>
+used under the terms of the
+Pixabay <a href="https://pixabay.com/service/license-summary/">licence.</a>
 </span>
 </figcaption>
 </figure>
@@ -205,7 +201,7 @@ Pexels <a href="https://pexels.com/license/">licence.</a>
 
 <section>
 <h1>Responsive Table with Sorting</h1>
-<table class="rslidy-responsive-table rslidy-fit">
+<table class="rslidy-responsive-table rslidy-responsive-table-text-scaling">
   <thead>
   <tr>
     <th scope="col" class="rslidy-text">Smartphone</th>
@@ -323,7 +319,7 @@ Pexels <a href="https://pexels.com/license/">licence.</a>
 <h1>Two Columns: Bullet Points (Incremental)</h1>
 
 <div class="rslidy-columns-even">
-<div class="rslidy-left-column">
+<div class="rslidy-column">
 <ul class="rslidy-incremental">
   <li>Left Bullet Point 1</li>
   <li>Left Bullet Point 2</li>
@@ -332,7 +328,7 @@ Pexels <a href="https://pexels.com/license/">licence.</a>
   <li>Left Bullet Point 5</li>
 </ul>
 </div>
-<div class="rslidy-right-column">
+<div class="rslidy-column">
 <ul class="rslidy-incremental">
   <li>Right Bullet Point 1</li>
   <li>Right Bullet Point 2</li>
@@ -357,7 +353,7 @@ Pexels <a href="https://pexels.com/license/">licence.</a>
 <h1>Two Columns: Bullets Left, Image or Diagram Right</h1>
 
 <div class="rslidy-columns-even">
-<div class="rslidy-left-column">
+<div class="rslidy-column">
 <ul>
   <li>Bullet Point 1</li>
   <li>Bullet Point 2</li>
@@ -366,10 +362,10 @@ Pexels <a href="https://pexels.com/license/">licence.</a>
   <li>Bullet Point 5</li>
 </ul>
 </div>
-<div class="rslidy-right-column">
+<div class="rslidy-column">
 <figure>
 <div class="rslidy-large-images">
-  <img src="images/rslidy-example-slide.svg"
+  <img src="diagrams/rslidy-example-slide.svg"
        alt="Generic SVG diagram."/>
 </div>
 <figcaption>Generic SVG diagram.</figcaption>
@@ -393,17 +389,17 @@ Pexels <a href="https://pexels.com/license/">licence.</a>
 
 <div class="rslidy-columns-even">
 
-<div class="rslidy-left-column">
+<div class="rslidy-column">
 <figure>
   <div class="rslidy-large-images">
-    <img src="images/rslidy-example-slide.svg"
+    <img src="diagrams/rslidy-example-slide.svg"
          alt="Generic SVG diagram."/>
   </div>
   <figcaption>Generic SVG diagram.</figcaption>
 </figure>
 </div>
 
-<div class="rslidy-right-column">
+<div class="rslidy-column">
 <figure>
   <div class="rslidy-large-images">
     <img src="images/graz-uhrturm.jpg"
@@ -427,17 +423,17 @@ Pexels <a href="https://pexels.com/license/">licence.</a>
 <h1>Two Columns: One Image or Diagram, One Video</h1>
 
 <div class="rslidy-columns-even">
-<div class="rslidy-left-column">
+<div class="rslidy-column">
 <figure>
   <div class="rslidy-large-images">
-    <img src="images/rslidy-example-slide.svg"
+    <img src="diagrams/rslidy-example-slide.svg"
          alt="Rslidy Example Image"/>
   </div>
   <figcaption>Generic SVG diagram.</figcaption>
 </figure>
 </div>
 
-<div class="rslidy-right-column">
+<div class="rslidy-column">
 <figure>
 <div class="rslidy-large-images">
   <video controls autoplay muted loop poster="images/skiing-thumbnail.jpg">

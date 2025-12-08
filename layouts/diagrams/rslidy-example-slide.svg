@@ -22,14 +22,10 @@
   <!-- Bottom red bar -->
   <rect y="704" width="1152" height="64" fill="#c8102e"/>
 
-  <!-- Title -->
-  <text x="160" y="160" font-family="Inter, Segoe UI, Arial, Helvetica, sans-serif" font-size="96" font-weight="700" fill="#c8102e" letter-spacing="0.5">
-    Rslidy
-  </text>
-
   <!-- Card -->
   <g filter="url(#softShadow)">
-    <rect x="160" y="208" rx="16" ry="16" width="832" height="384" fill="#ffffff"/>
+    <rect x="160" y="100" rx="16" ry="16" width="832" height="520"
+          fill="#ffffff"/>
   </g>
 
   <!-- Left bullets and lines -->

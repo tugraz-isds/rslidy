@@ -160,14 +160,14 @@ figure {
   display: table;
 }
 
-div.images, div.rslidy-large-images, div.small-images {
+div.rslidy-images, div.rslidy-large-images, div.small-images {
   margin: 0 auto;
   padding: 0.5em;
   display: flex;
   justify-content: center;
 }
 
-div.images img, div.images video {
+div.rslidy-images img, div.rslidy-images video {
   object-fit: scale-down; /* preserve aspect ratio */
   max-width: 100%;
   max-height: 15em;
@@ -192,11 +192,7 @@ div.small-images img, div.small-images video {
 }
 
 figcaption {
-  margin: 1em 0;
-  font-size: 60%;
-  text-align: center;
-  display: table-caption;
-  caption-side: bottom;
+  padding-left: 2.5em;
 }
 
 figcaption span.fig-label {

@@ -86,7 +86,7 @@ figure {
   margin: 1em auto;
 }
 
-div.images {
+div.rslidy-images {
   margin: 0 auto;
   display: flex;
   justify-content: center;
@@ -94,18 +94,13 @@ div.images {
   align-content: flex-start;
 }
 
-div.images img {
+div.rslidy-images img {
   max-width: 100%;
   max-height: 20em;
   width: auto;
   height: 20em;
 }
 
-figcaption {
-  margin: 1em 0;
-  font-size: 60%;
-  text-align: center;
-}
 
 figcaption span.fig-label {
   font-weight: bold;
@@ -153,73 +148,3 @@ p.note:after {
 }
 
 
-
-
-
-/* tables */
-
-th.left {
-  text-align: left;
-}
-
-th.right {
-  text-align: right;
-}
-
-th.center {
-  text-align: center;
-}
-
-th.numeric {
-  text-align: right;
-}
-
-
-
-td.left {
-  text-align: right;
-}
-
-td.right {
-  text-align: right;
-}
-
-td.center {
-  text-align: center;
-}
-
-td.numeric {
-  text-align: right;
-}
-
-
-/*
-To align table cells right or center
-<table class="tr2 tc3 tr7">
-*/
-
-.col1r td:nth-child(1), .col1r th:nth-child(1),
-.col2r td:nth-child(2), .col2r th:nth-child(2),
-.col3r td:nth-child(3), .col3r th:nth-child(3),
-.col4r td:nth-child(4), .col4r th:nth-child(4),
-.col5r td:nth-child(5), .col5r th:nth-child(5),
-.col6r td:nth-child(6), .col65 th:nth-child(6),
-.col7r td:nth-child(7), .col7r th:nth-child(7),
-.col8r td:nth-child(8), .col8r th:nth-child(8),
-.col9r td:nth-child(9), .col9r th:nth-child(9),
-.col10r td:nth-child(10), .col10r th:nth-child(10),
-.col11r td:nth-child(11), .col11r th:nth-child(11),
-.col12r td:nth-child(12), .col12r th:nth-child(12) { text-align:right }
-
-.col1c td:nth-child(1), .col1c th:nth-child(1),
-.col2c td:nth-child(2), .col2c th:nth-child(2),
-.col3c td:nth-child(3), .col3c th:nth-child(3),
-.col4c td:nth-child(4), .col4c th:nth-child(4),
-.col5c td:nth-child(5), .col5c th:nth-child(5),
-.col6c td:nth-child(6), .col6c th:nth-child(6),
-.col7c td:nth-child(7), .col7c th:nth-child(7),
-.col8c td:nth-child(8), .col8c th:nth-child(8),
-.col9c td:nth-child(9), .col9c th:nth-child(9),
-.col10c td:nth-child(10), .col10c th:nth-child(10),
-.col11c td:nth-child(11), .col11c th:nth-child(11),
-.col12c td:nth-child(12), .col12c th:nth-child(12) { text-align:center }

@@ -86,9 +86,10 @@ Intended for artists to design slides for projectors, which had to be printed.
 </li>
 </ul>
 
-<div class="columns">
+<div class="rslidy-columns-even">
+<div class="rslidy-column">
 <figure>
-  <div class="images">
+    <div class="rslidy-images">
     <img src="images/powerpoint_forethought.png" alt="PowerPoint Splashscreen" />
   </div>
   <figcaption>
@@ -97,8 +98,10 @@ Intended for artists to design slides for projectors, which had to be printed.
     <a href="https://github.com/jsdf/pce">emulation</a>.</span>
   </figcaption>
 </figure>
+</div>
+<div class="rslidy-column">
 <figure>
-  <div class="images">
+    <div class="rslidy-images">
     <img src="images/columbus.png" alt="One slide from an example presentation included in PowerPoint 1.0. " />
   </div>
   <figcaption>
@@ -112,6 +115,7 @@ Intended for artists to design slides for projectors, which had to be printed.
 <footer class="footer">
   Patrick Hipp, Graz University of Technology, Thu 28 Oct 2021
 </footer>
+</div>
 </section>
 
 
@@ -155,7 +159,7 @@ Intended for artists to design slides for projectors, which had to be printed.
   </ul>
 
   <figure>
-    <div class="images">
+      <div class="rslidy-images">
       <img src="images/dom.svg" alt="The Document Object Model (DOM) can be displayed as a tree structure, called the DOM tree. Standardised cross-browser JavaScript functions are provided to access and modify
       specific objects and their attributes." />
     </div>
@@ -182,7 +186,8 @@ Intended for artists to design slides for projectors, which had to be printed.
     <li>Gulp</li>
   </ul>
 
-  <div class="columns">
+<div class="rslidy-columns-even">
+  <div class="rslidy-column">
   <figure>
     <div class="small-images">
       <img src="images/scss_to_css.png" alt="SCSS is a pre-processor syntax which is converted to CSS. This image shows some of the differences between SCSS and CSS." />
@@ -192,7 +197,10 @@ Intended for artists to design slides for projectors, which had to be printed.
     <span class="credit">Screenshot taken by the author.</span>
     </figcaption>
   </figure>
-  <figure>
+    </div>
+  <div class="rslidy-column">
+      
+      <figure>
     <div class="small-images">
       <img src="images/typescript_vs_javascript.png" alt="Typescript transpiles to JavaScript, but allows for types and error detection, among other features." />
     </div>
@@ -201,6 +209,7 @@ Intended for artists to design slides for projectors, which had to be printed.
     <span class="credit">Screenshot taken by the author.</span>
     </figcaption>
   </figure>
+  </div>
 </div>
 
   <footer class="footer">
@@ -296,7 +305,7 @@ read slides.</li>
 </ul>
 
 <figure>
-<div class="images">
+  <div class="rslidy-images">
 <img src="images/slidifier.png" alt="Slidifier" />
 </div>
 <figcaption>
@@ -350,7 +359,7 @@ Video annotations, live code examples, reuse a slide by its ID.
 </ul>
 
 <figure>
-<div class="images">
+  <div class="rslidy-images">
 <img src="images/inspire.js.png" alt="Inspire.js" />
 </div>
 <figcaption>
@@ -402,7 +411,7 @@ target="_blank">Inspire.js</a>.
 </ul>
 
 <figure>
-<div class="images">
+  <div class="rslidy-images">
 <img src="images/beautiful-ai.gif" alt="Beautiful.ai offers tools for creating and editing charts and diagrams." />
 </div>
 <figcaption>
@@ -458,7 +467,7 @@ target="_blank">Example</a></li>
 </ul>
 
 <figure>
-<div class="images">
+  <div class="rslidy-images">
 <img src="images/scrolldeck.js.png" alt="Scrolldeck.js" />
 </div>
 <figcaption>
@@ -498,30 +507,30 @@ Lightweight.
 </li>
 </ul>
 
-<table class="table tc2 tr3">
-  <caption>Rslidy File Sizes</caption>
-  <thead>
-    <tr>
-      <th scope="col">File</th>
-      <th scope="col">Size</th>
-      <th scope="col">Minified Size</th>
-      <th scope="col">Minified and Gzipped Size</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td scope="row" data-label="Filename">rslidy.js</td>
-      <td data-label="Regular">133,306 bytes</td>
-      <td data-label="Minified">70,223 bytes</td>
-      <td data-label="Gzipped">15,069 bytes</td>
-    </tr>
-    <tr>
-      <td scope="row" data-label="Filename">rslidy.css</td>
-      <td data-label="Regular">26,086 bytes</td>
-      <td data-label="Minified">17,270 bytes</td>
-      <td data-label="Gzipped">4,362 bytes</td>
-    </tr>
-  </tbody>
+<table class="rslidy-responsive-table rslidy-responsive-table-text-scaling">
+<caption>Rslidy File Sizes</caption>
+<thead>
+<tr>
+  <th scope="col" class="rslidy-text">File</th>
+  <th scope="col" class="rslidy-numeric">Size (bytes)</th>
+  <th scope="col" class="rslidy-numeric">Minified Size (bytes)</th>
+  <th scope="col" class="rslidy-numeric">Minified &amp; Gzipped (bytes)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td class="rslidy-text">rslidy.js</td>
+  <td class="rslidy-numeric">133306</td>
+  <td class="rslidy-numeric">70223</td>
+  <td class="rslidy-numeric">15069</td>
+</tr>
+<tr>
+  <td class="rslidy-text">rslidy.css</td>
+  <td class="rslidy-numeric">26086</td>
+  <td class="rslidy-numeric">17270</td>
+  <td class="rslidy-numeric">4362</td>
+</tr>
+</tbody>
 </table>
 <footer class="footer">
   Patrick Hipp, Graz University of Technology, Thu 28 Oct 2021
@@ -571,7 +580,7 @@ Responsive Layout and Interactions:
 <h2>Image Viewer</h2>
 
 <figure>
-  <div class="images">
+    <div class="rslidy-images">
   <img src="images/modules.svg" alt="A graph showing Rslidy's modules and their dependencies." />
   </div>
   <figcaption>
@@ -591,7 +600,6 @@ Responsive Layout and Interactions:
 
 <h2>Settings</h2>
 
-<div class="columns">
 <ul class="item-auto">
   <li>Toggle features.</li>
   <li>Adjust font sizes.</li>
@@ -599,8 +607,6 @@ Responsive Layout and Interactions:
   <li>Print style sheet.</li>
   <li>Both stored in localstorage (if available).</li>
 </ul>
-
-</div>
 
 <footer class="footer">
   Patrick Hipp, Graz University of Technology, Thu 28 Oct 2021
@@ -612,7 +618,7 @@ Responsive Layout and Interactions:
 
 <h2>Accessibility</h2>
 
-<div class="columns">
+<div class="rslidy-column">
   <ul class="item-auto">
     <li>ARIA (Accessible Rich Internet Applications) roles and properties, updated at runtime.</li>
     <li>Accessible HTML5 elements, such as <code>&lt;nav&gt;</code> and <code>&lt;main&gt;</code>.</li>
@@ -641,7 +647,7 @@ Responsive Layout and Interactions:
     <li>Shake.</li>
   </ul>
   <figure>
-    <div class="images">
+    <div class="rslidy-images">
     <img src="images/tilt-tip-gestures.svg" alt="A graphic describing the tilt and tip gestures available in Rslidy." />
     </div>
     <figcaption>
