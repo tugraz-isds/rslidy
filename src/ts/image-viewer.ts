@@ -202,7 +202,7 @@ export class ImageViewerComponent {
         -1,
         Math.min(1, mouseWheelEvent.deltaY || -mouseWheelEvent.deltaY)
       );
-      if (delta > 0) {
+      if (delta < 0) {
         this.zoomIn();
         var factor = 1 - this.zoomFactor * 1.2 / this.zoomFactor;
         this.imageOffsetX +=
@@ -210,7 +210,7 @@ export class ImageViewerComponent {
         this.imageOffsetY +=
           (mouseWheelEvent.clientY - window.innerHeight / 2) * factor;
         this.applyOffset(false);
-      } else if (delta != 0) {
+      } else if (delta > 0) {
         this.zoomOut();
         var factor = 1 - this.zoomFactor / 1.2 / this.zoomFactor;
         if (this.zoomFactor / 1.2 > this.initialZoomFactor / 10) {

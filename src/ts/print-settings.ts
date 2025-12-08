@@ -242,7 +242,7 @@ export class PrintSettingsComponent {
    .rslidy-responsive-table tr.rslidy-numeric > td {
     text-align: right;
    }
-   .rslidy-fit {
+   .rslidy-responsive-table-text-scaling {
     font-size: clamp(0.7rem, 2.2vw, 1rem);
     width: 100%; /* let table expand */
     table-layout: auto; /* allow dynamic resizing */
@@ -250,8 +250,8 @@ export class PrintSettingsComponent {
    }
   
    /* Make sure table cells shrink properly */
-   .rslidy-fit td,
-   .rslidy-fit th {
+   .rslidy-responsive-table-text-scaling td,
+   .rslidy-responsive-table-text-scaling th {
     white-space: normal; /* allow wrapping */
     overflow: hidden;
     text-overflow: ellipsis;

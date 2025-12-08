@@ -278,18 +278,24 @@ pnpm exec gulp watch
 This task initiates a rebuild and synchronises the browser every time
 a source files changes.
 
-a specific slide deck can be synchronised with `--slide <slide-deck>`:
+A specific slide deck folder can be served using the `--slide` (or `-s`) flag:
 ```
-pnpm exec gulp watch --slide <slide-deck>
+pnpm exec gulp watch --slide examples/Layouts
 ```
-The file has to be in the `examples/` directory.
-
+or
+```
+pnpm exec gulp watch --slide tests/stress-test
+```
+The argument must refer to a folder within either the `examples/` or `tests/`
+directory. The task automatically serves the `index.html` file 
+inside that folder. If no argument is provided, the default deck
+`examples/layouts/` is used.
 
 
 
 ### 5.4 Updating Icons
 
-To commit changes from the icons located in `src/icons` to Rslidy, the
+To commit changes from the icons located in `src/icons/` to Rslidy, the
 following gulp task has to be run:
 
 ```

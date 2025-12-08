@@ -56,7 +56,8 @@ Each build includes a version banner and source maps.
 ### 2.5 CSS & Icons
 
 `css`: Concatenates all CSS files into `rslidy.css` and writes it into the library folder.
-`gulp icons`: Reads all SVG files in `src/icons`, optimises them, and generates `src/ts/icon-definitions.ts`.
+`gulp icons`: Reads all SVG files in `src/icons/`, optimises them, 
+and generates `src/ts/icon-definitions.ts`.
 
 
 ### 2.6 HTML & Copy

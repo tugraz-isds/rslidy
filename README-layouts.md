@@ -241,7 +241,7 @@ responsively while maintaining their aspect ratio.
 ### 3.6 Responsive Table
 Use the `rslidy-responsive-table` class to create a responsive, 
 sortable table that adapts to any screen size. Combine it with
-`rslidy-fit` for automatic font size scaling, or the class `zebra` for 
+`rslidy-responsive-table-text-scaling` for automatic font size scaling, or the class `zebra` for 
 alternating row colours. The `rslidy-text` class left-aligns text 
 content, while `rslidy-numeric` right-aligns numbers for easier 
 comparison.
@@ -252,7 +252,7 @@ remains clearly labelled in the mobile stacked layout.
 <section>
   <h1>Responsive Table with Sorting: Smartphone Features Comparison
     (2025)</h1>
-  <table class="rslidy-responsive-table rslidy-fit">
+  <table class="rslidy-responsive-table rslidy-responsive-table-text-scaling">
     <thead>
     <tr>
       <th scope="col" class="rslidy-text">Smartphone</th>
@@ -360,10 +360,9 @@ remains clearly labelled in the mobile stacked layout.
 
 Layouts that split slides into multiple columns for balanced 
 side-by-side content.
-Use the `rslidy-columns-even` class to create two equally wide columns 
+Use the `rslidy-columns-even` class to create equally wide columns 
 for parallel content.
-The `rslidy-left-column` and `rslidy-right-column` classes define 
-structure and spacing.
+The `rslidy-column` then defines a column with basic CSS styling.
 
 
 
@@ -379,7 +378,7 @@ presentation (e.g. pressing the arrow keys or space bar).
 <section>
   <h1>Two Column: Bullet Points (Incremental)</h1>
   <div class="rslidy-columns-even">
-    <div class="rslidy-left-column">
+    <div class="rslidy-column">
       <ul class="rslidy-incremental">
         <li>Left Bullet Point 1</li>
         <li>Left Bullet Point 2</li>
@@ -388,7 +387,7 @@ presentation (e.g. pressing the arrow keys or space bar).
         <li>Left Bullet Point 5</li>
       </ul>
     </div>
-    <div class="rslidy-right-column">
+    <div class="rslidy-column">
       <ul class="rslidy-incremental">
         <li>Right Bullet Point 1</li>
         <li>Right Bullet Point 2</li>
@@ -414,7 +413,7 @@ Combine Bullet Points on the left with an image on the right.
 <section>
   <h1>Two Column: Bullets Left - Image Right</h1>
   <div class="rslidy-columns-even">
-    <div class="rslidy-left-column">
+    <div class="rslidy-column">
       <ul>
         <li>Bullet Point 1</li>
         <li>Bullet Point 2</li>
@@ -423,7 +422,7 @@ Combine Bullet Points on the left with an image on the right.
         <li>Bullet Point 5</li>
       </ul>
     </div>
-    <div class="rslidy-right-column">
+    <div class="rslidy-column">
       <figure>
         <div class="rslidy-images">
           <img src="images/rslidy_example_slide.png"
@@ -451,7 +450,7 @@ Display images side-by-side.
 <section>
   <h1>Two Image Layout</h1>
   <div class="rslidy-columns-even">
-    <div class="rslidy-left-column">
+    <div class="rslidy-column">
       <figure>
         <div class="rslidy-images">
           <img src="images/rslidy_example_slide.png"
@@ -460,7 +459,7 @@ Display images side-by-side.
         <figcaption>Rslidy: Example slide.</figcaption>
       </figure>
     </div>
-    <div class="rslidy-right-column">
+    <div class="rslidy-column">
       <figure>
         <div class="rslidy-images">
           <img src="images/rslidy_example_slide.png"
@@ -489,7 +488,7 @@ Example with an image on the left and a video on the right.
 <section>
   <h1>One Image, One Video</h1>
   <div class="rslidy-columns-even">
-    <div class="rslidy-left-column">
+    <div class="rslidy-column">
       <figure>
         <div class="rslidy-large-images">
           <img src="images/rslidy_example_slide.png"
@@ -498,7 +497,7 @@ Example with an image on the left and a video on the right.
         <figcaption>Rslidy: Example slide.</figcaption>
       </figure>
     </div>
-    <div class="rslidy-right-column">
+    <div class="rslidy-column">
       <figure>
         <div class="rslidy-large-images">
           <video controls autoplay muted loop

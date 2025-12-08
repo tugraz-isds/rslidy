@@ -289,33 +289,29 @@ exports.build = build;
 
 // Watch task (fixed and improved)
 function watchTask() {
-  const arg = argv.slide || argv.s;
+  const slideArg = argv.slide || argv.s;
   let dir = 'examples/rslidy/';
   let file = 'index.html';
 
-  if (arg) {
-    // Normalize argument (remove leading/trailing slashes)
-    const slideArg = arg.replace(/^\/+|\/+$/g, '');
+  if (slideArg) {
+    // Clean argument, remove leading/trailing slashes
+    const cleanArg = slideArg.replace(/^\/+|\/+$/g, '');
 
-    // If user only provides a folder (e.g. "layouts"),
-    // use it as examples/<folder>/index.html
-    if (!slideArg.includes('/')) {
-      dir = `examples/${slideArg}/`;
-      file = 'index.html';
+    // If user passed a folder like "examples/Layouts" or "tests/stress-test"
+    if (fs.existsSync(`${paths.build}${cleanArg}`)) {
+      dir = `${cleanArg}/`;
     }
-    // If user provides a partial path (e.g. "layouts/custom.html")
-    else if (!slideArg.endsWith('.html')) {
-      dir = `examples/${slideArg}/`;
-      file = 'index.html';
-    } else {
-      dir = slideArg.substring(0, slideArg.lastIndexOf('/') + 1);
-      file = slideArg.substring(slideArg.lastIndexOf('/') + 1);
-      // Prepend "examples/" if user omitted it
-      if (!dir.startsWith('examples/')) dir = `examples/${dir}`;
+    // If they only passed a subfolder like "Layouts" (without examples/)
+    else if (fs.existsSync(`${paths.build}examples/${cleanArg}`)) {
+      dir = `examples/${cleanArg}/`;
+    }
+    // Default fallback
+    else {
+      console.warn(`[Watch] Folder not found: ${cleanArg}, falling back to default.`);
     }
   }
 
-  console.log(`[Watch] Serving ${paths.build}${dir}${file}`);
+  console.log(`[Watch] Serving: ${paths.build}${dir}${file}`);
 
   browserSync.init({
     server: {

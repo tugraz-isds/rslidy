@@ -286,8 +286,12 @@ export class SettingsComponent {
       let currentSort = { column: -1, direction: "none" as "asc" | "desc" | "none" };
 
       headers.forEach((header, columnIndex) => {
-        // --- Update cursor and tooltip dynamically ---
-        const updateCursorAndTitle = (evt: MouseEvent) => {
+        const headerText = (header.textContent || "").trim();
+          if (!headerText) {
+            header.classList.add("rslidy-no-sort");
+            return;
+          }
+          const updateCursorAndTitle = (evt: MouseEvent) => {
           const rect = header.getBoundingClientRect();
           const cs = getComputedStyle(header);
           const fontSize = parseFloat(cs.fontSize) || 16;

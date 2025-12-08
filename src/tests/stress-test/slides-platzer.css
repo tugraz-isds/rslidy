@@ -296,25 +296,6 @@ figure.gallery {
   gap: 1em;
 }
 
-.rslidy-columns-even {
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
-  gap: 2em;
-}
-.rslidy-left-column {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5em;
-}
-.rslidy-right-column {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5em;
-}
-
 
 .bullets-half {
   padding: 1em;

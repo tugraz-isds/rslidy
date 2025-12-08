@@ -69,6 +69,6 @@ panel:
 
 ---
 
-With these variables, you can easily customise the **layout, 
-toolbar appearance, progress bar, and settings controls** of your 
+With these variables, you can easily customise the layout, 
+toolbar appearance, progress bar, and settings controls of your 
 presentations.
