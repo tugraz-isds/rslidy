@@ -52,12 +52,7 @@ export class PrintSettingsComponent {
   private initializeSlideRangeToggle() {
     const slideRadios = this.view.querySelectorAll('input[name="slide-print-option"]');
     const rangeInput = <HTMLInputElement>this.view.querySelector("#rslidy-slide-range-input");
-    const positionRadios = this.view.querySelectorAll('input[name="transform-origin"]');
-    //const customScaleRadio =
-    // <HTMLInputElement>this.view.querySelector('#rslidy-checkbox-custom');
     const customZoomRadio = <HTMLInputElement>this.view.querySelector('#rslidy-checkbox-zoom');
-    //const scalingInput =
-    // <HTMLInputElement>this.view.querySelector('#custom-scaling-input');
     const zoomInput = <HTMLInputElement>this.view.querySelector('#custom-zoom-input');
 
     if (!slideRadios.length || !rangeInput) {

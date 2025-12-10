@@ -121,37 +121,37 @@ while the class `rslidy-large-images` is used for images up to 25 em.
 
 
 ### 3.3 Responsive Image (Art Direction)
-Use the `picture` element to load different image crops depending on 
-screen size (portrait for phones, medium for tablets, wide for desktops).
+Use the `<picture>` element to display different image crops for 
+varying screen sizes. This enables art direction by showing a 
+narrow crop on phones, a medium crop on tablets, and a wide crop 
+on desktop screens.
 ```html
 <section>
-  <h2>Responsive Image (Art Direction)</h2>
-  <figure>
-    <div class="rslidy-large-images">
-      <picture>
-        <!-- Narrow crop for narrow screens -->
-        <source media="(max-width: 600px)"
-                srcset="images/graz-uhrturm-narrow.jpg">
-        <!-- Medium crop for tablets -->
-        <source media="(max-width: 1200px)" srcset="images/graz-uhrturm-medium.jpg">
-        <!-- Wide for desktops -->
-        <img src="images/graz-uhrturm.jpg"
-             alt="Responsive Uhrturm Graz example">
-      </picture>
-    </div>
-    <figcaption>
-      This slide demonstrates responsive images using the
-      <code>&lt;picture&gt;</code> element.
-      Depending on screen width, a different crop of the same image is
-      loaded.
-      <br/>
-      <span class="credit">Image used from
-    <a
-      href="https://pixabay.com/photos/graz-austria-styria-clock-tower-1638892/">Pixabay,</a>
-      under the terms of the Pixabay <a href="https://pixabay.com/service/license-summary/">license.</a>
-        </span>
-    </figcaption>
-  </figure>
+<h1>Responsive Image (Art Direction)</h1>
+
+<figure>
+<div class="rslidy-large-images">
+<picture>
+<!-- Narrow crop for narrow widths -->
+<source media="(max-width: 40rem)"
+        srcset="images/graz-uhrturm-narrow.jpg">
+<!-- Medium crop for medium widths -->
+<source media="(max-width: 80rem)" srcset="images/graz-uhrturm-medium.jpg">
+<!-- Original wide image -->
+<img src="images/graz-uhrturm.jpg"
+     alt="Photo of Graz Clock Tower, in three diffeent crop widths.">
+</picture>
+</div>
+<figcaption>
+This slide demonstrates responsive images using the <code>&lt;picture&gt;</code> element.
+Depending on screen width, a different crop of the same image is loaded.
+<br/><span class="credit">Image from
+<a href="https://pixabay.com/photos/graz-austria-styria-clock-tower-1638892/">Pixabay,</a>
+used under the terms of the
+Pixabay <a href="https://pixabay.com/service/license-summary/">licence.</a>
+</span>
+</figcaption>
+</figure>
 </section>
 ```
 <img src="src/tests/images/layouts/rslidy-responsive-image-art-direction.png" alt="Figure1" style="border:0.1em solid;">
@@ -163,37 +163,41 @@ screen size (portrait for phones, medium for tablets, wide for desktops).
 
 
 ### 3.4 Responsive Image (Resolution Switching)
-
+Use the `srcset` and `sizes` attributes on an `<img>` element to let the
+browser choose the most suitable image based on viewport width and display
+density. The srcset list defines image files with intrinsic widths (e.g.
+320w, 640w, 1280w), while sizes describes how large the image appears
+under different conditions. The browser selects the optimal file.
 ```html
 <section>
-  <h<section>
-  <h2>Responsive Image (Art Direction)</h2>
-  <figure>
-    <div class="rslidy-large-images">
-      <picture>
-        <!-- Narrow crop for narrow screens -->
-        <source media="(max-width: 600px)"
-                srcset="images/graz-uhrturm-narrow.jpg">
-        <!-- Medium crop for tablets -->
-        <source media="(max-width: 1200px)" srcset="images/graz-uhrturm-medium.jpg">
-        <!-- Wide for desktops -->
-        <img src="images/graz-uhrturm.jpg"
-             alt="Responsive Uhrturm Graz example">
-      </picture>
-    </div>
-    <figcaption>
-      This slide demonstrates responsive images using the
-      <code>&lt;picture&gt;</code> element.
-      Depending on screen width, a different crop of the same image is
-      loaded.
-      <br/>
-      <span class="credit">Image used from
-    <a
-      href="https://pixabay.com/photos/graz-austria-styria-clock-tower-1638892/">Pixabay,</a>
-      under the terms of the Pixabay <a href="https://pixabay.com/service/license-summary/">license.</a>
-        </span>
-    </figcaption>
-  </figure>
+<h1>Responsive Image (Resolution Switching)</h1>
+
+<figure>
+<div class="rslidy-large-images">
+  <img
+    src="images/graz-uhrturm.jpg"
+    srcset="
+    images/graz-uhrturm-480.jpg 480w,
+    images/graz-uhrturm-800.jpg 800w,
+    images/graz-uhrturm-1200.jpg 1200w
+    "
+    sizes="(max-width: 40rem) 25vw,
+    (max-width: 60rem) 75vw,
+    100vw"
+    alt="The clock tower overlooking the city of Graz, Austria">
+</div>
+<figcaption>
+  This slide demonstrates responsive images using the
+  <code>srcset</code> and <code>sizes</code> attributes on
+  an <code>&lt;img&gt;</code> element. The image is fetched at
+  the appropriate resolution for the device.
+  <br/><span class="credit">Image from
+<a href="https://pixabay.com/photos/graz-austria-styria-clock-tower-1638892/">Pixabay,</a>
+used under the terms of the
+Pixabay <a href="https://pixabay.com/service/license-summary/">licence.</a>
+</span>
+</figcaption>
+</figure>
 </section>
 ```
 

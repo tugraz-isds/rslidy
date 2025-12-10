@@ -82,24 +82,35 @@ div.rslidy-images, div.rslidy-large-images {
   padding: 0;
   display: flex;
   justify-content: center;
-  min-width: 5em; /* from first CSS */
+  min-width: 5em;
+}
+
+div.rslidy-images, div.rslidy-large-images {
+  margin: 0 auto;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  aspect-ratio: 16 / 9;
+  min-width: 5em;
 }
 
 div.rslidy-images img, div.rslidy-images video {
-  object-fit: scale-down; /* preserve aspect ratio */
+  object-fit: contain; /* scale down does not work correctly on firefox */
   max-width: 100%;
   max-height: 15em;
   width: auto;
-  height: 15em;
+  min-height: 5em;
 
 }
 
 div.rslidy-large-images img, div.rslidy-large-images video {
-  object-fit: scale-down; /* preserve aspect ratio */
+  object-fit: contain; /* scale down does not work correctly on firefox */
   max-width: 100%;
   max-height: 25em;
-  width: auto;
-  height: 25em;
+  width: 100%;
+  min-height: 8em;
+  height: auto;
 }
 
 figcaption.center {
