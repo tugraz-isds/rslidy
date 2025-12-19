@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 1150 750" width="1150" height="750"
+     role="img" aria-labelledby="title">
+  <title id="title">Two wider boxes with centred arrow and dark mode</title>
+
+  <style>
+    :root {
+    --border: #333;
+    --stroke: #111;
+    --fill-box: #f8f8f8;
+    --fill-bg: #fff;
+    --text: #000;
+    }
+
+    @media (prefers-color-scheme: dark) {
+    :root {
+    --border: #ccc;
+    --stroke: #eee;
+    --fill-box: #222;
+    --fill-bg: #111;
+    --text: #fff;
+    }
+    }
+  </style>
+
+  <!-- Background -->
+  <rect x="0" y="0" width="1150" height="750"
+        fill="var(--fill-bg)" />
+
+  <!-- Outer border -->
+  <rect x="10" y="10" width="1130" height="730"
+        fill="none" stroke="var(--border)" stroke-width="1"/>
+
+  <!-- Arrowhead definition -->
+  <defs>
+    <marker id="arrowhead" markerWidth="20" markerHeight="12"
+            refX="18" refY="6" orient="auto">
+      <polygon points="0 0, 20 6, 0 12"
+               fill="var(--stroke)"/>
+    </marker>
+  </defs>
+
+  <!-- Left box (wider) -->
+  <rect x="100" y="250" width="340" height="250" rx="20" ry="20"
+        fill="var(--fill-box)" stroke="var(--stroke)" stroke-width="3"/>
+  <text x="270" y="375" text-anchor="middle" dominant-baseline="middle"
+        font-family="sans-serif" font-size="36" fill="var(--text)">
+    Box A
+  </text>
+
+  <!-- Right box (wider) -->
+  <rect x="710" y="250" width="340" height="250" rx="20" ry="20"
+        fill="var(--fill-box)" stroke="var(--stroke)" stroke-width="3"/>
+  <text x="880" y="375" text-anchor="middle" dominant-baseline="middle"
+        font-family="sans-serif" font-size="36" fill="var(--text)">
+    Box B
+  </text>
+
+  <!-- Arrow centred between boxes -->
+  <line x1="440" y1="375" x2="705" y2="375"
+        stroke="var(--stroke)" stroke-width="3"
+        marker-end="url(#arrowhead)"/>
+</svg>
