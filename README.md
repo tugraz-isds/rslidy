@@ -8,34 +8,33 @@ Rslidy: Lightweight, accessible, and responsive HTML slide decks.
 ## 1 Introduction
 
 Rslidy is a presentation tool using HTML, CSS, and TypeScript which
-runs directly inside the web browser. Slides are created within sections
-inside the HTML body element and are presented one at a time with
-transitions.
+runs directly inside the web browser. Slides are created within
+`<section>` elements inside the HTML `<body>` element and are
+presented one at a time with transitions.
 
 <img src="src/tests/images/rslidy-1600x900.png" alt="Figure1" style="border:0.1em solid;">
 
-[Rslidy Slide Deck](https://tugraz-isds.github.io/rslidy/rslidy/index.html)
+[Example Rslidy Slide Deck](https://tugraz-isds.github.io/rslidy/rslidy/index.html)
 
 
 ## 2 Features
 
 Rslidy has the following features:
 - Standard HTML elements to create slides.  
-[For an introduction to HTML, see
+[For an introduction to HTML and CSS, see
 [HTML Dog](https://htmldog.com/)
-or
-[web.dev/html](https://web.dev/html).]
+or [web.dev/html](https://web.dev/html)
+and [web.dev/css](https://web.dev/css).]
 
 - Slide navigation.
 - Slide overview.
 - Table of contents.
 - Responsive design.
-- Responsive interactions (incl. shake and tilt).
-- Image viewer (incl. zoom and pan).
-- Support for CSS styles:
-  - Animations
-  - Fonts
-  - Colours
+- Responsive interactions (including shake and tilt).
+- Responsive tables.
+- Image viewer (including zoom and pan).
+- Slide templates.
+- Extensive print functionality (to create PDF).
 - Accessibility through ARIA roles.
 - Live code can be embedded.
 
@@ -45,7 +44,7 @@ or
 ## 3 Examples
 
 Live presentations and examples for different use cases of Rslidy 
-can be seen at: https://tugraz-isds.github.io/rslidy/
+can be seen at: https://tugraz-isds.github.io/rslidy/.
 
 These examples showcase Rslidy’s features, design responsiveness, 
 and interactive elements in action.
@@ -99,7 +98,7 @@ A paragraph of text.
 
 ### 4.2 Global CSS Variables
 
-Rslidy defines a set of CSS custom properties in
+Rslidy defines a set of CSS custom properties in the file
 `rslidy/src/css/_variables.css`, enabling theming and customisation.
 
 For a full overview of all global variables and their usage, see
@@ -187,13 +186,15 @@ The desired transition type is added to the body element:
 
 ### 4.4 How to Share an Rslidy Presentation?
 
-The simplest way to share a slide deck created with Rslidy is by zipping the
-entire presentation folder. The archive must always include the HTML file of the
-slide deck, the files `rslidy.js` and `rslidy.css`, as well as all referenced
-graphics or media assets. If `rslidy.min.css` or `rslidy.min.js`
-are used for the presentation, they must be included instead of or 
-in addition to the unminified versions. Sharing only the HTML file 
-on its own is not sufficient.
+The easiest way of sharing a slide deck created with RSlidy is by
+zipping the whole folder. However, when simplifying, the zipped folder
+must contain under all circumstances the html file of the slide deck,
+the file `rslidy.js` the file `rslidy.css` as well as all included
+graphics. If `rslidy.min.css` or `rslidy.min.js` are used for the
+presentation, they must be included instead or additionally to the
+unminimised version of the files. Sharing only the HTML file on its
+own is not sufficient!
+
 
 In the current build system, the minified ESM version `rslidy.min.js` is
 automatically copied into every example and test folder, since this format is
@@ -226,15 +227,12 @@ JavaScript, as shown below:
 
 ### 4.6 Rslidy Layouts
 
-The Rslidy Layouts Guide provides an overview of the various layout 
-options available for creating slide decks in Rslidy.
-It demonstrates how to use templates or classes to design title slides, 
-section dividers, content slides (with text, lists, images, videos, and 
-responsive tables), as well as multi-column layouts.
-
-For a full overview of the layouts and their usage, see
-the [Rslidy Layouts](README-layouts.md) guide.
-
+The [Rslidy Layouts](README-layouts.md) guide provides an overview of
+the various layout options available for creating slide decks in
+Rslidy.  It demonstrates how to use templates or classes to design
+title slides, section dividers, content slides (with text, lists,
+images, videos, and responsive tables), as well as multi-column
+layouts.
 
 
 
