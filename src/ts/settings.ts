@@ -283,15 +283,28 @@ export class SettingsComponent {
       if (!tbody) return;
 
       const originalRows = Array.from(tbody.querySelectorAll("tr"));
+
+      // Create mobile sort UI if it doesn't exist
+      this.createMobileSortUI(table as HTMLTableElement);
+
+      // Setup mobile sorting
+      this.setupMobileSortingUI(
+        table as HTMLTableElement,
+        tbody as HTMLElement,
+        originalRows,
+        sortTable
+      );
+
       let currentSort = { column: -1, direction: "none" as "asc" | "desc" | "none" };
 
       headers.forEach((header, columnIndex) => {
         const headerText = (header.textContent || "").trim();
-          if (!headerText) {
-            header.classList.add("rslidy-no-sort");
-            return;
-          }
-          const updateCursorAndTitle = (evt: MouseEvent) => {
+        if (!headerText) {
+          header.classList.add("rslidy-no-sort");
+          return;
+        }
+
+        const updateCursorAndTitle = (evt: MouseEvent) => {
           const rect = header.getBoundingClientRect();
           const cs = getComputedStyle(header);
           const fontSize = parseFloat(cs.fontSize) || 16;
@@ -400,6 +413,212 @@ export class SettingsComponent {
       });
     });
   }
+
+  private createMobileSortUI(table: HTMLTableElement): void {
+    // Don't create if already exists
+    if (table.previousElementSibling?.classList.contains('rslidy-table-sort-mobile')) {
+      return;
+    }
+
+    // Get headers from the table
+    const headers = Array.from(table.querySelectorAll('th'));
+    if (headers.length === 0) return;
+
+    // Create wrapper if needed
+    let wrapper = table.parentElement;
+    if (!wrapper?.classList.contains('rslidy-responsive-table-wrapper')) {
+      wrapper = document.createElement('div');
+      wrapper.className = 'rslidy-responsive-table-wrapper';
+      table.parentNode?.insertBefore(wrapper, table);
+      wrapper.appendChild(table);
+    }
+
+    // Create mobile sort UI
+    const sortUI = document.createElement('div');
+    sortUI.className = 'rslidy-table-sort-mobile rslidy-responsive-table-text-scaling';
+
+    // Create "Sort by:" label
+    const label = document.createElement('div');
+    label.textContent = 'Sort by:';
+    label.className = 'sort-label';
+
+    // Create controls container
+    const controlsContainer = document.createElement('div');
+    controlsContainer.className = 'controls-container';
+
+    // Create select container
+    const selectContainer = document.createElement('div');
+    selectContainer.className = 'select-container';
+
+    // Create select
+    const select = document.createElement('select');
+    select.className = 'compact-select';
+
+    // Add "Original order" option
+    const resetOption = document.createElement('option');
+    resetOption.value = "";
+    resetOption.textContent = "Original order";
+    select.appendChild(resetOption);
+
+    // Add options from actual headers (full text)
+    headers.forEach((header, index) => {
+      const headerText = header.textContent?.trim() || "";
+      if (!headerText) return;
+
+      const option = document.createElement('option');
+      option.value = String(index);
+      option.textContent = headerText;
+      select.appendChild(option);
+    });
+
+    // Create direction buttons container (ALWAYS 2 buttons)
+    const buttonsContainer = document.createElement('div');
+    buttonsContainer.className = 'buttons-container';
+
+    // Create direction buttons (ALWAYS 2 buttons)
+    const ascButton = document.createElement('button');
+    ascButton.type = 'button';
+    ascButton.dataset.dir = 'asc';
+    ascButton.setAttribute('aria-label', 'Sort ascending');
+    ascButton.textContent = '▲';
+
+    const descButton = document.createElement('button');
+    descButton.type = 'button';
+    descButton.dataset.dir = 'desc';
+    descButton.setAttribute('aria-label', 'Sort descending');
+    descButton.textContent = '▼';
+
+    // ALWAYS add both buttons
+    buttonsContainer.appendChild(ascButton);
+    buttonsContainer.appendChild(descButton);
+
+    // Add select to its container
+    selectContainer.appendChild(select);
+
+    // Assemble controls container
+    controlsContainer.appendChild(selectContainer);
+    controlsContainer.appendChild(buttonsContainer);
+
+    // Assemble sort UI
+    sortUI.appendChild(label);
+    sortUI.appendChild(controlsContainer);
+
+    // Insert before table
+    wrapper.insertBefore(sortUI, table);
+  }
+
+  private setupMobileSortingUI(
+    table: HTMLTableElement,
+    tbody: HTMLElement,
+    originalRows: HTMLTableRowElement[],
+    sortTable: (
+      tbody: Element,
+      columnIndex: number,
+      direction: "asc" | "desc"
+    ) => void
+  ): void {
+    const wrapper = table.previousElementSibling;
+    if (!wrapper?.classList.contains("rslidy-table-sort-mobile")) return;
+
+    const select = wrapper.querySelector("select");
+    if (!select) return;
+
+    const buttons = wrapper.querySelectorAll<HTMLButtonElement>("button");
+    const headers = Array.from(table.querySelectorAll("th"));
+
+    // Use short labels for mobile (already added in createMobileSortUI)
+    // No need to add options here since they're already created
+
+    let currentColumn: number | null = null;
+    let currentDirection: "asc" | "desc" | "none" = "none";
+    let activeButton: HTMLButtonElement | null = null;
+
+    const applySort = () => {
+      if (currentColumn === null || currentDirection === "none") {
+        tbody.innerHTML = "";
+        originalRows.forEach(row => tbody.appendChild(row));
+        return;
+      }
+      sortTable(tbody, currentColumn, currentDirection);
+    };
+
+    const removeActiveClass = () => {
+      buttons.forEach(btn => {
+        btn.classList.remove("active-sort");
+      });
+      activeButton = null;
+    };
+
+    buttons.forEach(btn => {
+      btn.addEventListener("click", () => {
+        const dir = btn.dataset.dir as "asc" | "desc";
+        const selectedCol = Number(select.value);
+
+        // Immediately blur the button to remove focus ring
+        setTimeout(() => {
+          btn.blur();
+        }, 10);
+
+        // No column selected → reset
+        if (Number.isNaN(selectedCol)) {
+          currentColumn = null;
+          currentDirection = "none";
+          removeActiveClass();
+          applySort();
+          return;
+        }
+
+        // Same column + same direction → reset (toggle off)
+        if (currentColumn === selectedCol && currentDirection === dir) {
+          currentDirection = "none";
+          removeActiveClass();
+          select.value = "";
+        } else {
+          // Different column or direction → apply sort (toggle on)
+          currentColumn = selectedCol;
+          currentDirection = dir;
+          removeActiveClass();
+          btn.classList.add("active-sort");
+          activeButton = btn;
+        }
+
+        applySort();
+      });
+    });
+
+    select.addEventListener("change", () => {
+      const col = Number(select.value);
+
+      // Blur select element too if needed
+      setTimeout(() => {
+        (select as HTMLElement).blur();
+      }, 10);
+
+      if (Number.isNaN(col)) {
+        currentColumn = null;
+        currentDirection = "none";
+        removeActiveClass();
+      } else {
+        currentColumn = col;
+        currentDirection = "asc";
+        removeActiveClass();
+      }
+
+      applySort();
+    });
+
+    // Optional: Also blur on mouse up to ensure focus is removed
+    buttons.forEach(btn => {
+      btn.addEventListener("mouseup", () => {
+        setTimeout(() => {
+          btn.blur();
+        }, 5);
+      });
+    });
+  }
+
+
+
 
 
 

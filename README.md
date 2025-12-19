@@ -1,15 +1,15 @@
 
 # Rslidy
 
-Rslidy: Lightweight, accessible, and responsive HTML5 slide decks.
+Rslidy: Lightweight, accessible, and responsive HTML slide decks.
 
 
 
 ## 1 Introduction
 
-Rslidy is a presentation tool using HTML5, CSS3, and TypeScript which
+Rslidy is a presentation tool using HTML, CSS, and TypeScript which
 runs directly inside the web browser. Slides are created within sections
-inside the HTML5 body element and are presented one at a time with
+inside the HTML body element and are presented one at a time with
 transitions.
 
 <img src="src/tests/images/rslidy-1600x900.png" alt="Figure1" style="border:0.1em solid;">
@@ -20,8 +20,8 @@ transitions.
 ## 2 Features
 
 Rslidy has the following features:
-- Standard HTML5 elements to create slides.  
-[For an introduction to HTML5, see
+- Standard HTML elements to create slides.  
+[For an introduction to HTML, see
 [HTML Dog](https://htmldog.com/)
 or
 [web.dev/html](https://web.dev/html).]
@@ -187,15 +187,23 @@ The desired transition type is added to the body element:
 
 ### 4.4 How to Share an Rslidy Presentation?
 
-The easiest way of sharing a slide deck created with RSlidy is by
-zipping the whole folder. However, when simplifying, the zipped folder
-must contain under all circumstances the html file of the slide deck,
-the file rslidy.js the file rslidy.css as well as all included
-graphics. If rslidy.min.css or rslidy.min.js are used for the
-presentation, they must be included instead or additionally to the
-unminimized version of the files. Sharing only the html file on its
-own will not be sufficient!
+The simplest way to share a slide deck created with Rslidy is by zipping the
+entire presentation folder. The archive must always include the HTML file of the
+slide deck, the files `rslidy.js` and `rslidy.css`, as well as all referenced
+graphics or media assets. If `rslidy.min.css` or `rslidy.min.js`
+are used for the presentation, they must be included instead of or 
+in addition to the unminified versions. Sharing only the HTML file 
+on its own is not sufficient.
 
+In the current build system, the minified ESM version `rslidy.min.js` is
+automatically copied into every example and test folder, since this format is
+the recommended standard. ESM modules must be served over HTTP(S) and
+cannot be opened directly from a local file system. You can quickly start a
+local development server in any directory, for example using Python:
+
+```
+python3 -m http.server 8000
+```
 
 ### 4.5 Custom Settings
 
@@ -249,7 +257,7 @@ For developers who wish to modify Rslidy and build it from source.
 
 To install and build Rslidy from source, use the following command:
 ```
-git clone "https://github.com/tugraz-isds/rslidy.git"
+git clone https://github.com/tugraz-isds/rslidy.git
 ```
 In the `rslidy/` folder, install the project dependencies with:
 ```
@@ -264,7 +272,7 @@ Rslidy can be built with the command:
 ```
 pnpm exec gulp build
 ```
-The `rslidy/build` folder then contains Rslidy's main files, as
+The `rslidy/build/` folder then contains Rslidy's main files, as
 well as some example presentations, which can be copied and adapted to
 create new slide decks.
 
@@ -290,6 +298,10 @@ The argument must refer to a folder within either the `examples/` or `tests/`
 directory. The task automatically serves the `index.html` file 
 inside that folder. If no argument is provided, the default deck
 `examples/layouts/` is used.
+
+For a complete description of all build stages and generated 
+artefacts, have a look at the 
+[Rslidy Developers](README-developers-guide.md) guide.
 
 
 

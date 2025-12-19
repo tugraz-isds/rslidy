@@ -16,7 +16,7 @@
 <!--link rel="stylesheet"
   href="./themes/coloured/coloured.css"-->
 </head>
-<body>
+<body class="unanimated">
 
 
 
@@ -27,7 +27,7 @@
 <h2>Titleslide</h2>
 <h3>Fabian Platzer</h3>
 <h3>Graz University of Technology, Austria</h3>
-
+<h4>Fri 19 Dec 2025</h4>
 <div id="rslidy-licence">
 <p>
 © Copyright 2025 by the author(s), except as otherwise noted.<br/>
@@ -77,12 +77,12 @@ This work is placed under a Creative Commons Attribution 4.0 International
 <figure>
 <div class="rslidy-large-images">
 <img class="svg" src="diagrams/rslidy-example-slide.svg"
-     alt="Generic SVG diagram."/>
+     alt="Example Slide SVG."/>
 </div>
 <figcaption>
 The Rslidy image viewer is automatically attached to every
-<code>&lt;img&gt;</code> element, enabling pan and zoom via mouse,
-keyboard, or on-screen controls.
+<code>&lt;img&gt;</code> element, and is activated by left click. It
+enables pan and zoom via mouse, keyboard, or on-screen controls.
 </figcaption>
 </figure>
 </section>
@@ -191,6 +191,133 @@ Pexels <a href="https://pexels.com/license/">licence.</a>
 </span>
 </figcaption>
 </figure>
+</section>
+
+
+
+
+
+
+
+
+<section>
+  <h1>Responsive Table with Sorting-test</h1>
+  
+  <div class="rslidy-responsive-table-wrapper">
+    
+    <div class="rslidy-table-sort-mobile rslidy-responsive-table-text-scaling">
+      <label for="rslidy-sort-select">Sort by:</label>
+      <select id="rslidy-sort-select">
+        <option value="">Original order</option>
+      </select>
+      
+      <button type="button" data-dir="asc"
+              aria-label="Sort ascending">▲</button>
+      <button type="button" data-dir="desc"
+              aria-label="Sort descending">▼</button>
+    </div>
+    
+    <table
+      class="rslidy-responsive-table
+             rslidy-responsive-table-text-scaling">
+      <thead>
+      <tr>
+        <th scope="col" class="rslidy-text">Smartphone</th>
+        <th scope="col" class="rslidy-text">Operating System</th>
+        <th scope="col" class="rslidy-numeric">Battery (mAh)</th>
+        <th scope="col" class="rslidy-numeric">Display Size (″)</th>
+        <th scope="col" class="rslidy-numeric">Storage (GB)</th>
+        <th scope="col" class="rslidy-numeric">Price ($)</th>
+        <th scope="col" class="rslidy-text">Release Date</th>
+      </tr>
+      </thead>
+      
+      <tbody>
+      <tr>
+        <td class="rslidy-text">Samsung Galaxy</td>
+        <td class="rslidy-text">Android</td>
+        <td class="rslidy-numeric">5000</td>
+        <td class="rslidy-numeric">6.8</td>
+        <td class="rslidy-numeric">512</td>
+        <td class="rslidy-numeric">1199</td>
+        <td class="rslidy-text">2025-03-15</td>
+      </tr>
+      <tr>
+        <td class="rslidy-text">iPhone</td>
+        <td class="rslidy-text">iOS</td>
+        <td class="rslidy-numeric">4500</td>
+        <td class="rslidy-numeric">6.7</td>
+        <td class="rslidy-numeric">512</td>
+        <td class="rslidy-numeric">1399</td>
+        <td class="rslidy-text">2025-09-22</td>
+      </tr>
+      <tr>
+        <td class="rslidy-text">Xiaomi</td>
+        <td class="rslidy-text">Android</td>
+        <td class="rslidy-numeric">4800</td>
+        <td class="rslidy-numeric">6.7</td>
+        <td class="rslidy-numeric">256</td>
+        <td class="rslidy-numeric">899</td>
+        <td class="rslidy-text">2025-02-28</td>
+      </tr>
+      <tr>
+        <td class="rslidy-text">Oppo Find</td>
+        <td class="rslidy-text">Android</td>
+        <td class="rslidy-numeric">4600</td>
+        <td class="rslidy-numeric">6.7</td>
+        <td class="rslidy-numeric">256</td>
+        <td class="rslidy-numeric">999</td>
+        <td class="rslidy-text">2025-05-10</td>
+      </tr>
+      <tr>
+        <td class="rslidy-text">Vivo</td>
+        <td class="rslidy-text">Android</td>
+        <td class="rslidy-numeric">4700</td>
+        <td class="rslidy-numeric">6.8</td>
+        <td class="rslidy-numeric">512</td>
+        <td class="rslidy-numeric">849</td>
+        <td class="rslidy-text">2025-07-05</td>
+      </tr>
+      <tr>
+        <td class="rslidy-text">Realme</td>
+        <td class="rslidy-text">Android</td>
+        <td class="rslidy-numeric">4500</td>
+        <td class="rslidy-numeric">6.7</td>
+        <td class="rslidy-numeric">256</td>
+        <td class="rslidy-numeric">749</td>
+        <td class="rslidy-text">2025-04-18</td>
+      </tr>
+      <tr>
+        <td class="rslidy-text">Huawei</td>
+        <td class="rslidy-text">HarmonyOS</td>
+        <td class="rslidy-numeric">5000</td>
+        <td class="rslidy-numeric">6.8</td>
+        <td class="rslidy-numeric">512</td>
+        <td class="rslidy-numeric">1099</td>
+        <td class="rslidy-text">2025-06-01</td>
+      </tr>
+      <tr>
+        <td class="rslidy-text">Motorola</td>
+        <td class="rslidy-text">Android</td>
+        <td class="rslidy-numeric">4400</td>
+        <td class="rslidy-numeric">6.5</td>
+        <td class="rslidy-numeric">256</td>
+        <td class="rslidy-numeric">699</td>
+        <td class="rslidy-text">2025-08-12</td>
+      </tr>
+      <tr>
+        <td class="rslidy-text">Google Pixel</td>
+        <td class="rslidy-text">Android</td>
+        <td class="rslidy-numeric">4350</td>
+        <td class="rslidy-numeric">6.4</td>
+        <td class="rslidy-numeric">256</td>
+        <td class="rslidy-numeric">799</td>
+        <td class="rslidy-text">2025-01-30</td>
+      </tr>
+      </tbody>
+    </table>
+  
+  </div>
 </section>
 
 
@@ -368,10 +495,10 @@ Pexels <a href="https://pexels.com/license/">licence.</a>
 <div class="rslidy-column">
 <figure>
 <div class="rslidy-large-images">
-  <img src="diagrams/rslidy-example-slide.svg"
-       alt="Generic SVG diagram."/>
+  <img src="diagrams/rslidy-generic-diagram.svg"
+       alt="Generic diagram as SVG."/>
 </div>
-<figcaption>Generic SVG diagram.</figcaption>
+<figcaption>Generic diagram as SVG.</figcaption>
 </figure>
 </div>
 </div>
@@ -395,10 +522,10 @@ Pexels <a href="https://pexels.com/license/">licence.</a>
 <div class="rslidy-column">
 <figure>
   <div class="rslidy-large-images">
-    <img src="diagrams/rslidy-example-slide.svg"
-         alt="Generic SVG diagram."/>
+    <img src="diagrams/rslidy-generic-diagram.svg"
+         alt="Generic diagram as SVG."/>
   </div>
-  <figcaption>Generic SVG diagram.</figcaption>
+  <figcaption>Generic diagram as SVG.</figcaption>
 </figure>
 </div>
 
@@ -406,7 +533,7 @@ Pexels <a href="https://pexels.com/license/">licence.</a>
 <figure>
   <div class="rslidy-large-images">
     <img src="images/graz-uhrturm.jpg"
-         alt="JPEG photo of the Graz Clock Tower."/>
+         alt="Photo of the Graz clock Tower as JPEG."/>
   </div>
   <figcaption>JPEG photo of the Graz Clock Tower.</figcaption>
 </figure>
@@ -429,10 +556,10 @@ Pexels <a href="https://pexels.com/license/">licence.</a>
 <div class="rslidy-column">
 <figure>
   <div class="rslidy-large-images">
-    <img src="diagrams/rslidy-example-slide.svg"
-         alt="Rslidy Example Image"/>
+    <img src="diagrams/rslidy-generic-diagram.svg"
+         alt="Generic diagram as SVG"/>
   </div>
-  <figcaption>Generic SVG diagram.</figcaption>
+  <figcaption>Generic diagram as SVG.</figcaption>
 </figure>
 </div>
 
