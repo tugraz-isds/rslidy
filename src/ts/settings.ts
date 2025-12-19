@@ -520,100 +520,77 @@ export class SettingsComponent {
     const wrapper = table.previousElementSibling;
     if (!wrapper?.classList.contains("rslidy-table-sort-mobile")) return;
 
-    const select = wrapper.querySelector("select");
+    const select = wrapper.querySelector<HTMLSelectElement>("select");
     if (!select) return;
 
-    const buttons = wrapper.querySelectorAll<HTMLButtonElement>("button");
-    const headers = Array.from(table.querySelectorAll("th"));
-
-    // Use short labels for mobile (already added in createMobileSortUI)
-    // No need to add options here since they're already created
+    const buttons =
+      wrapper.querySelectorAll<HTMLButtonElement>("button");
 
     let currentColumn: number | null = null;
-    let currentDirection: "asc" | "desc" | "none" = "none";
-    let activeButton: HTMLButtonElement | null = null;
+    let currentDirection: "asc" | "desc" | null = null;
 
-    const applySort = () => {
-      if (currentColumn === null || currentDirection === "none") {
-        tbody.innerHTML = "";
-        originalRows.forEach(row => tbody.appendChild(row));
-        return;
-      }
-      sortTable(tbody, currentColumn, currentDirection);
+    const restoreOriginalOrder = () => {
+      tbody.innerHTML = "";
+      originalRows.forEach(row => tbody.appendChild(row));
+      currentColumn = null;
+      currentDirection = null;
+      buttons.forEach(b => b.classList.remove("active-sort"));
     };
 
-    const removeActiveClass = () => {
-      buttons.forEach(btn => {
-        btn.classList.remove("active-sort");
-      });
-      activeButton = null;
+    const applySort = (dir: "asc" | "desc") => {
+      if (currentColumn === null) return;
+      sortTable(tbody, currentColumn, dir);
     };
 
+    // --- Button handling (▲ / ▼) ---
     buttons.forEach(btn => {
       btn.addEventListener("click", () => {
         const dir = btn.dataset.dir as "asc" | "desc";
-        const selectedCol = Number(select.value);
+        const selectedValue = select.value;
 
-        // Immediately blur the button to remove focus ring
-        setTimeout(() => {
-          btn.blur();
-        }, 10);
+        // Remove focus ring on mobile
+        setTimeout(() => btn.blur(), 10);
 
-        // No column selected → reset
-        if (Number.isNaN(selectedCol)) {
-          currentColumn = null;
-          currentDirection = "none";
-          removeActiveClass();
-          applySort();
+        // No column selected → do nothing
+        if (selectedValue === "") return;
+
+        const columnIndex = Number(selectedValue);
+
+        // Same button clicked again → reset
+        if (
+          currentColumn === columnIndex &&
+          currentDirection === dir
+        ) {
+          restoreOriginalOrder();
+          select.value = "";
           return;
         }
 
-        // Same column + same direction → reset (toggle off)
-        if (currentColumn === selectedCol && currentDirection === dir) {
-          currentDirection = "none";
-          removeActiveClass();
-          select.value = "";
-        } else {
-          // Different column or direction → apply sort (toggle on)
-          currentColumn = selectedCol;
-          currentDirection = dir;
-          removeActiveClass();
-          btn.classList.add("active-sort");
-          activeButton = btn;
-        }
+        // Apply new sort
+        currentColumn = columnIndex;
+        currentDirection = dir;
 
-        applySort();
+        buttons.forEach(b => b.classList.remove("active-sort"));
+        btn.classList.add("active-sort");
+
+        applySort(dir);
       });
     });
 
+    // --- Select handling ---
     select.addEventListener("change", () => {
-      const col = Number(select.value);
+      setTimeout(() => select.blur(), 10);
 
-      // Blur select element too if needed
-      setTimeout(() => {
-        (select as HTMLElement).blur();
-      }, 10);
-
-      if (Number.isNaN(col)) {
-        currentColumn = null;
-        currentDirection = "none";
-        removeActiveClass();
-      } else {
-        currentColumn = col;
-        currentDirection = "asc";
-        removeActiveClass();
+      // "Original order"
+      if (select.value === "") {
+        restoreOriginalOrder();
+        return;
       }
 
-      applySort();
-    });
-
-    // Optional: Also blur on mouse up to ensure focus is removed
-    buttons.forEach(btn => {
-      btn.addEventListener("mouseup", () => {
-        setTimeout(() => {
-          btn.blur();
-        }, 5);
-      });
+      // Column changed → wait for ▲ / ▼ click
+      currentColumn = Number(select.value);
+      currentDirection = null;
+      buttons.forEach(b => b.classList.remove("active-sort"));
     });
   }
 
