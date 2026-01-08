@@ -239,7 +239,7 @@ decks, see the [Slide Creator Guide](README-slide-creator-guide.md).
 
 
 
-## 5 For Developers
+## 5 For Slide Viewers
 
 This section addresses users who view or present slide decks created
 with Rslidy.

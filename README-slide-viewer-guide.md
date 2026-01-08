@@ -14,9 +14,6 @@ capabilities. First-time users are encouraged to open the Help Panel by
 pressing the **H** key or by using the corresponding toolbar button.
 
 
----
-
-
 
 ## 1. Touch Interaction
 
@@ -30,7 +27,6 @@ may require a brief long press before horizontal movement is enabled.
 The exact behaviour depends on the operating system and browser and may
 vary between devices.
 
----
 
 
 
@@ -49,7 +45,6 @@ shortcuts adjust the font size of the user interface instead. The
 **Esc** key closes all open panels. Extra mouse buttons may also be used
 for navigation if they are mapped to the browser’s history functions.
 
----
 
 
 
@@ -63,7 +58,7 @@ sufficient intensity are required.
 Rslidy automatically adapts to changes in device orientation
 unless orientation is locked at the operating system level.
 
----
+
 
 
 
@@ -75,7 +70,7 @@ colour, while upcoming slides are displayed in a lighter tone. Hovering
 over a segment reveals a preview thumbnail, which can be clicked to
 navigate directly to the corresponding slide.
 
----
+
 
 
 
@@ -92,7 +87,7 @@ and print options, opening the help panel, and toggling the table of
 contents.
 
 
----
+
 
 ## 6. Panels
 Rslidy provides several panels that appear in response to user
@@ -126,7 +121,7 @@ panel.
   Displays an overview of available controls, gestures, and keyboard
   shortcuts.
 
----
+
 
 ## 7. Settings and Print Settings
 
@@ -142,20 +137,21 @@ The Settings Panel focuses on interaction and readability options. It
 offers controls for adjusting content and user interface font sizes and
 for enabling or disabling selected interaction techniques.
 
-**Font size controls**
+- **Font size controls**
   Content font size and user interface font size can be increased,
   decreased, or reset to their defaults. The defaults are derived from
   the slide deck’s base CSS, so custom themes remain compatible.
 
-**Interaction toggles**
+- **Interaction toggles**
   Viewers can enable or disable gesture and navigation features,
   including tilt navigation, shake navigation, Space key navigation, and
   margin tapping. These options are applied immediately.
 
-**Persistence**
+- **Persistence**
   Settings are stored under the rslidy key in local storage where
   permitted. If storage is unavailable, the settings remain active only
   for the current session.
+
 
 ### 7.2 Print Settings Panel
 
@@ -187,7 +183,7 @@ injects them at runtime before invoking the browser’s print dialogue.
   Print settings are stored under the rslidy-print key in local storage
   where permitted and are reapplied on load.
 
----
+
 
 ## 8. Image Viewer
 
@@ -199,7 +195,7 @@ keyboard shortcuts. Dragging pans the image, and a reset control
 restores the default view. The Image Viewer can be closed using the
 on-screen control, the **Esc** key, or the browser’s back action.
 
----
+
 
 
 
