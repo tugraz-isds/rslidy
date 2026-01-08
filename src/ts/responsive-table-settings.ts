@@ -17,14 +17,6 @@ export class SettingsComponent {
   private slidefont: number = 0;
   private uifont: number = 0;
 
-  // ---------------------------------------------------------------------------
-  // Shared sort state (desktop <-> mobile) per table instance
-  // ---------------------------------------------------------------------------
-  private sortStateByKey = new Map<
-    string,
-    { columnIndex: number | null; direction: "asc" | "desc" | null }
-  >();
-
   constructor() {
     this.view =
       window.rslidy.utils.prependHtmlString(document.body, settings_html);
@@ -64,11 +56,8 @@ export class SettingsComponent {
     this.view
       .querySelector("#rslidy-checkbox-margintap")
       .addEventListener("click", e => window.rslidy.toolbar.closeMenuOnSelection());
-
-    // Enable table sorting + keep desktop & mobile in sync
-    this.setupTableSorting();
-    // If you already call this elsewhere, you can remove it here.
-    this.applyResponsiveTableLabels();
+      //this.setupTableSorting();
+      //this.applyResponsiveTableLabels();
   }
 
   // ---
@@ -239,109 +228,6 @@ export class SettingsComponent {
       this.changeUIFont(null, -1);
   }
 
-  // ---------------------------------------------------------------------------
-  // Table sorting (desktop + mobile) with shared state
-  // ---------------------------------------------------------------------------
-
-  private getTableKey(table: HTMLTableElement): string {
-    if (table.id) return `id:${table.id}`;
-
-    const existing = (table as any).dataset?.rslidyTableKey as string | undefined;
-    if (existing) return existing;
-
-    const key = `auto:${Math.random().toString(36).slice(2)}${Date.now()}`;
-    (table as any).dataset.rslidyTableKey = key;
-    return key;
-  }
-
-  private getSortState(table: HTMLTableElement): {
-    columnIndex: number | null;
-    direction: "asc" | "desc" | null;
-  } {
-    const key = this.getTableKey(table);
-    return this.sortStateByKey.get(key) ?? { columnIndex: null, direction: null };
-  }
-
-  private setSortState(
-    table: HTMLTableElement,
-    next: { columnIndex: number | null; direction: "asc" | "desc" | null }
-  ): void {
-    const key = this.getTableKey(table);
-    this.sortStateByKey.set(key, next);
-  }
-
-  private updateDesktopSortIndicators(
-    table: HTMLTableElement,
-    columnIndex: number | null,
-    direction: "asc" | "desc" | null
-  ): void {
-    const headers = Array.from(table.querySelectorAll("th"));
-    headers.forEach((th, idx) => {
-      th.classList.remove("sorted-asc", "sorted-desc");
-      if (columnIndex !== null && idx === columnIndex && direction) {
-        th.classList.add(direction === "asc" ? "sorted-asc" : "sorted-desc");
-      }
-    });
-  }
-
-  private syncMobileSortUIFromState(table: HTMLTableElement): void {
-    const wrapper = table.previousElementSibling as HTMLElement | null;
-    if (!wrapper?.classList.contains("rslidy-table-sort-mobile")) return;
-
-    const select = wrapper.querySelector<HTMLSelectElement>("select");
-    if (!select) return;
-
-    const buttons = Array.from(wrapper.querySelectorAll<HTMLButtonElement>("button"));
-    if (buttons.length < 2) return;
-
-    const ascBtn = buttons[0];
-    const descBtn = buttons[1];
-
-    const state = this.getSortState(table);
-
-    // Select: "" is original order
-    if (state.columnIndex === null) {
-      select.value = "";
-    } else {
-      select.value = String(state.columnIndex);
-    }
-
-    // Active button highlight
-    ascBtn.classList.toggle("active-sort", state.direction === "asc");
-    descBtn.classList.toggle("active-sort", state.direction === "desc");
-  }
-
-  private applySortAndSync(
-    table: HTMLTableElement,
-    tbody: HTMLElement,
-    originalRows: HTMLTableRowElement[],
-    sortTable: (
-      tbody: Element,
-      columnIndex: number,
-      direction: "asc" | "desc"
-    ) => void,
-    columnIndex: number | null,
-    direction: "asc" | "desc" | null
-  ): void {
-    // Restore original order
-    if (columnIndex === null || direction === null) {
-      tbody.innerHTML = "";
-      originalRows.forEach(row => tbody.appendChild(row));
-      this.setSortState(table, { columnIndex: null, direction: null });
-      this.updateDesktopSortIndicators(table, null, null);
-      this.syncMobileSortUIFromState(table);
-      return;
-    }
-
-    // Apply sort
-    sortTable(tbody, columnIndex, direction);
-
-    // Save + sync UIs
-    this.setSortState(table, { columnIndex, direction });
-    this.updateDesktopSortIndicators(table, columnIndex, direction);
-    this.syncMobileSortUIFromState(table);
-  }
-
   private setupTableSorting(): void {
     const tables = document.querySelectorAll("table.rslidy-responsive-table");
 
@@ -389,26 +275,27 @@ export class SettingsComponent {
     };
 
     // --- Enable sorting for all responsive tables ---
-    tables.forEach((tableEl) => {
-      const table = tableEl as HTMLTableElement;
+    tables.forEach((table) => {
       if (table.classList.contains("rslidy-disable-sorting")) return;
 
-      const headers = Array.from(table.querySelectorAll<HTMLTableCellElement>("th"));
-      const tbody = table.querySelector("tbody") as HTMLElement | null;
+      const headers = table.querySelectorAll("th");
+      const tbody = table.querySelector("tbody");
       if (!tbody) return;
 
       const originalRows = Array.from(tbody.querySelectorAll("tr"));
 
       // Create mobile sort UI if it doesn't exist
-      this.createMobileSortUI(table);
+      this.createMobileSortUI(table as HTMLTableElement);
 
-      // Setup mobile sorting (now synced)
-      this.setupMobileSortingUI(table, tbody, originalRows, sortTable);
+      // Setup mobile sorting
+      this.setupMobileSortingUI(
+        table as HTMLTableElement,
+        tbody as HTMLElement,
+        originalRows,
+        sortTable
+      );
 
-      // Track desktop state per table (synced to mobile)
-      // Start with "no sort" and let UI drive it.
-      this.setSortState(table, { columnIndex: null, direction: null });
-      this.syncMobileSortUIFromState(table);
+      let currentSort = { column: -1, direction: "none" as "asc" | "desc" | "none" };
 
       headers.forEach((header, columnIndex) => {
         const headerText = (header.textContent || "").trim();
@@ -416,7 +303,6 @@ export class SettingsComponent {
           header.classList.add("rslidy-no-sort");
           return;
         }
-        if (header.classList.contains("rslidy-no-sort")) return;
 
         const updateCursorAndTitle = (evt: MouseEvent) => {
           const rect = header.getBoundingClientRect();
@@ -466,58 +352,65 @@ export class SettingsComponent {
           const clickedUpperHalf = y < iconTop + iconHeight / 2;
           const clickedLowerHalf = y >= iconTop + iconHeight / 2;
 
-          const current = this.getSortState(table);
-
           // --- Handle direct clicks on icons ---
           if (clickedLeftIcon || clickedRightIcon) {
             evt.stopPropagation();
 
+            // Reset all header states
+            headers.forEach((h) => h.classList.remove("sorted-asc", "sorted-desc"));
+
             if (clickedUpperHalf) {
               // ▲ clicked → toggle ASC / default
-              if (current.columnIndex === columnIndex && current.direction === "asc") {
-                // reset
-                this.applySortAndSync(table, tbody, originalRows, sortTable, null, null);
+              if (currentSort.column === columnIndex && currentSort.direction === "asc") {
+                // Already ascending → reset to default
+                originalRows.forEach((row) => tbody.appendChild(row));
+                currentSort = { column: -1, direction: "none" };
               } else {
-                this.applySortAndSync(table, tbody, originalRows, sortTable, columnIndex, "asc");
+                // Sort ascending
+                header.classList.add("sorted-asc");
+                sortTable(tbody, columnIndex, "asc");
+                currentSort = { column: columnIndex, direction: "asc" };
               }
             } else if (clickedLowerHalf) {
               // ▼ clicked → toggle DESC / default
-              if (current.columnIndex === columnIndex && current.direction === "desc") {
-                // reset
-                this.applySortAndSync(table, tbody, originalRows, sortTable, null, null);
+              if (currentSort.column === columnIndex && currentSort.direction === "desc") {
+                // Already descending → reset to default
+                originalRows.forEach((row) => tbody.appendChild(row));
+                currentSort = { column: -1, direction: "none" };
               } else {
-                this.applySortAndSync(table, tbody, originalRows, sortTable, columnIndex, "desc");
+                // Sort descending
+                header.classList.add("sorted-desc");
+                sortTable(tbody, columnIndex, "desc");
+                currentSort = { column: columnIndex, direction: "desc" };
               }
             }
 
             return;
           }
 
-          // --- Default header click (outside icons): cycle none -> asc -> desc -> none ---
-          let nextDir: "asc" | "desc" | null;
+          // --- Default header click (outside icons) ---
+          headers.forEach((h) => h.classList.remove("sorted-asc", "sorted-desc"));
 
-          if (current.columnIndex !== columnIndex) {
-            nextDir = "asc";
+          let newDirection: "asc" | "desc" | "none";
+          if (currentSort.column !== columnIndex) {
+            newDirection = "asc";
           } else {
-            if (current.direction === null) nextDir = "asc";
-            else if (current.direction === "asc") nextDir = "desc";
-            else nextDir = null;
+            if (currentSort.direction === "none") newDirection = "asc";
+            else if (currentSort.direction === "asc") newDirection = "desc";
+            else newDirection = "none";
           }
 
-          if (nextDir === null) {
-            this.applySortAndSync(table, tbody, originalRows, sortTable, null, null);
+          currentSort = { column: columnIndex, direction: newDirection };
+
+          if (newDirection === "none") {
+            // Restore original order
+            originalRows.forEach((row) => tbody.appendChild(row));
           } else {
-            this.applySortAndSync(table, tbody, originalRows, sortTable, columnIndex, nextDir);
+            header.classList.add(newDirection === "asc" ? "sorted-asc" : "sorted-desc");
+            sortTable(tbody, columnIndex, newDirection);
           }
         });
       });
-    });
-
-    // Sync mobile UI after resizes (desktop sort should be visible on mobile UI)
-    window.addEventListener("resize", () => {
-      document
-        .querySelectorAll<HTMLTableElement>("table.rslidy-responsive-table")
-        .forEach(t => this.syncMobileSortUIFromState(t));
     });
   }
 
@@ -624,52 +517,65 @@ export class SettingsComponent {
       direction: "asc" | "desc"
     ) => void
   ): void {
-    const wrapper = table.previousElementSibling as HTMLElement | null;
+    const wrapper = table.previousElementSibling;
     if (!wrapper?.classList.contains("rslidy-table-sort-mobile")) return;
 
     const select = wrapper.querySelector<HTMLSelectElement>("select");
     if (!select) return;
 
-    const buttons = Array.from(wrapper.querySelectorAll<HTMLButtonElement>("button"));
-    if (buttons.length < 2) return;
+    const buttons =
+      wrapper.querySelectorAll<HTMLButtonElement>("button");
 
-    const ascBtn = buttons[0];
-    const descBtn = buttons[1];
+    let currentColumn: number | null = null;
+    let currentDirection: "asc" | "desc" | null = null;
 
     const restoreOriginalOrder = () => {
-      this.applySortAndSync(table, tbody, originalRows, sortTable, null, null);
+      tbody.innerHTML = "";
+      originalRows.forEach(row => tbody.appendChild(row));
+      currentColumn = null;
+      currentDirection = null;
+      buttons.forEach(b => b.classList.remove("active-sort"));
     };
 
-    const applyDir = (dir: "asc" | "desc") => {
-      const selectedValue = select.value;
-
-      // No column selected → do nothing
-      if (selectedValue === "") return;
-
-      const columnIndex = Number(selectedValue);
-      if (Number.isNaN(columnIndex)) return;
-
-      const current = this.getSortState(table);
-
-      // Same dir clicked again on same column → reset
-      if (current.columnIndex === columnIndex && current.direction === dir) {
-        select.value = "";
-        restoreOriginalOrder();
-        return;
-      }
-
-      this.applySortAndSync(table, tbody, originalRows, sortTable, columnIndex, dir);
-
-      // Remove focus ring on mobile
-      setTimeout(() => {
-        ascBtn.blur();
-        descBtn.blur();
-      }, 10);
+    const applySort = (dir: "asc" | "desc") => {
+      if (currentColumn === null) return;
+      sortTable(tbody, currentColumn, dir);
     };
 
     // --- Button handling (▲ / ▼) ---
-    ascBtn.addEventListener("click", () => applyDir("asc"));
-    descBtn.addEventListener("click", () => applyDir("desc"));
+    buttons.forEach(btn => {
+      btn.addEventListener("click", () => {
+        const dir = btn.dataset.dir as "asc" | "desc";
+        const selectedValue = select.value;
+
+        // Remove focus ring on mobile
+        setTimeout(() => btn.blur(), 10);
+
+        // No column selected → do nothing
+        if (selectedValue === "") return;
+
+        const columnIndex = Number(selectedValue);
+
+        // Same button clicked again → reset
+        if (
+          currentColumn === columnIndex &&
+          currentDirection === dir
+        ) {
+          restoreOriginalOrder();
+          select.value = "";
+          return;
+        }
+
+        // Apply new sort
+        currentColumn = columnIndex;
+        currentDirection = dir;
+
+        buttons.forEach(b => b.classList.remove("active-sort"));
+        btn.classList.add("active-sort");
+
+        applySort(dir);
+      });
+    });
 
     // --- Select handling ---
     select.addEventListener("change", () => {
@@ -681,28 +587,19 @@ export class SettingsComponent {
         return;
       }
 
-      // Column changed → if a direction is already active, re-apply it.
-      const state = this.getSortState(table);
-      if (state.direction) {
-        this.applySortAndSync(
-          table,
-          tbody,
-          originalRows,
-          sortTable,
-          Number(select.value),
-          state.direction
-        );
-      } else {
-        // Otherwise: just clear button highlight until user clicks ▲/▼
-        ascBtn.classList.remove("active-sort");
-        descBtn.classList.remove("active-sort");
-        this.setSortState(table, { columnIndex: Number(select.value), direction: null });
-      }
+      // Column changed → wait for ▲ / ▼ click
+      currentColumn = Number(select.value);
+      currentDirection = null;
+      buttons.forEach(b => b.classList.remove("active-sort"));
     });
-
-    // Initial sync so mobile UI reflects any desktop state
-    this.syncMobileSortUIFromState(table);
   }
+
+
+
+
+
+
+
 
   applyResponsiveTableLabels(): void {
     const tables = document.querySelectorAll("table.rslidy-responsive-table");
@@ -723,3 +620,5 @@ export class SettingsComponent {
     });
   }
 }
+
+
