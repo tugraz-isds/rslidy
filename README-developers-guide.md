@@ -14,31 +14,39 @@ cd rslidy
 npm install
 ```
 
-Rslidy uses Gulp and Webpack for building and managing tasks. All
-relevant tasks are defined in the `gulpfile.js`.
+Rslidy uses Gulp as a task runner and Webpack as a module bundler.
+Together, these tools define a reproducible build pipeline that covers
+TypeScript compilation, asset processing, bundling, optimisation,
+minification, and local development support. All build logic is defined 
+in the `gulpfile.js` file.
 
-
+All Gulp tasks should be executed via PNPM using `pnpm exec gulp <task>`.
 
 ## 2 Gulp Tasks Overview
 
-The `gulpfile.js` defines eight main tasks.
+The `gulpfile.js` defines eight main tasks that together form the Rslidy
+build pipeline. Each task encapsulates a specific build step and can be
+executed individually or as part of a composed workflow.
 
 
 ### 2.1 Cleaning
 
-`gulp clean`: Removes the TypeScript build output (`src/ts/build/`)
-and the compiled build folder (`build/`).
+`clean`: Removes the TypeScript build output in `src/ts/build/`
+and the compiled `build/` directory. 
 
 
 ### 2.2 TypeScript Compilation
 
-`transpile`: Compiles `.ts` files into JavaScript and generates
-declaration files in `src/ts/build/`.
+`transpile` compiles all `.ts` source files into JavaScript and
+generates corresponding declaration files. The output is written to
+`src/ts/build/` and serves as the input for the subsequent Webpack
+bundling step.
 
 
 ### 2.3 Webpack Bundling
 
 `webpack`: Creates three library builds from the transpiled sources:
+
   - ESM → `build/library/esm/rslidy.js`
   - CommonJS → `build/library/cjs/rslidy.js`
   - UMD → `build/library/umd/rslidy.js`
@@ -47,39 +55,65 @@ Each build includes a version banner and source maps.
 
 
 ### 2.4 Minification & Compression
+Several tasks optimise the generated assets:
 
-- `minifyjs`: Minifies ESM, CJS, and UMD bundles, appending `.min.js`.
-- `minifycss`: Minifies `rslidy.css` into `rslidy.min.css` and streams changes into BrowserSync.
-- `compress`: Gzips all `.min.js` bundles to check their size.
+- `minifyjs` minifies ESM, CJS, and UMD bundles and appends `.min.js`.
+- `minifycss` minifies `rslidy.css` into `rslidy.min.css` and streams
+  changes into BrowserSync during development.
+- `compress` creates gzip-compressed versions of all `.min.js` files to
+  evaluate distribution size and compression efficiency.
 
 
 ### 2.5 CSS & Icons
 
-`css`: Concatenates all CSS files into `rslidy.css` and writes it into the library folder.
-`gulp icons`: Reads all SVG files in `src/icons/`, optimises them, 
-and generates `src/ts/icon-definitions.ts`.
+`css` concatenates all CSS source files into a single `rslidy.css` file
+and writes it into the library output directory.
+
+`gulp icons` processes all SVG files located in `src/icons/`, applies
+basic optimisation, and generates the corresponding
+`src/ts/icon-definitions.ts` file used by the TypeScript codebase.
+
 
 
 ### 2.6 HTML & Copy
 
-`html`: Copies example and test HTML files (including stress tests) into the build folder.
-`copy`: Places the default **ESM `rslidy.min.js`** and `rslidy.min.css` into every example and test folder, since ESM is the standard format.
+`html` copies example and test HTML files, including stress tests, into
+the build directory.
 
+`copy` places the default ESM `rslidy.min.js` and `rslidy.min.css`
+into every example and test folder. ESM is treated as the standard
+distribution format for Rslidy.
 
 ### 2.7 Build Task
 
-`gulp build`: Runs the full pipeline:  
-`clean → transpile & webpack → html & css → minifyjs & minifycss → compress → copy`.
+`build` runs the full build pipeline in a defined order:
+
+`clean → transpile & webpack → html & css →
+minifyjs & minifycss → compress → copy`
+
+This task is intended for fast builds and produces all distributable
+artifacts.
 
 ### 2.8 Watch & Serve
 
-`gulp watch`: Builds the project, starts a local BrowserSync server,
-and automatically reloads on file changes.
-  - Watches `.ts`, `.css`, `.svg`, and example/test files.
-  - Supports a custom slide deck with:
-    ```
-    gulp watch --slide examples/rslidy-intro/index.html
-    ```
+`watch` builds the project, starts a local BrowserSync server, and
+automatically rebuilds and reloads the browser when files change.
+The watch task monitors:
+
+- TypeScript source files (`.ts`)
+- CSS files (`.css`)
+- SVG icon files (`.svg`)
+- Example and test HTML files
+
+A specific slide deck folder can be served using the `--slide` 
+(or `-s`) flag:
+```
+pnpm exec gulp watch --slide examples/Layouts
+```
+or
+```
+pnpm exec gulp watch --slide tests/stress-test
+```
 
 
 ## 3 Build Output
@@ -104,7 +138,6 @@ server or live-server) and will not work if opened directly from a
 folder in a browser.
 You can quickly start a local server in any directory using Python:
 ```
-# For Python 3.x
 python3 -m http.server 8000
 ```
 
@@ -113,7 +146,51 @@ Then open your browser at:
 http://localhost:8000
 ```
 
+## 4 Development Dependencies
 
+Rslidy does not rely on external runtime dependencies. The presentation
+framework itself is distributed as prebuilt JavaScript and CSS files.
+All additional packages are required exclusively for development,
+building, and testing, and are defined in the `package.json` file.
+
+These development dependencies support the build pipeline and can be
+categorised by their primary purpose:
+
+- **Node.js, PNPM, and Gulp**  
+  Provide the execution environment and task runner used to define and
+  orchestrate the build pipeline.
+
+- **TypeScript and gulp-typescript**  
+  Used to transpile the TypeScript source code into JavaScript and to
+  generate declaration files for development and tooling support.
+
+- **Webpack and webpack-stream**  
+  Bundle the transpiled JavaScript modules into distributable builds in
+  ESM, CommonJS, and UMD formats.
+
+- **BrowserSync**  
+  Provides a local development server and enables live reloading during
+  the `watch` task whenever source files are modified.
+
+- **File system and utility tools**  
+  Packages such as `del`, `merge2`, `gulp-concat`, `gulp-rename`, and
+  `gulp-replace` support file management tasks, including cleaning build
+  directories, concatenating assets, renaming outputs, and applying
+  textual transformations.
+
+- **Minification and compression tools**  
+  `gulp-terser` and `gulp-uglifycss` are used to generate minified
+  JavaScript and CSS files. `gulp-gzip` and `gulp-brotli` are used to
+  create compressed versions and to evaluate compressed file sizes.
+
+- **Icon and encoding utilities**  
+  `utf-8-validate` supports validation of encoded assets used in the
+  build process.
+
+- **Command-line argument handling**  
+  `yargs` is used to parse command-line arguments passed to Gulp tasks,
+  for example when specifying a custom slide deck via the `--slide`
+  option.**
 
 
 

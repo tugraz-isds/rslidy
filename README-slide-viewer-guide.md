@@ -2,8 +2,8 @@
 
 Navigating an Rslidy slide deck is similar to using conventional
 presentation software, but differs in key aspects. Instead of
-fixed slide dimensions, Rslidy dynamically adapts both slide content and
-the user interface to the available screen size. Slides support vertical
+fixed slide dimensions, Rslidy dynamically adapts slide content and
+user interface to the available screen size. Slides support vertical
 scrolling when their content exceeds the viewport, ensuring that dense
 or detailed material remains accessible on smaller devices.
 
@@ -16,13 +16,13 @@ pressing the **H** key or by using the corresponding toolbar button.
 
 ---
 
+
+
 ## 1. Touch Interaction
 
 On touch-enabled devices, slides can be navigated by swiping left or
 right. In addition, tapping the left or right margin of a slide moves to
-the previous or next slide respectively, enabling one-handed navigation
-similar to e-reader applications.
-
+the previous or next slide respectively.
 Standard browser-level multi-touch gestures, such as pinch-to-zoom and
 scrolling, remain available for slide content including images, figures,
 and long tables. If horizontal scrolling is unavoidable, some devices
@@ -31,6 +31,9 @@ The exact behaviour depends on the operating system and browser and may
 vary between devices.
 
 ---
+
+
+
 
 ## 2. Keyboard and Mouse Controls
 
@@ -48,6 +51,8 @@ for navigation if they are mapped to the browser’s history functions.
 
 ---
 
+
+
 ## 3. Motion and Orientation Gestures
 
 On supported devices, motion-based gestures can be enabled for slide
@@ -55,14 +60,12 @@ navigation. Tilting or tipping the device to the left or right advances
 slides accordingly. A shake gesture can be used to return to the first
 slide. To reduce accidental activation, multiple consecutive shakes with
 sufficient intensity are required.
-
-Access to motion and orientation sensors may be restricted by the
-browser for security and privacy reasons. If these gestures are not
-available, the necessary permissions can be granted via the Settings
-Panel. Rslidy automatically adapts to changes in device orientation
+Rslidy automatically adapts to changes in device orientation
 unless orientation is locked at the operating system level.
 
 ---
+
+
 
 ## 4. Progress Bar
 
@@ -73,6 +76,8 @@ over a segment reveals a preview thumbnail, which can be clicked to
 navigate directly to the corresponding slide.
 
 ---
+
+
 
 ## 5. Toolbar
 
@@ -86,9 +91,10 @@ displaying all slides as a single scrollable page, accessing settings
 and print options, opening the help panel, and toggling the table of
 contents.
 
+
 ---
 
-## 6. Toolbar
+## 6. Panels
 Rslidy provides several panels that appear in response to user
 interaction. All panels can be opened either via the Toolbar or by using
 their corresponding keyboard shortcuts. The **Esc** key closes any open
@@ -122,6 +128,8 @@ panel.
 
 ---
 
+
+
 ## 7. Image Viewer
 
 Rslidy includes a built-in Image Viewer that is automatically attached
@@ -134,16 +142,5 @@ on-screen control, the **Esc** key, or the browser’s back action.
 
 ---
 
-## 8. Accessibility
 
-Rslidy is designed to be fully operable using a keyboard alone. All
-interactive elements are reachable via tab navigation, and the Return
-key can be used as a substitute for mouse clicks. Both slide content and
-user interface font sizes are adjustable to accommodate individual
-accessibility requirements.
 
-ARIA roles and properties are applied dynamically to reflect the current
-state of interface elements such as sliders and toggles. Semantic HTML
-elements are used to distinguish slide content from navigational
-controls, enabling assistive technologies to interpret and navigate the
-presentation structure effectively.

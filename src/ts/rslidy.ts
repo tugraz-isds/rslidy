@@ -447,6 +447,9 @@ export class Rslidy {
       case 27: //escape
         this.imageViewer.close();
         this.toolbar.closeMenues();
+        if (window.location.hash.match("#rslidy-help")) {
+          window.location.hash = "#";
+        }
         break;
       default:
         if(key >= 48 && key <= 57) //48-57 -> 0-9

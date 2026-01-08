@@ -9,12 +9,14 @@ deployment.
 
 ---
 
+
+
 ## 1. Overall Structure
 
 To create a presentation with Rslidy, include the CSS and JavaScript and
-then write each slide as a `<section>` (recommended) or as a
+write each slide as a `<section>` (recommended) or as a
 `<div class="slide">` element.
-The JavaScript is typically loaded as a module.
+The JavaScript is typically loaded as an ES module (ESM).
 
 ```html
 <head>
@@ -63,6 +65,9 @@ A minimal deck containing two slides:
 
 ---
 
+
+
+
 ## 2. Incremental Display of List Items
 
 To reveal list items one at a time, apply the class
@@ -80,6 +85,9 @@ To reveal list items one at a time, apply the class
 ```
 
 ---
+
+
+
 
 ## 3. Slide Transitions
 
@@ -101,6 +109,9 @@ If you provide your own theme, ensure it does not override or conflict
 with these animation classes.
 
 ---
+
+
+
 
 ## 4. Images and the Image Viewer
 
@@ -127,12 +138,18 @@ A typical figure pattern:
 
 ---
 
+
+
+
 ## 5. Responsive Images
 
 Rslidy supports responsive slide layouts, but the slide creator remains
 responsible for providing responsive media assets. Two common patterns
 are art direction with the `<picture>` element and resolution switching 
 with the `srcset`/`sizes` attributes.
+
+
+
 
 ### 5.1 Responsive Image Art Direction
 
@@ -162,6 +179,8 @@ viewport sizes.
   </figure>
 </section>
 ```
+
+
 
 ### 5.2 Responsive Image Resolution Switching
 
@@ -199,6 +218,8 @@ density.
 ```
 ---
 
+
+
 ## 6. Executable Content
 
 Because Rslidy runs in the browser, it can execute JavaScript at runtime.
@@ -206,7 +227,7 @@ This enables integrations such as syntax highlighting, interactive
 graphics, or live demos. Be aware that dynamic content may not render
 well in slide thumbnails and may require special handling for printing.
 
-Example using highlight.js:
+Example using [highlight.js](https://highlightjs.org/)
 
 ```html
 <head>
@@ -230,11 +251,9 @@ Example using highlight.js:
 </body>
 ```
 
-highlight.js:
-https://highlightjs.org/
-
-
 ---
+
+
 
 ## 7. Responsive Tables
 
@@ -285,24 +304,19 @@ ensuring that table content remains clearly labelled on mobile devices.
 
 ---
 
-## 8. Accessible Content
-
-Slide creators are responsible for accessibility of slide content. In
-practice, this includes:
-
-- meaningful heading structure (`<h1>`, `<h2>`, …)
-- alternative text for images
-- sufficient contrast in figures and charts
-- captions or descriptions for complex graphics
-- avoiding conveying information by colour alone
-
----
 
 
-## 9. Themes and Colour Schemes
+## 8. Themes and Colour Schemes
 
-Rslidy supports themes via additional CSS files. You can apply a theme by
-including it after `rslidy.min.css` so it can override defaults.
+Rslidy supports themes via additional CSS files. Themes are applied by
+including the theme stylesheet after `rslidy.min.css`, allowing it to
+override the default styles. Example themes are provided in the
+`build/library/themes/` directory.
+
+```html
+<link rel="stylesheet" href="rslidy.min.css"/>
+<link rel="stylesheet" href="themes/tu-graz/theme.css"/>
+<script type="module" src="rslidy.min.js"></script>
 
 ```html
 <link rel="stylesheet" href="rslidy.min.css"/>
@@ -312,7 +326,9 @@ including it after `rslidy.min.css` so it can override defaults.
 ---
 
 
-## 10. Custom Settings
+
+
+## 9. Custom Settings
 
 Rslidy exposes configuration through `window.rslidy`. These settings 
 can be overridden in the `<head>` before the deck is shown.
@@ -331,7 +347,6 @@ can be overridden in the `<head>` before the deck is shown.
   </script>
 </head>
 ```
-
 Common settings include:
 
 - `image_viewer`: enables or disables the image viewer
@@ -344,7 +359,9 @@ Common settings include:
 
 ---
 
-## 11. Responsive Content
+
+
+## 10. Responsive Content
 
 Rslidy defines the responsive infrastructure for slide decks, including
 viewport handling, scalable layout patterns, and responsive UI
