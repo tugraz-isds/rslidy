@@ -30,7 +30,7 @@ The JavaScript is typically loaded as an ES module (ESM).
 </head>
 ```
 
-A minimal deck containing two slides:
+A minimal slide deck containing two slides:
 
 ```html
 <!DOCTYPE html>
@@ -115,7 +115,7 @@ with these animation classes.
 
 ## 4. Images and the Image Viewer
 
-Images can be included like in any standard web page using the 
+Images can be included using the 
 `<img>` element. Rslidy attaches an image viewer to images by
 default, enabling pan and zoom interactions via mouse, keyboard, or
 on-screen controls.
@@ -173,8 +173,7 @@ viewport sizes.
     </div>
 
     <figcaption>
-      This example uses <code>&lt;picture&gt;</code> to switch crops by
-      viewport width.
+      This example uses <code><picture></code> element to switch crops by viewport width.
     </figcaption>
   </figure>
 </section>
@@ -210,8 +209,8 @@ density.
     </div>
 
     <figcaption>
-      This example uses <code>srcset</code> and <code>sizes</code> for
-      resolution switching.
+      This example uses the attributes <code>srcset</code> and 
+      <code>sizes</code> for resolution switching.
     </figcaption>
   </figure>
 </section>
@@ -220,37 +219,134 @@ density.
 
 
 
-## 6. Executable Content
+## 6. Interactive Content
+
 
 Because Rslidy runs in the browser, it can execute JavaScript at runtime.
 This enables integrations such as syntax highlighting, interactive
-graphics, or live demos. Be aware that dynamic content may not render
+graphics, or live code. Be aware that dynamic content may not render
 well in slide thumbnails and may require special handling for printing.
 
-Example using [highlight.js](https://highlightjs.org/)
+Source Code Highlighting using [Prism.js](https://prismjs.com/):
 
 ```html
 <head>
-  <link rel="stylesheet" href="rslidy.min.css"/>
-  <script type="module" src="rslidy.min.js"></script>
+<link rel="stylesheet" href="rslidy.min.css"/>
+<script type="module" src="rslidy.min.js"></script>
 
-  <link rel="stylesheet" href="highlight/default.min.css">
-  <script src="highlight/highlight.min.js"></script>
-  <script>
-    hljs.highlightAll();
-  </script>
+<!-- Prism.js -->
+<link rel="stylesheet" href="prism/prism.css"/>
+<script src="prism/prism.js"></script>
 </head>
 
 <body>
 <section>
-  <h1>Source Code Highlighting</h1>
-  <pre><code class="language-html">&lt;section&gt;
-  &lt;h1&gt;Hello&lt;/h1&gt;
-&lt;/section&gt;</code></pre>
+<h1>Source Code Highlighting</h1>
+
+<pre>
+  <code class="language-html">
+    <section>
+      <h1>Hello</h1>
+    </section>
+  </code>
+</pre>
 </section>
 </body>
 ```
+For this Prism.js integration to work, the slide deck must include the
+Prism assets (for example as `prism/prism.css` and `prism/prism.js`)
+relative to the HTML file. The `<code>` elements must declare a language
+class such as language-html, language-javascript, or language-css.
+If additional languages or plugins are required, the corresponding Prism
+components must be included as well.
 
+
+
+
+
+Including live JS code using [D3-Hypertree](https://github.com/glouwa/d3-hypertree):
+```html
+<script src="hypertree/d3-hypertree.js"></script>
+
+<link rel="stylesheet" href="hypertree/d3-hypertree-light.css"/>
+<link rel="stylesheet" href="hypertree/d3-hypertree-config.css"/>
+
+
+<section>
+<h1>Including Live Code for Interactive Content</h1>
+<div id="tree"></div>
+</section>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+const ht = new hyt.Hypertree(
+{
+parent: document.querySelector('#tree')
+},
+{
+dataloader: hyt.loaders.fromFile('hypertree/products.d3.json'),
+langInitBFS: (ht, n) => n.precalc.label = n.data.name,
+
+layout: {
+rootWedge: {
+angle: 6.283184,
+}
+},
+
+filter: {
+maxlabels: 55
+},
+
+geometry: {
+layerOptions: {
+'stem-arc': {
+invisible: true,
+hideOnDrag: true,
+},
+'center-node': {
+invisible: true,
+hideOnDrag: true,
+},
+'labels-force':
+{
+invisible: true,
+hideOnDrag: true,
+},
+'labels':
+{
+invisible: false,
+hideOnDrag: false,
+}
+
+},
+},
+
+interaction: {
+λbounds: [.3, .84],
+onNodeClick: (n, m, l) => {
+ht.api.goto({ re: -n.layout.z.re, im: -n.layout.z.im }, null)
+.then(() => ht.drawDetailFrame())
+}
+}
+}
+)
+
+ht.initPromise
+.then(() => new Promise((ok, err) => ht.animateUp(ok, err)))
+.then(() => ht.drawDetailFrame())
+.then(() => {
+document.documentElement.classList.add('rslidy-ready');
+});
+});
+</script>
+```
+
+For the Hypertree to work, the assets must be available locally at the 
+referenced paths.
+The JSON data file must also be reachable at
+`hypertree/products.d3.json`.
+
+The slide deck has to be served over HTTP(S) (not opened via file://),
+because the data loader needs to fetch the JSON file.
 ---
 
 
@@ -373,7 +469,7 @@ elements (for example responsive tables or images), avoiding custom CSS
 rules that override responsive behaviour, and ensuring that layouts
 remain usable across different screen sizes.
 
-An overview of the various layout options for creating slide 
+An overview of various layout options for creating slide 
 decks in Rslidy can be seen in the [Rslidy Layouts](README-layouts.md) guide.:
 
 

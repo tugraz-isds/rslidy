@@ -37,8 +37,9 @@ complete set of Gulp tasks defined in the `gulpfile.js` is as follows:
   corresponding declaration files.
 
 - `webpack`  
-  Bundles the transpiled JavaScript into distributable builds targeting
-  ESM, CommonJS, and UMD formats.
+  Bundles the transpiled JavaScript into the `rslidy.js` file and
+  generates distributable builds for ESM, CommonJS, and UMD
+  formats.
 
 - `css`  
   Concatenates all CSS source files into a single `rslidy.css` file.
@@ -106,6 +107,8 @@ Then open your browser at:
 ```
 http://localhost:8000
 ```
+
+
 
 ## 4 Development Dependencies
 
