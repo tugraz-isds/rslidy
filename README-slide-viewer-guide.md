@@ -90,6 +90,7 @@ contents.
 
 
 ## 6. Panels
+
 Rslidy provides several panels that appear in response to user
 interaction. All panels can be opened either via the Toolbar or by using
 their corresponding keyboard shortcuts. The **Esc** key closes any open
@@ -168,10 +169,10 @@ injects them at runtime before invoking the browser’s print dialogue.
   panel translates these selections into an `@page` size rule for printing.
 
 - **Scaling and positioning**
-  This panel provides three print sizing modes: *Actual size* (actual
-  size of the browser window), *Fit to Page Width* (slides scale to the
+  This panel provides three print sizing modes: **Actual size** (actual
+  size of the browser window), **Fit to Page Width** (slides scale to the
   printable  page width),
-  and *Custom Zoom* (user-defined magnification, implemented
+  and **Custom Zoom**(user-defined magnification, implemented
   via the browser’s zoom percentage).
 
 - **Additional print options**

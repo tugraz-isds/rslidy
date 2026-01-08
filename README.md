@@ -235,7 +235,9 @@ images, videos, and responsive tables), as well as multi-column
 layouts.
 
 For a complete and structured introduction on how to create slide 
-decks, see the [Slide Creator Guide](README-slide-creator-guide.md).
+decks, see the [Rslidy Slide Creator](README-slide-creator-guide.md)
+guide.
+
 
 
 
@@ -257,7 +259,7 @@ Slide decks can be exported as PDF documents via a print menu.
 
 For a complete description of viewer controls, shortcuts,
 interaction features and settings, have a look at the
-[Slide Viewer Guide](README-slide-viewer-guide.md).
+[Rslidy Slide Viewer](README-slide-viewer-guide.md) guide.
 
 
 ## 6 For Developers
