@@ -234,14 +234,38 @@ title slides, section dividers, content slides (with text, lists,
 images, videos, and responsive tables), as well as multi-column
 layouts.
 
+For a complete and structured introduction on how to create slide 
+decks, see the [Slide Creator Guide](README-slide-creator-guide.md).
+
 
 
 ## 5 For Developers
 
+This section addresses users who view or present slide decks created
+with Rslidy.
+
+Rslidy presentations can be operated using keyboard, mouse, or touch
+input. Navigation is available through on-screen controls, keyboard
+shortcuts, a slide overview and table of contents for direct access
+to individual slides.
+
+Rslidy also supports responsive interaction techniques such as swipe
+gestures, margin tapping, and tilt and shake navigation on
+supported devices. Presentation features include adjustable content and
+user interface font sizes, speaker notes and a built-in image viewer. 
+Slide decks can be exported as PDF documents via a print menu.
+
+For a complete description of viewer controls, shortcuts,
+interaction features and settings, have a look at the
+[Slide Viewer Guide](README-slide-viewer-guide.md).
+
+
+## 6 For Developers
+
 For developers who wish to modify Rslidy and build it from source.
 
 
-### 5.1 Prerequisites
+### 6.1 Prerequisites
 
 - Node.js (version 16 or higher)
 
@@ -251,7 +275,7 @@ For developers who wish to modify Rslidy and build it from source.
   ```
 
 
-### 5.2 Installation
+### 6.2 Installation
 
 To install and build Rslidy from source, use the following command:
 ```
@@ -264,7 +288,7 @@ pnpm install
 
 
 
-### 5.3 Building
+### 6.3 Building
 
 Rslidy can be built with the command:
 ```
@@ -303,7 +327,7 @@ artefacts, have a look at the
 
 
 
-### 5.4 Updating Icons
+### 6.4 Updating Icons
 
 To commit changes from the icons located in `src/icons/` to Rslidy, the
 following gulp task has to be run:
@@ -318,7 +342,7 @@ optimised SVG icon strings.
 
 
 
-## 6 Rslidy Team
+## 7 Rslidy Team
 
 The following people have contributed to Rslidy:
 

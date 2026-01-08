@@ -128,9 +128,68 @@ panel.
 
 ---
 
+## 7. Settings and Print Settings
 
+Rslidy includes two configuration panels that allow viewers to adjust
+interaction and output without modifying the slide deck files. Both
+panels can be opened from the Toolbar and are intended for runtime use.
+Where supported, choices are persisted in the browser’s local storage and
+are restored automatically on subsequent visits.
 
-## 7. Image Viewer
+### 7.1 Settings Panel
+
+The Settings Panel focuses on interaction and readability options. It
+offers controls for adjusting content and user interface font sizes and
+for enabling or disabling selected interaction techniques.
+
+**Font size controls**
+  Content font size and user interface font size can be increased,
+  decreased, or reset to their defaults. The defaults are derived from
+  the slide deck’s base CSS, so custom themes remain compatible.
+
+**Interaction toggles**
+  Viewers can enable or disable gesture and navigation features,
+  including tilt navigation, shake navigation, Space key navigation, and
+  margin tapping. These options are applied immediately.
+
+**Persistence**
+  Settings are stored under the rslidy key in local storage where
+  permitted. If storage is unavailable, the settings remain active only
+  for the current session.
+
+### 7.2 Print Settings Panel
+
+The Print Settings Panel determines how the slide deck is prepared for
+printing and PDF export. It generates print-specific CSS rules and
+injects them at runtime before invoking the browser’s print dialogue.
+
+- **Slide selection**
+  Printing can be restricted to the current slide or to a custom slide
+  range. Custom ranges support single numbers and intervals.
+
+- **Page format**
+  Paper size and orientation can be chosen via drop-down lists. The
+  panel translates these selections into an `@page` size rule for printing.
+
+- **Scaling and positioning**
+  This panel provides three print sizing modes: *Actual size* (actual
+  size of the browser window), *Fit to Page Width* (slides scale to the
+  printable  page width),
+  and *Custom Zoom* (user-defined magnification, implemented
+  via the browser’s zoom percentage).
+
+- **Additional print options**
+  Viewers can toggle whether link targets are appended in print output,
+  enable or disable slide numbers, add an optional slide frame, and
+  apply a global font-size multiplier for print.
+
+- **Persistence**
+  Print settings are stored under the rslidy-print key in local storage
+  where permitted and are reapplied on load.
+
+---
+
+## 8. Image Viewer
 
 Rslidy includes a built-in Image Viewer that is automatically attached
 to all slide images. It enables zooming and panning using mouse,
