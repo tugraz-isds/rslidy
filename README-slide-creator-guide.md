@@ -7,7 +7,6 @@ variants are preferable during development because they are easier to
 inspect and debug, while the minified variants reduce file size for
 deployment.
 
----
 
 
 
@@ -63,7 +62,6 @@ A minimal slide deck containing two slides:
 </html>
 ```
 
----
 
 
 
@@ -84,7 +82,7 @@ To reveal list items one at a time, apply the class
 </section>
 ```
 
----
+
 
 
 
@@ -108,7 +106,7 @@ Transition classes include:
 If you provide your own theme, ensure it does not override or conflict
 with these animation classes.
 
----
+
 
 
 
@@ -136,7 +134,7 @@ A typical figure pattern:
 </section>
 ```
 
----
+
 
 
 
@@ -215,7 +213,7 @@ density.
   </figure>
 </section>
 ```
----
+
 
 
 
@@ -347,7 +345,7 @@ The JSON data file must also be reachable at
 
 The slide deck has to be served over HTTP(S) (not opened via file://),
 because the data loader needs to fetch the JSON file.
----
+
 
 
 
@@ -398,7 +396,7 @@ ensuring that table content remains clearly labelled on mobile devices.
 </section>
 ```
 
----
+
 
 
 
@@ -419,7 +417,7 @@ override the default styles. Example themes are provided in the
 <link rel="stylesheet" href="themes/tu-graz/theme.css"/>
 <script type="module" src="rslidy.min.js"></script>
 ```
----
+
 
 
 
