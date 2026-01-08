@@ -24,96 +24,57 @@ All Gulp tasks should be executed via PNPM using `pnpm exec gulp <task>`.
 
 ## 2 Gulp Tasks Overview
 
-The `gulpfile.js` defines eight main tasks that together form the Rslidy
-build pipeline. Each task encapsulates a specific build step and can be
-executed individually or as part of a composed workflow.
+While using the `build` and `watch` tasks is usually sufficient during
+development, these tasks are composed of several smaller steps. The
+complete set of Gulp tasks defined in the `gulpfile.js` is as follows:
 
+- `clean`  
+  Removes build artifacts, including the TypeScript output in
+  `src/ts/build/` and the compiled `build/` directory.
 
-### 2.1 Cleaning
+- `transpile`  
+  Transpiles all TypeScript source files into JavaScript and generates
+  corresponding declaration files.
 
-`clean`: Removes the TypeScript build output in `src/ts/build/`
-and the compiled `build/` directory. 
+- `webpack`  
+  Bundles the transpiled JavaScript into distributable builds targeting
+  ESM, CommonJS, and UMD formats.
 
+- `css`  
+  Concatenates all CSS source files into a single `rslidy.css` file.
 
-### 2.2 TypeScript Compilation
+- `icons`  
+  Optimises SVG files located in `src/icons/` and generates the
+  corresponding `icon-definitions.ts` file used by the TypeScript
+  codebase.
 
-`transpile` compiles all `.ts` source files into JavaScript and
-generates corresponding declaration files. The output is written to
-`src/ts/build/` and serves as the input for the subsequent Webpack
-bundling step.
+- `html`  
+  Copies example and test HTML files, including stress tests, into the
+  build directory.
 
+- `minifyjs`  
+  Produces minified JavaScript bundles for all module formats.
 
-### 2.3 Webpack Bundling
+- `minifycss`  
+  Produces a minified version of the main CSS file and streams updates
+  into BrowserSync during development.
 
-`webpack`: Creates three library builds from the transpiled sources:
+- `compress`  
+  Generates compressed variants of the minified JavaScript files to
+  evaluate distribution size.
 
-  - ESM → `build/library/esm/rslidy.js`
-  - CommonJS → `build/library/cjs/rslidy.js`
-  - UMD → `build/library/umd/rslidy.js`
+- `copy`  
+  Copies the default ESM build and CSS files into all example and test
+  folders.
 
-Each build includes a version banner and source maps.
+- `build`  
+  Executes the full build pipeline in a defined order and produces all
+  distributable artifacts.
 
-
-### 2.4 Minification & Compression
-Several tasks optimise the generated assets:
-
-- `minifyjs` minifies ESM, CJS, and UMD bundles and appends `.min.js`.
-- `minifycss` minifies `rslidy.css` into `rslidy.min.css` and streams
-  changes into BrowserSync during development.
-- `compress` creates gzip-compressed versions of all `.min.js` files to
-  evaluate distribution size and compression efficiency.
-
-
-### 2.5 CSS & Icons
-
-`css` concatenates all CSS source files into a single `rslidy.css` file
-and writes it into the library output directory.
-
-`gulp icons` processes all SVG files located in `src/icons/`, applies
-basic optimisation, and generates the corresponding
-`src/ts/icon-definitions.ts` file used by the TypeScript codebase.
-
-
-
-### 2.6 HTML & Copy
-
-`html` copies example and test HTML files, including stress tests, into
-the build directory.
-
-`copy` places the default ESM `rslidy.min.js` and `rslidy.min.css`
-into every example and test folder. ESM is treated as the standard
-distribution format for Rslidy.
-
-### 2.7 Build Task
-
-`build` runs the full build pipeline in a defined order:
-
-`clean → transpile & webpack → html & css →
-minifyjs & minifycss → compress → copy`
-
-This task is intended for fast builds and produces all distributable
-artifacts.
-
-### 2.8 Watch & Serve
-
-`watch` builds the project, starts a local BrowserSync server, and
-automatically rebuilds and reloads the browser when files change.
-The watch task monitors:
-
-- TypeScript source files (`.ts`)
-- CSS files (`.css`)
-- SVG icon files (`.svg`)
-- Example and test HTML files
-
-A specific slide deck folder can be served using the `--slide` 
-(or `-s`) flag:
-```
-pnpm exec gulp watch --slide examples/Layouts
-```
-or
-```
-pnpm exec gulp watch --slide tests/stress-test
-```
+- `watch`  
+  Starts a local development server using BrowserSync and automatically
+  rebuilds and reloads the browser when source files change. A specific
+  slide deck can be served using the `--slide` (or `-s`) flag.
 
 
 ## 3 Build Output
