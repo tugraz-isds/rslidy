@@ -53,7 +53,11 @@ and interactive elements in action.
 
 ## 4 For Slide Creators
 
-For users who wish to create a slide deck using Rslidy.
+Slide creators are users who wish to create a slide deck using Rslidy.
+For a complete and structured introduction on how to create slide
+decks, see the [Rslidy Slide Creator
+Guide](README-slide-creator-guide.md).
+
 
 
 ### 4.1 Structure of HMTL File
@@ -102,7 +106,7 @@ Rslidy defines a set of CSS custom properties in the file
 `rslidy/src/css/_variables.css`, enabling theming and customisation.
 
 For a full overview of all global variables and their usage, see
-the [Rslidy CSS Variables](README-variables.md) guide.
+the [Rslidy CSS Variables Guide](README-variables.md).
 
 
 
@@ -206,45 +210,28 @@ local development server in any directory, for example using Python:
 python3 -m http.server 8000
 ```
 
-### 4.5 Custom Settings
-
-A number of internal Rslidy settings can be directly overridden using
-JavaScript, as shown below:
-
-```html
-<script>
-  window.rslidy.close_menu_on_selection = true;
-  window.rslidy.close_navigation_on_selection = true;
-  window.rslidy.start_with_status_bar_minimized = true;
-  window.rslidy.image_viewer = false;
-  window.rslidy.start_in_low_light_mode = true;
-  window.rslidy.block_slide_text_selection = true;
-  window.rslidy.show_slide_dividers = false;
-</script>
-```
 
 
+### 4.5 Rslidy Layouts
 
-### 4.6 Rslidy Layouts
-
-The [Rslidy Layouts](README-layouts.md) guide provides an overview of
+The [Rslidy Layouts Guide](README-layouts.md) provides an overview of
 the various layout options available for creating slide decks in
 Rslidy.  It demonstrates how to use templates or classes to design
 title slides, section dividers, content slides (with text, lists,
 images, videos, and responsive tables), as well as multi-column
 layouts.
 
-For a complete and structured introduction on how to create slide 
-decks, see the [Rslidy Slide Creator](README-slide-creator-guide.md)
-guide.
-
 
 
 
 ## 5 For Slide Viewers
 
-This section addresses users who view or present slide decks created
-with Rslidy.
+Slide viewers are users who view or present slide decks created with
+Rslidy. For a complete description of viewer controls, shortcuts,
+interaction features and settings, see the [Rslidy Slide
+Viewer Guide](README-slide-viewer-guide.md).
+
+
 
 Rslidy presentations can be operated using keyboard, mouse, or touch
 input. Navigation is available through on-screen controls, keyboard
@@ -257,14 +244,16 @@ supported devices. Presentation features include adjustable content and
 user interface font sizes, speaker notes and a built-in image viewer. 
 Slide decks can be exported as PDF documents via a print menu.
 
-For a complete description of viewer controls, shortcuts,
-interaction features and settings, have a look at the
-[Rslidy Slide Viewer](README-slide-viewer-guide.md) guide.
+
 
 
 ## 6 For Developers
 
-For developers who wish to modify Rslidy and build it from source.
+Developers are users who wish to modify Rslidy and build it from
+source. For a complete description of the build stages and generated
+artefacts, see the [Rslidy Developer
+Guide](README-developer-guide.md).
+
 
 
 ### 6.1 Prerequisites
@@ -281,12 +270,13 @@ For developers who wish to modify Rslidy and build it from source.
 
 To install and build Rslidy from source, use the following command:
 ```
-git clone https://github.com/tugraz-isds/rslidy.git
+git clone git@github.com:tugraz-isds/rslidy.git
 ```
 In the `rslidy/` folder, install the project dependencies with:
 ```
 pnpm install
 ```
+
 
 
 
@@ -323,9 +313,6 @@ directory. The task automatically serves the `index.html` file
 inside that folder. If no argument is provided, the default deck
 `examples/layouts/` is used.
 
-For a complete description of all build stages and generated 
-artefacts, have a look at the 
-[Rslidy Developers](README-developers-guide.md) guide.
 
 
 

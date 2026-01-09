@@ -1,4 +1,5 @@
-# Rslidy CSS Variables
+
+# Rslidy CSS Variables Guide
 
 This document describes the available global CSS variables defined in
 `rslidy/src/css/_variables.css`.

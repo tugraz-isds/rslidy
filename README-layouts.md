@@ -1,5 +1,5 @@
 
-# Rslidy Layouts
+# Rslidy Layouts Guide
 
 This guide demonstrates the main layout options available in
 Rslidy, based on provided templates. It covers a title slide,

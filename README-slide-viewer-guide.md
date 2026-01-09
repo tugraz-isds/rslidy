@@ -1,4 +1,5 @@
-# Slide Viewer Guide
+
+# Rslidy Slide Viewer Guide
 
 Navigating an Rslidy slide deck is similar to using conventional
 presentation software, but differs in key aspects. Instead of

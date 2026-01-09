@@ -1,5 +1,5 @@
 
-# Rslidy Developer's Guide
+# Rslidy Developer Guide
 
 This guide provides developers with details on how to build, test, and
 contribute to Rslidy, the lightweight HTML presentation framework.
