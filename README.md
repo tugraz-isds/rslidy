@@ -268,9 +268,7 @@ artefacts, see the [Rslidy Developer Guide](README-developer-guide.md).
 ### 6.2 Installation
 
 To install and build Rslidy from source, the repository must first be
-cloned. This can be done using either HTTPS or SSH. SSH is recommended
-as it avoids repeated authentication prompts when interacting with the
-repository.
+cloned. This can be done using either SSH (recommended) or HTTPS.
 
 Using SSH (requires being logged in to GitHub and having an SSH key
 configured):
