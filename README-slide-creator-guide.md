@@ -89,14 +89,14 @@ To reveal list items one at a time, apply the class
 
 ## 3. Slide Transitions
 
-Rslidy supports multiple transition styles for slide changes. The chosen
+Rslidy supports four different slide transition styles. The chosen
 transition is set by adding a class to the `<body>` element and applies
 to the entire slide deck.
 ```html
 <body class="unanimated">
 ```
 
-Transition classes include:
+The animation classes are:
 
 - `slidein` (default)
 - `zoom`
@@ -424,8 +424,9 @@ override the default styles. Example themes are provided in the
 
 ## 9. Custom Settings
 
-Rslidy exposes configuration through `window.rslidy`. These settings 
-can be overridden in the `<head>` before the deck is shown.
+Rslidy exposes configuration through `window.rslidy`. These settings can
+be overridden in the `<head>` before the deck is shown. Custom settings
+offer a way of tweaking Rslidy’s internal behaviour.
 
 ```html
 <head>
@@ -435,27 +436,102 @@ can be overridden in the `<head>` before the deck is shown.
   <script>
     window.rslidy.close_menu_on_selection = true;
     window.rslidy.close_navigation_on_selection = true;
+    window.rslidy.start_with_status_bar_minimized = true;
     window.rslidy.image_viewer = false;
     window.rslidy.block_slide_text_selection = true;
     window.rslidy.show_slide_dividers = false;
   </script>
 </head>
 ```
-Common settings include:
+These are the available settings:
 
-- `image_viewer`: enables or disables the image viewer
-- `close_menu_on_selection`: closes menus after selecting a menu item
-- `close_menu_on_blur`: closes menus when the menu loses focus
-- `close_navigation_on_selection`: closes overview/TOC after selecting an
-  entry
-- `show_slide_dividers`: shows or hides dividers in the progress bar
-- `block_slide_text_selection`: disables text selection on slides
+- `image_viewer`:  
+  If set to `false`, disables the image viewer component.  
+  The default value is `true`.
+
+- `close_menu_on_selection`:  
+  If set to `true`, menus are closed automatically after a menu item has
+  been selected.  
+  The default value is `false`.
+
+- `close_menu_on_blur`:  
+  If set to `true`, menus are closed when they lose focus.  
+  The default value is `true`.
+
+- `close_navigation_on_selection`:  
+  If set to `true`, the Slide Overview Panel and the Table of Contents
+  Panel are closed after a slide has been selected.  
+  The default value is `false`.
+
+- `show_slide_dividers`:  
+  If set to `true`, visual dividers between slides are shown in the
+  progress bar.  
+  The default value is `true`.
+
+
+- `start_with_toolbar_minimized`:  
+  If set to `true`, Rslidy starts with the toolbar minimised.  
+  The default value is `false`.
 
 ---
 
+## 10. Advanced Custom Settings
+Advanced custom settings allow direct adjustment of internal variables
+that affect scaling, interaction thresholds, and gesture handling. They
+must also be overridden using JavaScript. These are the settings:
+
+- `custom_aspect_ratio`:  
+  Sets the aspect ratio for slide thumbnails. The default is `4:3`.  
+  A value of `0` enables automatic calculation, which may cause scaling
+  issues. Values greater than zero use `custom_width` for scaling.
+
+- `overview_slide_zoom`:  
+  Sets a zoom factor for slide thumbnails in the Slide Overview Panel.
+  A value of `1` disables zooming.
+
+- `doubletap_delay`:  
+  Maximum delay between taps for a double-tap gesture, in milliseconds.
+  The default value is `200`.
+
+- `min_slide_font`:  
+  Minimum font size allowed by the internal font scaling mechanism.
+  The default value is `0.1em`.
+
+- `max_slide_font`:  
+  Maximum font size allowed by the internal font scaling mechanism.
+  The default value is `5em`.
+
+- `font_step`:  
+  Step size used by the internal font scaling mechanism.
+  The default value is `0.1em`.
+
+- `swipe_max_duration`:  
+  Maximum duration of a swipe gesture in milliseconds.
+  The default value is `400`.
+
+- `swipe_threshold`:  
+  Minimum swipe distance, in `rem`, required to trigger a swipe.
+  The default value is `3.75rem`.
+
+- `swipe_y_limiter`:  
+  Ratio between horizontal and vertical swipe distance required for a
+  gesture to count as a swipe. The default value is `1`.
+
+- `shake_sensitivity`:  
+  Sensitivity of the shake gesture detection.
+  The default value is `0.8`.
+
+- `required_shakes`:  
+  Number of consecutive shakes required to trigger the shake gesture.
+  The default value is `4`.
+
+- `print_frame`:  
+  CSS definition of the slide frame used when printing.
+  The default value is `0.05rem solid black`.
 
 
-## 10. Responsive Content
+
+## 11. Responsive Content
 
 Rslidy defines the responsive infrastructure for slide decks, including
 viewport handling, scalable layout patterns, and responsive UI

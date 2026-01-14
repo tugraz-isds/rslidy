@@ -251,8 +251,7 @@ Slide decks can be exported as PDF documents via a print menu.
 
 Developers are users who wish to modify Rslidy and build it from
 source. For a complete description of the build stages and generated
-artefacts, see the [Rslidy Developer
-Guide](README-developer-guide.md).
+artefacts, see the [Rslidy Developer Guide](README-developer-guide.md).
 
 
 
@@ -268,11 +267,24 @@ Guide](README-developer-guide.md).
 
 ### 6.2 Installation
 
-To install and build Rslidy from source, use the following command:
+To install and build Rslidy from source, the repository must first be
+cloned. This can be done using either HTTPS or SSH. SSH is recommended
+as it avoids repeated authentication prompts when interacting with the
+repository.
+
+Using SSH (requires being logged in to GitHub and having an SSH key
+configured):
 ```
 git clone git@github.com:tugraz-isds/rslidy.git
 ```
-In the `rslidy/` folder, install the project dependencies with:
+
+Alternatively, the repository can be cloned using HTTPS:
+```
+git clone https://github.com/tugraz-isds/rslidy.git
+```
+
+After cloning the repository, go to the `rslidy/` directory and
+install the project dependencies with:
 ```
 pnpm install
 ```
@@ -302,7 +314,7 @@ a source files changes.
 
 A specific slide deck folder can be served using the `--slide` (or `-s`) flag:
 ```
-pnpm exec gulp watch --slide examples/Layouts
+pnpm exec gulp watch --slide examples/layouts
 ```
 or
 ```

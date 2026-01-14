@@ -24,7 +24,7 @@ the previous or next slide respectively.
 Standard browser-level multi-touch gestures, such as pinch-to-zoom and
 scrolling, remain available for slide content including images, figures,
 and long tables. If horizontal scrolling is unavoidable, some devices
-may require a brief long press before horizontal movement is enabled.
+may require a brief long press before scrolling is enabled.
 The exact behaviour depends on the operating system and browser and may
 vary between devices.
 
@@ -82,7 +82,7 @@ direct access to Rslidy’s main navigation and configuration features. It
 can be hidden to maximise available screen space and restored at any
 time. All toolbar functions are also accessible via keyboard shortcuts.
 
-The Toolbar includes controls for slide navigation, slide overview,
+The Toolbar offers controls for slide navigation, slide overview,
 displaying all slides as a single scrollable page, accessing settings
 and print options, opening the help panel, and toggling the table of
 contents.
@@ -127,7 +127,7 @@ panel.
 
 ## 7. Settings and Print Settings
 
-Rslidy includes two configuration panels that allow viewers to adjust
+Rslidy provides two configuration panels that allow viewers to adjust
 interaction and output without modifying the slide deck files. Both
 panels can be opened from the Toolbar and are intended for runtime use.
 Where supported, choices are persisted in the browser’s local storage and
@@ -189,7 +189,7 @@ injects them at runtime before invoking the browser’s print dialogue.
 
 ## 8. Image Viewer
 
-Rslidy includes a built-in Image Viewer that is automatically attached
+Rslidy offers a built-in Image Viewer that is automatically attached
 to all slide images. It enables zooming and panning using mouse,
 keyboard, or on-screen controls.
 Images can be zoomed using the mouse wheel, on-screen controls, or

@@ -443,7 +443,13 @@ export class SettingsComponent {
         header.addEventListener("mousemove", updateCursorAndTitle);
 
         // --- Click handler for sorting ---
-        header.addEventListener("click", (evt: MouseEvent) => {
+        header.addEventListener(
+          "click",
+          (evt: MouseEvent) => {
+            // Prevent slide navigation handlers from receiving this click
+            evt.preventDefault();
+            evt.stopPropagation();
+            (evt as any).stopImmediatePropagation?.();
           const rect = header.getBoundingClientRect();
           const cs = getComputedStyle(header);
           const fontSize = parseFloat(cs.fontSize) || 16;
@@ -630,20 +636,46 @@ export class SettingsComponent {
     const select = wrapper.querySelector<HTMLSelectElement>("select");
     if (!select) return;
 
-    const buttons = Array.from(wrapper.querySelectorAll<HTMLButtonElement>("button"));
+    const buttons = Array.from(
+      wrapper.querySelectorAll<HTMLButtonElement>("button")
+    );
     if (buttons.length < 2) return;
 
     const ascBtn = buttons[0];
     const descBtn = buttons[1];
+
+    // -------------------------------------------------------------------------
+    // Event shield: prevent slide navigation from taps inside the sort UI
+    // (Firefox can trigger navigation on pointer/touch when the native select
+    // picker closes, even if you stop only "click" on the select).
+    // -------------------------------------------------------------------------
+    const swallow = (e: Event) => {
+      // Do NOT preventDefault() here globally, otherwise the select might not open.
+
+      e.stopPropagation();
+      (e as any).stopImmediatePropagation?.();
+    };
+
+    const swallowBubble = (e: Event) => {
+      e.stopPropagation();
+    };
+
+    (["click", "pointerup", "touchend", "mousedown"] as const).forEach(type => {
+      wrapper.addEventListener(type, swallowBubble, { capture: false });
+    });
 
     const restoreOriginalOrder = () => {
       this.applySortAndSync(table, tbody, originalRows, sortTable, null, null);
     };
 
     const applyDir = (dir: "asc" | "desc") => {
-      const selectedValue = select.value;
+      let selectedValue = select.value;
 
-      // No column selected → do nothing
+      // Firefox mobile: value may not yet be committed
+      if (selectedValue === "" && select.selectedIndex > 0) {
+        selectedValue = select.options[select.selectedIndex].value;
+      }
+
       if (selectedValue === "") return;
 
       const columnIndex = Number(selectedValue);
@@ -651,14 +683,21 @@ export class SettingsComponent {
 
       const current = this.getSortState(table);
 
-      // Same dir clicked again on same column → reset
+      // Same column + same direction → reset
       if (current.columnIndex === columnIndex && current.direction === dir) {
         select.value = "";
         restoreOriginalOrder();
         return;
       }
 
-      this.applySortAndSync(table, tbody, originalRows, sortTable, columnIndex, dir);
+      this.applySortAndSync(
+        table,
+        tbody,
+        originalRows,
+        sortTable,
+        columnIndex,
+        dir
+      );
 
       // Remove focus ring on mobile
       setTimeout(() => {
@@ -667,22 +706,32 @@ export class SettingsComponent {
       }, 10);
     };
 
-    // --- Button handling (▲ / ▼) ---
-    ascBtn.addEventListener("click", () => applyDir("asc"));
-    descBtn.addEventListener("click", () => applyDir("desc"));
+    // -------------------------------------------------------------------------
+    // Button handling (▲ / ▼)
+    // -------------------------------------------------------------------------
+    ascBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      applyDir("asc");
+    });
 
-    // --- Select handling ---
-    select.addEventListener("change", () => {
-      setTimeout(() => select.blur(), 10);
+    descBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      applyDir("desc");
+    });
 
-      // "Original order"
+    // -------------------------------------------------------------------------
+    // Select handling
+    // -------------------------------------------------------------------------
+    const onSelectUpdated = () => {
       if (select.value === "") {
         restoreOriginalOrder();
         return;
       }
 
-      // Column changed → if a direction is already active, re-apply it.
       const state = this.getSortState(table);
+
       if (state.direction) {
         this.applySortAndSync(
           table,
@@ -693,16 +742,28 @@ export class SettingsComponent {
           state.direction
         );
       } else {
-        // Otherwise: just clear button highlight until user clicks ▲/▼
         ascBtn.classList.remove("active-sort");
         descBtn.classList.remove("active-sort");
-        this.setSortState(table, { columnIndex: Number(select.value), direction: null });
+        this.setSortState(table, {
+          columnIndex: Number(select.value),
+          direction: null
+        });
       }
+    };
+
+    // Eager update (important for Firefox)
+    select.addEventListener("input", onSelectUpdated);
+
+    select.addEventListener("change", () => {
+      // Do NOT stopPropagation here; wrapper already shields the event.
+      setTimeout(() => select.blur(), 10);
+      onSelectUpdated();
     });
 
-    // Initial sync so mobile UI reflects any desktop state
+    // Initial sync so mobile UI reflects desktop state
     this.syncMobileSortUIFromState(table);
   }
+
 
   applyResponsiveTableLabels(): void {
     const tables = document.querySelectorAll("table.rslidy-responsive-table");
