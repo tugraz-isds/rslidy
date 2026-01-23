@@ -263,7 +263,7 @@ export class PrintSettingsComponent {
     ) as HTMLInputElement | null;
     if (selectedOption) {
       switch (selectedOption.value) {
-        case "actual":
+        case "actual-size":
           css += `
             body {
                 transform: none !important;
@@ -283,7 +283,7 @@ export class PrintSettingsComponent {
                 `;
           break;
 
-        case "fit-width":
+        case "fit-page-width":
           css += `
               #rslidy-content-section .slide {
                   max-width: 100% !important;
@@ -293,64 +293,10 @@ export class PrintSettingsComponent {
               }
           `;
           break;
-
-
-        case "shrink":
-        /*const [pageWidth, pageHeight] = paperSize.value.split(" ");
-
-        const mmToPx = mm => mm * 3.7795;
-        const pageHeightPx1 = mmToPx(parseFloat(pageHeight));
-        const slide = document.querySelector('.slide'); // or loop over all
-        const slides = document.querySelectorAll('.slide');
-
-        slides.forEach(slide => {
-          if (!(slide instanceof HTMLElement)) return;
-
-          const rawHeight = pageHeight.replace("mm", ""); // removes 'mm'
-          const rect = slide.getBoundingClientRect();
-          const height = rect.height;
-          const scale = Math.min(mmToPx(parseFloat('210')) / height, 1);
-          slide.style.transform = `scale(${scale})`;
-          slide.style.transformOrigin = 'top left';
-        });
-
-        css += `
-              #rslidy-content-section .slide {
-                  margin: 0 auto;
-                  overflow: visible;
-                  page-break-after: always;
-              }
-          `;
-        break;*/
-        case "fit":
-          /*css += `
-            @page {
-              size: ${paperSize.value} ${layout.value};
-              margin: 10mm;
-            }
-
-            #rslidy-content-section .slide {
-              width: 100% !important;
-              height: 100% !important;
-              page-break-after: always !important;
-              transform: scale(1) !important;
-              transform-origin: top left !important;
-              contain: size !important;
-            }
-
-            #rslidy-content-section .slide > div {
-              transform: scale(calc(var(--print-scale-factor, 1))) !important;
-              transform-origin: top left !important;
-              width: 100% !important;
-              height: 100% !important;
-            }
-          `;*/
-          break;
-        case "zoom":
+        case "custom-zoom":
           const zoomValueInput = <HTMLInputElement>this.view.querySelector("#custom-zoom-input");
           const zoomValue = parseFloat(zoomValueInput.value);
           if (!isNaN(zoomValue) && zoomValue > 0) {
-            const scaleFactor = zoomValue / 100;
             const origin = selectedOrigin?.value || "center";
             css += `
               #rslidy-content-section .slide {

@@ -15,7 +15,7 @@ role="region" aria-label="Help" tabindex="0">
     <a target="_blank" href="https://github.com/tugraz-isds/rslidy">GitHub</a>
   </h1>
   <a class="rslidy-help-close" title="`+t.imageviewer[3]+`" href="#">&times;</a>
-  <h2>`+t.help[0]+`</h2>
+  <h2>Help Panel & `+t.help[0]+`</h2>
     <div class="rslidy-help-content">
     <table id="rslidy-help-table">
       <tr>
@@ -228,6 +228,7 @@ export const preview_html = (idx) => `
 export const settings_html = `
 <div id="rslidy-menu" class="rslidy-hidden rslidy-ui" role="region"
 aria-label="Settings" tabindex="0">
+  <h3 class="rslidy-menu-header-settings">Settings</h3>
   <label id="rslidy-checkbox-tilt-text" class="rslidy-menu-content-settings rslidy-disabled" aria-disabled="true">
     `+t.settings[0]+`
     <input type="checkbox" value="Tilt" id="rslidy-checkbox-tilt" disabled>
@@ -267,6 +268,7 @@ aria-label="Settings" tabindex="0">
 export const print_settings_html = `
 <div id="rslidy-print-menu" class="rslidy-hidden rslidy-ui"
 role="region" aria-label="Print Settings" tabindex="0">
+  <h3 class="rslidy-menu-header">Print Settings</h3>
   <label id="rslidy-checkbox-snum-text" class="rslidy-menu-content">
     `+t.print_settings[0]+`
     <input type="checkbox" value="Numbers" id="rslidy-checkbox-snum">
@@ -323,114 +325,16 @@ role="region" aria-label="Print Settings" tabindex="0">
   <fieldset id="rslidy-exclusive-checkboxes" style="margin-top: 1.5em;">
   <h4 style="margin-bottom: 0.8em; font-weight: 600;">Print Sizing</h4>
    <label id="rslidy-checkbox-actual-size-text" class="rslidy-print-sizing">
-      <input type="radio" name="print-options" value="actual" id="rslidy-checkbox-actual" class="print-checkbox" checked> Actual Size
+      <input type="radio" name="print-options" value="actual-size" id="rslidy-checkbox-actual" class="print-checkbox" checked> Actual Size
     </label>
-     <!--
-    <label id="rslidy-checkbox-scale-text" class="rslidy-print-sizing">
-      <input type="radio" name="print-options" value="fit" id="rslidy-checkbox-fit" class="print-checkbox"> Fit
-    </label>
-    <br>
-     -->
-    <!--
-    <label id="rslidy-checkbox-scale-text" class="rslidy-print-sizing">
-      <input type="radio" name="print-options" value="shrink" id="rslidy-checkbox-fit" class="print-checkbox"> Shrink
-    </label>
-    <br>
-    -->
     <label id="rslidy-checkbox-shrink-text" class="rslidy-print-sizing">
-      <input type="radio" name="print-options" value="fit-width" id="rslidy-checkbox-shrink" class="print-checkbox"> Fit to Page Width
+      <input type="radio" name="print-options" value="fit-page-width" id="rslidy-checkbox-shrink" class="print-checkbox"> Fit to Page Width
     </label> 
     <label id="rslidy-checkbox-zoom-text" class="rslidy-print-sizing">
-      <input type="radio" name="print-options" value="zoom" id="rslidy-checkbox-zoom" class="print-checkbox"> Custom Zoom:
+      <input type="radio" name="print-options" value="custom-zoom" id="rslidy-checkbox-zoom" class="print-checkbox"> Custom Zoom:
       <input type="number" id="custom-zoom-input" value="100" class="zoom-input" min="1" max="100" disabled placeholder="100">
       <span class="percent">%</span>
     </label>
-    <!--
-    <label id="rslidy-checkbox-scale-text" class="rslidy-print-sizing">
-      <input type="radio" name="print-options" value="custom" id="rslidy-checkbox-custom" class="print-checkbox"> Custom Scale:
-      <input type="number" id="custom-scaling-input" value="100" class="scaling-input" min="1" max="100" disabled placeholder="100">
-      <span class="percent">%</span>
-    </label>
-    <div id="rslidy-transform-origin-subsection">
-  <h4>Position of Page:</h4>
-  <div class="button-container">
-    <label class="rslidy-print-position" data-tooltip="Top Left">
-      <input type="radio" name="transform-origin" value="top left" class="print-checkbox">
-      <svg width="25" height="25" viewBox="0 0 25 25">
-        <rect width="25" height="25" fill="grey" />
-        <circle cx="5" cy="5" r="3.5" fill="lightblue" />
-      </svg>
-    </label>
-
-    <label class="rslidy-print-position" data-tooltip="Top Center">
-      <input type="radio" name="transform-origin" value="top center" class="print-checkbox">
-      <svg width="25" height="25" viewBox="0 0 25 25">
-        <rect width="25" height="25" fill="grey" />
-        <circle cx="12.5" cy="5" r="3.5" fill="lightblue" />
-      </svg>
-    </label>
-
-    <label class="rslidy-print-position" data-tooltip="Top Right">
-      <input type="radio" name="transform-origin" value="top right" class="print-checkbox">
-      <svg width="25" height="25" viewBox="0 0 25 25">
-        <rect width="25" height="25" fill="grey" />
-        <circle cx="20" cy="5" r="3.5" fill="lightblue" />
-      </svg>
-    </label>
-  </div>
-      <div class="button-container">
-        <label class="rslidy-print-position" data-tooltip="Center Left">
-          <input type="radio" name="transform-origin" value="center left" class="print-checkbox">
-          <svg width="25" height="25" viewBox="0 0 25 25">
-            <rect width="25" height="25" fill="grey" />
-            <circle cx="5" cy="12.5" r="3.5" fill="lightblue" />
-          </svg>
-        </label>
-    
-        <label class="rslidy-print-position" data-tooltip="Center Center">
-          <input type="radio" name="transform-origin" value="center" class="print-checkbox" checked>
-          <svg width="25" height="25" viewBox="0 0 25 25">
-            <rect width="25" height="25" fill="grey" />
-            <circle cx="12.5" cy="12.5" r="3.5" fill="lightblue" />
-          </svg>
-        </label>
-    
-        <label class="rslidy-print-position" data-tooltip="Center Right">
-          <input type="radio" name="transform-origin" value="center right" class="print-checkbox">
-          <svg width="25" height="25" viewBox="0 0 25 25">
-            <rect width="25" height="25" fill="grey" />
-            <circle cx="20" cy="12.5" r="3.5" fill="lightblue" />
-          </svg>
-        </label>
-      </div>
-    
-      <div class="button-container">
-        <label class="rslidy-print-position" data-tooltip="Bottom Left">
-          <input type="radio" name="transform-origin" value="left bottom" class="print-checkbox">
-          <svg width="25" height="25" viewBox="0 0 25 25">
-            <rect width="25" height="25" fill="grey" />
-            <circle cx="5" cy="20" r="3.5" fill="lightblue" />
-          </svg>
-        </label>
-    
-        <label class="rslidy-print-position" data-tooltip="Bottom Center">
-          <input type="radio" name="transform-origin" value="center bottom" class="print-checkbox">
-          <svg width="25" height="25" viewBox="0 0 25 25">
-            <rect width="25" height="25" fill="grey" />
-            <circle cx="12.5" cy="20" r="3.5" fill="lightblue" />
-          </svg>
-        </label>
-    
-        <label class="rslidy-print-position" data-tooltip="Bottom Right">
-          <input type="radio" name="transform-origin" value="right bottom" class="print-checkbox">
-          <svg width="25" height="25" viewBox="0 0 25 25">
-            <rect width="25" height="25" fill="grey" />
-            <circle cx="20" cy="20" r="3.5" fill="lightblue" />
-          </svg>
-        </label>
-      </div>
-    </div>
-      -->
   </fieldset>
   <div class="rslidy-menu-content">
     <button id="rslidy-button-print-submit">`+t.print_settings[7]+`</button>

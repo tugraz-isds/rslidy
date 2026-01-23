@@ -119,7 +119,7 @@ export const toolbar = [
   `Last Slide (End)`,
   `Table of Contents (C)`,
   `Settings (S)`,
-  `Print (P)`,
+  `Print Settings (P)`,
   `Help (H)`,
   `Display All Slides (A)`,
   `Display Single Slides (A)`
