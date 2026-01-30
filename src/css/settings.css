@@ -26,14 +26,12 @@
 
 .rslidy-menu-header-settings {
   display: block;
-  text-align: center;
   border-bottom: 2px groove threedface;
   padding: 0.2em 1em 0.5em;
 }
 
 
 .rslidy-menu-content-settings {
-  text-align: right;
   margin-bottom: 0.15em;
   padding: 0.2em 1em;
   display: block;
