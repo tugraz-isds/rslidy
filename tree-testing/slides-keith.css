@@ -145,6 +145,7 @@ code.block {
 /* notes */
 
 p.note {
+  margin-top: 0.2em;
   font-size: 80%;
 }
 
