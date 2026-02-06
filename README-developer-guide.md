@@ -7,11 +7,23 @@ contribute to Rslidy, the lightweight HTML presentation framework.
 
 ## 1 Development Setup
 
-Clone the repository and install dependencies:
+To install and build Rslidy from source, the repository must first be
+cloned. This can be done using SSH (recommended) or HTTPS.
+Using SSH (requires being logged in to GitHub and having an SSH key
+configured):
+```
+git clone git@github.com:tugraz-isds/rslidy.git
+```
+
+Alternatively, the repository can be cloned using HTTPS:
 ```
 git clone https://github.com/tugraz-isds/rslidy.git
-cd rslidy
-npm install
+```
+
+After cloning the repository, go to the `rslidy/` directory and
+install the project dependencies with:
+```
+pnpm install
 ```
 
 Rslidy uses Gulp as a task runner and Webpack as a module bundler.

@@ -246,7 +246,7 @@ responsively while maintaining their aspect ratio.
 Use the `rslidy-responsive-table` class to create a responsive, 
 sortable table that adapts to any screen size. Combine it with
 `rslidy-responsive-table-text-scaling` for automatic font size 
-scaling, or the class `zebra` for 
+scaling, or the class `rslidy-zebra` for 
 alternating row colours. The `rslidy-text` class left-aligns text 
 content, while `rslidy-numeric` right-aligns numbers for easier 
 comparison.

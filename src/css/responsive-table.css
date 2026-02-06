@@ -23,12 +23,12 @@
 
 
 
-/* Only apply zebra styling when .zebra class is added */
-.rslidy-responsive-table.zebra tr:nth-child(odd) {
+/* Only apply zebra styling when .rslidy-zebra class is added */
+.rslidy-responsive-table.rslidy-zebra tr:nth-child(odd) {
  background-color: #fff;
 }
 
-.rslidy-responsive-table.zebra tr:nth-child(2n) {
+.rslidy-responsive-table.rslidy-zebra tr:nth-child(2n) {
  background-color: #f2f2f2;
 }
 

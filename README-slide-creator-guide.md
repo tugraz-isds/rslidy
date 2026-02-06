@@ -363,7 +363,7 @@ the `rslidy-disable-sorting` class to the table element.
 
 For improved readability, combine `rslidy-responsive-table` with
 `rslidy-responsive-table-text-scaling` for automatic font-size scaling
-and with the `zebra` class for alternating row colours. The
+and with the `rslidy-zebra` class for alternating row colours. The
 `rslidy-text` class left-aligns textual content, while
 `rslidy-numeric` right-aligns numeric values for easier comparison.
 
