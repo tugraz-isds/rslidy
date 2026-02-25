@@ -81,15 +81,21 @@ complete set of Gulp tasks defined in the `gulpfile.js` is as follows:
   folders.
 
 - `build`  
-  Executes the full build pipeline in a defined order and produces all
-  distributable artifacts.
+  Executes the full build pipeline in a defined order. This includes a
+  pre-step that updates version strings in source files before
+  compilation, bundling, minification, compression, and copying.
 
 - `watch`  
   Starts a local development server using BrowserSync and automatically
   rebuilds and reloads the browser when source files change. A specific
   slide deck can be served using the `--slide` (or `-s`) flag.
 
+- `updateVersionStrings`
+  Updates version identifiers in `src/`folder by replacing 
+  `Rslidy Version X.Y.Z` and `__VERSION__` with the define version 
+  in the `package.json` file.
 
+  
 ## 3 Build Output
 
 After building, artifacts are stored in the `build/library/` directory:
