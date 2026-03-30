@@ -352,24 +352,26 @@ because the data loader needs to fetch the JSON file.
 ## 7. Responsive Tables
 
 Use the `rslidy-responsive-table` class to create responsive, sortable
-tables that adapt to any screen size. Sorting is provided **only** for
+tables that adapt to any screen size. Sorting is provided only for
 tables that use this class. On wide screens, tables are sorted via
 clickable column headers, while on narrow screens a mobile sorting
-heading with a column selector and direction buttons is shown.
-
-The active sort column and direction are shared between desktop and
-mobile interfaces. Sorting can be disabled explicitly by adding
-the `rslidy-disable-sorting` class to the table element.
+heading with a column selector and direction buttons is shown. The
+active sort column and direction are shared between desktop and mobile
+interfaces. Sorting can be disabled explicitly by adding the
+`rslidy-disable-sorting` class to the table element.
 
 For improved readability, combine `rslidy-responsive-table` with
 `rslidy-responsive-table-text-scaling` for automatic font-size scaling
 and with the `rslidy-zebra` class for alternating row colours. The
 `rslidy-text` class left-aligns textual content, while
 `rslidy-numeric` right-aligns numeric values for easier comparison.
+These alignment classes only need to be applied to the header cells. 
+The corresponding table body cells automatically inherit
+the alignment behaviour.
 
 On narrow viewports, tables switch to a stacked layout. If table headers
-are declared using `scope="col"`, Rslidy automatically derives and
-injects the corresponding `data-label` attributes for each table cell,
+are declared using scope="col", Rslidy automatically derives and
+injects the corresponding data-label attributes for each table cell,
 ensuring that table content remains clearly labelled on mobile devices.
 
 ```html

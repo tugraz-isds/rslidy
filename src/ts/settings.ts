@@ -539,11 +539,13 @@ export class SettingsComponent {
 
     // Create wrapper if needed
     let wrapper = table.parentElement;
-    if (!wrapper?.classList.contains('rslidy-responsive-table-wrapper')) {
-      wrapper = document.createElement('div');
-      wrapper.className = 'rslidy-responsive-table-wrapper';
+    if (!wrapper?.classList.contains("rslidy-responsive-table-wrapper")) {
+      wrapper = document.createElement("div");
+      wrapper.className = "rslidy-responsive-table-wrapper";
       table.parentNode?.insertBefore(wrapper, table);
       wrapper.appendChild(table);
+    } else {
+      wrapper.classList.add("rslidy-responsive-table-wrapper");
     }
 
     // Create mobile sort UI
@@ -767,17 +769,37 @@ export class SettingsComponent {
 
   applyResponsiveTableLabels(): void {
     const tables = document.querySelectorAll("table.rslidy-responsive-table");
+
     tables.forEach((table) => {
-      const headers = Array.from(table.querySelectorAll("thead th")).map(th =>
-        th.textContent?.trim() || ""
-      );
+      const headers = Array.from(table.querySelectorAll("thead th"));
+
       const rows = table.querySelectorAll("tbody tr");
 
       rows.forEach((row) => {
         const cells = row.querySelectorAll("td");
+
         cells.forEach((cell, index) => {
-          if (!cell.hasAttribute("data-label") && headers[index]) {
-            cell.setAttribute("data-label", headers[index]);
+          const header = headers[index];
+          if (!header) return;
+
+          const headerText = header.textContent?.trim() || "";
+
+          // Set mobile label
+          if (!cell.hasAttribute("data-label") && headerText) {
+            cell.setAttribute("data-label", headerText);
+          }
+
+          // Copy alignment/type class from header to cell
+          cell.classList.remove("rslidy-text", "rslidy-numeric", "rslidy-symbol", "rslidy-date");
+
+          if (header.classList.contains("rslidy-text")) {
+            cell.classList.add("rslidy-text");
+          } else if (header.classList.contains("rslidy-numeric")) {
+            cell.classList.add("rslidy-numeric");
+          } else if (header.classList.contains("rslidy-symbol")) {
+            cell.classList.add("rslidy-symbol");
+          } else if (header.classList.contains("rslidy-date")) {
+            cell.classList.add("rslidy-date");
           }
         });
       });
