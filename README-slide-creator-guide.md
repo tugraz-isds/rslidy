@@ -124,16 +124,22 @@ A typical figure pattern:
 <section>
   <h1>Image Example</h1>
   <figure>
-    <div class="rslidy-large-images">
-      <img src="images/example.png" alt="Descriptive alternative text"/>
-    </div>
+    <img src="images/example.png" alt="Descriptive alternative text"/>
     <figcaption>
       Keep captions concise and include credits where required.
     </figcaption>
   </figure>
 </section>
 ```
+Rslidy also provides the optional helper classes
+`rslidy-images` and `rslidy-large-images`. These classes centre images
+or videos inside a flexible container and apply a predefined 16:9 media
+area.
 
+- `rslidy-images` is intended for smaller media elements. It limits the
+  maximum height to `15em` and sets the width to `auto`.
+- `rslidy-large-images` is intended for larger media elements. It
+  limits the maximum height to `25em` and sets the width to `auto`.
 
 
 
@@ -153,25 +159,26 @@ with the `srcset`/`sizes` attributes.
 
 Use the `<picture>` element to deliver different crops for different 
 viewport sizes.
-
+The `<picture>` element can also be wrapped in the classes
+`rslidy-large-images` or `rslidy-images` to put it inside one of
+Rslidy’s predefined media containers.
 ```html
 <section>
   <h1>Responsive Image (Art Direction)</h1>
 
   <figure>
-    <div class="rslidy-large-images">
-      <picture>
-        <source media="(max-width: 40rem)"
-                srcset="images/graz-uhrturm-narrow.jpg">
-        <source media="(max-width: 80rem)"
-                srcset="images/graz-uhrturm-medium.jpg">
-        <img src="images/graz-uhrturm.jpg"
-             alt="Graz Clock Tower in multiple crops.">
-      </picture>
-    </div>
+    <picture>
+      <source media="(max-width: 40rem)"
+              srcset="images/graz-uhrturm-narrow.jpg">
+      <source media="(max-width: 80rem)"
+              srcset="images/graz-uhrturm-medium.jpg">
+      <img src="images/graz-uhrturm.jpg"
+           alt="Graz Clock Tower in multiple crops.">
+    </picture>
 
     <figcaption>
-      This example uses <code><picture></code> element to switch crops by viewport width.
+      This example uses the <code>&lt;picture&gt;</code> element to
+      switch image crops depending on the viewport width.
     </figcaption>
   </figure>
 </section>
@@ -190,25 +197,23 @@ density.
   <h1>Responsive Image (Resolution Switching)</h1>
 
   <figure>
-    <div class="rslidy-large-images">
-      <img
+    <img
         src="images/graz-uhrturm.jpg"
         srcset="
-          images/graz-uhrturm-480.jpg 480w,
-          images/graz-uhrturm-800.jpg 800w,
-          images/graz-uhrturm-1200.jpg 1200w
+        images/graz-uhrturm-480.jpg 480w,
+        images/graz-uhrturm-800.jpg 800w,
+        images/graz-uhrturm-1200.jpg 1200w
         "
         sizes="
-          (max-width: 40rem) 25vw,
-          (max-width: 60rem) 75vw,
-          100vw
+        (max-width: 40rem) 25vw,
+        (max-width: 60rem) 75vw,
+        100vw
         "
         alt="The clock tower overlooking the city of Graz.">
-    </div>
 
     <figcaption>
-      This example uses the attributes <code>srcset</code> and 
-      <code>sizes</code> for resolution switching.
+      This example uses the <code>srcset</code> and
+      <code>sizes</code> attributes for resolution switching.
     </figcaption>
   </figure>
 </section>
@@ -389,9 +394,9 @@ ensuring that table content remains clearly labelled on mobile devices.
 
     <tbody>
       <tr>
-        <td class="rslidy-text">Example A</td>
-        <td class="rslidy-numeric">42</td>
-        <td class="rslidy-text">2026-01-05</td>
+        <td>Example A</td>
+        <td>42</td>
+        <td>2026-01-05</td>
       </tr>
     </tbody>
   </table>
@@ -535,17 +540,30 @@ must also be overridden using JavaScript. These are the settings:
 
 ## 11. Responsive Content
 
-Rslidy defines the responsive infrastructure for slide decks, including
-viewport handling, scalable layout patterns, and responsive UI
-components. However, it is the responsibility of the slide creator to
-ensure that the actual slide content is authored in a responsive manner.
+Rslidy provides the responsive infrastructure for slide decks,
+including viewport handling, scalable layout patterns, and responsive
+user interface components. However, the slide creator remains
+responsible for ensuring that the actual slide content is authored in a
+responsive manner.
 
-This includes applying the appropriate Rslidy classes to content
-elements (for example responsive tables or images), avoiding custom CSS
-rules that override responsive behaviour, and ensuring that layouts
-remain usable across different screen sizes.
+This includes using standard responsive HTML patterns where appropriate,
+for example with the `<picture>` element or the `srcset` and `sizes`
+attributes for responsive images, and applying Rslidy classes where they provide
+additional responsive behaviour, such as
+`rslidy-responsive-table`, `rslidy-images`, or
+`rslidy-large-images`.
 
-An overview of various layout options for creating slide 
-decks in Rslidy can be seen in the [Rslidy Layouts](README-layouts.md) guide.:
+The helper classes `rslidy-images` and `rslidy-large-images` are
+optional layout utilities for centring media inside predefined 16:9
+containers. They can be useful for slide layouts with images or videos,
+but they are not required for responsive images in general.
+
+Slide creators should also avoid custom CSS rules that override
+responsive behaviour and should verify that layouts remain usable across
+different screen sizes.
+
+An overview of various layout options for creating slide decks in
+Rslidy is provided in the
+[Rslidy Layouts](README-layouts.md) guide.
 
 

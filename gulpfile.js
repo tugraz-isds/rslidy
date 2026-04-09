@@ -18,7 +18,7 @@ const webpacks = require('webpack-stream');
 const browserSync = require('browser-sync').create();
 const argv = require('yargs').argv;
 const header = require('gulp-header');
-
+const cssHeader = `/* Rslidy version ${version} CSS */\n`;
 console.log('[Gulp] Using version:', version);
 
 const paths = {
@@ -152,10 +152,11 @@ function minifyjs() {
 
 function minifycss() {
   return src(paths.library + files.css)
-    .pipe(ucss())
-    .pipe(rename(files.mincss))
-    .pipe(dest(paths.library))
-    .pipe(browserSync.stream());
+      .pipe(ucss())
+      .pipe(header(cssHeader))
+      .pipe(rename(files.mincss))
+      .pipe(dest(paths.library))
+      .pipe(browserSync.stream());
 }
 
 function compress() {
@@ -190,14 +191,15 @@ function compress() {
 // CSS task
 function css() {
   const base = src(paths.src + 'css/*.css')
-    .pipe(concat(files.css))
-    .pipe(dest(paths.library));
+      .pipe(concat(files.css))
+      .pipe(header(cssHeader))
+      .pipe(dest(paths.library));
 
   const themes = src(paths.src + 'themes/**/*.css')
-    .pipe(dest(paths.library + 'themes/'));
+      .pipe(dest(paths.library + 'themes/'));
 
   const themeAssets = src(paths.src + 'themes/**/*.{png,jpg,jpeg,svg,gif}')
-    .pipe(dest(paths.library + 'themes/'));
+      .pipe(dest(paths.library + 'themes/'));
 
   return merge([base, themes, themeAssets]);
 }

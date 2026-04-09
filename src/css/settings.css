@@ -1,3 +1,4 @@
+/* Shared styles for overlay menus */
 #rslidy-menu, #rslidy-print-menu {
   position: absolute;
   bottom: calc(var(--rslidy-progressbar-height) + var(--rslidy-toolbar-height));
@@ -10,6 +11,7 @@
   max-width: 80%;
 }
 
+/* Standard menu row */
 .rslidy-menu-content {
   text-align: left;
   margin-bottom: 0.15em;
@@ -17,6 +19,7 @@
   display: block;
 }
 
+/* Menu heading */
 .rslidy-menu-header {
   display: block;
   text-align: left;
@@ -24,6 +27,7 @@
   padding: 0.2em 1em 0.5em;
 }
 
+/* Settings menu heading */
 .rslidy-menu-header-settings {
   display: block;
   border-bottom: 2px groove threedface;
@@ -31,12 +35,14 @@
 }
 
 
+/* Settings menu row */
 .rslidy-menu-content-settings {
   margin-bottom: 0.15em;
   padding: 0.2em 1em;
   display: block;
 }
 
+/* Group of related controls */
 .rslidy-setting-group {
   text-align: right;
   margin-bottom: 0.15em;
@@ -44,6 +50,7 @@
   display: block;
 }
 
+/* Nested transform-origin options */
 #rslidy-transform-origin-subsection {
   margin-top: 0.5em;
   display: flex;
@@ -63,13 +70,15 @@
   opacity: 0.8;
   pointer-events: none;
 }
-/*.button-container {
+/*/* Inline button group */
+.button-container {
   display: flex;
   justify-content: space-between;
   width: 100%;
   margin-right: 1em;
-}*/
+}
 
+/* Inline button group */
 .button-container {
   display: flex;
   justify-content: flex-start;
@@ -81,6 +90,7 @@ label {
 .rslidy-print-position input[type="radio"] {
   display: none; /* Hide default radio button */
 }
+/* Print position option */
 .rslidy-print-position {
   position: relative;
   display: inline-block;
@@ -109,6 +119,7 @@ label {
   opacity: 1;
   visibility: visible;
 }
+/* Print sizing controls */
 .rslidy-print-sizing {
   display: flex;
   align-items: center;
@@ -116,11 +127,13 @@ label {
   min-height: 1.5em;
   gap: 0.5em
 }
+/* Slide range option */
 .rslidy-print-slides {
   cursor: pointer;
   margin-right: 0.5rem;
 }
 
+/* Slide range input */
 .rslidy-print-slide-input {
   cursor: pointer;
 }
@@ -130,10 +143,12 @@ input[name="transform-origin"]:not(:checked) {
   pointer-events: none; /* Prevents interaction */
 }
 
-label.rslidy-menu-content {
+label/* Standard menu row */
+.rslidy-menu-content {
   cursor: pointer;
 }
 
+/* Menu button icon */
 .rslidy-menu-button {
   width: 1.5em;
   height: 1.75em;
@@ -151,6 +166,7 @@ label.rslidy-menu-content {
   border-radius: 0.15em;
 }
 
+/* Generic inline icon */
 .rslidy-icon {
   width: 1.5em;
   height: 1.5em;
@@ -218,12 +234,13 @@ input[type="checkbox"]:disabled + label {
   cursor: default;
 }
 
+/* Disabled state */
 .rslidy-disabled {
   opacity: 0.3;
-  filter: alpha(opacity=30);
   cursor: default !important;
 }
 
+/* Help dialog overlay */
 .rslidy-help-overlay {
   position: fixed;
   top: 0;
@@ -252,6 +269,7 @@ input[type="checkbox"]:disabled + label {
   overflow: auto;
 }
 
+/* Help dialog close button */
 .rslidy-help-close {
   position: absolute;
   top: 0.5em;

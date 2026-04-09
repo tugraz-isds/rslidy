@@ -5,8 +5,6 @@ body {
   /* allow words to be broken at hyphenation points */
   hyphens: auto;
   -webkit-hyphens: auto;
-  -moz-hyphens: auto;
-  -ms-hyphens: auto;
 }
 
 /* 
@@ -14,6 +12,7 @@ section elements are automatically assigned class slide by rslidy
 a slide is created by a section and/or div.slide 
 */
 
+/* Base slide container */
 .slide {
   position: absolute;
   top: 0;
@@ -25,6 +24,7 @@ a slide is created by a section and/or div.slide
   font-size: 1.5em; /* from first CSS */
 }
 
+/* Standard slide content layout */
 .slide:not(.rslidy-titleslide) {
   display: flex;
   flex-direction: column;
@@ -34,8 +34,6 @@ a slide is created by a section and/or div.slide
 code, var, kbd, samp, listing, plaintext, xmp, abbr {
   hyphens: none;
   -webkit-hyphens: none;
-  -moz-hyphens: none;
-  -ms-hyphens: none;
   font-family: "Courier New", Courier, monospace;
   font-size: 1em;
 }
@@ -61,11 +59,21 @@ em {
   font-style: italic;
 }
 
-img {
-  border: none;
-  background: white !important;
+img, video {
+  display: block;
+  max-width: 100%;
+  height: auto;
 }
 
+/* SVG images with fallback minimum size */
+img.svg {
+  min-width: 10em;
+  min-height: 5em;
+  width: 100%;
+  height: auto;
+}
+
+/* Left-aligned figure */
 .figure-left {
   margin-left: 0;
   margin-top: 0;
@@ -79,14 +87,7 @@ figure {
 
 
 
-div.rslidy-images, div.rslidy-large-images {
-  margin: 0 auto;
-  padding: 0;
-  display: flex;
-  justify-content: center;
-  min-width: 5em;
-}
-
+/* Legacy image helper wrappers */
 div.rslidy-images, div.rslidy-large-images {
   margin: 0 auto;
   padding: 0;
@@ -97,6 +98,7 @@ div.rslidy-images, div.rslidy-large-images {
   min-width: 5em;
 }
 
+/* Standard media inside image helpers */
 div.rslidy-images img, div.rslidy-images video {
   object-fit: contain; /* scale down does not work correctly on firefox */
   max-width: 100%;
@@ -106,6 +108,7 @@ div.rslidy-images img, div.rslidy-images video {
 
 }
 
+/* Larger media inside image helpers */
 div.rslidy-large-images img, div.rslidy-large-images video {
   object-fit: contain; /* scale down does not work correctly on firefox */
   max-width: 100%;
@@ -149,6 +152,7 @@ figcaption span.credit:after {
   content: "]";
 }
 
+/* Centred credits line */
 div.credits {
   margin: 1em 0;
   font-size: 60%;
@@ -221,6 +225,7 @@ div#rslidy-licence p {
   padding: 0.8em 0;
 }
 
+/* Section divider slide */
 .rslidy-sectionslide {
   flex-direction: column;
   display: flex;
@@ -263,6 +268,7 @@ div#rslidy-licence p {
   gap: 2em;
 }
 
+/* Single column within a column layout */
 .rslidy-column {
   flex: 1;
   display: flex;
@@ -271,22 +277,26 @@ div#rslidy-licence p {
 }
 
 
+/* Half-width item */
 .item-half {
   padding: 1em;
   width: 50%;
 }
 
+/* Auto-width item */
 .item-auto {
   padding: 1em;
   width: auto;
 }
 
 /* Description is marked in gray */
+/* Highlighted description block */
 .description {
   background-color: lightgray;
 }
 
 /* CSS Grid */
+/* Auto-fitting grid layout */
 .grid {
   display: grid;
   justify-content: center;
@@ -295,6 +305,7 @@ div#rslidy-licence p {
 }
 
 /* code snippets */
+/* Block-style inline code snippet */
 code.block {
   display: inline-block;
   margin-right: 100%;
@@ -303,6 +314,7 @@ code.block {
 }
 
 /* keys */
+/* Keyboard key label */
 kbd.key {
   border-radius: 3px;
   padding: 1px 2px 0;
@@ -310,6 +322,7 @@ kbd.key {
 }
 
 /* notes */
+/* Small note paragraph */
 p.note {
   font-size: 80%;
   margin-top: -0.7em;
@@ -340,6 +353,7 @@ div.textpassage p + p {
   text-indent: 1em;
 }
 
+/* Block quotation */
 blockquote {
   margin: 0 2em 1em 2em;
 }
@@ -482,6 +496,7 @@ a.rslidy-night-mode {
 }
 
 /* Helpers */
+/* Vertical centring helper */
 .valign {
   position: relative;
   top: 50%;
@@ -489,7 +504,8 @@ a.rslidy-night-mode {
 }
 
 @media print {
-  .valign {
+  /* Vertical centring helper */
+.valign {
     transform: none !important;
     top: 0;
   }

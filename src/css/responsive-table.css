@@ -1,3 +1,4 @@
+/* Responsive table base styles */
 .rslidy-responsive-table {
  margin: 0 0 1em 0;
  border-collapse: separate;
@@ -10,6 +11,7 @@
  display: block;
 }
 
+/* Container query wrapper */
 .rslidy-responsive-table-wrapper {
  width: 100%;
  max-width: 100%;
@@ -18,10 +20,12 @@
  container-type: inline-size;
 }
 
+/* Generic scrolling table container */
 #table-container {
  overflow-x: auto;
 }
 
+/* Empty-state message */
 .rslidy-no-results {
  color: #888;
  font-size: 1.2em;
@@ -38,6 +42,7 @@
  background-color: #f2f2f2;
 }
 
+/* Sortable header cells */
 .rslidy-responsive-table th {
  border-bottom: 0.0625em solid #2b2b2b;
  border-width: 0.0625em;
@@ -48,6 +53,7 @@
  padding: 0.7em 0.9em 0.7em 1.5em;
 }
 
+/* Table body cells */
 .rslidy-responsive-table td {
  border: none;
  padding: 0.7em 0.9em 0.7em 0.5em;
@@ -74,6 +80,7 @@
  padding-left: 0.5em;
 }
 
+/* Left-aligned text cells */
 .rslidy-responsive-table td.rslidy-text {
  text-align: left !important;
 }
@@ -82,6 +89,7 @@
  text-align: left;
 }
 
+/* Right-aligned numeric cells */
 .rslidy-responsive-table td.rslidy-numeric,
 .rslidy-responsive-table th.rslidy-numeric {
  text-align: right;
@@ -91,10 +99,12 @@
  text-align: left;
 }
 
+/* Date cells */
 .rslidy-responsive-table td.rslidy-date {
  text-align: left !important;
 }
 
+/* Centred symbol cells */
 .rslidy-responsive-table td.rslidy-symbol,
 .rslidy-responsive-table th.rslidy-symbol {
  text-align: center;
@@ -108,6 +118,7 @@
  text-align: right;
 }
 
+/* Default sort icon */
 .rslidy-responsive-table th::before {
  content: "";
  position: absolute;
@@ -123,6 +134,7 @@
  transition: opacity 0.2s ease;
 }
 
+/* Ascending sort icon */
 .rslidy-responsive-table th.sorted-asc::before {
  content: "";
  position: absolute;
@@ -137,6 +149,7 @@
  transition: opacity 0.2s ease;
 }
 
+/* Descending sort icon */
 .rslidy-responsive-table th.sorted-desc::before {
  content: "";
  position: absolute;
@@ -183,6 +196,7 @@
  min-width: 0;
 }
 
+/* Mobile sort column selector */
 .rslidy-table-sort-mobile select.compact-select {
  font-size: inherit;
  padding: 0.35em 0.5em;
@@ -210,6 +224,7 @@
  flex-shrink: 0;
 }
 
+/* Mobile sort direction button */
 .rslidy-table-sort-mobile button {
  font-size: inherit;
  padding: 0.35em 0.6em;
@@ -233,6 +248,7 @@
  box-shadow: 0 0 0 1px rgba(0, 123, 255, 0.25);
 }
 
+/* Disable sort icons for a column */
 th.rslidy-no-sort::after,
 th.rslidy-no-sort::before {
  display: none !important;
@@ -243,7 +259,8 @@ th.rslidy-no-sort::before {
 /* Container-based responsive behaviour                               */
 /* ------------------------------------------------------------------ */
 @container (max-width: 22em) {
- .rslidy-responsive-table-wrapper {
+ /* Container query wrapper */
+.rslidy-responsive-table-wrapper {
   overflow-x: hidden;
  }
 
@@ -270,7 +287,8 @@ th.rslidy-no-sort::before {
   min-width: 0;
  }
 
- .rslidy-responsive-table {
+ /* Responsive table base styles */
+.rslidy-responsive-table {
   align-items: stretch;
   display: flex;
   flex-direction: column;
@@ -288,7 +306,8 @@ th.rslidy-no-sort::before {
 
  .rslidy-responsive-table tbody,
  .rslidy-responsive-table tr,
- .rslidy-responsive-table td {
+ /* Table body cells */
+.rslidy-responsive-table td {
   display: block;
   width: 100%;
   box-sizing: border-box;
@@ -298,7 +317,8 @@ th.rslidy-no-sort::before {
   margin-bottom: 1em;
  }
 
- .rslidy-responsive-table td {
+ /* Table body cells */
+.rslidy-responsive-table td {
   min-width: 0;
   padding-left: 8.5em;
   padding-right: 0.5em;
@@ -330,9 +350,11 @@ th.rslidy-no-sort::before {
  .rslidy-responsive-table td.rslidy-date,
  .rslidy-responsive-table th.rslidy-date,
  .rslidy-responsive-table th.rslidy-text,
- .rslidy-responsive-table td.rslidy-symbol,
+ /* Centred symbol cells */
+.rslidy-responsive-table td.rslidy-symbol,
  .rslidy-responsive-table th.rslidy-symbol,
- .rslidy-responsive-table td.rslidy-numeric,
+ /* Right-aligned numeric cells */
+.rslidy-responsive-table td.rslidy-numeric,
  .rslidy-responsive-table th.rslidy-numeric,
  .rslidy-responsive-table tr.rslidy-text > td,
  .rslidy-responsive-table tr.rslidy-symbol > td,
@@ -389,7 +411,8 @@ th.rslidy-no-sort::before {
   justify-content: center;
  }
 
- .rslidy-table-sort-mobile button {
+ /* Mobile sort direction button */
+.rslidy-table-sort-mobile button {
   flex: 1;
  }
 }
@@ -398,7 +421,8 @@ th.rslidy-no-sort::before {
 /* Print fallback                                                     */
 /* ------------------------------------------------------------------ */
 @media print and (max-width: 640px) {
- .rslidy-responsive-table {
+ /* Responsive table base styles */
+.rslidy-responsive-table {
   align-items: center !important;
   display: flex !important;
   flex-direction: column !important;
@@ -413,7 +437,8 @@ th.rslidy-no-sort::before {
   display: none !important;
  }
 
- .rslidy-responsive-table td.rslidy-symbol,
+ /* Centred symbol cells */
+.rslidy-responsive-table td.rslidy-symbol,
  .rslidy-responsive-table th.rslidy-symbol {
   text-align: center !important;
  }
@@ -433,7 +458,8 @@ th.rslidy-no-sort::before {
   margin-bottom: 1em !important;
  }
 
- .rslidy-responsive-table td {
+ /* Table body cells */
+.rslidy-responsive-table td {
   min-width: 15em !important;
   padding-left: 10% !important;
   position: relative !important;
@@ -457,7 +483,8 @@ th.rslidy-no-sort::before {
   font-weight: 400 !important;
  }
 
- .rslidy-responsive-table td.rslidy-text {
+ /* Left-aligned text cells */
+.rslidy-responsive-table td.rslidy-text {
   text-align: left !important;
  }
 

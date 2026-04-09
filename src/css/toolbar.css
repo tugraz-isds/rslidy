@@ -1,3 +1,4 @@
+/* Footer and progress area */
 #rslidy-footer {
   position: relative;
   flex: 0 0 auto;
@@ -5,10 +6,12 @@
   transition: 0.30s;
 }
 
+/* Hidden footer state */
 .rslidy-bar-hidden {
   height: 0 !important;
 }
 
+/* Reached progress bar */
 #rslidy-progress-bar {
   position: absolute;
   left: 0; top: 0; right: 0; bottom: 0;
@@ -19,6 +22,7 @@
   transition: width 1s;
 }
 
+/* Remaining progress bar background */
 #rslidy-progress-bar-bg {
   position: absolute;
   left: 0; top: 0; right: 0; bottom: 0;
@@ -28,6 +32,7 @@
   z-index: 5;
 }
 
+/* Progress bar thumbnail markers */
 #rslidy-progress-bar-nubs {
   position: absolute;
   left: 0; top: 0; right: 0; bottom: 0;
@@ -36,6 +41,7 @@
   z-index: 7;
 }
 
+/* Toolbar wrapper */
 #rslidy-toolbar-area {
   position: relative;
   flex: 0 0 auto;
@@ -46,6 +52,7 @@
   z-index: 4;
 }
 
+/* Main toolbar */
 #rslidy-toolbar {
   position: absolute;
   bottom: 0;
@@ -58,6 +65,7 @@
   transition: 0.30s;
 }
 
+/* Toolbar content cell */
 #rslidy-toolbar-content {
   display: table-cell;
   vertical-align: middle;
@@ -70,6 +78,7 @@
   margin-top: 0em !important;
 }
 
+/* Presentation timer */
 #rslidy-timer {
   float: right;
   margin-right: 0.15em;
@@ -78,6 +87,7 @@
   cursor: pointer;
 }
 
+/* Slide number input */
 #rslidy-slide-input {
   width: var(--rslidy-slide-input-width);
   height: 1.40em;
@@ -85,8 +95,10 @@
   text-align: center;
   border: 0em;
   outline: 0;
+  font-size: 100%;
 }
 
+/* Current slide caption */
 #rslidy-slide-caption {
   margin-right: 0.30em;
   margin-left: -0.20em;
@@ -94,6 +106,7 @@
   cursor: pointer;
 }
 
+/* Toolbar button */
 .rslidy-toolbar-button {
   min-width: inherit;
   padding: 0.30em 0.70em;
@@ -107,6 +120,7 @@
   border-radius: 0.15em;
   box-shadow: 0.15em 0.15em var(--rslidy-button-border-color);
   touch-action: manipulation; /* prevent double tap zoom */
+  font-size: 100%;
 }
 
 .rslidy-toolbar-button text {
@@ -133,6 +147,7 @@
   cursor: default;
 }
 
+/* Slide navigation group */
 .rslidy-toolbar-slide {
   margin-top: 0.20em;
   min-width: inherit;
@@ -147,18 +162,21 @@
   background-color: light-dark(white, black);
 }
 
+/* Left-aligned toolbar item */
 .rslidy-float-left {
   float: left;
   margin-left: 0.15em;
   display: block;
 }
 
+/* Right-aligned toolbar item */
 .rslidy-float-right {
   float: right;
   margin-right: 0.15em;
   display: block;
 }
 
+/* Toolbar button icon */
 .rslidy-tb-button {
   width: 1.30em;
   height: 1.30em;
@@ -168,10 +186,12 @@
   cursor: inherit;
 }
 
+/* Horizontally mirrored icon */
 .rslidy-mirror {
   transform: scaleX(-1);
 }
 
+/* Show and display trapezoid icons */
 .rslidy-tb-show, .rslidy-tb-display {
   top: -0.45em;
   position: relative;
@@ -203,6 +223,7 @@
   border-bottom: 1em solid var(--rslidy-button-hover-color);
 }
 
+/* Trapezoid toggle buttons */
 .rslidy-show-button, .rslidy-display-button {
   position: relative;
   top: 1.80em;
@@ -214,6 +235,7 @@
   margin: -5vmin;
 }
 
+/* Wrapper for toolbar show handle */
 #rslidy-trapezoid-wrapper {
   position: absolute;
   bottom: 0;
@@ -222,6 +244,7 @@
   width: 5em;
 }
 
+/* Wrapper for display handle */
 #rslidy-trapezoid-wrapper-display {
   display: none;
   position: fixed;
@@ -232,6 +255,7 @@
   z-index: 6;
 }
 
+/* Progress bar preview marker */
 .rslidy-preview {
   height: var(--rslidy-progressbar-height);
   z-index: 8;
@@ -247,12 +271,14 @@
   }
 }
 
+/* Preview marker without divider */
 .rslidy-nonubs {
   &::after {
     content: none;
   }
 }
 
+/* Preview marker in unreached area */
 .rslidy-preview-reached {
   &::after {
     background-color: var(--rslidy-progressbar-bg-color-unreached);

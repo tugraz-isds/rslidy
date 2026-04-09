@@ -1,6 +1,8 @@
+/* Clickable slide image */
 .rslidy-slide-image:not(.disable-image-viewer) {
   cursor: pointer;
 }
+/* Full-screen image viewer overlay */
  .rslidy-image-viewer {
   display: none;
   position: fixed;
@@ -13,11 +15,10 @@
   background-color: rgba(0, 0, 0, 0.9);
   -webkit-touch-callout: none;
   -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
   user-select: none;
 }
+
+
  .rslidy-image-viewer-container {
   position: relative;
   justify-content: center;
@@ -25,13 +26,17 @@
   height: 100%;
   overflow: hidden;
 }
+
+
  .rslidy-image-viewer-content {
   position: absolute;
   background-color: white;
 }
+
  .rslidy-transition-enabled {
   transition: 0.3s;
 }
+ /* Shared image viewer button styles */
  .rslidy-iv-button {
   position: fixed;
   color: #f1f1f1;
@@ -45,18 +50,22 @@
   text-decoration: none;
   cursor: pointer;
 }
+ /* Close button */
  .rslidy-iv-close {
   top: 0.9375em;
   right: 1em;
 }
+ /* Zoom-in button */
  .rslidy-iv-zoom-in {
   bottom: 0.9375em;
   right: 1em;
 }
+ /* Zoom-out button */
  .rslidy-iv-zoom-out {
   bottom: 0.9375em;
   right: 2.5em;
 }
+ /* Reset zoom button */
  .rslidy-iv-zoom-reset {
   bottom: 0.9375em;
   right: 4em;

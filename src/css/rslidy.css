@@ -1,4 +1,4 @@
-﻿/* Settings applying to everything */
+/* Settings applying to everything */
 html, body {
   width: 100%;
   height: 100%;
@@ -14,37 +14,46 @@ body {
   display: block;
 }
 
+button, input, optgroup, select, textarea {
+  font-family: inherit;
+  font-size: 100%;
+  margin: 0;
+}
+
 *:focus {
   outline: 0.125rem solid #7aacfe !important;
 }
 
 /* Common modifiers */
+/* Fully hides an element */
 .rslidy-hidden {
   display: none !important;
 }
 
+/* Keeps layout but hides content */
 .rslidy-invisible {
   visibility: hidden;
 }
 
+/* Default link colour */
 .rslidy-link {
   color: blue;
 }
 
+/* Prevents selection and interaction */
 .rslidy-noselect {
   user-select: none;
-  -ms-user-select: none;
-  -moz-user-select: none;
-  -khtml-user-select: none;
   -webkit-user-select: none;
   -webkit-touch-callout: none;
   pointer-events: none;
 }
 
+/* Inverts element colours */
 .rslidy-color-invert {
   filter: invert(100%);
 }
 
+/* Loading overlay */
 .rslidy-spinner-overlay {
   position: fixed;
   top: 0;
@@ -56,6 +65,7 @@ body {
   z-index: 10;
 }
 
+/* Loading spinner */
 .rslidy-spinner {
   width: 4rem;
   height: 4rem;
@@ -118,6 +128,7 @@ body {
 }
 
 /* Light mode (default) */
+/* All-slides view */
 .rslidy-allslides {
   color: black !important;
   background-color: white !important;
@@ -128,20 +139,24 @@ body {
 
 /* Dark mode */
 @media (prefers-color-scheme: dark) {
-  body, html, .rslidy-allslides {
+  body, html, /* All-slides view */
+.rslidy-allslides {
     color: #f0f0f0 !important;
     background-color: #121212 !important;
   }
 
-  .rslidy-link {
+  /* Default link colour */
+.rslidy-link {
     color: #6ca0ff !important;
   }
 
-  .rslidy-spinner-overlay {
+  /* Loading overlay */
+.rslidy-spinner-overlay {
     background-color: #1a1a1a !important;
   }
 
-  .rslidy-spinner {
+  /* Loading spinner */
+.rslidy-spinner {
     border: 0.5rem rgba(255, 255, 255, 0.25) solid;
     border-top: 0.5rem rgba(255, 255, 255, 1) solid;
   }
@@ -151,7 +166,8 @@ body {
     color: #eaeaea !important;
   }
 
-  .rslidy-color-invert {
+  /* Inverts element colours */
+.rslidy-color-invert {
     filter: invert(0%) !important;
   }
 }
@@ -200,7 +216,8 @@ body {
     display: block !important;
   }
 
-  .rslidy-color-invert {
+  /* Inverts element colours */
+.rslidy-color-invert {
     filter: invert(0%) !important;
   }
 }

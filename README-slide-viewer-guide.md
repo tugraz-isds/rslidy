@@ -42,9 +42,26 @@ to a specific slide by entering its number and pressing Return.
 
 Slide font sizes can be decreased, reset, or increased using the **−**,
 **R**, and **+** keys. When combined with the **Shift** key, the same
-shortcuts adjust the font size of the user interface instead. The
-**Esc** key closes all open panels. Extra mouse buttons may also be used
-for navigation if they are mapped to the browser’s history functions.
+shortcuts adjust the font size of the user interface instead.
+
+The following keyboard shortcuts are available:
+- **← / →** – previous / next slide
+- **Page Up / Page Down** – previous / next slide
+- **Home / End** – first / last slide
+- **J** – jump to a specific slide
+- **− / R / +** – decrease, reset, increase content font size
+- **Shift + (− / R / +)** – adjust user interface font size
+- **O** – open Slide Overview panel
+- **C** – open Table of Contents panel
+- **S** – open Settings panel
+- **P** – open Print Settings panel
+- **H** – open Help panel
+- **A** – toggle display of all slides
+- **T** – toggle toolbar visibility
+- **Esc** – close any open panel, menu, or image viewer
+
+Extra mouse buttons may also be used for navigation if they are mapped
+to the browser’s history functions.
 
 
 
@@ -61,9 +78,30 @@ unless orientation is locked at the operating system level.
 
 
 
+## 4. Image Viewer
+
+Rslidy offers a built-in Image Viewer that is automatically attached
+to all slide images. Selecting an image opens it in a fullscreen overlay,
+where it is scaled to fit the viewport while preserving its aspect ratio.
+
+The viewer provides the following controls:
+
+- Mouse wheel – zoom in and out
+- Drag – pan the image
+- Zoom In / Zoom Out buttons – adjust zoom level
+- Reset button – restore initial zoom and centre the image
+- Close button or **Esc** – close the viewer
+
+The viewer adapts automatically to viewport size changes and keeps the
+image aligned within the visible area. The browser’s back action can
+also be used to close the viewer.
+
+Images can be excluded from the viewer by applying the
+`disable-image-viewer` class.
 
 
-## 4. Progress Bar
+
+## 5. Progress Bar
 
 The Progress Bar provides a visual overview of the current position
 within the slide deck. Previously visited slides are shown in a darker
@@ -75,22 +113,32 @@ navigate directly to the corresponding slide.
 
 
 
-## 5. Toolbar
+## 6. Toolbar
 
 The Toolbar is positioned at the bottom of the screen and provides
 direct access to Rslidy’s main navigation and configuration features. It
 can be hidden to maximise available screen space and restored at any
-time. All toolbar functions are also accessible via keyboard shortcuts.
+time.
 
-The Toolbar offers controls for slide navigation, slide overview,
-displaying all slides as a single scrollable page, accessing settings
-and print options, opening the help panel, and toggling the table of
-contents.
+The Toolbar provides the following controls:
+
+- Slide Overview (**O**) – open thumbnail overview of all slides
+- Hide Toolbar (**T**) – toggle toolbar visibility
+- Display All Slides (**A**) – show all slides in a continuous view
+- First Slide (**Home**) – jump to first slide
+- Previous Slide (**←**) – navigate to previous slide
+- Slide Input (**J**) – jump to a specific slide
+- Next Slide (**→**) – navigate to next slide
+- Last Slide (**End**) – jump to last slide
+- Print Settings (**P**) – open print configuration
+- Settings (**S**) – open viewer settings
+- Help (**H**) – open help panel
+- Table of Contents (**C**) – open slide structure overview
 
 
 
 
-## 6. Panels
+## 7. Panels
 
 Rslidy provides several panels that appear in response to user
 interaction. All panels can be opened either via the Toolbar or by using
@@ -125,7 +173,7 @@ panel.
 
 
 
-## 7. Settings and Print Settings
+## 8. Settings and Print Settings
 
 Rslidy provides two configuration panels that allow viewers to adjust
 interaction and output without modifying the slide deck files. Both
@@ -133,7 +181,7 @@ panels can be opened from the Toolbar and are intended for runtime use.
 Where supported, choices are persisted in the browser’s local storage and
 are restored automatically on subsequent visits.
 
-### 7.1 Settings Panel
+### 8.1 Settings Panel
 
 The Settings Panel focuses on interaction and readability options. It
 offers controls for adjusting content and user interface font sizes and
@@ -155,7 +203,7 @@ for enabling or disabling selected interaction techniques.
   for the current session.
 
 
-### 7.2 Print Settings Panel
+### 8.2 Print Settings Panel
 
 The Print Settings Panel determines how the slide deck is prepared for
 printing and PDF export. It generates print-specific CSS rules and
@@ -186,16 +234,7 @@ injects them at runtime before invoking the browser’s print dialogue.
   where permitted and are reapplied on load.
 
 
-
-## 8. Image Viewer
-
-Rslidy offers a built-in Image Viewer that is automatically attached
-to all slide images. It enables zooming and panning using mouse,
-keyboard, or on-screen controls.
-Images can be zoomed using the mouse wheel, on-screen controls, or
-keyboard shortcuts. Dragging pans the image, and a reset control
-restores the default view. The Image Viewer can be closed using the
-on-screen control, the **Esc** key, or the browser’s back action.
+  
 
 
 

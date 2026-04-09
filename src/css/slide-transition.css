@@ -40,38 +40,47 @@
   }
 }
 
+/* Enables slide transition styles */
 .animated {
   transition: 1s;
 }
 
+/* Forward fade transition */
 .slide.animated.forwards.fade {
   animation: fade 0.5s normal cubic-bezier(0.54, 0, 0.54, 1) forwards;
 }
 
+/* Backward fade transition */
 .slide.animated.backwards.fade {
   animation: fade 0.5s reverse cubic-bezier(0.54, 0, 0.54, 1) forwards;
 }
 
+/* Forward slide-in transition */
 .slide.animated.forwards.slidein {
   animation: slideinright 0.5s normal cubic-bezier(0.54, 0, 0.54, 1) forwards;
 }
 
+/* Backward slide-in transition */
 .slide.animated.backwards.slidein {
   animation: slideinleft 0.5s reverse cubic-bezier(0.54, 0, 0.54, 1) forwards;
 }
 
+/* Forward slide-out transition */
 .slide.animated.forwards.slideout {
   animation: slideinleft 0.5s normal cubic-bezier(0.54, 0, 0.54, 1) forwards;
 }
 
+/* Backward slide-out transition */
 .slide.animated.backwards.slideout {
   animation: slideinright 0.5s reverse cubic-bezier(0.54, 0, 0.54, 1) forwards;
 }
 
+/* Forward zoom transition */
 .slide.animated.forwards.zoom {
   animation: zoom 0.5s normal cubic-bezier(0.54, 0, 0.54, 1) forwards;
 }
 
+/* Backward zoom transition */
 .slide.animated.backwards.zoom {
   animation: zoom 0.5s reverse cubic-bezier(0.54, 0, 0.54, 1) forwards;
 }

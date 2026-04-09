@@ -1,3 +1,4 @@
+/* Overview side panel */
 .rslidy-overview {
   width: var(--rslidy-overview-width);
   height: 100%;
@@ -14,16 +15,19 @@
   transition: background-color 0.3s, color 0.3s;
 }
 
+
 .rslidy-overview-visible {
   position: relative;
   transform: translateX(0) !important;
 }
 
+/* Slide overview panel */
 #rslidy-overview-slides {
   left: 0;
   transform: translateX(-100%);
 }
 
+/* Table of contents panel */
 #rslidy-overview-toc {
   right: 0;
   transform: translateX(100%);
@@ -38,6 +42,7 @@
   filter: brightness(0.9);
 }
 
+/* Slide thumbnail element */
 .rslidy-slide-thumbnail, .rslidy-slide-thumbnail-pv {
   display: block;
   overflow: hidden;
@@ -48,12 +53,14 @@
   cursor: pointer;
 }
 
+/* Selected thumbnail state */
 .rslidy-slide-selected {
   filter: brightness(1.18);
   box-sizing: border-box;
   border: 0.15em solid lightskyblue;
 }
 
+/* Full clickable area */
 .rslidy-slide-clickelement {
   z-index: 1;
   width: 100%;
@@ -61,6 +68,7 @@
   display: block;
 }
 
+/* TOC link item */
 .rslidy-slide-link {
   z-index: 1;
   font-size: 0.8em;
@@ -79,6 +87,7 @@
   background-color: var(--rslidy-button-hover-color);
 }
 
+/* Caption below a thumbnail */
 .rslidy-thumbnail-caption {
   font-size: 0.7em;
   text-align: center;
