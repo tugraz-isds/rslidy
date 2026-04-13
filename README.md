@@ -106,7 +106,7 @@ Rslidy defines a set of CSS custom properties in the file
 `rslidy/src/css/_variables.css`, enabling theming and customisation.
 
 For a full overview of all global variables and their usage, see
-the [Rslidy CSS Variables Guide](README-variables.md).
+the [Rslidy CSS Variables Guide](README-variables-guide.md).
 
 
 
