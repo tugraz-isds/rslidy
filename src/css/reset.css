@@ -1,22 +1,114 @@
-// minimal reset.css from https://alligator.io/css/minimal-css-reset/
-// with some modifications
+/* ===============================================
+   Ultimate Modern CSS Reset
+   Based on best practices from Eric Meyer,
+   Josh W. Comeau, Andy Bell, and modern standards
+   =============================================== */
 
-html {
+/* 1. Use a more-intuitive box-sizing model */
+*, *::before, *::after {
   box-sizing: border-box;
-  font-size: 100%;
+}
+
+/* 2. Remove default margin and padding */
+body, h1, h2, h3, p, figure { margin: 0; }
+
+/* 3. Set core body defaults */
+body {
+  min-height: 100vh;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* 4. Remove list styles on ul, ol elements with a list role */
+ul[role='list'], ol[role='list'] {
+  list-style: none;
+}
+
+/* 5. Set shorter line heights on headings and interactive elements */
+h1, h2, h3, h4, button, input, label {
+  line-height: 1.1;
+}
+
+/* 6. Balance text wrapping on headings */
+h1, h2, h3, h4 {
+  text-wrap: balance;
+}
+
+/* 7. Improve text rendering and wrapping */
+p, h1, h2, h3, h4, h5, h6 {
+  overflow-wrap: break-word;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+/* 8. A elements that don't have a class get default styles */
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+  color: currentColor;
+}
+
+/* 9. Make images and media easier to work with */
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* 10. Inherit fonts for inputs and buttons */
+input, button, textarea, select {
   font: inherit;
 }
 
-*, *:before, *:after {
-  box-sizing: inherit;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+/* 11. Make sure textareas without a rows attribute are not tiny */
+textarea:not([rows]) {
+  min-height: 10em;
 }
 
-body, h1, h2, h3, h4, h5, h6, p, ol, ul, tr {
-  margin: 0;
-  padding: 0;
+/* 12. Anything that has been anchored to should have extra scroll margin */
+:target {
+  scroll-margin-block: 5ex;
 }
 
-button {
-  -webkit-appearance: none;
+
+/* 14. Enable keyword animations for modern browsers */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    interpolate-size: allow-keywords;
+  }
+}
+
+/* 15. HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+/* 16. Remove quotes from blockquotes and q elements */
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+
+/* 17. Table border collapse */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* 18. Focus management for accessibility */
+:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+/* 19. Remove focus outline for mouse users */
+:focus:not(:focus-visible) {
+  outline: none;
 }

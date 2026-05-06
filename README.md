@@ -139,11 +139,11 @@ To make list items appear one at a time, use the
 
 #### Images
 
-The inclusion of images or other graphical elements works just like in
-any other HTML file within slides using the standard HTML `<img>`
-element. The same counts for CSS style definitions. However, all CSS
-definitions must be defined outside the body.  A possible inclusion of
-a picture with a CSS might look as shown below:
+Images can be included in slides in the same way as in any other HTML
+document, using the standard HTML `<img>` element. The same applies to
+CSS styling. CSS rules should be defined outside the document body,
+for example in the document head or in a separate stylesheet. 
+A possible inclusion of a picture with a CSS might look as shown below:
 
 ```html
 <style>
@@ -162,6 +162,23 @@ a picture with a CSS might look as shown below:
   <section>
   <h1>Image Demo</h1>
   <img src="logo_tu.png" alt="tugraz-isds" style="width:25%;">
+  </section>
+</body>
+```
+
+SVG images can be included like any other image by using the standard HTML `<img>` element. 
+Authors should ensure that SVG files define intrinsic dimensions, for example by 
+using a `viewBox`, or that the displayed size is set explicitly in the HTML. If an SVG image 
+does not define a reliable intrinsic size and no width or height is set on the `<img>` element, 
+browsers may use a fallback size such as 300 × 150 pixels.
+A recommended SVG image inclusion is shown below:
+```html
+<body>
+  <section>
+  <h1>SVG Image Demo</h1>
+  <img src="images/this-is-ia.svg"
+       alt="This is IA"
+       style="width:30em;height:auto;" />
   </section>
 </body>
 ```

@@ -113,31 +113,55 @@ with these animation classes.
 
 ## 4. Images and the Image Viewer
 
-Images can be included using the 
-`<img>` element. Rslidy attaches an image viewer to images by
-default, enabling pan and zoom interactions via mouse, keyboard, or
-on-screen controls.
+Images can be included using the `<img>` element. Rslidy attaches an
+image viewer to images by default, enabling pan and zoom interactions
+via mouse, keyboard, or on-screen controls.
 
 A typical figure pattern:
 
 ```html
 <section>
   <h1>Image Example</h1>
+
   <figure>
-    <img src="images/example.png" alt="Descriptive alternative text"/>
+
+    <img src="images/example.png"
+      alt="Descriptive alternative text" />
+
     <figcaption>
       Keep captions concise and include credits where required.
     </figcaption>
+
   </figure>
 </section>
 ```
+
+SVG images can be included in the same way by using the standard HTML
+`<img>` element. Authors should ensure that SVG files define intrinsic
+dimensions, for example via a `viewBox`, or explicitly set a width or
+height on the `<img>` element.
+
+```html
+<body>
+  <section>
+    <h1>SVG Image Demo</h1>
+
+    <img src="images/this-is-ia.svg"
+      alt="This is IA"
+      style="width:30em;height:auto;" />
+
+  </section>
+</body>
+```
+
 Rslidy also provides the optional helper classes
-`rslidy-images` and `rslidy-large-images`. These classes centre images
-or videos inside a flexible container and apply a predefined 16:9 media
-area.
+`rslidy-images` and `rslidy-large-images`. These classes can also be
+used with SVG images. They centre images or videos inside a flexible
+container and apply a predefined 16:9 media area.
 
 - `rslidy-images` is intended for smaller media elements. It limits the
   maximum height to `15em` and sets the width to `auto`.
+
 - `rslidy-large-images` is intended for larger media elements. It
   limits the maximum height to `25em` and sets the width to `auto`.
 
