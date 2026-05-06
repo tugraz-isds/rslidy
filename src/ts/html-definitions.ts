@@ -11,7 +11,7 @@ export const help_text = `
 role="region" aria-label="Help" tabindex="0">
   <div id="rslidy-help-popup">
   <h1>
-    Rslidy Version 2.0.2
+    Rslidy Version 2.0.3
     <a target="_blank" href="https://github.com/tugraz-isds/rslidy">GitHub</a>
   </h1>
   <a class="rslidy-help-close" title="`+t.imageviewer[3]+`" href="#">&times;</a>
