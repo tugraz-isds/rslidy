@@ -103,6 +103,15 @@ export class ToolbarComponent {
 
     if(window.rslidy.start_with_toolbar_minimized)
       this.showHideToggleClicked();
+
+    document.documentElement.style.setProperty(
+        "--rslidy-total-slides",
+        String(window.rslidy.num_slides)
+    );
+
+    const slideNumber = document.createElement("div");
+    slideNumber.id = "rslidy-slide-number-display";
+    document.body.appendChild(slideNumber);
   }
 
   // ---
@@ -253,6 +262,12 @@ export class ToolbarComponent {
         this.printstyle = window.rslidy.printSettings.style;
         document.getElementsByTagName('head')[0].removeChild(this.printstyle);
       }
+      const slides = document.querySelectorAll(".slide");
+      const totalSlides = slides.length;
+
+      slides.forEach((slide) => {
+        slide.setAttribute("data-total-slides", String(totalSlides));
+      });
       //scroll to current slide
       var slide = window.rslidy.utils.getSlide(window.rslidy.content.currentSlideIndex);
       slide.scrollIntoView();

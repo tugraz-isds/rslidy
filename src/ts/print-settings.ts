@@ -7,29 +7,49 @@ interface Data {
   font_size: string;
   layout: string;
   paperSize: string;
+  slideOption: string;
+  slideRange: string;
+  printOption: string;
+  customZoom: string;
+  customScaling: string;
+  transformOrigin: string;
 }
 
 export class PrintSettingsComponent {
   private view: HTMLElement;
-  public style: HTMLStyleElement;
+  public style: HTMLStyleElement | null = null;
 
   constructor() {
-    this.view = window.rslidy.utils.prependHtmlString(document.body, print_settings_html);
+    this.view = window.rslidy.utils.prependHtmlString(
+        document.body,
+        print_settings_html
+    );
 
     this.initializeSlideRangeToggle();
 
-    // Set default values
-    (<HTMLInputElement>this.view.querySelector("#rslidy-checkbox-snum")).checked = true;
-    (<HTMLInputElement>this.view.querySelector("#rslidy-checkbox-frame")).checked = true;
-    (<HTMLInputElement>this.view.querySelector("#rslidy-checkbox-link")).checked = false;
+    // Set default values.
+    (this.view.querySelector("#rslidy-checkbox-snum") as HTMLInputElement).checked = true;
+    (this.view.querySelector("#rslidy-checkbox-frame") as HTMLInputElement).checked = true;
+    (this.view.querySelector("#rslidy-checkbox-link") as HTMLInputElement).checked = false;
 
-    // Apply print settings on change
     const inputs = this.view.getElementsByTagName("input");
     for (let i = 0; i < inputs.length; i++) {
-      inputs[i].onchange = () => this.applyPrintSettings();
+      inputs[i].onchange = () => {
+        this.updatePrintInputStates();
+        this.applyPrintSettings();
+        this.saveSettings();
+      };
     }
 
-    // Close menu on selection
+    const selects = this.view.getElementsByTagName("select");
+    for (let i = 0; i < selects.length; i++) {
+      selects[i].onchange = () => {
+        this.updatePrintInputStates();
+        this.applyPrintSettings();
+        this.saveSettings();
+      };
+    }
+
     const elementsToCloseOn = [
       "#rslidy-checkbox-link",
       "#rslidy-checkbox-snum",
@@ -37,305 +57,162 @@ export class PrintSettingsComponent {
       "#rslidy-input-font-size",
       "#rslidy-button-print-submit"
     ];
+
     elementsToCloseOn.forEach(selector => {
-      this.view.querySelector(selector)?.addEventListener("click",
-        e => window.rslidy.toolbar.closeMenuOnSelection());
+      this.view.querySelector(selector)?.addEventListener("click", () =>
+          window.rslidy.toolbar.closeMenuOnSelection()
+      );
     });
 
-    // Print button handler
     this.view.querySelector("#rslidy-button-print-submit")
-      ?.addEventListener("click", e => this.print());
+        ?.addEventListener("click", () => this.print());
 
-    this.applyPrintSettings();
+    this.loadSettings();
   }
 
-  private initializeSlideRangeToggle() {
+  private initializeSlideRangeToggle(): void {
     const slideRadios = this.view.querySelectorAll('input[name="slide-print-option"]');
-    const rangeInput = <HTMLInputElement>this.view.querySelector("#rslidy-slide-range-input");
-    const customZoomRadio = <HTMLInputElement>this.view.querySelector('#rslidy-checkbox-zoom');
-    const zoomInput = <HTMLInputElement>this.view.querySelector('#custom-zoom-input');
+    const printOptions = this.view.querySelectorAll('input[name="print-options"]');
 
-    if (!slideRadios.length || !rangeInput) {
+    if (!slideRadios.length) {
       console.error("Print settings elements not found!");
       return;
     }
 
-    // Update all dependent states
-    const updateStates = () => {
-      // Fix: Properly type the checked radio button
-      const checkedSlideRadio = this.view.querySelector(
-        'input[name="slide-print-option"]:checked'
-      ) as HTMLInputElement | null;
+    this.updatePrintInputStates();
 
-      const isCustomSlide = checkedSlideRadio?.value === "custom";
-      //const isCustomScale = customScaleRadio.checked;
-      const isCustomZoom = customZoomRadio.checked;
-
-      // Slide range input
-      rangeInput.disabled = !isCustomSlide;
-
-      // Enable/disable scaling and zoom inputs
-      //scalingInput.disabled = !isCustomScale;
-      zoomInput.disabled = !isCustomZoom;
-
-      // Handle position radios
-    };
-
-    // Initialize states
-    updateStates();
-
-    // Event listeners
     slideRadios.forEach(radio => {
-      radio.addEventListener("change", updateStates);
+      radio.addEventListener("change", () => this.updatePrintInputStates());
     });
 
-
-    // Print options changes
-    document.querySelectorAll('input[name="print-options"]').forEach(radio => {
-      radio.addEventListener("change", updateStates);
+    printOptions.forEach(radio => {
+      radio.addEventListener("change", () => this.updatePrintInputStates());
     });
   }
 
-  private applyPrintSettings() {
-    if (this.style) {
-      document.head.removeChild(this.style);
+  private updatePrintInputStates(): void {
+    const checkedSlideRadio = this.view.querySelector('input[name="slide-print-option"]:checked') as HTMLInputElement | null;
+    const rangeInput = this.view.querySelector("#rslidy-slide-range-input") as HTMLInputElement | null;
+    const customZoomRadio = this.view.querySelector("#rslidy-checkbox-zoom") as HTMLInputElement | null;
+    const zoomInput = this.view.querySelector("#custom-zoom-input") as HTMLInputElement | null;
+
+    const isCustomSlide = checkedSlideRadio?.value === "custom";
+    const isCustomZoom = customZoomRadio?.checked === true;
+
+    if (rangeInput) rangeInput.disabled = !isCustomSlide;
+    if (zoomInput) zoomInput.disabled = !isCustomZoom;
+  }
+
+  private applyPrintSettings(): void {
+    // Remove existing style by ID to ensure clean re-injection
+    const existingStyle = document.getElementById("rslidy-print-style");
+    if (existingStyle) {
+      existingStyle.remove();
     }
 
-    // Get all settings values
-        const link = <HTMLInputElement>this.view.querySelector("#rslidy-checkbox-link");
-      const snum = <HTMLInputElement>this.view.querySelector("#rslidy-checkbox-snum");
-      const frame = <HTMLInputElement>this.view.querySelector("#rslidy-checkbox-frame");
-      const font_size = <HTMLInputElement>this.view.querySelector("#rslidy-input-font-size");
-      const layout = <HTMLSelectElement>this.view.querySelector("#rslidy-select-orientation");
-      const paperSize = <HTMLSelectElement>this.view.querySelector("#rslidy-select-paper-size");
-      const selectedSlideOption = <HTMLInputElement>this.view.querySelector('input[name="slide-print-option"]:checked');
-      const slideRangeInput = <HTMLInputElement>this.view.querySelector("#rslidy-slide-range-input");
-      const selectedOrigin = this.view.querySelector(
-        'input[name="transform-origin"]:checked'
-      ) as HTMLInputElement | null;
-      const origin = selectedOrigin?.value || "center";    const scalingInput = <HTMLInputElement>this.view.querySelector("#custom-scaling-input");
+    const link = this.view.querySelector("#rslidy-checkbox-link") as HTMLInputElement;
+    const snum = this.view.querySelector("#rslidy-checkbox-snum") as HTMLInputElement;
+    const frame = this.view.querySelector("#rslidy-checkbox-frame") as HTMLInputElement;
+    const font_size = this.view.querySelector("#rslidy-input-font-size") as HTMLInputElement;
+    const layout = this.view.querySelector("#rslidy-select-orientation") as HTMLSelectElement;
+    const paperSize = this.view.querySelector("#rslidy-select-paper-size") as HTMLSelectElement;
 
-      let css = "@media print {\n";
+    const selectedSlideOption = this.view.querySelector('input[name="slide-print-option"]:checked') as HTMLInputElement | null;
+    const slideRangeInput = this.view.querySelector("#rslidy-slide-range-input") as HTMLInputElement | null;
+    const selectedOrigin = this.view.querySelector('input[name="transform-origin"]:checked') as HTMLInputElement | null;
+    const scalingInput = this.view.querySelector("#custom-scaling-input") as HTMLInputElement | null;
 
-      // Handle slide visibility
-      if (selectedSlideOption.value === "custom") {
+    let css = "@media print {\n";
+
+    // 1. Handle Slide Visibility
+    if (selectedSlideOption?.value === "custom" && slideRangeInput) {
       const range = this.parseSlideRange(slideRangeInput.value);
       css += this.applyCustomSlideRange(range);
-    } else if (selectedSlideOption.value === "current") {
+    } else if (selectedSlideOption?.value === "current") {
       css += this.applyCurrentSlideOnly();
     }
 
-    // Paper size and orientation
-    const isValidFormat = /^\d+(mm|in)\s\d+(mm|in)$/.test(paperSize.value);
-    if (!isValidFormat) {
-      console.error("Invalid paper size format");
-      return;
-    }
+    // 2. Handle Page Size and Orientation
+    // We pass the layout (portrait/landscape) directly to the @page size property
+    let pageSize = paperSize.value; // e.g. "A4", "letter", etc.
 
-    let dimensions = paperSize.value;
-    if (layout.value === "landscape") {
-      const [width, height] = dimensions.split(" ");
-      dimensions = `${height} ${width}`;
-    }
-
+    const orientation = layout.value; // "landscape" or "portrait"
+    const pageSizeSyntax = `${pageSize} ${orientation}`;
 
     css += `
-      .slide { margin: auto !important; }
-      #chart .window-rv { display: block; }
-      #rslidy-content-section .slide { display: block; }
-      .slide.animated { animation: none !important; }
-      .unitdisk-nav { position: relative !important; height: 65vh !important; top: 15% !important; }
-      #vorotree canvas { display: block; position: relative !important; max-width: 100% !important; height: auto !important; }
-      @page { size: ${dimensions}; }
+      @page { 
+        size: ${pageSizeSyntax};
+      }
+      html, body {
+        width: 100% !important;
+        height: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+      #rslidy-content-section { transform: none !important; width: 100% !important; }
+      .slide { 
+        margin: auto !important; 
+        display: block !important;
+        page-break-after: always !important;
+        break-after: page !important;
+        position: relative !important;
+        min-height: 30rem;
+      }
+      .slide.rslidy-sectionslide {
+        align-items: center;
+        justify-content: center;
+        display: flex !important;        
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+      }
     `;
 
-    if (window.innerWidth <= 640) {
-      css += `
-    @media print {
-    .rslidy-responsive-table {
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    margin-right: 5.5em;
-    text-align: center;
-    width: auto !important;
-    overflow-x: visible;
-   }
-  
-   .rslidy-responsive-table thead {
-    display: none;
-   }
-  
-   .rslidy-responsive-table tbody,
-   .rslidy-responsive-table td,
-   .rslidy-responsive-table tr {
-    display: block;
-    width: 100%;
-   }
-  
-   .rslidy-responsive-table tr {
-    margin-bottom: 1em;
-   }
-  
-   .rslidy-responsive-table td {
-    min-width: 15em;
-    padding-left: 10%;
-    position: relative;
-    text-align: right;
-    white-space: nowrap;
-   }
-  
-   .rslidy-responsive-table td:before {
-    color: #000;
-    content: attr(data-label);
-    font-weight: 700;
-    left: 0;
-    padding-left: 0.5em;
-    position: absolute;
-    text-align: left;
-   }
-  
-   .rslidy-responsive-table td:first-of-type {
-    background-color: gainsboro;
-    color: #2b2b2b;
-    font-weight: 400;
-    text-align: right !important;
-   }
-  
-   .rslidy-responsive-table td.rslidy-text {
-    text-align: right !important;
-   }
-   .rslidy-responsive-table td.rslidy-date {
-    text-align: right !important;
-   }
-  
-   .rslidy-responsive-table th.rslidy-date {
-    text-align: right !important;
-   }
-   .rslidy-responsive-table th.rslidy-text {
-    text-align: right !important;
-   }
-  
-   .rslidy-responsive-table td.rslidy-symbol,
-   .rslidy-responsive-table th.rslidy-symbol {
-    text-align: right;
-   }
-  
-   .rslidy-responsive-table tr.rslidy-symbol > td {
-    text-align: right;
-   }
-  
-   .rslidy-responsive-table td.rslidy-numeric,
-   .rslidy-responsive-table th.rslidy-numeric {
-    text-align: right;
-   }
-  
-   .rslidy-responsive-table tr.rslidy-text > td {
-    text-align: right;
-   }
-  
-   .rslidy-responsive-table tr.rslidy-numeric > td {
-    text-align: right;
-   }
-   .rslidy-responsive-table-text-scaling {
-    font-size: clamp(0.7rem, 2.2vw, 1rem);
-    width: 100%; /* let table expand */
-    table-layout: auto; /* allow dynamic resizing */
-    word-wrap: break-word; /* break long words */
-   }
-  
-   /* Make sure table cells shrink properly */
-   .rslidy-responsive-table-text-scaling td,
-   .rslidy-responsive-table-text-scaling th {
-    white-space: normal; /* allow wrapping */
-    overflow: hidden;
-    text-overflow: ellipsis;
-   }
- }
-  `;
-    }
+    // 3. Handle Scaling Options
+    const selectedOption = this.view.querySelector('input[name="print-options"]:checked') as HTMLInputElement | null;
+    const origin = selectedOrigin?.value || "center";
 
-
-
-    // Handle print sizing options
-    const selectedOption = this.view.querySelector(
-      'input[name="print-options"]:checked'
-    ) as HTMLInputElement | null;
     if (selectedOption) {
       switch (selectedOption.value) {
         case "actual-size":
           css += `
-            body {
-                transform: none !important;
-                max-height: 100% !important;
-                text-size-adjust: none !important;
-                -webkit-text-size-adjust: none !important;
-                print-color-adjust: exact !important;
-                width: 100% !important;
-            }
             #rslidy-content-section .slide {
-                height: auto !important;
-                max-width: ${window.innerWidth}px !important;
-                overflow: visible !important;
-                page-break-after: always !important;
-                padding: 2rem !important;
+              height: auto !important;
+              max-width: ${window.innerWidth}px !important;
+              padding: 2rem !important;
             }
-                `;
+          `;
           break;
-
         case "fit-page-width":
           css += `
-              #rslidy-content-section .slide {
-                  max-width: 100% !important;
-                  height: auto !important;
-                  overflow: visible !important;
-                  padding: 2rem !important;
-              }
+            #rslidy-content-section .slide {
+              max-width: 100% !important;
+              height: auto !important;
+              padding: 2rem !important;
+            }
           `;
           break;
         case "custom-zoom":
-          const zoomValueInput = <HTMLInputElement>this.view.querySelector("#custom-zoom-input");
-          const zoomValue = parseFloat(zoomValueInput.value);
-          if (!isNaN(zoomValue) && zoomValue > 0) {
-            const origin = selectedOrigin?.value || "center";
+          const zoomValue = parseFloat((this.view.querySelector("#custom-zoom-input") as HTMLInputElement)?.value || "");
+          if (!isNaN(zoomValue)) {
             css += `
               #rslidy-content-section .slide {
-                bottom: 0 !important;
-                left: 0 !important;
-              
                 zoom: ${zoomValue}% !important;
                 transform-origin: ${origin} !important;
-                width: auto !important;
-                height: auto !important;
-                overflow: visible !important;
-                margin: 0;
-                box-sizing: border-box;
+                width: 100% !important;
               }
             `;
           }
           break;
-
         case "custom":
-          const scalingValue = parseFloat(scalingInput.value);
-          if (!isNaN(scalingValue) && scalingValue > 0) {
-            const scaleFactor = scalingValue / 100;
-            const origin = selectedOrigin?.value || "center";
+          const scaleFactor = parseFloat(scalingInput?.value || "") / 100;
+          if (!isNaN(scaleFactor)) {
             css += `
               #rslidy-content-section .slide {
-                bottom: 0 !important;
-                left: 0 !important;
-              
                 transform: scale(${scaleFactor}) !important;
                 transform-origin: ${origin} !important;
-                width: auto !important;
-                height: auto !important;
-                overflow: visible !important;
-                margin: 0;
-                box-sizing: border-box;
-                break-inside: avoid;
-                page-break-inside: avoid; /* for legacy browser support */+#
-                box-sizing: border-box !important;
-                overflow: visible !important;
+                width: 100% !important;
               }
             `;
           }
@@ -343,158 +220,167 @@ export class PrintSettingsComponent {
       }
     }
 
-    // Additional print settings
+    // 4. Extras (Links, Slide Numbers, Frames, Fonts)
     if (!link.checked) {
-      css += `a[href^="http://"]:after, a[href^="https://"]:after { content: "" !important; }`;
+      css += `a[href^="http"]:after { content: "" !important; }`;
     }
-
     if (snum.checked) {
       css += `
         #rslidy-content-section { counter-reset: slide-counter; }
         #rslidy-content-section .slide:after {
           content: counter(slide-counter);
           counter-increment: slide-counter;
-          position: absolute;
-          right: 0.8rem;
-          bottom: 0.8rem;
-          font: 60% Sans-Serif;
+          position: absolute; right: 0.8rem; bottom: 0.8rem; font: 60% Sans-Serif;
         }
       `;
     }
-
     if (frame.checked) {
-      css += `.slide { border: ${window.rslidy.print_frame}; }`;
+      css += `.slide { border: ${window.rslidy.print_frame || '1px solid #eee'}; }`;
     }
-
-    if (font_size.value != "") {
+    if (font_size.value !== "") {
       css += `body { font-size: ${font_size.value}%; }`;
     }
 
     css += "\n}";
 
-    // Inject CSS
-    const style = document.createElement('style');
-    style.type = 'text/css';
+    const style = document.createElement("style");
+    style.id = "rslidy-print-style";
     style.innerHTML = css;
     document.head.appendChild(style);
     this.style = style;
-
-    // Print media support
-    if (window.matchMedia) {
-      const mediaQueryList = window.matchMedia('print');
-      mediaQueryList.addListener(mql => {
-        if (mql.matches) window.dispatchEvent(new Event('resize'));
-      });
-    }
   }
 
   private parseSlideRange(input: string): number[] {
-      return input.split(',').reduce<number[]>((acc, part) => {
-        if (part.includes('-')) {
-          const [start, end] = part.split('-').map(Number);
-          if (!isNaN(start) && !isNaN(end) && start <= end) {
-            for (let i = start; i <= end; i++) acc.push(i);
-          }
-        } else {
-          const num = Number(part);
-          if (!isNaN(num)) acc.push(num);
+    return input.split(",").reduce<number[]>((acc, part) => {
+      if (part.includes("-")) {
+        const [start, end] = part.split("-").map(Number);
+        if (!isNaN(start) && !isNaN(end)) {
+          for (let i = start; i <= end; i++) acc.push(i);
         }
-        return acc;
-      }, []);
-    }
+      } else {
+        const num = Number(part);
+        if (!isNaN(num)) acc.push(num);
+      }
+      return acc;
+    }, []);
+  }
 
   private applyCustomSlideRange(range: number[]): string {
-      const slides = document.querySelectorAll("#rslidy-content-section .slide");
-      const totalSlides = slides.length;
-      const validRange = range.filter(num => num >= 1 && num <= totalSlides);
-
-      const visibleSlides = validRange
+    const slides = document.querySelectorAll("#rslidy-content-section .slide");
+    const visibleSlides = range
+        .filter(num => num >= 1 && num <= slides.length)
         .map(num => `#rslidy-content-section .slide:nth-of-type(${num}) { display: block !important; }`)
         .join("\n");
-
-      return `
-      #rslidy-content-section .slide { display: none !important; }
-      ${visibleSlides}
-    `;
-    }
+    return `#rslidy-content-section .slide { display: none !important; }\n${visibleSlides}`;
+  }
 
   private applyCurrentSlideOnly(): string {
-      const currentSlideIndex = window.rslidy.content.getCurrentSlideIndex();
-      return `
+    const currentSlideIndex = window.rslidy.content.getCurrentSlideIndex();
+    return `
       #rslidy-content-section .slide { display: none !important; }
       #rslidy-content-section .slide:nth-of-type(${currentSlideIndex + 1}) { display: block !important; }
     `;
-    }
+  }
 
-  public print() {
-      try {
-        this.applyPrintSettings();
-        const slides = document.querySelectorAll("#rslidy-content-section .slide");
-        const originalHiddenSlides = new Set();
+  public print(): void {
+    try {
+      this.applyPrintSettings();
 
-        slides.forEach(slide => {
-          if (slide.classList.contains("rslidy-hidden")) {
-            originalHiddenSlides.add(slide);
-            slide.classList.remove("rslidy-hidden");
-          }
-        });
+      // Force the browser to recalculate layout before print
+      void document.body.offsetHeight;
 
+      const slides = document.querySelectorAll("#rslidy-content-section .slide");
+      const hiddenSlides: Element[] = [];
+
+      slides.forEach(slide => {
+        if (slide.classList.contains("rslidy-hidden")) {
+          hiddenSlides.push(slide);
+          slide.classList.remove("rslidy-hidden");
+        }
+      });
+// 2. Give Chrome structural time to recalculate the @page orientation bounds
+      requestAnimationFrame(() => {
         setTimeout(() => {
           window.print();
 
-          slides.forEach(slide => {
-            if (originalHiddenSlides.has(slide)) {
-              slide.classList.add("rslidy-hidden");
-            }
-          });
-        }, 200);
-      } catch (e) {
-        console.error("Print error:", e);
-      }
+          // Put hidden slides back after the print dialog closes
+          hiddenSlides.forEach(slide => slide.classList.add("rslidy-hidden"));
+        }, 250); // 250ms is plenty when combined with requestAnimationFrame
+      });
+    } catch (e) {
+      console.error("Print error:", e);
     }
+  }
 
   public loadSettings(): void {
-      try {
-        const item = localStorage.getItem("rslidy-print");
-        if (!item) return;
+    try {
+      const item = localStorage.getItem("rslidy-print");
+      if (!item) {
+        this.updatePrintInputStates();
+        this.applyPrintSettings();
+        return;
+      }
 
-    const data: Data = JSON.parse(item);
-    (<HTMLInputElement>this.view.querySelector("#rslidy-checkbox-link")).checked = data.links;
-    (<HTMLInputElement>this.view.querySelector("#rslidy-checkbox-snum")).checked = data.slidenumbers;
-    (<HTMLInputElement>this.view.querySelector("#rslidy-checkbox-frame")).checked = data.frame;
+      const data: Data = JSON.parse(item);
+      (this.view.querySelector("#rslidy-checkbox-link") as HTMLInputElement).checked = data.links;
+      (this.view.querySelector("#rslidy-checkbox-snum") as HTMLInputElement).checked = data.slidenumbers;
+      (this.view.querySelector("#rslidy-checkbox-frame") as HTMLInputElement).checked = data.frame;
 
-    if (data.font_size) {
-      (<HTMLInputElement>this.view.querySelector("#rslidy-input-font-size")).value = data.font_size;
-    }
-    if (data.layout) {
-      (<HTMLSelectElement>this.view.querySelector("#rslidy-select-orientation")).value = data.layout;
-    }
-    if (data.paperSize) {
-      (<HTMLSelectElement>this.view.querySelector("#rslidy-select-paper-size")).value = data.paperSize;
-    }
+      if (data.font_size) (this.view.querySelector("#rslidy-input-font-size") as HTMLInputElement).value = data.font_size;
+      if (data.layout) (this.view.querySelector("#rslidy-select-orientation") as HTMLSelectElement).value = data.layout;
+      if (data.paperSize) (this.view.querySelector("#rslidy-select-paper-size") as HTMLSelectElement).value = data.paperSize;
 
-    this.applyPrintSettings();
-  } catch (e) {
+      if (data.slideOption) {
+        const radio = this.view.querySelector(`input[name="slide-print-option"][value="${data.slideOption}"]`) as HTMLInputElement | null;
+        if (radio) radio.checked = true;
+      }
+      if (data.slideRange) (this.view.querySelector("#rslidy-slide-range-input") as HTMLInputElement).value = data.slideRange;
+
+      if (data.printOption) {
+        const radio = this.view.querySelector(`input[name="print-options"][value="${data.printOption}"]`) as HTMLInputElement | null;
+        if (radio) radio.checked = true;
+      }
+      if (data.customZoom) (this.view.querySelector("#custom-zoom-input") as HTMLInputElement).value = data.customZoom;
+      if (data.customScaling) (this.view.querySelector("#custom-scaling-input") as HTMLInputElement).value = data.customScaling;
+
+      if (data.transformOrigin) {
+        const radio = this.view.querySelector(`input[name="transform-origin"][value="${data.transformOrigin}"]`) as HTMLInputElement | null;
+        if (radio) radio.checked = true;
+      }
+
+      this.updatePrintInputStates();
+      this.applyPrintSettings();
+    } catch (e) {
       console.error("Error loading settings:", e);
     }
   }
 
   public saveSettings(): void {
-      try {
-        localStorage.setItem("rslidy-print", this.generateJSON());
-      } catch (e) {
-        console.error("Error saving settings:", e);
-      }
+    try {
+      localStorage.setItem("rslidy-print", this.generateJSON());
+    } catch (e) {
+      console.error("Error saving settings:", e);
     }
+  }
 
   private generateJSON(): string {
-      return JSON.stringify({
-        links: (<HTMLInputElement>this.view.querySelector("#rslidy-checkbox-link")).checked,
-        slidenumbers: (<HTMLInputElement>this.view.querySelector("#rslidy-checkbox-snum")).checked,
-      frame: (<HTMLInputElement>this.view.querySelector("#rslidy-checkbox-frame")).checked,
-      font_size: (<HTMLInputElement>this.view.querySelector("#rslidy-input-font-size")).value,
-      layout: (<HTMLSelectElement>this.view.querySelector("#rslidy-select-orientation")).value,
-      paperSize: (<HTMLSelectElement>this.view.querySelector("#rslidy-select-paper-size")).value
+    const checkedValue = (s: string) => (this.view.querySelector(s) as HTMLInputElement | null)?.value || "";
+    const inputValue = (s: string) => (this.view.querySelector(s) as HTMLInputElement | null)?.value || "";
+    const isChecked = (s: string) => (this.view.querySelector(s) as HTMLInputElement | null)?.checked || false;
+
+    return JSON.stringify({
+      links: isChecked("#rslidy-checkbox-link"),
+      slidenumbers: isChecked("#rslidy-checkbox-snum"),
+      frame: isChecked("#rslidy-checkbox-frame"),
+      font_size: inputValue("#rslidy-input-font-size"),
+      layout: inputValue("#rslidy-select-orientation"),
+      paperSize: inputValue("#rslidy-select-paper-size"),
+      slideOption: checkedValue('input[name="slide-print-option"]:checked'),
+      slideRange: inputValue("#rslidy-slide-range-input"),
+      printOption: checkedValue('input[name="print-options"]:checked'),
+      customZoom: inputValue("#custom-zoom-input"),
+      customScaling: inputValue("#custom-scaling-input"),
+      transformOrigin: checkedValue('input[name="transform-origin"]:checked')
     });
   }
 }

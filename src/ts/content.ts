@@ -427,6 +427,19 @@ export class ContentComponent {
         history.replaceState({}, null, "#" + (targetSlideIndex + 1));
 
     // Update slide caption
+    document.documentElement.style.setProperty(
+        "--rslidy-total-slides",
+        String(window.rslidy.num_slides)
+    );
+    document.getElementById("rslidy-slide-number-display").textContent =
+        `${targetSlideIndex + 1}/${window.rslidy.num_slides}`;
+    const slides = document.querySelectorAll("#rslidy-content-section .slide");
+
+    slides.forEach((slide, index) => {
+      slide.setAttribute("data-slide-number", String(index + 1));
+      slide.setAttribute("data-total-slides", String(window.rslidy.num_slides));
+    });
+
     this.slide_caption.innerHTML = " /" + window.rslidy.num_slides;
     (<HTMLInputElement>this.slide_input).value = "" + (targetSlideIndex + 1);
 

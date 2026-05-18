@@ -7,6 +7,7 @@ interface Data {
   shake: boolean;
   space: boolean;
   margintap: boolean;
+  showslidenumbers: boolean;
 }
 
 export class SettingsComponent {
@@ -64,6 +65,12 @@ export class SettingsComponent {
     this.view
       .querySelector("#rslidy-checkbox-margintap")
       .addEventListener("click", e => window.rslidy.toolbar.closeMenuOnSelection());
+    this.view
+        .querySelector("#rslidy-checkbox-showslidenumbers")
+        .addEventListener("click", e => {
+          this.toggleSlideNumbers();
+          window.rslidy.toolbar.closeMenuOnSelection();
+        });
 
     // Enable table sorting + keep desktop & mobile in sync
     this.setupTableSorting();
@@ -94,6 +101,10 @@ export class SettingsComponent {
     (<HTMLInputElement>this.view.querySelector("#rslidy-checkbox-shake")).checked = data.shake;
     (<HTMLInputElement>this.view.querySelector("#rslidy-checkbox-space")).checked = data.space;
     (<HTMLInputElement>this.view.querySelector("#rslidy-checkbox-margintap")).checked = data.margintap;
+    (<HTMLInputElement>this.view.querySelector("#rslidy-checkbox-showslidenumbers")).checked =
+        data.showslidenumbers;
+
+    this.toggleSlideNumbers();
   }
 
   // ---
@@ -108,6 +119,17 @@ export class SettingsComponent {
     }
   }
 
+  private toggleSlideNumbers(): void {
+    const showSlideNumbers = (
+        this.view.querySelector("#rslidy-checkbox-showslidenumbers") as HTMLInputElement
+    ).checked;
+
+    document.body.classList.toggle(
+        "rslidy-show-slide-numbers",
+        showSlideNumbers
+    );
+  }
+
   // ---
   // Description: Generate a JSON string for the localStorage
   // ---
@@ -120,7 +142,8 @@ export class SettingsComponent {
       tilt: (<HTMLInputElement>this.view.querySelector("#rslidy-checkbox-tilt")).checked,
       shake: (<HTMLInputElement>this.view.querySelector("#rslidy-checkbox-shake")).checked,
       space: (<HTMLInputElement>this.view.querySelector("#rslidy-checkbox-space")).checked,
-      margintap: (<HTMLInputElement>this.view.querySelector("#rslidy-checkbox-margintap")).checked
+      margintap: (<HTMLInputElement>this.view.querySelector("#rslidy-checkbox-margintap")).checked,
+      showslidenumbers: (<HTMLInputElement>this.view.querySelector("#rslidy-checkbox-showslidenumbers")).checked
     }
     return JSON.stringify(data);
   }

@@ -283,3 +283,24 @@ input[type="checkbox"]:disabled + label {
 .rslidy-help-close:hover {
   color: light-dark(#666, #eee);
 }
+
+.rslidy-show-slide-numbers #rslidy-slide-number-display {
+  display: block;
+  position: fixed;
+  right: 1.5rem;
+  bottom: 4em;
+  font-size: 1.2rem;
+  z-index: 1;
+  pointer-events: none;
+}
+
+#rslidy-slide-number-display {
+  display: none;
+}
+
+@media print {
+  #rslidy-slide-number-display {
+    display: none !important;
+    visibility: hidden !important;
+  }
+}

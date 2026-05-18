@@ -249,6 +249,11 @@ aria-label="Settings" tabindex="0">
     <input type="checkbox" value="Tap" id="rslidy-checkbox-margintap" checked>
     <label for="rslidy-checkbox-margintap">`+i.slider_icon+`</label>
   </label>
+  <label id="rslidy-checkbox-showslidenumbers-text" class="rslidy-menu-content-settings">
+    Show Slide numbers
+    <input type="checkbox" value="ShowSlideNumbers" id="rslidy-checkbox-showslidenumbers">
+    <label for="rslidy-checkbox-showslidenumbers">`+i.slider_icon+`</label>
+  </label>
   <div class="rslidy-menu-content-settings">
     <label>`+t.settings[5]+`</label>
     <a href="#" title="`+t.settings[7]+`" id="rslidy-button-font-minus"><span class="rslidy-menu-button">`+i.font_minus_icon+`</span></a>
@@ -311,15 +316,15 @@ role="region" aria-label="Print Settings" tabindex="0">
    <label id="rslidy-select-paper-size-text" class="rslidy-menu-content">
     `+t.print_settings[6]+`
     <select id="rslidy-select-paper-size">
-    <option value="216mm 356mm">Legal</option>
-    <option value="216mm 279mm">Letter</option>
-    <option value="279mm 432mm">Tabloid</option>
-    <option value="841mm 1189mm">A0</option>
-    <option value="594mm 841mm">A1</option>
-    <option value="420mm 594mm">A2</option>
-    <option value="297mm 420mm">A3</option>
-    <option selected="selected" value="210mm 297mm">A4</option>
-    <option value="148mm 210mm">A5</option>
+    <option value="legal">Legal</option>
+    <option value="letter">Letter</option>
+    <option value="tabloid">Tabloid</option>
+    <option value="A0">A0</option>
+    <option value="A1">A1</option>
+    <option value="A2">A2</option>
+    <option value="A3">A3</option>
+    <option selected="selected" value="A4">A4</option>
+    <option value="A5">A5</option>
     </select>
   </label>
   <fieldset id="rslidy-exclusive-checkboxes" style="margin-top: 1.5em;">
