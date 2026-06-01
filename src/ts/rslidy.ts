@@ -55,8 +55,8 @@ export class Rslidy {
   close_menu_on_blur: boolean = true;
   close_navigation_on_selection: boolean = false;
   show_slide_dividers: boolean = true;
-  start_in_low_light_mode: boolean = false;
   start_with_toolbar_minimized: boolean = false;
+  show_slide_numbers: boolean = true;
   block_slide_text_selection: boolean = false;
 
   // Advanced custom settings
@@ -145,7 +145,7 @@ export class Rslidy {
 
     // move the old body's children into the content section
     while (document.body.firstChild)
-        cs.appendChild(document.body.firstChild);
+      cs.appendChild(document.body.firstChild);
 
     // Append the wrapper to the body
     document.body.appendChild(wrapper);
@@ -234,19 +234,19 @@ export class Rslidy {
 
     // Window listeners
     window.addEventListener(
-      "hashchange",
-      function() {
-        this.onHashchange();
-      }.bind(this)
+        "hashchange",
+        function() {
+          this.onHashchange();
+        }.bind(this)
     );
 
     // Allow simple touch events on speaker notes overlay (double tap -> hide)
     var speaker_notes_overlay: any = document.getElementById(
-      "rslidy-speakernotes-overlay"
+        "rslidy-speakernotes-overlay"
     );
     speaker_notes_overlay.addEventListener("touchstart", e =>
-      this.content.onTouchstart(e)
-    , {passive: true});
+            this.content.onTouchstart(e)
+        , {passive: true});
 
     // Window listeners
     window.onresize = function(e) {
@@ -256,21 +256,21 @@ export class Rslidy {
     // Device listeners used for TILT and SHAKE
     // add only if possible without permissions
     if (window.DeviceMotionEvent &&
-    !(typeof window.DeviceMotionEvent.requestPermission === 'function')) {
+        !(typeof window.DeviceMotionEvent.requestPermission === 'function')) {
       window.addEventListener(
-        "devicemotion",
-        function(e) {
-          this.onDeviceMotion(e);
-        }.bind(this)
+          "devicemotion",
+          function(e) {
+            this.onDeviceMotion(e);
+          }.bind(this)
       );
     }
     if (window.DeviceOrientationEvent&&
-    !(typeof window.DeviceOrientationEvent.requestPermission === 'function')) {
+        !(typeof window.DeviceOrientationEvent.requestPermission === 'function')) {
       window.addEventListener(
-        "deviceorientation",
-        function(e) {
-          this.onDeviceOrientation(e);
-        }.bind(this)
+          "deviceorientation",
+          function(e) {
+            this.onDeviceOrientation(e);
+          }.bind(this)
       );
     }
   }
@@ -288,7 +288,7 @@ export class Rslidy {
       var minutes: number = Math.floor(this.presentation_time / 60);
       var seconds: number = this.presentation_time % 60;
       timer.innerHTML =
-        this.utils.toTwoDigits(minutes) + ":" + this.utils.toTwoDigits(seconds);
+          this.utils.toTwoDigits(minutes) + ":" + this.utils.toTwoDigits(seconds);
       this.timer_time = this.presentation_time;
     }
   }
@@ -309,23 +309,23 @@ export class Rslidy {
     if (this.timer_enabled == false) {
       // Run
       this.timer_thread = setInterval(
-        function() {
-          // Break out if this.presentation_time is <= 0
-          if (this.timer_time <= 0) {
-            clearInterval(this.timer_thread);
-            this.timer_enabled = false;
-            return;
-          }
-          this.timer_time -= 1;
-          var timer: any = document.getElementById("rslidy-timer");
-          var minutes: number = Math.floor(this.timer_time / 60);
-          var seconds: number = this.timer_time % 60;
-          timer.innerHTML =
-            this.utils.toTwoDigits(minutes) +
-            ":" +
-            this.utils.toTwoDigits(seconds);
-        }.bind(this),
-        1000
+          function() {
+            // Break out if this.presentation_time is <= 0
+            if (this.timer_time <= 0) {
+              clearInterval(this.timer_thread);
+              this.timer_enabled = false;
+              return;
+            }
+            this.timer_time -= 1;
+            var timer: any = document.getElementById("rslidy-timer");
+            var minutes: number = Math.floor(this.timer_time / 60);
+            var seconds: number = this.timer_time % 60;
+            timer.innerHTML =
+                this.utils.toTwoDigits(minutes) +
+                ":" +
+                this.utils.toTwoDigits(seconds);
+          }.bind(this),
+          1000
       );
       this.timer_enabled = true;
     } else {
@@ -518,14 +518,14 @@ export class Rslidy {
       checkbox_tilt.disabled = false;
       checkbox_tilt.checked = true;
       document
-        .getElementById("rslidy-checkbox-tilt-text")
-        .setAttribute("aria-disabled","false");
+          .getElementById("rslidy-checkbox-tilt-text")
+          .setAttribute("aria-disabled","false");
       document
-        .getElementById("rslidy-checkbox-tilt-text")
-        .setAttribute("aria-checked","true");
+          .getElementById("rslidy-checkbox-tilt-text")
+          .setAttribute("aria-checked","true");
       document
-        .getElementById("rslidy-checkbox-tilt-text")
-        .classList.remove("rslidy-disabled");
+          .getElementById("rslidy-checkbox-tilt-text")
+          .classList.remove("rslidy-disabled");
     }
 
     // Return if not activated
@@ -559,7 +559,7 @@ export class Rslidy {
         value = -value;
     } // safari
     else if (window.orientation < 0 || window.orientation >= 180)
-        value = -value;
+      value = -value;
 
     this.tilt = value;
 
@@ -576,15 +576,15 @@ export class Rslidy {
 
     if (value >= this.tilt_lower*tilt_multiplier &&
         value <= this.tilt_upper*tilt_multiplier)
-          this.tilt_action = ()=>this.content.navNext(true);
+      this.tilt_action = ()=>this.content.navNext(true);
     if (value <= -this.tilt_lower*tilt_multiplier &&
         value >= -this.tilt_upper*tilt_multiplier)
-          this.tilt_action = ()=>this.content.navPrevious(true);
+      this.tilt_action = ()=>this.content.navPrevious(true);
 
     if (value >= this.tilt_upper*tilt_multiplier ||
         value <= -this.tilt_upper*tilt_multiplier) {
-          this.tilt_action = null;
-          this.tilt_allowed = false;
+      this.tilt_action = null;
+      this.tilt_allowed = false;
     }
   }
 
@@ -642,9 +642,9 @@ export class Rslidy {
   onDeviceMotion(e: any): void {
     //chrome fires this event with all values being null on all devices
     if (
-      e.acceleration.x == null &&
-      e.acceleration.y == null &&
-      e.acceleration.z == null
+        e.acceleration.x == null &&
+        e.acceleration.y == null &&
+        e.acceleration.z == null
     )
       return;
     // Init if event was fired and necessary
@@ -653,14 +653,14 @@ export class Rslidy {
       checkbox_shake.disabled = false;
       checkbox_shake.checked = true;
       document
-        .getElementById("rslidy-checkbox-shake-text")
-        .setAttribute("aria-disabled","false");
+          .getElementById("rslidy-checkbox-shake-text")
+          .setAttribute("aria-disabled","false");
       document
-        .getElementById("rslidy-checkbox-shake-text")
-        .setAttribute("aria-checked","true");
+          .getElementById("rslidy-checkbox-shake-text")
+          .setAttribute("aria-checked","true");
       document
-        .getElementById("rslidy-checkbox-shake-text")
-        .classList.remove("rslidy-disabled");
+          .getElementById("rslidy-checkbox-shake-text")
+          .classList.remove("rslidy-disabled");
     }
 
     // Return if not activated
@@ -678,15 +678,15 @@ export class Rslidy {
 
     // Increase shake counter if shake is stronger than threshold
     if ((e.acceleration.x > acc_threshold ||
-        e.acceleration.y > acc_threshold ||
-        e.acceleration.z > acc_threshold) &&
+            e.acceleration.y > acc_threshold ||
+            e.acceleration.z > acc_threshold) &&
         shake_interval < this.shake_time_limit &&
         shake_interval > this.min_shake_interval) {
-          this.shakes += 1;
-          if(this.shakes >= this.required_shakes)
-            this.content.navFirst();
-          this.last_shake = now;
-        }
+      this.shakes += 1;
+      if(this.shakes >= this.required_shakes)
+        this.content.navFirst();
+      this.last_shake = now;
+    }
   }
 
 
@@ -721,10 +721,10 @@ export class Rslidy {
 
     // Get current status
     var speaker_notes_overlay: any = document.getElementById(
-      "rslidy-speakernotes-overlay"
+        "rslidy-speakernotes-overlay"
     );
     var hidden: boolean = speaker_notes_overlay.classList.contains(
-      "rslidy-hidden"
+        "rslidy-hidden"
     );
 
     // Hide speaker notes if necessary
@@ -740,23 +740,23 @@ export class Rslidy {
 
     // Get current speaker notes (if there are any)
     var content_section: any = document.getElementById(
-      "rslidy-content-section"
+        "rslidy-content-section"
     );
     var current_slide: any = content_section.getElementsByClassName("slide")[
-      this.content.getCurrentSlideIndex()
-    ];
+        this.content.getCurrentSlideIndex()
+        ];
     var speaker_notes: any =
-      current_slide.getElementsByClassName("speakernotes").length == 1
-        ? current_slide.getElementsByClassName("speakernotes")[0]
-        : null;
+        current_slide.getElementsByClassName("speakernotes").length == 1
+            ? current_slide.getElementsByClassName("speakernotes")[0]
+            : null;
 
     // Show speaker notes and set new text if necessary
     if (speaker_notes != null) {
       speaker_notes_overlay.classList.remove("rslidy-hidden");
       speaker_notes_overlay.innerHTML =
-        '<div class="rslidy-speakernotes-container">' +
-        speaker_notes.innerHTML +
-        "</div>";
+          '<div class="rslidy-speakernotes-container">' +
+          speaker_notes.innerHTML +
+          "</div>";
       // Prevent default double tap event if notes were hidden
       if (e != null && hidden == true) {
         e.preventDefault();
@@ -776,6 +776,20 @@ declare global {
 
 async function start() {
   const t0 = performance.now();
+
+  // 1️⃣ Create a temporary style to hide body children (slides) immediately before rendering
+  const style = document.createElement('style');
+  style.id = 'rslidy-initial-fouc-mask';
+  style.innerHTML = `
+    body > *:not(#rslidy-spinner) {
+      opacity: 0 !important;
+      visibility: hidden !important;
+      pointer-events: none !important;
+    }
+  `;
+  document.head.appendChild(style);
+
+  // 2️⃣ Inject the loading spinner markup
   document.body.insertAdjacentHTML('afterbegin', spinner_html);
   document.body.style.overflow = 'hidden';
 
@@ -784,8 +798,17 @@ async function start() {
 
   setTimeout(() => {
     window.rslidy.init();
+
+    // 3️⃣ Cleanup: Remove the visual mask and restore full layout visibility
+    const mask = document.getElementById('rslidy-initial-fouc-mask');
+    if (mask) mask.remove();
+
     const spinner = document.getElementById('rslidy-spinner');
     if (spinner) spinner.classList.add('rslidy-hidden');
+
+    // Restore layout overflow context
+    document.body.style.overflow = '';
+
     const t1 = performance.now();
     console.log(`[rslidy] Time to first slide: ${(t1 - t0).toFixed(1)} ms`);
   }, 1);

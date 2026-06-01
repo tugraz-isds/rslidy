@@ -82,15 +82,28 @@ export class SettingsComponent {
   // Description: Load settings from the localStorage
   // ---
   loadSettings(): void {
+    let item: string | null;
+
     try {
-      var item = localStorage.getItem("rslidy");
+      item = localStorage.getItem("rslidy");
     } catch(e) {
       console.log(e);
       return;
     }
-    if (item === null || item === undefined) return;
 
-    var data: Data = JSON.parse(item);
+    if (item === null || item === undefined) {
+      const slideNumbersCheckbox = this.view.querySelector(
+          "#rslidy-checkbox-showslidenumbers"
+      ) as HTMLInputElement;
+
+      slideNumbersCheckbox.checked = window.rslidy.show_slide_numbers ?? true;
+      this.toggleSlideNumbers();
+
+      return;
+    }
+
+    const data: Data = JSON.parse(item);
+
     if(data.slidefont != undefined)
       while(data.slidefont != this.slidefont)
         this.changeSlideFont(null, data.slidefont > 0 ? 1 : -1);
@@ -101,8 +114,14 @@ export class SettingsComponent {
     (<HTMLInputElement>this.view.querySelector("#rslidy-checkbox-shake")).checked = data.shake;
     (<HTMLInputElement>this.view.querySelector("#rslidy-checkbox-space")).checked = data.space;
     (<HTMLInputElement>this.view.querySelector("#rslidy-checkbox-margintap")).checked = data.margintap;
-    (<HTMLInputElement>this.view.querySelector("#rslidy-checkbox-showslidenumbers")).checked =
-        data.showslidenumbers;
+
+    const slideNumbersCheckbox =
+        this.view.querySelector("#rslidy-checkbox-showslidenumbers") as HTMLInputElement;
+
+    slideNumbersCheckbox.checked =
+        data.showslidenumbers !== undefined
+            ? data.showslidenumbers
+            : window.rslidy.show_slide_numbers ?? true;
 
     this.toggleSlideNumbers();
   }
@@ -124,10 +143,32 @@ export class SettingsComponent {
         this.view.querySelector("#rslidy-checkbox-showslidenumbers") as HTMLInputElement
     ).checked;
 
-    document.body.classList.toggle(
+    const contentSection = document.querySelector<HTMLElement>(
+        "#rslidy-content-section"
+    );
+
+    if (!contentSection) return;
+
+    contentSection.classList.toggle(
         "rslidy-show-slide-numbers",
         showSlideNumbers
     );
+
+    let slideNumberDisplay = contentSection.querySelector<HTMLElement>(
+        ".rslidy-slide-number-display"
+    );
+
+    if (!slideNumberDisplay) {
+      slideNumberDisplay = document.createElement("div");
+      slideNumberDisplay.className = "rslidy-slide-number-display";
+      contentSection.appendChild(slideNumberDisplay);
+    }
+
+    const slides = document.querySelectorAll<HTMLElement>(
+        "#rslidy-content-section .slide"
+    );
+
+    slideNumberDisplay.textContent = `1 / ${slides.length}`;
   }
 
   // ---
@@ -312,26 +353,35 @@ export class SettingsComponent {
     if (!wrapper?.classList.contains("rslidy-table-sort-mobile")) return;
 
     const select = wrapper.querySelector<HTMLSelectElement>("select");
-    if (!select) return;
+    const sortIcon = wrapper.querySelector<HTMLElement>(
+        ".rslidy-mobile-sort-icon"
+    );
 
-    const buttons = Array.from(wrapper.querySelectorAll<HTMLButtonElement>("button"));
-    if (buttons.length < 2) return;
-
-    const ascBtn = buttons[0];
-    const descBtn = buttons[1];
+    if (!select || !sortIcon) return;
 
     const state = this.getSortState(table);
 
-    // Select: "" is original order
-    if (state.columnIndex === null) {
-      select.value = "";
-    } else {
+    if (state.columnIndex !== null) {
       select.value = String(state.columnIndex);
+    } else if (!select.value && select.options.length > 0) {
+      select.selectedIndex = 0;
     }
 
-    // Active button highlight
-    ascBtn.classList.toggle("active-sort", state.direction === "asc");
-    descBtn.classList.toggle("active-sort", state.direction === "desc");
+    const direction = state.direction ?? "none";
+
+    sortIcon.dataset.dir = direction;
+    sortIcon.classList.toggle("active-sort", state.direction !== null);
+
+    if (direction === "asc") {
+      sortIcon.setAttribute("aria-label", "Sort descending");
+      sortIcon.title = "Sorted ascending. Click the lower half to sort descending.";
+    } else if (direction === "desc") {
+      sortIcon.setAttribute("aria-label", "Restore original order");
+      sortIcon.title = "Sorted descending. Click the lower half again to restore original order.";
+    } else {
+      sortIcon.setAttribute("aria-label", "Sort ascending or descending");
+      sortIcon.title = "Click upper half for ascending, lower half for descending.";
+    }
   }
 
   private applySortAndSync(
@@ -414,6 +464,11 @@ export class SettingsComponent {
     // --- Enable sorting for all responsive tables ---
     tables.forEach((tableEl) => {
       const table = tableEl as HTMLTableElement;
+
+      // Always create the responsive wrapper, even when sorting is disabled.
+      this.ensureResponsiveTableWrapper(table);
+
+      // Still allow stacked responsive layout, but skip all sorting behaviour.
       if (table.classList.contains("rslidy-disable-sorting")) return;
 
       const headers = Array.from(table.querySelectorAll<HTMLTableCellElement>("th"));
@@ -550,18 +605,9 @@ export class SettingsComponent {
     });
   }
 
-  private createMobileSortUI(table: HTMLTableElement): void {
-    // Don't create if already exists
-    if (table.previousElementSibling?.classList.contains('rslidy-table-sort-mobile')) {
-      return;
-    }
-
-    // Get headers from the table
-    const headers = Array.from(table.querySelectorAll('th'));
-    if (headers.length === 0) return;
-
-    // Create wrapper if needed
+  private ensureResponsiveTableWrapper(table: HTMLTableElement): HTMLElement {
     let wrapper = table.parentElement;
+
     if (!wrapper?.classList.contains("rslidy-responsive-table-wrapper")) {
       wrapper = document.createElement("div");
       wrapper.className = "rslidy-responsive-table-wrapper";
@@ -571,72 +617,80 @@ export class SettingsComponent {
       wrapper.classList.add("rslidy-responsive-table-wrapper");
     }
 
+    return wrapper;
+  }
+
+  private createMobileSortUI(table: HTMLTableElement): void {
+    // Don't create if already exists
+    if (
+        table.previousElementSibling?.classList.contains(
+            "rslidy-table-sort-mobile"
+        )
+    ) {
+      return;
+    }
+
+    // Get headers from the table
+    const headers = Array.from(table.querySelectorAll("th"));
+    if (headers.length === 0) return;
+
+    const wrapper = this.ensureResponsiveTableWrapper(table);
+
     // Create mobile sort UI
-    const sortUI = document.createElement('div');
-    sortUI.className = 'rslidy-table-sort-mobile rslidy-responsive-table-text-scaling';
+    const sortUI = document.createElement("div");
+    sortUI.className =
+        "rslidy-table-sort-mobile rslidy-responsive-table-text-scaling";
 
     // Create "Sort by:" label
-    const label = document.createElement('div');
-    label.textContent = 'Sort by:';
-    label.className = 'sort-label';
+    const label = document.createElement("div");
+    label.textContent = "Sort by:";
+    label.className = "sort-label";
 
     // Create controls container
-    const controlsContainer = document.createElement('div');
-    controlsContainer.className = 'controls-container';
+    const controlsContainer = document.createElement("div");
+    controlsContainer.className = "controls-container";
 
     // Create select container
-    const selectContainer = document.createElement('div');
-    selectContainer.className = 'select-container';
+    const selectContainer = document.createElement("div");
+    selectContainer.className = "select-container";
 
     // Create select
-    const select = document.createElement('select');
-    select.className = 'compact-select';
+    const select = document.createElement("select");
+    select.className = "compact-select";
 
-    // Add "Original order" option
-    const resetOption = document.createElement('option');
-    resetOption.value = "";
-    resetOption.textContent = "Original order";
-    select.appendChild(resetOption);
-
-    // Add options from actual headers (full text)
+    // Add options from actual headers only.
+    // There is no "Original order" option anymore.
     headers.forEach((header, index) => {
       const headerText = header.textContent?.trim() || "";
       if (!headerText) return;
 
-      const option = document.createElement('option');
+      const option = document.createElement("option");
       option.value = String(index);
       option.textContent = headerText;
       select.appendChild(option);
     });
 
-    // Create direction buttons container (ALWAYS 2 buttons)
-    const buttonsContainer = document.createElement('div');
-    buttonsContainer.className = 'buttons-container';
+    // Create one sort button.
+    // It cycles through: original -> ascending -> descending -> original.
+    const iconContainer = document.createElement("div");
+    iconContainer.className = "icon-container";
 
-    // Create direction buttons (ALWAYS 2 buttons)
-    const ascButton = document.createElement('button');
-    ascButton.type = 'button';
-    ascButton.dataset.dir = 'asc';
-    ascButton.setAttribute('aria-label', 'Sort ascending');
-    ascButton.textContent = '▲';
+    const sortIcon = document.createElement("span");
+    sortIcon.className = "rslidy-mobile-sort-icon";
+    sortIcon.dataset.dir = "none";
+    sortIcon.setAttribute("role", "button");
+    sortIcon.setAttribute("tabindex", "0");
+    sortIcon.setAttribute("aria-label", "Sort ascending or descending");
+    sortIcon.title = "Click upper half for ascending, lower half for descending.";
 
-    const descButton = document.createElement('button');
-    descButton.type = 'button';
-    descButton.dataset.dir = 'desc';
-    descButton.setAttribute('aria-label', 'Sort descending');
-    descButton.textContent = '▼';
-
-    // ALWAYS add both buttons
-    buttonsContainer.appendChild(ascButton);
-    buttonsContainer.appendChild(descButton);
+    iconContainer.appendChild(sortIcon);
 
     // Add select to its container
     selectContainer.appendChild(select);
 
     // Assemble controls container
     controlsContainer.appendChild(selectContainer);
-    controlsContainer.appendChild(buttonsContainer);
-
+    controlsContainer.appendChild(iconContainer);
     // Assemble sort UI
     sortUI.appendChild(label);
     sortUI.appendChild(controlsContainer);
@@ -646,40 +700,24 @@ export class SettingsComponent {
   }
 
   private setupMobileSortingUI(
-    table: HTMLTableElement,
-    tbody: HTMLElement,
-    originalRows: HTMLTableRowElement[],
-    sortTable: (
-      tbody: Element,
-      columnIndex: number,
-      direction: "asc" | "desc"
-    ) => void
+      table: HTMLTableElement,
+      tbody: HTMLElement,
+      originalRows: HTMLTableRowElement[],
+      sortTable: (
+          tbody: Element,
+          columnIndex: number,
+          direction: "asc" | "desc"
+      ) => void
   ): void {
     const wrapper = table.previousElementSibling as HTMLElement | null;
     if (!wrapper?.classList.contains("rslidy-table-sort-mobile")) return;
 
     const select = wrapper.querySelector<HTMLSelectElement>("select");
-    if (!select) return;
-
-    const buttons = Array.from(
-      wrapper.querySelectorAll<HTMLButtonElement>("button")
+    const sortIcon = wrapper.querySelector<HTMLElement>(
+        ".rslidy-mobile-sort-icon"
     );
-    if (buttons.length < 2) return;
 
-    const ascBtn = buttons[0];
-    const descBtn = buttons[1];
-
-    // -------------------------------------------------------------------------
-    // Event shield: prevent slide navigation from taps inside the sort UI
-    // (Firefox can trigger navigation on pointer/touch when the native select
-    // picker closes, even if you stop only "click" on the select).
-    // -------------------------------------------------------------------------
-    const swallow = (e: Event) => {
-      // Do NOT preventDefault() here globally, otherwise the select might not open.
-
-      e.stopPropagation();
-      (e as any).stopImmediatePropagation?.();
-    };
+    if (!select || !sortIcon) return;
 
     const swallowBubble = (e: Event) => {
       e.stopPropagation();
@@ -689,103 +727,139 @@ export class SettingsComponent {
       wrapper.addEventListener(type, swallowBubble, { capture: false });
     });
 
-    const restoreOriginalOrder = () => {
-      this.applySortAndSync(table, tbody, originalRows, sortTable, null, null);
-    };
+    const getSelectedColumnIndex = (): number | null => {
+      const selectedValue = select.value;
 
-    const applyDir = (dir: "asc" | "desc") => {
-      let selectedValue = select.value;
-
-      // Firefox mobile: value may not yet be committed
-      if (selectedValue === "" && select.selectedIndex > 0) {
-        selectedValue = select.options[select.selectedIndex].value;
-      }
-
-      if (selectedValue === "") return;
+      if (selectedValue === "") return null;
 
       const columnIndex = Number(selectedValue);
-      if (Number.isNaN(columnIndex)) return;
+      return Number.isNaN(columnIndex) ? null : columnIndex;
+    };
+
+    const restoreOriginalOrder = () => {
+      tbody.innerHTML = "";
+      originalRows.forEach(row => tbody.appendChild(row));
+
+      const selectedColumnIndex = getSelectedColumnIndex();
+
+      this.setSortState(table, {
+        columnIndex: selectedColumnIndex,
+        direction: null
+      });
+
+      this.updateDesktopSortIndicators(table, null, null);
+      this.syncMobileSortUIFromState(table);
+    };
+
+    const applyDirection = (direction: "asc" | "desc") => {
+      const columnIndex = getSelectedColumnIndex();
+      if (columnIndex === null) return;
+
+      this.applySortAndSync(
+          table,
+          tbody,
+          originalRows,
+          sortTable,
+          columnIndex,
+          direction
+      );
+
+      setTimeout(() => {
+        sortIcon.blur();
+        }, 10);
+    };
+
+    sortIcon.addEventListener("click", e => {
+      e.preventDefault();
+      e.stopPropagation();
+
+      const columnIndex = getSelectedColumnIndex();
+      if (columnIndex === null) return;
+
+      const rect = sortIcon.getBoundingClientRect();
+      const clickedUpperHalf = e.clientY < rect.top + rect.height / 2;
+      const clickedLowerHalf = e.clientY >= rect.top + rect.height / 2;
 
       const current = this.getSortState(table);
 
-      // Same column + same direction → reset
-      if (current.columnIndex === columnIndex && current.direction === dir) {
-        select.value = "";
-        restoreOriginalOrder();
+      if (clickedUpperHalf) {
+        if (
+            current.columnIndex === columnIndex &&
+            current.direction === "asc"
+        ) {
+          restoreOriginalOrder();
+        } else {
+          applyDirection("asc");
+        }
+
         return;
       }
 
-      this.applySortAndSync(
-        table,
-        tbody,
-        originalRows,
-        sortTable,
-        columnIndex,
-        dir
-      );
-
-      // Remove focus ring on mobile
-      setTimeout(() => {
-        ascBtn.blur();
-        descBtn.blur();
-      }, 10);
-    };
-
-    // -------------------------------------------------------------------------
-    // Button handling (▲ / ▼)
-    // -------------------------------------------------------------------------
-    ascBtn.addEventListener("click", (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      applyDir("asc");
+      if (clickedLowerHalf) {
+        if (
+            current.columnIndex === columnIndex &&
+            current.direction === "desc"
+        ) {
+          restoreOriginalOrder();
+        } else {
+          applyDirection("desc");
+        }
+      }
     });
 
-    descBtn.addEventListener("click", (e) => {
+    sortIcon.addEventListener("keydown", e => {
+      if (e.key !== "Enter" && e.key !== " ") return;
+
       e.preventDefault();
       e.stopPropagation();
-      applyDir("desc");
+
+      const columnIndex = getSelectedColumnIndex();
+      if (columnIndex === null) return;
+
+      const current = this.getSortState(table);
+
+      if (current.columnIndex !== columnIndex || current.direction === null) {
+        applyDirection("asc");
+      } else if (current.direction === "asc") {
+        applyDirection("desc");
+      } else {
+        restoreOriginalOrder();
+      }
     });
 
-    // -------------------------------------------------------------------------
-    // Select handling
-    // -------------------------------------------------------------------------
     const onSelectUpdated = () => {
-      if (select.value === "") {
-        restoreOriginalOrder();
-        return;
-      }
+      const columnIndex = getSelectedColumnIndex();
+      if (columnIndex === null) return;
 
       const state = this.getSortState(table);
 
       if (state.direction) {
         this.applySortAndSync(
-          table,
-          tbody,
-          originalRows,
-          sortTable,
-          Number(select.value),
-          state.direction
+            table,
+            tbody,
+            originalRows,
+            sortTable,
+            columnIndex,
+            state.direction
         );
       } else {
-        ascBtn.classList.remove("active-sort");
-        descBtn.classList.remove("active-sort");
         this.setSortState(table, {
-          columnIndex: Number(select.value),
+          columnIndex,
           direction: null
         });
+
+        this.updateDesktopSortIndicators(table, null, null);
+        this.syncMobileSortUIFromState(table);
       }
     };
 
-    // Eager update (important for Firefox)
     select.addEventListener("input", onSelectUpdated);
 
     select.addEventListener("change", () => {
-      // Do NOT stopPropagation here; wrapper already shields the event.
       setTimeout(() => select.blur(), 10);
       onSelectUpdated();
     });
 
-    // Initial sync so mobile UI reflects desktop state
     this.syncMobileSortUIFromState(table);
   }
 

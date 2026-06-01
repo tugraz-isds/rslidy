@@ -28,11 +28,12 @@ to different screen sizes:
 
 These are variables used across multiple UI components:
 
-| Variable                            | Default  | Description |
-|-------------------------------------|----------|-------------|
-| `--rslidy-overview-width`           | `18rem`  | Width of a slide in overview mode. |
-| `--rslidy-overview-width-small-screen` | `50%` | Width of a slide in overview mode on smaller screens. |
-| `--rslidy-slide-input-width`        | `2.60em` | Width of input fields in the slide toolbar (e.g., slide number input). |
+| Variable                               | Default  | Description |
+|----------------------------------------|----------|-------------|
+| `--rslidy-overview-width`              | `18rem`  | Width of a slide in overview mode. |
+| `--rslidy-overview-width-small-screen` | `50%`    | Width of a slide in overview mode on smaller screens. |
+| `--rslidy-slide-input-width`           | `2.60em` | Width of input fields in the slide toolbar (e.g., slide number input). |
+| `--rslidy-slide-number-font-size`      | `1em`    | Font size of the current slide number display. |
 
 ---
 

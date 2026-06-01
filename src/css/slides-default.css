@@ -61,7 +61,6 @@ em {
 
 img, video {
   display: block;
-  max-width: 100%;
   height: auto;
 }
 
@@ -101,7 +100,6 @@ div.rslidy-images, div.rslidy-large-images {
 /* Standard media inside image helpers */
 div.rslidy-images img, div.rslidy-images video {
   object-fit: contain; /* scale down does not work correctly on firefox */
-  max-width: 100%;
   max-height: 15em;
   width: auto;
   min-height: 5em;
@@ -111,7 +109,6 @@ div.rslidy-images img, div.rslidy-images video {
 /* Larger media inside image helpers */
 div.rslidy-large-images img, div.rslidy-large-images video {
   object-fit: contain; /* scale down does not work correctly on firefox */
-  max-width: 100%;
   max-height: 25em;
   width: 100%;
   min-height: 8em;
@@ -510,4 +507,6 @@ a.rslidy-night-mode {
     top: 0;
   }
 }
+
+
 

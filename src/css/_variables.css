@@ -149,6 +149,12 @@
   initial-value: light-dark(#85c1e9, #2874a6);
 }
 
+@property --rslidy-slide-number-font-size {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 1rem;
+}
+
 /* === Global variables === */
 :root {
   color-scheme: light dark;
@@ -166,6 +172,8 @@
   --rslidy-overview-width: 18rem;
   --rslidy-overview-width-small-screen: 50%;
   --rslidy-slide-input-width: 2.60em;
+  --rslidy-slide-number-font-size: 1rem;
+
 
   /* toolbar and buttons */
   --rslidy-toolbar-bg-color: light-dark(#e1e7ea, #1a1a1a);

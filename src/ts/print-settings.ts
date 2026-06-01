@@ -123,7 +123,24 @@ export class PrintSettingsComponent {
     const scalingInput = this.view.querySelector("#custom-scaling-input") as HTMLInputElement | null;
 
     let css = "@media print {\n";
-
+      css += `
+      *, *::before, *::after {
+        animation: none !important;
+        animation-delay: 0s !important;
+        animation-duration: 0s !important;
+        animation-fill-mode: forwards !important;
+        transition: none !important;
+        transition-delay: 0s !important;
+        transition-duration: 0s !important;
+        scroll-behavior: auto !important;
+      }
+  
+      .slide,
+      .slide * {
+        opacity: 1 !important;
+        visibility: visible !important;
+      }
+  `;
     // 1. Handle Slide Visibility
     if (selectedSlideOption?.value === "custom" && slideRangeInput) {
       const range = this.parseSlideRange(slideRangeInput.value);
@@ -133,41 +150,71 @@ export class PrintSettingsComponent {
     }
 
     // 2. Handle Page Size and Orientation
-    // We pass the layout (portrait/landscape) directly to the @page size property
-    let pageSize = paperSize.value; // e.g. "A4", "letter", etc.
-
-    const orientation = layout.value; // "landscape" or "portrait"
+    let pageSize = paperSize.value;
+    const orientation = layout.value;
     const pageSizeSyntax = `${pageSize} ${orientation}`;
 
+    const paperSizes: Record<string, { width: string; height: string }> = {
+      A0: { width: "841mm", height: "1189mm" },
+      A1: { width: "594mm", height: "841mm" },
+      A2: { width: "420mm", height: "594mm" },
+      A3: { width: "297mm", height: "420mm" },
+      A4: { width: "210mm", height: "297mm" },
+      A5: { width: "148mm", height: "210mm" },
+      letter: { width: "8.5in", height: "11in" },
+      legal: { width: "8.5in", height: "14in" },
+      tabloid: { width: "11in", height: "17in" }
+    };
+
+    const selectedPaperSize = paperSizes[pageSize];
+    const pageHeight =
+        orientation === "landscape"
+            ? selectedPaperSize.width
+            : selectedPaperSize.height;
+
     css += `
-      @page { 
-        size: ${pageSizeSyntax};
-      }
-      html, body {
-        width: 100% !important;
-        height: 100% !important;
-        margin: 0 !important;
-        padding: 0 !important;
-      }
-      #rslidy-content-section { transform: none !important; width: 100% !important; }
-      .slide { 
-        margin: auto !important; 
-        display: block !important;
-        page-break-after: always !important;
-        break-after: page !important;
-        position: relative !important;
-        min-height: 30rem;
-      }
-      .slide.rslidy-sectionslide {
-        align-items: center;
-        justify-content: center;
-        display: flex !important;        
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-      }
-    `;
+    @page { 
+      size: ${pageSizeSyntax};
+    }
+    html, body {
+      width: 100% !important;
+      height: 100% !important;
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+    #rslidy-content-section {
+      transform: none !important;
+      width: 100% !important;
+    }
+    .slide { 
+      margin: auto !important; 
+      display: block !important;
+      page-break-after: always !important;
+      break-after: page !important;
+      position: relative !important;
+      min-height: 100vh !important;
+    }
+    .slide.rslidy-sectionslide {
+      align-items: center;
+      justify-content: center;
+      display: flex !important;        
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+    svg,
+    canvas {
+      animation: none !important;
+      transition: none !important;
+    }
+
+    svg *,
+    canvas * {
+      animation: none !important;
+      transition: none !important;
+    }
+  `;
 
     // 3. Handle Scaling Options
     const selectedOption = this.view.querySelector('input[name="print-options"]:checked') as HTMLInputElement | null;
@@ -180,16 +227,14 @@ export class PrintSettingsComponent {
             #rslidy-content-section .slide {
               height: auto !important;
               max-width: ${window.innerWidth}px !important;
-              padding: 2rem !important;
             }
           `;
           break;
         case "fit-page-width":
           css += `
             #rslidy-content-section .slide {
-              max-width: 100% !important;
-              height: auto !important;
-              padding: 2rem !important;
+              width: 100vw !important;
+              box-sizing: border-box !important;
             }
           `;
           break;
@@ -226,13 +271,17 @@ export class PrintSettingsComponent {
     }
     if (snum.checked) {
       css += `
-        #rslidy-content-section { counter-reset: slide-counter; }
-        #rslidy-content-section .slide:after {
-          content: counter(slide-counter);
-          counter-increment: slide-counter;
-          position: absolute; right: 0.8rem; bottom: 0.8rem; font: 60% Sans-Serif;
-        }
-      `;
+      #rslidy-content-section { counter-reset: slide-counter; }
+    
+      #rslidy-content-section .slide:after {
+        counter-increment: slide-counter;
+        content: counter(slide-counter) " / ${window.rslidy.num_slides}";
+        position: absolute;
+        right: 0.8rem;
+        bottom: 0.8rem;
+        font: 60% Sans-Serif;
+      }
+    `;
     }
     if (frame.checked) {
       css += `.slide { border: ${window.rslidy.print_frame || '1px solid #eee'}; }`;
@@ -242,6 +291,17 @@ export class PrintSettingsComponent {
     }
 
     css += "\n}";
+
+    // 5. Screen Mask Styling (Prevents layout/unhide flashes on the active workspace)
+    css += `
+      @media screen {
+        html.rslidy-printing-in-progress body {
+          background-color: #ffffff !important;
+          opacity: 0 !important;
+          transition: none !important;
+        }
+      }
+    `;
 
     const style = document.createElement("style");
     style.id = "rslidy-print-style";
@@ -286,6 +346,9 @@ export class PrintSettingsComponent {
     try {
       this.applyPrintSettings();
 
+      // Trigger the background screen mask before updating slide classes
+      document.documentElement.classList.add("rslidy-printing-in-progress");
+
       // Force the browser to recalculate layout before print
       void document.body.offsetHeight;
 
@@ -298,16 +361,21 @@ export class PrintSettingsComponent {
           slide.classList.remove("rslidy-hidden");
         }
       });
-// 2. Give Chrome structural time to recalculate the @page orientation bounds
-      requestAnimationFrame(() => {
-        setTimeout(() => {
-          window.print();
 
-          // Put hidden slides back after the print dialog closes
-          hiddenSlides.forEach(slide => slide.classList.add("rslidy-hidden"));
-        }, 250); // 250ms is plenty when combined with requestAnimationFrame
+      // Give Chrome structural time to recalculate the @page orientation bounds
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          setTimeout(() => {
+            window.print();
+
+            document.documentElement.classList.remove("rslidy-printing-in-progress");
+            hiddenSlides.forEach(slide => slide.classList.add("rslidy-hidden"));
+          }, 100);
+        });
       });
     } catch (e) {
+      // Emergency fall-through cleanup if the engine drops execution
+      document.documentElement.classList.remove("rslidy-printing-in-progress");
       console.error("Print error:", e);
     }
   }

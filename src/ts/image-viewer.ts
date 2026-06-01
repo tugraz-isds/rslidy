@@ -205,10 +205,12 @@ export class ImageViewerComponent {
       if (delta < 0) {
         this.zoomIn();
         var factor = 1 - this.zoomFactor * 1.2 / this.zoomFactor;
+        const rect = this.container.getBoundingClientRect();
         this.imageOffsetX +=
-          (mouseWheelEvent.clientX - window.innerWidth / 2) * factor;
+            (mouseWheelEvent.clientX - rect.left - this.containerWidth / 2) * factor;
+
         this.imageOffsetY +=
-          (mouseWheelEvent.clientY - window.innerHeight / 2) * factor;
+            (mouseWheelEvent.clientY - rect.top - this.containerHeight / 2) * factor;
         this.applyOffset(false);
       } else if (delta > 0) {
         this.zoomOut();

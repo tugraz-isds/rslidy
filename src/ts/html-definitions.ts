@@ -251,7 +251,7 @@ aria-label="Settings" tabindex="0">
   </label>
   <label id="rslidy-checkbox-showslidenumbers-text" class="rslidy-menu-content-settings">
     Show Slide numbers
-    <input type="checkbox" value="ShowSlideNumbers" id="rslidy-checkbox-showslidenumbers">
+    <input type="checkbox" value="ShowSlideNumbers" id="rslidy-checkbox-showslidenumbers" checked>
     <label for="rslidy-checkbox-showslidenumbers">`+i.slider_icon+`</label>
   </label>
   <div class="rslidy-menu-content-settings">
