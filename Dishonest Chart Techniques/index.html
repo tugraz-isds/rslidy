@@ -1,0 +1,1793 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dishonest Chart Techniques</title>
+
+  <link rel="stylesheet" href="rslidy.min.css" />
+  <script type="module" src="rslidy.min.js"></script>
+  <script src="./libs/chart.js"></script>
+  <script src="./libs/d3.v7.min.js"></script>
+  <script src="./libs/topojson-client.min.js"></script>
+
+  <style>
+    :root {
+      --primary-color: #0055cc;
+      --danger-color: #cc0000;
+      --success-color: green;
+      --text-main: #333;
+      --text-muted: #555;
+      --text-light: #888;
+    }
+
+    a {
+      color: var(--primary-color) !important;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .slide h1 {
+      font-size: 2.8rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .slide h2 {
+      font-size: 2.2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .list-large {
+      font-size: 2.2rem;
+      line-height: 1.6;
+    }
+
+    .slide li {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      line-height: 1.5;
+    }
+
+    .slide li li {
+      font-size: 1.7rem;
+      margin-bottom: 1rem;
+    }
+
+    .text-center {
+      text-align: center;
+    }
+
+    .text-bold {
+      font-weight: bold;
+    }
+
+    .text-muted {
+      color: var(--text-muted);
+    }
+
+    .text-light {
+      color: var(--text-light);
+    }
+
+    .text-danger {
+      color: var(--danger-color);
+    }
+
+    .text-success {
+      color: var(--success-color);
+    }
+
+    .subtext {
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+
+    .caption {
+      font-size: 1rem;
+      color: var(--text-muted);
+      margin-top: 0.5rem;
+      font-style: italic;
+    }
+
+    .footnote {
+      font-size: 1rem;
+      color: var(--text-muted);
+      margin-top: 1.5rem;
+      text-align: center;
+      width: 100%;
+    }
+
+    .footnote-left {
+      text-align: left;
+    }
+
+    .slide.cover {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      height: 100%;
+    }
+
+    .slide.cover h1 {
+      font-size: 5.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .flex-col-center {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      flex-grow: 1;
+      justify-content: center;
+    }
+
+    .flex-row-between {
+      display: flex;
+      justify-content: space-between;
+      font-size: 1.4rem;
+      line-height: 1.6;
+      width: 100%;
+    }
+
+    .flex-row-around {
+      display: flex;
+      justify-content: space-around;
+      font-size: 1.4rem;
+      line-height: 1.6;
+      margin-top: 3rem;
+    }
+
+    .col-text {
+      width: 55%;
+    }
+
+    .col-image {
+      width: 40%;
+      text-align: center;
+    }
+
+    .col-half {
+      width: 45%;
+    }
+
+    .example-img {
+      max-height: 45vh;
+      max-width: 100%;
+      object-fit: contain;
+    }
+
+    .demo-wrapper {
+      width: 100%;
+      max-width: 50rem;
+      margin-bottom: 1.5rem;
+      position: relative;
+    }
+
+    .demo-controls {
+      margin-top: 1rem;
+      text-align: center;
+      width: 70%;
+      max-width: 50rem;
+    }
+
+    .control-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 1rem;
+      color: var(--text-muted);
+      margin-bottom: 0.5rem;
+    }
+
+    .range-slider {
+      width: 100%;
+      cursor: pointer;
+      margin-top: 1rem;
+    }
+
+    svg.demo-svg {
+      width: 100%;
+      height: auto;
+      overflow: visible;
+      font-family: sans-serif;
+    }
+
+    svg.demo-svg-box {
+      background-color: #ffffff;
+      border-radius: 0.5rem;
+      padding: 0.6rem;
+    }
+
+    .switch-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.2rem;
+      color: var(--text-muted);
+    }
+
+    .switch-label-left {
+      display: inline-block;
+      width: 12.5rem;
+      text-align: right;
+    }
+
+    .switch-label-right {
+      display: inline-block;
+      width: 12.5rem;
+      text-align: left;
+    }
+
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 3.75rem;
+      height: 2.125rem;
+      margin: 0 1rem;
+    }
+
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider-toggle {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: var(--success-color);
+      transition: .4s;
+      border-radius: 2.125rem;
+    }
+
+    .slider-toggle:before {
+      position: absolute;
+      content: "";
+      height: 1.625rem;
+      width: 1.625rem;
+      left: 0.25rem;
+      bottom: 0.25rem;
+      background-color: white;
+      transition: .4s;
+      border-radius: 50%;
+    }
+
+    input:checked+.slider-toggle {
+      background-color: var(--danger-color);
+    }
+
+    input:checked+.slider-toggle:before {
+      transform: translateX(1.625rem);
+    }
+
+    .liintro {
+      font-style: italic;
+    }
+  </style>
+</head>
+
+<body>
+
+
+  <div class="slide cover" style="padding: 0 4rem;">
+    <div style="text-align: center; margin-bottom: 8rem;">
+      <h1>Dishonest Chart Techniques</h1>
+      <h2>Group 2: Lukas Auer, David Heidinger, Nina Tschikof and Christina Vogel</h2>
+    </div>
+    <div style="width: 100%; text-align: left;">
+      <p class="list-large" style="margin-bottom: 4rem; line-height: 1.4;">
+        6 May 2026<br>Information Visualisation SS 2026
+      </p>
+      <p class="footnote footnote-left" style="margin: 0; width: auto;">
+        Copyright 2026 by the author(s), except as otherwise noted.<br>
+        This work is placed under a Creative Commons Attribution 4.0 International (CC BY 4.0) licence.
+      </p>
+    </div>
+  </div>
+
+
+  <section>
+    <h1>Overview</h1>
+    <ol class="list-large">
+      <li>Background and Motivation</li>
+      <li>Taxonomy of Dishonest Chart Techniques</li>
+      <li>Related Work</li>
+    </ol>
+  </section>
+
+
+  <section class="rslidy-sectionslide">
+    <h1>Background and Motivation</h1>
+  </section>
+
+
+  <section>
+    <h1>Dishonest Charts</h1>
+    <ul class="list-large">
+      <li>Visualizations can convey a misleading impression.</li>
+      <li>Occur by accident or design.</li>
+      <li>Data is always biased and never objective or neutral.</li>
+      <li>Result from design choice or data manipulation.</li>
+      <li>Effects on interpretation:
+        <ul>
+          <li>Patterns</li>
+          <li>Trends</li>
+          <li>Relationships</li>
+        </ul>
+      </li>
+    </ul>
+  </section>
+
+
+  <section class="rslidy-sectionslide">
+    <h1>Taxonomy of Dishonest Chart Techniques</h1>
+  </section>
+
+
+  <section>
+    <h1>Nine Dishonest Chart Techniques</h1>
+    <div class="rslidy-columns-even">
+      <div class="rslidy-column">
+        <ul class="rslidy-incremental">
+          <li>1. Cherry Picking</li>
+          <li>2. Underbinning</li>
+          <li>3. Axis Truncation</li>
+          <li>4. Artificial Flattening or Steepening</li>
+          <li>5. Time Gap</li>
+        </ul>
+      </div>
+      <div class="rslidy-column">
+        <ul class="rslidy-incremental">
+          <li>6. Oversmoothing</li>
+          <li>7. Manipulating the Visual Encoding</li>
+          <li>8. Perspective Distortion</li>
+          <li>9. Concealing Uncertainty</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+
+  <section>
+    <h1>1. Cherry Picking</h1>
+    <ul class="list-large">
+      <li>Selecting only specific data points, groups, or timeframes that support desired outcome.</li>
+      <li>Deliberately hides broader context or opposing trends.
+        <ul>
+          <li>Showing short-term cooling trend to deny long-term warming.</li>
+        </ul>
+      </li>
+    </ul>
+  </section>
+
+
+
+  <section>
+    <h1>Cherry Picking Demo</h1>
+    <div class="flex-col-center">
+      <div class="demo-wrapper">
+        <svg id="cherrySvg" class="demo-svg" viewBox="0 0 850 450">
+          <text x="-200" y="20" transform="rotate(-90)" text-anchor="middle" font-weight="bold" font-size="16"
+            fill="#555">Temperature Anomaly (°C)</text>
+          <text x="450" y="440" text-anchor="middle" font-weight="bold" font-size="16" fill="#555">Year</text>
+          <g id="cherryAxes"></g>
+          <polyline id="cherryLine" fill="none" stroke="#cc0000" stroke-width="3" stroke-linejoin="round"
+            stroke-linecap="round"></polyline>
+        </svg>
+      </div>
+
+      <div class="demo-controls">
+        <div class="control-row">
+          <span class="text-bold text-success">Full Trend (1970 - 2023)</span>
+          <span class="text-bold text-danger">"The Hiatus" (1998 - 2011)</span>
+        </div>
+        <input type="range" id="cherrySlider" class="range-slider" min="0" max="100" value="0">
+      </div>
+
+      <div class="footnote">
+        NASA Goddard Institute for Space Studies (GISS). (2024). <em>Global Land-Ocean Temperature Index</em>.<br>
+        Retrieved from <a href="https://data.giss.nasa.gov/gistemp/"
+          target="_blank">https://data.giss.nasa.gov/gistemp/</a>. Interactive chart created by the authors.<br>
+
+      </div>
+    </div>
+  </section>
+
+
+  <section>
+    <h1>Cherry Picking Example</h1>
+    <div class="rslidy-columns-even">
+      <div class="rslidy-column">
+        <ul>
+          <li>Judd et al. (2024) Climate Reconstruction.<sup>1</sup></li>
+          <li>Uses a massive 485-million-year geological timeline.</li>
+          <li>Visually compresses and hides rate of modern warming.</li>
+        </ul>
+      </div>
+      <div class="rslidy-column">
+        <figure>
+          <div class="rslidy-images">
+            <img src="images/cherry_picking.svg" alt="Cherry Picking Example">
+          </div>
+          <figcaption>Chart recreated from original in Python by the authors.</figcaption>
+        </figure>
+      </div>
+    </div>
+    <div class="footnote footnote-left">
+      <sup>1</sup> Judd, E. J., Tierney, J. E., Lunt, D. J., Montañez, I. P., Huber, B. T., Wing, S. L., & Valdes, P. J.
+      (2024).<br>
+      A 485-million-year history of Earth’s surface temperature. <em>Science</em>, <em>385</em>(6715).
+      <a href="https://doi.org/10.1126/science.adk3705" target="_blank">https://doi.org/10.1126/science.adk3705</a>
+    </div>
+  </section>
+
+
+
+
+  <section>
+    <h1>2. Underbinning</h1>
+    <ul class="list-large">
+      <li>Reducing number of bins (e.g., in histograms or heatmaps).</li>
+      <li>Obscures true underlying distribution.</li>
+      <li>Hides:
+        <ul>
+          <li>Important clusters</li>
+          <li>Gaps</li>
+          <li>Outliers</li>
+        </ul>
+      </li>
+    </ul>
+  </section>
+
+
+  <section>
+    <h1>Underbinning Demo</h1>
+
+    <div class="flex-col-center">
+      <div class="demo-wrapper">
+        <svg id="binSvg" class="demo-svg" viewBox="0 0 850 450">
+          <text x="-200" y="20" transform="rotate(-90)" text-anchor="middle" font-weight="bold" font-size="16"
+            fill="#555">Frequency</text>
+          <text x="450" y="440" text-anchor="middle" font-weight="bold" font-size="16" fill="#555">Value Range</text>
+          <g id="binAxes"></g>
+          <g id="binBars"></g>
+        </svg>
+      </div>
+
+      <div class="demo-controls">
+        <label for="binSlider" class="text-bold" style="font-size: 1.3rem; color: var(--text-main);">Number of Bins:
+          <span id="binCountDisplay">10</span></label>
+        <input type="range" id="binSlider" class="range-slider" min="2" max="10" value="10" step="1">
+        <div class="control-row text-light">
+          <span>Minimum (Misleading)</span>
+          <span>Maximum (Detailed)</span>
+        </div>
+      </div>
+
+      <div class="footnote">Interactive chart created by the authors.</div>
+    </div>
+  </section>
+
+
+  <section>
+    <h1>Underbinning Example</h1>
+    <!-- LEFT -->
+    <div class="rslidy-columns-even">
+      <div class="rslidy-column">
+        <ul>
+          <li>Distribution of NBA player heights.<sup>1</sup></li>
+          <li>Too few bins (overly broad intervals).</li>
+          <li>Data grouped into coarse categories, true distribution is hidden.</li>
+        </ul>
+      </div>
+      <!-- RIGHT  -->
+      <div class="rslidy-column">
+        <figure>
+          <div class="rslidy-images">
+            <img src="images/underbinning.svg" alt="Underbinning Example" style="width: auto; height: 16rem; margin-bottom: 2rem;">
+          </div>
+          <figcaption>Chart recreated from original in Python by the authors.</figcaption>
+        </figure>
+        <figure>
+          <div class="rslidy-images">
+            <img src="images/proper_binning.svg" alt="Proper Binning Example" style="width: auto; height: 16rem; margin-bottom: 2rem;">
+          </div>
+          <figcaption>Chart recreated from original in Python by the authors.</figcaption>
+      </div>
+
+    </div>
+    <div class="footnote footnote-left">
+      <sup>1</sup> FlowingData. <em>Dishonest Charts</em>, from
+      <a href="https://flowingdata.com/projects/dishonest-charts/" target="_blank">
+        https://flowingdata.com/projects/dishonest-charts/
+      </a>
+    </div>
+  </section>
+
+
+
+
+  <section>
+    <h1>3. Axis Truncation</h1>
+    <ul class="list-large">
+      <li>Truncating the baseline</li>
+      <li>Chart where y-axis does not start at zero.</li>
+      <li>Differences appear larger.</li>
+    </ul>
+  </section>
+
+
+  <section>
+    <h1>Axis Truncation Demo</h1>
+
+    <div class="flex-col-center">
+      <svg id="axisSVG" viewBox="0 0 500 300" style="width: auto; height: 30rem; margin-bottom: 2rem;">
+        <line x1="80" y1="250" x2="450" y2="250" stroke="black" />
+        <line x1="80" y1="50" x2="80" y2="250" stroke="black" />
+
+        <line x1="75" y1="250" x2="80" y2="250" stroke="black" />
+        <line x1="75" y1="150" x2="80" y2="150" stroke="black" />
+        <line x1="75" y1="50" x2="80" y2="50" stroke="black" />
+
+        <text id="y0" x="70" y="254" text-anchor="end" font-size="12">0</text>
+        <text id="y50" x="70" y="154" text-anchor="end" font-size="12">50</text>
+        <text id="y100" x="70" y="54" text-anchor="end" font-size="12">100</text>
+
+        <rect id="barA" x="150" y="76" width="60" height="174" fill="#7dbce8" />
+        <rect id="barB" x="280" y="59" width="60" height="191" fill="#f28ca8" />
+
+        <text x="180" y="275" text-anchor="middle" font-size="14">Product A</text>
+        <text x="310" y="275" text-anchor="middle" font-size="14">Product B</text>
+
+        <text id="labelA" x="180" y="68" text-anchor="middle" font-size="13">100</text>
+        <text id="labelB" x="310" y="51" text-anchor="middle" font-size="13">110</text>
+
+        <text x="265" y="295" text-anchor="middle" font-size="12">Same values: 100 vs. 110</text>
+      </svg>
+
+      <div class="demo-controls" style="max-width: 20rem;">
+        <label for="svgSlider" style="font-size: 1.2rem;">
+          Y-axis starts at: <span id="sliderValue">0</span>
+        </label>
+        <input type="range" id="svgSlider" class="range-slider" min="0" max="95" value="0" step="5">
+      </div>
+
+      <p id="svgMessage" style="font-size: 1.2rem; margin-top: 1.5rem;" class="text-center">
+        Full axis: the difference looks proportional.
+      </p>
+
+      <div class="footnote">Interactive SVG created by the authors.</div>
+    </div>
+  </section>
+
+
+
+  <section>
+    <h1>Axis Truncation Example</h1>
+    <div class="flex-row-between">
+      <div class="col-text">
+        <ul>
+          <li>Fox News Tax Cuts Broadcast (2012).<sup>1</sup></li>
+          <li>Truncated y-axis (starts at 34% instead of 0%).</li>
+          <li>Exaggerates minor 4.6% tax increase, making second bar appear much larger.</li>
+        </ul>
+      </div>
+      <div class="col-image">
+        <img src="images/axis_truncation.svg" alt="Axis Truncation Example" class="example-img">
+        <p class="caption">Chart recreated from original in Python by the authors.</p>
+      </div>
+    </div>
+    <div class="footnote footnote-left">
+      <sup>1</sup> Fox News Network. (2012, August 1). <em>If Bush tax cuts expire</em> [Television broadcast]. Media
+      Matters for America.
+      <a href="https://peoplesgdarchive.org/item/10481/if-bush-tax-cuts-expire-fox-news-infographic"
+        target="_blank">https://peoplesgdarchive.org/item/10481/if-bush-tax-cuts-expire-fox-news-infographic</a>
+    </div>
+  </section>
+
+
+
+  <section>
+    <h1>4. Artificial Flattening or Steepening</h1>
+    <ul class="list-large">
+      <li>Flattening chart's visual appearance:
+        <ul>
+          <li>Extreme aspect ratios.</li>
+          <li>Overly broad y-axis.</li>
+        </ul>
+      </li>
+    </ul>
+  </section>
+
+
+  <section>
+    <h1>Artificial Flattening / Steepening Demo</h1>
+    <div class="flex-col-center">
+      <div class="demo-wrapper">
+        <svg class="demo-svg" viewBox="0 0 850 450">
+          <text x="-200" y="20" transform="rotate(-90)" text-anchor="middle" font-weight="bold" font-size="16"
+            fill="#555">Metric Value</text>
+          <text x="450" y="440" text-anchor="middle" font-weight="bold" font-size="16" fill="#555">Month of the
+            Year</text>
+          <line x1="70" y1="20" x2="70" y2="380" stroke="#333" stroke-width="2" />
+          <line x1="70" y1="380" x2="830" y2="380" stroke="#333" stroke-width="2" />
+          <g id="svgYAxis"></g>
+          <g id="svgXAxis"></g>
+          <polyline id="svgDataLine" fill="none" stroke="#0055cc" stroke-width="6" stroke-linejoin="round"
+            stroke-linecap="round" points=""></polyline>
+        </svg>
+      </div>
+
+      <div class="demo-controls">
+        <div class="control-row">
+          <span>Steepened</span>
+          <span>Flattened</span>
+        </div>
+        <input type="range" id="svgScaleSlider" class="range-slider" min="0" max="100" value="50">
+      </div>
+
+      <div class="footnote">Interactive chart created by the authors.</div>
+    </div>
+  </section>
+
+
+
+
+  <section>
+    <h1>5. Time Gap</h1>
+    <ul class="list-large">
+      <li>Using uneven or irregular time intervals on continuous axis but spacing them evenly.</li>
+    </ul>
+  </section>
+
+
+  <section>
+    <h1>Time Gap Demo</h1>
+    <div class="flex-col-center">
+      <div class="demo-wrapper" style="height: 35vh;">
+        <canvas id="timeGapChart"></canvas>
+      </div>
+
+      <div class="demo-controls">
+        <input type="range" id="timeGapSlider" class="range-slider" min="0" max="100" value="0">
+        <div class="control-row text-light">
+          <span>All Years Shown</span>
+          <span>Stagnant Years Deleted</span>
+        </div>
+      </div>
+
+      <div class="footnote">Interactive chart created by the authors.</div>
+    </div>
+  </section>
+
+
+
+  <section>
+    <h1>6. Oversmoothing</h1>
+    <ul class="list-large">
+      <li>Applying aggressive smoothing algorithms or over-fitted curves to raw data points.</li>
+      <li>Hides critical short-term fluctuations, volatility, or local extremes.</li>
+    </ul>
+  </section>
+
+
+  <section>
+    <h1>Oversmoothing Demo</h1>
+    <div class="flex-col-center">
+      <div class="demo-wrapper">
+        <svg id="oversmoothingSvg" viewBox="0 0 850 420" class="demo-svg">
+          <rect x="0" y="0" width="850" height="420" fill="white" />
+          <line x1="70" y1="340" x2="800" y2="340" stroke="black" stroke-width="2" />
+          <line x1="70" y1="40" x2="70" y2="340" stroke="black" stroke-width="2" />
+          <text x="425" y="390" text-anchor="middle" font-size="16">Time</text>
+          <text x="20" y="190" text-anchor="middle" font-size="16" transform="rotate(-90 20 190)">Value</text>
+
+          <polyline id="rawLine" fill="none" stroke="rgba(120,120,120,0.6)" stroke-width="2" points="" />
+          <polyline id="smoothLine" fill="none" stroke="crimson" stroke-width="4" points="" />
+          <text id="oversmoothingTitle" x="425" y="25" text-anchor="middle" font-size="18" font-weight="bold">Raw data
+            with minimal smoothing</text>
+        </svg>
+      </div>
+
+      <div class="demo-controls" style="max-width: 25rem;">
+        <label for="smoothingSvgSlider" style="font-size: 1.2rem;">
+          Smoothing window: <span id="smoothingSvgValue">1</span>
+        </label>
+        <input id="smoothingSvgSlider" class="range-slider" type="range" min="1" max="15" value="1" step="2">
+      </div>
+
+      <p id="oversmoothingSvgMessage" style="font-size: 1.2rem; margin-top: 1.5rem;" class="text-center">
+        Low smoothing: short-term fluctuations are still visible.
+      </p>
+      <div class="footnote">Interactive SVG created by the authors.</div>
+    </div>
+  </section>
+
+
+
+  <section>
+    <h1>7. Manipulating the Visual Encoding</h1>
+    <ul class="list-large">
+      <li>Manipulates choice of visual encoding.</li>
+      <li>Often by misleading colour, size and shape (encoding).</li>
+    </ul>
+  </section>
+
+  <section>
+    <h1>Visual Encoding Demo 1: Size</h1>
+    <div class="flex-col-center">
+      <div class="demo-wrapper" style="max-width: 650px;">
+        <svg class="demo-svg" viewBox="0 0 650 350">
+          <circle cx="160" cy="150" r="60" fill="rgba(0, 85, 204, 0.6)" stroke="#0055cc" stroke-width="3" />
+          <text x="160" y="330" text-anchor="middle" font-family="sans-serif" font-size="18" font-weight="bold"
+            fill="#333">Year 1</text>
+          <circle id="svgCircleCompare" cx="470" cy="150" r="84.85" fill="rgba(255, 99, 132, 0.6)" stroke="#cc0000"
+            stroke-width="3" style="transition: r 0.4s ease;" />
+          <text x="470" y="330" text-anchor="middle" font-family="sans-serif" font-size="18" font-weight="bold"
+            fill="#333">Year 2 (100% Increase)</text>
+        </svg>
+      </div>
+
+      <div class="demo-controls" style="width: 100%;">
+        <div class="switch-container">
+          <span id="sizeLabelHonest" class="switch-label-left text-bold text-success">2D Area</span>
+          <label class="switch">
+            <input type="checkbox" id="svgSizeToggle">
+            <span class="slider-toggle"></span>
+          </label>
+          <span id="sizeLabelDishonest" class="switch-label-right">1D Radius</span>
+        </div>
+      </div>
+      <div class="footnote">Interactive chart created by the authors.</div>
+    </div>
+  </section>
+
+
+  <section>
+    <h1>Manipulating the Visual Encoding Example 1</h1>
+    <div class="flex-row-between">
+      <div class="col-text">
+        <ul>
+          <li>"Shrinking Family Doctor" (Time Magazine, 1990).<sup>1</sup></li>
+          <li>Maps a 1D percentage drop to a 2D icon's height.</li>
+          <li>Viewers perceive area, making the 1990 doctor look drastically smaller than the data supports.</li>
+        </ul>
+      </div>
+      <div class="col-image">
+        <img src="images/manipulating_the_visual_encoding_1.svg" alt="Symbolism Manipulation Example"
+          class="example-img">
+        <p class="caption">Chart recreated from original in Python by the authors.</p>
+      </div>
+    </div>
+    <div class="footnote footnote-left">
+      <sup>1</sup> Time Magazine. (1990). <em>The Shrinking Family Doctor</em> [Data visualization]. InfoVis Wiki: The
+      Lie Factor.
+      Retrieved from <a href="https://infovis-wiki.net/wiki/Lie_Factor"
+        target="_blank">https://infovis-wiki.net/wiki/Lie_Factor</a>
+    </div>
+  </section>
+
+
+  <section>
+    <h1>Visual Encoding Demo 2: Color Mapping</h1>
+    <div class="flex-col-center">
+      <div class="demo-wrapper" style="max-width: 950px; position: relative;">
+        <div id="usaMapContainer"
+          style="width: 100%; height: 550px; overflow: hidden; border-radius: 0.5rem; background: #e0f3ff;"></div>
+        <svg style="position: absolute; right: 20px; bottom: 20px; width: 120px; height: 350px; overflow: visible;">
+          <defs>
+            <linearGradient id="legHonest" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#fee0d2" />
+              <stop offset="100%" stop-color="#de2d26" />
+            </linearGradient>
+            <linearGradient id="legDishonest" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#0000cc" />
+              <stop offset="20%" stop-color="#00ccff" />
+              <stop offset="40%" stop-color="#00ffcc" />
+              <stop offset="60%" stop-color="#ffff00" />
+              <stop offset="80%" stop-color="#ff6600" />
+              <stop offset="100%" stop-color="#cc0000" />
+            </linearGradient>
+          </defs>
+          <rect id="legendBar" x="0" y="0" width="20" height="300" fill="url(#legHonest)" stroke="#333"
+            stroke-width="1" />
+          <text x="30" y="12" font-size="14" fill="#333" font-weight="bold">10°C</text>
+          <text x="30" y="150" font-size="14" fill="#333">22°C</text>
+          <text x="30" y="300" font-size="14" fill="#333" font-weight="bold">35°C</text>
+        </svg>
+      </div>
+      <div class="demo-controls" style="width: 100%;">
+        <div class="switch-container">
+          <span id="colorLabelHonest" class="switch-label-left text-bold text-success">Sequential Palette</span>
+          <label class="switch">
+            <input type="checkbox" id="svgColorToggle">
+            <span class="slider-toggle"></span>
+          </label>
+          <span id="colorLabelDishonest" class="switch-label-right">Rainbow Palette</span>
+        </div>
+      </div>
+      <div class="footnote">Interactive chart created by the authors.</div>
+    </div>
+  </section>
+
+
+
+  <section>
+    <h1>8. Perspective Distortion</h1>
+    <ul class="list-large">
+      <li>Misuses 3d perspective.
+      <li>For example, tilting a pie chart to make foreground slices look larger.</li>
+      </li>
+    </ul>
+  </section>
+
+
+  <section>
+    <h1>Perspective Distortion Demo</h1>
+    <div class="flex-col-center">
+      <svg id="perspectivePieSvg" class="demo-svg" style="max-width: 45rem; margin-bottom: 1rem;"
+        viewBox="0 0 720 420"></svg>
+
+      <div class="demo-controls" style="max-width: 25rem;">
+        <label for="tiltSlider" style="font-size: 1.2rem;">
+          Perspective tilt: <span id="tiltSliderValue">0</span>%
+        </label>
+        <input id="tiltSlider" class="range-slider" type="range" min="0" max="70" value="0" step="5">
+      </div>
+
+      <p id="perspectiveMessage" style="font-size: 1.2rem; margin-top: 1.5rem;" class="text-center">
+        No tilt: slices are easier to compare by their actual angle.
+      </p>
+      <div class="footnote">Interactive SVG chart created by the authors.</div>
+    </div>
+  </section>
+
+
+  <section>
+    <h1>Perspective Distortion Example</h1>
+    <div class="flex-row-between">
+      <div class="col-text">
+        <ul>
+          <li><span class="liintro">Context</span>: Apple Macworld Keynote (2008),presented by Steve Jobs.<sup>1</sup></li>
+          <li><span class="liintro">Misuse</span>: 3D tilt pushes the 19.5% slice into the middle.</li>
+          <li><span class="liintro">Effect</span>: Perspective distortion makes 19.5% appear physically larger than 21.2%.</li>
+        </ul>
+      </div>
+      <div class="col-image">
+        <img src="images/perspective_distortion.svg" alt="3D Distortion Example" class="example-img">
+        <p class="caption">Chart recreated from original in Python by the authors.</p>
+      </div>
+    </div>
+    <div class="footnote footnote-left">
+      <sup>1</sup> Apple (2008, January 15). <em>Macworld San Francisco 2008 Keynote Address</em> [Presentation slide].
+      Macworld Conference & Expo.
+      Retrieved from <a href="https://paragraft.wordpress.com/tag/infovis/"
+        target="_blank">https://paragraft.wordpress.com/tag/infovis/</a>
+    </div>
+  </section>
+
+
+
+  <section>
+    <h1>9. Concealing Uncertainty</h1>
+    <ul class="list-large">
+      <li>Not including:
+        <ul>
+          <li>Error bars.</li>
+          <li>Confidence intervals.</li>
+          <li>Variance indicators.</li>
+        </ul>
+      </li>
+      <li>Suggests absolute precision in data that actually estimates or forecasts where there is uncertainty.</li>
+    </ul>
+  </section>
+
+
+  <section>
+    <h1>Concealing Uncertainty Demo</h1>
+    <div class="flex-col-center">
+      <div class="demo-wrapper">
+        <svg id="uncertSvg" class="demo-svg demo-svg-box" viewBox="0 0 850 450">
+          <text x="-200" y="20" transform="rotate(-90)" text-anchor="middle" font-weight="bold" font-size="16"
+            fill="#555">Projected Revenue (Millions)</text>
+          <text x="450" y="440" text-anchor="middle" font-weight="bold" font-size="16" fill="#555">Month</text>
+
+          <g id="uncertAxes"></g>
+          <path id="uncertArea" fill="rgba(54, 162, 235, 0.25)" stroke="none"></path>
+          <polyline id="uncertLine" fill="none" stroke="#0055cc" stroke-width="3" stroke-linejoin="round"
+            stroke-linecap="round"></polyline>
+          <g id="uncertPoints"></g>
+        </svg>
+      </div>
+
+      <div class="demo-controls">
+        <label for="uncertSlider" class="text-bold" style="font-size: 1.3rem; color: var(--text-main);">
+          Confidence Interval Shown: <span id="uncertDisplay" class="text-danger">0%</span>
+        </label>
+        <input type="range" id="uncertSlider" class="range-slider" min="0" max="95" value="0" step="1">
+        <div class="control-row text-light">
+          <span>0% (Concealed / Misleading)</span>
+          <span>95% (Honest Forecast)</span>
+        </div>
+      </div>
+
+      <div class="footnote">Interactive chart created by the authors.</div>
+    </div>
+  </section>
+
+
+
+  <section class="rslidy-sectionslide">
+    <h1>Related Work</h1>
+  </section>
+
+
+
+  <section>
+    <h1>Related Work</h1>
+    <ul class="list-large">
+      <li style="margin-bottom: 1.5rem;"><span class="liintro">Awesome Misleading Visualizations</span>: Curated GitHub List.<br>
+        <a href="https://github.com/UKPLab/awesome-misleading-visualizations" target="_blank"
+          style="font-size: 0.8em; word-break: break-all;">https://github.com/UKPLab/awesome-misleading-visualizations</a>
+      </li>
+      <li style="margin-bottom: 1.5rem;"><span class="liintro">FlawViz</span>: Collection of Misleading Data Visualization.<br>
+        <a href="https://flawviz.github.io/" target="_blank"
+          style="font-size: 0.8em; word-break: break-all;">https://flawviz.github.io/</a>
+      </li>
+      <li style="margin-bottom: 1.5rem;"><span class="liintro">FlowingData</span>: Defensive Chart Techniques by Nathan Yau.<br>
+        <a href="https://flowingdata.com/projects/dishonest-charts/" target="_blank"
+          style="font-size: 0.8em; word-break: break-all;">https://flowingdata.com/projects/dishonest-charts/</a>
+      </li>
+      <li style="margin-bottom: 1.5rem;"><span class="liintro">How Charts Lie</span>: Book by Alberto Cairo.<br>
+        <a href="https://wwnorton.com/books/9781324001560" target="_blank"
+          style="font-size: 0.8em; word-break: break-all;">https://wwnorton.com/books/9781324001560</a>
+      </li>
+    </ul>
+  </section>
+
+
+  <section class="rslidy-sectionslide">
+    <h1>Questions?</h1>
+  </section>
+
+
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+
+      // ==========================================
+      // 1. CHERRY PICKING
+      // ==========================================
+      const cherrySlider = document.getElementById('cherrySlider');
+      const cherryLine = document.getElementById('cherryLine');
+      const cherryAxes = document.getElementById('cherryAxes');
+
+      if (cherrySlider && cherryLine && cherryAxes) {
+        const climateData = [
+          { y: 1970, t: 0.03 }, { y: 1971, t: -0.08 }, { y: 1972, t: 0.01 }, { y: 1973, t: 0.16 }, { y: 1974, t: -0.07 }, { y: 1975, t: -0.01 }, { y: 1976, t: -0.10 }, { y: 1977, t: 0.18 }, { y: 1978, t: 0.07 }, { y: 1979, t: 0.16 },
+          { y: 1980, t: 0.26 }, { y: 1981, t: 0.32 }, { y: 1982, t: 0.14 }, { y: 1983, t: 0.31 }, { y: 1984, t: 0.16 }, { y: 1985, t: 0.12 }, { y: 1986, t: 0.18 }, { y: 1987, t: 0.32 }, { y: 1988, t: 0.39 }, { y: 1989, t: 0.27 },
+          { y: 1990, t: 0.45 }, { y: 1991, t: 0.40 }, { y: 1992, t: 0.22 }, { y: 1993, t: 0.23 }, { y: 1994, t: 0.32 }, { y: 1995, t: 0.45 }, { y: 1996, t: 0.33 }, { y: 1997, t: 0.46 }, { y: 1998, t: 0.61 }, { y: 1999, t: 0.38 },
+          { y: 2000, t: 0.39 }, { y: 2001, t: 0.53 }, { y: 2002, t: 0.63 }, { y: 2003, t: 0.62 }, { y: 2004, t: 0.53 }, { y: 2005, t: 0.68 }, { y: 2006, t: 0.64 }, { y: 2007, t: 0.66 }, { y: 2008, t: 0.54 }, { y: 2009, t: 0.66 },
+          { y: 2010, t: 0.73 }, { y: 2011, t: 0.61 }, { y: 2012, t: 0.65 }, { y: 2013, t: 0.68 }, { y: 2014, t: 0.75 }, { y: 2015, t: 0.90 }, { y: 2016, t: 1.02 }, { y: 2017, t: 0.93 }, { y: 2018, t: 0.85 }, { y: 2019, t: 0.98 },
+          { y: 2020, t: 1.02 }, { y: 2021, t: 0.85 }, { y: 2022, t: 0.89 }, { y: 2023, t: 1.17 }
+        ];
+
+        const cherryPlotX = 70, cherryPlotY = 20, cherryPlotW = 760, cherryPlotH = 360;
+        const fullX = [1970, 2023], fullY = [-0.2, 1.3];
+        const zoomX = [1998, 2011], zoomY = [0.35, 0.75];
+
+        function updateCherrySVG() {
+          const val = parseInt(cherrySlider.value) / 100;
+          const ease = val < 0.5 ? 2 * val * val : 1 - Math.pow(-2 * val + 2, 2) / 2;
+
+          const curXMin = fullX[0] + ease * (zoomX[0] - fullX[0]);
+          const curXMax = fullX[1] + ease * (zoomX[1] - fullX[1]);
+          const curYMin = fullY[0] + ease * (zoomY[0] - fullY[0]);
+          const curYMax = fullY[1] + ease * (zoomY[1] - fullY[1]);
+
+          const points = climateData.map(d => {
+            const px = cherryPlotX + ((d.y - curXMin) / (curXMax - curXMin)) * cherryPlotW;
+            const py = (cherryPlotY + cherryPlotH) - ((d.t - curYMin) / (curYMax - curYMin)) * cherryPlotH;
+            return `${px},${py}`;
+          }).join(" ");
+
+          cherryLine.setAttribute("points", points);
+          cherryLine.setAttribute("clip-path", "url(#cherryClipMask)");
+
+          let axesHTML = `<defs><clipPath id="cherryClipMask"><rect x="${cherryPlotX}" y="${cherryPlotY}" width="${cherryPlotW}" height="${cherryPlotH}" /></clipPath></defs>`;
+          axesHTML += `<line x1="${cherryPlotX}" y1="${cherryPlotY}" x2="${cherryPlotX}" y2="${cherryPlotY + cherryPlotH}" stroke="#555" stroke-width="2"/>`;
+          axesHTML += `<line x1="${cherryPlotX}" y1="${cherryPlotY + cherryPlotH}" x2="${cherryPlotX + cherryPlotW}" y2="${cherryPlotY + cherryPlotH}" stroke="#555" stroke-width="2"/>`;
+
+          const ySteps = 5;
+          for (let i = 0; i <= ySteps; i++) {
+            const prop = i / ySteps;
+            const valY = curYMin + prop * (curYMax - curYMin);
+            const py = (cherryPlotY + cherryPlotH) - (prop * cherryPlotH);
+            axesHTML += `<line x1="${cherryPlotX}" y1="${py}" x2="${cherryPlotX + cherryPlotW}" y2="${py}" stroke="#eee"/>`;
+            axesHTML += `<text x="${cherryPlotX - 10}" y="${py + 5}" text-anchor="end" font-size="14" fill="#555">${valY.toFixed(2)}</text>`;
+          }
+
+          let span = curXMax - curXMin;
+          let tickInterval = span > 30 ? 10 : (span > 15 ? 5 : 2);
+          let startYear = Math.round(curXMin);
+          let endYear = Math.round(curXMax);
+
+          function addTick(year) {
+            let px = cherryPlotX + ((year - curXMin) / span) * cherryPlotW;
+            axesHTML += `<line x1="${px}" y1="${cherryPlotY + cherryPlotH}" x2="${px}" y2="${cherryPlotY + cherryPlotH + 5}" stroke="#555"/>`;
+            axesHTML += `<text x="${px}" y="${cherryPlotY + cherryPlotH + 25}" text-anchor="middle" font-size="14" fill="#555">${year}</text>`;
+          }
+
+          for (let y = startYear; y <= endYear; y++) {
+            if (y === startYear || y === endYear) {
+              addTick(y);
+            } else if (y % tickInterval === 0) {
+              if ((y - startYear) > (tickInterval * 0.6) && (endYear - y) > (tickInterval * 0.6)) {
+                addTick(y);
+              }
+            }
+          }
+          cherryAxes.innerHTML = axesHTML;
+        }
+
+        cherrySlider.addEventListener('input', updateCherrySVG);
+        updateCherrySVG();
+      }
+
+      // ==========================================
+      // 2. UNDERBINNING
+      // ==========================================
+      const binSlider = document.getElementById('binSlider');
+      const binBarsGroup = document.getElementById('binBars');
+      const binAxesGroup = document.getElementById('binAxes');
+      const binDisplay = document.getElementById('binCountDisplay');
+
+      if (binSlider && binBarsGroup && binAxesGroup) {
+        const rawData = [
+          12, 14, 15, 15, 16, 17, 18, 18, 19, 20, 21, 22, 23, 23, 24, 25, 26, 27, 28, 28, 29, 30, 31, 32, 33, 34, 35,
+          65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 88
+        ];
+
+        const binPlotX = 70, binPlotY = 20, binPlotW = 760, binPlotH = 360;
+
+        function renderBins() {
+          const numBins = parseInt(binSlider.value);
+          if (binDisplay) binDisplay.innerText = numBins;
+
+          const minVal = 0, maxVal = 100;
+          const binWidth = (maxVal - minVal) / numBins;
+          const bins = Array(numBins).fill(0);
+
+          rawData.forEach(val => {
+            let idx = Math.floor((val - minVal) / binWidth);
+            if (idx >= numBins) idx = numBins - 1;
+            bins[idx]++;
+          });
+
+          const maxCount = Math.max(...bins, 5);
+
+          let axesHTML = '';
+          let barsHTML = '';
+
+          axesHTML += `<line x1="${binPlotX}" y1="${binPlotY}" x2="${binPlotX}" y2="${binPlotY + binPlotH}" stroke="#555" stroke-width="2"/>`;
+          axesHTML += `<line x1="${binPlotX}" y1="${binPlotY + binPlotH}" x2="${binPlotX + binPlotW}" y2="${binPlotY + binPlotH}" stroke="#555" stroke-width="2"/>`;
+
+          for (let i = 0; i <= 4; i++) {
+            const py = binPlotY + binPlotH - (i / 4 * binPlotH);
+            axesHTML += `<text x="${binPlotX - 10}" y="${py + 5}" text-anchor="end" font-size="14" fill="#555">${Math.round((i / 4) * maxCount)}</text>`;
+          }
+
+          const barW = binPlotW / numBins;
+          const isDishonest = numBins <= 3;
+
+          bins.forEach((count, i) => {
+            const barH = (count / maxCount) * binPlotH;
+            const x = binPlotX + i * barW;
+            const y = binPlotY + binPlotH - barH;
+
+            const color = isDishonest ? "rgba(255, 99, 132, 0.7)" : "rgba(54, 162, 235, 0.7)";
+            const strokeColor = isDishonest ? "rgba(255, 99, 132, 1)" : "rgba(54, 162, 235, 1)";
+
+            barsHTML += `<rect x="${x}" y="${y}" width="${barW - 2}" height="${barH}" fill="${color}" stroke="${strokeColor}" stroke-width="1"></rect>`;
+
+            const rangeStart = Math.round(minVal + i * binWidth);
+            const rangeEnd = Math.round(rangeStart + binWidth);
+            axesHTML += `<text x="${x + barW / 2}" y="${binPlotY + binPlotH + 20}" text-anchor="middle" font-size="${numBins > 6 ? 10 : 12}" fill="#555">${rangeStart}-${rangeEnd}</text>`;
+          });
+
+          binAxesGroup.innerHTML = axesHTML;
+          binBarsGroup.innerHTML = barsHTML;
+        }
+
+        binSlider.addEventListener('input', renderBins);
+        renderBins();
+      }
+
+      // ==========================================
+      // 3. AXIS TRUNCATION
+      // ==========================================
+
+      const svgSlider = document.getElementById('svgSlider');
+
+      if (svgSlider) {
+        const barA = document.getElementById('barA');
+        const barB = document.getElementById('barB');
+        const labelA = document.getElementById('labelA');
+        const labelB = document.getElementById('labelB');
+
+        const sliderValue = document.getElementById('sliderValue');
+        const message = document.getElementById('svgMessage');
+
+        const y0 = document.getElementById('y0');
+        const y50 = document.getElementById('y50');
+        const y100 = document.getElementById('y100');
+
+        const valueA = 100;
+        const valueB = 110;
+        const baseY = 250;
+        const topY = 50;
+        const chartHeight = baseY - topY;
+        const yMax = 115;
+
+        function updateAxisTruncationSVG() {
+          const yMin = Number(svgSlider.value);
+          const visibleRange = yMax - yMin;
+
+          sliderValue.textContent = yMin;
+
+          const heightA = ((valueA - yMin) / visibleRange) * chartHeight;
+          const heightB = ((valueB - yMin) / visibleRange) * chartHeight;
+
+          barA.setAttribute('y', baseY - heightA);
+          barA.setAttribute('height', heightA);
+
+          barB.setAttribute('y', baseY - heightB);
+          barB.setAttribute('height', heightB);
+
+          labelA.setAttribute('y', baseY - heightA - 8);
+          labelB.setAttribute('y', baseY - heightB - 8);
+
+          y0.textContent = yMin;
+          y50.textContent = Math.round(yMin + visibleRange / 2);
+          y100.textContent = yMax;
+
+          if (yMin === 0) {
+            message.textContent = 'Full axis: the difference looks proportional.';
+          } else if (yMin < 60) {
+            message.textContent = 'The y-axis is slightly truncated. The difference starts to look larger.';
+          } else {
+            message.textContent = 'The data is unchanged, but the difference now looks dramatically larger.';
+          }
+        }
+
+        svgSlider.addEventListener('input', updateAxisTruncationSVG);
+        updateAxisTruncationSVG();
+      }
+
+      // ==========================================
+      // 4. FLATTENING / STEEPENING
+      // ==========================================
+      (function initSVGFlattening() {
+        const data = [50, 52, 51, 54, 53, 56, 55, 58, 57, 60, 59, 62];
+        const labels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+        const plotX = 70, plotY = 20, plotW = 760, plotH = 360;
+        const dx = plotW / (data.length - 1);
+
+        const line = document.getElementById('svgDataLine');
+        const slider = document.getElementById('svgScaleSlider');
+        const yAxisGroup = document.getElementById('svgYAxis');
+        const xAxisGroup = document.getElementById('svgXAxis');
+
+        if (!line || !slider) return;
+
+        labels.forEach((month, index) => {
+          const x = plotX + (index * dx);
+          const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+          text.setAttribute("x", x);
+          text.setAttribute("y", plotY + plotH + 25);
+          text.setAttribute("text-anchor", "middle");
+          text.setAttribute("font-size", "14");
+          text.setAttribute("fill", "#666");
+          text.textContent = month;
+          xAxisGroup.appendChild(text);
+
+          const tick = document.createElementNS("http://www.w3.org/2000/svg", "line");
+          tick.setAttribute("x1", x);
+          tick.setAttribute("y1", plotY + plotH);
+          tick.setAttribute("x2", x);
+          tick.setAttribute("y2", plotY + plotH + 5);
+          tick.setAttribute("stroke", "#333");
+          xAxisGroup.appendChild(tick);
+        });
+
+        function updateSVG() {
+          const val = parseInt(slider.value);
+          let yMin, yMax, lineColor = "#0055cc";
+
+          if (val <= 50) {
+            let intensity = Math.pow((50 - val) / 50, 2);
+            yMin = 0 + (intensity * 49);
+            yMax = 100 - (intensity * 37);
+            if (val < 20) lineColor = "#cc0000";
+          } else {
+            let intensity = Math.pow((val - 50) / 50, 3);
+            yMin = 0;
+            yMax = 100 + (intensity * 1900);
+            if (val > 80) lineColor = "#999999";
+          }
+
+          yAxisGroup.innerHTML = '';
+          const numTicks = 5;
+          for (let i = 0; i < numTicks; i++) {
+            const proportion = i / (numTicks - 1);
+            const currentYValue = yMin + ((yMax - yMin) * proportion);
+            const yPos = (plotY + plotH) - (proportion * plotH);
+
+            const gridLine = document.createElementNS("http://www.w3.org/2000/svg", "line");
+            gridLine.setAttribute("x1", plotX);
+            gridLine.setAttribute("y1", yPos);
+            gridLine.setAttribute("x2", plotX + plotW);
+            gridLine.setAttribute("y2", yPos);
+            gridLine.setAttribute("stroke", "#eee");
+            yAxisGroup.appendChild(gridLine);
+
+            const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+            text.setAttribute("x", plotX - 10);
+            text.setAttribute("y", yPos + 5);
+            text.setAttribute("text-anchor", "end");
+            text.setAttribute("font-size", "14");
+            text.setAttribute("fill", "#666");
+            text.textContent = currentYValue >= 1000 ? Math.round(currentYValue / 1000) + 'k' : Math.round(currentYValue);
+            yAxisGroup.appendChild(text);
+          }
+
+          const pointsString = data.map((val, index) => {
+            const x = plotX + (index * dx);
+            const normalizedY = (val - yMin) / (yMax - yMin);
+            const y = (plotY + plotH) - (normalizedY * plotH);
+            return `${x},${y}`;
+          }).join(" ");
+
+          line.setAttribute("points", pointsString);
+          line.setAttribute("stroke", lineColor);
+        }
+
+        slider.addEventListener('input', updateSVG);
+        updateSVG();
+      })();
+
+      // ==========================================
+      // 5. OVERSMOOTHING
+      // ==========================================
+
+      const svgRawData = [
+        50, 52, 49, 55, 53, 70, 52, 48, 51, 50,
+        49, 47, 30, 48, 51, 53, 55, 54, 52, 50,
+        51, 53, 75, 54, 52, 50, 49, 51, 50, 48,
+        47, 46, 45, 58, 44, 43, 42, 41, 40, 39
+      ];
+
+      function svgMovingAverage(data, windowSize) {
+        if (windowSize <= 1) return data;
+        return data.map((value, index) => {
+          const halfWindow = Math.floor(windowSize / 2);
+          const start = Math.max(0, index - halfWindow);
+          const end = Math.min(data.length, index + halfWindow + 1);
+          const subset = data.slice(start, end);
+          return subset.reduce((sum, current) => sum + current, 0) / subset.length;
+        });
+      }
+
+      function dataToSvgPoints(data) {
+        const xMin = 70, xMax = 800, yMin = 40, yMax = 340;
+        const dataMin = 20, dataMax = 80;
+
+        return data.map((value, index) => {
+          const x = xMin + (index / (data.length - 1)) * (xMax - xMin);
+          const y = yMax - ((value - dataMin) / (dataMax - dataMin)) * (yMax - yMin);
+          return `${x},${y}`;
+        }).join(" ");
+      }
+
+      function initOversmoothingSvg() {
+        const rawLine = document.getElementById("rawLine");
+        const smoothLine = document.getElementById("smoothLine");
+        const slider = document.getElementById("smoothingSvgSlider");
+        const sliderValue = document.getElementById("smoothingSvgValue");
+        const title = document.getElementById("oversmoothingTitle");
+        const message = document.getElementById("oversmoothingSvgMessage");
+
+        if (!rawLine || !smoothLine || !slider) return;
+
+        rawLine.setAttribute("points", dataToSvgPoints(svgRawData));
+        smoothLine.setAttribute("points", dataToSvgPoints(svgRawData));
+
+        slider.addEventListener("input", function () {
+          const windowSize = Number(this.value);
+          const smoothedData = svgMovingAverage(svgRawData, windowSize);
+
+          sliderValue.innerText = windowSize;
+          smoothLine.setAttribute("points", dataToSvgPoints(smoothedData));
+
+          if (windowSize <= 3) {
+            title.textContent = "Low smoothing: local variation remains visible";
+            message.textContent = "Low smoothing: short-term fluctuations are still visible.";
+          } else if (windowSize <= 9) {
+            title.textContent = "Moderate smoothing: peaks and dips are reduced";
+            message.textContent = "Moderate smoothing: fluctuations become less visible.";
+          } else {
+            title.textContent = "Oversmoothing: important local patterns are hidden";
+            message.textContent = "High smoothing: spikes and drops almost disappear.";
+          }
+        });
+      }
+      initOversmoothingSvg();
+
+      // ==========================================
+      // 6. TIME GAP
+      // ==========================================
+      const fullYears = [2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020];
+      const fullValues = [10, 11, 9, 12, 10, 13, 11, 12, 10, 14, 11, 12, 10, 13, 11, 12, 10, 11, 12, 60, 85];
+
+      function drawTimeGapChart() {
+        const ctx5 = document.getElementById('timeGapChart').getContext('2d');
+        window.myTimeGapChart = new Chart(ctx5, {
+          type: 'bar',
+          data: {
+            labels: [...fullYears],
+            datasets: [{
+              label: 'Revenue (Millions)',
+              data: [...fullValues],
+              backgroundColor: 'rgba(0, 85, 204, 0.6)',
+              borderColor: '#0055cc',
+              borderWidth: 1
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            animation: { duration: 200 },
+            scales: {
+              y: { beginAtZero: true, max: 100, title: { display: true, text: 'Revenue' } },
+              x: { title: { display: true, text: 'Year' } }
+            }
+          }
+        });
+      }
+
+      const timeGapSlider = document.getElementById('timeGapSlider');
+      if (timeGapSlider) {
+        timeGapSlider.addEventListener('input', function (e) {
+          const val = parseInt(e.target.value);
+          const removeCount = Math.round((val / 100) * 18);
+
+          let currentYears = [...fullYears];
+          let currentValues = [...fullValues];
+          currentYears.splice(1, removeCount);
+          currentValues.splice(1, removeCount);
+
+          if (window.myTimeGapChart) {
+            window.myTimeGapChart.data.labels = currentYears;
+            window.myTimeGapChart.data.datasets[0].data = currentValues;
+
+            if (val > 80) {
+              window.myTimeGapChart.data.datasets[0].backgroundColor = 'rgba(204, 0, 0, 0.6)';
+              window.myTimeGapChart.data.datasets[0].borderColor = '#cc0000';
+            } else {
+              window.myTimeGapChart.data.datasets[0].backgroundColor = 'rgba(0, 85, 204, 0.6)';
+              window.myTimeGapChart.data.datasets[0].borderColor = '#0055cc';
+            }
+            window.myTimeGapChart.update();
+          }
+        });
+      }
+
+      // ==========================================
+      // 7. VISUAL ENCODING (SIZE / AREA - TOGGLE)
+      // ==========================================
+      (function initSVGSizeArea() {
+        const baseRadius = 60;
+
+        // Honest: Double the area. New r = baseRadius * sqrt(2)
+        const honestRadius = baseRadius * Math.sqrt(2);
+
+        // Dishonest: Double the 1D radius. Area becomes 4x larger.
+        const dishonestRadius = baseRadius * 2;
+
+        const compareCircle = document.getElementById('svgCircleCompare');
+        const toggle = document.getElementById('svgSizeToggle');
+        const labelHonest = document.getElementById('sizeLabelHonest');
+        const labelDishonest = document.getElementById('sizeLabelDishonest');
+
+        if (!compareCircle || !toggle) return;
+
+        function updateCircle() {
+          if (toggle.checked) {
+            compareCircle.setAttribute("r", dishonestRadius);
+            labelDishonest.style.fontWeight = "bold";
+            labelDishonest.style.color = "var(--danger-color)";
+            labelHonest.style.fontWeight = "normal";
+            labelHonest.style.color = "var(--text-muted)";
+          } else {
+            compareCircle.setAttribute("r", honestRadius);
+            labelHonest.style.fontWeight = "bold";
+            labelHonest.style.color = "var(--success-color)";
+            labelDishonest.style.fontWeight = "normal";
+            labelDishonest.style.color = "var(--text-muted)";
+          }
+        }
+
+        toggle.addEventListener('change', updateCircle);
+      })();
+
+      // ==========================================
+      // 7. VISUAL ENCODING  (COLOR MAPPING)
+      // ==========================================
+      (function initSVGColor() {
+        const toggle = document.getElementById('svgColorToggle');
+        const labelHonest = document.getElementById('colorLabelHonest');
+        const labelDishonest = document.getElementById('colorLabelDishonest');
+        const legendBar = document.getElementById('legendBar');
+
+        if (!document.getElementById('usaMapContainer') || !toggle) return;
+
+        const width = 950;
+        const height = 550;
+
+        const svg = d3.select("#usaMapContainer")
+          .append("svg")
+          .attr("viewBox", `0 0 ${width} ${height}`)
+          .style("width", "100%")
+          .style("height", "100%");
+
+        const projection = d3.geoAlbersUsa()
+          .scale(1100)
+          .translate([width / 2 - 50, height / 2]);
+
+        const path = d3.geoPath().projection(projection);
+
+        d3.json("https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json").then(function (usData) {
+
+          const states = topojson.feature(usData, usData.objects.states).features;
+
+          states.forEach(d => {
+            const centroid = path.centroid(d);
+            let temp = 15;
+            if (!isNaN(centroid[1])) {
+              temp = 10 + (centroid[1] / height) * 25;
+              temp += (Math.random() - 0.5) * 5;
+              temp = Math.max(10, Math.min(35, temp));
+            }
+            d.properties.temp = temp;
+          });
+
+          function getHonestColor(temp) {
+            const ratio = (temp - 10) / 25;
+            const r1 = 254, g1 = 224, b1 = 210;
+            const r2 = 222, g2 = 45, b2 = 38;
+            const r = Math.round(r1 + ratio * (r2 - r1));
+            const g = Math.round(g1 + ratio * (g2 - g1));
+            const b = Math.round(b1 + ratio * (b2 - b1));
+            return `rgb(${r}, ${g}, ${b})`;
+          }
+
+          function getDishonestColor(temp) {
+            const ratio = (temp - 10) / 25;
+            if (ratio < 0.2) return '#0000cc';
+            if (ratio < 0.4) return '#00ccff';
+            if (ratio < 0.6) return '#00ffcc';
+            if (ratio < 0.8) return '#ffff00';
+            if (ratio < 0.9) return '#ff6600';
+            return '#cc0000';
+          }
+
+          const paths = svg.append("g")
+            .selectAll("path")
+            .data(states)
+            .enter()
+            .append("path")
+            .attr("d", path)
+            .attr("stroke", "#ffffff")
+            .attr("stroke-width", 1)
+            .style("transition", "fill 0.5s ease");
+
+          function updateColors() {
+            const isRainbow = toggle.checked;
+
+            paths.attr("fill", d => isRainbow ? getDishonestColor(d.properties.temp) : getHonestColor(d.properties.temp));
+            legendBar.setAttribute("fill", isRainbow ? "url(#legDishonest)" : "url(#legHonest)");
+
+            if (isRainbow) {
+              labelDishonest.style.fontWeight = "bold";
+              labelDishonest.style.color = "var(--danger-color)";
+              labelHonest.style.fontWeight = "normal";
+              labelHonest.style.color = "var(--text-muted)";
+            } else {
+              labelHonest.style.fontWeight = "bold";
+              labelHonest.style.color = "var(--success-color)";
+              labelDishonest.style.fontWeight = "normal";
+              labelDishonest.style.color = "var(--text-muted)";
+            }
+          }
+
+          toggle.addEventListener('change', updateColors);
+          updateColors();
+        });
+      })();
+
+      // ==========================================
+      // 8. PERSPECTIVE DISTORTION
+      // ==========================================
+
+      const perspectiveData = [
+        { label: 'A', value: 21.2, color: '#5DADE2' },
+        { label: 'B', value: 19.5, color: '#F1948A' },
+        { label: 'C', value: 59.3, color: '#AAB7B8' }
+      ];
+
+      function polarToCartesian(cx, cy, rx, ry, angleDegrees) {
+        const angleRadians = (angleDegrees - 90) * Math.PI / 180;
+        return { x: cx + rx * Math.cos(angleRadians), y: cy + ry * Math.sin(angleRadians) };
+      }
+
+      function describeSlice(cx, cy, rx, ry, startAngle, endAngle) {
+        const start = polarToCartesian(cx, cy, rx, ry, endAngle);
+        const end = polarToCartesian(cx, cy, rx, ry, startAngle);
+        const largeArcFlag = endAngle - startAngle <= 180 ? 0 : 1;
+        return ["M", cx, cy, "L", start.x, start.y, "A", rx, ry, 0, largeArcFlag, 0, end.x, end.y, "Z"].join(" ");
+      }
+
+      function createSvgElement(type, attributes) {
+        const element = document.createElementNS("http://www.w3.org/2000/svg", type);
+        Object.entries(attributes).forEach(([key, value]) => element.setAttribute(key, value));
+        return element;
+      }
+
+      function drawPerspectivePieSvg(tilt) {
+        const svg = document.getElementById('perspectivePieSvg');
+        svg.innerHTML = '';
+
+        const cx = 360, cy = 180, rx = 150, ry = 150 - tilt, depth = tilt * 0.45;
+
+        // =========================
+        // SHADOW (ellipse)
+        // =========================
+        if (tilt > 0) {
+          svg.appendChild(createSvgElement('ellipse', {
+            cx: cx,
+            cy: cy + depth,
+            rx: rx,
+            ry: ry,
+            fill: '#000',
+            opacity: '0.22'
+          }));
+        }
+
+        // =========================
+        // PIE SLICES (TOP)
+        // =========================
+        let currentAngle = 68.58;
+
+        perspectiveData.forEach(slice => {
+          const sliceAngle = slice.value / 100 * 360;
+          const endAngle = currentAngle + sliceAngle;
+
+          svg.appendChild(createSvgElement('path', {
+            d: describeSlice(cx, cy, rx, ry, currentAngle, endAngle),
+            fill: slice.color,
+            stroke: '#000',
+            'stroke-width': 4,
+            'stroke-linejoin': 'round'
+          }));
+
+          currentAngle = endAngle;
+        });
+
+        // =========================
+        // EXTEND WEDGE LINES INTO SHADOW
+        // =========================
+        if (tilt > 0) {
+          let dividerAngle = 68.58;
+
+          perspectiveData.forEach(slice => {
+            const topPoint = polarToCartesian(cx, cy, rx, ry, dividerAngle);
+
+            // only draw depth lines on the front half of the tilted pie
+            if (topPoint.y > cy) {
+              const bottomPoint = polarToCartesian(cx, cy + depth, rx, ry, dividerAngle);
+
+              svg.appendChild(createSvgElement('line', {
+                x1: topPoint.x,
+                y1: topPoint.y,
+                x2: bottomPoint.x,
+                y2: bottomPoint.y,
+                stroke: '#000',
+                'stroke-width': 3,
+                opacity: '0.7'
+              }));
+            }
+
+            dividerAngle += slice.value / 100 * 360;
+          });
+        }
+
+        // =========================
+        // LABELS
+        // =========================
+        let labelAngle = 68.58;
+
+        perspectiveData.forEach(slice => {
+          const sliceAngle = slice.value / 100 * 360;
+          const midAngle = labelAngle + sliceAngle / 2;
+
+          const labelPosition = polarToCartesian(cx, cy, rx * 0.62, ry * 0.62, midAngle);
+
+          const label = createSvgElement('text', {
+            x: labelPosition.x,
+            y: labelPosition.y,
+            'text-anchor': 'middle',
+            'dominant-baseline': 'middle',
+            'font-size': 18,
+            'font-weight': 'bold',
+            fill: '#222'
+          });
+
+          label.textContent = `${slice.label}: ${slice.value}%`;
+          svg.appendChild(label);
+
+          labelAngle += sliceAngle;
+        });
+
+        // =========================
+        // CAPTION
+        // =========================
+        const caption = createSvgElement('text', {
+          x: 360,
+          y: 380,
+          'text-anchor': 'middle',
+          'font-size': 16,
+          fill: '#555'
+        });
+
+        caption.textContent = tilt === 0
+          ? 'Honest 2D pie chart'
+          : 'Tilted pie chart: same values, distorted appearance';
+
+        svg.appendChild(caption);
+      }
+
+      function initPerspectiveDistortionDemo() {
+        drawPerspectivePieSvg(0);
+
+        const slider = document.getElementById('tiltSlider');
+        const sliderValue = document.getElementById('tiltSliderValue');
+        const message = document.getElementById('perspectiveMessage');
+
+        slider.addEventListener('input', function () {
+          const tilt = Number(this.value);
+          sliderValue.innerText = tilt;
+
+          drawPerspectivePieSvg(tilt);
+
+          if (tilt === 0) {
+            message.innerText = 'No tilt: slices are easier to compare by their actual angle.';
+          } else if (tilt < 40) {
+            message.innerText = 'Moderate tilt: the chart starts to look three-dimensional.';
+          } else {
+            message.innerText = 'Strong tilt: perspective makes some slices appear visually more important than their values suggest.';
+          }
+        });
+      }
+
+      // ==========================================
+      // 9. CONCEALING UNCERTAINTY 
+      // ==========================================
+      const uncertSlider = document.getElementById('uncertSlider');
+      const uncertDisplay = document.getElementById('uncertDisplay');
+      const uncertArea = document.getElementById('uncertArea');
+      const uncertLine = document.getElementById('uncertLine');
+      const uncertAxes = document.getElementById('uncertAxes');
+      const uncertPoints = document.getElementById('uncertPoints');
+
+      if (uncertSlider && uncertArea && uncertLine) {
+        const forecastData = [
+          { month: 1, y: 50, err: 2 }, { month: 2, y: 52, err: 3 }, { month: 3, y: 55, err: 5 }, { month: 4, y: 53, err: 8 }, { month: 5, y: 58, err: 12 },
+          { month: 6, y: 62, err: 16 }, { month: 7, y: 60, err: 20 }, { month: 8, y: 65, err: 25 }, { month: 9, y: 68, err: 30 }, { month: 10, y: 72, err: 36 }
+        ];
+
+        const uncertPlotX = 70, uncertPlotY = 20, uncertPlotW = 760, uncertPlotH = 360;
+        const minX = 1, maxX = 10, minY = 0, maxY = 120;
+
+        function updateUncertSVG() {
+          const confidenceVal = parseInt(uncertSlider.value);
+          const errorMultiplier = confidenceVal / 95;
+          const isDishonest = confidenceVal < 50;
+          const lineColor = isDishonest ? "#cc0000" : "#0055cc";
+          const areaColor = isDishonest ? "rgba(255, 99, 132, 0.25)" : "rgba(54, 162, 235, 0.25)";
+
+          if (uncertDisplay) {
+            uncertDisplay.innerText = confidenceVal + '%';
+            uncertDisplay.style.color = isDishonest ? '#cc0000' : 'green';
+          }
+
+          let linePoints = [], upperPoints = [], lowerPoints = [], pointsHTML = '';
+
+          forecastData.forEach(d => {
+            const px = uncertPlotX + ((d.month - minX) / (maxX - minX)) * uncertPlotW;
+            const py = (uncertPlotY + uncertPlotH) - ((d.y - minY) / (maxY - minY)) * uncertPlotH;
+            const currentErr = d.err * errorMultiplier;
+            const pyUpper = (uncertPlotY + uncertPlotH) - (((d.y + currentErr) - minY) / (maxY - minY)) * uncertPlotH;
+            const pyLower = (uncertPlotY + uncertPlotH) - (((d.y - currentErr) - minY) / (maxY - minY)) * uncertPlotH;
+
+            linePoints.push(`${px},${py}`);
+            upperPoints.push(`${px},${pyUpper}`);
+            lowerPoints.unshift(`${px},${pyLower}`);
+            pointsHTML += `<circle cx="${px}" cy="${py}" r="4" fill="${lineColor}"></circle>`;
+          });
+
+          uncertLine.setAttribute("points", linePoints.join(" "));
+          uncertLine.setAttribute("stroke", lineColor);
+          uncertArea.setAttribute("d", `M ${upperPoints[0]} L ${upperPoints.join(" L ")} L ${lowerPoints.join(" L ")} Z`);
+          uncertArea.setAttribute("fill", areaColor);
+          uncertPoints.innerHTML = pointsHTML;
+
+          let axesHTML = '';
+          axesHTML += `<line x1="${uncertPlotX}" y1="${uncertPlotY}" x2="${uncertPlotX}" y2="${uncertPlotY + uncertPlotH}" stroke="#555" stroke-width="2"/>`;
+          axesHTML += `<line x1="${uncertPlotX}" y1="${uncertPlotY + uncertPlotH}" x2="${uncertPlotX + uncertPlotW}" y2="${uncertPlotY + uncertPlotH}" stroke="#555" stroke-width="2"/>`;
+
+          const ySteps = 4;
+          for (let i = 0; i <= ySteps; i++) {
+            const valY = minY + (i / ySteps) * (maxY - minY);
+            const py = (uncertPlotY + uncertPlotH) - (i / ySteps) * uncertPlotH;
+            axesHTML += `<line x1="${uncertPlotX}" y1="${py}" x2="${uncertPlotX + uncertPlotW}" y2="${py}" stroke="#eee"/>`;
+            axesHTML += `<text x="${uncertPlotX - 10}" y="${py + 5}" text-anchor="end" font-size="14" fill="#555">${valY}</text>`;
+          }
+
+          for (let i = minX; i <= maxX; i++) {
+            const px = uncertPlotX + ((i - minX) / (maxX - minX)) * uncertPlotW;
+            axesHTML += `<line x1="${px}" y1="${uncertPlotY + uncertPlotH}" x2="${px}" y2="${uncertPlotY + uncertPlotH + 5}" stroke="#555"/>`;
+            axesHTML += `<text x="${px}" y="${uncertPlotY + uncertPlotH + 25}" text-anchor="middle" font-size="14" fill="#555">M${i}</text>`;
+          }
+          uncertAxes.innerHTML = axesHTML;
+        }
+        uncertSlider.addEventListener('input', updateUncertSVG);
+        updateUncertSVG();
+      }
+
+      // ==========================================
+      // CANVAS OBSERVERS
+      // ==========================================
+      const canvas6 = document.getElementById('timeGapChart');
+      const observer6 = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting) {
+          drawTimeGapChart();
+          observer6.disconnect();
+        }
+      });
+      if (canvas6) observer6.observe(canvas6);
+
+      const perspectiveSvg = document.getElementById('perspectivePieSvg');
+      const observerPerspective = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting) {
+          initPerspectiveDistortionDemo();
+          observerPerspective.disconnect();
+        }
+      });
+      if (perspectiveSvg) observerPerspective.observe(perspectiveSvg);
+    });
+  </script>
+</body>
+
+</html>
