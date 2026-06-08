@@ -7,9 +7,9 @@ body {
   -webkit-hyphens: auto;
 }
 
-/* 
-section elements are automatically assigned class slide by rslidy 
-a slide is created by a section and/or div.slide 
+/*
+section elements are automatically assigned class slide by rslidy
+a slide is created by a section and/or div.slide
 */
 
 /* Base slide container */
@@ -124,10 +124,11 @@ figcaption.center {
 }
 
 figcaption {
-  text-align: left;
+  text-align: justify;
   padding-left: 2em;
   text-indent: -1.5em;
-  margin: 1em 0 0 0;
+  padding-right: 0.5em;
+  margin: 0.7em 0 0 0;
   font-size: 60%;
   display: table-caption;
   caption-side: bottom;
@@ -186,7 +187,7 @@ span.isbn:before {
 }
 
 div#rslidy-licence {
-  margin: 5em 0 1em 0;
+  margin: 6em 0 1em 0;
   text-align: center;
   line-height: 0.5em;
 }
@@ -259,18 +260,29 @@ div#rslidy-licence p {
 
 /* Two columns spaced evenly */
 .rslidy-columns-even {
-  display: flex;
-  justify-content: space-evenly;
-  align-items: flex-start;
-  gap: 2em;
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 15em), 1fr));
+  gap: 0.8em 2em;
+  width: 100%;
 }
 
 /* Single column within a column layout */
+/* Die Spalte selbst */
 .rslidy-column {
-  flex: 1;
+  width: 100%;
+  min-width: 0; /* Wichtig! */
+  overflow: hidden; /* Verhindert jeglichen visuellen Ausbruch */
   display: flex;
   flex-direction: column;
   gap: 0.5em;
+}
+
+/* Alle Kind-Elemente in der Spalte (Absätze, Listen, etc.) */
+.rslidy-column * {
+  max-width: 100% !important; /* Überschreibt die 60ch aus deinem globalen CSS */
+  box-sizing: border-box;
 }
 
 

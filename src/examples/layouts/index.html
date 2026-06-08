@@ -2,19 +2,25 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 
 <head>
-<meta charset="UTF-8"/>
+  <meta charset="UTF-8"/>
 
-<!-- for css3 media queries to work properly on mobile devices-->
-<meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Layouts</title>
+  <!-- for css3 media queries to work properly on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Layouts</title>
 
-<link rel="stylesheet" href="rslidy.min.css"/>
-<script type="module" src="rslidy.min.js"></script>
+  <link rel="stylesheet" href="rslidy.min.css"/>
+  <script type="module" src="rslidy.min.js"></script>
 
-<!-- for custom css sheets-->
-<!--link rel="stylesheet" href="./themes/tu-graz/tu-graz.css"-->
-<!--link rel="stylesheet"
-  href="./themes/coloured/coloured.css"-->
+  <!-- for custom css sheets-->
+  <!--link rel="stylesheet" href="./themes/tu-graz/tu-graz.css"-->
+  <!--link rel="stylesheet"
+    href="./themes/coloured/coloured.css"-->
+
+  <style>
+    figcaption span.fig-label {
+      font-weight: bold;
+    }
+  </style>
 </head>
 <body class="unanimated">
 
@@ -23,18 +29,18 @@
 
 
 <section class="rslidy-titleslide">
-<h1>Rslidy Layouts</h1>
-<h2>Titleslide</h2>
-<h3>Fabian Platzer</h3>
-<h3>Graz University of Technology, Austria</h3>
-<h4>Tue 02 Jun 2026</h4>
-<div id="rslidy-licence">
-<p>
-© Copyright 2026 by the author(s), except as otherwise noted.<br/>
-This work is placed under a Creative Commons Attribution 4.0 International
-(<a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>) licence.
-</p>
-</div>
+  <h1>Rslidy Layouts</h1>
+  <h2>Titleslide</h2>
+  <h3>Fabian Platzer</h3>
+  <h3>Graz University of Technology, Austria</h3>
+  <h4>Tue 02 Jun 2026</h4>
+  <div id="rslidy-licence">
+    <p>
+      © Copyright 2026 by the author(s), except as otherwise noted.<br/>
+      This work is placed under a Creative Commons Attribution 4.0 International
+      (<a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>) licence.
+    </p>
+  </div>
 </section>
 
 
@@ -44,7 +50,7 @@ This work is placed under a Creative Commons Attribution 4.0 International
 
 
 <section class="rslidy-sectionslide">
-<h1>1. Simple Layouts</h1>
+  <h1>1. Simple Layouts</h1>
 </section>
 
 
@@ -56,14 +62,14 @@ This work is placed under a Creative Commons Attribution 4.0 International
 
 
 <section>
-<h1>Single Bullet Points</h1>
-<ul>
-  <li>Bullet Point 1</li>
-  <li>Bullet Point 2</li>
-  <li>Bullet Point 3</li>
-  <li>Bullet Point 4</li>
-  <li>Bullet Point 5</li>
-</ul>
+  <h1>Single Bullet Points</h1>
+  <ul>
+    <li>Bullet Point 1</li>
+    <li>Bullet Point 2</li>
+    <li>Bullet Point 3</li>
+    <li>Bullet Point 4</li>
+    <li>Bullet Point 5</li>
+  </ul>
 </section>
 
 
@@ -72,19 +78,20 @@ This work is placed under a Creative Commons Attribution 4.0 International
 
 
 <section>
-<h1>Single Image or Diagram</h1>
+  <h1>Single Image or Diagram</h1>
 
-<figure>
-<div class="rslidy-large-images">
-<img class="svg" src="diagrams/rslidy-generic-diagram.svg"
-     alt="Example Slide SVG."/>
-</div>
-<figcaption>
-The Rslidy image viewer is automatically attached to every
-<code>&lt;img&gt;</code> element, and is activated by left click. It
-enables pan and zoom via mouse, keyboard, or on-screen controls.
-</figcaption>
-</figure>
+  <figure>
+    <div class="rslidy-large-images">
+      <img class="svg" src="diagrams/rslidy-generic-diagram.svg"
+           alt="Example Slide SVG."/>
+    </div>
+    <figcaption>
+      <span class="fig-label">Figure 1</span>:
+      The Rslidy image viewer is automatically attached to every
+      <code>&lt;img&gt;</code> element, and is activated by left click. It
+      enables pan and zoom via mouse, keyboard, or on-screen controls.
+    </figcaption>
+  </figure>
 </section>
 
 
@@ -93,31 +100,32 @@ enables pan and zoom via mouse, keyboard, or on-screen controls.
 
 
 <section>
-<h1>Responsive Image (Art Direction)</h1>
+  <h1>Responsive Image (Art Direction)</h1>
 
-<figure>
-<div class="rslidy-large-images">
-<picture>
-  <!-- Narrow crop for narrow widths -->
-  <source media="(max-width: 40rem)"
-    srcset="images/graz-uhrturm-narrow.jpg">
-  <!-- Medium crop for medium widths -->
-  <source media="(max-width: 80rem)" srcset="images/graz-uhrturm-medium.jpg">
-  <!-- Original wide image -->
-  <img src="images/graz-uhrturm.jpg"
-       alt="Photo of Graz Clock Tower, in three diffeent crop widths.">
-</picture>
-</div>
-<figcaption>
-This slide demonstrates responsive images using the <code>&lt;picture&gt;</code> element.
-Depending on screen width, a different crop of the same image is loaded.
-<br/><span class="credit">Image from
+  <figure>
+    <div class="rslidy-large-images">
+      <picture>
+        <!-- Narrow crop for narrow widths -->
+        <source media="(max-width: 40rem)"
+                srcset="images/graz-uhrturm-narrow.jpg">
+        <!-- Medium crop for medium widths -->
+        <source media="(max-width: 80rem)" srcset="images/graz-uhrturm-medium.jpg">
+        <!-- Original wide image -->
+        <img src="images/graz-uhrturm.jpg"
+             alt="Photo of Graz Clock Tower, in three diffeent crop widths.">
+      </picture>
+    </div>
+    <figcaption>
+      <span class="fig-label">Figure 2</span>:
+      This slide demonstrates responsive images using the <code>&lt;picture&gt;</code> element.
+      Depending on screen width, a different crop of the same image is loaded.
+      <br/><span class="credit">Image from
 <a href="https://pixabay.com/photos/graz-austria-styria-clock-tower-1638892/">Pixabay,</a>
 used under the terms of the
 Pixabay <a href="https://pixabay.com/service/license-summary/">licence.</a>
 </span>
-</figcaption>
-</figure>
+    </figcaption>
+  </figure>
 </section>
 
 
@@ -127,34 +135,35 @@ Pixabay <a href="https://pixabay.com/service/license-summary/">licence.</a>
 
 
 <section>
-<h1>Responsive Image (Resolution Switching)</h1>
+  <h1>Responsive Image (Resolution Switching)</h1>
 
-<figure>
-<div class="rslidy-large-images">
-  <img
-    src="images/graz-uhrturm.jpg"
-    srcset="
+  <figure>
+    <div class="rslidy-large-images">
+      <img
+              src="images/graz-uhrturm.jpg"
+              srcset="
     images/graz-uhrturm-480.jpg 480w,
     images/graz-uhrturm-800.jpg 800w,
     images/graz-uhrturm-1200.jpg 1200w
   "
-    sizes="(max-width: 40rem) 50vw,
+              sizes="(max-width: 40rem) 50vw,
        (max-width: 60rem) 75vw,
        100vw"
-    alt="The clock tower overlooking the city of Graz, Austria">
-</div>
-<figcaption>
-This slide demonstrates responsive images using the
-<code>srcset</code> and <code>sizes</code> attributes on
-an <code>&lt;img&gt;</code> element. The image is fetched at
-the appropriate resolution for the device.
-<br/><span class="credit">Image from
+              alt="The clock tower overlooking the city of Graz, Austria">
+    </div>
+    <figcaption>
+      <span class="fig-label">Figure 3</span>:
+      This slide demonstrates responsive images using the
+      <code>srcset</code> and <code>sizes</code> attributes on
+      an <code>&lt;img&gt;</code> element. The image is fetched at
+      the appropriate resolution for the device.
+      <br/><span class="credit">Image from
 <a href="https://pixabay.com/photos/graz-austria-styria-clock-tower-1638892/">Pixabay,</a>
 used under the terms of the
 Pixabay <a href="https://pixabay.com/service/license-summary/">licence.</a>
 </span>
-</figcaption>
-</figure>
+    </figcaption>
+  </figure>
 </section>
 
 
@@ -169,32 +178,32 @@ Pixabay <a href="https://pixabay.com/service/license-summary/">licence.</a>
 
 
 
-
 <section>
-<h1>Single Video</h1>
-<figure>
-<div class="rslidy-large-images">
-<video controls muted poster="images/skiing-thumbnail.jpg">
-<source src="images/skiing.mp4" type="video/mp4"/>
-<img src="images/skiing-thumbnail.jpg"
-     alt="Skiing video." />
-</video>
-</div>
-<figcaption>
-Short skiing video with sound.
-<br/><span class="credit">Video from
+  <h1>Single Video</h1>
+  <figure>
+    <div class="rslidy-large-images">
+      <video controls muted poster="images/skiing-thumbnail.jpg">
+        <source src="images/skiing.mp4" type="video/mp4"/>
+        <img src="images/skiing-thumbnail.jpg"
+             alt="Skiing video." />
+      </video>
+    </div>
+    <figcaption>
+      <span class="fig-label">Figure 4</span>:
+      Short skiing video with sound.
+      <br/><span class="credit">Video from
 <a href="https://pexels.com/video/ski-montagne-skier-piste-de-ski-4274798/">Pexels,</a>
 used under the terms of the
 Pexels <a href="https://pexels.com/license/">licence.</a>
 </span>
-</figcaption>
-</figure>
+    </figcaption>
+  </figure>
 </section>
 
 
 <section>
-  <h1>Responsive Table without Sorting</h1>
-  <table class="rslidy-responsive-table rslidy-responsive-table-text-scaling rslidy-disable-sorting">
+  <h1>Responsive Table with Sorting</h1>
+  <table class="rslidy-responsive-table rslidy-responsive-table-text-scaling">
     <thead>
     <tr>
       <th scope="col" class="rslidy-text">Smartphone</th>
@@ -302,7 +311,7 @@ Pexels <a href="https://pexels.com/license/">licence.</a>
 
 
 <section class="rslidy-sectionslide">
-<h1>2. Multi-Column Layouts</h1>
+  <h1>2. Multi-Column Layouts</h1>
 </section>
 
 
@@ -311,103 +320,111 @@ Pexels <a href="https://pexels.com/license/">licence.</a>
 
 
 <section>
-<h1>Two Columns: Bullet Points (Incremental)</h1>
+  <h1>Two Columns: Bullet Points (Incremental)</h1>
 
-<div class="rslidy-columns-even">
-<div class="rslidy-column">
-<ul class="rslidy-incremental">
-  <li>Left Bullet Point 1</li>
-  <li>Left Bullet Point 2</li>
-  <li>Left Bullet Point 3</li>
-  <li>Left Bullet Point 4</li>
-  <li>Left Bullet Point 5</li>
-</ul>
-</div>
-<div class="rslidy-column">
-<ul class="rslidy-incremental">
-  <li>Right Bullet Point 1</li>
-  <li>Right Bullet Point 2</li>
-  <li>Right Bullet Point 3</li>
-  <li>Right Bullet Point 4</li>
-  <li>Right Bullet Point 5</li>
-</ul>
-</div>
-</div>
-</section>
-
-
-
-
-
-
-
-
-
-
-<section>
-<h1>Two Columns: Bullets Left, Image or Diagram Right</h1>
-
-<div class="rslidy-columns-even">
-<div class="rslidy-column">
-<ul>
-  <li>Bullet Point 1</li>
-  <li>Bullet Point 2</li>
-  <li>Bullet Point 3</li>
-  <li>Bullet Point 4</li>
-  <li>Bullet Point 5</li>
-</ul>
-</div>
-<div class="rslidy-column">
-<figure>
-<div class="rslidy-large-images">
-  <img src="diagrams/rslidy-generic-diagram.svg"
-       alt="Generic diagram as SVG."/>
-</div>
-<figcaption>Generic diagram as SVG.</figcaption>
-</figure>
-</div>
-</div>
-</section>
-
-
-
-
-
-
-
-
-
-
-
-<section>
-<h1>Two Columns: Two Images or Diagrams</h1>
-
-<div class="rslidy-columns-even">
-
-<div class="rslidy-column">
-<figure>
-  <div class="rslidy-large-images">
-    <img src="diagrams/rslidy-generic-diagram.svg"
-         alt="Generic diagram as SVG."/>
+  <div class="rslidy-columns-even">
+    <div class="rslidy-column">
+      <ul class="rslidy-incremental">
+        <li>Left Bullet Point 1</li>
+        <li>Left Bullet Point 2</li>
+        <li>Left Bullet Point 3</li>
+        <li>Left Bullet Point 4</li>
+        <li>Left Bullet Point 5</li>
+      </ul>
+    </div>
+    <div class="rslidy-column">
+      <ul class="rslidy-incremental">
+        <li>Right Bullet Point 1</li>
+        <li>Right Bullet Point 2</li>
+        <li>Right Bullet Point 3</li>
+        <li>Right Bullet Point 4</li>
+        <li>Right Bullet Point 5</li>
+      </ul>
+    </div>
   </div>
-  <figcaption>Generic diagram as SVG.</figcaption>
-</figure>
-</div>
+</section>
 
-<div class="rslidy-column">
-<figure>
-  <div class="rslidy-large-images">
-    <img src="images/graz-uhrturm.jpg"
-         alt="Photo of the Graz clock Tower as JPEG."/>
+
+
+
+
+
+
+
+
+
+<section>
+  <h1>Two Columns: Bullets Left, Image or Diagram Right</h1>
+
+  <div class="rslidy-columns-even">
+    <div class="rslidy-column">
+      <ul>
+        <li>Bullet Point 1</li>
+        <li>Bullet Point 2</li>
+        <li>Bullet Point 3</li>
+        <li>Bullet Point 4</li>
+        <li>Bullet Point 5</li>
+      </ul>
+    </div>
+    <div class="rslidy-column">
+      <figure>
+        <div class="rslidy-large-images">
+          <img src="diagrams/rslidy-generic-diagram.svg"
+               alt="Generic diagram as SVG."/>
+        </div>
+        <figcaption>
+          <span class="fig-label">Figure 5</span>:
+          Generic diagram as SVG.
+        </figcaption>
+      </figure>
+    </div>
   </div>
-  <figcaption>Photo of the Graz Clocktower as JPEG from
-    <a href="https://pixabay.com/photos/graz-austria-styria-clock-tower-1638892/">Pixabay,</a>
-    used under the terms of the
-    Pixabay <a href="https://pixabay.com/service/license-summary/">licence.</a>
-    .</figcaption>
-</figure>
-</div>
-</div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+<section>
+  <h1>Two Columns: Two Images or Diagrams</h1>
+
+  <div class="rslidy-columns-even">
+
+    <div class="rslidy-column">
+      <figure>
+        <div class="rslidy-large-images">
+          <img src="diagrams/rslidy-generic-diagram.svg"
+               alt="Generic diagram as SVG."/>
+        </div>
+        <figcaption>
+          <span class="fig-label">Figure 6</span>:
+          Generic diagram as SVG.
+        </figcaption>
+      </figure>
+    </div>
+
+    <div class="rslidy-column">
+      <figure>
+        <div class="rslidy-large-images">
+          <img src="images/graz-uhrturm.jpg"
+               alt="Photo of the Graz clock Tower as JPEG."/>
+        </div>
+        <figcaption>
+          <span class="fig-label">Figure 7</span>:
+          Photo of the Graz Clocktower as JPEG from
+          <a href="https://pixabay.com/photos/graz-austria-styria-clock-tower-1638892/">Pixabay,</a>
+          used under the terms of the
+          Pixabay <a href="https://pixabay.com/service/license-summary/">licence.</a>.
+        </figcaption>
+      </figure>
+    </div>
+  </div>
 </section>
 
 
@@ -419,38 +436,42 @@ Pexels <a href="https://pexels.com/license/">licence.</a>
 
 
 <section>
-<h1>Two Columns: One Image or Diagram, One Video</h1>
+  <h1>Two Columns: One Image or Diagram, One Video</h1>
 
-<div class="rslidy-columns-even">
-<div class="rslidy-column">
-<figure>
-  <div class="rslidy-large-images">
-    <img src="diagrams/rslidy-generic-diagram.svg"
-         alt="Generic diagram as SVG"/>
-  </div>
-  <figcaption>Generic diagram as SVG.</figcaption>
-</figure>
-</div>
+  <div class="rslidy-columns-even">
+    <div class="rslidy-column">
+      <figure>
+        <div class="rslidy-large-images">
+          <img src="diagrams/rslidy-generic-diagram.svg"
+               alt="Generic diagram as SVG"/>
+        </div>
+        <figcaption>
+          <span class="fig-label">Figure 8</span>:
+          Generic diagram as SVG.
+        </figcaption>
+      </figure>
+    </div>
 
-<div class="rslidy-column">
-<figure>
-<div class="rslidy-large-images">
-  <video controls muted poster="images/skiing-thumbnail.jpg">
-    <source src="images/skiing.mp4" type="video/mp4"/>
-    <img src="images/skiing-thumbnail.jpg"
-       alt="Short skiing video with sound." />
-  </video>
-</div>
-<figcaption>
-  Short skiing video with sound.
-  <br/><span class="credit">Video from
+    <div class="rslidy-column">
+      <figure>
+        <div class="rslidy-large-images">
+          <video controls muted poster="images/skiing-thumbnail.jpg">
+            <source src="images/skiing.mp4" type="video/mp4"/>
+            <img src="images/skiing-thumbnail.jpg"
+                 alt="Short skiing video with sound." />
+          </video>
+        </div>
+        <figcaption>
+          <span class="fig-label">Figure 9</span>:
+          Short skiing video with sound.
+          <br/><span class="credit">Video from
   <a href="https://pexels.com/video/ski-montagne-skier-piste-de-ski-4274798/">Pexels,</a>
   used under the terms of the Pexels <a href="https://pexels.com/license/">licence.</a>
   </span>
-</figcaption>
-</figure>
-</div>
-</div>
+        </figcaption>
+      </figure>
+    </div>
+  </div>
 </section>
 
 

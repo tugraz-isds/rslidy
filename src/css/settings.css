@@ -300,7 +300,7 @@ input[type="checkbox"]:disabled + label {
 #rslidy-content-section .rslidy-slide-number-display {
   display: none;
   position: absolute;
-  right: 1.5rem;
+  right: 1.2rem;
   bottom: 1rem;
   font-size: var(--rslidy-slide-number-font-size);
   z-index: 1;

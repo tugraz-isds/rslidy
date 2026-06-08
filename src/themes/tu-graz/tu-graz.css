@@ -1,17 +1,77 @@
+/* Fluid Typography */
+:root {
+    --rslidy-font-size-base: clamp(1rem, 1.2vw + 0.6rem, 1.6rem);
+    --rslidy-font-size-h1: clamp(1.5rem, 2vw + 0.8rem, 2.6rem);   /* Smaller H1 */
+    --rslidy-font-size-h2: clamp(1.25rem, 1.5vw + 0.75rem, 2.2rem); /* Stepped down below H1 */
+    --rslidy-font-size-h3: clamp(1.15rem, 1.1vw + 0.7rem, 1.95rem); /* Stepped down below H2 */
+    --rslidy-font-size-h4: clamp(1.05rem, 0.8vw + 0.65rem, 1.75rem);/* Stepped down below H3 */
+    --rslidy-spacing-slide: clamp(1rem, 2vw, 2rem);
+}
+
+
+.slide {
+    font-size: var(--rslidy-font-size-base);
+    padding: var(--rslidy-spacing-slide);
+}
+
+.slide h1 {
+    font-size: var(--rslidy-font-size-h1);
+    line-height: 1.1;
+}
+
+.slide h2 {
+    font-size: var(--rslidy-font-size-h2);
+    line-height: 1.15;
+}
+
+.slide h3 {
+    font-size: var(--rslidy-font-size-h3);
+    line-height: 1.2;
+}
+
+.slide h4 {
+    font-size: var(--rslidy-font-size-h4);
+    line-height: 1.2;
+}
+
+.slide li,
+.slide p {
+    line-height: 1.35;
+}
+
 /* Title Slide */
 .rslidy-titleslide {
-    background: url("background.png") no-repeat center, linear-gradient(white 0%, gray 80%);
+    background:
+            linear-gradient(rgba(255, 255, 255, 0.35),
+            rgba(255, 255, 255, 0.7)),
+            url("background.png") no-repeat center,
+            linear-gradient(white 0%, gray 80%);
     background-size: contain;
-    display: flex;
+    display: block;
     flex-direction: column;
     color: #000000;
+    margin: 0;
+}
 
+.rslidy-titleslide h1,
+.closingslide h1 {
+    color: #f62546;
+}
+
+/* Licence Text */
+div#rslidy-licence p {
+    display: inline-block;
+    background-color: #fafafa;
+    padding: 0.5em;
+    border-radius: 0.2em;
+    font-size: clamp(0.55rem, 0.45vw + 0.35rem, 0.9rem);
+    max-width: clamp(16rem, 35vw, 34rem);
 }
 
 /* Normal Slides */
 .slide:not(.rslidy-titleslide) {
-    background: url("tugraz-logo.svg") 95% 4%/auto 2em no-repeat;
-    padding-right: 5em; /* adds space so text doesn’t overlap logo */
+    background: url("tugraz-logo.svg") right 0 top 0.4em / auto 2em no-repeat;
+    padding-right: 2em; /* adds space so text doesn’t overlap logo */
     padding-top: 2em;   /* optional: extra space from top edge */
     box-sizing: border-box;
 }
@@ -28,4 +88,3 @@
     }
 
 }
-
