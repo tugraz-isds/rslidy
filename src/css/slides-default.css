@@ -20,7 +20,7 @@ a slide is created by a section and/or div.slide
   right: 0;
   bottom: 0;
   margin: 0.5em 1.5em 1.5em 1.5em;
-  padding: 2.3rem;
+  padding: clamp(1rem, 4vw, 2.3rem);
   font-size: 1.5em; /* from first CSS */
 }
 
