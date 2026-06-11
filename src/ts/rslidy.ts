@@ -52,7 +52,7 @@ export class Rslidy {
   // Presentation time in seconds. 0 to disable (hides timer).
   presentation_time: number = 0;
   close_menu_on_selection: boolean = false;
-  close_menu_on_blur: boolean = true;
+  close_menu_on_unfocus: boolean = true;
   close_navigation_on_selection: boolean = false;
   show_slide_dividers: boolean = true;
   start_with_toolbar_minimized: boolean = false;

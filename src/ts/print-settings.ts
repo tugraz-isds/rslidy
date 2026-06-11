@@ -192,7 +192,7 @@ export class PrintSettingsComponent {
       page-break-after: always !important;
       break-after: page !important;
       position: relative !important;
-      min-height: 100vh !important;
+      min-height: calc(${pageHeight} - 20mm) !important;
     }
     .slide.rslidy-sectionslide {
       align-items: center;

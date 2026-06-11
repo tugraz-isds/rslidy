@@ -485,7 +485,7 @@ These are the available settings:
   been selected.  
   The default value is `false`.
 
-- `close_menu_on_blur`:  
+- `close_menu_on_unfocus`:  
   If set to `true`, menus are closed when they lose focus.  
   The default value is `true`.
 

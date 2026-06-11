@@ -276,7 +276,7 @@ export class ToolbarComponent {
   }
 
   // ---
-  // Description: Wrapper for the custom settings close_menu_on_blur and
+  // Description: Wrapper for the custom settings close_menu_on_unfocus and
   // close_menu_on_selection
   // fun: An optional function to execute before closing menues
   // condition: The condition for closing the menues
@@ -290,7 +290,7 @@ export class ToolbarComponent {
   // Description: Close open menues on blur
   // ---
   public closeMenuOnBlur(fun: () => void = null) {
-    this.closeMenuWrapper(fun, window.rslidy.close_menu_on_blur);
+    this.closeMenuWrapper(fun, window.rslidy.close_menu_on_unfocus);
   }
 
   // ---
