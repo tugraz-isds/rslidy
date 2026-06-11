@@ -453,10 +453,10 @@ override the default styles. Example themes are provided in the
 
 
 
-## 9. Custom Settings
+## 9. Global Settings
 
 Rslidy exposes configuration through `window.rslidy`. These settings can
-be overridden in the `<head>` before the deck is shown. Custom settings
+be overridden in the `<head>` before the deck is shown. Global settings
 offer a way of tweaking Rslidy’s internal behaviour.
 
 ```html
@@ -506,8 +506,8 @@ These are the available settings:
 
 ---
 
-## 10. Advanced Custom Settings
-Advanced custom settings allow direct adjustment of internal variables
+## 10. Advanced Global Settings
+Advanced global settings allow direct adjustment of internal variables
 that affect scaling, interaction thresholds, and gesture handling. They
 must also be overridden using JavaScript. These are the settings:
 

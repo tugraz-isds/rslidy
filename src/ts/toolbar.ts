@@ -276,7 +276,7 @@ export class ToolbarComponent {
   }
 
   // ---
-  // Description: Wrapper for the custom settings close_menu_on_unfocus and
+  // Description: Wrapper for the global settings close_menu_on_unfocus and
   // close_menu_on_selection
   // fun: An optional function to execute before closing menues
   // condition: The condition for closing the menues

@@ -47,7 +47,7 @@ export class Rslidy {
   timer_time: number = 0;
   timer_thread: any = null;
 
-  //Custom settings
+  //Global settings
   image_viewer: boolean = true;
   // Presentation time in seconds. 0 to disable (hides timer).
   presentation_time: number = 0;
@@ -59,7 +59,7 @@ export class Rslidy {
   show_slide_numbers: boolean = true;
   block_slide_text_selection: boolean = false;
 
-  // Advanced custom settings
+  // Advanced global settings
   /* Use of custom aspect ratio for slides. Possible values are e.g. 4/3 or
   16/9. 0 disables it and makes it calculate dynamically. */
   custom_aspect_ratio: number = 4/3;
