@@ -84,7 +84,6 @@ div#rslidy-licence p {
     background: url("tugraz-logo.svg") right 0 top 0.4em / auto 2em no-repeat;
     padding-right: 2em; /* adds space so text doesn’t overlap logo */
     padding-top: 2em;   /* optional: extra space from top edge */
-    box-sizing: border-box;
 }
 
 @media (prefers-color-scheme: dark) {
