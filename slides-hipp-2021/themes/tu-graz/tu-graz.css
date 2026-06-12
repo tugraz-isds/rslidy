@@ -1,11 +1,22 @@
 /* Fluid Typography */
 :root {
-    --rslidy-font-size-base: clamp(1rem, 1.2vw + 0.6rem, 1.6rem);
-    --rslidy-font-size-h1: clamp(1.5rem, 2vw + 0.8rem, 2.6rem);   /* Smaller H1 */
-    --rslidy-font-size-h2: clamp(1.25rem, 1.5vw + 0.75rem, 2.2rem); /* Stepped down below H1 */
-    --rslidy-font-size-h3: clamp(1.15rem, 1.1vw + 0.7rem, 1.95rem); /* Stepped down below H2 */
-    --rslidy-font-size-h4: clamp(1.05rem, 0.8vw + 0.65rem, 1.75rem);/* Stepped down below H3 */
+    --rslidy-font-size-base: clamp(1rem, 1.2vw + 0.6rem, 1.8rem);
+    --rslidy-font-size-h1: clamp(1.5rem, 2vw + 0.8rem, 2.6rem);
+    --rslidy-font-size-h2: clamp(1.25rem, 1.5vw + 0.75rem, 2.2rem);
+    --rslidy-font-size-h3: clamp(1.15rem, 1.1vw + 0.7rem, 1.95rem);
+    --rslidy-font-size-h4: clamp(1.05rem, 0.8vw + 0.65rem, 1.85rem);
     --rslidy-spacing-slide: clamp(1rem, 2vw, 2rem);
+}
+
+@media (min-width: 1921px) {
+    :root {
+        --rslidy-font-size-base: clamp(1.8rem, 0.6vw + 1.1rem, 2.3rem);
+        --rslidy-font-size-h1: clamp(2.6rem, 1vw + 1.5rem, 3.6rem);
+        --rslidy-font-size-h2: clamp(2.2rem, 0.8vw + 1.3rem, 3rem);
+        --rslidy-font-size-h3: clamp(1.95rem, 0.6vw + 1.2rem, 2.6rem);
+        --rslidy-font-size-h4: clamp(1.85rem, 0.5vw + 1.1rem, 2.3rem);
+        --rslidy-spacing-slide: clamp(2rem, 1vw, 3rem);
+    }
 }
 
 
