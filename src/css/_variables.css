@@ -155,6 +155,12 @@
   initial-value: 1rem;
 }
 
+@property --rslidy-slide-font-size {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 1.5rem;
+}
+
 /* === Global variables === */
 :root {
   color-scheme: light dark;
@@ -173,6 +179,7 @@
   --rslidy-overview-width-small-screen: 50%;
   --rslidy-slide-input-width: 2.60em;
   --rslidy-slide-number-font-size: 1rem;
+  --rslidy-slide-font-size: 1.5rem;
 
 
   /* toolbar and buttons */
