@@ -2,9 +2,8 @@ body {
   color: light-dark(black, white);
   background-color: light-dark(#f9f9f9, #121212);
   font-family: Verdana, sans-serif;
-  /* allow words to be broken at hyphenation points */
-  hyphens: auto;
-  -webkit-hyphens: auto;
+  hyphens: auto;  /* allow words to be broken at hyphenation points */
+  box-sizing: border-box;
 }
 
 /*
@@ -34,7 +33,6 @@ a slide is created by a section and/or div.slide
 /* turn hyphens off for code, tt, and kbd */
 code, var, kbd, samp, listing, plaintext, xmp, abbr {
   hyphens: none;
-  -webkit-hyphens: none;
   font-family: "Courier New", Courier, monospace;
   font-size: 1em;
 }
@@ -126,10 +124,9 @@ figcaption.center {
 
 figcaption {
   text-align: justify;
-  padding-left: 2em;
-  text-indent: -1.5em;
-  padding-right: 0.5em;
-  margin: 0.7em 0 0 0;
+  padding-left: 1em;
+  text-indent: -1em;
+  margin: 0.7em 1em 0 1em;
   font-size: 60%;
   display: table-caption;
   caption-side: bottom;
