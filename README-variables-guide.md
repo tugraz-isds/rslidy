@@ -34,7 +34,7 @@ These are variables used across multiple UI components:
 | `--rslidy-overview-width-small-screen` | `50%`    | Width of a slide in overview mode on smaller screens. |
 | `--rslidy-slide-input-width`           | `2.60em` | Width of input fields in the slide toolbar (e.g., slide number input). |
 | `--rslidy-slide-number-font-size`      | `1em`    | Font size of the current slide number display. |
-
+| `--rslidy-slide-font-size`             | `1.5em`  | Default font size used for normal slide content. |
 ---
 
 ## Toolbar Variables
