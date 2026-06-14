@@ -116,8 +116,8 @@ figcaption.rslidy-center {
   margin: 1em 0;
   font-size: 60%;
   text-align: center;
-  display: table-caption;
-  caption-side: bottom;
+  padding-left: 0;
+  text-indent: 0;
 }
 
 figcaption {
