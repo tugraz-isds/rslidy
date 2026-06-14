@@ -31,7 +31,7 @@ a slide is created by a section and/or div.slide
   flex-direction: column;
 }
 
-/* turn hyphens off for code, tt, and kbd */
+/* turn hyphenation off for code, tt, and kbd */
 code, var, kbd, samp, listing, plaintext, xmp, abbr {
   hyphens: none;
   font-family: "Courier New", Courier, monospace;
@@ -64,7 +64,7 @@ img, video {
   height: auto;
 }
 
-/* SVG images with fallback minimum size */
+/* SVG images with a fallback minimum size */
 img.rslidy-svg {
   min-width: 10em;
   min-height: 5em;
@@ -78,13 +78,11 @@ img.rslidy-svg {
   margin-top: 0;
 }
 
-/* figures */
+/* Figures */
 figure {
   margin: 0 auto;
   display: table;
 }
-
-
 
 /* Legacy image helper wrappers */
 div.rslidy-images, div.rslidy-large-images {
@@ -99,16 +97,15 @@ div.rslidy-images, div.rslidy-large-images {
 
 /* Standard media inside image helpers */
 div.rslidy-images img, div.rslidy-images video {
-  object-fit: contain; /* scale down does not work correctly on firefox */
+  object-fit: contain; /* scale-down does not work correctly in Firefox */
   max-height: 15em;
   width: auto;
   min-height: 5em;
-
 }
 
 /* Larger media inside image helpers */
 div.rslidy-large-images img, div.rslidy-large-images video {
-  object-fit: contain; /* scale down does not work correctly on firefox */
+  object-fit: contain; /* scale-down does not work correctly in Firefox */
   max-height: 25em;
   width: 100%;
   min-height: 8em;
@@ -197,7 +194,7 @@ div#rslidy-licence p {
   font-size: 0.5em;
 }
 
-/* title slide has larger and centered text */
+/* The title slide has larger and centred text */
 .rslidy-titleslide {
   text-align: center;
 }
@@ -236,7 +233,6 @@ div#rslidy-licence p {
   padding: 0;
 }
 
-
 /* Two columns spaced evenly */
 .rslidy-columns-even {
   display: grid;
@@ -250,19 +246,18 @@ div#rslidy-licence p {
 /* Single column within a column layout */
 .rslidy-column {
   width: 100%;
-  min-width: 0; /* Wichtig! */
-  overflow: hidden; /* Verhindert jeglichen visuellen Ausbruch */
+  min-width: 0; /* Important */
+  overflow: hidden; /* Prevents visual overflow */
   display: flex;
   flex-direction: column;
   gap: 0.5em;
 }
 
-/* Alle Kind-Elemente in der Spalte (Absätze, Listen, etc.) */
+/* All child elements inside the column, such as paragraphs and lists */
 .rslidy-column * {
-  max-width: 100% !important; /* Überschreibt die 60ch aus deinem globalen CSS */
+  max-width: 100% !important; /* Overrides the 60ch limit from the global CSS */
   box-sizing: border-box;
 }
-
 
 /* Half-width item */
 .rslidy-item-half {
@@ -276,13 +271,13 @@ div#rslidy-licence p {
   width: auto;
 }
 
-/* Description is marked in gray */
+/* Description is marked in grey */
 /* Highlighted description block */
 .rslidy-description {
   background-color: lightgray;
 }
 
-/* CSS Grid */
+/* CSS grid */
 /* Auto-fitting grid layout */
 .rslidy-grid {
   display: grid;
@@ -291,7 +286,7 @@ div#rslidy-licence p {
   grid-template-columns: repeat(auto-fit, minmax(25em,1fr));
 }
 
-/* code snippets */
+/* Code snippets */
 /* Block-style inline code snippet */
 code.rslidy-block {
   display: inline-block;
@@ -300,7 +295,7 @@ code.rslidy-block {
   margin-bottom: 1em;
 }
 
-/* keys */
+/* Keys */
 /* Keyboard key label */
 kbd.rslidy-key {
   border-radius: 3px;
@@ -308,7 +303,7 @@ kbd.rslidy-key {
   border: 1px solid black;
 }
 
-/* notes */
+/* Notes */
 /* Small note paragraph */
 p.rslidy-note {
   font-size: 80%;
@@ -330,12 +325,12 @@ p {
   text-align: justify;
 }
 
-/* do not justify inside table cells */
+/* Do not justify text inside table cells */
 td p {
   text-align: left;
 }
 
-/* indent first line of para 2..n in text passage */
+/* Indent the first line of the second and following paragraphs in text passages */
 div.rslidy-textpassage p + p {
   text-indent: 1em;
 }
@@ -370,7 +365,7 @@ h4, h5, h6 {
   margin: 0 0 0.5em 0;
 }
 
-/* lists */
+/* Lists */
 ol {
   list-style: decimal;
   padding: 0 0 1em 1.5em;
@@ -381,7 +376,7 @@ ul {
   padding: 0 0 1em 1.1em;
 }
 
-/* sub-bullet styles */
+/* Nested bullet styles */
 ul ul ol ol,
 ul ol ul ol,
 ol ul ol ol,
@@ -422,7 +417,7 @@ ul ul ul ul {
   list-style: disc;
 }
 
-/* nested list sizes */
+/* Nested list sizes */
 ul ul,
 ol ol,
 ul ol,
@@ -457,9 +452,9 @@ caption {
 
 th {
   font-weight: bold;
-  /*background-color: #ddd;*/
+  /* background-color: #ddd; */
   padding: 0.5em;
-  /*border-style: solid;*/
+  /* border-style: solid; */
   border-width: thin;
   text-align: left;
   vertical-align: top;
@@ -472,8 +467,3 @@ td {
   text-align: left;
   vertical-align: top;
 }
-
-
-
-
-
