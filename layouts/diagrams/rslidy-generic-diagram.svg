@@ -28,7 +28,7 @@
         fill="var(--fill-bg)" />
 
   <!-- Outer border -->
-  <rect x="10" y="10" width="1130" height="730"
+  <rect x="0" y="0" width="1150" height="750"
         fill="none" stroke="var(--border)" stroke-width="1"/>
 
   <!-- Arrowhead definition -->

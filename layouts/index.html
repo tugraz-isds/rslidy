@@ -10,6 +10,8 @@
 
   <link rel="stylesheet" href="rslidy.min.css"/>
   <script type="module" src="rslidy.min.js"></script>
+  <link rel="stylesheet" href="../../../../../Downloads/slides-default.rslidy-strict.css">
+  <link rel="stylesheet" href="../../../../../Downloads/rslidy-responsive-table.css">
 
   <!-- for custom css sheets-->
   <!--link rel="stylesheet" href="./themes/tu-graz/tu-graz.css"-->
@@ -76,11 +78,11 @@
 
   <figure>
     <div class="rslidy-large-images">
-      <img class="svg" src="diagrams/rslidy-generic-diagram.svg"
+      <img class="rslidy-svg" src="diagrams/rslidy-generic-diagram.svg"
            alt="Example Slide SVG."/>
     </div>
     <figcaption>
-      <span class="fig-label">Figure 1</span>:
+      <span class="rslidy-fig-label">Figure 1</span>:
       The Rslidy image viewer is automatically attached to every
       <code>&lt;img&gt;</code> element, and is activated by left click. It
       enables pan and zoom via mouse, keyboard, or on-screen controls.
@@ -110,10 +112,10 @@
       </picture>
     </div>
     <figcaption>
-      <span class="fig-label">Figure 2</span>:
+      <span class="rslidy-fig-label">Figure 2</span>:
       This slide demonstrates responsive images using the <code>&lt;picture&gt;</code> element.
       Depending on screen width, a different crop of the same image is loaded.
-      <br/><span class="credit">Image from
+      <br/><span class="rslidy-credit">Image from
 <a href="https://pixabay.com/photos/graz-austria-styria-clock-tower-1638892/">Pixabay,</a>
 used under the terms of the
 Pixabay <a href="https://pixabay.com/service/license-summary/">licence.</a>
@@ -146,12 +148,12 @@ Pixabay <a href="https://pixabay.com/service/license-summary/">licence.</a>
               alt="The clock tower overlooking the city of Graz, Austria">
     </div>
     <figcaption>
-      <span class="fig-label">Figure 3</span>:
+      <span class="rslidy-fig-label">Figure 3</span>:
       This slide demonstrates responsive images using the
       <code>srcset</code> and <code>sizes</code> attributes on
       an <code>&lt;img&gt;</code> element. The image is fetched at
       the appropriate resolution for the device.
-      <br/><span class="credit">Image from
+      <br/><span class="rslidy-credit">Image from
 <a href="https://pixabay.com/photos/graz-austria-styria-clock-tower-1638892/">Pixabay,</a>
 used under the terms of the
 Pixabay <a href="https://pixabay.com/service/license-summary/">licence.</a>
@@ -183,9 +185,9 @@ Pixabay <a href="https://pixabay.com/service/license-summary/">licence.</a>
       </video>
     </div>
     <figcaption>
-      <span class="fig-label">Figure 4</span>:
+      <span class="rslidy-fig-label">Figure 4</span>:
       Short skiing video with sound.
-      <br/><span class="credit">Video from
+      <br/><span class="rslidy-credit">Video from
 <a href="https://pexels.com/video/ski-montagne-skier-piste-de-ski-4274798/">Pexels,</a>
 used under the terms of the
 Pexels <a href="https://pexels.com/license/">licence.</a>
@@ -367,7 +369,7 @@ Pexels <a href="https://pexels.com/license/">licence.</a>
                alt="Generic diagram as SVG."/>
         </div>
         <figcaption>
-          <span class="fig-label">Figure 5</span>:
+          <span class="rslidy-fig-label">Figure 5</span>:
           Generic diagram as SVG.
         </figcaption>
       </figure>
@@ -397,7 +399,7 @@ Pexels <a href="https://pexels.com/license/">licence.</a>
                alt="Generic diagram as SVG."/>
         </div>
         <figcaption>
-          <span class="fig-label">Figure 6</span>:
+          <span class="rslidy-fig-label">Figure 6</span>:
           Generic diagram as SVG.
         </figcaption>
       </figure>
@@ -410,7 +412,7 @@ Pexels <a href="https://pexels.com/license/">licence.</a>
                alt="Photo of the Graz clock Tower as JPEG."/>
         </div>
         <figcaption>
-          <span class="fig-label">Figure 7</span>:
+          <span class="rslidy-fig-label">Figure 7</span>:
           Photo of the Graz Clocktower as JPEG from
           <a href="https://pixabay.com/photos/graz-austria-styria-clock-tower-1638892/">Pixabay,</a>
           used under the terms of the
@@ -430,42 +432,42 @@ Pexels <a href="https://pexels.com/license/">licence.</a>
 
 
 <section>
-  <h1>Two Columns: One Image or Diagram, One Video</h1>
+<h1>Two Columns: One Image or Diagram, One Video</h1>
 
-  <div class="rslidy-columns-even">
-    <div class="rslidy-column">
-      <figure>
-        <div class="rslidy-large-images">
-          <img src="diagrams/rslidy-generic-diagram.svg"
-               alt="Generic diagram as SVG"/>
-        </div>
-        <figcaption>
-          <span class="fig-label">Figure 8</span>:
-          Generic diagram as SVG.
-        </figcaption>
-      </figure>
-    </div>
-
-    <div class="rslidy-column">
-      <figure>
-        <div class="rslidy-large-images">
-          <video controls muted poster="images/skiing-thumbnail.jpg">
-            <source src="images/skiing.mp4" type="video/mp4"/>
-            <img src="images/skiing-thumbnail.jpg"
-                 alt="Short skiing video with sound." />
-          </video>
-        </div>
-        <figcaption>
-          <span class="fig-label">Figure 9</span>:
-          Short skiing video with sound.
-          <br/><span class="credit">Video from
-  <a href="https://pexels.com/video/ski-montagne-skier-piste-de-ski-4274798/">Pexels,</a>
-  used under the terms of the Pexels <a href="https://pexels.com/license/">licence.</a>
-  </span>
-        </figcaption>
-      </figure>
-    </div>
+<div class="rslidy-columns-even">
+  <div class="rslidy-column">
+    <figure>
+      <div class="rslidy-large-images">
+        <img src="diagrams/rslidy-generic-diagram.svg"
+             alt="Generic diagram as SVG"/>
+      </div>
+      <figcaption>
+        <span class="rslidy-fig-label">Figure 8</span>:
+        Generic diagram as SVG.
+      </figcaption>
+    </figure>
   </div>
+
+  <div class="rslidy-column">
+    <figure>
+      <div class="rslidy-large-images">
+        <video controls muted poster="images/skiing-thumbnail.jpg">
+          <source src="images/skiing.mp4" type="video/mp4"/>
+          <img src="images/skiing-thumbnail.jpg"
+               alt="Short skiing video with sound." />
+        </video>
+      </div>
+      <figcaption>
+        <span class="rslidy-fig-label">Figure 9</span>:
+        Short skiing video with sound.
+        <br/><span class="rslidy-credit">Video from
+<a href="https://pexels.com/video/ski-montagne-skier-piste-de-ski-4274798/">Pexels,</a>
+used under the terms of the Pexels <a href="https://pexels.com/license/">licence.</a>
+</span>
+      </figcaption>
+    </figure>
+  </div>
+</div>
 </section>
 
 
