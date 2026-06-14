@@ -18,10 +18,11 @@ a slide is created by a section and/or div.slide
   left: 0;
   right: 0;
   bottom: 0;
-  margin: 0.5em 1.5em 1.5em 1.5em;
-  padding: clamp(1rem, 4vw, 2.3rem);
+  margin: 1em;
+  padding: clamp(1rem, 4vw, 2.2rem);
   font-size: var(--rslidy-slide-font-size);
   container-type: inline-size;
+  container-name: rslidy-slide;
 }
 
 /* Standard slide content layout */
@@ -37,11 +38,11 @@ code, var, kbd, samp, listing, plaintext, xmp, abbr {
   font-size: 1em;
 }
 
-div.copyright {
+div.rslidy-copyright {
   margin-top: auto;
 }
 
-div.copyright p {
+div.rslidy-copyright p {
   display: inline-block;
   background-color: #eee;
   padding: 0.2em;
@@ -64,7 +65,7 @@ img, video {
 }
 
 /* SVG images with fallback minimum size */
-img.svg {
+img.rslidy-svg {
   min-width: 10em;
   min-height: 5em;
   width: 100%;
@@ -72,7 +73,7 @@ img.svg {
 }
 
 /* Left-aligned figure */
-.figure-left {
+.rslidy-figure-left {
   margin-left: 0;
   margin-top: 0;
 }
@@ -114,7 +115,7 @@ div.rslidy-large-images img, div.rslidy-large-images video {
   height: auto;
 }
 
-figcaption.center {
+figcaption.rslidy-center {
   margin: 1em 0;
   font-size: 60%;
   text-align: center;
@@ -132,31 +133,31 @@ figcaption {
   caption-side: bottom;
 }
 
-figcaption span.fig-label {
+figcaption span.rslidy-fig-label {
   font-weight: bold;
 }
 
-figcaption span.credit {
+figcaption span.rslidy-credit {
   font-size: 80%;
 }
 
-figcaption span.credit:before {
+figcaption span.rslidy-credit::before {
   content: "[";
 }
 
-figcaption span.credit:after {
+figcaption span.rslidy-credit::after {
   content: "]";
 }
 
 /* Centred credits line */
-div.credits {
+div.rslidy-credits {
   margin: 1em 0;
   font-size: 60%;
   text-align: center;
 }
 
 /* Footer, location, licence */
-.footer {
+.rslidy-footer {
   margin-top: auto;
   font-size: 50%;
   text-align: right;
@@ -175,11 +176,11 @@ div#location p {
   font-size: 60%;
 }
 
-span.li-intro {
+span.rslidy-li-intro {
   font-style: italic;
 }
 
-span.isbn:before {
+span.rslidy-isbn::before {
   content: "ISBN";
   font-size: 80%;
 }
@@ -235,26 +236,6 @@ div#rslidy-licence p {
   padding: 0;
 }
 
-/* columns */
-.columns {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.columns ul {
-  margin: 0.5em;
-}
-
-/* columns spaced */
-.columns-spaced {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-}
-
-.columns-spaced ul {
-  margin: 0.5em;
-}
 
 /* Two columns spaced evenly */
 .rslidy-columns-even {
@@ -267,7 +248,6 @@ div#rslidy-licence p {
 }
 
 /* Single column within a column layout */
-/* Die Spalte selbst */
 .rslidy-column {
   width: 100%;
   min-width: 0; /* Wichtig! */
@@ -285,26 +265,26 @@ div#rslidy-licence p {
 
 
 /* Half-width item */
-.item-half {
+.rslidy-item-half {
   padding: 1em;
   width: 50%;
 }
 
 /* Auto-width item */
-.item-auto {
+.rslidy-item-auto {
   padding: 1em;
   width: auto;
 }
 
 /* Description is marked in gray */
 /* Highlighted description block */
-.description {
+.rslidy-description {
   background-color: lightgray;
 }
 
 /* CSS Grid */
 /* Auto-fitting grid layout */
-.grid {
+.rslidy-grid {
   display: grid;
   justify-content: center;
   align-content: center;
@@ -313,7 +293,7 @@ div#rslidy-licence p {
 
 /* code snippets */
 /* Block-style inline code snippet */
-code.block {
+code.rslidy-block {
   display: inline-block;
   margin-right: 100%;
   margin-left: 1em;
@@ -322,7 +302,7 @@ code.block {
 
 /* keys */
 /* Keyboard key label */
-kbd.key {
+kbd.rslidy-key {
   border-radius: 3px;
   padding: 1px 2px 0;
   border: 1px solid black;
@@ -330,16 +310,16 @@ kbd.key {
 
 /* notes */
 /* Small note paragraph */
-p.note {
+p.rslidy-note {
   font-size: 80%;
   margin-top: -0.7em;
 }
 
-p.note:before {
+p.rslidy-note::before {
   content: "[";
 }
 
-p.note:after {
+p.rslidy-note::after {
   content: "]";
 }
 
@@ -356,7 +336,7 @@ td p {
 }
 
 /* indent first line of para 2..n in text passage */
-div.textpassage p + p {
+div.rslidy-textpassage p + p {
   text-indent: 1em;
 }
 
@@ -493,30 +473,7 @@ td {
   vertical-align: top;
 }
 
-/* Night mode customization */
-:not(a) .rslidy-night-mode {
-  color: white;
-}
 
-a.rslidy-night-mode {
-  color: yellow;
-}
-
-/* Helpers */
-/* Vertical centring helper */
-.valign {
-  position: relative;
-  top: 50%;
-  transform: perspective(1px) translateY(-50%);
-}
-
-@media print {
-  /* Vertical centring helper */
-.valign {
-    transform: none !important;
-    top: 0;
-  }
-}
 
 
 

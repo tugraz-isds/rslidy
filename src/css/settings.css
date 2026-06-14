@@ -299,11 +299,15 @@ input[type="checkbox"]:disabled + label {
 
 #rslidy-content-section .rslidy-slide-number-display {
   display: none;
-  position: absolute;
-  right: 1.2rem;
-  bottom: 1rem;
-  font-size: var(--rslidy-slide-number-font-size);
-  z-index: 1;
+  position: fixed;
+  inset-inline-end: max(env(safe-area-inset-right), clamp(0.8rem, 2vw, 1.2rem));
+  inset-block-end: calc(
+          var(--rslidy-toolbar-height)
+          + var(--rslidy-progressbar-height)
+          + max(env(safe-area-inset-bottom), clamp(0.5rem, 2vh, 1rem))
+  );
+  font-size: clamp(0.8rem, 1.6vmin, var(--rslidy-slide-number-font-size));
+  z-index: 20;
   pointer-events: none;
 }
 

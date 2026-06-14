@@ -121,12 +121,24 @@ export class ContentComponent {
   // ---
   marginTap(e: any, left: any, right: any, center: any): void {
     if ((<HTMLInputElement>document.getElementById("rslidy-checkbox-margintap")).checked) {
-      var l = e.pageX - this.view.getBoundingClientRect().left;
-      var r = -(e.pageX - this.view.getBoundingClientRect().right);
-      var scrollBarWidth = this.view.offsetWidth - this.view.clientWidth;
-      if(l<60)
+      const viewRect = this.view.getBoundingClientRect();
+      const slides = this.view.querySelectorAll<HTMLElement>(".slide");
+      const currentSlide = slides[this.currentSlideIndex];
+
+      if (!currentSlide) {
+        center();
+        return;
+      }
+
+      const slideRect = currentSlide.getBoundingClientRect();
+      const x = e.clientX ?? (e.pageX - window.scrollX);
+      const scrollBarWidth = this.view.offsetWidth - this.view.clientWidth;
+      const rightEdge = viewRect.right - scrollBarWidth;
+      const marginTapInset = window.rslidy.utils.remToPixel(1.5);
+
+      if (x >= viewRect.left && x < slideRect.left + marginTapInset)
         left();
-      else if(r<60+scrollBarWidth && r>scrollBarWidth)
+      else if (x > slideRect.right - marginTapInset && x <= rightEdge)
         right();
       else
         center();

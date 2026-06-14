@@ -396,11 +396,6 @@ th.rslidy-no-sort::before {
 
  .rslidy-table-sort-mobile .controls-container {
   width: 100%;
- }
-}
-
-@container (max-width: 10em) {
- .rslidy-table-sort-mobile .controls-container {
   flex-wrap: wrap;
   gap: 0.3em;
  }
