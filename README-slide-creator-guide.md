@@ -430,8 +430,35 @@ ensuring that table content remains clearly labelled on mobile devices.
 
 
 
+## 8. Helper Classes
 
-## 8. Themes and Colour Schemes
+Rslidy provides several helper classes for common slide authoring
+patterns. These classes are optional and can be used to create recurring
+layouts without writing custom CSS for each slide.
+
+The following helper classes are defined by the default slide stylesheet:
+
+
+| Class | Purpose |
+|-------|---------|
+| `rslidy-titleslide` | Centres title-slide content and enlarges the heading hierarchy. |
+| `rslidy-sectionslide` | Centres a section heading both vertically and horizontally. |
+| `rslidy-columns-even` | Arranges content in evenly distributed responsive columns. |
+| `rslidy-column` | Contains one column of stacked content and prevents overflow. |
+| `rslidy-images` | Centres smaller media in a 16:9 area with a limited height. |
+| `rslidy-large-images` | Centres larger media in a 16:9 area with a larger height limit. |
+| `rslidy-figure-left` | Keeps a figure aligned to the left edge of the slide. |
+| `rslidy-footer` | Pushes small footer text to the bottom-right area of a slide. |
+| `rslidy-licence` | Centres compact licence text, usually on the title slide. |
+| `rslidy-note` | Displays a smaller note paragraph enclosed in brackets. |
+| `rslidy-key` | Displays keyboard shortcuts as small bordered key labels. |
+| `rslidy-block` | Displays short code fragments as separated inline blocks. |
+
+
+
+
+
+## 9. Themes and Colour Schemes
 
 Rslidy supports themes via additional CSS files. Themes are applied by
 including the theme stylesheet after `rslidy.min.css`, allowing it to
@@ -453,7 +480,7 @@ override the default styles. Example themes are provided in the
 
 
 
-## 9. Global Settings
+## 10. Global Settings
 
 Rslidy exposes configuration through `window.rslidy`. These settings can
 be overridden in the `<head>` before the deck is shown. Global settings
@@ -506,7 +533,7 @@ These are the available settings:
 
 ---
 
-## 10. Advanced Global Settings
+## 11. Advanced Global Settings
 Advanced global settings allow direct adjustment of internal variables
 that affect scaling, interaction thresholds, and gesture handling. They
 must also be overridden using JavaScript. These are the settings:
@@ -562,7 +589,7 @@ must also be overridden using JavaScript. These are the settings:
 
 
 
-## 11. Responsive Content
+## 12. Responsive Content
 
 Rslidy provides the responsive infrastructure for slide decks,
 including viewport handling, scalable layout patterns, and responsive

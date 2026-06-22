@@ -341,9 +341,9 @@ export class SettingsComponent {
   ): void {
     const headers = Array.from(table.querySelectorAll("th"));
     headers.forEach((th, idx) => {
-      th.classList.remove("sorted-asc", "sorted-desc");
+      th.classList.remove("rslidy-sorted-asc", "rslidy-sorted-desc")
       if (columnIndex !== null && idx === columnIndex && direction) {
-        th.classList.add(direction === "asc" ? "sorted-asc" : "sorted-desc");
+        th.classList.add(direction === "asc" ? "rslidy-sorted-asc" : "rslidy-sorted-desc");
       }
     });
   }
@@ -370,7 +370,7 @@ export class SettingsComponent {
     const direction = state.direction ?? "none";
 
     sortIcon.dataset.dir = direction;
-    sortIcon.classList.toggle("active-sort", state.direction !== null);
+    sortIcon.classList.toggle("rslidy-active-sort", state.direction !== null);
 
     if (direction === "asc") {
       sortIcon.setAttribute("aria-label", "Sort descending");
@@ -644,19 +644,19 @@ export class SettingsComponent {
     // Create "Sort by:" label
     const label = document.createElement("div");
     label.textContent = "Sort by:";
-    label.className = "sort-label";
+    label.className = "rslidy-sort-label";
 
     // Create controls container
     const controlsContainer = document.createElement("div");
-    controlsContainer.className = "controls-container";
+    controlsContainer.className = "rslidy-controls-container";
 
     // Create select container
     const selectContainer = document.createElement("div");
-    selectContainer.className = "select-container";
+    selectContainer.className = "rslidy-select-container";
 
     // Create select
     const select = document.createElement("select");
-    select.className = "compact-select";
+    select.className = "rslidy-compact-select";
 
     // Add options from actual headers only.
     // There is no "Original order" option anymore.
@@ -673,7 +673,7 @@ export class SettingsComponent {
     // Create one sort button.
     // It cycles through: original -> ascending -> descending -> original.
     const iconContainer = document.createElement("div");
-    iconContainer.className = "icon-container";
+    iconContainer.className = "rslidy-icon-container";
 
     const sortIcon = document.createElement("span");
     sortIcon.className = "rslidy-mobile-sort-icon";
