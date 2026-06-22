@@ -436,7 +436,8 @@ Rslidy provides several helper classes for common slide authoring
 patterns. These classes are optional and can be used to create recurring
 layouts without writing custom CSS for each slide.
 
-The following helper classes are defined by the default slide stylesheet:
+The following table lists the most important helper classes defined by 
+the default slide stylesheet:
 
 
 | Class | Purpose |
