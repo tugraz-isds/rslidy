@@ -4,7 +4,7 @@
   height: 100%;
   position: fixed;
   flex: 0 0 auto;
-  z-index: 4;
+  z-index: 6;
   list-style: none;
   background-color: light-dark(#f1f1f1, #1e1e1e);
   color: light-dark(#222, #f1f1f1);

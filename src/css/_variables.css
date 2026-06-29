@@ -161,6 +161,12 @@
   initial-value: 1.5rem;
 }
 
+@property --rslidy-slide-number-font-scale {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 1;
+}
+
 /* === Global variables === */
 :root {
   color-scheme: light dark;
@@ -177,9 +183,10 @@
   /* shared */
   --rslidy-overview-width: 18rem;
   --rslidy-overview-width-small-screen: 50%;
-  --rslidy-slide-input-width: 2.60em;
-  --rslidy-slide-number-font-size: 1.2rem;
+  --rslidy-slide-input-width: 2.6rem;
+  --rslidy-slide-number-font-size: calc(1.2rem * var(--rslidy-slide-number-font-scale));
   --rslidy-slide-font-size: 1.5rem;
+  --rslidy-slide-number-font-scale: 1;
 
 
   /* toolbar and buttons */
@@ -192,8 +199,8 @@
   --rslidy-button-disabled-color: light-dark(#aaa, #555);
   --rslidy-progressbar-bg-color-reached: light-dark(#003399, #6b8cff);
   --rslidy-progressbar-bg-color-unreached: light-dark(#4d88ff, #3355aa);
-  --rslidy-toolbar-height: 3.20em;
-  --rslidy-progressbar-height: 0.50em;
+  --rslidy-toolbar-height: 3.20rem;
+  --rslidy-progressbar-height: 0.50rem;
 
   /* settings sliders */
   --rslidy-slider-fill-off: light-dark(#ececec, #333);

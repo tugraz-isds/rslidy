@@ -229,6 +229,9 @@ export const settings_html = `
 <div id="rslidy-menu" class="rslidy-hidden rslidy-ui" role="region"
 aria-label="Settings" tabindex="0">
   <h3 class="rslidy-menu-header-settings">Settings</h3>
+
+  <h4 class="rslidy-menu-header-settings-interaction">Interaction</h4>
+
   <label id="rslidy-checkbox-tilt-text" class="rslidy-menu-content-settings rslidy-disabled" aria-disabled="true">
     `+t.settings[0]+`
     <input type="checkbox" value="Tilt" id="rslidy-checkbox-tilt" disabled>
@@ -254,6 +257,9 @@ aria-label="Settings" tabindex="0">
     <input type="checkbox" value="ShowSlideNumbers" id="rslidy-checkbox-showslidenumbers" checked>
     <label for="rslidy-checkbox-showslidenumbers">`+i.slider_icon+`</label>
   </label>
+
+  <h4 class="rslidy-menu-header-settings-font-size">Font Sizing</h4>
+
   <div class="rslidy-menu-content-settings">
     <label>`+t.settings[5]+`</label>
     <a href="#" title="`+t.settings[7]+`" id="rslidy-button-font-minus"><span class="rslidy-menu-button">`+i.font_minus_icon+`</span></a>
@@ -274,22 +280,28 @@ export const print_settings_html = `
 <div id="rslidy-print-menu" class="rslidy-hidden rslidy-ui"
 role="region" aria-label="Print Settings" tabindex="0">
   <h3 class="rslidy-menu-header">Print Settings</h3>
-  <label id="rslidy-checkbox-snum-text" class="rslidy-menu-content">
-    `+t.print_settings[0]+`
-    <input type="checkbox" value="Numbers" id="rslidy-checkbox-snum">
-    <label for="rslidy-checkbox-snum">`+i.slider_icon+`</label>
-  </label>
-  <label id="rslidy-checkbox-frame-text" class="rslidy-menu-content">
-    `+t.print_settings[1]+`
-    <input type="checkbox" value="Numbers" id="rslidy-checkbox-frame">
-    <label for="rslidy-checkbox-frame">`+i.slider_icon+`</label>
-  </label>
-  <label id="rslidy-checkbox-link-text" class="rslidy-menu-content">
-    `+t.print_settings[2]+`
-    <input type="checkbox" value="Links" id="rslidy-checkbox-link">
-    <label for="rslidy-checkbox-link">`+i.slider_icon+`</label>
-  </label>
- <fieldset id="rslidy-slide-print-options">`+t.print_settings[3]+`
+
+  <fieldset id="rslidy-print-enhancements" aria-labelledby="rslidy-print-enhancements-heading">
+    <h4 id="rslidy-print-enhancements-heading" style="margin-bottom: 0.8em; font-weight: 600;">Print Enhancements</h4>
+    <label id="rslidy-checkbox-snum-text" class="rslidy-menu-content">
+      `+t.print_settings[0]+`
+      <input type="checkbox" value="Numbers" id="rslidy-checkbox-snum">
+      <label for="rslidy-checkbox-snum">`+i.slider_icon+`</label>
+    </label>
+    <label id="rslidy-checkbox-frame-text" class="rslidy-menu-content">
+      `+t.print_settings[1]+`
+      <input type="checkbox" value="Numbers" id="rslidy-checkbox-frame">
+      <label for="rslidy-checkbox-frame">`+i.slider_icon+`</label>
+    </label>
+    <label id="rslidy-checkbox-link-text" class="rslidy-menu-content">
+      `+t.print_settings[2]+`
+      <input type="checkbox" value="Links" id="rslidy-checkbox-link">
+      <label for="rslidy-checkbox-link">`+i.slider_icon+`</label>
+    </label>
+  </fieldset>
+
+  <fieldset id="rslidy-slide-print-options" aria-labelledby="rslidy-slide-print-options-heading">
+    <h4 id="rslidy-slide-print-options-heading" style="margin-bottom: 0.8em; font-weight: 600;">`+t.print_settings[3]+`</h4>
     <label class="rslidy-print-slides">
       <input type="radio" name="slide-print-option" value="all" checked class="rslidy-print-slide-input"> All
     </label>
@@ -301,50 +313,57 @@ role="region" aria-label="Print Settings" tabindex="0">
       <input type="text" id="rslidy-slide-range-input" placeholder="1-5,8,10" disabled style="width: 4rem;">
     </label>
   </fieldset>
-  <label id="rslidy-input-font-size-text" class="rslidy-menu-content">
-    `+t.print_settings[4]+`
-    <input type="number" id="rslidy-input-font-size" value="100" min="0" max="100">
-  <span class="percent">%</span>
-  </label>
-  <label id="rslidy-select-orientation-text" class="rslidy-menu-content">
-    `+t.print_settings[5]+`
-    <select id="rslidy-select-orientation">
-      <option value="portrait">Portrait</option>
-      <option selected="selected" value="landscape">Landscape</option>
-    </select>
-  </label>
-   <label id="rslidy-select-paper-size-text" class="rslidy-menu-content">
-    `+t.print_settings[6]+`
-    <select id="rslidy-select-paper-size">
-    <option value="legal">Legal</option>
-    <option value="letter">Letter</option>
-    <option value="tabloid">Tabloid</option>
-    <option value="A0">A0</option>
-    <option value="A1">A1</option>
-    <option value="A2">A2</option>
-    <option value="A3">A3</option>
-    <option selected="selected" value="A4">A4</option>
-    <option value="A5">A5</option>
-    </select>
-  </label>
-  <fieldset id="rslidy-exclusive-checkboxes" style="margin-top: 1.5em;">
-  <h4 style="margin-bottom: 0.8em; font-weight: 600;">Print Sizing</h4>
-   <label id="rslidy-checkbox-actual-size-text" class="rslidy-print-sizing">
+
+  <fieldset id="rslidy-page-format-options" aria-labelledby="rslidy-page-format-options-heading">
+    <h4 id="rslidy-page-format-options-heading" style="margin-bottom: 0.8em; font-weight: 600;">Page Format</h4>
+    <label id="rslidy-input-font-size-text" class="rslidy-menu-content">
+      `+t.print_settings[4]+`
+      <input type="number" id="rslidy-input-font-size" value="100" min="0" max="100">
+      <span class="percent">%</span>
+    </label>
+    <label id="rslidy-select-orientation-text" class="rslidy-menu-content">
+      `+t.print_settings[5]+`
+      <select id="rslidy-select-orientation">
+        <option value="portrait">Portrait</option>
+        <option selected="selected" value="landscape">Landscape</option>
+      </select>
+    </label>
+    <label id="rslidy-select-paper-size-text" class="rslidy-menu-content">
+      `+t.print_settings[6]+`
+      <select id="rslidy-select-paper-size">
+        <option value="legal">Legal</option>
+        <option value="letter">Letter</option>
+        <option value="tabloid">Tabloid</option>
+        <option value="A0">A0</option>
+        <option value="A1">A1</option>
+        <option value="A2">A2</option>
+        <option value="A3">A3</option>
+        <option selected="selected" value="A4">A4</option>
+        <option value="A5">A5</option>
+      </select>
+    </label>
+  </fieldset>
+
+  <fieldset id="rslidy-exclusive-checkboxes" aria-labelledby="rslidy-exclusive-checkboxes-heading">
+    <h4 id="rslidy-exclusive-checkboxes-heading" style="margin-bottom: 0.8em; font-weight: 600;">Print Sizing</h4>
+    <label id="rslidy-checkbox-actual-size-text" class="rslidy-print-sizing">
       <input type="radio" name="print-options" value="actual-size" id="rslidy-checkbox-actual" class="print-checkbox" checked> Actual Size
     </label>
     <label id="rslidy-checkbox-shrink-text" class="rslidy-print-sizing">
       <input type="radio" name="print-options" value="fit-page-width" id="rslidy-checkbox-shrink" class="print-checkbox"> Fit to Page Width
-    </label> 
+    </label>
     <label id="rslidy-checkbox-zoom-text" class="rslidy-print-sizing">
       <input type="radio" name="print-options" value="custom-zoom" id="rslidy-checkbox-zoom" class="print-checkbox"> Custom Zoom:
       <input type="number" id="custom-zoom-input" value="100" class="zoom-input" min="1" max="100" disabled placeholder="100">
       <span class="percent">%</span>
     </label>
   </fieldset>
-  <div class="rslidy-menu-content">
+
+  <div class="rslidy-menu-content rslidy-menu-content-button">
     <button id="rslidy-button-print-submit">`+t.print_settings[7]+`</button>
   </div>
 </div>`;
+
 
 export const toolbar_html = `
 <div id="rslidy-footer" class="rslidy-ui">

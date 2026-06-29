@@ -239,6 +239,7 @@ export class SettingsComponent {
         (<HTMLElement>slides_large[i]).style.fontSize =
           this.default + window.rslidy.font_step * value + "em";
     }
+    this.updateSlideNumberFontScale();
 
     // Prevent default actions after event handling
     if(e) e.preventDefault();
@@ -437,6 +438,7 @@ export class SettingsComponent {
       return text.toLowerCase();
     };
 
+
     // --- Helper: Sort table body ---
     const sortTable = (tbody: Element, columnIndex: number, direction: "asc" | "desc") => {
       const rows = Array.from(tbody.querySelectorAll("tr"));
@@ -618,6 +620,25 @@ export class SettingsComponent {
     }
 
     return wrapper;
+  }
+
+  private updateSlideNumberFontScale(): void {
+    const firstSlide = document.querySelector<HTMLElement>(
+        "#rslidy-content-section .slide"
+    );
+
+    const currentFontSize = firstSlide
+        ? parseFloat(firstSlide.style.fontSize)
+        : this.default;
+
+    const slideFontSize = Number.isNaN(currentFontSize)
+        ? this.default
+        : currentFontSize;
+
+    document.documentElement.style.setProperty(
+        "--rslidy-slide-number-font-scale",
+        String(slideFontSize / this.default)
+    );
   }
 
   private createMobileSortUI(table: HTMLTableElement): void {
