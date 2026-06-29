@@ -8,98 +8,98 @@ export class ToolbarComponent {
 
   constructor() {
     this.view =
-      window.rslidy.utils.appendHtmlString(document.querySelector('#rslidy-column-flex'), toolbar_html);
+        window.rslidy.utils.appendHtmlString(document.querySelector('#rslidy-column-flex'), toolbar_html);
 
     this.view
-      .querySelector("#rslidy-button-overview")
-      .addEventListener("click", () => this.closeMenuOnBlur(
-        () => this.overviewToggleClicked()
-      ));
+        .querySelector("#rslidy-button-overview")
+        .addEventListener("click", () => this.closeMenuOnBlur(
+            () => this.overviewToggleClicked()
+        ));
 
     this.view
-      .querySelector("#rslidy-button-toc")
-      .addEventListener("click", () => this.closeMenuOnBlur(
-        () => this.tocToggleClicked()
-      ));
+        .querySelector("#rslidy-button-toc")
+        .addEventListener("click", () => this.closeMenuOnBlur(
+            () => this.tocToggleClicked()
+        ));
 
     this.view
-      .querySelector("#rslidy-button-help")
-      .addEventListener("click", () => this.closeMenuOnBlur(
-        () => this.helpToggleClicked()
-      ));
+        .querySelector("#rslidy-button-help")
+        .addEventListener("click", () => this.closeMenuOnBlur(
+            () => this.helpToggleClicked()
+        ));
 
     this.view
-      .querySelector("#rslidy-button-first")
-      .addEventListener("click", () => this.closeMenuOnBlur(
-        () => window.rslidy.content.navFirst()
-      ));
+        .querySelector("#rslidy-button-first")
+        .addEventListener("click", () => this.closeMenuOnBlur(
+            () => window.rslidy.content.navFirst()
+        ));
 
     this.view
-      .querySelector("#rslidy-button-previous")
-      .addEventListener("click", () => this.closeMenuOnBlur(
-        () => window.rslidy.content.navPrevious(true)
-      ));
+        .querySelector("#rslidy-button-previous")
+        .addEventListener("click", () => this.closeMenuOnBlur(
+            () => window.rslidy.content.navPrevious(true)
+        ));
 
     this.view
-      .querySelector("#rslidy-button-next")
-      .addEventListener("click", () => this.closeMenuOnBlur(
-        () => window.rslidy.content.navNext(true)
-      ));
+        .querySelector("#rslidy-button-next")
+        .addEventListener("click", () => this.closeMenuOnBlur(
+            () => window.rslidy.content.navNext(true)
+        ));
 
     this.view
-      .querySelector("#rslidy-button-last")
-      .addEventListener("click", () => this.closeMenuOnBlur(
-        () => window.rslidy.content.navLast()
-      ));
+        .querySelector("#rslidy-button-last")
+        .addEventListener("click", () => this.closeMenuOnBlur(
+            () => window.rslidy.content.navLast()
+        ));
 
     this.view
-      .querySelector("#rslidy-button-hide")
-      .addEventListener("click", () => this.closeMenuOnBlur(
-        () => this.showHideToggleClicked()
-      ));
+        .querySelector("#rslidy-button-hide")
+        .addEventListener("click", () => this.closeMenuOnBlur(
+            () => this.showHideToggleClicked()
+        ));
 
     this.view
-      .querySelector("#rslidy-button-show")
-      .addEventListener("click", () => this.showHideToggleClicked());
+        .querySelector("#rslidy-button-show")
+        .addEventListener("click", () => this.showHideToggleClicked());
 
     this.view
-      .querySelector("#rslidy-button-all")
-      .addEventListener("click", () => this.displayToggleClicked());
+        .querySelector("#rslidy-button-all")
+        .addEventListener("click", () => this.displayToggleClicked());
 
     this.view
-      .querySelector("#rslidy-timer")
-      .addEventListener("click", () => this.closeMenuOnBlur(
-        () => window.rslidy.toggleTimer()
-      ));
+        .querySelector("#rslidy-timer")
+        .addEventListener("click", () => this.closeMenuOnBlur(
+            () => window.rslidy.toggleTimer()
+        ));
 
     this.view
-      .querySelector("#rslidy-slide-caption")
-      .addEventListener("click", () => this.closeMenuOnBlur(
-        () => this.tocToggleClicked()
-      ));
+        .querySelector("#rslidy-slide-caption")
+        .addEventListener("click", () => this.closeMenuOnBlur(
+            () => this.tocToggleClicked()
+        ));
 
     this.view
-      .querySelector("#rslidy-button-menu")
-      .addEventListener("click", () => this.menuToggleClicked(window.rslidy.MENU));
+        .querySelector("#rslidy-button-menu")
+        .addEventListener("click", () => this.menuToggleClicked(window.rslidy.MENU));
 
     this.view
-      .querySelector("#rslidy-button-print")
-      .addEventListener("click", () => this.menuToggleClicked(window.rslidy.PRINT_MENU));
+        .querySelector("#rslidy-button-print")
+        .addEventListener("click", () => this.menuToggleClicked(window.rslidy.PRINT_MENU));
 
     this.view
-      .querySelector("#rslidy-slide-input")
-      .addEventListener("keyup", e => this.closeMenuOnBlur(
-        () => window.rslidy.slideInputKeyPressed(e)
-      ));
+        .querySelector("#rslidy-slide-input")
+        .addEventListener("keyup", e => this.closeMenuOnBlur(
+            () => window.rslidy.slideInputKeyPressed(e)
+        ));
 
     // Only allow numbers for slide input
     window.rslidy.utils.setInputFilter(
-      document.getElementById("rslidy-slide-input"),
-      function(value) {return /^\d*$/.test(value);}
+        document.getElementById("rslidy-slide-input"),
+        function(value) {return /^\d*$/.test(value);}
     );
 
     document.getElementById("rslidy-help")
-      .addEventListener("mouseup", e => this.closeHelpOnBlur(e));
+        .addEventListener("mouseup", e => this.closeHelpOnBlur(e));
 
     if(window.rslidy.start_with_toolbar_minimized)
       this.showHideToggleClicked();
@@ -108,10 +108,6 @@ export class ToolbarComponent {
         "--rslidy-total-slides",
         String(window.rslidy.num_slides)
     );
-
-    const slideNumber = document.createElement("div");
-    slideNumber.id = "rslidy-slide-number-display";
-    document.body.appendChild(slideNumber);
   }
 
   // ---
@@ -119,12 +115,12 @@ export class ToolbarComponent {
   // ---
   public overviewToggleClicked(): void {
     window.rslidy.utils.switchElementsClass(
-      [document.getElementById("rslidy-overview-slides")],
-      "rslidy-overview-visible"
+        [document.getElementById("rslidy-overview-slides")],
+        "rslidy-overview-visible"
     );
     window.rslidy.utils.switchElementsClass(
-      [document.getElementById("rslidy-overview-slides")],
-      "rslidy-invisible"
+        [document.getElementById("rslidy-overview-slides")],
+        "rslidy-invisible"
     );
     window.rslidy.overview.adjustOverviewPanel();
     let visible = document.getElementById("rslidy-overview-slides").classList.contains("rslidy-overview-visible");
@@ -160,12 +156,12 @@ export class ToolbarComponent {
   // ---
   public tocToggleClicked(): void {
     window.rslidy.utils.switchElementsClass(
-      [document.getElementById("rslidy-overview-toc")],
-      "rslidy-overview-visible"
+        [document.getElementById("rslidy-overview-toc")],
+        "rslidy-overview-visible"
     );
     window.rslidy.utils.switchElementsClass(
-      [document.getElementById("rslidy-overview-toc")],
-      "rslidy-invisible"
+        [document.getElementById("rslidy-overview-toc")],
+        "rslidy-invisible"
     );
     let visible = document.getElementById("rslidy-overview-toc").classList.contains("rslidy-overview-visible");
     document.getElementById("rslidy-button-toc").setAttribute("aria-expanded", String(visible));
@@ -178,7 +174,7 @@ export class ToolbarComponent {
   public displayToggleClicked(): void {
     if (this.allslides) {
 
-      //find first visible slide
+      // Find first visible slide
       var num = window.rslidy.content.currentSlideIndex;
       for (let i: number = 0; i < window.rslidy.num_slides; i++) {
         var slide = window.rslidy.utils.getSlide(i);
@@ -191,8 +187,10 @@ export class ToolbarComponent {
 
       document.getElementsByTagName('head')[0].removeChild(this.allslides);
       this.allslides = null;
+
       if(this.enableiv)
         window.rslidy.image_viewer = true;
+
       if(this.printstyle)
         document.getElementsByTagName('head')[0].appendChild(this.printstyle);
 
@@ -230,13 +228,13 @@ export class ToolbarComponent {
         max-width: 100% !important;
         max-height: 100% !important;
       }
-      #rslidy-content-section {
-        counter-reset: slide-counter;
+      #rslidy-content-section .rslidy-slide-number-display,
+      #rslidy-slide-number-display {
+        display: none !important;
       }
       #rslidy-content-section .slide:after {
         display: block;
-        content: counter(slide-counter);
-        counter-increment: slide-counter;
+        content: attr(data-slide-number);
         margin-top: 0.5em;
         text-align: right;
         font: 80% Sans-Serif;
@@ -248,30 +246,36 @@ export class ToolbarComponent {
         display: block !important;
       }`;
 
-      // inject CSS
+      // Inject CSS
       var style = document.createElement('style');
       style.type = 'text/css';
       style.innerHTML = css;
       document.getElementsByTagName('head')[0].appendChild(style);
       this.allslides = style;
+
       if(window.rslidy.image_viewer) {
         this.enableiv = true;
         window.rslidy.image_viewer = false;
       }
+
       if(window.rslidy.printSettings.style) {
         this.printstyle = window.rslidy.printSettings.style;
         document.getElementsByTagName('head')[0].removeChild(this.printstyle);
       }
-      const slides = document.querySelectorAll(".slide");
+
+      const slides = document.querySelectorAll<HTMLElement>("#rslidy-content-section .slide");
       const totalSlides = slides.length;
 
-      slides.forEach((slide) => {
+      slides.forEach((slide, index) => {
+        slide.setAttribute("data-slide-number", String(index + 1));
         slide.setAttribute("data-total-slides", String(totalSlides));
       });
-      //scroll to current slide
+
+      // Scroll to current slide
       var slide = window.rslidy.utils.getSlide(window.rslidy.content.currentSlideIndex);
       slide.scrollIntoView();
     }
+
     window.dispatchEvent(new Event('resize'));
   }
 
@@ -343,32 +347,32 @@ export class ToolbarComponent {
     if(index == window.rslidy.MENU) {
       if (typeof window.DeviceMotionEvent.requestPermission === 'function') {
         window.DeviceMotionEvent.requestPermission()
-          .then(permissionState => {
-            if (permissionState === 'granted') {
-              window.addEventListener(
-                "devicemotion",
-                function(e) {
-                  window.rslidy.onDeviceMotion(e);
-                }.bind(window.rslidy)
-              );
-            }
-          })
-          .catch(console.error);
+            .then(permissionState => {
+              if (permissionState === 'granted') {
+                window.addEventListener(
+                    "devicemotion",
+                    function(e) {
+                      window.rslidy.onDeviceMotion(e);
+                    }.bind(window.rslidy)
+                );
+              }
+            })
+            .catch(console.error);
       }
 
       if (typeof window.DeviceOrientationEvent.requestPermission === 'function') {
         window.DeviceOrientationEvent.requestPermission()
-          .then(permissionState => {
-            if (permissionState === 'granted') {
-              window.addEventListener(
-                "deviceorientation",
-                function(e) {
-                  window.rslidy.onDeviceOrientation(e);
-                }.bind(window.rslidy)
-              );
-            }
-          })
-          .catch(console.error);
+            .then(permissionState => {
+              if (permissionState === 'granted') {
+                window.addEventListener(
+                    "deviceorientation",
+                    function(e) {
+                      window.rslidy.onDeviceOrientation(e);
+                    }.bind(window.rslidy)
+                );
+              }
+            })
+            .catch(console.error);
       }
     }
   }
@@ -378,12 +382,12 @@ export class ToolbarComponent {
   // ---
   private showHideToggleClicked(): void {
     window.rslidy.utils.switchElementsClass(
-      [document.getElementById("rslidy-tb-show-trapezoid")],
-      "rslidy-hidden"
+        [document.getElementById("rslidy-tb-show-trapezoid")],
+        "rslidy-hidden"
     );
     window.rslidy.utils.switchElementsClass(
-      [document.getElementById("rslidy-toolbar-area")],
-      "rslidy-bar-hidden"
+        [document.getElementById("rslidy-toolbar-area")],
+        "rslidy-bar-hidden"
     );
   }
 }

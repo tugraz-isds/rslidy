@@ -160,12 +160,12 @@ div.rslidy-credits {
   text-align: right;
 }
 
-div#location {
+div#rslidy-location {
   margin-top: 2em;
   text-align: right;
 }
 
-div#location p {
+div#rslidy-location p {
   display: inline;
   background-color: light-dark(#eee, #2a2a2a);
   padding: 0.2em;
@@ -247,10 +247,10 @@ div#rslidy-licence p {
 .rslidy-column {
   width: 100%;
   min-width: 0; /* Important */
-  overflow: hidden; /* Prevents visual overflow */
   display: flex;
   flex-direction: column;
   gap: 0.5em;
+  overflow: hidden;
 }
 
 /* All child elements inside the column, such as paragraphs and lists */
@@ -373,7 +373,7 @@ ol {
 
 ul {
   list-style: disc;
-  padding: 0 0 1em 0;
+  padding: 0 0 1em 1.3em;
 }
 
 /* Nested bullet styles */

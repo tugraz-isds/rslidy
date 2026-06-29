@@ -226,7 +226,7 @@
 /* Trapezoid toggle buttons */
 .rslidy-show-button, .rslidy-display-button {
   position: relative;
-  top: 1.80em;
+  top: 2rem;
   border: none;
   background-color: transparent;
   cursor: pointer;
@@ -296,7 +296,7 @@
 }
 
 .rslidy-preview:hover {
-  background-color: rgb(255, 115, 0);
+  background-color: light-dark(#ff7300, #b85000);
 }
 
 .rslidy-preview:hover .rslidy-preview-item {
