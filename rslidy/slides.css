@@ -21,10 +21,12 @@ Keith Andrews: extra CSS for my rslidy slides
   font-size: 1.5em;
 }
 
+
 .slide:not(.rslidy-titleslide) {
   display: flex;
   flex-direction: column;
 }
+
 
 .footer {
   margin-top: auto;
@@ -34,8 +36,8 @@ Keith Andrews: extra CSS for my rslidy slides
 
 
 span.li-intro {
-/*  font-style: italic; */
-  font-weight: bold;
+  font-style: italic;
+/* font-weight: bold; */
 }
 
 
@@ -48,9 +50,10 @@ ul.credits {
   text-align: right;
 }
 
+
 div#location {
   margin-top: 2em;
-  text-align: right;
+  text-align: center;
 }
 
 div#location p {
@@ -165,6 +168,8 @@ span.isbn:before {
   background-color: lightgray;
 }
 
+
+
 /* CSS Grid */
 
 .grid {
@@ -184,6 +189,9 @@ span.isbn:before {
 .responsive-table .table-cross {
   color: red;
 }
+
+
+
 
 /* figures */
 
