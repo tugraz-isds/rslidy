@@ -316,20 +316,8 @@ role="region" aria-label="Print Settings" tabindex="0">
 
   <fieldset id="rslidy-page-format-options" aria-labelledby="rslidy-page-format-options-heading">
     <h4 id="rslidy-page-format-options-heading" style="margin-bottom: 0.8em; font-weight: 600;">Page Format</h4>
-    <label id="rslidy-input-font-size-text" class="rslidy-menu-content">
+        <label id="rslidy-select-paper-size-text" class="rslidy-menu-content">
       `+t.print_settings[4]+`
-      <input type="number" id="rslidy-input-font-size" value="100" min="0" max="100">
-      <span class="percent">%</span>
-    </label>
-    <label id="rslidy-select-orientation-text" class="rslidy-menu-content">
-      `+t.print_settings[5]+`
-      <select id="rslidy-select-orientation">
-        <option value="portrait">Portrait</option>
-        <option selected="selected" value="landscape">Landscape</option>
-      </select>
-    </label>
-    <label id="rslidy-select-paper-size-text" class="rslidy-menu-content">
-      `+t.print_settings[6]+`
       <select id="rslidy-select-paper-size">
         <option value="legal">Legal</option>
         <option value="letter">Letter</option>
@@ -341,6 +329,19 @@ role="region" aria-label="Print Settings" tabindex="0">
         <option selected="selected" value="A4">A4</option>
         <option value="A5">A5</option>
       </select>
+    </label>
+    <label id="rslidy-select-orientation-text" class="rslidy-menu-content">
+      `+t.print_settings[5]+`
+      <select id="rslidy-select-orientation">
+        <option value="portrait">Portrait</option>
+        <option selected="selected" value="landscape">Landscape</option>
+      </select>
+    </label>
+
+        <label id="rslidy-input-font-size-text" class="rslidy-menu-content">
+      `+t.print_settings[6]+`
+      <input type="number" id="rslidy-input-font-size" value="100" min="0" max="100">
+      <span class="percent">%</span>
     </label>
   </fieldset>
 

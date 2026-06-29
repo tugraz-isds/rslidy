@@ -103,9 +103,9 @@ export const print_settings = [
   `Show Frame`,
   `Show Link Destinations`,
   `Slides to Print`,
-  `Font Size:`,
-  `Orientation:`,
   `Page Size:`,
+  `Orientation:`,
+  `Font Size:`,
   `Print`,
 ];
 
