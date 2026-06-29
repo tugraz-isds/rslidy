@@ -15,11 +15,6 @@
 <!-- for custom css sheets-->
 <link rel="stylesheet" href="slides.css"/>
 
-<!-- for Math Equations
-<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
--->
-
 <!-- Source code highlighting with Prism -->
 <link rel="stylesheet" href="prism/prism.css"/>
 <script src="prism/prism.js"></script>
@@ -38,10 +33,10 @@
 <h2>Lightweight, Accessible, and Responsive HTML Slide Decks</h2>
 
 <p>
-Prof. Keith Andrews<br/>
-ISDS, Graz University of Technology, Austria<br/>
-<a href="https://isds.tugraz.at/keith/">
-<code>https://isds.tugraz.at/keith/</code>
+Keith Andrews and Fabian Platzer<br/>
+HCC, Graz University of Technology, Austria<br/>
+<a href="https://hcc.tugraz.at/keith/">
+<code>https://hcc.tugraz.at/keith/</code>
 </a>
 </p>
 
@@ -52,7 +47,7 @@ Github<br/>
 </p>
 
 <p>
-Website<br/>
+Web Site<br/>
 <a href="https://projects.isds.tugraz.at/rslidy/">
 <code>https://projects.isds.tugraz.at/rslidy/</code></a>
 </p>
@@ -93,7 +88,7 @@ Lightweight.
 </li>
 </ul>
 
-<table class="rslidy-responsive-table">
+<table class="rslidy-responsive-table rslidy-disable-sorting">
 <caption>Rslidy File Sizes</caption>
 <thead>
 <tr>
@@ -130,34 +125,47 @@ Lightweight.
 
 
 <section>
-<h2>Overview of Rslidy's Features</h2>
+<h2>Slide Viewer</h2>
 
 <ul>
-  <li>
-    Slide Viewer:
-    <ul>
-      <li>Animated slide transitions.</li>
-      <li>Overview panel.</li>
-      <li>Table of contents panel.</li>
-      <li>Navigable progress bar.</li>
-      <li>All slides view.</li>
-      <li>Help page.</li>
-    </ul>
-  </li>
-  
-  <li>
-    Responsive Layout and Interactions:
-    <ul>
-      <li>Portrait + landscape.</li>
-      <li>Swipe, pinch, tap.</li>
-      <li>Tilt, shake.</li>
-      <li>Keyboard.</li>
-      <li>Mouse pointer, mouse wheel.</li>
-    </ul>
-  </li>
+<li>Navigation:
+<ul class="rslidy-incremental">
+  <li>Animated slide transitions.</li>
+  <li>Incremental bullet display.</li>
+  <li>Navigable progress bar.</li>
+  <li>All slides view.</li>
 </ul>
+</li>
+
+<li>Five Panels:
+</p>
+<ul>
+  <li>Slide Overview panel</li>
+  <li>Table of Contents panel.</li>
+  <li>Settings panel.</li>
+  <li>Print Settings panel.</li>
+  <li>Help panel.</li>
+</ul>
+</li>
+
 </section>
 
+
+
+
+
+
+<section>
+<h2>Responsive Interactions</h2>
+
+<ul>
+  <li>Portrait + landscape.</li>
+  <li>Swipe, pinch, tap.</li>
+  <li>Tilt, shake.</li>
+  <li>Keyboard.</li>
+  <li>Mouse pointer, mouse wheel.</li>
+</ul>
+</section>
 
 
 
@@ -271,15 +279,20 @@ When \(a \ne 0\), there are two solutions to \(ax^2 + bx + c = 0\) and they are
 
 <section>
 <h1>Source Code Highlighting using <a href="https://prismjs.com/">Prism.js</a></h1>
-<p>Displayed code snippets:</p>
+
+<p>
+Displayed code snippets:
+</p>
 <pre><code class="language-html">&lt;body&gt;
 &lt;section id="code-example"&gt;
   &lt;h1&gt;Source Code Highlighting!&lt;/h1&gt;
   &lt;h2&gt;Or through third-party tools.&lt;/h2&gt;
 &lt;/section&gt;
 &lt;/body&gt;</code></pre>
+
 <p>Inline code snippets:
-  <code class="language-css">background-color: rgba(0, 0, 0, 0.9);</code></p>
+<code class="language-css">background-color: rgba(0, 0, 0, 0.9);</code>
+</p>
 </section>
 
 
@@ -602,10 +615,10 @@ The following people have contributed to Rslidy:
 <h2>Thank You!</h2>
 
 <p>
-Prof. Keith Andrews<br/>
-ISDS, Graz University of Technology, Austria<br/>
-<a href="https://isds.tugraz.at/keith/">
-<code>https://isds.tugraz.at/keith/</code>
+Keith Andrews<br/>
+HCC, Graz University of Technology, Austria<br/>
+<a href="https://hcc.tugraz.at/keith/">
+<code>https://hcc.tugraz.at/keith/</code>
 </a>
 </p>
 
