@@ -54,9 +54,17 @@
 
 .rslidy-menu-header-settings-interaction {
   display: block;
+  border-top: 0.125rem groove threedface;
+  padding: 0.5rem 1rem 0.5rem;
+  margin-bottom: 0;
+  margin-top: 0.3rem;
+}
+
+.rslidy-menu-header-settings-visual-enhancements {
+  display: block;
   padding: 0.3rem 1rem 0.5rem;
   margin-bottom: 0;
-}
+ }
 
 .rslidy-menu-header-settings-font-size {
   display: block;

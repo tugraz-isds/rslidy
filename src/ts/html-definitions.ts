@@ -229,9 +229,14 @@ export const settings_html = `
 <div id="rslidy-menu" class="rslidy-hidden rslidy-ui" role="region"
 aria-label="Settings" tabindex="0">
   <h3 class="rslidy-menu-header-settings">Settings</h3>
-
+  <h4 class="rslidy-menu-header-settings-visual-enhancements">Enhancements</h4>
+  <label id="rslidy-checkbox-showslidenumbers-text" class="rslidy-menu-content-settings">
+    Show Slide Numbers
+    <input type="checkbox" value="ShowSlideNumbers" id="rslidy-checkbox-showslidenumbers" checked>
+    <label for="rslidy-checkbox-showslidenumbers">`+i.slider_icon+`</label>
+  </label>
+  
   <h4 class="rslidy-menu-header-settings-interaction">Interaction</h4>
-
   <label id="rslidy-checkbox-tilt-text" class="rslidy-menu-content-settings rslidy-disabled" aria-disabled="true">
     `+t.settings[0]+`
     <input type="checkbox" value="Tilt" id="rslidy-checkbox-tilt" disabled>
@@ -251,11 +256,6 @@ aria-label="Settings" tabindex="0">
     `+t.settings[3]+`
     <input type="checkbox" value="Tap" id="rslidy-checkbox-margintap" checked>
     <label for="rslidy-checkbox-margintap">`+i.slider_icon+`</label>
-  </label>
-  <label id="rslidy-checkbox-showslidenumbers-text" class="rslidy-menu-content-settings">
-    Show Slide numbers
-    <input type="checkbox" value="ShowSlideNumbers" id="rslidy-checkbox-showslidenumbers" checked>
-    <label for="rslidy-checkbox-showslidenumbers">`+i.slider_icon+`</label>
   </label>
 
   <h4 class="rslidy-menu-header-settings-font-size">Font Sizing</h4>
