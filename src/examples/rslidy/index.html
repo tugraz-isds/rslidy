@@ -32,13 +32,10 @@
 <h1>Rslidy</h1>
 <h2>Lightweight, Accessible, and Responsive HTML Slide Decks</h2>
 
-<p>
-Keith Andrews and Fabian Platzer<br/>
+<h3>
+Keith Andrews and Fabian Platzer<br/><br/>
 HCC, Graz University of Technology, Austria<br/>
-<a href="https://hcc.tugraz.at/keith/">
-<code>https://hcc.tugraz.at/keith/</code>
-</a>
-</p>
+</h3>
 
 <p>
 Github<br/>
@@ -47,11 +44,22 @@ Github<br/>
 </p>
 
 <p>
-Web Site<br/>
+Live Demo Slides<br/>
+<a href="https://tugraz-isds.github.io/rslidy/">
+<code>https://tugraz-isds.github.io/rslidy/</code></a>
+</p>
+
+<p>
+Historical Web Site<br/>
 <a href="https://projects.isds.tugraz.at/rslidy/">
 <code>https://projects.isds.tugraz.at/rslidy/</code></a>
 </p>
-<!--a href="#13">Go to Slide 13</a-->
+
+<div id="location">
+<p>
+Frontend Graz Meetup, Mon 29 Jun 2026
+</p>
+</div>
 </section>
 
 
@@ -65,28 +73,23 @@ Web Site<br/>
 <section>
 <h2>Rslidy</h2>
 
-<ul>
-<li>
-Inspired by Slidy and Slidy2.
-</li>
+<div class="columns">
+  <ul class="item-auto">
+  <li>Inspired by Slidy and Slidy2.</li>
 
-<li>
-Responsive HTML, CSS, JavaScript (TypeScript).
-</li>
+  <li>Responsive HTML, CSS, JavaScript (TypeScript).</li>
 
 <li>
 Slides are defined in blocks <code class="language-html small-code">&lt;div
 class="slide"&gt;...&lt;/div&gt;</code> or <code class="language-html small-code">&lt;section&gt;...&lt;/section&gt;</code>.
 </li>
 
-<li>
-No other dependencies.
-</li>
+  <li>No other dependencies.</li>
 
-<li>
-Lightweight.
-</li>
-</ul>
+  <li>Lightweight.</li>
+  </ul>
+</div>
+
 
 <table class="rslidy-responsive-table rslidy-disable-sorting">
 <caption>Rslidy File Sizes</caption>
@@ -101,15 +104,15 @@ Lightweight.
 <tbody>
 <tr>
   <td>rslidy.js</td>
-  <td>149,083</td>
-  <td>84,163</td>
-  <td>18,069</td>
+  <td>173,422</td>
+  <td>93,478</td>
+  <td>20,744</td>
 </tr>
 <tr>
   <td>rslidy.css</td>
-  <td>37,043</td>
-  <td>24,339</td>
-  <td>6,362</td>
+  <td>59,305</td>
+  <td>43,843</td>
+  <td>10,360</td>
 </tr>
 </tbody>
 </table>
@@ -125,28 +128,33 @@ Lightweight.
 
 
 <section>
-<h2>Slide Viewer</h2>
+<h2>Navigation</h2>
 
-<ul>
-<li>Navigation:
-<ul class="rslidy-incremental">
-  <li>Animated slide transitions.</li>
-  <li>Incremental bullet display.</li>
-  <li>Navigable progress bar.</li>
-  <li>All slides view.</li>
-</ul>
-</li>
+<div class="columns">
+  <ul class="item-auto">
+    <li>Animated slide transitions.</li>
+    <li>Incremental bullet display.</li>
+    <li>Navigable progress bar.</li>
+    <li>All Slides view.</li>
+  </ul>
+</div>
 
-<li>Five Panels:
-</p>
-<ul>
-  <li>Slide Overview panel</li>
-  <li>Table of Contents panel.</li>
-  <li>Settings panel.</li>
-  <li>Print Settings panel.</li>
-  <li>Help panel.</li>
-</ul>
-</li>
+</section>
+
+
+
+<section>
+<h2>Five Panels</h2>
+
+<div class="columns">
+  <ul class="item-auto">
+    <li>Slide Overview panel</li>
+    <li>Table of Contents panel.</li>
+    <li>Settings panel.</li>
+    <li>Print Settings panel.</li>
+    <li>Help panel.</li>
+  </ul>
+</div>
 
 </section>
 
@@ -158,13 +166,15 @@ Lightweight.
 <section>
 <h2>Responsive Interactions</h2>
 
-<ul>
-  <li>Portrait + landscape.</li>
-  <li>Swipe, pinch, tap.</li>
-  <li>Tilt, shake.</li>
-  <li>Keyboard.</li>
-  <li>Mouse pointer, mouse wheel.</li>
-</ul>
+<div class="columns">
+  <ul class="item-auto">
+    <li>Portrait + landscape.</li>
+    <li>Swipe, pinch, tap.</li>
+    <li>Tilt, shake.</li>
+    <li>Keyboard.</li>
+    <li>Mouse pointer, mouse wheel.</li>
+  </ul>
+</div>
 </section>
 
 
@@ -211,6 +221,8 @@ Lightweight.
 </div>
 
 </section>
+
+
 
 
 <section>
@@ -548,8 +560,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-
-
 <section>
 <h2>All Slides View</h2>
 
@@ -579,10 +589,9 @@ document.addEventListener('DOMContentLoaded', () => {
 <section>
 <h2>Credits</h2>
 
-<p>
-The following people have contributed to Rslidy:
-</p>
-<ul class="compact">
+<div class="columns">
+  <ul class="item-auto compact">
+
 <li>Keith Andrews</li>
 <!-- MSc 2024 -->
 <li>Fabian Platzer</li>
@@ -605,6 +614,8 @@ The following people have contributed to Rslidy:
 <li>Elias Zeitfogel, Patrick Kasper, Karina Priebernig, Clemens Meinhart</li>
 </ul>
 
+</div>
+
 </section>
 
 
@@ -626,12 +637,6 @@ HCC, Graz University of Technology, Austria<br/>
 Github<br/>
 <a href="https://github.com/tugraz-isds/rslidy/">
 <code>https://github.com/tugraz-isds/rslidy/</code></a>
-</p>
-
-<p>
-Website<br/>
-<a href="https://projects.isds.tugraz.at/rslidy/">
-<code>https://projects.isds.tugraz.at/rslidy/</code></a>
 </p>
 
 </section>
