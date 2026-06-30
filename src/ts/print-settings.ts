@@ -140,6 +140,12 @@ export class PrintSettingsComponent {
         opacity: 1 !important;
         visibility: visible !important;
       }
+        @media print {
+      #rslidy-content-section .slide {
+        container-type: normal !important;
+        container-name: none !important;
+      }
+}
   `;
     // 1. Handle Slide Visibility
     if (selectedSlideOption?.value === "custom" && slideRangeInput) {
