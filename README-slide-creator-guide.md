@@ -51,7 +51,7 @@ A minimal slide deck containing two slides:
 
 <section>
   <h1>Slide Heading</h1>
-  <ul class="rslidy-incremental">
+  <ul>
     <li>First point</li>
     <li>Second point</li>
     <li>Third point</li>
