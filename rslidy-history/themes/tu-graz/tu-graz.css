@@ -51,23 +51,24 @@
 
 /* Title Slide */
 .rslidy-titleslide {
-  background:
-          linear-gradient(rgba(255, 255, 255, 0.35),
-          rgba(255, 255, 255, 0.7)),
-          url("background.png") no-repeat center,
-          linear-gradient(white 0%, gray 80%);
-  background-size: contain;
-  display: block;
-  flex-direction: column;
-  color: #000000;
   margin: 0;
+  background:
+          url("tugraz-logo.svg") right 1.82rem top 1.82rem / auto 1.5em no-repeat,
+          linear-gradient(
+                  rgba(255, 255, 255, 0.35),
+                  rgba(255, 255, 255, 0.8)
+          ),
+          url("background.png") center / contain no-repeat,
+          linear-gradient(white 5%, gray 90%);
+  display: block;
+  color: #000000;
 }
 
 
 /* Licence Text */
-div#rslidy-licence p {
+div#rslidy-copyright p {
   display: inline-block;
-  background-color: #fafafa;
+  background-color: #FFFFFF;
   padding: 0.5em;
   border-radius: 0.2em;
   font-size: clamp(0.55rem, 0.45vw + 0.35rem, 0.9rem);

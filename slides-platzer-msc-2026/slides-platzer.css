@@ -1,0 +1,31 @@
+
+
+span.li-intro {
+  font-style: italic;
+}
+
+
+
+span.li-heading {
+  font-weight: bold;
+}
+
+.slide {
+  font-size: 1.8rem;
+}
+
+/* adjust prismjs settings for code */
+
+pre[class*="language"] {
+  padding: 0.5em !important;
+  margin:  0 !important;
+  line-height: 1 !important;
+  white-space: pre-wrap !important;
+}
+
+code[class*="language-"] {
+  padding: 0 !important;
+  margin:  0 !important;
+  font-size: 0.8em !important;
+  white-space: pre-wrap !important;
+}
