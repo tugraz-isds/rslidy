@@ -53,10 +53,15 @@ and interactive elements in action.
 
 ## 4 For Slide Creators
 
+## 4 For Slide Creators
+
 Slide creators are users who wish to create a slide deck using Rslidy.
-For a complete and structured introduction on how to create slide
-decks, see the [Rslidy Slide Creator
-Guide](README-slide-creator-guide.md).
+
+A simple working example without any additional CSS is available in the
+[Simple Slide Deck](https://tugraz-isds.github.io/rslidy/simple-slide-deck/index.html).
+For a complete and structured introduction to creating slide decks, see
+the [Rslidy Slide Creator Guide](README-slide-creator-guide.md).
+
 
 
 

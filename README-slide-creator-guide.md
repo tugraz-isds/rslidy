@@ -588,7 +588,7 @@ must also be overridden using JavaScript. These are the settings:
   CSS definition of the slide frame used when printing.
   The default value is `0.05rem solid black`.
 
-
+  
 
 ## 12. Responsive Content
 
@@ -600,29 +600,100 @@ responsive manner.
 
 This includes using standard responsive HTML patterns where appropriate,
 for example with the `<picture>` element or the `srcset` and `sizes`
-attributes for responsive images, and applying Rslidy classes where they provide
+attributes for responsive images. Rslidy also provides classes with
 additional responsive behaviour, such as
-`rslidy-responsive-table`, `rslidy-images`, or
+`rslidy-responsive-table`, `rslidy-images`, and
 `rslidy-large-images`.
 
 The helper classes `rslidy-images` and `rslidy-large-images` are
 optional layout utilities for centring media inside predefined 16:9
-containers. They can be useful for slide layouts with images or videos,
-but they are not required for responsive images in general.
+containers. They can be useful for slide layouts containing images or
+videos, but they are not required for responsive images in general.
 
-Each .slide element is defined as a named CSS container using
-container-name: `rslidy-slide` and container-type: `inline-size`.
-Slide creators can therefore use `@container` queries in
-custom CSS to adapt descendant content to the available width of the
-slide rather than to the width of the browser viewport. This is
-particularly useful when slides are displayed at different sizes.
+### 12.1 Container Queries
 
-Slide creators should also avoid custom CSS rules that override
-responsive behaviour and should verify that layouts remain usable across
-different screen sizes.
+Container queries allow styles to react to the available size of a
+specific container instead of the size of the browser viewport.
 
-An overview of various layout options for creating slide decks in
-Rslidy is provided in the
+Each `.slide` element in Rslidy is defined as a named CSS container:
+
+```css
+.slide {
+  container-name: rslidy-slide;
+  container-type: inline-size;
+}
+```
+
+The value `inline-size` enables queries based on the horizontal width of
+the slide. The name `rslidy-slide` allows slide creators to target this
+container explicitly using `@container`.
+
+Container query rules apply to elements inside the `.slide` container.
+They do not directly style the `.slide` element itself.
+
+For example, the following slide contains text and an image in a
+two-column layout:
+
+```html
+<section>
+<h1>Container Query Example</h1>
+
+<div class="example-content">
+  <div>
+    <h2>Responsive Layout</h2>
+    <p>
+      This text is displayed next to the image when sufficient slide
+      width is available.
+    </p>
+  </div>
+
+  <figure>
+    <img src="images/example.png"
+         alt="Example responsive slide content"/>
+    <figcaption>Example image.</figcaption>
+  </figure>
+</div>
+</section>
+```
+
+The corresponding custom CSS initially defines two columns:
+
+```css
+.example-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: center;
+}
+```
+
+A container query can change the layout when the slide becomes narrower
+than `40rem`:
+
+```css
+@container rslidy-slide (max-width: 40rem) {
+  .example-content {
+    grid-template-columns: 30rem;  
+  }
+}
+```
+
+The query searches for the nearest ancestor container named
+`rslidy-slide`. In Rslidy, this is the surrounding `.slide` element.
+
+When the available slide width is greater than `40rem`, the text and
+image are displayed next to each other. When the slide width is
+`40rem` or less, they are stacked vertically.
+
+Container queries are particularly useful when slides are displayed in
+different contexts, such as normal presentation mode, slide overview,
+embedded slide decks, split-screen windows, or print layouts.
+
+Slide creators should avoid custom CSS rules that override Rslidy's
+responsive behaviour and should verify that layouts remain usable at
+different slide widths.
+
+An overview of layout options for creating slide decks in Rslidy is
+provided in the
 [Rslidy Layouts](README-layouts.md) guide.
-
 
