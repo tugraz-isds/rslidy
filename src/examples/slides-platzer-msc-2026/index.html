@@ -1,28 +1,29 @@
 <!DOCTYPE html>
 
 <html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Improving Rslidy: Responsive Web-Based Slide Decks</title>
-<link href="rslidy.min.css" rel="stylesheet"/>
-<link href="./themes/tu-graz/tu-graz.css" rel="stylesheet"/>
+<link rel="stylesheet" href="rslidy.min.css"/>
+<link rel="stylesheet" href="./themes/tu-graz/tu-graz.css"/>
 <link rel="stylesheet" href="slides-platzer.css"/>
 <link rel="stylesheet" href="prism/prism.css"/>
 <script src="prism/prism.js"></script>
-<script src="rslidy.min.js" type="module"></script>
+<script type="module" src="rslidy.min.js"></script>
 </head>
-<body class="unanimated">
 
+<body>
 
 
 <section class="rslidy-titleslide">
 <h1>Improving Rslidy:<br/>Responsive Web-Based Slide Decks</h1>
-<h2>
-Fabian Platzer<br/>
+<h2>Fabian Platzer</h2>
+<h3>
 Master's Thesis Defence<br/>
 Graz University of Technology
-</h2>
+</h3>
 <h3>Tue 28 Jul 2026</h3>
 <p>
 GitHub:<br/>
@@ -76,12 +77,15 @@ licence.
 <section>
 <h1>Web-Based Slide Deck Systems</h1>
 
-<ul class="rslidy-incremental">
-<li>Presentations are created with HTML, CSS, and JavaScript.</li>
-<li>Web browser as presentation runtime.</li>
+<ul>
+<li>Slide deck created with HTML, CSS, and JavaScript:
+<ul>
+<li>Distributed as URL.</li>
+<li>Presented in a web browser.</li>
+</ul>
+</li>
 <li>Multimedia and interactive slide content.</li>
-<li>Slide decks distributed as standard web resources.</li>
-<li>Authors can use standard web development tools.</li>
+<li>Authors use standard web development tools.</li>
 </ul>
 </section>
 
@@ -99,28 +103,27 @@ licence.
 
 
 <section>
-<h1>Modern HTML and the DOM</h1>
+<h1>Living HTML and the DOM</h1>
 <div class="rslidy-columns-even">
 <div class="rslidy-column">
-<ul class="rslidy-incremental">
-    <li>HTML structure and semantics.</li>
-    <li>Semantic elements for structure and accessibility:
-        <code>&lt;section&gt;</code>, <code>&lt;figure&gt;</code>,
-        <code>&lt;table&gt;</code></li>
-    <li>Native media elements with fewer external libraries:
-        <code>&lt;video&gt;</code>, <code>&lt;audio&gt;</code>,
-        <code>&lt;picture&gt;</code></li>
-    <li>DOM as hierarchical object tree.</li>
-    <li>JavaScript-based DOM access and manipulation.</li>
+<ul>
+<li>HTML structure and semantics.</li>
+<li>Semantic elements for structure and accessibility:
+    <code>&lt;section&gt;</code>, <code>&lt;figure&gt;</code>,
+    <code>&lt;table&gt;</code>.</li>
+<li>Native media elements:
+    <code>&lt;video&gt;</code>, <code>&lt;audio&gt;</code>,
+    <code>&lt;picture&gt;</code>.</li>
+<li>DOM as hierarchical object tree.</li>
+<li>JavaScript-based DOM access and manipulation.</li>
 </ul>
 </div>
 <div class="rslidy-column">
 <figure>
-    <div class="rslidy-large-images">
-        <img alt="HTML DOM tree of objects from the thesis." src="images/html-dom-tree.svg"/>
-
-    </div>
-    <figcaption class="rslidy-center"><span class="rslidy-fig-label">Figure 1</span>: HTML DOM Tree of Objects</figcaption>
+<div class="rslidy-large-images">
+<img alt="HTML DOM tree of objects from the thesis." src="images/html-dom-tree.svg"/>
+</div>
+<figcaption class="rslidy-center"><span class="rslidy-fig-label">Figure 1</span>: HTML DOM Tree of Objects</figcaption>
 </figure>
 </div>
 </div>
@@ -133,11 +136,10 @@ licence.
 <section>
 <h1>Modern CSS</h1>
 
-<ul class="rslidy-incremental">
+<ul>
 <li>Flexbox and Grid for flexible layouts.</li>
-<li>Custom properties for configuration and themes.</li>
-<li>Media queries for viewport and output conditions.</li>
-<li>Container queries for component-based responsiveness.</li>
+<li>Custom properties (variables) for configuration and themes.</li>
+<li>Media and container queries for responsiveness.</li>
 <li><code>:has()</code> for relational styling.</li>
 <li><code>light-dark()</code> and <code>color-mix()</code>
 for modern colour systems.</li>
@@ -176,12 +178,11 @@ for modern colour systems.</li>
 
 
 
+
 <section>
 <h1>JavaScript Module Systems</h1>
 
-<table class="rslidy-responsive-table
-rslidy-responsive-table-text-scaling">
-
+<table class="rslidy-responsive-table rslidy-responsive-table-text-scaling">
 <caption>
 JavaScript Module Systems
 </caption>
@@ -243,19 +244,20 @@ ESM for native browser loading, static analysis, and build optimisation.
 
 
 
-
 <section>
 <h1>Responsive Web Design</h1>
 
-<ul class="rslidy-incremental">
-<li>Adaptation to devices and available space.</li>
+<ul>
+<li>Single code base, served under single URL.</li>
+<li>Web site or app adapts to devices and available space.</li>
 <li>Scalable typography and spacing through relative units.</li>
-<li>Flexible images without fixed-size overflow.</li>
+<li>Flexible images.</li>
 <li>Media queries for viewport and output characteristics.</li>
 <li>Container queries for reusable responsive components.</li>
-<li>Responsive viewer and slide content.</li>
 </ul>
 </section>
+
+
 
 
 
@@ -268,10 +270,9 @@ ESM for native browser loading, static analysis, and build optimisation.
 
 
 
-
 <section>
 <h1>Four Categories</h1>
-<ol class="rslidy-incremental">
+<ol>
 <li><span class="li-intro">Text-Based</span>: Markdown syntax. Simple, lightweight,
 fast to create and change.</li>
 
@@ -332,13 +333,13 @@ backgroundColor: #fff
 </div>
 <div class="rslidy-column">
 <figure>
-    <div class="images">
-        <img src="images/marp-example-slide.png"
-             alt="Marp: Example Slide"
-             style="max-height:20em;
-border: 1px solid #D3D3D3;"/>
-    </div>
-    <figcaption><span class="rslidy-fig-label">Figure 2</span>: Marp: Example slide.</figcaption>
+<div class="images">
+<img src="images/marp-example-slide.png"
+     alt="Marp: Example Slide"
+     style="max-height:20em; border: 1px solid #D3D3D3;"/>
+</div>
+<figcaption><span class="rslidy-fig-label">Figure 2</span>:
+Marp: Example slide.</figcaption>
 </figure>
 </div>
 </div>
@@ -448,7 +449,7 @@ hash: true,
     <div class="images">
         <img src="images/google-slides-export-options.png"
              alt="Google Slides: Example Slide"
-             style="max-height:20em; border: 1px solid #D3D3D3;" />
+             style="max-height:20rem; border: 0.05rem solid #D3D3D3;" />
     </div>
     <figcaption><span class="rslidy-fig-label">Figure 4</span>: Google Slides: Export options.</figcaption>
 </figure>
@@ -537,11 +538,11 @@ Comparison of web-based slide deck categories.
 
 <div class="rslidy-column">
 <ul>
-    <li>Single HTML document for the complete slide deck.</li>
-    <li>Semantic <code>&lt;section&gt;</code> or slide elements.</li>
-    <li>JavaScript-based viewer and presentation state.</li>
-    <li>Components for navigation, settings, printing, and media.</li>
-    <li>Shared state through the central Rslidy runtime.</li>
+<li>Single HTML document for complete slide deck.</li>
+<li><code>&lt;section&gt;</code> for each slide.</li>
+<li>JavaScript-based slide viewer.</li>
+<li>Components for navigation, settings, printing, and media.</li>
+<li>Shared state through the central Rslidy runtime.</li>
 </ul>
 </div>
 
@@ -660,20 +661,29 @@ Comparison of web-based slide deck categories.
 
 <section> <h1>Rslidy v2: System Modernisation</h1>
 
-<ul class="rslidy-incremental">
-<li><span class="li-intro">Package Management</span>: NPM → PNPM; less disk usage; faster installs; stricter dependencies</li>
+<ul>
+<li><span class="li-intro">Package Management</span>: NPM → PNPM; less
+disk usage; faster installs; stricter dependencies.</li>
 
-<li><span class="li-intro">TypeScript</span>: updated compiler, Node.js type definitions, generated declaration files</li>
+<li><span class="li-intro">TypeScript</span>: Updated compiler,
+Node.js type definitions, generated declaration files.</li>
 
-<li><span class="li-intro">Build Pipeline</span>: extended Gulp workflow.</li>
+<li><span class="li-intro">Build Pipeline</span>: Extended Gulp
+workflow.</li>
 
-<li><span class="li-intro">Module Formats</span>: separate ESM, CommonJS, and UMD distributions</li>
+<li><span class="li-intro">Module Formats</span>: ESM,
+CommonJS, and UMD distributions.</li>
 
-<li><span class="li-intro">Optimisation</span>: minified JavaScript and CSS; Gzip and Brotli compression</li>
+<li><span class="li-intro">Optimisation</span>: Minified JavaScript
+and CSS; Gzip and Brotli compression.</li>
 
-<li><span class="li-intro">Asset Generation</span>: SVG icons → TypeScript definitions; automatic theme and asset copying</li>
+<li><span class="li-intro">Asset Generation</span>: SVG icons →
+TypeScript definitions; automatic theme and asset copying.</li>
 
-<li><span class="li-intro">Development Workflow</span>: BrowserSync; file watching; automatic rebuild and browser reload</li> </ul>
+<li><span class="li-intro">Development Workflow</span>: BrowserSync;
+file watching; automatic rebuild and browser reload.</li>
+
+</ul>
 
 </section>
 
@@ -688,13 +698,12 @@ Comparison of web-based slide deck categories.
 <div class="rslidy-columns-even">
 <div class="rslidy-column">
 <ul>
-    <li>Four logical control sections.</li>
-    <li>Immediate reflection of selected options.</li>
-    <li>Individual slides and inclusive slide ranges.</li>
-    <li><code>@page</code> rules from paper format and orientation.</li>
-    <li><span class="li-intro">Print Sizing</span>: Actual Size, Fit to Page Width, or Custom Zoom.</li>
-    <li>Persistent print settings through local storage.</li>
-
+<li>Four logical groups of settings.</li>
+<li>Individual slides and inclusive slide ranges.</li>
+<li>CSS print styles dynamically generated.</li>
+<li><code>@page</code> rules from paper format and orientation.</li>
+<li><span class="li-intro">Print Sizing</span>: Actual Size, Fit to Page Width, or Custom Zoom.</li>
+<li>Persistent print settings through local storage.</li>
 </ul>
 
 </div>
@@ -716,7 +725,7 @@ Comparison of web-based slide deck categories.
 <section>
 <h1>Rslidy v2: Dynamic Print CSS Generation</h1>
 
-<ol class="rslidy-incremental">
+<ol>
 <li>Read selected print settings.</li>
 <li>Validate custom slide ranges.</li>
 <li>Mark slides for output.</li>
@@ -733,11 +742,11 @@ Comparison of web-based slide deck categories.
 
 
 <section>
-<h1>Rslidy v2: Responsive Table Layout and Structure</h1>
+<h1>Rslidy v2: Responsive Tables</h1>
 <div class="rslidy-columns-even">
 <div class="rslidy-column">
 <ul>
-    <li>Container-based breakpoint.</li>
+    <li>Container-based responsive breakpoint.</li>
     <li>Identical table definition for both layouts.</li>
 </ul>
 <figure>
@@ -767,7 +776,7 @@ Comparison of web-based slide deck categories.
 <section>
 <h1>Rslidy v2: Automatic Data Labels</h1>
 
-<ol class="rslidy-incremental">
+<ol>
 <li>Tables with
 <code>rslidy-responsive-table</code>.</li>
 <li>Header text from
@@ -833,8 +842,8 @@ Comparison of web-based slide deck categories.
 
 
 <section class="rslidy-titleslide">
-<h1>Thanks for your attention.</h1>
-<h2>Questions?</h2>
+<h1>Thanks for your attention!</h1>
+<h2>Any Questions?</h2>
 <p>
 Rslidy repository:<br/>
 <a href="https://github.com/tugraz-isds/rslidy">
