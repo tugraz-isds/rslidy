@@ -53,8 +53,6 @@ and interactive elements in action.
 
 ## 4 For Slide Creators
 
-## 4 For Slide Creators
-
 Slide creators are users who wish to create a slide deck using Rslidy.
 
 A simple working example without any additional CSS is available in the
