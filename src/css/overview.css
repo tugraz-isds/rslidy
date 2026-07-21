@@ -84,7 +84,7 @@
 }
 
 .rslidy-slide-link:hover {
-  background-color: var(--rslidy-button-hover-color);
+  background-color: var(--rslidy-button-hover-colour);
 }
 
 /* Caption below a thumbnail */

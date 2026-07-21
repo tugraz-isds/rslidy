@@ -239,37 +239,78 @@ function html() {
 
 // Copy task
 function copy() {
+  const copyStreams = [];
+
   fs.readdirSync(paths.build + 'examples').forEach(folder => {
     const full = paths.build + 'examples/' + folder;
+
     if (fs.statSync(full).isDirectory()) {
-      src(paths.library + 'esm/' + files.minjs, { allowEmpty: true })
-        .pipe(dest(full));
-      src(paths.library + files.mincss, { allowEmpty: true })
-        .pipe(dest(full));
-      src(paths.library + 'themes/**/*.*', { allowEmpty: true })
-        .pipe(dest(full + '/themes/'));
+      copyStreams.push(
+          src(paths.library + 'esm/' + files.minjs, { allowEmpty: true })
+              .pipe(dest(full))
+      );
+
+      copyStreams.push(
+          src(paths.library + files.mincss, { allowEmpty: true })
+              .pipe(dest(full))
+      );
+
+      copyStreams.push(
+          src(paths.library + 'themes/**/*.*', { allowEmpty: true })
+              .pipe(dest(full + '/themes/'))
+      );
     }
   });
 
-  src(paths.library + 'esm/' + files.minjs, { allowEmpty: true })
-    .pipe(dest(paths.build + 'tests/stress-test/'));
-  src(paths.library + files.mincss, { allowEmpty: true })
-    .pipe(dest(paths.build + 'tests/stress-test/'));
-  src(paths.library + 'themes/**/*.*', { allowEmpty: true })
-    .pipe(dest(paths.build + 'tests/stress-test/themes/'));
+  // Copy ESM JavaScript and CSS into the root tests folder
+  copyStreams.push(
+      src(paths.library + 'esm/' + files.minjs, { allowEmpty: true })
+          .pipe(dest(paths.build + 'tests/'))
+  );
+
+  copyStreams.push(
+      src(paths.library + files.mincss, { allowEmpty: true })
+          .pipe(dest(paths.build + 'tests/'))
+  );
+
+  // Copy files into the stress-test folder
+  copyStreams.push(
+      src(paths.library + 'esm/' + files.minjs, { allowEmpty: true })
+          .pipe(dest(paths.build + 'tests/stress-test/'))
+  );
+
+  copyStreams.push(
+      src(paths.library + files.mincss, { allowEmpty: true })
+          .pipe(dest(paths.build + 'tests/stress-test/'))
+  );
+
+  copyStreams.push(
+      src(paths.library + 'themes/**/*.*', { allowEmpty: true })
+          .pipe(dest(paths.build + 'tests/stress-test/themes/'))
+  );
 
   fs.readdirSync(paths.build + 'tests').forEach(folder => {
     const full = paths.build + 'tests/' + folder;
+
     if (fs.statSync(full).isDirectory() && folder !== 'stress-test') {
-      src(paths.library + 'esm/' + files.minjs, { allowEmpty: true })
-        .pipe(dest(full));
-      src(paths.library + files.mincss, { allowEmpty: true })
-        .pipe(dest(full));
-      src(paths.library + 'themes/**/*.*', { allowEmpty: true })
-        .pipe(dest(full + '/themes/'));
+      copyStreams.push(
+          src(paths.library + 'esm/' + files.minjs, { allowEmpty: true })
+              .pipe(dest(full))
+      );
+
+      copyStreams.push(
+          src(paths.library + files.mincss, { allowEmpty: true })
+              .pipe(dest(full))
+      );
+
+      copyStreams.push(
+          src(paths.library + 'themes/**/*.*', { allowEmpty: true })
+              .pipe(dest(full + '/themes/'))
+      );
     }
   });
-  return Promise.resolve();
+
+  return merge(copyStreams);
 }
 
 // Helper: reload BrowserSync safely

@@ -65,6 +65,12 @@ button, input, optgroup, select, textarea {
   z-index: 10;
 }
 
+@media (prefers-color-scheme: dark) {
+  .slide img[src$=".svg" i]:not(.rslidy-no-dark-invert) {
+    filter: invert(1) hue-rotate(180deg);
+  }
+}
+
 /* Loading spinner */
 .rslidy-spinner {
   width: 4rem;

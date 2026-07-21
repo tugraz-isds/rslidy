@@ -610,6 +610,13 @@ optional layout utilities for centring media inside predefined 16:9
 containers. They can be useful for slide layouts with images or videos,
 but they are not required for responsive images in general.
 
+Each .slide element is defined as a named CSS container using
+container-name: `rslidy-slide` and container-type: `inline-size`.
+Slide creators can therefore use `@container` queries in
+custom CSS to adapt descendant content to the available width of the
+slide rather than to the width of the browser viewport. This is
+particularly useful when slides are displayed at different sizes.
+
 Slide creators should also avoid custom CSS rules that override
 responsive behaviour and should verify that layouts remain usable across
 different screen sizes.

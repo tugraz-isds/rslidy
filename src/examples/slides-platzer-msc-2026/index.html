@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Improving Rslidy: Responsive Web-Based Slide Decks</title>
+<link href="rslidy.min.css" rel="stylesheet"/>
+<link href="./themes/tu-graz/tu-graz.css" rel="stylesheet"/>
+<link rel="stylesheet" href="slides-platzer.css"/>
+<link rel="stylesheet" href="prism/prism.css"/>
+<script src="prism/prism.js"></script>
+<script src="rslidy.min.js" type="module"></script>
+</head>
+<body class="unanimated">
+
+
+
+<section class="rslidy-titleslide">
+<h1>Improving Rslidy:<br/>Responsive Web-Based Slide Decks</h1>
+<h2>
+Fabian Platzer<br/>
+Master's Thesis Defence<br/>
+Graz University of Technology
+</h2>
+<h3>Tue 28 Jul 2026</h3>
+<p>
+GitHub:<br/>
+<a href="https://github.com/tugraz-isds/rslidy/">
+https://github.com/tugraz-isds/rslidy/</a>
+</p>
+<p>
+Master's Thesis:<br/>
+<a href="https://ftp.isds.tugraz.at/pub/theses/fplatzer-2026-msc.pdf">
+https://ftp.isds.tugraz.at/pub/theses/fplatzer-2026-msc.pdf</a>
+</p>
+<div id="rslidy-copyright">
+<p>
+© Copyright 2026 by Fabian Platzer, except as otherwise noted.<br/>
+This work is placed under a Creative Commons Attribution 4.0
+International
+(<a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>)
+licence.
+</p>
+</div>
+</section>
+
+
+
+
+<section>
+<h1>Presentation Outline</h1>
+<ol class="rslidy-incremental">
+<li>Introduction</li>
+<li>Modern Web Technologies</li>
+<li>Web-Based Slide Decks</li>
+<li>Rslidy v1</li>
+<li>Rslidy v2</li>
+<li>Outlook and Future Work</li>
+</ol>
+</section>
+
+
+
+
+
+<section class="rslidy-sectionslide">
+<h1>1. Introduction</h1>
+</section>
+
+
+
+
+
+
+<section>
+<h1>Web-Based Slide Deck Systems</h1>
+
+<ul class="rslidy-incremental">
+<li>Presentations are created with HTML, CSS, and JavaScript.</li>
+<li>Web browser as presentation runtime.</li>
+<li>Multimedia and interactive slide content.</li>
+<li>Slide decks distributed as standard web resources.</li>
+<li>Authors can use standard web development tools.</li>
+</ul>
+</section>
+
+
+
+
+
+
+<section class="rslidy-sectionslide">
+<h1>2. Modern Web Technologies</h1>
+</section>
+
+
+
+
+
+<section>
+<h1>Modern HTML and the DOM</h1>
+<div class="rslidy-columns-even">
+<div class="rslidy-column">
+<ul class="rslidy-incremental">
+    <li>HTML structure and semantics.</li>
+    <li>Semantic elements for structure and accessibility:
+        <code>&lt;section&gt;</code>, <code>&lt;figure&gt;</code>,
+        <code>&lt;table&gt;</code></li>
+    <li>Native media elements with fewer external libraries:
+        <code>&lt;video&gt;</code>, <code>&lt;audio&gt;</code>,
+        <code>&lt;picture&gt;</code></li>
+    <li>DOM as hierarchical object tree.</li>
+    <li>JavaScript-based DOM access and manipulation.</li>
+</ul>
+</div>
+<div class="rslidy-column">
+<figure>
+    <div class="rslidy-large-images">
+        <img alt="HTML DOM tree of objects from the thesis." src="images/html-dom-tree.svg"/>
+
+    </div>
+    <figcaption class="rslidy-center"><span class="rslidy-fig-label">Figure 1</span>: HTML DOM Tree of Objects</figcaption>
+</figure>
+</div>
+</div>
+</section>
+
+
+
+
+
+<section>
+<h1>Modern CSS</h1>
+
+<ul class="rslidy-incremental">
+<li>Flexbox and Grid for flexible layouts.</li>
+<li>Custom properties for configuration and themes.</li>
+<li>Media queries for viewport and output conditions.</li>
+<li>Container queries for component-based responsiveness.</li>
+<li><code>:has()</code> for relational styling.</li>
+<li><code>light-dark()</code> and <code>color-mix()</code>
+for modern colour systems.</li>
+</ul>
+</section>
+
+
+
+
+
+<section>
+<h1>JavaScript and TypeScript</h1>
+<div class="rslidy-columns-even">
+<div class="rslidy-column">
+<h2>JavaScript</h2>
+<ul>
+    <li>Core web programming language.</li>
+    <li>DOM manipulation and event handling.</li>
+    <li>Asynchronous programming:
+        promises and <code>async</code>/<code>await</code>.</li>
+    <li>Browser and Node.js execution.</li>
+</ul>
+</div>
+<div class="rslidy-column">
+<h2>TypeScript</h2>
+<ul>
+    <li>Static typing for JavaScript.</li>
+    <li>Interfaces and explicit function contracts.</li>
+    <li>Earlier error detection.</li>
+    <li>Refactoring and editor support.</li>
+    <li>Transpiles to standard JavaScript</li>
+</ul>
+</div>
+</div>
+</section>
+
+
+
+<section>
+<h1>JavaScript Module Systems</h1>
+
+<table class="rslidy-responsive-table
+rslidy-responsive-table-text-scaling">
+
+<caption>
+JavaScript Module Systems
+</caption>
+
+<thead>
+<tr>
+<th class="rslidy-text" scope="col">System</th>
+<th class="rslidy-text" scope="col">Primary Environment</th>
+<th class="rslidy-text" scope="col">Loading</th>
+<th class="rslidy-text" scope="col">Typical Syntax</th>
+<th class="rslidy-text" scope="col">Current Role</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>CommonJS</td>
+<td>Node.js</td>
+<td>Synchronous</td>
+<td><code>require()</code> and <code>module.exports</code></td>
+<td>Existing backend and tooling code</td>
+</tr>
+
+<tr>
+<td>AMD</td>
+<td>Browser</td>
+<td>Asynchronous</td>
+<td><code>define()</code> and <code>require()</code></td>
+<td>Legacy browser applications</td>
+</tr>
+
+<tr>
+<td>UMD</td>
+<td>Browser and server</td>
+<td>Wrapper-based</td>
+<td>Environment-detecting wrapper</td>
+<td>Broad library compatibility</td>
+</tr>
+
+<tr>
+<td>ESM</td>
+<td>Browser and Node.js</td>
+<td>Native modules</td>
+<td><code>import</code> and <code>export</code></td>
+<td>Modern standard module system</td>
+</tr>
+</tbody>
+
+</table>
+
+<p class="rslidy-note">
+<span class="li-intro">Rslidy v2</span>:
+ESM for native browser loading, static analysis, and build optimisation.
+</p>
+</section>
+
+
+
+
+
+
+
+<section>
+<h1>Responsive Web Design</h1>
+
+<ul class="rslidy-incremental">
+<li>Adaptation to devices and available space.</li>
+<li>Scalable typography and spacing through relative units.</li>
+<li>Flexible images without fixed-size overflow.</li>
+<li>Media queries for viewport and output characteristics.</li>
+<li>Container queries for reusable responsive components.</li>
+<li>Responsive viewer and slide content.</li>
+</ul>
+</section>
+
+
+
+
+
+<section class="rslidy-sectionslide">
+<h1>3. Web-Based Slide Decks</h1>
+</section>
+
+
+
+
+
+<section>
+<h1>Four Categories</h1>
+<ol class="rslidy-incremental">
+<li><span class="li-intro">Text-Based</span>: Markdown syntax. Simple, lightweight,
+fast to create and change.</li>
+
+<li><span class="li-intro">JavaScript-Based</span>: HTML, JavaScript, and CSS.
+Interactive, powerful styling, advanced animations.</li>
+
+<li><span class="li-intro">Hosted</span>: Online tools. Easy
+collaboration and sharing.</li>
+
+<li><span class="li-intro">Responsive</span>: Responsive slide
+decks, adapting to wide variety of devices and screen
+sizes.</li>
+</ol>
+</section>
+
+
+
+
+
+
+<section>
+<h1>1. Text-Based Slide Decks</h1>
+
+<p>Node-based, Markdown as input:</p>
+<ul>
+<li>Marp [2018-]</li>
+<li>Slidev [2021-]</li>
+<li>Remark [2011-2023]</li>
+<li>Fusuma [2018-2021]</li>
+</ul>
+</section>
+
+
+
+
+
+
+<section>
+<h1>Marp [2018-]</h1>
+<div class="rslidy-columns-even">
+<div class="rslidy-column">
+<pre class="language">
+<code class="language-html">---
+marp: true
+theme: default
+paginate: true
+backgroundColor: #fff
+---
+&lt;div class=ldiv&gt;
+- Bullet Point 1
+- Bullet Point 2
+- Bullet Point 3
+&lt;/div&gt;
+&lt;div class=rdiv&gt;
+![Example Image](./diagrams/diagram.svg)
+&lt;/div&gt;</code>
+</pre>
+</div>
+<div class="rslidy-column">
+<figure>
+    <div class="images">
+        <img src="images/marp-example-slide.png"
+             alt="Marp: Example Slide"
+             style="max-height:20em;
+border: 1px solid #D3D3D3;"/>
+    </div>
+    <figcaption><span class="rslidy-fig-label">Figure 2</span>: Marp: Example slide.</figcaption>
+</figure>
+</div>
+</div>
+</section>
+
+
+
+
+
+<section>
+<h1>2. JavaScript-Based Slide Decks</h1>
+
+<p>Node-based, HTML, CSS, and JavaScript-driven, Interactive:</p>
+<ul>
+<li>Shower [2010-]</li>
+<li>Reveal.js [2011-]</li>
+<li>Deck.js [2011-2016]</li>
+<li>impress.js [2011-]</li>
+<li>Bespoke.js [2014-2020]</li>
+<li>Inspire.js [2018-]</li>
+</ul>
+</section>
+
+
+
+
+
+
+<section>
+<h1>Reveal.js [2011-]</h1>
+<div class="rslidy-columns-even">
+<div class="rslidy-column">
+<pre class="language">
+<code class="language-html">&lt;body&gt;
+&lt;div class="reveal"&gt;
+&lt;div class="slides"&gt;
+&lt;section&gt;
+&lt;h2 class="title"&gt;Reveal.js Example Slide&lt;/h2&gt;
+&lt;div class="columns two"&gt;
+&lt;ul&gt;
+&lt;li&gt;Bullet Point 1&lt;/li&gt;
+&lt;li&gt;Bullet Point 2&lt;/li&gt;
+&lt;li&gt;Bullet Point 3&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="image"&gt;
+&lt;img src="diagrams/diagram.svg" alt="Reveal.js"&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/section&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;script src="dist/reveal.js"&gt;&lt;/script&gt;
+&lt;script src="plugin/notes/notes.js"&gt;&lt;/script&gt;
+&lt;script&gt;
+Reveal.initialize({
+hash: true,
+});
+&lt;/script&gt;
+&lt;/body&gt;
+</code>
+</pre>
+</div>
+<div class="rslidy-column">
+<figure>
+    <div class="images">
+        <img src="images/reveal-js-example-slide.png"
+             alt="Reveal.js: Example Slide"
+             style="max-height:20em; border: 1px solid #D3D3D3;" />
+    </div>
+    <figcaption><span class="rslidy-fig-label">Figure 3</span>: Reveal.js: Example slide.</figcaption>
+</figure>
+</div>
+</div>
+</section>
+
+
+
+
+
+
+
+<section>
+<h1>3. Hosted Slide Decks</h1>
+
+<p>Cloud-based, real-time collaborative:</p>
+<ul>
+<li>Google Slides [2006-]</li>
+<li>Prezi [2009-]</li>
+<li>Mentimeter [2014-]</li>
+<li>Microsoft Sway [2015-]</li>
+<li>Visme [2013-]</li>
+<li>Zoho Show [2006-]</li>
+</ul>
+</section>
+
+
+
+
+
+
+<section>
+<h1>Google Slides [2006-]</h1>
+<div class="rslidy-columns-even">
+<div class="rslidy-column">
+<figure>
+    <div class="images">
+        <img src="images/google-slides-export-options.png"
+             alt="Google Slides: Example Slide"
+             style="max-height:20em; border: 1px solid #D3D3D3;" />
+    </div>
+    <figcaption><span class="rslidy-fig-label">Figure 4</span>: Google Slides: Export options.</figcaption>
+</figure>
+</div>
+<div class="rslidy-column">
+<figure>
+    <div class="images">
+        <img src="images/google-slides-example-slide.png"
+             alt="Google Slides: Example Slide"
+             style="max-height:20em; border: 1px solid #D3D3D3;" />
+    </div>
+    <figcaption><span class="rslidy-fig-label">Figure 5</span>: Google Slides: Example slide.</figcaption>
+</figure>
+</div>
+</div>
+</section>
+
+
+
+
+
+
+<section>
+<h1>Comparison of Web-Based Slide Decks Categories</h1>
+<table class="rslidy-responsive-table rslidy-responsive-table-text-scaling rslidy-zebra">
+<caption>
+Comparison of web-based slide deck categories.
+</caption>
+<thead>
+<tr>
+<th class="rslidy-text" scope="col">Category</th>
+<th class="rslidy-text" scope="col">Authoring</th>
+<th class="rslidy-text" scope="col">Primary Strength</th>
+<th class="rslidy-text" scope="col">Primary Limitation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Text-Based</td>
+<td>Markdown or text syntax</td>
+<td>Efficient content creation</td>
+<td>Restricted complex layouts</td>
+</tr>
+<tr>
+<td>JavaScript-Based</td>
+<td>HTML, CSS, and JavaScript</td>
+<td>Extensibility and interaction</td>
+<td>Technical complexity</td>
+</tr>
+<tr>
+<td>Hosted</td>
+<td>Graphical cloud editor</td>
+<td>Collaboration and sharing</td>
+<td>Platform dependency</td>
+</tr>
+<tr>
+<td>Responsive</td>
+<td>Responsive web content</td>
+<td>Adaptation to display context</td>
+<td>Greater author responsibility</td>
+</tr>
+</tbody>
+</table>
+</section>
+
+
+
+
+
+
+
+<section class="rslidy-sectionslide">
+<h1>4. Rslidy v1</h1>
+</section>
+
+
+
+
+
+
+
+<section>
+<h1>Rslidy v1: Architecture</h1>
+
+<div class="rslidy-columns-even">
+
+<div class="rslidy-column">
+<ul>
+    <li>Single HTML document for the complete slide deck.</li>
+    <li>Semantic <code>&lt;section&gt;</code> or slide elements.</li>
+    <li>JavaScript-based viewer and presentation state.</li>
+    <li>Components for navigation, settings, printing, and media.</li>
+    <li>Shared state through the central Rslidy runtime.</li>
+</ul>
+</div>
+
+<div class="rslidy-column">
+<figure>
+    <div class="rslidy-images">
+        <img
+                src="images/rslidy-v1-modules.svg"
+                alt="Rslidy v1 module structure and internal dependencies."
+        />
+    </div>
+    <figcaption class="rslidy-center">
+        <span class="rslidy-fig-label">Figure 6</span>:
+        Rslidy v1: Module structure and internal dependencies.
+    </figcaption>
+</figure>
+</div>
+</div>
+</section>
+
+
+
+
+
+
+
+
+<section>
+<h1>Rslidy v1: Responsive Design</h1>
+
+<div class="rslidy-columns-even">
+
+<div class="rslidy-column">
+<ul>
+    <li>CSS controls slide layout, transitions, themes, and print output.</li>
+    <li>Separate screen and print media contexts.</li>
+    <li>Relative units for scalable typography and spacing.</li>
+    <li>The slide area adapts to the browser viewport.</li>
+    <li>Responsive columns, toolbar controls, and panels.</li>
+</ul>
+</div>
+
+<div class="rslidy-column">
+<figure>
+    <div class="rslidy-large-images">
+        <img
+                src="images/rslidy-v1-table-example.png"
+                alt="Typical responsive Rslidy slide deck layout."
+                style="border: 0.1rem solid lightgrey;"
+        />
+    </div>
+
+    <figcaption class="rslidy-center">
+        <span class="rslidy-fig-label">Figure 7</span>:
+        Rslidy v1: Typical slide deck layout with a Responsive Table.
+    </figcaption>
+</figure>
+</div>
+
+</div>
+</section>
+
+
+
+
+
+
+
+<section>
+<h1>Rslidy v1: Navigation and Interaction</h1>
+
+<div class="rslidy-columns-even">
+
+<div class="rslidy-column">
+<ul>
+    <li>Keyboard shortcuts and toolbar controls.</li>
+    <li>Mouse, touch, and margin-based navigation.</li>
+    <li>Slide overview and table of contents.</li>
+    <li>Incremental content advancement.</li>
+    <li>Tilt and tip gestures on supported mobile devices.</li>
+</ul>
+</div>
+
+<div class="rslidy-column">
+<figure>
+    <div class="rslidy-large-images">
+        <img
+                src="images/tilt-tip-gestures.svg"
+                alt="Tilt and tip gestures for navigating a Rslidy presentation."
+        />
+    </div>
+
+    <figcaption class="rslidy-center">
+        <span class="rslidy-fig-label">Figure 8</span>:
+        Rslidy v1: Tilt and tip gestures.
+    </figcaption>
+</figure>
+</div>
+
+</div>
+</section>
+
+
+
+
+
+
+
+<section class="rslidy-sectionslide">
+<h1>5. Rslidy v2</h1>
+</section>
+
+
+
+
+
+<section> <h1>Rslidy v2: System Modernisation</h1>
+
+<ul class="rslidy-incremental">
+<li><span class="li-intro">Package Management</span>: NPM → PNPM; less disk usage; faster installs; stricter dependencies</li>
+
+<li><span class="li-intro">TypeScript</span>: updated compiler, Node.js type definitions, generated declaration files</li>
+
+<li><span class="li-intro">Build Pipeline</span>: extended Gulp workflow.</li>
+
+<li><span class="li-intro">Module Formats</span>: separate ESM, CommonJS, and UMD distributions</li>
+
+<li><span class="li-intro">Optimisation</span>: minified JavaScript and CSS; Gzip and Brotli compression</li>
+
+<li><span class="li-intro">Asset Generation</span>: SVG icons → TypeScript definitions; automatic theme and asset copying</li>
+
+<li><span class="li-intro">Development Workflow</span>: BrowserSync; file watching; automatic rebuild and browser reload</li> </ul>
+
+</section>
+
+
+
+
+
+
+
+<section>
+<h1>Rslidy v2: Redesigned Print Settings Panel</h1>
+<div class="rslidy-columns-even">
+<div class="rslidy-column">
+<ul>
+    <li>Four logical control sections.</li>
+    <li>Immediate reflection of selected options.</li>
+    <li>Individual slides and inclusive slide ranges.</li>
+    <li><code>@page</code> rules from paper format and orientation.</li>
+    <li><span class="li-intro">Print Sizing</span>: Actual Size, Fit to Page Width, or Custom Zoom.</li>
+    <li>Persistent print settings through local storage.</li>
+
+</ul>
+
+</div>
+<div class="rslidy-column">
+<figure>
+    <div class="rslidy-large-images">
+        <img alt="Rslidy print settings panel used in the thesis." src="images/rslidy-print-settings-panel.png"/>
+    </div>
+    <figcaption class="rslidy-center"><span class="rslidy-fig-label">Figure 9</span>: Redesigned Print Settings Panel.</figcaption>
+</figure>
+</div>
+</div>
+</section>
+
+
+
+
+
+<section>
+<h1>Rslidy v2: Dynamic Print CSS Generation</h1>
+
+<ol class="rslidy-incremental">
+<li>Read selected print settings.</li>
+<li>Validate custom slide ranges.</li>
+<li>Mark slides for output.</li>
+<li>Generate page, scaling, frame, and visibility rules.</li>
+<li>Replace generated stylesheet.</li>
+<li>Open browser print preview.</li>
+</ol>
+</section>
+
+
+
+
+
+
+
+<section>
+<h1>Rslidy v2: Responsive Table Layout and Structure</h1>
+<div class="rslidy-columns-even">
+<div class="rslidy-column">
+<ul>
+    <li>Container-based breakpoint.</li>
+    <li>Identical table definition for both layouts.</li>
+</ul>
+<figure>
+    <div class="rslidy-large-images">
+        <img alt="Responsive table example in the wide layout." src="images/rslidy-responsive-table-example.png" style="border: 0.1rem solid lightgrey;"/>
+    </div>
+    <figcaption class="rslidy-center"><span class="rslidy-fig-label">Figure 10</span>: Rslidy v2: Responsive table on wide screens.</figcaption>
+</figure>
+</div>
+<div class="rslidy-column">
+<figure>
+    <div class="rslidy-large-images">
+        <img alt="Responsive table example in the narrow layout used in the thesis." src="images/rslidy-responsive-table-narrow.png" style="border: 0.1rem solid lightgrey;"
+        />
+    </div>
+    <figcaption class="rslidy-center"><span class="rslidy-fig-label">Figure 11</span>: Rslidy v2: Responsive table in a narrow stacked layout.</figcaption>
+</figure>
+</div>
+</div>
+</section>
+
+
+
+
+
+
+<section>
+<h1>Rslidy v2: Automatic Data Labels</h1>
+
+<ol class="rslidy-incremental">
+<li>Tables with
+<code>rslidy-responsive-table</code>.</li>
+<li>Header text from
+<code>scope="col"</code>.</li>
+<li>Body cells matched with column headings.</li>
+<li>Headings as generated data labels.</li>
+<li>Labels displayed in the stacked layout.</li>
+</ol>
+<p class="rslidy-note">Manual labels remain possible when a slide requires a custom description.</p>
+
+
+
+
+
+
+</section>
+<section>
+<h1>Rslidy v2: Interactive Sorting</h1>
+<div class="rslidy-columns-even">
+<div class="rslidy-column">
+<ul>
+    <li><span class="li-intro">First activation</span>: sorts in ascending order.</li>
+    <li><span class="li-intro">Second activation</span>: sorts in descending order.</li>
+    <li><span class="li-intro">Third activation</span>: restores original row order.</li>
+    <li>Normalisation of text, numeric, and date-like values.</li>
+    <li>Independent sorting state per table.</li>
+    <li>Shared state for desktop and mobile controls.</li>
+</ul>
+</div>
+<div class="rslidy-column">
+<figure>
+    <div class="rslidy-large-images">
+        <img alt="Sortable responsive table header row used in the thesis." src="images/rslidy-table-header-row.png"/>
+    </div>
+    <figcaption class="rslidy-center"><span class="rslidy-fig-label">Figure 12</span>: Rslidy v2: Sortable table header row.</figcaption>
+</figure>
+</div>
+</div>
+</section>
+
+
+
+
+
+
+<section>
+<h1>Outlook and Future Work</h1>
+
+<ul>
+<li>Deterministic PDF export with controlled headless browser.</li>
+<li>Presenter view: notes, timer, and next-slide preview.</li>
+<li>Slide virtualisation for large slide decks.</li>
+<li>Secondary-device remote control.</li>
+<li>Cross-browser unit and end-to-end testing.</li>
+<li>CI-based build, print, and export checks.</li>
+</ul>
+
+</section>
+
+
+
+
+
+
+<section class="rslidy-titleslide">
+<h1>Thanks for your attention.</h1>
+<h2>Questions?</h2>
+<p>
+Rslidy repository:<br/>
+<a href="https://github.com/tugraz-isds/rslidy">
+https://github.com/tugraz-isds/rslidy
+</a>
+</p>
+<p>
+Master's thesis:<br/>
+<a href="https://ftp.isds.tugraz.at/pub/theses/fplatzer-2026-msc.pdf">
+https://ftp.isds.tugraz.at/pub/theses/fplatzer-2026-msc.pdf
+</a>
+</p>
+</section>
+</body>
+</html>

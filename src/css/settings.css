@@ -3,7 +3,7 @@
   position: absolute;
   bottom: calc(var(--rslidy-progressbar-height) + var(--rslidy-toolbar-height));
   right: 1rem;
-  background-color: var(--rslidy-toolbar-bg-color);
+  background-color: var(--rslidy-toolbar-bg-colour);
   padding: 0.5rem 0rem;
   z-index: 10;
   max-height: 80%;
@@ -196,13 +196,13 @@ label/* Standard menu row */
   background-repeat: no-repeat;
   font-family: Verdana, Arial, Helvetica, sans-serif;
   display: inline-block;
-  fill: var(--rslidy-toolbar-button-color);
-  stroke: var(--rslidy-toolbar-button-color);
+  fill: var(--rslidy-toolbar-button-colour);
+  stroke: var(--rslidy-toolbar-button-colour);
   cursor: pointer;
 }
 
 .rslidy-menu-button:hover, .rslidy-menu-content a:hover, [id^=rslidy-checkbox-]:not([aria-disabled="true"]):hover {
-  background-color: var(--rslidy-button-hover-color);
+  background-color: var(--rslidy-button-hover-colour);
   border-radius: 0.15rem;
 }
 
@@ -214,8 +214,8 @@ label/* Standard menu row */
   background-repeat: no-repeat;
   font-family: Verdana, Arial, Helvetica, sans-serif;
   display: inline-block;
-  fill: var(--rslidy-toolbar-button-color);
-  stroke: var(--rslidy-toolbar-button-color);
+  fill: var(--rslidy-toolbar-button-colour);
+  stroke: var(--rslidy-toolbar-button-colour);
 }
 
 #rslidy-margin-input {
@@ -230,17 +230,17 @@ label/* Standard menu row */
   min-width: inherit;
   padding: 0.3rem 0.7rem;
   margin: 0 0.15rem;
-  background-color: var(--rslidy-toolbar-button-bg-color);
-  fill: var(--rslidy-toolbar-button-color);
-  stroke: var(--rslidy-toolbar-button-color);
+  background-color: var(--rslidy-toolbar-button-bg-colour);
+  fill: var(--rslidy-toolbar-button-colour);
+  stroke: var(--rslidy-toolbar-button-colour);
   cursor: pointer;
-  border: 0.05rem solid var(--rslidy-button-border-color);
+  border: 0.05rem solid var(--rslidy-button-border-colour);
   border-radius: 0.15rem;
-  box-shadow: 0.15rem 0.15rem var(--rslidy-button-border-color);
+  box-shadow: 0.15rem 0.15rem var(--rslidy-button-border-colour);
 }
 
 #rslidy-button-print-submit:hover, #rslidy-button-export-pdf:hover {
-  background-color: var(--rslidy-button-hover-color);
+  background-color: var(--rslidy-button-hover-colour);
 }
 
 input[type="checkbox"] {

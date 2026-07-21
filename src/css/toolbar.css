@@ -17,7 +17,7 @@
   left: 0; top: 0; right: 0; bottom: 0;
   width: 0%;
   height: var(--rslidy-progressbar-height);
-  background-color: var(--rslidy-progressbar-bg-color-reached);
+  background-color: var(--rslidy-progressbar-bg-colour-reached);
   z-index: 6;
   transition: width 1s;
 }
@@ -28,7 +28,7 @@
   left: 0; top: 0; right: 0; bottom: 0;
   width: 100%;
   height: var(--rslidy-progressbar-height);
-  background-color: var(--rslidy-progressbar-bg-color-unreached);
+  background-color: var(--rslidy-progressbar-bg-colour-unreached);
   z-index: 5;
 }
 
@@ -59,7 +59,7 @@
   left: 0;
   width: 100%;
   height: calc(var(--rslidy-toolbar-height) + 0.20em);
-  background-color: var(--rslidy-toolbar-bg-color);
+  background-color: var(--rslidy-toolbar-bg-colour);
   display: table;
   z-index: 1;
   transition: 0.30s;
@@ -103,7 +103,6 @@
   margin-right: 0.30em;
   margin-left: -0.20em;
   line-height: 1.40em;
-  cursor: pointer;
 }
 
 /* Toolbar button */
@@ -112,13 +111,13 @@
   padding: 0.30em 0.70em;
   margin: 0 0.15em;
   float: left;
-  background-color: var(--rslidy-toolbar-button-bg-color);
-  fill: var(--rslidy-toolbar-button-color);
-  stroke: var(--rslidy-toolbar-button-color);
+  background-color: var(--rslidy-toolbar-button-bg-colour);
+  fill: var(--rslidy-toolbar-button-colour);
+  stroke: var(--rslidy-toolbar-button-colour);
   cursor: pointer;
-  border: 0.05em solid var(--rslidy-button-border-color);
+  border: 0.05em solid var(--rslidy-button-border-colour);
   border-radius: 0.15em;
-  box-shadow: 0.15em 0.15em var(--rslidy-button-border-color);
+  box-shadow: 0.15em 0.15em var(--rslidy-button-border-colour);
   touch-action: manipulation; /* prevent double tap zoom */
   font-size: 100%;
 }
@@ -130,20 +129,20 @@
 
 .rslidy-toolbar-button:hover,
 .rslidy-toolbar-button[aria-expanded="true"]:hover {
-  background-color: var(--rslidy-button-hover-color);
+  background-color: var(--rslidy-button-hover-colour);
 }
 
 .rslidy-toolbar-button[aria-expanded="true"] {
-  background-color: var(--rslidy-button-active-color);
+  background-color: var(--rslidy-button-active-colour);
   box-shadow: 0 0 0 0.15em lightskyblue;
 }
 
 .rslidy-toolbar-button:disabled,
 .rslidy-toolbar-button:disabled:hover
 {
-  stroke: var(--rslidy-button-disabled-color);
-  fill: var(--rslidy-button-disabled-color);
-  background-color: var(--rslidy-toolbar-button-bg-color);
+  stroke: var(--rslidy-button-disabled-colour);
+  fill: var(--rslidy-button-disabled-colour);
+  background-color: var(--rslidy-toolbar-button-bg-colour);
   cursor: default;
 }
 
@@ -195,8 +194,8 @@
 .rslidy-tb-show, .rslidy-tb-display {
   top: -0.45em;
   position: relative;
-  fill: var(--rslidy-toolbar-button-color);
-  stroke: var(--rslidy-toolbar-button-color);
+  fill: var(--rslidy-toolbar-button-colour);
+  stroke: var(--rslidy-toolbar-button-colour);
 }
 
 .rslidy-tb-show {
@@ -212,15 +211,15 @@
   top: calc(-1 * var(--rslidy-progressbar-height));
   text-align: center;
   position: relative;
-  border-right: 1em solid transparent;
-  border-bottom: 1em solid var(--rslidy-toolbar-button-bg-color);
-  border-left: 1em solid transparent;
+  border-right: 1.15em solid transparent;
+  border-bottom: 1.15em solid var(--rslidy-toolbar-button-bg-colour);
+  border-left: 1.15em solid transparent;
   box-sizing: content-box;
   z-index: 6;
 }
 
 #rslidy-tb-show-trapezoid:hover, #rslidy-tb-display-trapezoid:hover {
-  border-bottom: 1em solid var(--rslidy-button-hover-color);
+  border-bottom: 1.15em solid var(--rslidy-button-hover-colour);
 }
 
 /* Trapezoid toggle buttons */
@@ -267,7 +266,7 @@
     float: right;
     height: 100%;
     width: 1px;
-    background-color: var(--rslidy-progressbar-bg-color-reached);
+    background-color: var(--rslidy-progressbar-bg-colour-reached);
   }
 }
 
@@ -281,7 +280,7 @@
 /* Preview marker in unreached area */
 .rslidy-preview-reached {
   &::after {
-    background-color: var(--rslidy-progressbar-bg-color-unreached);
+    background-color: var(--rslidy-progressbar-bg-colour-unreached);
   }
 }
 
@@ -331,6 +330,6 @@
 #rslidy-help-table th {
   padding-top: 0.75em;
   padding-bottom: 0.75em;
-  background-color: light-dark(var(--rslidy-toolbar-button-color), transparent);
+  background-color: light-dark(var(--rslidy-toolbar-button-colour), transparent);
   color: light-dark(white, #ccc);
 }

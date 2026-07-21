@@ -1,0 +1,44 @@
+<svg viewBox="0 0 1150 750"
+  role="img"
+  aria-labelledby="title"
+  xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+>
+
+<title id="title">A nice box diagram</title>
+
+<!-- Background -->
+<rect x="0" y="0" width="1150" height="750" fill="white" />
+
+<!-- Outer border -->
+<rect x="0" y="0" width="1150" height="750"
+  fill="none" stroke="#111" stroke-width="1"/>
+
+<!-- Arrowhead definition -->
+<defs>
+  <marker id="arrowhead" markerWidth="20" markerHeight="12"
+    refX="18" refY="6" orient="auto">
+    <polygon points="0 0, 20 6, 0 12" fill="#111"/>
+  </marker>
+</defs>
+
+<!-- Left box -->
+<rect x="100" y="250" width="340" height="250" rx="20" ry="20"
+      fill="#eee" stroke="#111" stroke-width="3"/>
+<text x="270" y="375" text-anchor="middle" dominant-baseline="middle"
+      font-family="Verdana" font-size="36" fill="black">
+  Box A
+</text>
+
+<!-- Right box -->
+<rect x="710" y="250" width="340" height="250" rx="20" ry="20"
+      fill="#eee" stroke="#111" stroke-width="3"/>
+<text x="880" y="375" text-anchor="middle" dominant-baseline="middle"
+      font-family="Verdana" font-size="36" fill="black">
+  Box B
+</text>
+
+<!-- Arrow centred between boxes -->
+<line x1="440" y1="375" x2="705" y2="375"
+  stroke="#111" stroke-width="3" marker-end="url(#arrowhead)"/>
+</svg>

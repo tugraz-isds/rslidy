@@ -59,55 +59,55 @@
   initial-value: 2.60em;
 }
 
-@property --rslidy-toolbar-bg-color {
+@property --rslidy-toolbar-bg-colour {
   syntax: "<color>";
   inherits: true;
   initial-value: light-dark(#e1e7ea, #1a1a1a);
 }
 
-@property --rslidy-toolbar-button-bg-color {
+@property --rslidy-toolbar-button-bg-colour {
   syntax: "<color>";
   inherits: true;
   initial-value: light-dark(#e1e7ea, #2a2a2a);
 }
 
-@property --rslidy-toolbar-button-color {
+@property --rslidy-toolbar-button-colour {
   syntax: "<color>";
   inherits: true;
   initial-value: light-dark(#4b4b4b, #e0e0e0);
 }
 
-@property --rslidy-button-border-color {
+@property --rslidy-button-border-colour {
   syntax: "<color>";
   inherits: true;
   initial-value: light-dark(#848484, #666);
 }
 
-@property --rslidy-button-hover-color {
+@property --rslidy-button-hover-colour {
   syntax: "<color>";
   inherits: true;
   initial-value: light-dark(#c1c7ca, #444);
 }
 
-@property --rslidy-button-active-color {
+@property --rslidy-button-active-colour {
   syntax: "<color>";
   inherits: true;
   initial-value: light-dark(#fff, #000);
 }
 
-@property --rslidy-button-disabled-color {
+@property --rslidy-button-disabled-colour {
   syntax: "<color>";
   inherits: true;
   initial-value: light-dark(#aaa, #555);
 }
 
-@property --rslidy-progressbar-bg-color-reached {
+@property --rslidy-progressbar-bg-colour-reached {
   syntax: "<color>";
   inherits: true;
   initial-value: light-dark(#003399, #6b8cff);
 }
 
-@property --rslidy-progressbar-bg-color-unreached {
+@property --rslidy-progressbar-bg-colour-unreached {
   syntax: "<color>";
   inherits: true;
   initial-value: light-dark(#4d88ff, #3355aa);
@@ -167,6 +167,12 @@
   initial-value: 1;
 }
 
+@property --rslidy-image-viewer-bg-colour {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: rgba(0, 0, 0, 0.9);
+}
+
 /* === Global variables === */
 :root {
   color-scheme: light dark;
@@ -190,23 +196,27 @@
 
 
   /* toolbar and buttons */
-  --rslidy-toolbar-bg-color: light-dark(#e1e7ea, #1a1a1a);
-  --rslidy-toolbar-button-bg-color: light-dark(#e1e7ea, #2a2a2a);
-  --rslidy-toolbar-button-color: light-dark(#4b4b4b, #e0e0e0);
-  --rslidy-button-border-color: light-dark(#848484, #666);
-  --rslidy-button-hover-color: light-dark(#c1c7ca, #444);
-  --rslidy-button-active-color: light-dark(#fff, #000);
-  --rslidy-button-disabled-color: light-dark(#aaa, #555);
-  --rslidy-progressbar-bg-color-reached: light-dark(#003399, #6b8cff);
-  --rslidy-progressbar-bg-color-unreached: light-dark(#4d88ff, #3355aa);
-  --rslidy-toolbar-height: 3.20rem;
-  --rslidy-progressbar-height: 0.50rem;
+  --rslidy-toolbar-bg-colour: light-dark(#e1e7ea, #1a1a1a);
+  --rslidy-toolbar-button-bg-colour: light-dark(#e1e7ea, #2a2a2a);
+  --rslidy-toolbar-button-colour: light-dark(#4b4b4b, #e0e0e0);
+  --rslidy-button-border-colour: light-dark(#848484, #666);
+  --rslidy-button-hover-colour: light-dark(#c1c7ca, #444);
+  --rslidy-button-active-colour: light-dark(#fff, #000);
+  --rslidy-button-disabled-colour: light-dark(#aaa, #555);
+  --rslidy-progressbar-bg-colour-reached: light-dark(#003399, #6b8cff);
+  --rslidy-progressbar-bg-colour-unreached: light-dark(#4d88ff, #3355aa);
+  --rslidy-toolbar-height: 3.20em;
+  --rslidy-progressbar-height: 0.50em;
 
   /* settings sliders */
   --rslidy-slider-fill-off: light-dark(#ececec, #333);
   --rslidy-slider-stroke-off: light-dark(#bdbdbd, #555);
   --rslidy-slider-fill-on: light-dark(#3498db, #5dade2);
   --rslidy-slider-stroke-on: light-dark(#85c1e9, #2874a6);
+
+  /* image viewer */
+  --rslidy-image-viewer-bg-colour:rgba(0, 0, 0, 0.9);
+
 }
 :root.theme-light {
   color-scheme: light;

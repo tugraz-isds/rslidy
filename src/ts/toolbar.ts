@@ -73,12 +73,6 @@ export class ToolbarComponent {
         ));
 
     this.view
-        .querySelector("#rslidy-slide-caption")
-        .addEventListener("click", () => this.closeMenuOnBlur(
-            () => this.tocToggleClicked()
-        ));
-
-    this.view
         .querySelector("#rslidy-button-menu")
         .addEventListener("click", () => this.menuToggleClicked(window.rslidy.MENU));
 
