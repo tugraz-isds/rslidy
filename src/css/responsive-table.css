@@ -270,7 +270,7 @@ th.rslidy-no-sort::before {
 /* ------------------------------------------------------------------ */
 /* Container-based responsive behaviour                               */
 /* ------------------------------------------------------------------ */
-@container (max-width: 22em) {
+@container (max-width: 20em) {
  /* Container query wrapper */
  .rslidy-responsive-table-wrapper {
   overflow-x: hidden;

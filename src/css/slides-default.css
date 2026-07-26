@@ -117,7 +117,7 @@ div.rslidy-images img, div.rslidy-images video {
 /* Larger media inside image helpers */
 div.rslidy-large-images img, div.rslidy-large-images video {
   object-fit: contain; /* scale-down does not work correctly in Firefox */
-  max-height: 25em;
+  max-height: 22em;
   width: 100%;
   min-height: 8em;
   height: auto;

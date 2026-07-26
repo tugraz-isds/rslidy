@@ -33,6 +33,11 @@ GitHub:<br/>
 https://github.com/tugraz-isds/rslidy/</a>
 </p>
 <p>
+  Presentation:<br/>
+  <a href="https://tugraz-isds.github.io/rslidy/slides-platzer-msc-2026/index.html">
+    https://tugraz-isds.github.io/rslidy/slides-platzer-msc-2026/index.html</a>
+</p>
+<p>
 Master's Thesis:<br/>
 <a href="https://ftp.isds.tugraz.at/pub/theses/fplatzer-2026-msc.pdf">
 https://ftp.isds.tugraz.at/pub/theses/fplatzer-2026-msc.pdf</a>
@@ -110,6 +115,7 @@ licence.
 <div class="rslidy-columns-even">
 <div class="rslidy-column">
 <ul>
+<li>HTML is maintained as a Living Standard.</li>
 <li>HTML structure and semantics.</li>
 <li>Semantic elements for structure and accessibility:
     <code>&lt;section&gt;</code>, <code>&lt;figure&gt;</code>,
@@ -153,32 +159,82 @@ for modern colour systems.</li>
 
 
 
+
+
+
 <section>
-<h1>JavaScript and TypeScript</h1>
+<h1>JavaScript</h1>
 <div class="rslidy-columns-even">
+
 <div class="rslidy-column">
-<h2>JavaScript</h2>
 <ul>
-    <li>Core web programming language.</li>
-    <li>DOM manipulation and event handling.</li>
-    <li>Asynchronous programming:
-        promises and <code>async</code>/<code>await</code>.</li>
-    <li>Browser and Node.js execution.</li>
+    <li>Dynamically typed programming language.</li>
+    <li>Variable types are determined at runtime.</li>
+    <li>Type errors may only appear during execution.</li>
+    <li>Runs directly in browsers and Node.js.</li>
 </ul>
+
+<p class="rslidy-note">
+    JavaScript executes the incorrect function call, but produces an
+    unexpected result.
+</p>
 </div>
+
 <div class="rslidy-column">
-<h2>TypeScript</h2>
-<ul>
-    <li>Static typing for JavaScript.</li>
-    <li>Interfaces and explicit function contracts.</li>
-    <li>Earlier error detection.</li>
-    <li>Refactoring and editor support.</li>
-    <li>Transpiles to standard JavaScript</li>
-</ul>
-</div>
-</div>
+<pre class="language-javascript"><code class="language-javascript">function addSlideNumbers(
+    current,
+    total
+) {
+    return current + " / " + total;
+}
+
+const result = addSlideNumbers(
+    "one",
+    10
+);
+
+console.log(result);
+// "one / 10"</code></pre>
+        </div>
+
+    </div>
 </section>
 
+
+<section>
+<h1>TypeScript</h1>
+<div class="rslidy-columns-even">
+
+<div class="rslidy-column">
+<ul>
+    <li>JavaScript extended with static typing.</li>
+    <li>Variable and parameter types are explicitly defined.</li>
+    <li>Type errors are detected during development.</li>
+    <li>Transpiles to standard JavaScript.</li>
+</ul>
+
+<p class="rslidy-note">
+    TypeScript detects the incorrect argument before the program is
+    executed.
+</p>
+</div>
+
+<div class="rslidy-column">
+<pre class="language-javascript"><code class="language-javascript">function addSlideNumbers(
+    current: number,
+    total: number
+): string {
+    return `${current} / ${total}`;
+}
+
+const result = addSlideNumbers(
+    "one",
+    10
+);
+// Error: string is not assignable to parameter of type number</code></pre>
+        </div>
+    </div>
+</section>
 
 
 
@@ -414,7 +470,15 @@ hash: true,
 
 
 
+<section>
+<h1>4. Responsive Slide Decks</h1>
 
+<p>Responsive design, interactive navigation:</p>
+<ul>
+    <li><strong>Rslidy [2019-]</strong></li>
+
+</ul>
+</section>
 
 
 
@@ -611,7 +675,9 @@ file watching; automatic rebuild and browser reload.</li>
 <div class="rslidy-column">
 <figure>
     <div class="rslidy-large-images">
-        <img alt="Rslidy print settings panel used in the thesis." src="images/rslidy-print-settings-panel.png"/>
+        <img alt="Rslidy print settings panel used in the thesis."
+             src="images/rslidy-print-settings-panel.png"
+             />
     </div>
     <figcaption class="rslidy-center"><span class="rslidy-fig-label">Figure 9</span>: Redesigned Print Settings Panel.</figcaption>
 </figure>
@@ -664,7 +730,7 @@ file watching; automatic rebuild and browser reload.</li>
 
 
 <section>
-<h1>Responsive Table with Sorting</h1>
+<h1>Responsive Table Example</h1>
 <table class="rslidy-responsive-table rslidy-responsive-table-text-scaling">
 <caption class="rslidy-table-center">
     <span class="rslidy-table-label">Table 1</span>:
@@ -799,24 +865,24 @@ a custom description.
 <div class="rslidy-column">
 <pre class="language-html"><code class="language-html">&lt;table class="rslidy-responsive-table"&gt;
 &lt;thead&gt;
-&lt;tr&gt;
-&lt;th scope="col"&gt;Smartphone&lt;/th&gt;
-&lt;th scope="col"&gt;Operating System&lt;/th&gt;
-&lt;th scope="col"&gt;Price ($)&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;Samsung Galaxy&lt;/td&gt;
-&lt;td&gt;Android&lt;/td&gt;
-&lt;td&gt;1199&lt;/td&gt;
-&lt;/tr&gt;
- ...
-&lt;tr&gt;
-&lt;td&gt;iPhone&lt;/td&gt;
-&lt;td&gt;iOS&lt;/td&gt;
-&lt;td&gt;1399&lt;/td&gt;
-&lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;th scope="col"&gt;Smartphone&lt;/th&gt;
+    &lt;th scope="col"&gt;Operating System&lt;/th&gt;
+    &lt;th scope="col"&gt;Price ($)&lt;/th&gt;
+  &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+  &lt;tr&gt;
+    &lt;td&gt;Samsung Galaxy&lt;/td&gt;
+    &lt;td&gt;Android&lt;/td&gt;
+    &lt;td&gt;1199&lt;/td&gt;
+  &lt;/tr&gt;
+   ...
+  &lt;tr&gt;
+    &lt;td&gt;iPhone&lt;/td&gt;
+    &lt;td&gt;iOS&lt;/td&gt;
+    &lt;td&gt;1399&lt;/td&gt;
+  &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;</code></pre>
 </div>
@@ -825,7 +891,7 @@ a custom description.
 
 
 
-a
+
 
 
 
@@ -852,10 +918,15 @@ a
 <h1>Thanks for your attention!</h1>
 <h2>Any Questions?</h2>
 <p>
-Rslidy repository:<br/>
+GitHub:<br/>
 <a href="https://github.com/tugraz-isds/rslidy">
 https://github.com/tugraz-isds/rslidy
 </a>
+</p>
+<p>
+  Presentation:<br/>
+  <a href="https://tugraz-isds.github.io/rslidy/slides-platzer-msc-2026/index.html">
+    https://tugraz-isds.github.io/rslidy/slides-platzer-msc-2026/index.html</a>
 </p>
 <p>
 Master's thesis:<br/>
@@ -864,8 +935,10 @@ https://ftp.isds.tugraz.at/pub/theses/fplatzer-2026-msc.pdf
 </a>
 </p>
 </section>
-</body>
-</html>
+
+
+
+
 
 
 <section class="rslidy-sectionslide">
@@ -873,64 +946,64 @@ https://ftp.isds.tugraz.at/pub/theses/fplatzer-2026-msc.pdf
 </section>
 
 
+
+
+
+
+
 <section>
-    <h1>JavaScript Module Systems</h1>
+<h1>JavaScript Module Systems</h1>
 
-    <table class="rslidy-responsive-table rslidy-responsive-table-text-scaling">
-        <caption>
-            JavaScript Module Systems
-        </caption>
+<table class="rslidy-responsive-table rslidy-responsive-table-text-scaling">
+  <caption class="rslidy-table-center">
+    <span class="rslidy-table-label">Table 2</span>:
+    JavaScript Module Systems
+  </caption>
+    <thead>
+    <tr>
+        <th class="rslidy-text" scope="col">System</th>
+        <th class="rslidy-text" scope="col">Primary Environment</th>
+        <th class="rslidy-text" scope="col">Loading</th>
+        <th class="rslidy-text" scope="col">Typical Syntax</th>
+        <th class="rslidy-text" scope="col">Current Role</th>
+    </tr>
+    </thead>
 
-        <thead>
-        <tr>
-            <th class="rslidy-text" scope="col">System</th>
-            <th class="rslidy-text" scope="col">Primary Environment</th>
-            <th class="rslidy-text" scope="col">Loading</th>
-            <th class="rslidy-text" scope="col">Typical Syntax</th>
-            <th class="rslidy-text" scope="col">Current Role</th>
-        </tr>
-        </thead>
+    <tbody>
+    <tr>
+        <td>CommonJS</td>
+        <td>Node.js</td>
+        <td>Synchronous</td>
+        <td><code>require()</code> and <code>module.exports</code></td>
+        <td>Existing backend and tooling code</td>
+    </tr>
 
-        <tbody>
-        <tr>
-            <td>CommonJS</td>
-            <td>Node.js</td>
-            <td>Synchronous</td>
-            <td><code>require()</code> and <code>module.exports</code></td>
-            <td>Existing backend and tooling code</td>
-        </tr>
+    <tr>
+        <td>AMD</td>
+        <td>Browser</td>
+        <td>Asynchronous</td>
+        <td><code>define()</code> and <code>require()</code></td>
+        <td>Legacy browser applications</td>
+    </tr>
 
-        <tr>
-            <td>AMD</td>
-            <td>Browser</td>
-            <td>Asynchronous</td>
-            <td><code>define()</code> and <code>require()</code></td>
-            <td>Legacy browser applications</td>
-        </tr>
+    <tr>
+        <td>UMD</td>
+        <td>Browser and server</td>
+        <td>Wrapper-based</td>
+        <td>Environment-detecting wrapper</td>
+        <td>Broad library compatibility</td>
+    </tr>
 
-        <tr>
-            <td>UMD</td>
-            <td>Browser and server</td>
-            <td>Wrapper-based</td>
-            <td>Environment-detecting wrapper</td>
-            <td>Broad library compatibility</td>
-        </tr>
+    <tr>
+        <td>ESM</td>
+        <td>Browser and Node.js</td>
+        <td>Native modules</td>
+        <td><code>import</code> and <code>export</code></td>
+        <td>Modern standard module system</td>
+    </tr>
+    </tbody>
 
-        <tr>
-            <td>ESM</td>
-            <td>Browser and Node.js</td>
-            <td>Native modules</td>
-            <td><code>import</code> and <code>export</code></td>
-            <td>Modern standard module system</td>
-        </tr>
-        </tbody>
-
-    </table>
-
-    <p class="rslidy-note">
-        <span class="li-intro">Rslidy v2</span>:
-        ESM for native browser loading, static analysis, and build optimisation.
-    </p>
+</table>
 </section>
 
 
@@ -940,46 +1013,47 @@ https://ftp.isds.tugraz.at/pub/theses/fplatzer-2026-msc.pdf
 
 
 <section>
-    <h1>Comparison of Web-Based Slide Decks Categories</h1>
-    <table class="rslidy-responsive-table rslidy-responsive-table-text-scaling rslidy-zebra">
-        <caption>
-            Comparison of web-based slide deck categories.
-        </caption>
-        <thead>
-        <tr>
-            <th class="rslidy-text" scope="col">Category</th>
-            <th class="rslidy-text" scope="col">Authoring</th>
-            <th class="rslidy-text" scope="col">Primary Strength</th>
-            <th class="rslidy-text" scope="col">Primary Limitation</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td>Text-Based</td>
-            <td>Markdown or text syntax</td>
-            <td>Efficient content creation</td>
-            <td>Restricted complex layouts</td>
-        </tr>
-        <tr>
-            <td>JavaScript-Based</td>
-            <td>HTML, CSS, and JavaScript</td>
-            <td>Extensibility and interaction</td>
-            <td>Technical complexity</td>
-        </tr>
-        <tr>
-            <td>Hosted</td>
-            <td>Graphical cloud editor</td>
-            <td>Collaboration and sharing</td>
-            <td>Platform dependency</td>
-        </tr>
-        <tr>
-            <td>Responsive</td>
-            <td>Responsive web content</td>
-            <td>Adaptation to display context</td>
-            <td>Greater author responsibility</td>
-        </tr>
-        </tbody>
-    </table>
+<h1>Comparison of Web-Based Slide Decks Categories</h1>
+<table class="rslidy-responsive-table rslidy-responsive-table-text-scaling rslidy-zebra">
+  <caption class="rslidy-table-center">
+    <span class="rslidy-table-label">Table 3</span>:
+    Comparison of web-based slide deck categories.
+  </caption>
+<thead>
+<tr>
+    <th class="rslidy-text" scope="col">Category</th>
+    <th class="rslidy-text" scope="col">Authoring</th>
+    <th class="rslidy-text" scope="col">Primary Strength</th>
+    <th class="rslidy-text" scope="col">Primary Limitation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+    <td>Text-Based</td>
+    <td>Markdown or text syntax</td>
+    <td>Efficient content creation</td>
+    <td>Restricted complex layouts</td>
+</tr>
+<tr>
+    <td>JavaScript-Based</td>
+    <td>HTML, CSS, and JavaScript</td>
+    <td>Extensibility and interaction</td>
+    <td>Technical complexity</td>
+</tr>
+<tr>
+    <td>Hosted</td>
+    <td>Graphical cloud editor</td>
+    <td>Collaboration and sharing</td>
+    <td>Platform dependency</td>
+</tr>
+<tr>
+    <td>Responsive</td>
+    <td>Responsive web content</td>
+    <td>Adaptation to display context</td>
+    <td>Greater author responsibility</td>
+</tr>
+</tbody>
+</table>
 </section>
 
 
@@ -988,16 +1062,16 @@ https://ftp.isds.tugraz.at/pub/theses/fplatzer-2026-msc.pdf
 
 
 <section>
-    <h1>Rslidy v2: Dynamic Print CSS Generation</h1>
+<h1>Rslidy v2: Dynamic Print CSS Generation</h1>
 
-    <ol>
-        <li>Read selected print settings.</li>
-        <li>Validate custom slide ranges.</li>
-        <li>Mark slides for output.</li>
-        <li>Generate page, scaling, frame, and visibility rules.</li>
-        <li>Replace generated stylesheet.</li>
-        <li>Open browser print preview.</li>
-    </ol>
+<ol>
+    <li>Read selected print settings.</li>
+    <li>Validate custom slide ranges.</li>
+    <li>Mark slides for output.</li>
+    <li>Generate page, scaling, frame, and visibility rules.</li>
+    <li>Replace generated stylesheet.</li>
+    <li>Open browser print preview.</li>
+</ol>
 </section>
 
 
@@ -1005,25 +1079,28 @@ https://ftp.isds.tugraz.at/pub/theses/fplatzer-2026-msc.pdf
 
 
 <section>
-    <h1>Rslidy v2: Interactive Sorting</h1>
-    <div class="rslidy-columns-even">
-        <div class="rslidy-column">
-            <ul>
-                <li><span class="li-intro">First activation</span>: sorts in ascending order.</li>
-                <li><span class="li-intro">Second activation</span>: sorts in descending order.</li>
-                <li><span class="li-intro">Third activation</span>: restores original row order.</li>
-                <li>Normalisation of text, numeric, and date-like values.</li>
-                <li>Independent sorting state per table.</li>
-                <li>Shared state for desktop and mobile controls.</li>
-            </ul>
-        </div>
-        <div class="rslidy-column">
-            <figure>
-                <div class="rslidy-large-images">
-                    <img alt="Sortable responsive table header row used in the thesis." src="images/rslidy-table-header-row.png"/>
-                </div>
-                <figcaption class="rslidy-center"><span class="rslidy-fig-label">Figure 12</span>: Rslidy v2: Sortable table header row.</figcaption>
-            </figure>
-        </div>
+<h1>Rslidy v2: Interactive Sorting</h1>
+<div class="rslidy-columns-even">
+<div class="rslidy-column">
+<ul>
+    <li><span class="li-intro">First activation</span>: sorts in ascending order.</li>
+    <li><span class="li-intro">Second activation</span>: sorts in descending order.</li>
+    <li><span class="li-intro">Third activation</span>: restores original row order.</li>
+    <li>Normalisation of text, numeric, and date-like values.</li>
+    <li>Independent sorting state per table.</li>
+    <li>Shared state for desktop and mobile controls.</li>
+</ul>
+</div>
+<div class="rslidy-column">
+<figure>
+    <div class="rslidy-large-images">
+        <img alt="Sortable responsive table header row used in the thesis." src="images/rslidy-table-header-row.png"/>
     </div>
+    <figcaption class="rslidy-center"><span class="rslidy-fig-label">Figure 12</span>: Rslidy v2: Sortable table header row.</figcaption>
+</figure>
+</div>
+</div>
 </section>
+
+</body>
+</html>
