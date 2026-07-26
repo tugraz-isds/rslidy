@@ -197,7 +197,7 @@ div.images img, div.images video {
 div.rslidy-large-images img, div.rslidy-large-images video {
   object-fit: scale-down; /* preserve aspect ratio */
   max-width: 100%;
-  max-height: 25em;
+  max-height: 22em;
   width: auto;
   height: 25em;
 }

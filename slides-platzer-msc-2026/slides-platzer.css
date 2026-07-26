@@ -1,10 +1,16 @@
 
+div#rslidy-copyright p {
+  margin-top: 3rem;
+  max-width: 80ch;
+}
 
 span.li-intro {
   font-style: italic;
 }
 
-
+.rslidy-titleslide p {
+  font-size: 80%;
+}
 
 span.li-heading {
   font-weight: bold;
@@ -14,6 +20,38 @@ span.li-heading {
   font-size: 1.8rem;
 }
 
+li {
+  font-size: 1.8rem;
+  max-width: 70ch;
+  hyphens: manual;
+}
+
+p {
+  max-width: 70ch;
+}
+
+td {
+  max-width: 70ch;
+  hyphens: manual;
+}
+
+.rslidy-note {
+  max-width: 90ch;
+
+}
+.rslidy-table-label {
+  font-weight: bold;
+  margin-top: 2rem;
+}
+
+.rslidy-table-center {
+  margin: 1em 0;
+  font-size: 90%;
+  text-align: center;
+  padding-left: 0;
+  text-indent: 0;
+}
+
 /* adjust prismjs settings for code */
 
 pre[class*="language"] {
@@ -21,6 +59,7 @@ pre[class*="language"] {
   margin:  0 !important;
   line-height: 1 !important;
   white-space: pre-wrap !important;
+  font-size: 80%; !important;
 }
 
 code[class*="language-"] {
