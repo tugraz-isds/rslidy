@@ -6,6 +6,9 @@
   --rslidy-font-size-h3: clamp(1.15rem, 1.1vw + 0.7rem, 1.95rem);
   --rslidy-font-size-h4: clamp(1.05rem, 0.8vw + 0.65rem, 1.85rem);
   --rslidy-spacing-slide: clamp(1rem, 2vw, 2rem);
+
+  --tugraz-logo-width: clamp(5rem, 7vw, 7rem);
+  --tugraz-logo-gap: 0.5rem;
 }
 
 @media (min-width: 120rem) {
@@ -16,12 +19,44 @@
     --rslidy-font-size-h3: clamp(1.95rem, 0.6vw + 1.2rem, 2.6rem);
     --rslidy-font-size-h4: clamp(1.85rem, 0.5vw + 1.1rem, 2.3rem);
     --rslidy-spacing-slide: clamp(2rem, 1vw, 3rem);
+
+    --tugraz-logo-width: clamp(7rem, 4vw, 9rem);
   }
 }
 
-.slide {
-  font-size: var(--rslidy-font-size-base);
-  padding: var(--rslidy-spacing-slide);
+
+/* TU Graz logo on every slide */
+.slide::after {
+  content: "";
+  position: absolute;
+  inset-block-start: var(--rslidy-spacing-slide);
+  inset-inline-end: var(--rslidy-spacing-slide);
+
+  inline-size: var(--tugraz-logo-width);
+  aspect-ratio: 158.74 / 60.4724;
+
+  background: url("tugraz-logo.svg") center / contain no-repeat;
+
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Reserve space beside normal slide headings */
+.slide:not(.rslidy-titleslide) > h1 {
+  padding-inline-end:
+          calc(var(--tugraz-logo-width) + var(--tugraz-logo-gap));
+}
+
+/*
+Reserve equal space on both sides so that title slide
+headings remain visually centred.
+*/
+.rslidy-titleslide > h1 {
+  padding-inline-start:
+          calc(var(--tugraz-logo-width) + var(--tugraz-logo-gap));
+
+  padding-inline-end:
+          calc(var(--tugraz-logo-width) + var(--tugraz-logo-gap));
 }
 
 .slide h1 {
@@ -51,19 +86,26 @@
 
 /* Title Slide */
 .rslidy-titleslide {
-  margin: 0;
   background:
-          url("tugraz-logo.svg") right 1.82rem top 1.82rem / auto 1.5em no-repeat,
           linear-gradient(
                   rgba(255, 255, 255, 0.35),
                   rgba(255, 255, 255, 0.8)
           ),
           url("background.png") center / contain no-repeat,
           linear-gradient(white 5%, gray 90%);
+
   display: block;
   color: #000000;
+  margin: 0;
 }
 
+.rslidy-titleslide::after {
+  inset-block-start:
+          calc(1em + var(--rslidy-spacing-slide));
+
+  inset-inline-end:
+          calc(1em + var(--rslidy-spacing-slide));
+}
 
 /* Licence Text */
 div#rslidy-copyright p {
@@ -75,19 +117,22 @@ div#rslidy-copyright p {
   max-width: clamp(16rem, 35vw, 34rem);
 }
 
-/* Normal Slides */
-.slide:not(.rslidy-titleslide) {
-  background: url("tugraz-logo.svg") right 0 top 0em / auto 1.5em no-repeat;
-}
-
 @media (prefers-color-scheme: dark) {
   .rslidy-titleslide {
-    filter: invert(100%); /* now only the background */
+    filter: invert(100%);
+  }
+
+  /*
+  Cancel the title slide inversion for the logo.
+  The SVG itself handles its light and dark colours.
+  */
+  .rslidy-titleslide::after {
+    filter: invert(100%);
   }
 
   .rslidy-titleslide a,
   .rslidy-titleslide a:visited {
-    filter: invert(100%); /* cancels parent inversion */
-    color: #4da3ff;       /* optional: force blue */
+    filter: invert(100%);
+    color: #4da3ff;
   }
 }

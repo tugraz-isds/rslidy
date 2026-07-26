@@ -1,7 +1,14 @@
 
 div#rslidy-copyright p {
-  margin-top: 3rem;
   max-width: 80ch;
+  padding: 0.6em;
+}
+
+div#rslidy-copyright{
+ text-align: right;
+  position: absolute;
+  right:8rem;
+  bottom:8rem;
 }
 
 span.li-intro {
@@ -68,3 +75,4 @@ code[class*="language-"] {
   font-size: 0.8em !important;
   white-space: pre-wrap !important;
 }
+
