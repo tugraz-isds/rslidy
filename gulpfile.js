@@ -11,7 +11,6 @@ const merge = require('merge2');
 const pkg = require('./package.json');
 const version = pkg.version;
 const fs = require('fs');
-const del = require('del');
 const gzip = require('gulp-gzip');
 const wp = require('webpack');
 const webpacks = require('webpack-stream');
@@ -37,8 +36,13 @@ const files = {
 };
 
 // Clean tasks
-function clean() {
-  return del([paths.tsbuild, paths.build]);
+async function clean() {
+  const { deleteAsync } = await import('del');
+
+  return deleteAsync([
+    paths.tsbuild,
+    paths.build
+  ]);
 }
 exports.clean = clean;
 exports.clean.description = 'Cleans the project';
@@ -229,12 +233,13 @@ exports.icons = series(icon_definitions);
 
 // HTML task
 function html() {
-  src(paths.src + 'examples/**/*.*')
-    .pipe(dest(paths.build + 'examples/'));
-  src(paths.src + 'examples/stress-test/**/*.*')
-    .pipe(dest(paths.build + 'tests/stress-test/'));
-  return src(paths.src + 'tests/**/*.*')
-    .pipe(dest(paths.build + 'tests/'));
+  const examples = src(paths.src + 'examples/**/*.*')
+      .pipe(dest(paths.build + 'examples/'));
+
+  const tests = src(paths.src + 'tests/**/*.*')
+      .pipe(dest(paths.build + 'tests/'));
+
+  return merge([examples, tests]);
 }
 
 // Copy task

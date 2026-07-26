@@ -173,6 +173,12 @@
   initial-value: rgba(0, 0, 0, 0.9);
 }
 
+@property --rslidy-pin-slide-numbers {
+  syntax: "<integer>";
+  inherits: true;
+  initial-value: 1;
+}
+
 /* === Global variables === */
 :root {
   color-scheme: light dark;
@@ -193,6 +199,8 @@
   --rslidy-slide-number-font-size: calc(1.2rem * var(--rslidy-slide-number-font-scale));
   --rslidy-slide-font-size: 1.5rem;
   --rslidy-slide-number-font-scale: 1;
+  --rslidy-pin-slide-numbers: 1;
+
 
 
   /* toolbar and buttons */

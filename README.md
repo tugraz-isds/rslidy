@@ -277,7 +277,7 @@ artefacts, see the [Rslidy Developer Guide](README-developer-guide.md).
 
 ### 6.1 Prerequisites
 
-- Node.js (version 16 or higher)
+- Node.js (version 22 or higher)
 
 - pnpm, which can be installed using npm (recommended):
   ```

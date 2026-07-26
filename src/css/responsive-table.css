@@ -13,6 +13,7 @@
  overflow-x: auto;
  white-space: nowrap;
  display: block;
+ caption-side: bottom;
 }
 
 /* Container query wrapper */

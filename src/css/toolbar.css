@@ -63,6 +63,7 @@
   display: table;
   z-index: 1;
   transition: 0.30s;
+  line-height: normal;
 }
 
 /* Toolbar content cell */

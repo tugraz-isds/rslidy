@@ -19,7 +19,8 @@ export class SettingsComponent {
   private uifont: number = 0;
 
   // ---------------------------------------------------------------------------
-  // Shared sort state (desktop <-> mobile) per table instance
+  // Shared
+  // sort state (desktop <-> mobile) per table instance
   // ---------------------------------------------------------------------------
   private sortStateByKey = new Map<
     string,
@@ -169,6 +170,10 @@ export class SettingsComponent {
     );
 
     slideNumberDisplay.textContent = `1 / ${slides.length}`;
+
+    this.updateSlideNumberPosition(
+        window.rslidy.content.getCurrentSlideIndex()
+    );
   }
 
   // ---
@@ -206,6 +211,53 @@ export class SettingsComponent {
         original_slides[i].classList.add("rslidy-noselect");
     }
   }
+  public updateSlideNumberPosition(slideIndex?: number): void {
+    const contentSection = document.querySelector<HTMLElement>(
+        "#rslidy-content-section"
+    );
+
+    if (!contentSection) return;
+
+    const slideNumberDisplay =
+        contentSection.querySelector<HTMLElement>(
+            ".rslidy-slide-number-display"
+        );
+
+    if (!slideNumberDisplay) return;
+
+    const pinValue = getComputedStyle(contentSection)
+        .getPropertyValue("--rslidy-pin-slide-numbers")
+        .trim();
+
+    const pinned = pinValue !== "0";
+
+    contentSection.classList.toggle(
+        "rslidy-pin-slide-numbers",
+        pinned
+    );
+
+    if (pinned) {
+      /*
+      As a direct child, the number can be sticky relative to the
+      content section.
+      */
+      contentSection.appendChild(slideNumberDisplay);
+      return;
+    }
+
+    /*
+    Unpinned numbers are placed after the current slide's content.
+    */
+    const targetIndex =
+        slideIndex ?? window.rslidy.content.getCurrentSlideIndex();
+
+    const targetSlide = window.rslidy.utils.getSlide(targetIndex);
+
+    if (targetSlide) {
+      targetSlide.appendChild(slideNumberDisplay);
+    }
+  }
+
 
   // ---
   // Description: Called whenever one of the text size buttons is clicked.

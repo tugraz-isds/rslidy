@@ -337,23 +337,58 @@ input[type="checkbox"]:disabled + label {
  margin: -0.5rem -1.5rem -1.5rem;
 }*/
 
+/* Normal slide-number display, not print slide numbers */
 #rslidy-content-section .rslidy-slide-number-display {
   display: none;
-  position: fixed;
-  inset-inline-end: max(env(safe-area-inset-right), clamp(0.8rem, 2vw, 1.2rem));
-  inset-block-end: calc(
-          var(--rslidy-toolbar-height)
-          + var(--rslidy-progressbar-height)
-          + max(env(safe-area-inset-bottom), clamp(0.5rem, 2vh, 1rem))
-  );
+  inline-size: max-content;
   font-size: var(--rslidy-slide-number-font-size);
+  line-height: 1;
+  white-space: nowrap;
   z-index: 5;
   pointer-events: none;
 }
 
+/* Display slide numbers when enabled in the settings */
 #rslidy-content-section.rslidy-show-slide-numbers
 .rslidy-slide-number-display {
   display: block;
+}
+
+/*
+Pinned mode.
+
+The number remains visible while the slide container scrolls. Unlike
+position: fixed, sticky positioning is relative to the Rslidy content
+container rather than the browser viewport.
+
+Because the element participates in the content section's normal layout,
+the available inline size already excludes the vertical scrollbar.
+*/
+#rslidy-content-section.rslidy-pin-slide-numbers
+> .rslidy-slide-number-display {
+  position: sticky;
+  inset-block-start: calc(
+          100% - var(--rslidy-slide-number-font-size) - 1rem
+  );
+  margin-inline-start: auto;
+  margin-inline-end: 1rem;
+}
+
+/*
+Unpinned mode.
+
+The element is moved into the current slide and placed after its content.
+On standard flex-based slides, margin-block-start: auto places it at the
+visual bottom when the content is short. For overflowing slides, the user
+must scroll to the end to see it.
+*/
+#rslidy-content-section:not(.rslidy-pin-slide-numbers)
+.slide > .rslidy-slide-number-display {
+  position: static;
+  margin-block-start: auto;
+  margin-inline-start: auto;
+  margin-inline-end: 1rem;
+  margin-block-end: 1rem;
 }
 
 @media print {

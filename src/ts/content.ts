@@ -450,6 +450,10 @@ export class ContentComponent {
     if (slideNumberDisplay) {
       slideNumberDisplay.textContent =
           `${targetSlideIndex + 1} / ${window.rslidy.num_slides}`;
+
+      window.rslidy.settings.updateSlideNumberPosition(
+          targetSlideIndex
+      );
     }
 
     this.slide_caption.innerHTML = " /" + window.rslidy.num_slides;
