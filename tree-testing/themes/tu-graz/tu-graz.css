@@ -42,7 +42,7 @@
 }
 
 /* Reserve space beside normal slide headings */
-.slide:not(.rslidy-titleslide) > h1 {
+.slide:not(.rslidy-titleslide):not(.rslidy-sectionslide) > h1 {
   padding-inline-end:
           calc(var(--tugraz-logo-width) + var(--tugraz-logo-gap));
 }
