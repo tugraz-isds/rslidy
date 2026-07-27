@@ -277,15 +277,28 @@ export class PrintSettingsComponent {
     }
     if (snum.checked) {
       css += `
-      #rslidy-content-section { counter-reset: slide-counter; }
-    
-      #rslidy-content-section .slide:after {
-        counter-increment: slide-counter;
-        content: counter(slide-counter) " / ${window.rslidy.num_slides}";
+      #rslidy-content-section {
+        counter-reset: rslidy-print-slide-counter;
+      }
+  
+      #rslidy-content-section .slide::before {
+        counter-increment: rslidy-print-slide-counter;
+        content:
+          counter(rslidy-print-slide-counter)
+          " / ${window.rslidy.num_slides}";
         position: absolute;
-        right: 0.8rem;
-        bottom: 0.8rem;
-        font: 60% Sans-Serif;
+        inset-block-start: auto;
+        inset-inline-start: auto;
+        inset-inline-end: 0.8rem;
+        inset-block-end: 0.8rem;
+        inline-size: auto;
+        block-size: auto;
+        aspect-ratio: auto;
+        background: none;
+        font: 60% sans-serif;
+        line-height: normal;
+        z-index: 2;
+        pointer-events: none;
       }
     `;
     }

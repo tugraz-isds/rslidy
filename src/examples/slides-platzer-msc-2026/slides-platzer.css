@@ -5,7 +5,7 @@ div#rslidy-copyright p {
 }
 
 div#rslidy-copyright{
- text-align: right;
+  text-align: right;
   position: absolute;
   right:7rem;
   bottom:7rem;
@@ -79,7 +79,7 @@ pre[class*="language"] {
   margin:  0 !important;
   line-height: 1 !important;
   white-space: pre-wrap !important;
-  font-size: 85%; !important;
+  font-size: 85% !important;
 }
 
 code[class*="language-"] {
@@ -87,5 +87,27 @@ code[class*="language-"] {
   margin:  0 !important;
   font-size: 0.8em !important;
   white-space: pre-wrap !important;
+}
+
+@media print {
+  div#rslidy-copyright {
+    position: absolute;
+    inset-inline: 1rem;
+    inset-block-end: 1rem;
+    text-align: end;
+  }
+
+  div#rslidy-copyright p {
+    display: inline-block;
+    max-inline-size: min(80ch, 100%);
+    margin: 0;
+    padding: 0.4em;
+    box-sizing: border-box;
+
+    font-size: 55%;
+    line-height: 1.2;
+    overflow-wrap: anywhere;
+    hyphens: auto;
+  }
 }
 
