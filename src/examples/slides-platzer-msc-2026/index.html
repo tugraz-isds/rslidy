@@ -299,8 +299,8 @@ sizes.</li>
 
 <p>Node-based, Markdown as input:</p>
 <ul>
-<li>Marp [2018-]</li>
-<li><strong>Slidev [2021-]</strong></li>
+<li><strong>Marp [2018-]</strong></li>
+<li>Slidev [2021-]</li>
 <li>Remark [2011-2023]</li>
 <li>Fusuma [2018-2021]</li>
 </ul>
@@ -315,21 +315,22 @@ sizes.</li>
 <h1>Marp [2018-]</h1>
 <div class="rslidy-columns-even">
 <div class="rslidy-column">
-<pre class="language">
-<code class="language-html">---
+<pre class="language-markdown">
+<code class="language-markdown">---
 marp: true
 theme: default
 paginate: true
 backgroundColor: #fff
+class: split
 ---
-&lt;div class=ldiv&gt;
+
+# Marp Example Slide
+
 - Bullet Point 1
 - Bullet Point 2
 - Bullet Point 3
-&lt;/div&gt;
-&lt;div class=rdiv&gt;
-![Example Image](./diagrams/diagram.svg)
-&lt;/div&gt;</code>
+
+![Example Image](./diagrams/diagram.svg)</code>
 </pre>
 </div>
 <div class="rslidy-column">
@@ -350,10 +351,12 @@ Marp: Example slide.</figcaption>
 
 
 
+
+
 <section>
 <h1>2. JavaScript-Based Slide Decks</h1>
 
-<p>Node-based, HTML, CSS, and JavaScript-driven, Interactive:</p>
+<p>Node-based, HTML, CSS, and JavaScript-driven, interactive:</p>
 <ul>
 <li>Shower [2010-]</li>
 <li><strong>Reveal.js [2011-]</strong></li>
@@ -400,8 +403,7 @@ Reveal.initialize({
 hash: true,
 });
 &lt;/script&gt;
-&lt;/body&gt;
-</code>
+&lt;/body&gt;</code>
 </pre>
 </div>
 <div class="rslidy-column">
@@ -484,11 +486,53 @@ hash: true,
 
 
 
+<section>
+<h1>Rslidy [2019-]</h1>
+<div class="rslidy-columns-even">
+<div class="rslidy-column"><pre class="language">
+<code class="language-html">&lt;section&gt;
+  &lt;h1&gt;Rslidy Example Slide&lt;/h1&gt;
+  &lt;div class="slide-content"&gt;
+    &lt;div class="bullets"&gt;
+      &lt;ul&gt;
+        &lt;li&gt;Bullet Point 1&lt;/li&gt;
+        &lt;li&gt;Bullet Point 2&lt;/li&gt;
+        &lt;li&gt;Bullet Point 3&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/div&gt;
+    &lt;div class="image"&gt;
+      &lt;img src="./images/example.svg" alt="Rslidy"&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/section&gt;
+</code>
+</pre>
+</div>
+<div class="rslidy-column">
+<figure>
+<div class="images">
+    <img src="images/rslidy-example-slide.png"
+         alt="Rslidy: Example Slide"
+         style="border: 0.05rem solid #D3D3D3;" />
+</div>
+<figcaption><span class="rslidy-fig-label">Figure 6</span>: Rslidy: Example slide.</figcaption>
+</figure>
+</div>
+</div>
+</section>
+
+
+
+
+
 
 
 <section class="rslidy-sectionslide">
 <h1>4. Rslidy v1</h1>
 </section>
+
+
+
 
 
 
@@ -520,7 +564,7 @@ hash: true,
         />
     </div>
     <figcaption class="rslidy-center">
-        <span class="rslidy-fig-label">Figure 6</span>:
+        <span class="rslidy-fig-label">Figure 7</span>:
         Rslidy v1: Module structure and internal dependencies.
     </figcaption>
 </figure>
@@ -561,7 +605,7 @@ hash: true,
     </div>
 
     <figcaption class="rslidy-center">
-        <span class="rslidy-fig-label">Figure 7</span>:
+        <span class="rslidy-fig-label">Figure 8</span>:
         Rslidy v1: Typical slide deck layout with a Responsive Table.
     </figcaption>
 </figure>
@@ -601,7 +645,7 @@ hash: true,
     </div>
 
     <figcaption class="rslidy-center">
-        <span class="rslidy-fig-label">Figure 8</span>:
+        <span class="rslidy-fig-label">Figure 9</span>:
         Rslidy v1: Tilt and tip gestures.
     </figcaption>
 </figure>
@@ -679,7 +723,7 @@ file watching; automatic rebuild and browser reload.</li>
              src="images/rslidy-print-settings-panel.png"
              />
     </div>
-    <figcaption class="rslidy-center"><span class="rslidy-fig-label">Figure 9</span>: Redesigned Print Settings Panel.</figcaption>
+    <figcaption class="rslidy-center"><span class="rslidy-fig-label">Figure 10</span>: Rslidy v2: Redesigned Print Settings Panel.</figcaption>
 </figure>
 </div>
 </div>
@@ -709,7 +753,7 @@ file watching; automatic rebuild and browser reload.</li>
     <div class="rslidy-large-images">
         <img alt="Responsive table example in the wide layout." src="images/rslidy-responsive-table-example.png" style="border: 0.1rem solid lightgrey;"/>
     </div>
-    <figcaption class="rslidy-center"><span class="rslidy-fig-label">Figure 10</span>: Rslidy v2: Responsive table on wide screens.</figcaption>
+    <figcaption class="rslidy-center"><span class="rslidy-fig-label">Figure 11</span>: Rslidy v2: Responsive table on wide screens.</figcaption>
 </figure>
 </div>
 <div class="rslidy-column">
@@ -718,7 +762,7 @@ file watching; automatic rebuild and browser reload.</li>
         <img alt="Responsive table example in the narrow layout used in the thesis." src="images/rslidy-responsive-table-narrow.png" style="border: 0.1rem solid lightgrey;"
         />
     </div>
-    <figcaption class="rslidy-center"><span class="rslidy-fig-label">Figure 11</span>: Rslidy v2: Responsive table in a narrow stacked layout.</figcaption>
+    <figcaption class="rslidy-center"><span class="rslidy-fig-label">Figure 12</span>: Rslidy v2: Responsive table in a narrow stacked layout.</figcaption>
 </figure>
 </div>
 </div>
@@ -1096,7 +1140,7 @@ https://ftp.isds.tugraz.at/pub/theses/fplatzer-2026-msc.pdf
     <div class="rslidy-large-images">
         <img alt="Sortable responsive table header row used in the thesis." src="images/rslidy-table-header-row.png"/>
     </div>
-    <figcaption class="rslidy-center"><span class="rslidy-fig-label">Figure 12</span>: Rslidy v2: Sortable table header row.</figcaption>
+    <figcaption class="rslidy-center"><span class="rslidy-fig-label">Figure 13</span>: Rslidy v2: Sortable table header row.</figcaption>
 </figure>
 </div>
 </div>

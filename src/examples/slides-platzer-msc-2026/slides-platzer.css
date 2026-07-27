@@ -25,7 +25,7 @@ span.li-heading {
 }
 
 .slide {
-  font-size: 1.5rem;
+  font-size: 1.7rem;
 }
 
 
@@ -79,7 +79,7 @@ pre[class*="language"] {
   margin:  0 !important;
   line-height: 1 !important;
   white-space: pre-wrap !important;
-  font-size: 80%; !important;
+  font-size: 85%; !important;
 }
 
 code[class*="language-"] {
