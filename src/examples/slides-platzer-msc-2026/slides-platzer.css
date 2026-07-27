@@ -111,3 +111,17 @@ code[class*="language-"] {
   }
 }
 
+@media screen and (max-width: 40rem) {
+  div#rslidy-copyright {
+    position: static;
+    inset: auto;
+    margin-block-start: auto;
+    padding-block-start: 1rem;
+    text-align: end;
+  }
+
+  div#rslidy-copyright p {
+    margin: 0;
+    padding: 0.4em;
+  }
+}
