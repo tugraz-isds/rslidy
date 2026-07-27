@@ -92,8 +92,8 @@ code[class*="language-"] {
 @media print {
   div#rslidy-copyright {
     position: absolute;
-    inset-inline: 1rem;
-    inset-block-end: 1rem;
+    inset-inline: 3rem;
+    inset-block-end: 3rem;
     text-align: end;
   }
 
