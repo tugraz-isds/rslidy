@@ -7,8 +7,8 @@ div#rslidy-copyright p {
 div#rslidy-copyright{
  text-align: right;
   position: absolute;
-  right:8rem;
-  bottom:8rem;
+  right:7rem;
+  bottom:7rem;
 }
 
 span.li-intro {
@@ -17,6 +17,7 @@ span.li-intro {
 
 .rslidy-titleslide p {
   font-size: 80%;
+  margin:0;
 }
 
 span.li-heading {
@@ -24,11 +25,23 @@ span.li-heading {
 }
 
 .slide {
-  font-size: 1.8rem;
+  font-size: 1.5rem;
+}
+
+
+
+
+.rslidy-titleslide h1 {
+
+margin-bottom: 1.3rem;
+}
+
+.rslidy-titleslide h2 {
+
+  margin-bottom: 1.15rem;
 }
 
 li {
-  font-size: 1.8rem;
   max-width: 70ch;
   hyphens: manual;
 }
