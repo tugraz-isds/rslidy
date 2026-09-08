@@ -18,7 +18,7 @@ a slide is created by a section and/or div.slide
   left: 0;
   right: 0;
   bottom: 0;
-  margin: 1em;
+  margin: 1rem;
   padding: clamp(1rem, 4vw, 2.2rem);
   font-size: var(--rslidy-slide-font-size);
   container-type: inline-size;
@@ -477,6 +477,8 @@ table:not(.rslidy-responsive-table) th {
   text-align: center;
 }
 
+
+
 .table tr:nth-of-type(even), .table thead tr {
   background: #eee;
 }
@@ -515,6 +517,8 @@ table:not(.rslidy-responsive-table).tc8 td:nth-child(8),
 table:not(.rslidy-responsive-table).tc9 td:nth-child(9) {
   text-align: center;
 }
+
+
 
 @media screen and (max-width: 65rem) {
   table:not(.rslidy-responsive-table) {
@@ -555,9 +559,12 @@ table:not(.rslidy-responsive-table).tc9 td:nth-child(9) {
 }
 
 
+
+
 /*Hide respvis toolbar on print*/
 @media print {
   .toolbar__dialog-container {
     display:none
   }
 }
+
