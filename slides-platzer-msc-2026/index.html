@@ -7,7 +7,7 @@
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Improving Rslidy: Responsive Web-Based Slide Decks</title>
 <link rel="stylesheet" href="rslidy.min.css"/>
-<link rel="stylesheet" href="./themes/tu-graz/tu-graz.css"/>
+<link rel="stylesheet" href="themes/tu-graz/tu-graz.css"/>
 <link rel="stylesheet" href="prism/prism.css"/>
 <link rel="stylesheet" href="slides-platzer.css"/>
 <script src="prism/prism.js"></script>
@@ -33,9 +33,9 @@ GitHub:<br/>
 https://github.com/tugraz-isds/rslidy/</a>
 </p>
 <p>
-  Presentation:<br/>
-  <a href="https://tugraz-isds.github.io/rslidy/slides-platzer-msc-2026/index.html">
-    https://tugraz-isds.github.io/rslidy/slides-platzer-msc-2026/index.html</a>
+Presentation:<br/>
+<a href="https://tugraz-isds.github.io/rslidy/slides-platzer-msc-2026/">
+<code>https://tugraz-isds.github.io/rslidy/slides-platzer-msc-2026/</code></a>
 </p>
 <p>
 Master's Thesis:<br/>
@@ -132,7 +132,8 @@ licence.
 <div class="rslidy-large-images">
 <img alt="HTML DOM tree of objects from the thesis." src="images/html-dom-tree.svg"/>
 </div>
-<figcaption class="rslidy-center"><span class="rslidy-fig-label">Figure 1</span>: HTML DOM Tree of Objects</figcaption>
+<figcaption class="rslidy-center"><span class="rslidy-fig-label">Figure 1</span>:
+HTML DOM Tree of Objects</figcaption>
 </figure>
 </div>
 </div>
@@ -168,37 +169,40 @@ for modern colour systems.</li>
 
 <div class="rslidy-column">
 <ul>
-    <li>Dynamically typed programming language.</li>
-    <li>Variable types are determined at runtime.</li>
-    <li>Type errors may only appear during execution.</li>
-    <li>Runs directly in browsers and Node.js.</li>
+  <li>Dynamically typed programming language.</li>
+  <li>Variable types are determined at runtime.</li>
+  <li>Type errors may only appear during execution.</li>
+  <li>Runs directly in browsers and Node.js.</li>
 </ul>
 
 <p class="rslidy-note">
-    JavaScript executes the incorrect function call, but produces an
-    unexpected result.
+  JavaScript executes the incorrect function call, but produces an
+  unexpected result.
 </p>
 </div>
 
 <div class="rslidy-column">
-<pre class="language-javascript"><code class="language-javascript">function addSlideNumbers(
-    current,
-    total
+<pre class="language-javascript">
+<code class="language-javascript">function addSlideNumbers(
+  current,
+  total
 ) {
-    return current + " / " + total;
+  return current + " / " + total;
 }
 
 const result = addSlideNumbers(
-    "one",
-    10
+  "one",
+  10
 );
 
 console.log(result);
 // "one / 10"</code></pre>
-        </div>
+</div>
 
-    </div>
+</div>
 </section>
+
+
 
 
 <section>
@@ -207,33 +211,34 @@ console.log(result);
 
 <div class="rslidy-column">
 <ul>
-    <li>JavaScript extended with static typing.</li>
-    <li>Variable and parameter types are explicitly defined.</li>
-    <li>Type errors are detected during development.</li>
-    <li>Transpiles to standard JavaScript.</li>
+  <li>JavaScript extended with static typing.</li>
+  <li>Variable and parameter types are explicitly defined.</li>
+  <li>Type errors are detected during development.</li>
+  <li>Transpiles to standard JavaScript.</li>
 </ul>
 
 <p class="rslidy-note">
-    TypeScript detects the incorrect argument before the program is
-    executed.
+  TypeScript detects the incorrect argument before the program is
+  executed.
 </p>
 </div>
 
 <div class="rslidy-column">
 <pre class="language-javascript"><code class="language-javascript">function addSlideNumbers(
-    current: number,
-    total: number
+  current: number,
+  total: number
 ): string {
-    return `${current} / ${total}`;
+  return `${current} / ${total}`;
 }
 
 const result = addSlideNumbers(
-    "one",
-    10
+  "one",
+  10
 );
 // Error: string is not assignable to parameter of type number</code></pre>
-        </div>
-    </div>
+</div>
+
+</div>
 </section>
 
 
