@@ -306,13 +306,6 @@ code.rslidy-block {
   margin-bottom: 1em;
 }
 
-/* Keys */
-/* Keyboard key label */
-kbd.rslidy-key {
-  border-radius: 3px;
-  padding: 1px 2px 0;
-  border: 1px solid black;
-}
 
 /* Notes */
 /* Small note paragraph */

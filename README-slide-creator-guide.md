@@ -452,7 +452,6 @@ the default slide stylesheet:
 | `rslidy-footer` | Pushes small footer text to the bottom-right area of a slide. |
 | `rslidy-licence` | Centres compact licence text, usually on the title slide. |
 | `rslidy-note` | Displays a smaller note paragraph enclosed in brackets. |
-| `rslidy-key` | Displays keyboard shortcuts as small bordered key labels. |
 | `rslidy-block` | Displays short code fragments as separated inline blocks. |
 
 
