@@ -1,4 +1,4 @@
-/* Fluid Typography */
+ /* Fluid Typography */
 :root {
   --rslidy-font-size-base: clamp(1rem, 1.2vw + 0.6rem, 1.8rem);
   --rslidy-font-size-h1: clamp(1.5rem, 2vw + 0.8rem, 2.6rem);
@@ -9,6 +9,10 @@
 
   --tugraz-logo-width: clamp(5rem, 7vw, 7rem);
   --tugraz-logo-gap: 0.5rem;
+
+  /* Logo position relative to the viewport */
+  --tugraz-logo-top: clamp(1rem, 2vw, 2rem);
+  --tugraz-logo-right: clamp(1rem, 2vw, 2rem);
 }
 
 @media (min-width: 120rem) {
@@ -21,31 +25,37 @@
     --rslidy-spacing-slide: clamp(2rem, 1vw, 3rem);
 
     --tugraz-logo-width: clamp(7rem, 4vw, 9rem);
+
+    --tugraz-logo-top: clamp(2rem, 1vw, 3rem);
+    --tugraz-logo-right: clamp(2rem, 1vw, 3rem);
   }
 }
 
 
 /* TU Graz logo on every slide */
-.slide::after {
-  content: "";
-  position: absolute;
-  inset-block-start: var(--rslidy-spacing-slide);
-  inset-inline-end: var(--rslidy-spacing-slide);
+ body::after {
+   content: "";
+   position: fixed;
 
-  inline-size: var(--tugraz-logo-width);
-  aspect-ratio: 158.74 / 60.4724;
+   inset-block-start: var(--tugraz-logo-top);
+   inset-inline-end: var(--tugraz-logo-right);
 
-  background: url("tugraz-logo.svg") center / contain no-repeat;
+   inline-size: var(--tugraz-logo-width);
+   aspect-ratio: 158.74 / 60.4724;
 
-  pointer-events: none;
-  z-index: 1;
-}
+   background: url("tugraz-logo.svg") center / contain no-repeat;
+
+   pointer-events: none;
+   z-index: 1000;
+ }
+
 
 /* Reserve space beside normal slide headings */
 .slide:not(.rslidy-titleslide):not(.rslidy-sectionslide) > h1 {
   padding-inline-end:
           calc(var(--tugraz-logo-width) + var(--tugraz-logo-gap));
 }
+
 
 /*
 Reserve equal space on both sides so that title slide
@@ -58,6 +68,7 @@ headings remain visually centred.
   padding-inline-end:
           calc(var(--tugraz-logo-width) + var(--tugraz-logo-gap));
 }
+
 
 .slide h1 {
   font-size: var(--rslidy-font-size-h1);
@@ -84,6 +95,7 @@ headings remain visually centred.
   line-height: 1.35;
 }
 
+
 /* Title Slide */
 .rslidy-titleslide {
   background:
@@ -99,13 +111,6 @@ headings remain visually centred.
   margin: 0;
 }
 
-.rslidy-titleslide::after {
-  inset-block-start:
-          calc(1em + var(--rslidy-spacing-slide));
-
-  inset-inline-end:
-          calc(1em + var(--rslidy-spacing-slide));
-}
 
 /* Licence Text */
 div#rslidy-copyright p {
@@ -116,6 +121,7 @@ div#rslidy-copyright p {
   font-size: clamp(0.55rem, 0.45vw + 0.35rem, 0.9rem);
   max-width: clamp(16rem, 35vw, 34rem);
 }
+
 
 @media (prefers-color-scheme: dark) {
   .rslidy-titleslide {
