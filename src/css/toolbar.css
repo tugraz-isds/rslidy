@@ -64,6 +64,7 @@
   z-index: 1;
   transition: 0.30s;
   line-height: normal;
+  min-width: max-content;
 }
 
 /* Toolbar content cell */

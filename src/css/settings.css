@@ -367,11 +367,14 @@ the available inline size already excludes the vertical scrollbar.
 #rslidy-content-section.rslidy-pin-slide-numbers
 > .rslidy-slide-number-display {
   position: sticky;
-  inset-block-start: calc(
+
+  top: calc(
           100% - var(--rslidy-slide-number-font-size) - 1rem
   );
-  margin-inline-start: auto;
-  margin-inline-end: 1rem;
+
+  width: fit-content;
+  margin-left: auto;
+  margin-right: 1rem;
 }
 
 /*
@@ -385,10 +388,14 @@ must scroll to the end to see it.
 #rslidy-content-section:not(.rslidy-pin-slide-numbers)
 .slide > .rslidy-slide-number-display {
   position: static;
-  margin-block-start: auto;
-  margin-inline-start: auto;
-  margin-inline-end: 1rem;
-  margin-block-end: 1rem;
+  align-self: flex-end;
+  margin-top: auto;
+
+  /*
+   * Move it into the existing slide margin rather
+   * than consuming slide content space.
+   */
+  margin-right: -1.5rem;
 }
 
 @media print {

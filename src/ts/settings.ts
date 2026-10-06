@@ -238,16 +238,19 @@ export class SettingsComponent {
 
     if (pinned) {
       /*
-      As a direct child, the number can be sticky relative to the
-      content section.
-      */
+       * Pinned:
+       * keep the number in the scrolling content container,
+       * so it can remain visible.
+       */
       contentSection.appendChild(slideNumberDisplay);
       return;
     }
 
     /*
-    Unpinned numbers are placed after the current slide's content.
-    */
+     * Unpinned:
+     * put the number inside the current slide,
+     * so it appears only at the actual bottom.
+     */
     const targetIndex =
         slideIndex ?? window.rslidy.content.getCurrentSlideIndex();
 
