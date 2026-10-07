@@ -152,7 +152,7 @@
 @property --rslidy-slide-number-font-size {
   syntax: "<length>";
   inherits: false;
-  initial-value: 1rem;
+  initial-value: 0.8rem;
 }
 
 @property --rslidy-slide-font-size {

@@ -460,7 +460,7 @@ table:not(.rslidy-responsive-table) caption {
 /* All cells */
 table:not(.rslidy-responsive-table) th,
 table:not(.rslidy-responsive-table) td {
-  padding: .7em .9em .7em .5em;
+  padding: 0.7em 0.9em 0.7em 0.5em;
   vertical-align: top;
   border: none;
   background: transparent;
@@ -488,8 +488,6 @@ table:not(.rslidy-responsive-table) tbody tr:last-child {
   table:not(.rslidy-responsive-table) {
     overflow-x: auto;
     overflow-y: hidden;
-
-    -webkit-overflow-scrolling: touch;
   }
 }
 
