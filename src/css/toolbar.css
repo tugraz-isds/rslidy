@@ -267,7 +267,7 @@
     content: '';
     float: right;
     height: 100%;
-    width: 1px;
+    width: 0.0625rem;
     background-color: var(--rslidy-progressbar-bg-colour-reached);
   }
 }
@@ -317,7 +317,7 @@
 
 #rslidy-help-table td,
 #rslidy-help-table th {
-  border: 1px solid light-dark(#ddd, #555);
+  border: 0.0625rem solid light-dark(#ddd, #555);
   padding: 0.50em;
 }
 

@@ -490,7 +490,7 @@ offer a way of tweaking Rslidy’s internal behaviour.
 <head>
   <link rel="stylesheet" href="rslidy.min.css"/>
   <script type="module" src="rslidy.min.js"></script>
-
+  
   <script>
     window.rslidy.close_menu_on_selection = true;
     window.rslidy.close_navigation_on_selection = true;

@@ -288,7 +288,7 @@ div#rslidy-licence p {
 }
 
 .rslidy-image-frame {
-  border: 1px solid light-dark(#ccc, #555);
+  border: 0.0625rem solid light-dark(#ccc, #555);
   box-sizing: border-box;
 }
 
