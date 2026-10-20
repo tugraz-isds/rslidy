@@ -46,7 +46,13 @@
    background: url("tugraz-logo.svg") center / contain no-repeat;
 
    pointer-events: none;
-   z-index: 1000;
+   z-index: 10;
+ }
+
+
+ /* Hide TU Graz logo while the image viewer is open */
+ body:has(.rslidy-image-viewer:not([style*="display: none"]))::after {
+   display: none;
  }
 
 

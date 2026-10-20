@@ -443,18 +443,10 @@ export class ContentComponent {
         "--rslidy-total-slides",
         String(window.rslidy.num_slides)
     );
-    const slideNumberDisplay = document.querySelector<HTMLElement>(
-        "#rslidy-content-section .rslidy-slide-number-display"
+
+    window.rslidy.settings.updateSlideNumberPosition(
+        targetSlideIndex
     );
-
-    if (slideNumberDisplay) {
-      slideNumberDisplay.textContent =
-          `${targetSlideIndex + 1} / ${window.rslidy.num_slides}`;
-
-      window.rslidy.settings.updateSlideNumberPosition(
-          targetSlideIndex
-      );
-    }
 
     this.slide_caption.innerHTML = " /" + window.rslidy.num_slides;
     (<HTMLInputElement>this.slide_input).value = "" + (targetSlideIndex + 1);

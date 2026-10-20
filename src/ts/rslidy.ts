@@ -57,6 +57,7 @@ export class Rslidy {
   show_slide_dividers: boolean = true;
   start_with_toolbar_minimized: boolean = false;
   show_slide_numbers: boolean = true;
+  pin_slide_numbers: boolean = false;
   block_slide_text_selection: boolean = false;
 
   // Advanced global settings
@@ -174,6 +175,7 @@ export class Rslidy {
     this.settings.doCustomSettingAdaptions();
     this.printSettings.loadSettings();
     this.setTabindexAndCallbacks();
+
     window.onbeforeunload = () => {
       this.settings.saveSettings();
       this.printSettings.saveSettings();

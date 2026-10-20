@@ -102,7 +102,6 @@ div.rslidy-images, div.rslidy-large-images {
   display: flex;
   justify-content: center;
   align-items: center;
-  aspect-ratio: 16 / 9;
   min-width: 5em;
 }
 
@@ -111,7 +110,7 @@ div.rslidy-images img, div.rslidy-images video {
   object-fit: contain; /* scale-down does not work correctly in Firefox */
   max-height: 15em;
   width: auto;
-  min-height: 5em;
+  min-height: 2em;
 }
 
 /* Larger media inside image helpers */
@@ -119,7 +118,7 @@ div.rslidy-large-images img, div.rslidy-large-images video {
   object-fit: contain; /* scale-down does not work correctly in Firefox */
   max-height: 22em;
   width: 100%;
-  min-height: 8em;
+  min-height: 5em;
   height: auto;
 }
 
@@ -288,6 +287,11 @@ div#rslidy-licence p {
   background-color: lightgray;
 }
 
+.rslidy-image-frame {
+  border: 1px solid light-dark(#ccc, #555);
+  box-sizing: border-box;
+}
+
 /* CSS grid */
 /* Auto-fitting grid layout */
 .rslidy-grid {
@@ -445,7 +449,19 @@ table:not(.rslidy-responsive-table) {
   border: none;
   background: transparent;
 
-  text-align: left;
+  text-align: right;
+}
+
+table:not(.rslidy-responsive-table) thead tr
+{
+  border-bottom: none;
+  background-image: linear-gradient(
+          light-dark(#777, #aaa),
+          light-dark(#777, #aaa)
+  );
+  background-position: center bottom;
+  background-size: calc(100% - 1.1em) 0.04em;
+  background-repeat: no-repeat;
 }
 
 
@@ -464,20 +480,18 @@ table:not(.rslidy-responsive-table) td {
   vertical-align: top;
   border: none;
   background: transparent;
-  text-align: left;
+  font-variant-numeric: tabular-nums;   /* every digit one width */
+  text-align: right;
 }
 
 
 /* Header cells */
 table:not(.rslidy-responsive-table) th {
   font-weight: bold;
+  text-align: center;
 }
 
 
-/* Separator below header */
-table:not(.rslidy-responsive-table) thead tr {
-  border-bottom: 0.08em solid light-dark(#777, #aaa);
-}
 
 
 /* No border after final row */

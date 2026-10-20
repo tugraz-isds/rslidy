@@ -8,6 +8,7 @@ interface Data {
   space: boolean;
   margintap: boolean;
   showslidenumbers: boolean;
+  pinslidenumbers?: boolean;
 }
 
 export class SettingsComponent {
@@ -28,6 +29,12 @@ export class SettingsComponent {
   >();
 
   constructor() {
+    window.addEventListener("resize", () => {
+      requestAnimationFrame(() => {
+        this.updateSlideNumberPosition();
+      });
+    });
+
     this.view =
       window.rslidy.utils.prependHtmlString(document.body, settings_html);
 
@@ -68,7 +75,19 @@ export class SettingsComponent {
       .addEventListener("click", e => window.rslidy.toolbar.closeMenuOnSelection());
     this.view
         .querySelector("#rslidy-checkbox-showslidenumbers")
-        .addEventListener("click", e => {
+        .addEventListener("change", () => {
+          this.toggleSlideNumbers();
+          window.rslidy.toolbar.closeMenuOnSelection();
+        });
+    this.view
+        .querySelector("#rslidy-checkbox-pinslidenumbers")
+        .addEventListener("change", () => {
+          const pinCheckbox = this.view.querySelector(
+              "#rslidy-checkbox-pinslidenumbers"
+          ) as HTMLInputElement;
+
+          window.rslidy.pin_slide_numbers = pinCheckbox.checked;
+
           this.toggleSlideNumbers();
           window.rslidy.toolbar.closeMenuOnSelection();
         });
@@ -98,6 +117,12 @@ export class SettingsComponent {
       ) as HTMLInputElement;
 
       slideNumbersCheckbox.checked = window.rslidy.show_slide_numbers ?? true;
+      const pinCheckbox = this.view.querySelector(
+          "#rslidy-checkbox-pinslidenumbers"
+      ) as HTMLInputElement;
+
+      pinCheckbox.checked =
+          window.rslidy.pin_slide_numbers ?? false;
       this.toggleSlideNumbers();
 
       return;
@@ -124,6 +149,14 @@ export class SettingsComponent {
             ? data.showslidenumbers
             : window.rslidy.show_slide_numbers ?? true;
 
+    const pinCheckbox = this.view.querySelector(
+        "#rslidy-checkbox-pinslidenumbers"
+    ) as HTMLInputElement;
+
+    pinCheckbox.checked =
+        data.pinslidenumbers !== undefined
+            ? data.pinslidenumbers
+            : window.rslidy.pin_slide_numbers ?? false;
     this.toggleSlideNumbers();
   }
 
@@ -139,42 +172,63 @@ export class SettingsComponent {
     }
   }
 
-  private toggleSlideNumbers(): void {
-    const showSlideNumbers = (
-        this.view.querySelector("#rslidy-checkbox-showslidenumbers") as HTMLInputElement
-    ).checked;
 
-    const contentSection = document.querySelector<HTMLElement>(
-        "#rslidy-content-section"
+
+  private toggleSlideNumbers(): void {
+    const showCheckbox = this.view.querySelector(
+        "#rslidy-checkbox-showslidenumbers"
+    ) as HTMLInputElement;
+
+    const pinCheckbox = this.view.querySelector(
+        "#rslidy-checkbox-pinslidenumbers"
+    ) as HTMLInputElement;
+
+    const pinLabel = this.view.querySelector(
+        "#rslidy-checkbox-pinslidenumbers-text"
+    ) as HTMLElement;
+
+    const slideContainer = document.getElementById(
+        "rslidy-slide-container"
     );
 
-    if (!contentSection) return;
+    if (!slideContainer) return;
 
-    contentSection.classList.toggle(
+    const showSlideNumbers = showCheckbox.checked;
+
+    // The pinned option can only be changed when slide
+    // numbers are enabled.
+    pinCheckbox.disabled = !showSlideNumbers;
+
+    pinLabel.classList.toggle(
+        "rslidy-disabled",
+        !showSlideNumbers
+    );
+
+    pinLabel.setAttribute(
+        "aria-disabled",
+        String(!showSlideNumbers)
+    );
+
+    // Preserve the user's pinning preference.
+    window.rslidy.pin_slide_numbers = pinCheckbox.checked;
+
+    slideContainer.classList.toggle(
         "rslidy-show-slide-numbers",
         showSlideNumbers
     );
 
-    let slideNumberDisplay = contentSection.querySelector<HTMLElement>(
-        ".rslidy-slide-number-display"
+    slideContainer.classList.toggle(
+        "rslidy-pin-slide-numbers",
+        showSlideNumbers && pinCheckbox.checked
     );
 
-    if (!slideNumberDisplay) {
-      slideNumberDisplay = document.createElement("div");
-      slideNumberDisplay.className = "rslidy-slide-number-display";
-      contentSection.appendChild(slideNumberDisplay);
-    }
-
-    const slides = document.querySelectorAll<HTMLElement>(
-        "#rslidy-content-section .slide"
-    );
-
-    slideNumberDisplay.textContent = `1 / ${slides.length}`;
-
+    // Move the number into the correct container.
     this.updateSlideNumberPosition(
         window.rslidy.content.getCurrentSlideIndex()
     );
   }
+
+
 
   // ---
   // Description: Generate a JSON string for the localStorage
@@ -189,7 +243,8 @@ export class SettingsComponent {
       shake: (<HTMLInputElement>this.view.querySelector("#rslidy-checkbox-shake")).checked,
       space: (<HTMLInputElement>this.view.querySelector("#rslidy-checkbox-space")).checked,
       margintap: (<HTMLInputElement>this.view.querySelector("#rslidy-checkbox-margintap")).checked,
-      showslidenumbers: (<HTMLInputElement>this.view.querySelector("#rslidy-checkbox-showslidenumbers")).checked
+      showslidenumbers: (<HTMLInputElement>this.view.querySelector("#rslidy-checkbox-showslidenumbers")).checked,
+      pinslidenumbers: (this.view.querySelector("#rslidy-checkbox-pinslidenumbers") as HTMLInputElement).checked
     }
     return JSON.stringify(data);
   }
@@ -211,55 +266,102 @@ export class SettingsComponent {
         original_slides[i].classList.add("rslidy-noselect");
     }
   }
+
+
+
+
+
   public updateSlideNumberPosition(slideIndex?: number): void {
-    const contentSection = document.querySelector<HTMLElement>(
-        "#rslidy-content-section"
+    const container = document.getElementById(
+        "rslidy-slide-container"
     );
 
-    if (!contentSection) return;
+    const contentSection = document.getElementById(
+        "rslidy-content-section"
+    );
 
-    const slideNumberDisplay =
-        contentSection.querySelector<HTMLElement>(
-            ".rslidy-slide-number-display"
-        );
+    const strip = document.getElementById(
+        "rslidy-slide-number-strip"
+    );
 
-    if (!slideNumberDisplay) return;
+    const display = document.querySelector<HTMLElement>(
+        ".rslidy-slide-number-display"
+    );
 
-    const pinValue = getComputedStyle(contentSection)
-        .getPropertyValue("--rslidy-pin-slide-numbers")
-        .trim();
+    const showCheckbox = this.view.querySelector<HTMLInputElement>(
+        "#rslidy-checkbox-showslidenumbers"
+    );
 
-    const pinned = pinValue !== "0";
+    if (
+        !container ||
+        !contentSection ||
+        !strip ||
+        !display ||
+        !showCheckbox
+    ) {
+      return;
+    }
 
-    contentSection.classList.toggle(
+    const currentIndex =
+        slideIndex ?? window.rslidy.content.getCurrentSlideIndex();
+
+    const showNumbers = showCheckbox.checked;
+    const pinned = showNumbers && window.rslidy.pin_slide_numbers;
+
+    const slides = Array.from(
+        contentSection.querySelectorAll<HTMLElement>(".slide")
+    );
+
+    display.textContent = `${currentIndex + 1} / ${slides.length}`;
+
+    container.classList.toggle(
+        "rslidy-show-slide-numbers",
+        showNumbers
+    );
+
+    container.classList.toggle(
         "rslidy-pin-slide-numbers",
         pinned
     );
 
-    if (pinned) {
-      /*
-       * Pinned:
-       * keep the number in the scrolling content container,
-       * so it can remain visible.
-       */
-      contentSection.appendChild(slideNumberDisplay);
-      return;
+    // The current slide participates in normal document flow
+    // only when slide numbers are shown and not pinned.
+    slides.forEach((slide, index) => {
+      slide.classList.toggle(
+          "rslidy-unpinned-active-slide",
+          showNumbers && !pinned && index === currentIndex
+      );
+    });
+
+    if (display.parentElement !== strip) {
+      strip.appendChild(display);
     }
 
-    /*
-     * Unpinned:
-     * put the number inside the current slide,
-     * so it appears only at the actual bottom.
-     */
-    const targetIndex =
-        slideIndex ?? window.rslidy.content.getCurrentSlideIndex();
-
-    const targetSlide = window.rslidy.utils.getSlide(targetIndex);
-
-    if (targetSlide) {
-      targetSlide.appendChild(slideNumberDisplay);
+    if (pinned || !showNumbers) {
+      if (strip.parentElement !== container) {
+        container.appendChild(strip);
+      }
+    } else {
+      if (strip.parentElement !== contentSection) {
+        contentSection.appendChild(strip);
+      }
     }
+
+    // Remove the old spacer, if present.
+    document.getElementById(
+        "rslidy-slide-scroll-spacer"
+    )?.remove();
+
+    // Remove the old dynamically calculated height.
+    contentSection.style.removeProperty(
+        "--rslidy-slide-number-strip-height"
+    );
   }
+
+
+
+
+
 
 
   // ---

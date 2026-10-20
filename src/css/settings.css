@@ -337,70 +337,30 @@ input[type="checkbox"]:disabled + label {
  margin: -0.5rem -1.5rem -1.5rem;
 }*/
 
-/* Normal slide-number display, not print slide numbers */
-#rslidy-content-section .rslidy-slide-number-display {
+
+
+/* Slide number display */
+.rslidy-slide-number-display {
   display: none;
-  inline-size: max-content;
   font-size: var(--rslidy-slide-number-font-size);
   line-height: 1;
   white-space: nowrap;
-  z-index: 5;
   pointer-events: none;
 }
 
-/* Display slide numbers when enabled in the settings */
-#rslidy-content-section.rslidy-show-slide-numbers
+/* Show slide numbers when enabled */
+#rslidy-slide-container.rslidy-show-slide-numbers
+#rslidy-slide-number-strip
 .rslidy-slide-number-display {
   display: block;
 }
 
-/*
-Pinned mode.
-
-The number remains visible while the slide container scrolls. Unlike
-position: fixed, sticky positioning is relative to the Rslidy content
-container rather than the browser viewport.
-
-Because the element participates in the content section's normal layout,
-the available inline size already excludes the vertical scrollbar.
-*/
-#rslidy-content-section.rslidy-pin-slide-numbers
-> .rslidy-slide-number-display {
-  position: sticky;
-
-  top: calc(
-          100% - var(--rslidy-slide-number-font-size) - 1rem
-  );
-
-  width: fit-content;
-  margin-left: auto;
-  margin-right: 1rem;
-}
-
-/*
-Unpinned mode.
-
-The element is moved into the current slide and placed after its content.
-On standard flex-based slides, margin-block-start: auto places it at the
-visual bottom when the content is short. For overflowing slides, the user
-must scroll to the end to see it.
-*/
-#rslidy-content-section:not(.rslidy-pin-slide-numbers)
-.slide > .rslidy-slide-number-display {
-  position: static;
-  align-self: flex-end;
-  margin-top: auto;
-
-  /*
-   * Move it into the existing slide margin rather
-   * than consuming slide content space.
-   */
-  margin-right: -1.5rem;
-}
-
+/* Hide slide numbers when printing */
 @media print {
-  #rslidy-content-section .rslidy-slide-number-display {
+  .rslidy-slide-number-display,
+  #rslidy-slide-number-strip,
+  #rslidy-slide-scroll-spacer {
     display: none !important;
-    visibility: hidden !important;
   }
 }
+

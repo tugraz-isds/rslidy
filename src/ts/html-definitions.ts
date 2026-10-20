@@ -172,18 +172,45 @@ role="region" aria-label="Help" tabindex="0">
 </div>`;
 
 export const content_section = `
-<div id="rslidy-row-flex" aria-label="Rslidy slide deck, press h for help">
-  <nav id="rslidy-overview-slides" class="rslidy-ui" tabindex="0" aria-label="slide overview"></nav>
-  <main id="rslidy-content-section" role="region" aria-label="Slides">
-    <div id="rslidy-trapezoid-wrapper-display" class="rslidy-ui">
-      <div id="rslidy-tb-display-trapezoid">
-        <button id="rslidy-button-current" class="rslidy-display-button" title="`+t.toolbar[12]+`">
-          <span class="rslidy-tb-button rslidy-tb-display">`+i.one_slide_icon+`</span>
-        </button>
+<div id="rslidy-row-flex"
+     aria-label="Rslidy slide deck, press h for help">
+
+  <nav id="rslidy-overview-slides"
+       class="rslidy-ui"
+       tabindex="0"
+       aria-label="slide overview"></nav>
+
+  <div id="rslidy-slide-container">
+
+    <main id="rslidy-content-section"
+          role="region"
+          aria-label="Slides">
+
+      <div id="rslidy-trapezoid-wrapper-display"
+           class="rslidy-ui">
+        <div id="rslidy-tb-display-trapezoid">
+          <button id="rslidy-button-current"
+                  class="rslidy-display-button"
+                  title="`+t.toolbar[12]+`">
+            <span class="rslidy-tb-button rslidy-tb-display">
+              `+i.one_slide_icon+`
+            </span>
+          </button>
+        </div>
       </div>
+
+    </main>
+
+    <div id="rslidy-slide-number-strip">
+      <div class="rslidy-slide-number-display"></div>
     </div>
-  </main>
-  <nav id="rslidy-overview-toc" class="rslidy-ui" tabindex="0" aria-label="table of contents"></nav>
+
+  </div>
+
+  <nav id="rslidy-overview-toc"
+       class="rslidy-ui"
+       tabindex="0"
+       aria-label="table of contents"></nav>
 </div>`;
 
 export const notes_text = `
@@ -235,6 +262,14 @@ aria-label="Settings" tabindex="0">
     <input type="checkbox" value="ShowSlideNumbers" id="rslidy-checkbox-showslidenumbers" checked>
     <label for="rslidy-checkbox-showslidenumbers">`+i.slider_icon+`</label>
   </label>
+  <label
+  id="rslidy-checkbox-pinslidenumbers-text" class="rslidy-menu-content-settings rslidy-disabled" aria-disabled="true">
+  Pinned Slide Numbers
+  <input type="checkbox" value="PinSlideNumbers" id="rslidy-checkbox-pinslidenumbers" disabled >
+  <label for="rslidy-checkbox-pinslidenumbers">
+    `+i.slider_icon+`
+  </label>
+</label>
   
   <h4 class="rslidy-menu-header-settings-interaction">Interaction</h4>
   <label id="rslidy-checkbox-tilt-text" class="rslidy-menu-content-settings rslidy-disabled" aria-disabled="true">

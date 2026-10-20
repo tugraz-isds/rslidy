@@ -38,5 +38,10 @@
     "webpack": "^5.108.4",
     "webpack-stream": "^7.0.0",
     "yargs": "^18.0.0"
+  },
+  "scripts": {
+    "build": "gulp build",
+    "watch": "gulp watch",
+    "clean": "gulp clean"
   }
 }

@@ -98,6 +98,7 @@
 .rslidy-responsive-table td.rslidy-numeric,
 .rslidy-responsive-table th.rslidy-numeric {
  text-align: right;
+ font-variant-numeric: tabular-nums;
 }
 
 .rslidy-responsive-table tr.rslidy-text td {
@@ -121,6 +122,7 @@
 
 .rslidy-responsive-table tr.rslidy-numeric td {
  text-align: right;
+ font-variant-numeric: tabular-nums;
 }
 
 /* Default sort icon */
