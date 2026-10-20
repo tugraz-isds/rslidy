@@ -314,7 +314,7 @@ pnpm install
 
 Rslidy can be built with the command:
 ```
-pnpm exec gulp build
+pnpm build
 ```
 The `rslidy/build/` folder then contains Rslidy's main files, as
 well as some example presentations, which can be copied and adapted to
@@ -324,7 +324,7 @@ create new slide decks.
 There is also a gulp task `gulp watch`, which uses Browsersync
 to provide a more convenient development environment:
 ```
-pnpm exec gulp watch
+pnpm watch
 ```
 
 This task initiates a rebuild and synchronises the browser every time
@@ -332,11 +332,11 @@ a source files changes.
 
 A specific slide deck folder can be served using the `--slide` (or `-s`) flag:
 ```
-pnpm exec gulp watch --slide examples/layouts
+pnpm watch --slide examples/layouts
 ```
 or
 ```
-pnpm exec gulp watch --slide tests/stress-test
+pnpm watch --slide tests/stress-test
 ```
 The argument must refer to a folder within either the `examples/` or `tests/`
 directory. The task automatically serves the `index.html` file 
