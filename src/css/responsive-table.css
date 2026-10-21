@@ -30,14 +30,6 @@
  overflow-x: auto;
 }
 
-/* Empty-state message */
-.rslidy-no-results {
- color: light-dark(#888, #b8b8b8);
- font-size: 1.2em;
- margin-top: 1.25em;
- text-align: center;
-}
-
 /* Only apply zebra styling when .rslidy-zebra class is added */
 .rslidy-responsive-table.rslidy-zebra tr:nth-child(odd) {
  background-color: light-dark(#fff, #1f1f1f);

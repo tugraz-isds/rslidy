@@ -444,12 +444,10 @@ table:not(.rslidy-responsive-table) {
   display: block;
   width: 100%;
   max-width: 100%;
-
   border-collapse: collapse;
   border: none;
   background: transparent;
-
-  text-align: right;
+  text-align: right;       /* cells are right-aligned by default */
 }
 
 table:not(.rslidy-responsive-table) thead tr
@@ -481,14 +479,12 @@ table:not(.rslidy-responsive-table) td {
   border: none;
   background: transparent;
   font-variant-numeric: tabular-nums;   /* every digit one width */
-  text-align: right;
 }
 
 
 /* Header cells */
 table:not(.rslidy-responsive-table) th {
   font-weight: bold;
-  text-align: center;
 }
 
 
