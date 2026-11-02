@@ -1,0 +1,376 @@
+:root {
+  --primary-color: #0055cc;
+  --danger-color: #cc0000;
+  --success-color: green;
+  --text-main: #333;
+  --text-muted: #555;
+  --text-light: #888;
+}
+
+a {
+  color: var(--primary-color) !important;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.slide h1 {
+  font-size: 2.8rem;
+  margin-bottom: 1.5rem;
+}
+
+.slide h2 {
+  font-size: 2.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.list-large {
+  font-size: 2.2rem;
+  line-height: 1.6;
+}
+
+.slide li {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  line-height: 1.5;
+}
+
+.slide li li {
+  font-size: 1.7rem;
+  margin-bottom: 1rem;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-bold {
+  font-weight: bold;
+}
+
+.text-muted {
+  color: var(--text-muted);
+}
+
+.text-light {
+  color: var(--text-light);
+}
+
+.text-danger {
+  color: var(--danger-color);
+}
+
+.text-success {
+  color: var(--success-color);
+}
+
+.subtext {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.caption {
+  font-size: 1rem;
+  color: var(--text-muted);
+  margin-top: 0.5rem;
+  font-style: italic;
+}
+
+.footnote {
+  font-size: 1rem;
+  color: var(--text-muted);
+  margin-top: 1.5rem;
+  text-align: center;
+  width: 100%;
+}
+
+.footnote-left {
+  text-align: left;
+}
+
+.slide.cover {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 100%;
+}
+
+.slide.cover h1 {
+  font-size: 5.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.flex-col-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  flex-grow: 1;
+  justify-content: center;
+}
+
+.flex-row-between {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.4rem;
+  line-height: 1.6;
+  width: 100%;
+}
+
+.flex-row-around {
+  display: flex;
+  justify-content: space-around;
+  font-size: 1.4rem;
+  line-height: 1.6;
+  margin-top: 3rem;
+}
+
+.col-text {
+  width: 55%;
+}
+
+.col-image {
+  width: 40%;
+  text-align: center;
+}
+
+.col-half {
+  width: 45%;
+}
+
+.example-img {
+  max-height: 45vh;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+.demo-wrapper {
+  width: 100%;
+  max-width: 50rem;
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+.demo-controls {
+  margin-top: 1rem;
+  text-align: center;
+  width: 70%;
+  max-width: 50rem;
+}
+
+.control-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1rem;
+  color: var(--text-muted);
+  margin-bottom: 0.5rem;
+}
+
+.range-slider {
+  width: 100%;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+
+svg.demo-svg {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+  font-family: sans-serif;
+}
+
+svg.demo-svg-box {
+  background-color: #ffffff;
+  border-radius: 0.5rem;
+  padding: 0.6rem;
+}
+
+.switch-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+  color: var(--text-muted);
+}
+
+.switch-label-left {
+  display: inline-block;
+  width: 12.5rem;
+  text-align: right;
+}
+
+.switch-label-right {
+  display: inline-block;
+  width: 12.5rem;
+  text-align: left;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 3.75rem;
+  height: 2.125rem;
+  margin: 0 1rem;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider-toggle {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--success-color);
+  transition: .4s;
+  border-radius: 2.125rem;
+}
+
+.slider-toggle:before {
+  position: absolute;
+  content: "";
+  height: 1.625rem;
+  width: 1.625rem;
+  left: 0.25rem;
+  bottom: 0.25rem;
+  background-color: white;
+  transition: .4s;
+  border-radius: 50%;
+}
+
+input:checked+.slider-toggle {
+  background-color: var(--danger-color);
+}
+
+input:checked+.slider-toggle:before {
+  transform: translateX(1.625rem);
+}
+
+.liintro {
+  font-style: italic;
+}
+
+/*
+ * Extracted from the deck's inline style attributes.
+ * Apply these classes in index.html in place of the original style attributes.
+ */
+
+.deck-style-01 {
+  padding: 0 4rem;
+}
+
+.deck-style-02 {
+  text-align: center;
+  margin-bottom: 8rem;
+}
+
+.deck-style-03 {
+  width: 100%;
+  text-align: left;
+}
+
+.deck-style-04 {
+  margin-bottom: 4rem;
+  line-height: 1.4;
+}
+
+.deck-style-05 {
+  margin: 0;
+  width: auto;
+}
+
+.deck-style-06 {
+  font-size: 1.3rem;
+  color: var(--text-main);
+}
+
+.deck-style-07 {
+  width: auto;
+  height: 16rem;
+  margin-bottom: 2rem;
+}
+
+.deck-style-08 {
+  width: auto;
+  height: 30rem;
+  margin-bottom: 2rem;
+}
+
+.deck-style-09 {
+  max-width: 20rem;
+}
+
+.deck-style-10 {
+  font-size: 1.2rem;
+}
+
+.deck-style-11 {
+  font-size: 1.2rem;
+  margin-top: 1.5rem;
+}
+
+.deck-style-12 {
+  height: 35vh;
+}
+
+.deck-style-13 {
+  max-width: 25rem;
+}
+
+.deck-style-14 {
+  max-width: 650px;
+}
+
+.deck-style-15 {
+  transition: r 0.4s ease;
+}
+
+.deck-style-16 {
+  width: 100%;
+}
+
+.deck-style-17 {
+  max-width: 950px;
+  position: relative;
+}
+
+.deck-style-18 {
+  width: 100%;
+  height: 550px;
+  overflow: hidden;
+  border-radius: 0.5rem;
+  background: #e0f3ff;
+}
+
+.deck-style-19 {
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+  width: 120px;
+  height: 350px;
+  overflow: visible;
+}
+
+.deck-style-20 {
+  max-width: 45rem;
+  margin-bottom: 1rem;
+}
+
+.deck-style-21 {
+  margin-bottom: 1.5rem;
+}
+
+.deck-style-22 {
+  font-size: 0.8em;
+  word-break: break-all;
+}
