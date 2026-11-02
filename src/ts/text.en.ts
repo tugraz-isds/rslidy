@@ -111,8 +111,8 @@ export const print_settings = [
 
 export const toolbar = [
   `Show Toolbar (T)`,
-  `Slide Overview (O)`,
   `Hide Toolbar (T)`,
+  `Slide Overview (O)`,
   `First Slide (Home)`,
   `Previous Slide (←)`,
   `Next Slide (→)`,

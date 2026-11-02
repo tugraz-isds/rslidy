@@ -68,8 +68,8 @@
 .rslidy-responsive-table.rslidy-disable-sorting th::before,
 .rslidy-responsive-table.rslidy-disable-sorting th.rslidy-sorted-asc::before,
 .rslidy-responsive-table.rslidy-disable-sorting th.rslidy-sorted-desc::before {
- content: none !important;
- pointer-events: none !important;
+ content: none;
+ pointer-events: none;
 }
 
 .rslidy-responsive-table.rslidy-disable-sorting th {
@@ -79,7 +79,7 @@
 
 /* Left-aligned text cells */
 .rslidy-responsive-table td.rslidy-text {
- text-align: left !important;
+ text-align: left;
 }
 
 .rslidy-responsive-table td:first-child {
@@ -99,7 +99,7 @@
 
 /* Date cells */
 .rslidy-responsive-table td.rslidy-date {
- text-align: left !important;
+ text-align: left;
 }
 
 /* Centred symbol cells */
@@ -334,20 +334,20 @@ th.rslidy-no-sort::before {
  }
 
  .rslidy-responsive-table td::before {
-  color: light-dark(#000, #fff) !important;
-  content: attr(data-label) !important;
-  font-weight: 700 !important;
-  left: 0 !important;
-  padding-left: 0.5em !important;
-  position: absolute !important;
-  text-align: left !important;
+  color: light-dark(#000, #fff);
+  content: attr(data-label) ;
+  font-weight: 700;
+  left: 0;
+  padding-left: 0.5em;
+  position: absolute;
+  text-align: left;
  }
 
  .rslidy-responsive-table td:first-of-type {
   background-color: light-dark(gainsboro, #3a3a3a);
   color: light-dark(#2b2b2b, #e0e0e0);
   font-weight: 400;
-  text-align: right !important;
+  text-align: right;
  }
 
  .rslidy-responsive-table td.rslidy-text,
@@ -363,7 +363,7 @@ th.rslidy-no-sort::before {
  .rslidy-responsive-table tr.rslidy-text > td,
  .rslidy-responsive-table tr.rslidy-symbol > td,
  .rslidy-responsive-table tr.rslidy-numeric > td {
-  text-align: right !important;
+  text-align: right;
  }
 
  .rslidy-responsive-table-text-scaling {
@@ -410,75 +410,76 @@ th.rslidy-no-sort::before {
  }
 }
 
+
 /* ------------------------------------------------------------------ */
 /* Print fallback                                                     */
 /* ------------------------------------------------------------------ */
 @media print and (max-width: 40rem) {
  /* Responsive table base styles */
  .rslidy-responsive-table {
-  align-items: center !important;
-  display: flex !important;
-  flex-direction: column !important;
-  margin-left: auto !important;
-  margin-right: 5.5em !important;
-  text-align: center !important;
-  width: auto !important;
-  overflow-x: visible !important;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin-left: auto;
+  margin-right: 5.5em;
+  text-align: center;
+  width: auto;
+  overflow-x: visible;
  }
 
  .rslidy-responsive-table thead {
-  display: none !important;
+  display: none;
  }
 
  /* Centred symbol cells */
  .rslidy-responsive-table td.rslidy-symbol,
  .rslidy-responsive-table th.rslidy-symbol {
-  text-align: center !important;
+  text-align: center;
  }
 
  .rslidy-responsive-table tr.rslidy-symbol > td {
-  text-align: center !important;
+  text-align: center;
  }
 
  .rslidy-responsive-table tbody,
  .rslidy-responsive-table td,
  .rslidy-responsive-table tr {
-  display: block !important;
-  width: 100% !important;
+  display: block;
+  width: 100%;
  }
 
  .rslidy-responsive-table tr {
-  margin-bottom: 1em !important;
+  margin-bottom: 1em;
  }
 
  /* Table body cells */
  .rslidy-responsive-table td {
-  min-width: 15em !important;
-  padding-left: 10% !important;
-  position: relative !important;
-  text-align: right !important;
-  white-space: nowrap !important;
+  min-width: 15em;
+  padding-left: 10%;
+  position: relative;
+  text-align: right;
+  white-space: nowrap;
  }
 
  .rslidy-responsive-table td::before {
-  color: light-dark(#000, #fff) !important;
-  content: attr(data-label) !important;
-  font-weight: 700 !important;
-  left: 0 !important;
-  padding-left: 0.5em !important;
-  position: absolute !important;
-  text-align: left !important;
+  color: light-dark(#000, #fff);
+  content: attr(data-label);
+  font-weight: 700;
+  left: 0;
+  padding-left: 0.5em;
+  position: absolute;
+  text-align: left;
  }
 
  .rslidy-responsive-table td:first-of-type {
-  background-color: light-dark(#eaf1f5, #26333a) !important;
-  color: light-dark(#2b2b2b, #e0e0e0) !important;
-  font-weight: 400 !important;
+  background-color: light-dark(#eaf1f5, #26333a);
+  color: light-dark(#2b2b2b, #e0e0e0);
+  font-weight: 400;
  }
 
  /* Left-aligned text cells */
  .rslidy-responsive-table td.rslidy-text {
-  text-align: left !important;
+  text-align: left;
  }
 
  .rslidy-responsive-table tr.rslidy-text > td {
@@ -486,10 +487,11 @@ th.rslidy-no-sort::before {
  }
 
  .rslidy-responsive-table td:first-child {
-  text-align: right !important;
+  text-align: right;
  }
 
  .rslidy-responsive-table tr.rslidy-numeric > td {
   text-align: right;
  }
 }
+

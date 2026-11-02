@@ -179,9 +179,6 @@ export class PrintSettingsComponent {
             : selectedPaperSize.height;
 
     css += `
-    @page { 
-      size: ${pageSizeSyntax};
-    }
     html, body {
       width: 100% !important;
       height: 100% !important;
@@ -232,8 +229,8 @@ export class PrintSettingsComponent {
           css += `
             #rslidy-content-section .slide {
               height: auto !important;
-              max-width: ${window.innerWidth}px !important;
-            }
+              max-width: 100%;
+              width: ${window.innerWidth}px !important;}
           `;
           break;
         case "fit-page-width":
@@ -309,8 +306,15 @@ export class PrintSettingsComponent {
       css += `body { font-size: ${font_size.value}%; }`;
     }
 
+
     css += "\n}";
 
+    // Apply the selected paper size and orientation.
+        css += `
+      @page {
+        size: ${pageSize} ${orientation};
+      }
+    `;
     // 5. Screen Mask Styling (Prevents layout/unhide flashes on the active workspace)
     css += `
       @media screen {

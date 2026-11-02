@@ -311,6 +311,12 @@ export class SettingsComponent {
     const slides = Array.from(
         contentSection.querySelectorAll<HTMLElement>(".slide")
     );
+    container.classList.toggle(
+        "rslidy-active-titleslide",
+        slides[currentIndex]?.classList.contains(
+            "rslidy-titleslide"
+        ) ?? false
+    );
 
     display.textContent = `${currentIndex + 1} / ${slides.length}`;
 

@@ -82,6 +82,11 @@
   display: block;
 }
 
+/* Indent pinned slide numbers as a subsetting */
+#rslidy-checkbox-pinslidenumbers-text {
+  padding-left: 2rem;
+}
+
 /* Group of related controls */
 .rslidy-setting-group {
   text-align: right;

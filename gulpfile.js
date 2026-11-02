@@ -29,7 +29,7 @@ const argv = require('yargs/yargs')(hideBin(process.argv))
 const header = require('gulp-header');
 const cssHeader = `/* Rslidy version ${version} CSS */\n`;
 
-console.log('[Gulp] Using version:', version);
+console.log('[Gulp] Using Rslidy version:', version);
 
 const paths = {
   src: './src/',

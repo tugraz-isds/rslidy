@@ -83,6 +83,12 @@ img.rslidy-svg {
   object-fit: contain;
 }
 
+.slide img[src$=".svg" i] {
+  max-height: 40rem;
+  width: auto;
+  object-fit: contain;
+}
+
 /* Left-aligned figure */
 .rslidy-figure-left {
   margin-left: 0;
@@ -444,10 +450,11 @@ table:not(.rslidy-responsive-table) {
   display: block;
   width: 100%;
   max-width: 100%;
+
   border-collapse: collapse;
   border: none;
   background: transparent;
-  text-align: right;       /* cells are right-aligned by default */
+  text-align: right;
 }
 
 table:not(.rslidy-responsive-table) thead tr

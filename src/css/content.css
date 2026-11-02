@@ -106,9 +106,6 @@
 }
 
 
-
-
-
 /* Slide area */
 #rslidy-slide-container {
  flex: 1 1 auto;
@@ -162,7 +159,7 @@
  width: 100%;
  min-width: 0;
 
- padding: 0.5rem 1rem 1rem;
+ padding: 0.5rem 1.3rem 1rem 1rem;
  text-align: right;
  background-color: light-dark(white, black);
 }
@@ -198,4 +195,32 @@
 #rslidy-slide-container.rslidy-show-slide-numbers:not(.rslidy-pin-slide-numbers)
 #rslidy-content-section > .slide {
  transition-property: opacity, transform;
+}
+
+
+/* Overlay slide numbers directly on title slides */
+#rslidy-slide-container.rslidy-active-titleslide {
+ position: relative;
+}
+
+#rslidy-slide-container.rslidy-active-titleslide
+#rslidy-slide-number-strip {
+ position: absolute;
+ right: 0;
+ bottom: 0;
+ width: auto;
+ background: transparent;
+ z-index: 1;
+}
+
+/* Let the title slide fill the available height */
+#rslidy-slide-container.rslidy-active-titleslide
+#rslidy-content-section {
+ background: transparent;
+}
+
+#rslidy-slide-container.rslidy-active-titleslide
+.rslidy-titleslide {
+ bottom: 0;
+ min-height: 100%;
 }

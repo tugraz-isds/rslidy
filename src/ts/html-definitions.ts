@@ -419,11 +419,11 @@ export const toolbar_html = `
     <div id="rslidy-toolbar" role="region" aria-label="Toolbar">
       <div id="rslidy-toolbar-content">
         <div class="rslidy-float-left">
-          <button id="rslidy-button-overview" aria-expanded="false" class="rslidy-toolbar-button" title="`+t.toolbar[1]+`">
-            <i class="rslidy-tb-button">`+i.overview_icon+`</i>
-          </button>
-          <button id="rslidy-button-hide" class="rslidy-toolbar-button" title="`+t.toolbar[2]+`">
+          <button id="rslidy-button-hide" class="rslidy-toolbar-button" title="`+t.toolbar[1]+`">
             <i class="rslidy-tb-button">`+i.hide_icon+`</i>
+          </button>
+          <button id="rslidy-button-overview" aria-expanded="false" class="rslidy-toolbar-button" title="`+t.toolbar[2]+`">
+            <i class="rslidy-tb-button">`+i.overview_icon+`</i>
           </button>
           <button id="rslidy-button-all" class="rslidy-toolbar-button" title="`+t.toolbar[11]+`">
             <span class="rslidy-tb-button">`+i.all_slides_icon+`</span>
