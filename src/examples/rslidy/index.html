@@ -2,22 +2,21 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 
 <head>
-<meta charset="UTF-8"/>
+  <meta charset="UTF-8"/>
 
-<!-- for css3 media queries to work properly on mobile devices-->
-<meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <!-- for css3 media queries to work properly on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
-<title>Rslidy</title> 
+  <title>Rslidy</title>
 
-<link rel="stylesheet" href="rslidy.min.css"/>
-<script type="module" src="rslidy.min.js"></script>
+  <link rel="stylesheet" href="rslidy.min.css"/>
+  <script type="module" src="rslidy.min.js"></script>
 
-<!-- for custom css sheets-->
-<link rel="stylesheet" href="slides.css"/>
+  <!-- for custom css sheets-->
 
-<!-- Source code highlighting with Prism -->
-<link rel="stylesheet" href="prism/prism.css"/>
-<script src="prism/prism.js"></script>
+  <!-- Source code highlighting with Prism -->
+  <link rel="stylesheet" href="prism/prism.css"/>
+  <script src="prism/prism.js"></script>
 
 
 </head>
@@ -29,37 +28,37 @@
 
 
 <section class="rslidy-titleslide">
-<h1>Rslidy</h1>
-<h2>Lightweight, Accessible, and Responsive HTML Slide Decks</h2>
+  <h1>Rslidy</h1>
+  <h2>Lightweight, Accessible, and Responsive HTML Slide Decks</h2>
 
-<h3>
-Keith Andrews and Fabian Platzer<br/><br/>
-HCC, Graz University of Technology, Austria<br/>
-</h3>
+  <h3>
+    Keith Andrews and Fabian Platzer<br/><br/>
+    HCC, Graz University of Technology, Austria<br/>
+  </h3>
 
-<p>
-Github<br/>
-<a href="https://github.com/tugraz-isds/rslidy/">
-<code>https://github.com/tugraz-isds/rslidy/</code></a>
-</p>
+  <p>
+    Github<br/>
+    <a href="https://github.com/tugraz-isds/rslidy/">
+      <code>https://github.com/tugraz-isds/rslidy/</code></a>
+  </p>
 
-<p>
-Live Demo Slides<br/>
-<a href="https://tugraz-isds.github.io/rslidy/">
-<code>https://tugraz-isds.github.io/rslidy/</code></a>
-</p>
+  <p>
+    Live Demo Slides<br/>
+    <a href="https://tugraz-isds.github.io/rslidy/">
+      <code>https://tugraz-isds.github.io/rslidy/</code></a>
+  </p>
 
-<p>
-Historical Web Site<br/>
-<a href="https://projects.isds.tugraz.at/rslidy/">
-<code>https://projects.isds.tugraz.at/rslidy/</code></a>
-</p>
+  <p>
+    Historical Web Site<br/>
+    <a href="https://projects.isds.tugraz.at/rslidy/">
+      <code>https://projects.isds.tugraz.at/rslidy/</code></a>
+  </p>
 
-<div id="rslidy-location">
-<p>
-Frontend Graz Meetup, Mon 29 Jun 2026
-</p>
-</div>
+  <div id="rslidy-location">
+    <p>
+      Frontend Graz Meetup, Mon 29 Jun 2026
+    </p>
+  </div>
 </section>
 
 
@@ -71,51 +70,51 @@ Frontend Graz Meetup, Mon 29 Jun 2026
 
 
 <section>
-<h2>Rslidy</h2>
+  <h2>Rslidy</h2>
 
-<div class="columns">
-  <ul class="item-auto">
-  <li>Inspired by Slidy and Slidy2.</li>
+  <div class="rslidy-columns-even">
+    <ul class="rslidy-item-auto">
+      <li>Inspired by Slidy and Slidy2.</li>
 
-  <li>Responsive HTML, CSS, JavaScript (TypeScript).</li>
+      <li>Responsive HTML, CSS, JavaScript (TypeScript).</li>
 
-<li>
-Slides are defined in blocks <code class="language-html small-code">&lt;div
-class="slide"&gt;...&lt;/div&gt;</code> or <code class="language-html small-code">&lt;section&gt;...&lt;/section&gt;</code>.
-</li>
+      <li>
+        Slides are defined in blocks <code class="language-html small-code">&lt;div
+        class="slide"&gt;...&lt;/div&gt;</code> or <code class="language-html small-code">&lt;section&gt;...&lt;/section&gt;</code>.
+      </li>
 
-  <li>No other dependencies.</li>
+      <li>No other dependencies.</li>
 
-  <li>Lightweight.</li>
-  </ul>
-</div>
+      <li>Lightweight.</li>
+    </ul>
+  </div>
 
 
-<table class="rslidy-responsive-table rslidy-disable-sorting">
-<caption>Rslidy File Sizes</caption>
-<thead>
-<tr>
-  <th scope="col">File</th>
-  <th scope="col" class="numeric">Size (Bytes)</th>
-  <th scope="col" class="numeric">Minified Size (Bytes)</th>
-  <th scope="col" class="numeric">Minified and Gzipped (Bytes)</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-  <td>rslidy.js</td>
-  <td>173,422</td>
-  <td>93,478</td>
-  <td>20,744</td>
-</tr>
-<tr>
-  <td>rslidy.css</td>
-  <td>59,305</td>
-  <td>43,843</td>
-  <td>10,360</td>
-</tr>
-</tbody>
-</table>
+  <table class="rslidy-responsive-table rslidy-disable-sorting">
+    <caption>Rslidy File Sizes</caption>
+    <thead>
+    <tr>
+      <th scope="col">File</th>
+      <th scope="col" class="rslidy-numeric">Size (Bytes)</th>
+      <th scope="col" class="rslidy-numeric">Minified Size (Bytes)</th>
+      <th scope="col" class="rslidy-numeric">Minified and Gzipped (Bytes)</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>rslidy.js</td>
+      <td>173,422</td>
+      <td>93,478</td>
+      <td>20,744</td>
+    </tr>
+    <tr>
+      <td>rslidy.css</td>
+      <td>59,305</td>
+      <td>43,843</td>
+      <td>10,360</td>
+    </tr>
+    </tbody>
+  </table>
 </section>
 
 
@@ -128,53 +127,34 @@ class="slide"&gt;...&lt;/div&gt;</code> or <code class="language-html small-code
 
 
 <section>
-<h2>Navigation</h2>
+  <h2>Navigation</h2>
 
-<div class="columns">
-  <ul class="item-auto">
-    <li>Animated slide transitions.</li>
-    <li>Incremental bullet display.</li>
-    <li>Navigable progress bar.</li>
-    <li>All Slides view.</li>
-  </ul>
-</div>
+  <div class="rslidy-columns-even">
+    <ul class="rslidy-item-auto">
+      <li>Animated slide transitions.</li>
+      <li>Incremental bullet display.</li>
+      <li>Navigable progress bar.</li>
+      <li>All Slides view.</li>
+    </ul>
+  </div>
 
 </section>
 
 
 
 <section>
-<h2>Five Panels</h2>
+  <h2>Five Panels</h2>
 
-<div class="columns">
-  <ul class="item-auto">
-    <li>Slide Overview panel</li>
-    <li>Table of Contents panel.</li>
-    <li>Settings panel.</li>
-    <li>Print Settings panel.</li>
-    <li>Help panel.</li>
-  </ul>
-</div>
+  <div class="rslidy-columns-even">
+    <ul class="rslidy-item-auto">
+      <li>Slide Overview panel</li>
+      <li>Table of Contents panel.</li>
+      <li>Settings panel.</li>
+      <li>Print Settings panel.</li>
+      <li>Help panel.</li>
+    </ul>
+  </div>
 
-</section>
-
-
-
-
-
-
-<section>
-<h2>Responsive Interactions</h2>
-
-<div class="columns">
-  <ul class="item-auto">
-    <li>Portrait + landscape.</li>
-    <li>Swipe, pinch, tap.</li>
-    <li>Tilt, shake.</li>
-    <li>Keyboard.</li>
-    <li>Mouse pointer, mouse wheel.</li>
-  </ul>
-</div>
 </section>
 
 
@@ -182,91 +162,110 @@ class="slide"&gt;...&lt;/div&gt;</code> or <code class="language-html small-code
 
 
 
+<section>
+  <h2>Responsive Interactions</h2>
+
+  <div class="rslidy-columns-even">
+    <ul class="rslidy-item-auto">
+      <li>Portrait + landscape.</li>
+      <li>Swipe, pinch, tap.</li>
+      <li>Tilt, shake.</li>
+      <li>Keyboard.</li>
+      <li>Mouse pointer, mouse wheel.</li>
+    </ul>
+  </div>
+</section>
+
+
+
+
+
+
 
 <section>
 
-<h2>Image Viewer</h2>
+  <h2>Image Viewer</h2>
 
-<figure>
-  <div class="rslidy-large-images">
+  <figure>
+    <div class="rslidy-large-images">
       <img src="images/image_viewer_example_slide.png"
            alt="Rslidy Image Viewer"/>
-  </div>
-  <figcaption>
-    The image viewer is automatically attached to every image.<br/>
-    Pan and zoom via mouse, keyboard, or on-screen controls.<br/>
-    <span class="credit">Screen capture taken from Rslidy.</span>
-  </figcaption>
-</figure>
-
-</section>
-
-
-
-
-
-
-<section>
-
-<h2>Settings</h2>
-
-<div class="columns">
-  <ul class="item-auto">
-    <li>Toggle features.</li>
-    <li>Adjust font sizes.</li>
-    <li>Print style sheet.</li>
-    <li>Both stored in localstorage (if available).</li>
-  </ul>
-
-</div>
-
-</section>
-
-
-
-
-<section>
-
-<h2>Accessibility</h2>
-
-<div class="columns">
-  <ul class="item-auto">
-    <li>ARIA (Accessible Rich Internet Applications) roles and properties, updated at runtime.</li>
-    <li>Accessible HTML elements, such as <code>&lt;nav&gt;</code> and <code>&lt;main&gt;</code>.</li>
-    <li>Fully navigable with keyboard shortcuts.</li>
-    <li>Font sizes are freely adjustable.</li>
-    <li>Screen reader friendly. (Tested with JAWS and NVDA. Special thanks go to Christopher Kopel.)</li>
-  </ul>
-</div>
-
-</section>
-
-
-
-
-<section>
-<h2>Gesture Support</h2>
-<div class="rslidy-columns-even">
-<div class="rslidy-column">
-  <ul class="item-auto">
-    <li>Swipe.</li>
-    <li>Margin tap (similar to that of e-readers).</li>
-    <li>Tilt/Tip.</li>
-    <li>Shake.</li>
-  </ul>
-</div>
-<div class="rslidy-column">
-  <figure>
-    <div class="rslidy-images">
-      <img src="images/tilt-tip-gestures.svg" alt="A graphic describing the tilt and tip gestures available in Rslidy." />
     </div>
     <figcaption>
-      Tilt and tip gestures can be used for navigation (in addition to swipe and tap gestures).<br/>
-      <span class="credit">Illustration made by the author using Inkscape.</span>
+      The image viewer is automatically attached to every image.<br/>
+      Pan and zoom via mouse, keyboard, or on-screen controls.<br/>
+      <span class="rslidy-credit">Screen capture taken from Rslidy.</span>
     </figcaption>
   </figure>
-</div>
-</div>
+
+</section>
+
+
+
+
+
+
+<section>
+
+  <h2>Settings</h2>
+
+  <div class="rslidy-columns-even">
+    <ul class="rslidy-item-auto">
+      <li>Toggle features.</li>
+      <li>Adjust font sizes.</li>
+      <li>Print style sheet.</li>
+      <li>Both stored in localstorage (if available).</li>
+    </ul>
+
+  </div>
+
+</section>
+
+
+
+
+<section>
+
+  <h2>Accessibility</h2>
+
+  <div class="rslidy-columns-even">
+    <ul class="rslidy-item-auto">
+      <li>ARIA (Accessible Rich Internet Applications) roles and properties, updated at runtime.</li>
+      <li>Accessible HTML elements, such as <code>&lt;nav&gt;</code> and <code>&lt;main&gt;</code>.</li>
+      <li>Fully navigable with keyboard shortcuts.</li>
+      <li>Font sizes are freely adjustable.</li>
+      <li>Screen reader friendly. (Tested with JAWS and NVDA. Special thanks go to Christopher Kopel.)</li>
+    </ul>
+  </div>
+
+</section>
+
+
+
+
+<section>
+  <h2>Gesture Support</h2>
+  <div class="rslidy-columns-even">
+    <div class="rslidy-column">
+      <ul class="rslidy-item-auto">
+        <li>Swipe.</li>
+        <li>Margin tap (similar to that of e-readers).</li>
+        <li>Tilt/Tip.</li>
+        <li>Shake.</li>
+      </ul>
+    </div>
+    <div class="rslidy-column">
+      <figure>
+        <div class="rslidy-images">
+          <img src="images/tilt-tip-gestures.svg" alt="A graphic describing the tilt and tip gestures available in Rslidy." />
+        </div>
+        <figcaption>
+          Tilt and tip gestures can be used for navigation (in addition to swipe and tap gestures).<br/>
+          <span class="rslidy-credit">Illustration made by the author using Inkscape.</span>
+        </figcaption>
+      </figure>
+    </div>
+  </div>
 </section>
 
 
@@ -290,21 +289,21 @@ When \(a \ne 0\), there are two solutions to \(ax^2 + bx + c = 0\) and they are
 
 
 <section>
-<h1>Source Code Highlighting using <a href="https://prismjs.com/">Prism.js</a></h1>
+  <h1>Source Code Highlighting using <a href="https://prismjs.com/">Prism.js</a></h1>
 
-<p>
-Displayed code snippets:
-</p>
-<pre><code class="language-html">&lt;body&gt;
+  <p>
+    Displayed code snippets:
+  </p>
+  <pre><code class="language-html">&lt;body&gt;
 &lt;section id="code-example"&gt;
   &lt;h1&gt;Source Code Highlighting!&lt;/h1&gt;
   &lt;h2&gt;Or through third-party tools.&lt;/h2&gt;
 &lt;/section&gt;
 &lt;/body&gt;</code></pre>
 
-<p>Inline code snippets:
-<code class="language-css">background-color: rgba(0, 0, 0, 0.9);</code>
-</p>
+  <p>Inline code snippets:
+    <code class="language-css">background-color: rgba(0, 0, 0, 0.9);</code>
+  </p>
 </section>
 
 
@@ -322,79 +321,79 @@ Displayed code snippets:
 
 
 <section id="live-code">
-<h1>Including Live Code for Interactive Content</h1>
-<div id="tree"></div>
+  <h1>Including Live Code for Interactive Content</h1>
+  <div id="tree"></div>
 
 
-<footer class="footer">
-  [Michael Glatzhofer's <a href="https://github.com/glouwa/d3-hypertree">Hypertree</a>
-  reads its data from a file and hence needs to be hosted on a server
-  in order for this demo to work.]<br/>
-  Fabian Platzer, Graz University of Technology, Fri 24 Jan 2025
-</footer>
+  <footer class="rslidy-footer">
+    [Michael Glatzhofer's <a href="https://github.com/glouwa/d3-hypertree">Hypertree</a>
+    reads its data from a file and hence needs to be hosted on a server
+    in order for this demo to work.]<br/>
+    Fabian Platzer, Graz University of Technology, Fri 24 Jan 2025
+  </footer>
 </section>
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-  const ht = new hyt.Hypertree(
-    {
-      parent: document.querySelector('#tree')
-    },
-  {
-    dataloader: hyt.loaders.fromFile('hypertree/products.d3.json'),
-    langInitBFS: (ht, n) => n.precalc.label = n.data.name,
-    
-    layout: {
-      rootWedge: {
-        angle: 6.283184,
-      }
-    },
-    
-    filter: {
-      maxlabels: 55
-    },
-    
-    geometry: {
-      layerOptions: {
-        'stem-arc': {
-          invisible: true,
-          hideOnDrag: true,
-        },
-        'center-node': {
-          invisible: true,
-          hideOnDrag: true,
-        },
-        'labels-force':
-          {
-            invisible: true,
-            hideOnDrag: true,
-          },
-        'labels':
-          {
-            invisible: false,
-            hideOnDrag: false,
-          }
-        
+  document.addEventListener('DOMContentLoaded', function() {
+    const ht = new hyt.Hypertree(
+      {
+        parent: document.querySelector('#tree')
       },
-    },
-    
-    interaction: {
-      λbounds: [.3, .84],
-      onNodeClick: (n, m, l) => {
-        ht.api.goto({ re: -n.layout.z.re, im: -n.layout.z.im }, null)
-          .then(() => ht.drawDetailFrame())
+      {
+        dataloader: hyt.loaders.fromFile('hypertree/products.d3.json'),
+        langInitBFS: (ht, n) => n.precalc.label = n.data.name,
+
+        layout: {
+          rootWedge: {
+            angle: 6.283184,
+          }
+        },
+
+        filter: {
+          maxlabels: 55
+        },
+
+        geometry: {
+          layerOptions: {
+            'stem-arc': {
+              invisible: true,
+              hideOnDrag: true,
+            },
+            'center-node': {
+              invisible: true,
+              hideOnDrag: true,
+            },
+            'labels-force':
+              {
+                invisible: true,
+                hideOnDrag: true,
+              },
+            'labels':
+              {
+                invisible: false,
+                hideOnDrag: false,
+              }
+
+          },
+        },
+
+        interaction: {
+          λbounds: [.3, .84],
+          onNodeClick: (n, m, l) => {
+            ht.api.goto({ re: -n.layout.z.re, im: -n.layout.z.im }, null)
+              .then(() => ht.drawDetailFrame())
+          }
+        }
       }
-    }
-  }
-)
-  
-  ht.initPromise
-    .then(() => new Promise((ok, err) => ht.animateUp(ok, err)))
-    .then(() => ht.drawDetailFrame())
-    .then(() => {
-      document.documentElement.classList.add('rslidy-ready');
-    });
-});
+    )
+
+    ht.initPromise
+      .then(() => new Promise((ok, err) => ht.animateUp(ok, err)))
+      .then(() => ht.drawDetailFrame())
+      .then(() => {
+        document.documentElement.classList.add('rslidy-ready');
+      });
+  });
 </script>
 
 
@@ -407,41 +406,41 @@ document.addEventListener('DOMContentLoaded', function() {
 <link rel="stylesheet" href="respvis/grouped-barchart.css"/>
 
 <section class="bar-chart">
-<h1>Responsive Charts using
-  <a href="https://github.com/tugraz-isds/respvis/">
-  RespVis</a></h1>
-<div id="chart"></div>
-<div class="credits">
-  <p>
-    Adapted from RespVis example<br/>
-    <a href="https://respvis-dev.netlify.app/barcharts/grouped-barchart/grouped-barchart">
-      <code>https://respvis-dev.netlify.app/barcharts/grouped-barchart/grouped-barchart</code></a>
-  </p>
-  <p>
-    Based on data from StatCounter<br/>
-    <a href="https://gs.statcounter.com/browser-market-share/">
-      <code>https://gs.statcounter.com/browser-market-share/</code></a>
-  </p>
-</div>
+  <h1>Responsive Charts using
+    <a href="https://github.com/tugraz-isds/respvis/">
+      RespVis</a></h1>
+  <div id="chart"></div>
+  <div class="rslidy-credits">
+    <p>
+      Adapted from RespVis example<br/>
+      <a href="https://respvis-dev.netlify.app/barcharts/grouped-barchart/grouped-barchart">
+        <code>https://respvis-dev.netlify.app/barcharts/grouped-barchart/grouped-barchart</code></a>
+    </p>
+    <p>
+      Based on data from StatCounter<br/>
+      <a href="https://gs.statcounter.com/browser-market-share/">
+        <code>https://gs.statcounter.com/browser-market-share/</code></a>
+    </p>
+  </div>
 
-<footer class="footer">
-  <a href="https://github.com/tugraz-isds/respvis">RespVis</a>
-  reads its data from a file and hence needs to be hosted on a server
-  in order for the chart to work correctly.]<br/>
-</footer>
+  <footer class="rslidy-footer">
+    <a href="https://github.com/tugraz-isds/respvis">RespVis</a>
+    reads its data from a file and hence needs to be hosted on a server
+    in order for the chart to work correctly.]<br/>
+  </footer>
 </section>
 
 <script type="module">
-import { renderGroupedBarChart } from "./respvis/grouped-barchart.js";
+  import { renderGroupedBarChart } from "./respvis/grouped-barchart.js";
 
-document.addEventListener('DOMContentLoaded', () => {
-  const chartElement = document.querySelector('#chart');
-  if (chartElement) {
-    renderGroupedBarChart('#chart');
-  } else {
-    console.error('#chart element not found');
-  }
-});
+  document.addEventListener('DOMContentLoaded', () => {
+    const chartElement = document.querySelector('#chart');
+    if (chartElement) {
+      renderGroupedBarChart('#chart');
+    } else {
+      console.error('#chart element not found');
+    }
+  });
 </script>
 
 
@@ -561,60 +560,60 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 <section>
-<h2>All Slides View</h2>
+  <h2>All Slides View</h2>
 
-<figure>
-  <div class="rslidy-large-images">
-  <video controls autoplay muted loop poster="images/all-slides.gif">
-    <source src="images/all-slides.mp4" type="video/mp4"/>
-    <img src="images/all-slides.gif" alt="An animation shows the all slides view, in which all slides are stacked vertically, generating a single scrollable HTML page." />
-  </video>
+  <figure>
+    <div class="rslidy-large-images">
+      <video controls autoplay muted loop poster="images/all-slides.gif">
+        <source src="images/all-slides.mp4" type="video/mp4"/>
+        <img src="images/all-slides.gif" alt="An animation shows the all slides view, in which all slides are stacked vertically, generating a single scrollable HTML page." />
+      </video>
+    </div>
+    <figcaption>
+      The all slides view arranges the slide deck into a single scrollable and searchable document.
+      <span class="rslidy-credit">Screen capture taken from Rslidy.</span>
+    </figcaption>
+  </figure>
+</section>
+
+
+
+
+
+
+
+
+
+
+<section>
+  <h2>Credits</h2>
+
+  <div class="rslidy-columns-even">
+    <ul class="rslidy-item-auto compact">
+
+      <li>Keith Andrews</li>
+      <!-- MSc 2024 -->
+      <li>Fabian Platzer</li>
+      <!-- MSc 2018 -->
+      <li>Patrick Hipp</li>
+      <!-- IAweb WS 2023 G1 -->
+      <li>Christopher Kopel</li>
+      <li>Gsellmann Inge, Heider Martin, Leitner Lukas, Patel Vrutanjali Rakesh</li>
+      <!-- IAweb WS 2018 G1a -->
+      <li>Angelika Droisner, Ana Korotaj</li>
+      <!-- IAweb WS 2017 G1 -->
+      <li>Thomas Eibl, Michael Glatzhofer, Christoph Heidenreich, Verena Schiffer</li>
+      <!-- BSc 02 Nov 2015 -->
+      <li>Markus Schofnegger</li>
+      <!-- IAweb WS 2016 G5 -->
+      <li>Rok Kogovšek, Alexei Kruglov, Fernando Pulido Ruiz, Helmut Zöhrer</li>
+      <!-- IAweb WS 2014 G1 -->
+      <li>Filippo Garolla, Sabine Lukas, Matthias Schlesinger, Karin Wilding</li>
+      <!-- IAweb WS 2013 G4 -->
+      <li>Elias Zeitfogel, Patrick Kasper, Karina Priebernig, Clemens Meinhart</li>
+    </ul>
+
   </div>
-  <figcaption>
-  The all slides view arranges the slide deck into a single scrollable and searchable document.
-  <span class="credit">Screen capture taken from Rslidy.</span>
-  </figcaption>
-</figure>
-</section>
-
-
-
-
-
-
-
-
-
-
-<section>
-<h2>Credits</h2>
-
-<div class="columns">
-  <ul class="item-auto compact">
-
-<li>Keith Andrews</li>
-<!-- MSc 2024 -->
-<li>Fabian Platzer</li>
-<!-- MSc 2018 -->
-<li>Patrick Hipp</li>
-<!-- IAweb WS 2023 G1 -->
-<li>Christopher Kopel</li>
-<li>Gsellmann Inge, Heider Martin, Leitner Lukas, Patel Vrutanjali Rakesh</li>
-<!-- IAweb WS 2018 G1a -->
-<li>Angelika Droisner, Ana Korotaj</li>
-<!-- IAweb WS 2017 G1 -->
-<li>Thomas Eibl, Michael Glatzhofer, Christoph Heidenreich, Verena Schiffer</li>
-<!-- BSc 02 Nov 2015 -->
-<li>Markus Schofnegger</li>
-<!-- IAweb WS 2016 G5 -->
-<li>Rok Kogovšek, Alexei Kruglov, Fernando Pulido Ruiz, Helmut Zöhrer</li>
-<!-- IAweb WS 2014 G1 -->
-<li>Filippo Garolla, Sabine Lukas, Matthias Schlesinger, Karin Wilding</li>
-<!-- IAweb WS 2013 G4 -->
-<li>Elias Zeitfogel, Patrick Kasper, Karina Priebernig, Clemens Meinhart</li>
-</ul>
-
-</div>
 
 </section>
 
@@ -623,21 +622,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 <section>
-<h2>Thank You!</h2>
+  <h2>Thank You!</h2>
 
-<p>
-Keith Andrews<br/>
-HCC, Graz University of Technology, Austria<br/>
-<a href="https://hcc.tugraz.at/keith/">
-<code>https://hcc.tugraz.at/keith/</code>
-</a>
-</p>
+  <p>
+    Keith Andrews<br/>
+    HCC, Graz University of Technology, Austria<br/>
+    <a href="https://hcc.tugraz.at/keith/">
+      <code>https://hcc.tugraz.at/keith/</code>
+    </a>
+  </p>
 
-<p>
-Github<br/>
-<a href="https://github.com/tugraz-isds/rslidy/">
-<code>https://github.com/tugraz-isds/rslidy/</code></a>
-</p>
+  <p>
+    Github<br/>
+    <a href="https://github.com/tugraz-isds/rslidy/">
+      <code>https://github.com/tugraz-isds/rslidy/</code></a>
+  </p>
 
 </section>
 
