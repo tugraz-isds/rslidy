@@ -1,3 +1,4 @@
+
 :root {
  color-scheme: light dark;
 }
@@ -48,6 +49,27 @@
  top: 0;
  z-index: 1;
  padding: 0.7em 0.9em 0.7em 1.5em;
+}
+
+/* Truncate long header text */
+.rslidy-responsive-table th .rslidy-header-text {
+ display: block;
+ max-width: 12em;
+ overflow: hidden;
+ text-overflow: ellipsis;
+ white-space: nowrap;
+}
+
+/* Hover target over the existing sort icon */
+.rslidy-responsive-table th .rslidy-sort-icon-hover {
+ position: absolute;
+ left: 0.3125em;
+ top: 50%;
+ transform: translateY(-50%);
+ width: 1.1em;
+ height: 1.1em;
+ cursor: pointer;
+ z-index: 2;
 }
 
 /* Table body cells */
@@ -171,7 +193,6 @@
  width: 100%;
 }
 
-/* Sort label inline on larger narrow containers */
 .rslidy-table-sort-mobile .rslidy-sort-label {
  font-size: inherit;
  font-weight: 500;
@@ -180,7 +201,6 @@
  flex-shrink: 0;
 }
 
-/* Controls container */
 .rslidy-table-sort-mobile .rslidy-controls-container {
  display: flex;
  align-items: center;
@@ -189,13 +209,11 @@
  flex-wrap: nowrap;
 }
 
-/* Select takes available space */
 .rslidy-table-sort-mobile .rslidy-select-container {
  flex: 1;
  min-width: 0;
 }
 
-/* Mobile sort column selector */
 .rslidy-table-sort-mobile select.rslidy-compact-select {
  font-size: inherit;
  padding-left: 0.5em;
@@ -216,7 +234,6 @@
  min-width: 10em;
 }
 
-/* Icon container - mobile sorting */
 .rslidy-table-sort-mobile .rslidy-icon-container {
  display: flex;
  align-items: center;
@@ -224,7 +241,6 @@
  flex-shrink: 0;
 }
 
-/* Mobile sort icon, visually similar to the desktop header icon */
 .rslidy-table-sort-mobile .rslidy-mobile-sort-icon {
  display: inline-block;
  width: 1.5em;
@@ -236,7 +252,6 @@
  background-size: contain;
 }
 
-/* Original order: both triangles white with black outline */
 .rslidy-table-sort-mobile .rslidy-mobile-sort-icon[data-dir="none"] {
  background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%20100%20120%27%3E%3Cstyle%3E%3Aroot%7Bcolor-scheme%3Alight%20dark%7D%3C%2Fstyle%3E%3Cpath%20d%3D%27M50%206%20L88%2042%20H12%20Z%27%20fill%3D%27light-dark%28%23ffffff%2C%23222222%29%27%20stroke%3D%27light-dark%28%23000000%2C%23ffffff%29%27%20stroke-width%3D%277%27%20stroke-linejoin%3D%27round%27%2F%3E%3Cpath%20d%3D%27M50%20114%20L12%2078%20H88%20Z%27%20fill%3D%27light-dark%28%23ffffff%2C%23222222%29%27%20stroke%3D%27light-dark%28%23000000%2C%23ffffff%29%27%20stroke-width%3D%277%27%20stroke-linejoin%3D%27round%27%2F%3E%3C%2Fsvg%3E");
 }
@@ -246,7 +261,7 @@
 }
 
 .rslidy-table-sort-mobile .rslidy-mobile-sort-icon[data-dir="desc"] {
- background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%20100%20120%27%3E%3Cstyle%3E%3Aroot%7Bcolor-scheme%3Alight%20dark%7D%3C%2Fstyle%3E%3Cpath%20d%3D%27M50%206%20L88%2042%20H12%20Z%27%20fill%3D%27light-dark%28%23ffffff%2C%23222222%29%27%20stroke%3D%27light-dark%28%23000000%2C%23ffffff%29%27%20stroke-width%3D%277%27%20stroke-linejoin%3D%27round%27%2F%3E%3Cpath%20d%3D%27M50%20114%20L12%2078%20H88%20Z%27%20fill%3D%27light-dark%28%23000000%2C%23ffffff%29%27%20stroke%3D%27light-dark%28%23000000%2C%23ffffff%29%27%20stroke-width%3D%277%27%20stroke-linejoin%3D%27round%27%2F%3E%3C%2Fsvg%3E");
+ background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%20100%20120%27%3E%3Cstyle%3E%3Aroot%7Bcolor-scheme%3Alight%20dark%7D%3C%2Fstyle%3E%3Cpath%20d%3D%27M50%206%20L88%2042%20H12%20Z%27%20fill%3D%27light-dark%28%23ffffff%2C%23222222%29%27%20stroke%3D%27light-dark%28%23000000%2C%23ffffff%29%27%20stroke-width%3D%277%27%20stroke-linejoin%3D%27round%27%2F%3E%3Cpath%20d%3D%27M50%20114%20L12%2078%20H88%20Z%27%20fill%3D%27light-dark%28%23ffffff%2C%23222222%29%27%20stroke%3D%27light-dark%28%23000000%2C%23ffffff%29%27%20stroke-width%3D%277%27%20stroke-linejoin%3D%27round%27%2F%3E%3C%2Fsvg%3E");
 }
 
 .rslidy-table-sort-mobile .rslidy-mobile-sort-icon:focus-visible {
@@ -261,11 +276,8 @@ th.rslidy-no-sort::before {
  content: none !important;
 }
 
-/* ------------------------------------------------------------------ */
-/* Container-based responsive behaviour                               */
-/* ------------------------------------------------------------------ */
+/* Container-based responsive behaviour */
 @container (max-width: 20em) {
- /* Container query wrapper */
  .rslidy-responsive-table-wrapper {
   overflow-x: hidden;
  }
@@ -291,7 +303,6 @@ th.rslidy-no-sort::before {
   min-width: 0;
  }
 
- /* Responsive table base styles */
  .rslidy-responsive-table {
   align-items: stretch;
   display: flex;
@@ -310,7 +321,6 @@ th.rslidy-no-sort::before {
 
  .rslidy-responsive-table tbody,
  .rslidy-responsive-table tr,
-  /* Table body cells */
  .rslidy-responsive-table td {
   display: block;
   width: 100%;
@@ -321,7 +331,6 @@ th.rslidy-no-sort::before {
   margin-bottom: 1em;
  }
 
- /* Table body cells */
  .rslidy-responsive-table td {
   min-width: 0;
   padding-left: 8.5em;
@@ -335,7 +344,7 @@ th.rslidy-no-sort::before {
 
  .rslidy-responsive-table td::before {
   color: light-dark(#000, #fff);
-  content: attr(data-label) ;
+  content: attr(data-label);
   font-weight: 700;
   left: 0;
   padding-left: 0.5em;
@@ -354,10 +363,8 @@ th.rslidy-no-sort::before {
  .rslidy-responsive-table td.rslidy-date,
  .rslidy-responsive-table th.rslidy-date,
  .rslidy-responsive-table th.rslidy-text,
-  /* Centred symbol cells */
  .rslidy-responsive-table td.rslidy-symbol,
  .rslidy-responsive-table th.rslidy-symbol,
-  /* Right-aligned numeric cells */
  .rslidy-responsive-table td.rslidy-numeric,
  .rslidy-responsive-table th.rslidy-numeric,
  .rslidy-responsive-table tr.rslidy-text > td,
@@ -410,12 +417,8 @@ th.rslidy-no-sort::before {
  }
 }
 
-
-/* ------------------------------------------------------------------ */
-/* Print fallback                                                     */
-/* ------------------------------------------------------------------ */
+/* Print fallback */
 @media print and (max-width: 40rem) {
- /* Responsive table base styles */
  .rslidy-responsive-table {
   align-items: center;
   display: flex;
@@ -431,7 +434,6 @@ th.rslidy-no-sort::before {
   display: none;
  }
 
- /* Centred symbol cells */
  .rslidy-responsive-table td.rslidy-symbol,
  .rslidy-responsive-table th.rslidy-symbol {
   text-align: center;
@@ -452,7 +454,6 @@ th.rslidy-no-sort::before {
   margin-bottom: 1em;
  }
 
- /* Table body cells */
  .rslidy-responsive-table td {
   min-width: 15em;
   padding-left: 10%;
@@ -477,7 +478,6 @@ th.rslidy-no-sort::before {
   font-weight: 400;
  }
 
- /* Left-aligned text cells */
  .rslidy-responsive-table td.rslidy-text {
   text-align: left;
  }
@@ -494,4 +494,3 @@ th.rslidy-no-sort::before {
   text-align: right;
  }
 }
-

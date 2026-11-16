@@ -1,9 +1,10 @@
+
 import { settings_html } from "./html-definitions";
 
 interface Data {
   slidefont: number;
   uifont: number;
-  tilt:  boolean;
+  tilt: boolean;
   shake: boolean;
   space: boolean;
   margintap: boolean;
@@ -19,13 +20,10 @@ export class SettingsComponent {
   private slidefont: number = 0;
   private uifont: number = 0;
 
-  // ---------------------------------------------------------------------------
-  // Shared
-  // sort state (desktop <-> mobile) per table instance
-  // ---------------------------------------------------------------------------
+  // Shared sort state (desktop <-> mobile)
   private sortStateByKey = new Map<
-    string,
-    { columnIndex: number | null; direction: "asc" | "desc" | null }
+      string,
+      { columnIndex: number | null; direction: "asc" | "desc" | null }
   >();
 
   constructor() {
@@ -36,43 +34,42 @@ export class SettingsComponent {
     });
 
     this.view =
-      window.rslidy.utils.prependHtmlString(document.body, settings_html);
+        window.rslidy.utils.prependHtmlString(document.body, settings_html);
 
-    // Parse default font sizes, in case the slide creator changes them
     this.default = window.rslidy.utils.getEM("#rslidy-content-section .slide");
     this.default_ui = window.rslidy.utils.getEM(".rslidy-ui");
     this.default_footer = window.rslidy.utils.getEM("#rslidy-footer");
 
     this.view
-      .querySelector("#rslidy-button-font-plus")
-      .addEventListener("click", e => this.changeSlideFont(e, 1));
+        .querySelector("#rslidy-button-font-plus")
+        .addEventListener("click", e => this.changeSlideFont(e, 1));
     this.view
-      .querySelector("#rslidy-button-font-reset")
-      .addEventListener("click", e => this.changeSlideFont(e, 0));
+        .querySelector("#rslidy-button-font-reset")
+        .addEventListener("click", e => this.changeSlideFont(e, 0));
     this.view
-      .querySelector("#rslidy-button-font-minus")
-      .addEventListener("click", e => this.changeSlideFont(e, -1));
+        .querySelector("#rslidy-button-font-minus")
+        .addEventListener("click", e => this.changeSlideFont(e, -1));
     this.view
-      .querySelector("#rslidy-button-font-plus-ui")
-      .addEventListener("click", e => this.changeUIFont(e, 1));
+        .querySelector("#rslidy-button-font-plus-ui")
+        .addEventListener("click", e => this.changeUIFont(e, 1));
     this.view
-      .querySelector("#rslidy-button-font-reset-ui")
-      .addEventListener("click", e => this.changeUIFont(e, 0));
+        .querySelector("#rslidy-button-font-reset-ui")
+        .addEventListener("click", e => this.changeUIFont(e, 0));
     this.view
-      .querySelector("#rslidy-button-font-minus-ui")
-      .addEventListener("click", e => this.changeUIFont(e, -1));
+        .querySelector("#rslidy-button-font-minus-ui")
+        .addEventListener("click", e => this.changeUIFont(e, -1));
     this.view
-      .querySelector("#rslidy-checkbox-tilt")
-      .addEventListener("click", e => window.rslidy.toolbar.closeMenuOnSelection());
+        .querySelector("#rslidy-checkbox-tilt")
+        .addEventListener("click", e => window.rslidy.toolbar.closeMenuOnSelection());
     this.view
-      .querySelector("#rslidy-checkbox-shake")
-      .addEventListener("click", e => window.rslidy.toolbar.closeMenuOnSelection());
+        .querySelector("#rslidy-checkbox-shake")
+        .addEventListener("click", e => window.rslidy.toolbar.closeMenuOnSelection());
     this.view
-      .querySelector("#rslidy-checkbox-space")
-      .addEventListener("click", e => window.rslidy.toolbar.closeMenuOnSelection());
+        .querySelector("#rslidy-checkbox-space")
+        .addEventListener("click", e => window.rslidy.toolbar.closeMenuOnSelection());
     this.view
-      .querySelector("#rslidy-checkbox-margintap")
-      .addEventListener("click", e => window.rslidy.toolbar.closeMenuOnSelection());
+        .querySelector("#rslidy-checkbox-margintap")
+        .addEventListener("click", e => window.rslidy.toolbar.closeMenuOnSelection());
     this.view
         .querySelector("#rslidy-checkbox-showslidenumbers")
         .addEventListener("change", () => {
@@ -87,20 +84,15 @@ export class SettingsComponent {
           ) as HTMLInputElement;
 
           window.rslidy.pin_slide_numbers = pinCheckbox.checked;
-
           this.toggleSlideNumbers();
           window.rslidy.toolbar.closeMenuOnSelection();
         });
 
-    // Enable table sorting + keep desktop & mobile in sync
     this.setupTableSorting();
-    // If you already call this elsewhere, you can remove it here.
     this.applyResponsiveTableLabels();
   }
 
-  // ---
-  // Description: Load settings from the localStorage
-  // ---
+  // Load settings from localStorage
   loadSettings(): void {
     let item: string | null;
 
@@ -117,14 +109,14 @@ export class SettingsComponent {
       ) as HTMLInputElement;
 
       slideNumbersCheckbox.checked = window.rslidy.show_slide_numbers ?? true;
+
       const pinCheckbox = this.view.querySelector(
           "#rslidy-checkbox-pinslidenumbers"
       ) as HTMLInputElement;
 
-      pinCheckbox.checked =
-          window.rslidy.pin_slide_numbers ?? false;
-      this.toggleSlideNumbers();
+      pinCheckbox.checked = window.rslidy.pin_slide_numbers ?? false;
 
+      this.toggleSlideNumbers();
       return;
     }
 
@@ -133,9 +125,11 @@ export class SettingsComponent {
     if(data.slidefont != undefined)
       while(data.slidefont != this.slidefont)
         this.changeSlideFont(null, data.slidefont > 0 ? 1 : -1);
+
     if(data.uifont != undefined)
       while(data.uifont != this.uifont)
         this.changeUIFont(null, data.uifont > 0 ? 1 : -1);
+
     (<HTMLInputElement>this.view.querySelector("#rslidy-checkbox-tilt")).checked = data.tilt;
     (<HTMLInputElement>this.view.querySelector("#rslidy-checkbox-shake")).checked = data.shake;
     (<HTMLInputElement>this.view.querySelector("#rslidy-checkbox-space")).checked = data.space;
@@ -157,12 +151,11 @@ export class SettingsComponent {
         data.pinslidenumbers !== undefined
             ? data.pinslidenumbers
             : window.rslidy.pin_slide_numbers ?? false;
+
     this.toggleSlideNumbers();
   }
 
-  // ---
-  // Description: Save settings to the localStorage
-  // ---
+  // Save settings to localStorage
   public saveSettings(): void {
     try {
       localStorage.removeItem("rslidy");
@@ -171,8 +164,6 @@ export class SettingsComponent {
       console.log(e);
     }
   }
-
-
 
   private toggleSlideNumbers(): void {
     const showCheckbox = this.view.querySelector(
@@ -195,21 +186,10 @@ export class SettingsComponent {
 
     const showSlideNumbers = showCheckbox.checked;
 
-    // The pinned option can only be changed when slide
-    // numbers are enabled.
     pinCheckbox.disabled = !showSlideNumbers;
+    pinLabel.classList.toggle("rslidy-disabled", !showSlideNumbers);
+    pinLabel.setAttribute("aria-disabled", String(!showSlideNumbers));
 
-    pinLabel.classList.toggle(
-        "rslidy-disabled",
-        !showSlideNumbers
-    );
-
-    pinLabel.setAttribute(
-        "aria-disabled",
-        String(!showSlideNumbers)
-    );
-
-    // Preserve the user's pinning preference.
     window.rslidy.pin_slide_numbers = pinCheckbox.checked;
 
     slideContainer.classList.toggle(
@@ -222,19 +202,15 @@ export class SettingsComponent {
         showSlideNumbers && pinCheckbox.checked
     );
 
-    // Move the number into the correct container.
     this.updateSlideNumberPosition(
         window.rslidy.content.getCurrentSlideIndex()
     );
   }
 
-
-
-  // ---
-  // Description: Generate a JSON string for the localStorage
-  // ---
   generateJSON(): string {
-    const themeSelect = this.view.querySelector<HTMLSelectElement>("#rslidy-select-theme"); // declare it here
+    const themeSelect = this.view.querySelector<HTMLSelectElement>(
+        "#rslidy-select-theme"
+    );
 
     const data: Data = {
       slidefont: this.slidefont,
@@ -245,49 +221,38 @@ export class SettingsComponent {
       margintap: (<HTMLInputElement>this.view.querySelector("#rslidy-checkbox-margintap")).checked,
       showslidenumbers: (<HTMLInputElement>this.view.querySelector("#rslidy-checkbox-showslidenumbers")).checked,
       pinslidenumbers: (this.view.querySelector("#rslidy-checkbox-pinslidenumbers") as HTMLInputElement).checked
-    }
+    };
+
     return JSON.stringify(data);
   }
 
-  // ---
-  // Description: Used for final style adaptions.
-  // ---
   doCustomSettingAdaptions(): void {
-
-    // Block slide text selection if set
     if (window.rslidy.block_slide_text_selection) {
       var content_section: any = document.getElementById(
-        "rslidy-content-section"
+          "rslidy-content-section"
       );
       var original_slides: any = content_section.getElementsByClassName(
-        "slide"
+          "slide"
       );
+
       for (var i: number = 0; i < original_slides.length; i++)
         original_slides[i].classList.add("rslidy-noselect");
     }
   }
 
-
-
-
-
   public updateSlideNumberPosition(slideIndex?: number): void {
     const container = document.getElementById(
         "rslidy-slide-container"
     );
-
     const contentSection = document.getElementById(
         "rslidy-content-section"
     );
-
     const strip = document.getElementById(
         "rslidy-slide-number-strip"
     );
-
     const display = document.querySelector<HTMLElement>(
         ".rslidy-slide-number-display"
     );
-
     const showCheckbox = this.view.querySelector<HTMLInputElement>(
         "#rslidy-checkbox-showslidenumbers"
     );
@@ -311,6 +276,7 @@ export class SettingsComponent {
     const slides = Array.from(
         contentSection.querySelectorAll<HTMLElement>(".slide")
     );
+
     container.classList.toggle(
         "rslidy-active-titleslide",
         slides[currentIndex]?.classList.contains(
@@ -330,8 +296,6 @@ export class SettingsComponent {
         pinned
     );
 
-    // The current slide participates in normal document flow
-    // only when slide numbers are shown and not pinned.
     slides.forEach((slide, index) => {
       slide.classList.toggle(
           "rslidy-unpinned-active-slide",
@@ -353,28 +317,15 @@ export class SettingsComponent {
       }
     }
 
-    // Remove the old spacer, if present.
     document.getElementById(
         "rslidy-slide-scroll-spacer"
     )?.remove();
 
-    // Remove the old dynamically calculated height.
     contentSection.style.removeProperty(
         "--rslidy-slide-number-strip-height"
     );
   }
 
-
-
-
-
-
-
-  // ---
-  // Description: Called whenever one of the text size buttons is clicked.
-  // e: The event.
-  // value: Specifies the size modifier (1 = more, -1 = less).
-  // ---
   public changeSlideFont(e: any, value: number): void {
     if (value == 0)
       this.slidefont = 0;
@@ -382,7 +333,7 @@ export class SettingsComponent {
       this.slidefont += value;
 
     var slides_large = document.querySelectorAll(
-      "#rslidy-content-section .slide"
+        "#rslidy-content-section .slide"
     );
 
     for (var i = 0; i < slides_large.length; i++) {
@@ -390,29 +341,25 @@ export class SettingsComponent {
         (<HTMLElement>slides_large[i]).style.fontSize = this.default + "em";
 
       var current_font_size = parseFloat(
-        (<HTMLElement>slides_large[i]).style.fontSize
+          (<HTMLElement>slides_large[i]).style.fontSize
       );
+
       if (
-        (current_font_size > window.rslidy.min_slide_font && value == -1) ||
-        (current_font_size < window.rslidy.max_slide_font && value == 1)
+          (current_font_size > window.rslidy.min_slide_font && value == -1) ||
+          (current_font_size < window.rslidy.max_slide_font && value == 1)
       )
         (<HTMLElement>slides_large[i]).style.fontSize =
-          current_font_size + window.rslidy.font_step * value + "em";
+            current_font_size + window.rslidy.font_step * value + "em";
       else if (isNaN(current_font_size))
         (<HTMLElement>slides_large[i]).style.fontSize =
-          this.default + window.rslidy.font_step * value + "em";
+            this.default + window.rslidy.font_step * value + "em";
     }
+
     this.updateSlideNumberFontScale();
 
-    // Prevent default actions after event handling
     if(e) e.preventDefault();
   }
 
-  // ---
-  // Description: Called whenever one of the text size buttons is clicked.
-  // e: The event.
-  // value: Specifies the size modifier (1 = more, -1 = less).
-  // ---
   public changeUIFont(e: any, value: number): void {
     if (value == 0)
       this.uifont = 0;
@@ -427,42 +374,37 @@ export class SettingsComponent {
         (<HTMLElement>ui[i]).style.fontSize = this.default_ui + "em";
 
       var current_font_size = parseFloat(
-        (<HTMLElement>ui[i]).style.fontSize
+          (<HTMLElement>ui[i]).style.fontSize
       );
+
       if (
-        (current_font_size > window.rslidy.min_slide_font && value == -1) ||
-        (current_font_size < window.rslidy.max_slide_font && value == 1)
+          (current_font_size > window.rslidy.min_slide_font && value == -1) ||
+          (current_font_size < window.rslidy.max_slide_font && value == 1)
       )
         (<HTMLElement>ui[i]).style.fontSize =
-          current_font_size + window.rslidy.font_step * value + "em";
+            current_font_size + window.rslidy.font_step * value + "em";
       else if (isNaN(current_font_size))
         (<HTMLElement>ui[i]).style.fontSize =
-          this.default_ui + window.rslidy.font_step * value + "em";
+            this.default_ui + window.rslidy.font_step * value + "em";
     }
 
-    // Prevent footer from overflowing, if on smaller screens
     if(this.default_footer < 1 &&
-      parseFloat((<HTMLElement>footer).style.fontSize) > this.default_footer)
+        parseFloat((<HTMLElement>footer).style.fontSize) > this.default_footer)
       (<HTMLElement>footer).style.fontSize = this.default_footer + "em";
 
-    setTimeout(()=>{this.checkToolbarOverflow();}, 1000)
+    setTimeout(() => { this.checkToolbarOverflow(); }, 1000);
 
-    // Prevent default actions after event handling
     if(e) e.preventDefault();
   }
 
-  // ---
-  // Description: Checks the toolbar for overflow and scales it down if needed.
-  // ---
   public checkToolbarOverflow(): void {
-    // check if footer is still on the same line
     var ov = document.querySelector("#rslidy-button-overview").getBoundingClientRect();
     var toc = document.querySelector("#rslidy-button-toc").getBoundingClientRect();
 
     console.log(ov.top + " - " + toc.top);
 
     if(ov.top == toc.top)
-      return
+      return;
     else
       this.changeUIFont(null, -1);
   }
@@ -487,27 +429,36 @@ export class SettingsComponent {
     direction: "asc" | "desc" | null;
   } {
     const key = this.getTableKey(table);
-    return this.sortStateByKey.get(key) ?? { columnIndex: null, direction: null };
+    return this.sortStateByKey.get(key) ?? {
+      columnIndex: null,
+      direction: null
+    };
   }
 
   private setSortState(
-    table: HTMLTableElement,
-    next: { columnIndex: number | null; direction: "asc" | "desc" | null }
+      table: HTMLTableElement,
+      next: { columnIndex: number | null; direction: "asc" | "desc" | null }
   ): void {
     const key = this.getTableKey(table);
     this.sortStateByKey.set(key, next);
   }
 
   private updateDesktopSortIndicators(
-    table: HTMLTableElement,
-    columnIndex: number | null,
-    direction: "asc" | "desc" | null
+      table: HTMLTableElement,
+      columnIndex: number | null,
+      direction: "asc" | "desc" | null
   ): void {
     const headers = Array.from(table.querySelectorAll("th"));
+
     headers.forEach((th, idx) => {
-      th.classList.remove("rslidy-sorted-asc", "rslidy-sorted-desc")
+      th.classList.remove("rslidy-sorted-asc", "rslidy-sorted-desc");
+
       if (columnIndex !== null && idx === columnIndex && direction) {
-        th.classList.add(direction === "asc" ? "rslidy-sorted-asc" : "rslidy-sorted-desc");
+        th.classList.add(
+            direction === "asc"
+                ? "rslidy-sorted-asc"
+                : "rslidy-sorted-desc"
+        );
       }
     });
   }
@@ -534,46 +485,54 @@ export class SettingsComponent {
     const direction = state.direction ?? "none";
 
     sortIcon.dataset.dir = direction;
-    sortIcon.classList.toggle("rslidy-active-sort", state.direction !== null);
+    sortIcon.classList.toggle(
+        "rslidy-active-sort",
+        state.direction !== null
+    );
 
     if (direction === "asc") {
       sortIcon.setAttribute("aria-label", "Sort descending");
-      sortIcon.title = "Sorted ascending. Click the lower half to sort descending.";
+      sortIcon.title =
+          "Sorted ascending. Click the lower half to sort descending.";
     } else if (direction === "desc") {
       sortIcon.setAttribute("aria-label", "Restore original order");
-      sortIcon.title = "Sorted descending. Click the lower half again to restore original order.";
+      sortIcon.title =
+          "Sorted descending. Click the lower half again to restore original order.";
     } else {
       sortIcon.setAttribute("aria-label", "Sort ascending or descending");
-      sortIcon.title = "Click upper half for ascending, lower half for descending.";
+      sortIcon.title =
+          "Click upper half for ascending, lower half for descending.";
     }
   }
 
   private applySortAndSync(
-    table: HTMLTableElement,
-    tbody: HTMLElement,
-    originalRows: HTMLTableRowElement[],
-    sortTable: (
-      tbody: Element,
-      columnIndex: number,
-      direction: "asc" | "desc"
-    ) => void,
-    columnIndex: number | null,
-    direction: "asc" | "desc" | null
+      table: HTMLTableElement,
+      tbody: HTMLElement,
+      originalRows: HTMLTableRowElement[],
+      sortTable: (
+          tbody: Element,
+          columnIndex: number,
+          direction: "asc" | "desc"
+      ) => void,
+      columnIndex: number | null,
+      direction: "asc" | "desc" | null
   ): void {
-    // Restore original order
     if (columnIndex === null || direction === null) {
       tbody.innerHTML = "";
       originalRows.forEach(row => tbody.appendChild(row));
-      this.setSortState(table, { columnIndex: null, direction: null });
+
+      this.setSortState(table, {
+        columnIndex: null,
+        direction: null
+      });
+
       this.updateDesktopSortIndicators(table, null, null);
       this.syncMobileSortUIFromState(table);
       return;
     }
 
-    // Apply sort
     sortTable(tbody, columnIndex, direction);
 
-    // Save + sync UIs
     this.setSortState(table, { columnIndex, direction });
     this.updateDesktopSortIndicators(table, columnIndex, direction);
     this.syncMobileSortUIFromState(table);
@@ -582,28 +541,25 @@ export class SettingsComponent {
   private setupTableSorting(): void {
     const tables = document.querySelectorAll("table.rslidy-responsive-table");
 
-    // --- Normalize text values for comparison ---
     const normalize = (text: string) => {
       text = text.trim();
 
-      // Numeric values
       if (/^-?\d+(\.\d+)?$/.test(text)) return parseFloat(text);
 
-      // Checkmarks / Crosses
       if (text.includes("✔")) return 1;
       if (text.includes("✘")) return 0;
 
-      // Dates
       const timestamp = Date.parse(text);
       if (!isNaN(timestamp)) return timestamp;
 
-      // Default: lowercase string
       return text.toLowerCase();
     };
 
-
-    // --- Helper: Sort table body ---
-    const sortTable = (tbody: Element, columnIndex: number, direction: "asc" | "desc") => {
+    const sortTable = (
+        tbody: Element,
+        columnIndex: number,
+        direction: "asc" | "desc"
+    ) => {
       const rows = Array.from(tbody.querySelectorAll("tr"));
 
       rows.sort((a, b) => {
@@ -614,90 +570,112 @@ export class SettingsComponent {
         const valB = normalize(cellB);
 
         if (typeof valA === "number" && typeof valB === "number") {
-          return direction === "asc" ? valA - valB : valB - valA;
-        } else {
           return direction === "asc"
+              ? valA - valB
+              : valB - valA;
+        }
+
+        return direction === "asc"
             ? String(valA).localeCompare(String(valB))
             : String(valB).localeCompare(String(valA));
-        }
       });
 
       tbody.innerHTML = "";
-      rows.forEach((r) => tbody.appendChild(r));
+      rows.forEach(row => tbody.appendChild(row));
     };
 
-    // --- Enable sorting for all responsive tables ---
     tables.forEach((tableEl) => {
       const table = tableEl as HTMLTableElement;
 
-      // Always create the responsive wrapper, even when sorting is disabled.
+      // Always create the responsive wrapper
       this.ensureResponsiveTableWrapper(table);
 
-      // Still allow stacked responsive layout, but skip all sorting behaviour.
+      const headers = Array.from(
+          table.querySelectorAll<HTMLTableCellElement>("thead th")
+      );
+
+      // Wrap header text without changing the sort icons
+      headers.forEach((header) => {
+        const fullText = header.textContent?.trim() || "";
+
+        if (!fullText) return;
+
+        if (!header.querySelector(".rslidy-header-text")) {
+          const textSpan = document.createElement("span");
+          textSpan.className = "rslidy-header-text";
+
+          while (header.firstChild) {
+            textSpan.appendChild(header.firstChild);
+          }
+
+          header.appendChild(textSpan);
+
+          // Show full text only when truncated
+          textSpan.addEventListener("mouseenter", () => {
+            if (textSpan.scrollWidth > textSpan.clientWidth) {
+              textSpan.title = fullText;
+            } else {
+              textSpan.removeAttribute("title");
+            }
+          });
+
+          textSpan.addEventListener("mouseleave", () => {
+            textSpan.removeAttribute("title");
+          });
+        }
+
+        // Invisible hover target over the existing ::before icon
+        // Does not replace or modify the icon itself
+        if (
+            !table.classList.contains("rslidy-disable-sorting") &&
+            !header.classList.contains("rslidy-no-sort") &&
+            !header.querySelector(".rslidy-sort-icon-hover")
+        ) {
+          const iconHover = document.createElement("span");
+          iconHover.className = "rslidy-sort-icon-hover";
+          iconHover.title = "Click to sort";
+          iconHover.setAttribute("aria-hidden", "true");
+          header.appendChild(iconHover);
+        }
+      });
+
+      // Preserve non-sortable table behaviour
       if (table.classList.contains("rslidy-disable-sorting")) return;
 
-      const headers = Array.from(table.querySelectorAll<HTMLTableCellElement>("th"));
       const tbody = table.querySelector("tbody") as HTMLElement | null;
       if (!tbody) return;
 
       const originalRows = Array.from(tbody.querySelectorAll("tr"));
 
-      // Create mobile sort UI if it doesn't exist
       this.createMobileSortUI(table);
-
-      // Setup mobile sorting (now synced)
       this.setupMobileSortingUI(table, tbody, originalRows, sortTable);
 
-      // Track desktop state per table (synced to mobile)
-      // Start with "no sort" and let UI drive it.
-      this.setSortState(table, { columnIndex: null, direction: null });
+      this.setSortState(table, {
+        columnIndex: null,
+        direction: null
+      });
       this.syncMobileSortUIFromState(table);
 
       headers.forEach((header, columnIndex) => {
         const headerText = (header.textContent || "").trim();
+
         if (!headerText) {
           header.classList.add("rslidy-no-sort");
           return;
         }
+
         if (header.classList.contains("rslidy-no-sort")) return;
 
-        const updateCursorAndTitle = (evt: MouseEvent) => {
+        // Existing click handler: leave sorting behaviour unchanged
+        header.addEventListener("click", (evt: MouseEvent) => {
+          evt.preventDefault();
+          evt.stopPropagation();
+          (evt as any).stopImmediatePropagation?.();
+
           const rect = header.getBoundingClientRect();
           const cs = getComputedStyle(header);
           const fontSize = parseFloat(cs.fontSize) || 16;
 
-          const leftIconLeft = rect.left + 0.3125 * fontSize;
-          const leftIconRight = leftIconLeft + 1.1 * fontSize;
-          const rightIconRight = rect.right - 0.3125 * fontSize;
-          const rightIconLeft = rightIconRight - 1.1 * fontSize;
-          const x = evt.clientX;
-
-          const overIcon =
-            (x >= leftIconLeft && x <= leftIconRight) || (x >= rightIconLeft && x <= rightIconRight);
-
-          if (overIcon) {
-            header.removeAttribute("title");
-          } else {
-            header.style.cursor = "pointer";
-            header.title = "Click to sort";
-          }
-        };
-
-        header.addEventListener("mousemove", updateCursorAndTitle);
-
-        // --- Click handler for sorting ---
-        header.addEventListener(
-          "click",
-          (evt: MouseEvent) => {
-            // Prevent slide navigation handlers from receiving this click
-            evt.preventDefault();
-            evt.stopPropagation();
-            (evt as any).stopImmediatePropagation?.();
-          const rect = header.getBoundingClientRect();
-          const cs = getComputedStyle(header);
-          const fontSize = parseFloat(cs.fontSize) || 16;
-
-          // Calculate clickable icon areas
           const leftIconLeft = rect.left + 0.3125 * fontSize;
           const leftIconRight = leftIconLeft + 1.1 * fontSize;
           const rightIconRight = rect.right - 0.3125 * fontSize;
@@ -706,71 +684,96 @@ export class SettingsComponent {
           const x = evt.clientX;
           const y = evt.clientY;
 
-          const clickedLeftIcon = x >= leftIconLeft && x <= leftIconRight;
-          const clickedRightIcon = x >= rightIconLeft && x <= rightIconRight;
+          const clickedLeftIcon =
+              x >= leftIconLeft && x <= leftIconRight;
 
-          // Vertical split for top/bottom triangle detection
+          const clickedRightIcon =
+              x >= rightIconLeft && x <= rightIconRight;
+
           const iconHeight = 1.1 * fontSize;
-          const iconTop = rect.top + rect.height / 2 - iconHeight / 2;
-          const clickedUpperHalf = y < iconTop + iconHeight / 2;
-          const clickedLowerHalf = y >= iconTop + iconHeight / 2;
+          const iconTop =
+              rect.top + rect.height / 2 - iconHeight / 2;
+
+          const clickedUpperHalf =
+              y < iconTop + iconHeight / 2;
+
+          const clickedLowerHalf =
+              y >= iconTop + iconHeight / 2;
 
           const current = this.getSortState(table);
 
-          // --- Handle direct clicks on icons ---
           if (clickedLeftIcon || clickedRightIcon) {
             evt.stopPropagation();
 
             if (clickedUpperHalf) {
-              // ▲ clicked → toggle ASC / default
-              if (current.columnIndex === columnIndex && current.direction === "asc") {
-                // reset
-                this.applySortAndSync(table, tbody, originalRows, sortTable, null, null);
+              if (
+                  current.columnIndex === columnIndex &&
+                  current.direction === "asc"
+              ) {
+                this.applySortAndSync(
+                    table, tbody, originalRows, sortTable, null, null
+                );
               } else {
-                this.applySortAndSync(table, tbody, originalRows, sortTable, columnIndex, "asc");
+                this.applySortAndSync(
+                    table, tbody, originalRows, sortTable,
+                    columnIndex, "asc"
+                );
               }
             } else if (clickedLowerHalf) {
-              // ▼ clicked → toggle DESC / default
-              if (current.columnIndex === columnIndex && current.direction === "desc") {
-                // reset
-                this.applySortAndSync(table, tbody, originalRows, sortTable, null, null);
+              if (
+                  current.columnIndex === columnIndex &&
+                  current.direction === "desc"
+              ) {
+                this.applySortAndSync(
+                    table, tbody, originalRows, sortTable, null, null
+                );
               } else {
-                this.applySortAndSync(table, tbody, originalRows, sortTable, columnIndex, "desc");
+                this.applySortAndSync(
+                    table, tbody, originalRows, sortTable,
+                    columnIndex, "desc"
+                );
               }
             }
 
             return;
           }
 
-          // --- Default header click (outside icons): cycle none -> asc -> desc -> none ---
           let nextDir: "asc" | "desc" | null;
 
           if (current.columnIndex !== columnIndex) {
             nextDir = "asc";
+          } else if (current.direction === null) {
+            nextDir = "asc";
+          } else if (current.direction === "asc") {
+            nextDir = "desc";
           } else {
-            if (current.direction === null) nextDir = "asc";
-            else if (current.direction === "asc") nextDir = "desc";
-            else nextDir = null;
+            nextDir = null;
           }
 
           if (nextDir === null) {
-            this.applySortAndSync(table, tbody, originalRows, sortTable, null, null);
+            this.applySortAndSync(
+                table, tbody, originalRows, sortTable, null, null
+            );
           } else {
-            this.applySortAndSync(table, tbody, originalRows, sortTable, columnIndex, nextDir);
+            this.applySortAndSync(
+                table, tbody, originalRows, sortTable,
+                columnIndex, nextDir
+            );
           }
         });
       });
     });
 
-    // Sync mobile UI after resizes (desktop sort should be visible on mobile UI)
     window.addEventListener("resize", () => {
       document
-        .querySelectorAll<HTMLTableElement>("table.rslidy-responsive-table")
-        .forEach(t => this.syncMobileSortUIFromState(t));
+          .querySelectorAll<HTMLTableElement>("table.rslidy-responsive-table")
+          .forEach(table => this.syncMobileSortUIFromState(table));
     });
   }
 
-  private ensureResponsiveTableWrapper(table: HTMLTableElement): HTMLElement {
+  private ensureResponsiveTableWrapper(
+      table: HTMLTableElement
+  ): HTMLElement {
     let wrapper = table.parentElement;
 
     if (!wrapper?.classList.contains("rslidy-responsive-table-wrapper")) {
@@ -805,7 +808,6 @@ export class SettingsComponent {
   }
 
   private createMobileSortUI(table: HTMLTableElement): void {
-    // Don't create if already exists
     if (
         table.previousElementSibling?.classList.contains(
             "rslidy-table-sort-mobile"
@@ -814,36 +816,28 @@ export class SettingsComponent {
       return;
     }
 
-    // Get headers from the table
     const headers = Array.from(table.querySelectorAll("th"));
     if (headers.length === 0) return;
 
     const wrapper = this.ensureResponsiveTableWrapper(table);
 
-    // Create mobile sort UI
     const sortUI = document.createElement("div");
     sortUI.className =
         "rslidy-table-sort-mobile rslidy-responsive-table-text-scaling";
 
-    // Create "Sort by:" label
     const label = document.createElement("div");
     label.textContent = "Sort by:";
     label.className = "rslidy-sort-label";
 
-    // Create controls container
     const controlsContainer = document.createElement("div");
     controlsContainer.className = "rslidy-controls-container";
 
-    // Create select container
     const selectContainer = document.createElement("div");
     selectContainer.className = "rslidy-select-container";
 
-    // Create select
     const select = document.createElement("select");
     select.className = "rslidy-compact-select";
 
-    // Add options from actual headers only.
-    // There is no "Original order" option anymore.
     headers.forEach((header, index) => {
       const headerText = header.textContent?.trim() || "";
       if (!headerText) return;
@@ -854,8 +848,6 @@ export class SettingsComponent {
       select.appendChild(option);
     });
 
-    // Create one sort button.
-    // It cycles through: original -> ascending -> descending -> original.
     const iconContainer = document.createElement("div");
     iconContainer.className = "rslidy-icon-container";
 
@@ -865,21 +857,16 @@ export class SettingsComponent {
     sortIcon.setAttribute("role", "button");
     sortIcon.setAttribute("tabindex", "0");
     sortIcon.setAttribute("aria-label", "Sort ascending or descending");
-    sortIcon.title = "Click upper half for ascending, lower half for descending.";
+    sortIcon.title =
+        "Click upper half for ascending, lower half for descending.";
 
     iconContainer.appendChild(sortIcon);
-
-    // Add select to its container
     selectContainer.appendChild(select);
-
-    // Assemble controls container
     controlsContainer.appendChild(selectContainer);
     controlsContainer.appendChild(iconContainer);
-    // Assemble sort UI
     sortUI.appendChild(label);
     sortUI.appendChild(controlsContainer);
 
-    // Insert before table
     wrapper.insertBefore(sortUI, table);
   }
 
@@ -907,13 +894,15 @@ export class SettingsComponent {
       e.stopPropagation();
     };
 
-    (["click", "pointerup", "touchend", "mousedown"] as const).forEach(type => {
-      wrapper.addEventListener(type, swallowBubble, { capture: false });
-    });
+    (["click", "pointerup", "touchend", "mousedown"] as const)
+        .forEach(type => {
+          wrapper.addEventListener(type, swallowBubble, {
+            capture: false
+          });
+        });
 
     const getSelectedColumnIndex = (): number | null => {
       const selectedValue = select.value;
-
       if (selectedValue === "") return null;
 
       const columnIndex = Number(selectedValue);
@@ -950,7 +939,7 @@ export class SettingsComponent {
 
       setTimeout(() => {
         sortIcon.blur();
-        }, 10);
+      }, 10);
     };
 
     sortIcon.addEventListener("click", e => {
@@ -961,8 +950,10 @@ export class SettingsComponent {
       if (columnIndex === null) return;
 
       const rect = sortIcon.getBoundingClientRect();
-      const clickedUpperHalf = e.clientY < rect.top + rect.height / 2;
-      const clickedLowerHalf = e.clientY >= rect.top + rect.height / 2;
+      const clickedUpperHalf =
+          e.clientY < rect.top + rect.height / 2;
+      const clickedLowerHalf =
+          e.clientY >= rect.top + rect.height / 2;
 
       const current = this.getSortState(table);
 
@@ -1002,7 +993,10 @@ export class SettingsComponent {
 
       const current = this.getSortState(table);
 
-      if (current.columnIndex !== columnIndex || current.direction === null) {
+      if (
+          current.columnIndex !== columnIndex ||
+          current.direction === null
+      ) {
         applyDirection("asc");
       } else if (current.direction === "asc") {
         applyDirection("desc");
@@ -1047,14 +1041,29 @@ export class SettingsComponent {
     this.syncMobileSortUIFromState(table);
   }
 
-
   applyResponsiveTableLabels(): void {
-    const tables = document.querySelectorAll("table.rslidy-responsive-table");
+    const tables = document.querySelectorAll(
+        "table.rslidy-responsive-table"
+    );
 
     tables.forEach((table) => {
-      const headers = Array.from(table.querySelectorAll("thead th"));
+      const headers = Array.from(
+          table.querySelectorAll("thead th")
+      );
 
       const rows = table.querySelectorAll("tbody tr");
+
+      // Numeric is the default type
+      headers.forEach((header) => {
+        if (
+            !header.classList.contains("rslidy-text") &&
+            !header.classList.contains("rslidy-numeric") &&
+            !header.classList.contains("rslidy-symbol") &&
+            !header.classList.contains("rslidy-date")
+        ) {
+          header.classList.add("rslidy-numeric");
+        }
+      });
 
       rows.forEach((row) => {
         const cells = row.querySelectorAll("td");
@@ -1065,13 +1074,16 @@ export class SettingsComponent {
 
           const headerText = header.textContent?.trim() || "";
 
-          // Set mobile label
           if (!cell.hasAttribute("data-label") && headerText) {
             cell.setAttribute("data-label", headerText);
           }
 
-          // Copy alignment/type class from header to cell
-          cell.classList.remove("rslidy-text", "rslidy-numeric", "rslidy-symbol", "rslidy-date");
+          cell.classList.remove(
+              "rslidy-text",
+              "rslidy-numeric",
+              "rslidy-symbol",
+              "rslidy-date"
+          );
 
           if (header.classList.contains("rslidy-text")) {
             cell.classList.add("rslidy-text");

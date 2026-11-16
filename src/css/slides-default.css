@@ -1,8 +1,9 @@
+
 body {
   color: light-dark(black, white);
   background-color: light-dark(#f9f9f9, #121212);
   font-family: Verdana, sans-serif;
-  hyphens: auto;  /* allow words to be broken at hyphenation points */
+  hyphens: auto; /* allow words to be broken at hyphenation points */
   box-sizing: border-box;
 }
 
@@ -23,6 +24,7 @@ a slide is created by a section and/or div.slide
   font-size: var(--rslidy-slide-font-size);
   container-type: inline-size;
   container-name: rslidy-slide;
+  line-height: 1;
 }
 
 /* Standard slide content layout */
@@ -31,7 +33,7 @@ a slide is created by a section and/or div.slide
   flex-direction: column;
 }
 
-/* turn hyphenation off for code, tt, and kbd */
+/* Turn hyphenation off for code, tt, and kbd */
 code, var, kbd, samp, listing, plaintext, xmp, abbr {
   hyphens: none;
   font-family: "Courier New", Courier, monospace;
@@ -72,6 +74,10 @@ img, video {
   max-height: 100%;
 }
 
+a {
+  overflow-wrap: anywhere;
+}
+
 /* SVG images with a fallback minimum size */
 img.rslidy-svg {
   min-width: 0;
@@ -84,9 +90,19 @@ img.rslidy-svg {
 }
 
 .slide img[src$=".svg" i] {
-  max-height: 40rem;
+  min-width: 0;
+  min-height: 0;
+  max-width: 100%;
+  max-height: 100%;
   width: auto;
+  height: auto;
   object-fit: contain;
+}
+
+.slide:not(.rslidy-titleslide) > img[src$=".svg" i] {
+  flex: 1 1 0;
+  width: 100%;
+  height: 0;
 }
 
 /* Left-aligned figure */
@@ -102,17 +118,20 @@ figure {
 }
 
 /* Legacy image helper wrappers */
-div.rslidy-images, div.rslidy-large-images {
+div.rslidy-images,
+div.rslidy-tall-images {
   margin: 0 auto;
-  padding: 0;
   display: flex;
+  flex-wrap: wrap;
+  gap: 2em;
   justify-content: center;
-  align-items: center;
-  min-width: 5em;
+  align-items: flex-end;
+  align-content: flex-start;
 }
 
 /* Standard media inside image helpers */
-div.rslidy-images img, div.rslidy-images video {
+div.rslidy-images img,
+div.rslidy-images video {
   object-fit: contain; /* scale-down does not work correctly in Firefox */
   max-height: 15em;
   width: auto;
@@ -120,7 +139,8 @@ div.rslidy-images img, div.rslidy-images video {
 }
 
 /* Larger media inside image helpers */
-div.rslidy-large-images img, div.rslidy-large-images video {
+div.rslidy-tall-images img,
+div.rslidy-tall-images video {
   object-fit: contain; /* scale-down does not work correctly in Firefox */
   max-height: 22em;
   width: 100%;
@@ -213,26 +233,26 @@ div#rslidy-licence p {
 /* The title slide has larger and centred text */
 .rslidy-titleslide {
   text-align: center;
-}
 
-.rslidy-titleslide h1 {
-  padding-top: 0.5em;
-  font-size: 2em;
-  margin-bottom: 1.4em;
-}
+  h1 {
+    padding-top: 0.5em;
+    font-size: 2em;
+    margin-bottom: 1.4em;
+  }
 
-.rslidy-titleslide h2 {
-  font-size: 1.6em;
-  margin-bottom: 1.4em;
-}
+  h2 {
+    font-size: 1.6em;
+    margin-bottom: 1.4em;
+  }
 
-.rslidy-titleslide h3 {
-  font-size: 1.4em;
-  margin-bottom: 1.2em;
-}
+  h3 {
+    font-size: 1.4em;
+    margin-bottom: 1.2em;
+  }
 
-.rslidy-titleslide p {
-  padding: 0.8em 0;
+  p {
+    padding: 0.8em 0;
+  }
 }
 
 /* Section divider slide */
@@ -254,7 +274,10 @@ div#rslidy-licence p {
   display: grid;
   justify-content: center;
   align-content: center;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 15em), 1fr));
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(min(100%, 15em), 1fr)
+  );
   gap: 0.8em 2em;
   width: 100%;
 }
@@ -271,7 +294,7 @@ div#rslidy-licence p {
 
 /* All child elements inside the column, such as paragraphs and lists */
 .rslidy-column * {
-  max-width: 100% !important; /* Overrides the 60ch limit from the global CSS */
+  max-width: 100% !important; /* Overrides the 60ch limit */
   box-sizing: border-box;
 }
 
@@ -287,27 +310,24 @@ div#rslidy-licence p {
   width: auto;
 }
 
-/* Description is marked in grey */
 /* Highlighted description block */
 .rslidy-description {
   background-color: lightgray;
 }
 
-.rslidy-image-frame {
+.rslidy-frame {
   border: 0.0625rem solid light-dark(#ccc, #555);
   box-sizing: border-box;
 }
 
-/* CSS grid */
 /* Auto-fitting grid layout */
 .rslidy-grid {
   display: grid;
   justify-content: center;
   align-content: center;
-  grid-template-columns: repeat(auto-fit, minmax(25em,1fr));
+  grid-template-columns: repeat(auto-fit, minmax(25em, 1fr));
 }
 
-/* Code snippets */
 /* Block-style inline code snippet */
 code.rslidy-block {
   display: inline-block;
@@ -316,12 +336,19 @@ code.rslidy-block {
   margin-bottom: 1em;
 }
 
+/* Paragraphs */
+p {
+  margin: 0 0 1em 0;
+  padding: 0;
+  max-width: 60ch;
+  text-align: justify;
+}
 
 /* Notes */
-/* Small note paragraph */
 p.rslidy-note {
   font-size: 60%;
-  margin-top: -0.7em;
+  margin: 0 0 1em 0;
+  padding: 0 0 0 1em;
 }
 
 p.rslidy-note::before {
@@ -332,19 +359,7 @@ p.rslidy-note::after {
   content: "]";
 }
 
-p {
-  margin: 0 0 1em 0;
-  padding: 0;
-  max-width: 60ch;
-  text-align: justify;
-}
-
-/* Do not justify text inside table cells */
-td p {
-  text-align: left;
-}
-
-/* Indent the first line of the second and following paragraphs in text passages */
+/* Indent the first line of subsequent paragraphs in text passages */
 div.rslidy-textpassage p + p {
   text-indent: 1em;
 }
@@ -380,12 +395,14 @@ h4, h5, h6 {
 }
 
 /* Lists */
-ol {
-  list-style: decimal;
-}
-
 ul {
   list-style: disc;
+  max-width: 60ch;
+}
+
+ol {
+  list-style: decimal;
+  max-width: 60ch;
 }
 
 /* Nested bullet styles */
@@ -443,75 +460,73 @@ li {
   margin: 0 0 1em 0;
 }
 
+/* All tables */
+table {
+  /* Do not justify paragraphs inside table cells */
+  td p {
+    text-align: left;
+  }
+}
+
 /* Standard tables.
    Responsive Rslidy tables are explicitly excluded. */
-
 table:not(.rslidy-responsive-table) {
   display: block;
   width: 100%;
   max-width: 100%;
-
   border-collapse: collapse;
   border: none;
   background: transparent;
   text-align: right;
-}
 
-table:not(.rslidy-responsive-table) thead tr
-{
-  border-bottom: none;
-  background-image: linear-gradient(
-          light-dark(#777, #aaa),
-          light-dark(#777, #aaa)
-  );
-  background-position: center bottom;
-  background-size: calc(100% - 1.1em) 0.04em;
-  background-repeat: no-repeat;
-}
+  /* Header row */
+  thead tr {
+    border-bottom: none;
+    background-image: linear-gradient(
+            light-dark(#777, #aaa),
+            light-dark(#777, #aaa)
+    );
+    background-position: center bottom;
+    background-size: calc(100% - 1.1em) 0.04em;
+    background-repeat: no-repeat;
+  }
 
+  /* Caption */
+  caption {
+    caption-side: bottom;
+    margin-top: 0.75em;
+    text-align: left;
+  }
 
-/* Caption */
-table:not(.rslidy-responsive-table) caption {
-  caption-side: bottom;
-  margin-top: 0.75em;
-  text-align: left;
-}
+  /* All cells */
+  th,
+  td {
+    padding: 0.7em 0.9em 0.7em 0.5em;
+    vertical-align: top;
+    border: none;
+    background: transparent;
+    font-variant-numeric: tabular-nums;
+  }
 
+  /* Header cells */
+  th {
+    font-weight: bold;
+  }
 
-/* All cells */
-table:not(.rslidy-responsive-table) th,
-table:not(.rslidy-responsive-table) td {
-  padding: 0.7em 0.9em 0.7em 0.5em;
-  vertical-align: top;
-  border: none;
-  background: transparent;
-  font-variant-numeric: tabular-nums;   /* every digit one width */
-}
+  /* No border after final row */
+  tbody tr:last-child {
+    border-bottom: none;
+  }
 
-
-/* Header cells */
-table:not(.rslidy-responsive-table) th {
-  font-weight: bold;
-}
-
-
-
-
-/* No border after final row */
-table:not(.rslidy-responsive-table) tbody tr:last-child {
-  border-bottom: none;
-}
-@media screen and (max-width: 55rem) {
-  table:not(.rslidy-responsive-table) {
+  @media screen and (max-width: 55rem) {
     overflow-x: auto;
     overflow-y: hidden;
   }
 }
 
-/*Hide respvis toolbar on print*/
+/* Hide responsive toolbar on print */
 @media print {
   .toolbar__dialog-container {
-    display:none
+    display: none;
   }
 }
-

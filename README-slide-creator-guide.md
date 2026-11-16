@@ -155,14 +155,14 @@ height on the `<img>` element.
 ```
 
 Rslidy also provides the optional helper classes
-`rslidy-images` and `rslidy-large-images`. These classes can also be
+`rslidy-images` and `rslidy-tall-images`. These classes can also be
 used with SVG images. They centre images or videos inside a flexible
 container and apply a predefined 16:9 media area.
 
 - `rslidy-images` is intended for smaller media elements. It limits the
   maximum height to `15em` and sets the width to `auto`.
 
-- `rslidy-large-images` is intended for larger media elements. It
+- `rslidy-tall-images` is intended for larger media elements. It
   limits the maximum height to `25em` and sets the width to `auto`.
 
 
@@ -184,7 +184,7 @@ with the `srcset`/`sizes` attributes.
 Use the `<picture>` element to deliver different crops for different 
 viewport sizes.
 The `<picture>` element can also be wrapped in the classes
-`rslidy-large-images` or `rslidy-images` to put it inside one of
+`rslidy-tall-images` or `rslidy-images` to put it inside one of
 Rslidy’s predefined media containers.
 ```html
 <section>
@@ -398,10 +398,14 @@ These alignment classes only need to be applied to the header cells.
 The corresponding table body cells automatically inherit
 the alignment behaviour.
 
-On narrow viewports, tables switch to a stacked layout. If table headers
-are declared using scope="col", Rslidy automatically derives and
-injects the corresponding data-label attributes for each table cell,
-ensuring that table content remains clearly labelled on mobile devices.
+On narrow viewports, tables switch to a stacked layout. 
+If table headers are declared using `scope="col"`, Rslidy atomatically 
+derives and injects the corresponding `data-label` attributes for each 
+table cell, ensuring that table content remains clearly labelled on 
+mobile devices. Header cells should only be used with `scope="col"`. 
+If no column scope is specified, table content is treated as 
+numeric by default.
+
 
 ```html
 <section>
@@ -447,7 +451,7 @@ the default slide stylesheet:
 | `rslidy-columns-even` | Arranges content in evenly distributed responsive columns. |
 | `rslidy-column` | Contains one column of stacked content and prevents overflow. |
 | `rslidy-images` | Centres smaller media in a 16:9 area with a limited height. |
-| `rslidy-large-images` | Centres larger media in a 16:9 area with a larger height limit. |
+| `rslidy-tall-images` | Centres larger media in a 16:9 area with a larger height limit. |
 | `rslidy-figure-left` | Keeps a figure aligned to the left edge of the slide. |
 | `rslidy-footer` | Pushes small footer text to the bottom-right area of a slide. |
 | `rslidy-licence` | Centres compact licence text, usually on the title slide. |
@@ -602,9 +606,9 @@ for example with the `<picture>` element or the `srcset` and `sizes`
 attributes for responsive images. Rslidy also provides classes with
 additional responsive behaviour, such as
 `rslidy-responsive-table`, `rslidy-images`, and
-`rslidy-large-images`.
+`rslidy-tall-images`.
 
-The helper classes `rslidy-images` and `rslidy-large-images` are
+The helper classes `rslidy-images` and `rslidy-tall-images` are
 optional layout utilities for centring media inside predefined 16:9
 containers. They can be useful for slide layouts containing images or
 videos, but they are not required for responsive images in general.

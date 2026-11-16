@@ -91,14 +91,14 @@ Simple slide with an unordered bullet list.
 
 ### 3.2 Single Image
 Insert a responsive image that supports pan and zoom
-interactions using the `rslidy-large-images` or `rslidy-images` class.
+interactions using the `rslidy-tall-images` or `rslidy-images` class.
 The class `rslidy-images` displays centred images up to 15 em, 
-while the class `rslidy-large-images` is used for images up to 25 em.
+while the class `rslidy-tall-images` is used for images up to 25 em.
 ```html
 <section>
   <h2>Single Image</h2>
   <figure>
-    <div class="rslidy-large-images">
+    <div class="rslidy-tall-images">
       <img src="images/image_viewer_example_slide.png"
            alt="Rslidy Image Viewer"/>
     </div>
@@ -130,7 +130,7 @@ on desktop screens.
 <h1>Responsive Image (Art Direction)</h1>
 
 <figure>
-<div class="rslidy-large-images">
+<div class="rslidy-tall-images">
 <picture>
 <!-- Narrow crop for narrow widths -->
 <source media="(max-width: 40rem)"
@@ -173,7 +173,7 @@ under different conditions. The browser selects the optimal file.
 <h1>Responsive Image (Resolution Switching)</h1>
 
 <figure>
-<div class="rslidy-large-images">
+<div class="rslidy-tall-images">
   <img
     src="images/graz-uhrturm.jpg"
     srcset="
@@ -210,14 +210,14 @@ Pixabay <a href="https://pixabay.com/service/license-summary/">licence.</a>
 ### 3.5 Single Video
 
 Embed a video using the same structure as image slides.
-When wrapped in .rslidy-images or .rslidy-large-images, videos scale 
+When wrapped in .rslidy-images or .rslidy-tall-images, videos scale 
 responsively while maintaining their aspect ratio.
 
 ```html
 <section>
   <h2>Single Video</h2>
   <figure>
-    <div class="rslidy-large-images">
+    <div class="rslidy-tall-images">
       <video controls autoplay muted loop poster="images/skiing-thumbnail.jpg">
         <source src="images/skiing.mp4" type="video/mp4"/>
         <img src="images/skiing-thumbnail.jpg"
@@ -495,7 +495,7 @@ Example with an image on the left and a video on the right.
   <div class="rslidy-columns-even">
     <div class="rslidy-column">
       <figure>
-        <div class="rslidy-large-images">
+        <div class="rslidy-tall-images">
           <img src="images/rslidy_example_slide.png"
                alt="Example Slide"/>
         </div>
@@ -504,7 +504,7 @@ Example with an image on the left and a video on the right.
     </div>
     <div class="rslidy-column">
       <figure>
-        <div class="rslidy-large-images">
+        <div class="rslidy-tall-images">
           <video controls autoplay muted loop
                  poster="images/all-slides.gif">
             <source src="images/image-viewer.mp4"
