@@ -28,9 +28,13 @@
 }
 
 
- .rslidy-image-viewer-content {
-  position: absolute;
-  background-color: white;
+.rslidy-image-viewer-content {
+ position: absolute;
+ background-color: white;
+
+ /* Prevent zooming from changing the aspect ratio. */
+ max-width: none;
+ max-height: none;
 }
 
  .rslidy-transition-enabled {
