@@ -1,13 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
   <title>Dishonest Chart Techniques</title>
 
-  <link rel="stylesheet" href="rslidy.min.css" />
-  <link rel="stylesheet" href="slides.css">
+  <link rel="stylesheet" href="rslidy.min.css"/>
+  <link rel="stylesheet" href="slides.css"/>
   <script type="module" src="rslidy.min.js"></script>
   <script src="./libs/chart.js"></script>
   <script src="./libs/d3.v7.min.js"></script>
@@ -17,26 +18,31 @@
 <body>
 
 
-<div class="slide cover" style="padding: 0 4rem;">
-  <div style="text-align: center; margin-bottom: 8rem;">
-    <h1>Dishonest Chart Techniques</h1>
-    <h2>Group 2: Lukas Auer, David Heidinger, Nina Tschikof and Christina Vogel</h2>
-  </div>
-  <div style="width: 100%; text-align: left;">
-    <p class="list-large" style="margin-bottom: 4rem; line-height: 1.4;">
-      6 May 2026<br>Information Visualisation SS 2026
+
+
+
+<section class="rslidy-titleslide">
+  <h1>Dishonest Chart Techniques</h1>
+  <h2>Group 2: Lukas Auer, David Heidinger, Nina Tschikof and Christina Vogel</h2>
+  <h3>Information Visualisation SS 2026</h3>
+  <h3>6 May 2026</h3>
+  <div class="rslidy-licence">
+    <p>
+      Copyright 2026 by the author(s), except as otherwise noted.<br/>
+      This work is placed under a Creative Commons Attribution 4.0 International
+      (<a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>)
+      licence.
     </p>
-    <p class="footnote footnote-left" style="margin: 0; width: auto;">
-      Copyright 2026 by the author(s), except as otherwise noted.<br>
-      This work is placed under a Creative Commons Attribution 4.0 International (CC BY 4.0) licence.
-    </p>
   </div>
-</div>
+</section>
+
+
+
 
 
 <section>
   <h1>Overview</h1>
-  <ol class="list-large">
+  <ol>
     <li>Background and Motivation</li>
     <li>Taxonomy of Dishonest Chart Techniques</li>
     <li>Related Work</li>
@@ -44,14 +50,20 @@
 </section>
 
 
+
+
+
 <section class="rslidy-sectionslide">
   <h1>Background and Motivation</h1>
 </section>
 
 
+
+
+
 <section>
   <h1>Dishonest Charts</h1>
-  <ul class="list-large">
+  <ul>
     <li>Visualizations can convey a misleading impression.</li>
     <li>Occur by accident or design.</li>
     <li>Data is always biased and never objective or neutral.</li>
@@ -67,38 +79,47 @@
 </section>
 
 
+
+
+
 <section class="rslidy-sectionslide">
   <h1>Taxonomy of Dishonest Chart Techniques</h1>
 </section>
+
+
+
 
 
 <section>
   <h1>Nine Dishonest Chart Techniques</h1>
   <div class="rslidy-columns-even">
     <div class="rslidy-column">
-      <ul class="rslidy-incremental">
-        <li>1. Cherry Picking</li>
-        <li>2. Underbinning</li>
-        <li>3. Axis Truncation</li>
-        <li>4. Artificial Flattening or Steepening</li>
-        <li>5. Time Gap</li>
-      </ul>
+      <ol class="rslidy-incremental">
+        <li>Cherry Picking</li>
+        <li>Underbinning</li>
+        <li>Axis Truncation</li>
+        <li>Artificial Flattening or Steepening</li>
+        <li>Time Gap</li>
+      </ol>
     </div>
     <div class="rslidy-column">
-      <ul class="rslidy-incremental">
-        <li>6. Oversmoothing</li>
-        <li>7. Manipulating the Visual Encoding</li>
-        <li>8. Perspective Distortion</li>
-        <li>9. Concealing Uncertainty</li>
-      </ul>
+      <ol class="rslidy-incremental" start="6">
+        <li>Oversmoothing</li>
+        <li>Manipulating the Visual Encoding</li>
+        <li>Perspective Distortion</li>
+        <li>Concealing Uncertainty</li>
+      </ol>
     </div>
   </div>
 </section>
 
 
+
+
+
 <section>
   <h1>1. Cherry Picking</h1>
-  <ul class="list-large">
+  <ul>
     <li>Selecting only specific data points, groups, or timeframes that support desired outcome.</li>
     <li>Deliberately hides broader context or opposing trends.
       <ul>
@@ -110,9 +131,11 @@
 
 
 
+
+
 <section>
   <h1>Cherry Picking Demo</h1>
-  <div class="flex-col-center">
+  <div class="demo-layout">
     <div class="demo-wrapper">
       <svg id="cherrySvg" class="demo-svg" viewBox="0 0 850 450">
         <text x="-200" y="20" transform="rotate(-90)" text-anchor="middle" font-weight="bold" font-size="16"
@@ -126,20 +149,24 @@
 
     <div class="demo-controls">
       <div class="control-row">
-        <span class="text-bold text-success">Full Trend (1970 - 2023)</span>
-        <span class="text-bold text-danger">"The Hiatus" (1998 - 2011)</span>
+        <strong class="text-success">Full Trend (1970 - 2023)</strong>
+        <strong class="text-danger">"The Hiatus" (1998 - 2011)</strong>
       </div>
-      <input type="range" id="cherrySlider" class="range-slider" min="0" max="100" value="0">
+      <input type="range" id="cherrySlider" class="range-slider" min="0" max="100" value="0"/>
     </div>
 
-    <div class="footnote">
-      NASA Goddard Institute for Space Studies (GISS). (2024). <em>Global Land-Ocean Temperature Index</em>.<br>
+    <div class="rslidy-credits">
+      NASA Goddard Institute for Space Studies (GISS). (2024). <em>Global Land-Ocean Temperature Index</em>.<br/>
       Retrieved from <a href="https://data.giss.nasa.gov/gistemp/"
-                        target="_blank"><code>https://data.giss.nasa.gov/gistemp/</code></a>. Interactive chart created by the authors.<br>
+                        target="_blank">
+      <code>https://data.giss.nasa.gov/gistemp/</code></a>. Interactive chart created by the authors.<br/>
 
     </div>
   </div>
 </section>
+
+
+
 
 
 <section>
@@ -155,26 +182,28 @@
     <div class="rslidy-column">
       <figure>
         <div class="rslidy-images">
-          <img src="images/cherry_picking.svg" alt="Cherry Picking Example">
+          <img src="images/cherry_picking.svg" alt="Cherry Picking Example"/>
         </div>
-        <figcaption>Chart recreated from original in Python by the authors.</figcaption>
+        <figcaption class="rslidy-center">Chart recreated from original in Python by the authors.</figcaption>
       </figure>
     </div>
   </div>
-  <div class="footnote footnote-left">
+  <div class="rslidy-footer source-reference">
     <sup>1</sup> Judd, E. J., Tierney, J. E., Lunt, D. J., Montañez, I. P., Huber, B. T., Wing, S. L., & Valdes, P. J.
-    (2024).<br>
+    (2024).<br/>
     A 485-million-year history of Earth’s surface temperature. <em>Science</em>, <em>385</em>(6715).
-    <a href="https://doi.org/10.1126/science.adk3705" target="_blank"><code>https://doi.org/10.1126/science.adk3705</code></a>
+    <a href="https://doi.org/10.1126/science.adk3705" target="_blank">
+      <code>https://doi.org/10.1126/science.adk3705</code></a>
   </div>
 </section>
 
 
 
 
+
 <section>
   <h1>2. Underbinning</h1>
-  <ul class="list-large">
+  <ul>
     <li>Reducing number of bins (e.g., in histograms or heatmaps).</li>
     <li>Obscures true underlying distribution.</li>
     <li>Hides:
@@ -188,10 +217,13 @@
 </section>
 
 
+
+
+
 <section>
   <h1>Underbinning Demo</h1>
 
-  <div class="flex-col-center">
+  <div class="demo-layout">
     <div class="demo-wrapper">
       <svg id="binSvg" class="demo-svg" viewBox="0 0 850 450">
         <text x="-200" y="20" transform="rotate(-90)" text-anchor="middle" font-weight="bold" font-size="16"
@@ -203,18 +235,21 @@
     </div>
 
     <div class="demo-controls">
-      <label for="binSlider" class="text-bold" style="font-size: 1.3rem; color: var(--text-main);">Number of Bins:
-        <span id="binCountDisplay">10</span></label>
-      <input type="range" id="binSlider" class="range-slider" min="2" max="10" value="10" step="1">
+      <label for="binSlider"><strong>Number of Bins:
+        <span id="binCountDisplay">10</span></strong></label>
+      <input type="range" id="binSlider" class="range-slider" min="2" max="10" value="10" step="1"/>
       <div class="control-row text-light">
         <span>Minimum (Misleading)</span>
         <span>Maximum (Detailed)</span>
       </div>
     </div>
 
-    <div class="footnote">Interactive chart created by the authors.</div>
+    <div class="rslidy-credits">Interactive chart created by the authors.</div>
   </div>
 </section>
+
+
+
 
 
 <section>
@@ -232,32 +267,32 @@
     <div class="rslidy-column">
       <figure>
         <div class="rslidy-images">
-          <img src="images/underbinning.svg" alt="Underbinning Example" style="width: auto; height: 16rem; margin-bottom: 2rem;">
+          <img src="images/underbinning.svg" alt="Underbinning Example" class="underbinning-chart"/>
         </div>
-        <figcaption>Chart recreated from original in Python by the authors.</figcaption>
+        <figcaption class="rslidy-center">Chart recreated from original in Python by the authors.</figcaption>
       </figure>
       <figure>
         <div class="rslidy-images">
-          <img src="images/proper_binning.svg" alt="Proper Binning Example" style="width: auto; height: 16rem; margin-bottom: 2rem;">
+          <img src="images/proper_binning.svg" alt="Proper Binning Example" class="underbinning-chart"/>
         </div>
-        <figcaption>Chart recreated from original in Python by the authors.</figcaption>
+        <figcaption class="rslidy-center">Chart recreated from original in Python by the authors.</figcaption>
+      </figure>
     </div>
-
   </div>
-  <div class="footnote footnote-left">
+  <div class="rslidy-footer source-reference">
     <sup>1</sup> FlowingData. <em>Dishonest Charts</em>, from
     <a href="https://flowingdata.com/projects/dishonest-charts/" target="_blank">
-      <code>https://flowingdata.com/projects/dishonest-charts/</code>
-    </a>
+      <code>https://flowingdata.com/projects/dishonest-charts/</code></a>
   </div>
 </section>
 
 
 
 
+
 <section>
   <h1>3. Axis Truncation</h1>
-  <ul class="list-large">
+  <ul>
     <li>Truncating the baseline</li>
     <li>Chart where y-axis does not start at zero.</li>
     <li>Differences appear larger.</li>
@@ -265,11 +300,14 @@
 </section>
 
 
+
+
+
 <section>
   <h1>Axis Truncation Demo</h1>
 
-  <div class="flex-col-center">
-    <svg id="axisSVG" viewBox="0 0 500 300" style="width: auto; height: 30rem; margin-bottom: 2rem;">
+  <div class="demo-layout">
+    <svg id="axisSVG" viewBox="0 0 500 300">
       <line x1="80" y1="250" x2="450" y2="250" stroke="black" />
       <line x1="80" y1="50" x2="80" y2="250" stroke="black" />
 
@@ -293,51 +331,60 @@
       <text x="265" y="295" text-anchor="middle" font-size="12">Same values: 100 vs. 110</text>
     </svg>
 
-    <div class="demo-controls" style="max-width: 20rem;">
-      <label for="svgSlider" style="font-size: 1.2rem;">
+    <div class="demo-controls demo-controls-narrow">
+      <label for="svgSlider">
         Y-axis starts at: <span id="sliderValue">0</span>
       </label>
-      <input type="range" id="svgSlider" class="range-slider" min="0" max="95" value="0" step="5">
+      <input type="range" id="svgSlider" class="range-slider" min="0" max="95" value="0" step="5"/>
     </div>
 
-    <p id="svgMessage" style="font-size: 1.2rem; margin-top: 1.5rem;" class="text-center">
+    <p id="svgMessage" class="demo-message">
       Full axis: the difference looks proportional.
     </p>
 
-    <div class="footnote">Interactive SVG created by the authors.</div>
+    <div class="rslidy-credits">Interactive SVG created by the authors.</div>
   </div>
 </section>
 
 
 
+
+
 <section>
   <h1>Axis Truncation Example</h1>
-  <div class="flex-row-between">
-    <div class="col-text">
+  <div class="rslidy-columns-even">
+    <div class="rslidy-column">
       <ul>
         <li>Fox News Tax Cuts Broadcast (2012).<sup>1</sup></li>
         <li>Truncated y-axis (starts at 34% instead of 0%).</li>
         <li>Exaggerates minor 4.6% tax increase, making second bar appear much larger.</li>
       </ul>
     </div>
-    <div class="col-image">
-      <img src="images/axis_truncation.svg" alt="Axis Truncation Example" class="example-img">
-      <p class="caption">Chart recreated from original in Python by the authors.</p>
+    <div class="rslidy-column">
+      <figure>
+        <div class="rslidy-tall-images">
+          <img src="images/axis_truncation.svg" alt="Axis Truncation Example"/>
+        </div>
+        <figcaption class="rslidy-center">Chart recreated from original in Python by the authors.</figcaption>
+      </figure>
     </div>
   </div>
-  <div class="footnote footnote-left">
+  <div class="rslidy-footer source-reference">
     <sup>1</sup> Fox News Network. (2012, August 1). <em>If Bush tax cuts expire</em> [Television broadcast]. Media
     Matters for America.
     <a href="https://peoplesgdarchive.org/item/10481/if-bush-tax-cuts-expire-fox-news-infographic"
-       target="_blank"><code>https://peoplesgdarchive.org/item/10481/if-bush-tax-cuts-expire-fox-news-infographic</code></a>
+       target="_blank">
+      <code>https://peoplesgdarchive.org/item/10481/if-bush-tax-cuts-expire-fox-news-infographic</code></a>
   </div>
 </section>
 
 
 
+
+
 <section>
   <h1>4. Artificial Flattening or Steepening</h1>
-  <ul class="list-large">
+  <ul>
     <li>Flattening chart's visual appearance:
       <ul>
         <li>Extreme aspect ratios.</li>
@@ -348,9 +395,12 @@
 </section>
 
 
+
+
+
 <section>
   <h1>Artificial Flattening / Steepening Demo</h1>
-  <div class="flex-col-center">
+  <div class="demo-layout">
     <div class="demo-wrapper">
       <svg class="demo-svg" viewBox="0 0 850 450">
         <text x="-200" y="20" transform="rotate(-90)" text-anchor="middle" font-weight="bold" font-size="16"
@@ -371,57 +421,66 @@
         <span>Steepened</span>
         <span>Flattened</span>
       </div>
-      <input type="range" id="svgScaleSlider" class="range-slider" min="0" max="100" value="50">
+      <input type="range" id="svgScaleSlider" class="range-slider" min="0" max="100" value="50"/>
     </div>
 
-    <div class="footnote">Interactive chart created by the authors.</div>
+    <div class="rslidy-credits">Interactive chart created by the authors.</div>
   </div>
 </section>
+
 
 
 
 
 <section>
   <h1>5. Time Gap</h1>
-  <ul class="list-large">
+  <ul>
     <li>Using uneven or irregular time intervals on continuous axis but spacing them evenly.</li>
   </ul>
 </section>
 
 
+
+
+
 <section>
   <h1>Time Gap Demo</h1>
-  <div class="flex-col-center">
-    <div class="demo-wrapper" style="height: 35vh;">
+  <div class="demo-layout">
+    <div class="demo-wrapper time-gap-chart">
       <canvas id="timeGapChart"></canvas>
     </div>
 
     <div class="demo-controls">
-      <input type="range" id="timeGapSlider" class="range-slider" min="0" max="100" value="0">
+      <input type="range" id="timeGapSlider" class="range-slider" min="0" max="100" value="0"/>
       <div class="control-row text-light">
         <span>All Years Shown</span>
         <span>Stagnant Years Deleted</span>
       </div>
     </div>
 
-    <div class="footnote">Interactive chart created by the authors.</div>
+    <div class="rslidy-credits">Interactive chart created by the authors.</div>
   </div>
 </section>
 
 
 
+
+
 <section>
   <h1>6. Oversmoothing</h1>
-  <ul class="list-large">
+  <ul>
     <li>Applying aggressive smoothing algorithms or over-fitted curves to raw data points.</li>
     <li>Hides critical short-term fluctuations, volatility, or local extremes.</li>
   </ul>
 </section>
 
 
+
+
+
 <section>
   <h1>Oversmoothing Demo</h1>
-  <div class="flex-col-center">
+  <div class="demo-layout">
     <div class="demo-wrapper">
       <svg id="oversmoothingSvg" viewBox="0 0 850 420" class="demo-svg">
         <rect x="0" y="0" width="850" height="420" fill="white" />
@@ -437,92 +496,107 @@
       </svg>
     </div>
 
-    <div class="demo-controls" style="max-width: 25rem;">
-      <label for="smoothingSvgSlider" style="font-size: 1.2rem;">
+    <div class="demo-controls demo-controls-compact">
+      <label for="smoothingSvgSlider">
         Smoothing window: <span id="smoothingSvgValue">1</span>
       </label>
-      <input id="smoothingSvgSlider" class="range-slider" type="range" min="1" max="15" value="1" step="2">
+      <input id="smoothingSvgSlider" class="range-slider" type="range" min="1" max="15" value="1" step="2"/>
     </div>
 
-    <p id="oversmoothingSvgMessage" style="font-size: 1.2rem; margin-top: 1.5rem;" class="text-center">
+    <p id="oversmoothingSvgMessage" class="demo-message">
       Low smoothing: short-term fluctuations are still visible.
     </p>
-    <div class="footnote">Interactive SVG created by the authors.</div>
+    <div class="rslidy-credits">Interactive SVG created by the authors.</div>
   </div>
 </section>
+
+
 
 
 
 <section>
   <h1>7. Manipulating the Visual Encoding</h1>
-  <ul class="list-large">
+  <ul>
     <li>Manipulates choice of visual encoding.</li>
     <li>Often by misleading colour, size and shape (encoding).</li>
   </ul>
 </section>
 
+
+
+
+
 <section>
   <h1>Visual Encoding Demo 1: Size</h1>
-  <div class="flex-col-center">
-    <div class="demo-wrapper" style="max-width: 40.625rem;">
+  <div class="demo-layout">
+    <div class="demo-wrapper size-comparison-chart">
       <svg class="demo-svg" viewBox="0 0 650 350">
         <circle cx="160" cy="150" r="60" fill="rgba(0, 85, 204, 0.6)" stroke="#0055cc" stroke-width="3" />
         <text x="160" y="330" text-anchor="middle" font-family="sans-serif" font-size="18" font-weight="bold"
               fill="#333">Year 1</text>
         <circle id="svgCircleCompare" cx="470" cy="150" r="84.85" fill="rgba(255, 99, 132, 0.6)" stroke="#cc0000"
-                stroke-width="3" style="transition: r 0.4s ease;" />
+                stroke-width="3" />
         <text x="470" y="330" text-anchor="middle" font-family="sans-serif" font-size="18" font-weight="bold"
               fill="#333">Year 2 (100% Increase)</text>
       </svg>
     </div>
 
-    <div class="demo-controls" style="width: 100%;">
+    <div class="demo-controls demo-controls-wide">
       <div class="switch-container">
-        <span id="sizeLabelHonest" class="switch-label-left text-bold text-success">2D Area</span>
+        <span id="sizeLabelHonest" class="switch-label-left text-success">2D Area</span>
         <label class="switch">
-          <input type="checkbox" id="svgSizeToggle">
+          <input type="checkbox" id="svgSizeToggle"/>
           <span class="slider-toggle"></span>
         </label>
         <span id="sizeLabelDishonest" class="switch-label-right">1D Radius</span>
       </div>
     </div>
-    <div class="footnote">Interactive chart created by the authors.</div>
+    <div class="rslidy-credits">Interactive chart created by the authors.</div>
   </div>
 </section>
 
 
+
+
+
 <section>
   <h1>Manipulating the Visual Encoding Example 1</h1>
-  <div class="flex-row-between">
-    <div class="col-text">
+  <div class="rslidy-columns-even">
+    <div class="rslidy-column">
       <ul>
         <li>"Shrinking Family Doctor" (Time Magazine, 1990).<sup>1</sup></li>
         <li>Maps a 1D percentage drop to a 2D icon's height.</li>
         <li>Viewers perceive area, making the 1990 doctor look drastically smaller than the data supports.</li>
       </ul>
     </div>
-    <div class="col-image">
-      <img src="images/manipulating_the_visual_encoding_1.svg" alt="Symbolism Manipulation Example"
-           class="example-img">
-      <p class="caption">Chart recreated from original in Python by the authors.</p>
+    <div class="rslidy-column">
+      <figure>
+        <div class="rslidy-tall-images">
+          <img src="images/manipulating_the_visual_encoding_1.svg" alt="Symbolism Manipulation Example"/>
+        </div>
+        <figcaption class="rslidy-center">Chart recreated from original in Python by the authors.</figcaption>
+      </figure>
     </div>
   </div>
-  <div class="footnote footnote-left">
+  <div class="rslidy-footer source-reference">
     <sup>1</sup> Time Magazine. (1990). <em>The Shrinking Family Doctor</em> [Data visualization]. InfoVis Wiki: The
     Lie Factor.
     Retrieved from <a href="https://infovis-wiki.net/wiki/Lie_Factor"
-                      target="_blank"><code>https://infovis-wiki.net/wiki/Lie_Factor</code></a>
+                      target="_blank">
+    <code>https://infovis-wiki.net/wiki/Lie_Factor</code></a>
   </div>
 </section>
 
 
+
+
+
 <section>
   <h1>Visual Encoding Demo 2: Color Mapping</h1>
-  <div class="flex-col-center">
-    <div class="demo-wrapper" style="max-width: 59.375rem; position: relative;">
-      <div id="usaMapContainer"
-           style="width: 100%; height: 34.375rem; overflow: hidden; border-radius: 0.5rem; background: #e0f3ff;"></div>
-      <svg style="position: absolute; right: 1.25rem; bottom: 1.25rem; width: 11.25rem; height: 21.875rem; overflow: visible;">
+  <div class="demo-layout">
+    <div class="demo-wrapper colour-map">
+      <div id="usaMapContainer"></div>
+      <svg class="map-legend" viewBox="0 0 180 350">
         <defs>
           <linearGradient id="legHonest" x1="0%" y1="0%" x2="0%" y2="100%">
             <stop offset="0%" stop-color="#fee0d2" />
@@ -544,81 +618,95 @@
         <text x="30" y="300" font-size="14" fill="#333" font-weight="bold">35°C</text>
       </svg>
     </div>
-    <div class="demo-controls" style="width: 100%;">
+    <div class="demo-controls demo-controls-wide">
       <div class="switch-container">
-        <span id="colorLabelHonest" class="switch-label-left text-bold text-success">Sequential Palette</span>
+        <span id="colorLabelHonest" class="switch-label-left text-success">Sequential Palette</span>
         <label class="switch">
-          <input type="checkbox" id="svgColorToggle">
+          <input type="checkbox" id="svgColorToggle"/>
           <span class="slider-toggle"></span>
         </label>
         <span id="colorLabelDishonest" class="switch-label-right">Rainbow Palette</span>
       </div>
     </div>
-    <div class="footnote">Interactive chart created by the authors.</div>
+    <div class="rslidy-credits">Interactive chart created by the authors.</div>
   </div>
 </section>
+
+
 
 
 
 <section>
   <h1>8. Perspective Distortion</h1>
-  <ul class="list-large">
-    <li>Misuses 3d perspective.
+  <ul>
+    <li>Misuses 3d perspective.</li>
     <li>For example, tilting a pie chart to make foreground slices look larger.</li>
-    </li>
   </ul>
 </section>
 
 
+
+
+
 <section>
   <h1>Perspective Distortion Demo</h1>
-  <div class="flex-col-center">
-    <svg id="perspectivePieSvg" class="demo-svg" style="max-width: 45rem; margin-bottom: 1rem;"
+  <div class="demo-layout">
+    <svg id="perspectivePieSvg" class="demo-svg"
          viewBox="0 0 720 420"></svg>
 
-    <div class="demo-controls" style="max-width: 25rem;">
-      <label for="tiltSlider" style="font-size: 1.2rem;">
+    <div class="demo-controls demo-controls-compact">
+      <label for="tiltSlider">
         Perspective tilt: <span id="tiltSliderValue">0</span>%
       </label>
-      <input id="tiltSlider" class="range-slider" type="range" min="0" max="70" value="0" step="5">
+      <input id="tiltSlider" class="range-slider" type="range" min="0" max="70" value="0" step="5"/>
     </div>
 
-    <p id="perspectiveMessage" style="font-size: 1.2rem; margin-top: 1.5rem;" class="text-center">
+    <p id="perspectiveMessage" class="demo-message">
       No tilt: slices are easier to compare by their actual angle.
     </p>
-    <div class="footnote">Interactive SVG chart created by the authors.</div>
+    <div class="rslidy-credits">Interactive SVG chart created by the authors.</div>
   </div>
 </section>
+
+
+
 
 
 <section>
   <h1>Perspective Distortion Example</h1>
-  <div class="flex-row-between">
-    <div class="col-text">
+  <div class="rslidy-columns-even">
+    <div class="rslidy-column">
       <ul>
-        <li><span class="liintro">Context</span>: Apple Macworld Keynote (2008),presented by Steve Jobs.<sup>1</sup></li>
-        <li><span class="liintro">Misuse</span>: 3D tilt pushes the 19.5% slice into the middle.</li>
-        <li><span class="liintro">Effect</span>: Perspective distortion makes 19.5% appear physically larger than 21.2%.</li>
+        <li><span class="rslidy-li-intro">Context</span>: Apple Macworld Keynote (2008),presented by Steve Jobs.<sup>1</sup></li>
+        <li><span class="rslidy-li-intro">Misuse</span>: 3D tilt pushes the 19.5% slice into the middle.</li>
+        <li><span class="rslidy-li-intro">Effect</span>: Perspective distortion makes 19.5% appear physically larger than 21.2%.</li>
       </ul>
     </div>
-    <div class="col-image">
-      <img src="images/perspective_distortion.svg" alt="3D Distortion Example" class="example-img">
-      <p class="caption">Chart recreated from original in Python by the authors.</p>
+    <div class="rslidy-column">
+      <figure>
+        <div class="rslidy-tall-images">
+          <img src="images/perspective_distortion.svg" alt="3D Distortion Example"/>
+        </div>
+        <figcaption class="rslidy-center">Chart recreated from original in Python by the authors.</figcaption>
+      </figure>
     </div>
   </div>
-  <div class="footnote footnote-left">
+  <div class="rslidy-footer source-reference">
     <sup>1</sup> Apple (2008, January 15). <em>Macworld San Francisco 2008 Keynote Address</em> [Presentation slide].
     Macworld Conference & Expo.
     Retrieved from <a href="https://paragraft.wordpress.com/tag/infovis/"
-                      target="_blank"><code>https://paragraft.wordpress.com/tag/infovis/</code></a>
+                      target="_blank">
+    <code>https://paragraft.wordpress.com/tag/infovis/</code></a>
   </div>
 </section>
+
+
 
 
 
 <section>
   <h1>9. Concealing Uncertainty</h1>
-  <ul class="list-large">
+  <ul>
     <li>Not including:
       <ul>
         <li>Error bars.</li>
@@ -631,9 +719,12 @@
 </section>
 
 
+
+
+
 <section>
   <h1>Concealing Uncertainty Demo</h1>
-  <div class="flex-col-center">
+  <div class="demo-layout">
     <div class="demo-wrapper">
       <svg id="uncertSvg" class="demo-svg demo-svg-box" viewBox="0 0 850 450">
         <text x="-200" y="20" transform="rotate(-90)" text-anchor="middle" font-weight="bold" font-size="16"
@@ -649,54 +740,63 @@
     </div>
 
     <div class="demo-controls">
-      <label for="uncertSlider" class="text-bold" style="font-size: 1.3rem; color: var(--text-main);">
+      <label for="uncertSlider"><strong>
         Confidence Interval Shown: <span id="uncertDisplay" class="text-danger">0%</span>
-      </label>
-      <input type="range" id="uncertSlider" class="range-slider" min="0" max="95" value="0" step="1">
+      </strong></label>
+      <input type="range" id="uncertSlider" class="range-slider" min="0" max="95" value="0" step="1"/>
       <div class="control-row text-light">
         <span>0% (Concealed / Misleading)</span>
         <span>95% (Honest Forecast)</span>
       </div>
     </div>
 
-    <div class="footnote">Interactive chart created by the authors.</div>
+    <div class="rslidy-credits">Interactive chart created by the authors.</div>
   </div>
 </section>
 
 
 
+
+
 <section class="rslidy-sectionslide">
   <h1>Related Work</h1>
 </section>
+
+
 
 
 
 <section>
   <h1>Related Work</h1>
-  <ul class="list-large">
-    <li style="margin-bottom: 1.5rem;"><span class="liintro">Awesome Misleading Visualizations</span>: Curated GitHub List.<br>
-      <a href="https://github.com/UKPLab/awesome-misleading-visualizations" target="_blank"
-         style="font-size: 0.8em; word-break: break-all;"><code>https://github.com/UKPLab/awesome-misleading-visualizations</code></a>
+  <ul>
+    <li><span class="rslidy-li-intro">Awesome Misleading Visualizations</span>: Curated GitHub List.<br/>
+      <a href="https://github.com/UKPLab/awesome-misleading-visualizations" target="_blank">
+        <code>https://github.com/UKPLab/awesome-misleading-visualizations</code></a>
     </li>
-    <li style="margin-bottom: 1.5rem;"><span class="liintro">FlawViz</span>: Collection of Misleading Data Visualization.<br>
-      <a href="https://flawviz.github.io/" target="_blank"
-         style="font-size: 0.8em; word-break: break-all;"><code>https://flawviz.github.io/</code></a>
+    <li><span class="rslidy-li-intro">FlawViz</span>: Collection of Misleading Data Visualization.<br/>
+      <a href="https://flawviz.github.io/" target="_blank">
+        <code>https://flawviz.github.io/</code></a>
     </li>
-    <li style="margin-bottom: 1.5rem;"><span class="liintro">FlowingData</span>: Defensive Chart Techniques by Nathan Yau.<br>
-      <a href="https://flowingdata.com/projects/dishonest-charts/" target="_blank"
-         style="font-size: 0.8em; word-break: break-all;"><code>https://flowingdata.com/projects/dishonest-charts/</code></a>
+    <li><span class="rslidy-li-intro">FlowingData</span>: Defensive Chart Techniques by Nathan Yau.<br/>
+      <a href="https://flowingdata.com/projects/dishonest-charts/" target="_blank">
+        <code>https://flowingdata.com/projects/dishonest-charts/</code></a>
     </li>
-    <li style="margin-bottom: 1.5rem;"><span class="liintro">How Charts Lie</span>: Book by Alberto Cairo.<br>
-      <a href="https://wwnorton.com/books/9781324001560" target="_blank"
-         style="font-size: 0.8em; word-break: break-all;"><code>https://wwnorton.com/books/9781324001560</code></a>
+    <li><span class="rslidy-li-intro">How Charts Lie</span>: Book by Alberto Cairo.<br/>
+      <a href="https://wwnorton.com/books/9781324001560" target="_blank">
+        <code>https://wwnorton.com/books/9781324001560</code></a>
     </li>
   </ul>
 </section>
 
 
+
+
+
 <section class="rslidy-sectionslide">
   <h1>Questions?</h1>
 </section>
+
+
 
 
 
