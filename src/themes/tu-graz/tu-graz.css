@@ -119,7 +119,7 @@ headings remain visually centred.
 
 
 /* Licence Text */
-div#rslidy-copyright p {
+div#rslidy-licence p {
   display: inline-block;
   background-color: #FFFFFF;
   padding: 0.5em;
@@ -127,6 +127,7 @@ div#rslidy-copyright p {
   font-size: clamp(0.55rem, 0.45vw + 0.35rem, 0.9rem);
   max-width: clamp(16rem, 35vw, 34rem);
 }
+
 
 
 @media (prefers-color-scheme: dark) {
@@ -148,3 +149,29 @@ div#rslidy-copyright p {
     color: #4da3ff;
   }
 }
+
+ /* Print logo once per slide */
+ @media print {
+   body::after {
+     display: none !important;
+   }
+
+   .slide::after {
+     content: "";
+     position: absolute;
+
+     inset-block-start: var(--tugraz-logo-top);
+     inset-inline-end: var(--tugraz-logo-right);
+
+     inline-size: var(--tugraz-logo-width);
+     aspect-ratio: 158.74 / 60.4724;
+
+     background: url("tugraz-logo.svg") center / contain no-repeat;
+
+     pointer-events: none;
+     z-index: 10;
+
+     print-color-adjust: exact;
+     -webkit-print-color-adjust: exact;
+   }
+ }

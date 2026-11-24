@@ -40,17 +40,22 @@ code, var, kbd, samp, listing, plaintext, xmp, abbr {
   font-size: 1em;
 }
 
-div.rslidy-copyright {
+/* Licence and copyright information */
+.rslidy-licence {
   margin-top: auto;
+  padding-top: 2em;
+  text-align: center;
+  font-size: 0.5em;
+  line-height: 1.5;
+  border-radius: 0.2em;
 }
 
-div.rslidy-copyright p {
-  display: inline-block;
+.rslidy-licence p {
+  max-width: 80ch;
+  margin: 0 auto;
+  padding: 0;
+  text-align: center;
   background-color: #eee;
-  padding: 0.2em;
-  border-radius: 0.2em;
-  font-size: 50%;
-  max-width: 35%;
 }
 
 pre, code {
@@ -184,9 +189,9 @@ figcaption span.rslidy-credit::after {
 
 /* Centred credits line */
 div.rslidy-credits {
-  margin: 1em 0;
   font-size: 60%;
   text-align: center;
+  margin: 2em 0 1em;
 }
 
 /* Footer, location, licence */
@@ -218,17 +223,6 @@ span.rslidy-isbn::before {
   font-size: 80%;
 }
 
-div#rslidy-licence {
-  margin: 6em 0 1em 0;
-  text-align: center;
-  line-height: 0.5em;
-}
-
-div#rslidy-licence p {
-  display: inline;
-  padding: 0;
-  font-size: 0.5em;
-}
 
 /* The title slide has larger and centred text */
 .rslidy-titleslide {

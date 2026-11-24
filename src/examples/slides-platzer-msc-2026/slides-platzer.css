@@ -1,10 +1,10 @@
 
-div#rslidy-copyright p {
+div#rslidy-licence p {
   max-width: 80ch;
   padding: 0.6em;
 }
 
-div#rslidy-copyright{
+div#rslidy-licence{
   text-align: right;
   position: absolute;
   right:5.5rem;
@@ -90,14 +90,14 @@ code[class*="language-"] {
 }
 
 @media print {
-  div#rslidy-copyright {
+  div#rslidy-licence {
     position: absolute;
     inset-inline: 3rem;
     inset-block-end: 3rem;
     text-align: end;
   }
 
-  div#rslidy-copyright p {
+  div#rslidy-licence p {
     display: inline-block;
     max-inline-size: min(80ch, 100%);
     margin: 0;
@@ -112,7 +112,7 @@ code[class*="language-"] {
 }
 
 @media screen and (max-width: 40rem) {
-  div#rslidy-copyright {
+  div#rslidy-licence {
     position: static;
     inset: auto;
     margin-block-start: auto;

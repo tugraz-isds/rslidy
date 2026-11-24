@@ -68,6 +68,19 @@ export class SlideTransition {
     var target_slide_classes = this.slides[targetSlideIndex].classList;
 
     if (currentSlideIndex >= 0) {
+      const currentSlide = this.slides[currentSlideIndex] as HTMLElement;
+
+      if (
+          animate &&
+          currentSlide.classList.contains("rslidy-unpinned-active-slide")
+      ) {
+        const { width, height } = currentSlide.getBoundingClientRect();
+
+        currentSlide.style.width = `${width}px`;
+        currentSlide.style.height = `${height}px`;
+        currentSlide.style.boxSizing = "border-box";
+      }
+
       current_slide_classes = this.slides[currentSlideIndex].classList;
       current_slide_classes.remove("animated");
       // Don't animate when skipping slides
@@ -83,6 +96,12 @@ export class SlideTransition {
 
         this.slideTimeouts[currentSlideIndex] = setTimeout(() => {
           current_slide_classes.add("rslidy-hidden");
+
+          currentSlide.style.removeProperty("width");
+          currentSlide.style.removeProperty("height");
+          currentSlide.style.removeProperty("box-sizing");
+
+          this.slideTimeouts[currentSlideIndex] = 0;
         }, this.hideTimeout);
       }
       this.slideThumbnails[currentSlideIndex].classList.remove(
@@ -120,10 +139,20 @@ export class SlideTransition {
     target_slide_classes.remove("backwards");
     target_slide_classes.add("forwards");
 
-    // Show specified slide and add selected effect
+    // Cancel pending hide timeout
     if (this.slideTimeouts[targetSlideIndex] > 0) {
       clearTimeout(this.slideTimeouts[targetSlideIndex]);
+      this.slideTimeouts[targetSlideIndex] = 0;
     }
+
+    // Restore the incoming slide's original layout
+    const targetSlide = this.slides[targetSlideIndex] as HTMLElement;
+
+    targetSlide.style.removeProperty("width");
+    targetSlide.style.removeProperty("height");
+    targetSlide.style.removeProperty("box-sizing");
+
+    // Show specified slide
     target_slide_classes.remove("rslidy-hidden");
     this.slideThumbnails[targetSlideIndex].classList.add(
       "rslidy-slide-selected"
