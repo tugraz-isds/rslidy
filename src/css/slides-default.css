@@ -24,7 +24,7 @@ a slide is created by a section and/or div.slide
   font-size: var(--rslidy-slide-font-size);
   container-type: inline-size;
   container-name: rslidy-slide;
-  line-height: 1;
+  line-height: 1.2;
 }
 
 /* Standard slide content layout */
@@ -449,10 +449,16 @@ ol ul {
   margin-top: 0.5em;
 }
 
+
 li {
   padding: 0;
   margin: 0 0 1em 0;
 }
+
+ol.rslidy-compact > li, ul.rslidy-compact > li {
+  margin: 0 0 0.4em 0;
+}
+
 
 /* All tables */
 table {
